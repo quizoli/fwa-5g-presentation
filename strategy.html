@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>FWA 5G n50 (80 MHz) — Executive Board Presentation</title>
 <style>
   :root {
@@ -208,6 +208,133 @@
   .edit-active .edit-badge-indicator {
     display: inline-block;
   }
+
+  /* Table wrappers */
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 6px;
+    border-radius: 8px;
+    border: 1px solid #E2E8F0;
+  }
+  table { min-width: 600px; }
+  .scroll-hint { display: none; }
+  .mobile-nav-bar { display: none; }
+
+  /* Mobile Breakpoint */
+  @media (max-width: 860px) {
+    body {
+      height: 100dvh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      padding: 10px 14px;
+    }
+    header .brand {
+      font-size: 15px;
+    }
+    header .meta, .desktop-only {
+      display: none !important;
+    }
+    #slide-container {
+      padding: 8px 8px 70px 8px !important;
+      flex: 1;
+      overflow: hidden;
+    }
+    .slide {
+      width: 100% !important;
+      max-width: 100% !important;
+      height: 100% !important;
+      max-height: 100% !important;
+      border-radius: 10px !important;
+      padding: 16px 14px !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch;
+    }
+    .slide-header {
+      margin-bottom: 12px !important;
+      padding-bottom: 8px !important;
+    }
+    .slide-category {
+      font-size: 10.5px !important;
+    }
+    .slide-title {
+      font-size: 18px !important;
+      line-height: 1.25 !important;
+    }
+    .slide-number {
+      font-size: 12px !important;
+    }
+
+    .grid-2, .grid-3, .grid-4 {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 10px !important;
+    }
+
+    .card {
+      padding: 12px 14px !important;
+    }
+    h3 { font-size: 15px !important; margin-bottom: 5px !important; }
+    h4 { font-size: 13.5px !important; margin-bottom: 4px !important; }
+    p, li { font-size: 13px !important; line-height: 1.45 !important; }
+    .stat-val { font-size: 20px !important; }
+    .stat-label { font-size: 10px !important; }
+    .stat-sub { font-size: 11px !important; }
+
+    .scroll-hint {
+      display: block !important;
+      font-size: 11px;
+      color: #64748B;
+      text-align: right;
+      margin-bottom: 4px;
+      font-style: italic;
+    }
+
+    .mobile-nav-bar {
+      display: flex !important;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      background: rgba(10, 25, 47, 0.98);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 6px 14px;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+    .mobile-nav-btn {
+      background: var(--navy-light);
+      color: var(--text-light);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 8px 16px;
+      font-size: 13.5px;
+      font-weight: 700;
+      border-radius: 6px;
+      min-width: 80px;
+      cursor: pointer;
+    }
+    .mobile-nav-btn.primary {
+      background: var(--blue-accent);
+      color: white;
+      border-color: var(--blue-accent);
+    }
+    .mobile-slide-indicator {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--teal);
+    }
+    footer {
+      display: none !important;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -216,14 +343,14 @@
   <div class="brand">FWA 5G n50 · Strategic Business Case</div>
   <div class="meta">10,000 Sites Maturity · 80 MHz @ ₱5/kHz · Board Presentation</div>
   <div class="controls">
-    <button onclick="prevSlide()">◀ Previous</button>
-    <span id="slide-indicator" style="font-size: 13px; font-weight: 700; color: white;">1 / 20</span>
-    <button onclick="nextSlide()">Next ▶</button>
+    <button onclick="prevSlide()" class="desktop-only">◀ Previous</button>
+    <span id="slide-indicator" class="desktop-only" style="font-size: 13px; font-weight: 700; color: white;">1 / 20</span>
+    <button onclick="nextSlide()" class="desktop-only">Next ▶</button>
     <span id="edit-badge" class="edit-badge-indicator">✏️ Edit Mode Active</span>
     <button id="edit-toggle-btn" onclick="toggleEditMode()" style="background: #E0E7FF; color: #3730A3; border: 1px solid #C7D2FE;">✏️ Enable Editing</button>
     <button id="save-html-btn" onclick="saveEditedPresentation()" style="display:none; background: #059669; color: white; border: none;">💾 Save Changes</button>
-    <button onclick="toggleFullScreen()" style="background: var(--teal); color: var(--navy); border: none;">⛶ Fullscreen</button>
-    <button onclick="triggerPrint()" style="background: #2A9D8F; color: white; border: none;">🖨️ Export / Print PDF</button>
+    <button onclick="toggleFullScreen()" class="desktop-only" style="background: var(--teal); color: var(--navy); border: none;">⛶ Fullscreen</button>
+    <button onclick="triggerPrint()" class="desktop-only" style="background: #2A9D8F; color: white; border: none;">🖨️ Export / Print PDF</button>
   </div>
 </header>
 
@@ -303,7 +430,7 @@
       </div>
     </div>
     
-    <table style="margin-top: 12px;">
+    <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div><div class="table-wrapper"><table style="margin-top: 12px;">
       <thead>
         <tr>
           <th>Strategic Business Case Dimension</th>
@@ -378,7 +505,7 @@
           <td><strong>Clears 12% WACC Hurdle in ALL 3 Models</strong></td>
         </tr>
       </tbody>
-    </table>
+    </table></div>
     <div style="margin-top: 10px; padding: 10px; background: #F8FAFC; border-left: 4px solid #00B4D8; border-radius: 4px; font-size: 12.5px; color: #334155;">
       <strong>Core Board Takeaway:</strong> With updated Chinese Tier-1 Core/OSS costing and calibrated telecom payback rules, <strong>Scenario 4 is an unambiguous "GO" across all 3 models</strong>. Operational synergies and dynamic ARPU migration expand enterprise value to <strong>$1.068 Billion</strong>.
     </div>
@@ -410,7 +537,7 @@
       </div>
     </div>
 
-    <table style="margin-top: 12px;">
+    <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div><div class="table-wrapper"><table style="margin-top: 12px;">
       <thead>
         <tr>
           <th>Step #</th>
@@ -493,7 +620,7 @@
           <td><span class="badge badge-go" style="background:#86EFAC;color:#064E3B;">★ UNICORN GO</span></td>
         </tr>
       </tbody>
-    </table>
+    </table></div>
 
     <div class="grid-3" style="margin-top: 10px;">
       <div class="card">
@@ -618,7 +745,7 @@
     <div class="card" style="margin-top: 15px;">
       <h4 style="color: var(--navy); margin-bottom: 10px;">The Scale Dilution Effect Across 10,000 Sites</h4>
       <p style="font-size: 13.5px; color: #334155; margin-bottom: 12px;">Because the ₱400M SUF is a fixed national block tariff, its impact on operational margins decreases dramatically as subscriber scale grows:</p>
-      <table>
+      <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div><div class="table-wrapper"><table>
         <thead>
           <tr>
             <th>Deployment Year</th>
@@ -668,7 +795,7 @@
             <td><strong>₱40 / sub / year</strong></td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
   </div>
 
@@ -735,7 +862,7 @@
 
     <div class="card" style="margin-top: 15px;">
       <h4 style="color: var(--navy); margin-bottom: 10px;">10-Year Operational & Technical Comparison</h4>
-      <table>
+      <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div><div class="table-wrapper"><table>
         <thead>
           <tr>
             <th>Parameter</th>
@@ -782,7 +909,7 @@
             <td><strong>+$1,112.1 Million Net Cash Preserved</strong></td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
   </div>
 
@@ -913,7 +1040,7 @@
       </div>
     </div>
 
-    <table style="margin-top: 15px;">
+    <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div><div class="table-wrapper"><table style="margin-top: 15px;">
       <thead>
         <tr>
           <th>Metric ($M USD)</th>
@@ -1002,7 +1129,7 @@
           <td><strong>$166.11M</strong></td>
         </tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <!-- Slide 11 -->
@@ -1062,7 +1189,7 @@
       </div>
       <div class="slide-number">Slide 13 / 20</div>
     </div>
-    <table>
+    <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div><div class="table-wrapper"><table>
       <thead>
         <tr>
           <th>ID</th>
@@ -1220,7 +1347,7 @@
           <td><span class="badge badge-nogo">NO-GO</span></td>
         </tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <!-- Slide 13 -->
@@ -1304,7 +1431,7 @@
 
     <div class="card" style="margin-top: 10px;">
       <h4 style="color: var(--navy); margin-bottom: 8px;">Multi-Year Subscriber Tier Migration Schedule (Model 2 & Model 3 Engine)</h4>
-      <table>
+      <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div><div class="table-wrapper"><table>
         <thead>
           <tr>
             <th>Commercial Tier</th>
@@ -1381,7 +1508,7 @@
             <td><strong>$14.44</strong></td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
 
     <div class="grid-2" style="margin-top: 10px;">
@@ -1430,7 +1557,7 @@
 
     <div class="card" style="margin-top: 15px;">
       <h4 style="color: var(--navy); margin-bottom: 10px;">Scenario 4 Financial Sensitivity to Retail Pricing (10,000 Sites)</h4>
-      <table>
+      <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div><div class="table-wrapper"><table>
         <thead>
           <tr>
             <th>Retail Rate (PHP)</th>
@@ -1501,7 +1628,7 @@
             <td>High-return suburban / premium profile</td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
   </div>
 
@@ -1559,7 +1686,7 @@
     <div class="grid-2">
       <div class="card">
         <h4 style="color: var(--navy); margin-bottom: 10px;">1. ARPU (PHP) vs. Subscriber Take-Rate (% of Capacity)</h4>
-        <table>
+        <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div><div class="table-wrapper"><table>
           <thead>
             <tr>
               <th>Blended ARPU</th>
@@ -1606,12 +1733,12 @@
               <td><strong>+$617.9M</strong></td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <div class="card">
         <h4 style="color: var(--navy); margin-bottom: 10px;">2. CAPEX Variation vs. OPEX Variation</h4>
-        <table>
+        <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div><div class="table-wrapper"><table>
           <thead>
             <tr>
               <th>OPEX Variation</th>
@@ -1652,7 +1779,7 @@
               <td style="color:red;">-$237.5M</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
     </div>
     <div style="margin-top: 10px; font-size: 12px; color: #64748B;">
@@ -1717,7 +1844,7 @@
 
     <div class="card">
       <h4 style="color: var(--navy); margin-bottom: 10px;">Immediate 120-Day Execution Roadmap</h4>
-      <table>
+      <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div><div class="table-wrapper"><table>
         <thead>
           <tr>
             <th>Timeframe</th>
@@ -1758,10 +1885,18 @@
             <td>Chief Commercial Officer</td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
   </div>
 
+</div>
+
+
+<!-- Mobile Bottom Navigation Bar -->
+<div class="mobile-nav-bar">
+  <button onclick="prevSlide()" class="mobile-nav-btn">◀ Prev</button>
+  <div class="mobile-slide-indicator" id="mobile-slide-indicator">1 / 20</div>
+  <button onclick="nextSlide()" class="mobile-nav-btn primary">Next ▶</button>
 </div>
 
 <footer>
@@ -1791,6 +1926,7 @@
       if (i === currentSlide) {
         s.classList.add('active');
         s.style.display = 'flex';
+        s.scrollTop = 0;
       } else {
         s.classList.remove('active');
         s.style.display = 'none';
@@ -1800,6 +1936,8 @@
     const indicator = document.getElementById('slide-indicator');
     const progress = document.getElementById('progress');
     if (indicator) indicator.textContent = (currentSlide + 1) + ' / ' + slides.length;
+    const mobileInd = document.getElementById('mobile-slide-indicator');
+    if (mobileInd) mobileInd.textContent = (currentSlide + 1) + ' / ' + slides.length;
     if (progress) progress.style.width = (((currentSlide + 1) / slides.length) * 100) + '%';
   }
 
@@ -1813,6 +1951,33 @@
   function prevSlide() {
     if (currentSlide > 0) {
       showSlide(currentSlide - 1);
+    }
+  }
+
+  
+  // Touch Swipe Handling for Mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+  let touchStartY = 0;
+  let touchEndY = 0;
+
+  document.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+  }, { passive: true });
+
+  document.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY;
+    handleSwipe();
+  }, { passive: true });
+
+  function handleSwipe() {
+    const diffX = touchEndX - touchStartX;
+    const diffY = touchEndY - touchStartY;
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 45) {
+      if (diffX < 0) nextSlide();
+      else prevSlide();
     }
   }
 

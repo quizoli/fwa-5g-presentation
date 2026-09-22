@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>DICT GIDA Barangay Rollout Plan — Nationwide FWA 5G Expansion</title>
 <style>
   :root {
@@ -25,30 +25,30 @@
   header {
     background: var(--navy);
     color: var(--text-light);
-    padding: 14px 40px;
+    padding: 12px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid rgba(255,255,255,0.12);
     z-index: 10;
   }
-  header .brand { font-size: 20px; font-weight: 800; color: var(--teal); letter-spacing: 0.8px; }
-  header .meta { font-size: 14px; color: var(--text-muted); font-weight: 500; }
-  header .controls { display: flex; gap: 12px; align-items: center; }
+  header .brand { font-size: 19px; font-weight: 800; color: var(--teal); letter-spacing: 0.6px; }
+  header .meta { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+  header .controls { display: flex; gap: 10px; align-items: center; }
   button {
     background: var(--navy-light);
     color: var(--text-light);
     border: 1px solid rgba(255,255,255,0.25);
-    padding: 8px 16px;
-    border-radius: 8px;
+    padding: 7px 15px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     transition: all 0.2s;
   }
   button:hover { background: var(--blue-accent); border-color: var(--blue-accent); }
   button:disabled { opacity: 0.4; cursor: not-allowed; }
-  .slide-num-btn { min-width: 85px; text-align: center; font-weight: 700; }
+  .slide-num-btn { min-width: 80px; text-align: center; font-weight: 700; }
 
   #slide-container {
     flex: 1;
@@ -63,91 +63,226 @@
   .slide {
     background: var(--gray-bg);
     width: 98vw;
-    max-width: 1520px;
+    max-width: 1480px;
     height: 92vh;
-    max-height: 900px;
-    border-radius: 16px;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+    max-height: 880px;
+    border-radius: 14px;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.6);
     display: none;
     flex-direction: column;
-    padding: 35px 50px;
+    padding: 30px 45px;
     box-sizing: border-box;
     overflow-y: auto;
     position: relative;
+    -webkit-overflow-scrolling: touch;
   }
   .slide.active { display: flex; }
 
   .slide-header {
     border-bottom: 2px solid #CBD5E1;
-    padding-bottom: 14px;
-    margin-bottom: 20px;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
   }
-  .slide-category { font-size: 13px; text-transform: uppercase; font-weight: 800; color: var(--blue-accent); letter-spacing: 1.2px; }
-  .slide-title { font-size: 27px; font-weight: 800; color: var(--navy); }
-  .slide-number { font-size: 16px; font-weight: 800; color: var(--text-muted); }
+  .slide-category { font-size: 12px; text-transform: uppercase; font-weight: 800; color: var(--blue-accent); letter-spacing: 1px; }
+  .slide-title { font-size: 25px; font-weight: 800; color: var(--navy); }
+  .slide-number { font-size: 15px; font-weight: 800; color: var(--text-muted); }
 
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
-  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-  .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
 
   .card {
     background: var(--gray-card);
-    border-radius: 10px;
-    padding: 18px 22px;
+    border-radius: 8px;
+    padding: 16px 20px;
     border: 1px solid #E2E8F0;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.03);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
   }
   .card.highlight { border-left: 5px solid var(--blue-accent); }
   .card.warning { border-left: 5px solid var(--gold); }
   .card.success { border-left: 5px solid #10B981; }
   .card.danger { border-left: 5px solid var(--red); }
 
-  h3 { font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
-  h4 { font-size: 16px; font-weight: 700; color: var(--navy-light); margin-bottom: 8px; }
-  p, li { font-size: 14.5px; line-height: 1.55; color: var(--text-dark); }
-  ul { padding-left: 22px; }
-  li { margin-bottom: 7px; }
+  h3 { font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+  h4 { font-size: 15px; font-weight: 700; color: var(--navy-light); margin-bottom: 6px; }
+  p, li { font-size: 14px; line-height: 1.5; color: var(--text-dark); }
+  ul { padding-left: 20px; }
+  li { margin-bottom: 6px; }
 
-  .stat-label { font-size: 12px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; }
-  .stat-val { font-size: 26px; font-weight: 800; color: var(--navy); margin: 4px 0; }
+  .stat-label { font-size: 11px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; }
+  .stat-val { font-size: 24px; font-weight: 800; color: var(--navy); margin: 3px 0; }
   .stat-val.positive { color: #10B981; }
   .stat-val.warning { color: #D97706; }
   .stat-val.danger { color: #DC2626; }
-  .stat-sub { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+  .stat-sub { font-size: 12px; color: var(--text-muted); font-weight: 500; }
 
-  table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13.5px; }
-  th, td { padding: 11px 15px; text-align: left; border-bottom: 1px solid #E2E8F0; }
-  th { background: var(--navy); color: white; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.6px; }
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 6px;
+    border-radius: 8px;
+    border: 1px solid #E2E8F0;
+  }
+  table { width: 100%; min-width: 620px; border-collapse: collapse; font-size: 13px; }
+  th, td { padding: 9px 12px; text-align: left; border-bottom: 1px solid #E2E8F0; }
+  th { background: var(--navy); color: white; font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; }
   tr:nth-child(even) { background: #F8FAFC; }
   tr.highlight-row { background: #EFF6FF; font-weight: 600; }
 
-  .badge { display: inline-block; padding: 4px 9px; border-radius: 5px; font-size: 11.5px; font-weight: 800; text-transform: uppercase; }
+  .badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: 800; text-transform: uppercase; }
   .badge-pass { background: #DCFCE7; color: #166534; }
   .badge-go { background: #DBEAFE; color: #1E40AF; }
   .badge-amber { background: #FEF3C7; color: #92400E; }
   .badge-red { background: #FEE2E2; color: #991B1B; }
 
+  .scroll-hint { display: none; }
+  .mobile-nav-bar { display: none; }
+
   footer {
     background: var(--navy);
     color: var(--text-muted);
-    padding: 10px 40px;
-    font-size: 13px;
+    padding: 8px 30px;
+    font-size: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(255,255,255,0.08);
   }
-  .progress-bar { height: 6px; width: 260px; background: var(--navy-light); border-radius: 3px; overflow: hidden; }
+  .progress-bar { height: 5px; width: 240px; background: var(--navy-light); border-radius: 3px; overflow: hidden; }
   .progress-fill { height: 100%; width: 10%; background: var(--teal); transition: width 0.3s ease; }
+
+  /* =================================================== */
+  /* MOBILE BREAKPOINTS (Phones & Small Tablets)         */
+  /* =================================================== */
+  @media (max-width: 860px) {
+    body {
+      height: 100dvh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      padding: 10px 14px;
+    }
+    header .brand {
+      font-size: 16px;
+    }
+    header .meta, .desktop-only {
+      display: none !important;
+    }
+    #slide-container {
+      padding: 8px 8px 70px 8px !important;
+      flex: 1;
+      overflow: hidden;
+    }
+    .slide {
+      width: 100% !important;
+      max-width: 100% !important;
+      height: 100% !important;
+      max-height: 100% !important;
+      border-radius: 10px !important;
+      padding: 16px 14px !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch;
+    }
+    .slide-header {
+      margin-bottom: 12px !important;
+      padding-bottom: 8px !important;
+    }
+    .slide-category {
+      font-size: 10.5px !important;
+    }
+    .slide-title {
+      font-size: 18px !important;
+      line-height: 1.25 !important;
+    }
+    .slide-number {
+      font-size: 12px !important;
+    }
+
+    .grid-2, .grid-3, .grid-4 {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 10px !important;
+    }
+    .grid-5 {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 8px !important;
+    }
+    .grid-5 .card:last-child {
+      grid-column: span 2;
+    }
+
+    .card {
+      padding: 12px 14px !important;
+    }
+    h3 { font-size: 15px !important; margin-bottom: 5px !important; }
+    h4 { font-size: 13.5px !important; margin-bottom: 4px !important; }
+    p, li { font-size: 13px !important; line-height: 1.45 !important; }
+    .stat-val { font-size: 20px !important; }
+    .stat-label { font-size: 10px !important; }
+    .stat-sub { font-size: 11px !important; }
+
+    .scroll-hint {
+      display: block !important;
+      font-size: 11px;
+      color: #64748B;
+      text-align: right;
+      margin-bottom: 4px;
+      font-style: italic;
+    }
+
+    .mobile-nav-bar {
+      display: flex !important;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      background: rgba(10, 25, 47, 0.98);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 6px 14px;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+    .mobile-nav-btn {
+      background: var(--navy-light);
+      color: var(--text-light);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 8px 16px;
+      font-size: 13.5px;
+      font-weight: 700;
+      border-radius: 6px;
+      min-width: 80px;
+      cursor: pointer;
+    }
+    .mobile-nav-btn.primary {
+      background: var(--blue-accent);
+      color: white;
+      border-color: var(--blue-accent);
+    }
+    .mobile-slide-indicator {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--teal);
+    }
+    footer {
+      display: none !important;
+    }
+  }
 
   @page { size: A4 landscape; margin: 8mm; }
   @media print {
     html, body { background: white !important; height: auto !important; overflow: visible !important; margin: 0 !important; }
-    header, footer, .controls { display: none !important; }
+    header, footer, .controls, .mobile-nav-bar { display: none !important; }
     #slide-container { display: block !important; padding: 0 !important; background: white !important; height: auto !important; overflow: visible !important; }
     .slide { display: flex !important; page-break-after: always !important; break-after: page !important; box-shadow: none !important; border: 1px solid #CBD5E1 !important; height: 185mm !important; margin: 0 0 10mm 0 !important; padding: 12mm 15mm !important; }
   }
@@ -158,18 +293,18 @@
 <body>
 
 <header>
-  <div style="display: flex; align-items: center; gap: 18px;">
+  <div style="display: flex; align-items: center; gap: 14px;">
     <div class="brand">TELTECH & COMCLARK</div>
     <div class="meta">DICT GIDA Barangay Prioritization & Phased FWA 5G Rollout Master Plan</div>
   </div>
   <div class="controls">
-    <button id="edit-toggle-btn" onclick="toggleEditMode()" style="background:#E0E7FF;color:#3730A3;border-color:#C7D2FE;">✏️ Enable Editing</button>
-    <button id="save-html-btn" onclick="saveEditedPresentation()" style="display:none;background:#10B981;color:white;border-color:#059669;">💾 Save Edits</button>
-    <button onclick="prevSlide()">◀ Prev</button>
-    <button id="slide-indicator" class="slide-num-btn">1 / 10</button>
-    <button onclick="nextSlide()">Next ▶</button>
-    <button onclick="toggleFullScreen()">⛶ Fullscreen</button>
-    <button onclick="triggerPrint()">🖨️ PDF / Print</button>
+    <button id="edit-toggle-btn" onclick="toggleEditMode()" style="background:#E0E7FF;color:#3730A3;border-color:#C7D2FE;">✏️ Edit</button>
+    <button id="save-html-btn" onclick="saveEditedPresentation()" style="display:none;background:#10B981;color:white;border-color:#059669;">💾 Save</button>
+    <button onclick="prevSlide()" class="desktop-only">◀ Prev</button>
+    <button id="slide-indicator" class="slide-num-btn desktop-only">1 / 10</button>
+    <button onclick="nextSlide()" class="desktop-only">Next ▶</button>
+    <button onclick="toggleFullScreen()" class="desktop-only">⛶ Fullscreen</button>
+    <button onclick="triggerPrint()" class="desktop-only">🖨️ PDF / Print</button>
   </div>
 </header>
 
@@ -177,42 +312,42 @@
 
   <!-- Slide 1: Title Hero -->
   <div class="slide active">
-    <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;">
-      <div style="background: white; border: 3px solid var(--teal); border-radius: 16px; padding: 45px 60px; max-width: 1100px; box-shadow: 0 15px 35px rgba(0,0,0,0.06); width: 100%;">
-        <div style="font-size: 15px; font-weight: 800; color: var(--blue-accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;">
+    <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 10px;">
+      <div style="background: white; border: 3px solid var(--teal); border-radius: 14px; padding: 35px 40px; max-width: 1050px; box-shadow: 0 15px 35px rgba(0,0,0,0.06); width: 100%;">
+        <div style="font-size: 13px; font-weight: 800; color: var(--blue-accent); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;">
           Telecommunications Technology Solutions Inc. (TelTech) & Comclark
         </div>
-        <h1 style="font-size: 42px; font-weight: 800; color: var(--navy); line-height: 1.2; margin-bottom: 18px;">
+        <h1 style="font-size: 34px; font-weight: 800; color: var(--navy); line-height: 1.25; margin-bottom: 14px;">
           DICT GIDA Barangay Rollout Plan
         </h1>
-        <p style="font-size: 20px; color: var(--text-muted); margin-bottom: 35px; font-weight: 500;">
+        <p style="font-size: 17px; color: var(--text-muted); margin-bottom: 25px; font-weight: 500;">
           Nationwide Fixed Wireless Access (FWA) 5G Deployment Strategy
         </p>
 
-        <div class="grid-4" style="text-align: left; margin-top: 25px;">
+        <div class="grid-4" style="text-align: left; margin-top: 20px;">
           <div class="card">
             <div class="stat-label">Dataset Scope</div>
-            <div style="font-size: 17px; font-weight: 800; color: var(--navy); margin-top: 6px;">42,001 Barangays</div>
+            <div style="font-size: 16px; font-weight: 800; color: var(--navy); margin-top: 4px;">42,001 Barangays</div>
             <div class="stat-sub">DICT FPIAP Prioritization</div>
           </div>
           <div class="card">
             <div class="stat-label">Target Population</div>
-            <div style="font-size: 17px; font-weight: 800; color: var(--navy); margin-top: 6px;">3,903 Priority 1 Brgys</div>
+            <div style="font-size: 16px; font-weight: 800; color: var(--navy); margin-top: 4px;">3,903 Priority 1 Brgys</div>
             <div class="stat-sub">100% Covered in Year 1</div>
           </div>
           <div class="card">
             <div class="stat-label">Technology Moat</div>
-            <div style="font-size: 17px; font-weight: 800; color: var(--navy); margin-top: 6px;">Band n50 (1.5 GHz)</div>
+            <div style="font-size: 16px; font-weight: 800; color: var(--navy); margin-top: 4px;">Band n50 (1.5 GHz)</div>
             <div class="stat-sub">Starlink LEO Satellite Backhaul</div>
           </div>
           <div class="card">
             <div class="stat-label">Commercial Model</div>
-            <div style="font-size: 17px; font-weight: 800; color: var(--navy); margin-top: 6px;">Dual-Revenue Engine</div>
+            <div style="font-size: 16px; font-weight: 800; color: var(--navy); margin-top: 4px;">Dual-Revenue Engine</div>
             <div class="stat-sub">DICT Subsidies + ₱599 Retail</div>
           </div>
         </div>
 
-        <div style="margin-top: 40px; font-size: 14px; color: var(--text-muted); font-weight: 700; letter-spacing: 0.8px;">
+        <div style="margin-top: 30px; font-size: 12px; color: var(--text-muted); font-weight: 700; letter-spacing: 0.5px;">
           CONFIDENTIAL · COMMERCIAL EXPANSION MASTER PLAN · SEPTEMBER 2026
         </div>
       </div>
@@ -228,7 +363,7 @@
       </div>
       <div class="slide-number">Slide 02 / 10</div>
     </div>
-    <div style="display: flex; flex-direction: column; gap: 16px; flex: 1; justify-content: center;">
+    <div style="display: flex; flex-direction: column; gap: 12px; flex: 1; justify-content: center;">
       <div class="card danger">
         <h3 style="color: #991B1B;">1. The Structural Terrestrial Fiber Divide</h3>
         <p>
@@ -266,77 +401,80 @@
       <div class="slide-number">Slide 03 / 10</div>
     </div>
     
-    <div class="grid-5" style="margin-bottom: 18px;">
+    <div class="grid-5" style="margin-bottom: 12px;">
       <div class="card">
         <div class="stat-label">Total Evaluated</div>
-        <div class="stat-val" style="font-size:24px; color:var(--navy);">42,001</div>
+        <div class="stat-val" style="font-size:20px; color:var(--navy);">42,001</div>
         <div class="stat-sub">Nationwide DICT Dataset</div>
       </div>
       <div class="card">
         <div class="stat-label">Provincial Scope</div>
-        <div class="stat-val" style="font-size:24px; color:var(--blue-accent);">40,291</div>
+        <div class="stat-val" style="font-size:20px; color:var(--blue-accent);">40,291</div>
         <div class="stat-sub">Class 3–6 Rural Brgys</div>
       </div>
       <div class="card danger">
         <div class="stat-label">Critical GIDA (≥50)</div>
-        <div class="stat-val danger" style="font-size:24px;">1,345</div>
+        <div class="stat-val danger" style="font-size:20px;">1,345</div>
         <div class="stat-sub">100% covered in Year 1</div>
       </div>
       <div class="card warning">
         <div class="stat-label">High GIDA (40-49.9)</div>
-        <div class="stat-val warning" style="font-size:24px;">2,558</div>
+        <div class="stat-val warning" style="font-size:20px;">2,558</div>
         <div class="stat-sub">High unserved demand</div>
       </div>
       <div class="card success">
         <div class="stat-label">Combined Priority 1</div>
-        <div class="stat-val positive" style="font-size:24px;">3,903</div>
+        <div class="stat-val positive" style="font-size:20px;">3,903</div>
         <div class="stat-sub">Matched to 1,000 Sites</div>
       </div>
     </div>
 
     <div class="card" style="flex: 1;">
-      <h4 style="color: var(--navy); margin-bottom: 12px;">Nationwide GIDA Distribution & TelTech FWA Strategic Interventions:</h4>
-      <table>
-        <thead>
-          <tr>
-            <th>GIDA Priority Tier</th>
-            <th>GIDA Score Range</th>
-            <th>Provincial Brgys (ex-NCR)</th>
-            <th>Infrastructure Status & Challenges</th>
-            <th>TelTech Band n50 FWA Strategic Intervention</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="background:#FEF2F2; font-weight:600;">
-            <td><span class="badge badge-red">Tier 1: Critical GIDA</span></td>
-            <td>Score ≥ 50.0</td>
-            <td>1,345 (3.3%)</td>
-            <td>Zero fiber presence; isolated/island; severe poverty</td>
-            <td>Phase 1 Priority: 100% covered by 384 macro sites + Starlink backhaul.</td>
-          </tr>
-          <tr class="highlight-row">
-            <td><span class="badge badge-amber">Tier 2: High GIDA</span></td>
-            <td>Score 40.0 – 49.9</td>
-            <td>2,558 (6.3%)</td>
-            <td>Minimal 2G/3G; no fixed broadband; mountain valleys</td>
-            <td>Phase 1 & 2: Covered by 616 Year 1 sites + Phase 2 expansion.</td>
-          </tr>
-          <tr>
-            <td><span class="badge badge-go">Tier 3: Moderate GIDA</span></td>
-            <td>Score 30.0 – 39.9</td>
-            <td>5,128 (12.7%)</td>
-            <td>Spotty 4G cellular; severe bandwidth choking</td>
-            <td>Phase 2 & 3: Infill across 2,000 Phase 2 macro sites (Years 2–4).</td>
-          </tr>
-          <tr>
-            <td><span class="badge" style="background:#E2E8F0;color:#475569;">Tier 4: Low / Minimal</span></td>
-            <td>Score &lt; 30.0</td>
-            <td>31,260 (77.6%)</td>
-            <td>Partial fiber presence; peri-urban municipal fringe</td>
-            <td>Phase 4: Densification across 10,000 nationwide sites (Years 7–10).</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div>
+      <h4 style="color: var(--navy); margin-bottom: 8px;">Nationwide GIDA Distribution & TelTech FWA Strategic Interventions:</h4>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>GIDA Priority Tier</th>
+              <th>GIDA Score Range</th>
+              <th>Provincial Brgys (ex-NCR)</th>
+              <th>Infrastructure Status & Challenges</th>
+              <th>TelTech Band n50 FWA Strategic Intervention</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:#FEF2F2; font-weight:600;">
+              <td><span class="badge badge-red">Tier 1: Critical GIDA</span></td>
+              <td>Score ≥ 50.0</td>
+              <td>1,345 (3.3%)</td>
+              <td>Zero fiber presence; isolated/island; severe poverty</td>
+              <td>Phase 1 Priority: 100% covered by 384 macro sites + Starlink backhaul.</td>
+            </tr>
+            <tr class="highlight-row">
+              <td><span class="badge badge-amber">Tier 2: High GIDA</span></td>
+              <td>Score 40.0 – 49.9</td>
+              <td>2,558 (6.3%)</td>
+              <td>Minimal 2G/3G; no fixed broadband; mountain valleys</td>
+              <td>Phase 1 & 2: Covered by 616 Year 1 sites + Phase 2 expansion.</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-go">Tier 3: Moderate GIDA</span></td>
+              <td>Score 30.0 – 39.9</td>
+              <td>5,128 (12.7%)</td>
+              <td>Spotty 4G cellular; severe bandwidth choking</td>
+              <td>Phase 2 & 3: Infill across 2,000 Phase 2 macro sites (Years 2–4).</td>
+            </tr>
+            <tr>
+              <td><span class="badge" style="background:#E2E8F0;color:#475569;">Tier 4: Low / Minimal</span></td>
+              <td>Score &lt; 30.0</td>
+              <td>31,260 (77.6%)</td>
+              <td>Partial fiber presence; peri-urban municipal fringe</td>
+              <td>Phase 4: Densification across 10,000 nationwide sites (Years 7–10).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -350,33 +488,33 @@
       <div class="slide-number">Slide 04 / 10</div>
     </div>
     
-    <div class="grid-3" style="margin-bottom: 20px;">
+    <div class="grid-3" style="margin-bottom: 14px;">
       <div class="card highlight">
         <div class="stat-label">Macro Cell Coverage</div>
-        <div style="font-size: 20px; font-weight: 800; color: var(--navy); margin-top: 6px;">3.5 km Radius</div>
-        <p style="font-size: 13.5px; color: #475569; margin-top: 5px;">
+        <div style="font-size: 18px; font-weight: 800; color: var(--navy); margin-top: 4px;">3.5 km Radius</div>
+        <p style="font-size: 12.5px; color: #475569; margin-top: 4px;">
           Band n50 at 1.5 GHz transmits over ~38.5 km² area from an 18–25m tower, comfortably spanning 3 to 5 contiguous rural barangays.
         </p>
       </div>
       <div class="card">
         <div class="stat-label">Target Scope</div>
-        <div style="font-size: 20px; font-weight: 800; color: var(--navy); margin-top: 6px;">831 Municipalities</div>
-        <p style="font-size: 13.5px; color: #475569; margin-top: 5px;">
+        <div style="font-size: 18px; font-weight: 800; color: var(--navy); margin-top: 4px;">831 Municipalities</div>
+        <p style="font-size: 12.5px; color: #475569; margin-top: 4px;">
           The 3,903 Priority 1 barangays reside across 831 provincial municipalities, allowing dense clustering around municipal halls and high ridges.
         </p>
       </div>
       <div class="card success">
         <div class="stat-label">Budget Alignment</div>
-        <div style="font-size: 20px; font-weight: 800; color: #10B981; margin-top: 6px;">1:1 Year-1 Budget Match</div>
-        <p style="font-size: 13.5px; color: #475569; margin-top: 5px;">
+        <div style="font-size: 18px; font-weight: 800; color: #10B981; margin-top: 4px;">1:1 Year-1 Budget Match</div>
+        <p style="font-size: 12.5px; color: #475569; margin-top: 4px;">
           3,903 Priority 1 barangays ÷ 3.9 barangays per tower = <strong>exactly 1,000 macro sites</strong>, matching our approved Year-1 budget.
         </p>
       </div>
     </div>
 
     <div class="card highlight" style="background:#F8FAFC; flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <h3 style="color: var(--navy); margin-bottom: 12px;">Mathematical Sizing of the Cluster Model:</h3>
-      <ul style="font-size: 14.5px; line-height: 1.7;">
+      <h3 style="color: var(--navy); margin-bottom: 8px;">Mathematical Sizing of the Cluster Model:</h3>
+      <ul style="font-size: 13.5px; line-height: 1.6;">
         <li><strong>Coverage Geometry:</strong> Footprint Area = π × (3.5 km)² = <strong>38.48 km²</strong> per 3-sector macro base station.</li>
         <li><strong>Rural Density:</strong> Average rural barangay area = 8 to 12 km² · Average households per barangay = 600 to 1,000.</li>
         <li><strong>Clustering Ratio:</strong> 3,903 Priority 1 Barangays ÷ 1,000 Macro Sites = <strong>exactly 3.90 Barangays covered per macro tower</strong>.</li>
@@ -397,112 +535,115 @@
     </div>
     
     <div class="card" style="flex: 1;">
-      <h4 style="color: var(--navy); margin-bottom: 10px;">Balanced Regional Quota Allocation (1,000 Year 1 Macro Sites):</h4>
-      <table>
-        <thead>
-          <tr>
-            <th>Priority Region</th>
-            <th>Critical Brgys (≥50)</th>
-            <th>High GIDA (40-49)</th>
-            <th>Total Priority 1</th>
-            <th>Year 1 Macro Sites</th>
-            <th>Brgys / Site</th>
-            <th>Strategic Focus & Target Corridors</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Region IV-A (Calabarzon)</strong></td>
-            <td>90</td>
-            <td>515</td>
-            <td>605</td>
-            <td><strong>156</strong></td>
-            <td>3.9</td>
-            <td>Laguna, Batangas, Quezon, Rizal rural barangays</td>
-          </tr>
-          <tr>
-            <td><strong>Region VIII (Eastern Visayas)</strong></td>
-            <td>162</td>
-            <td>307</td>
-            <td>469</td>
-            <td><strong>120</strong></td>
-            <td>3.9</td>
-            <td>Samar, Leyte, Eastern Samar island communities</td>
-          </tr>
-          <tr>
-            <td><strong>BARMM (LaMa + SGA)</strong></td>
-            <td>100</td>
-            <td>270</td>
-            <td>370</td>
-            <td><strong>95</strong></td>
-            <td>3.9</td>
-            <td>Lanao del Sur, Maguindanao, Special Geographic Area</td>
-          </tr>
-          <tr>
-            <td><strong>Region VI (Western Visayas)</strong></td>
-            <td>202</td>
-            <td>112</td>
-            <td>314</td>
-            <td><strong>80</strong></td>
-            <td>3.9</td>
-            <td>Iloilo, Aklan, Capiz, Antique unserved corridors</td>
-          </tr>
-          <tr>
-            <td><strong>CAR (Cordillera)</strong></td>
-            <td>103</td>
-            <td>191</td>
-            <td>294</td>
-            <td><strong>75</strong></td>
-            <td>3.9</td>
-            <td>Kalinga, Mt. Province, Benguet mountain valleys</td>
-          </tr>
-          <tr>
-            <td><strong>BARMM (BaSulTa)</strong></td>
-            <td>124</td>
-            <td>151</td>
-            <td>275</td>
-            <td><strong>70</strong></td>
-            <td>3.9</td>
-            <td>Sulu, Tawi-Tawi, Basilan archipelago nodes</td>
-          </tr>
-          <tr>
-            <td><strong>Region II (Cagayan Valley)</strong></td>
-            <td>118</td>
-            <td>98</td>
-            <td>216</td>
-            <td><strong>55</strong></td>
-            <td>3.9</td>
-            <td>Nueva Vizcaya, Cagayan, Isabela agricultural towns</td>
-          </tr>
-          <tr>
-            <td><strong>Region X (Northern Mindanao)</strong></td>
-            <td>91</td>
-            <td>117</td>
-            <td>208</td>
-            <td><strong>53</strong></td>
-            <td>3.9</td>
-            <td>Misamis Oriental, Lanao del Norte agricultural clusters</td>
-          </tr>
-          <tr class="highlight-row" style="background:#EFF6FF; border:1.5px solid var(--blue-accent);">
-            <td><strong>Region III (Central Luzon) ★</strong></td>
-            <td>39</td>
-            <td>120</td>
-            <td>159</td>
-            <td><strong>41</strong></td>
-            <td>3.9</td>
-            <td><strong>Direct bridge from Pampanga trial into Nueva Ecija & Aurora</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Remaining 9 Regions Combined</strong></td>
-            <td>316</td>
-            <td>677</td>
-            <td>993</td>
-            <td><strong>255</strong></td>
-            <td>3.9</td>
-            <td>Regions I, V, IV-B, IX, XI, VII, XIII, NIR, XII</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div>
+      <h4 style="color: var(--navy); margin-bottom: 8px;">Balanced Regional Quota Allocation (1,000 Year 1 Macro Sites):</h4>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Priority Region</th>
+              <th>Critical Brgys (≥50)</th>
+              <th>High GIDA (40-49)</th>
+              <th>Total Priority 1</th>
+              <th>Year 1 Macro Sites</th>
+              <th>Brgys / Site</th>
+              <th>Strategic Focus & Target Corridors</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Region IV-A (Calabarzon)</strong></td>
+              <td>90</td>
+              <td>515</td>
+              <td>605</td>
+              <td><strong>156</strong></td>
+              <td>3.9</td>
+              <td>Laguna, Batangas, Quezon, Rizal rural barangays</td>
+            </tr>
+            <tr>
+              <td><strong>Region VIII (Eastern Visayas)</strong></td>
+              <td>162</td>
+              <td>307</td>
+              <td>469</td>
+              <td><strong>120</strong></td>
+              <td>3.9</td>
+              <td>Samar, Leyte, Eastern Samar island communities</td>
+            </tr>
+            <tr>
+              <td><strong>BARMM (LaMa + SGA)</strong></td>
+              <td>100</td>
+              <td>270</td>
+              <td>370</td>
+              <td><strong>95</strong></td>
+              <td>3.9</td>
+              <td>Lanao del Sur, Maguindanao, Special Geographic Area</td>
+            </tr>
+            <tr>
+              <td><strong>Region VI (Western Visayas)</strong></td>
+              <td>202</td>
+              <td>112</td>
+              <td>314</td>
+              <td><strong>80</strong></td>
+              <td>3.9</td>
+              <td>Iloilo, Aklan, Capiz, Antique unserved corridors</td>
+            </tr>
+            <tr>
+              <td><strong>CAR (Cordillera)</strong></td>
+              <td>103</td>
+              <td>191</td>
+              <td>294</td>
+              <td><strong>75</strong></td>
+              <td>3.9</td>
+              <td>Kalinga, Mt. Province, Benguet mountain valleys</td>
+            </tr>
+            <tr>
+              <td><strong>BARMM (BaSulTa)</strong></td>
+              <td>124</td>
+              <td>151</td>
+              <td>275</td>
+              <td><strong>70</strong></td>
+              <td>3.9</td>
+              <td>Sulu, Tawi-Tawi, Basilan archipelago nodes</td>
+            </tr>
+            <tr>
+              <td><strong>Region II (Cagayan Valley)</strong></td>
+              <td>118</td>
+              <td>98</td>
+              <td>216</td>
+              <td><strong>55</strong></td>
+              <td>3.9</td>
+              <td>Nueva Vizcaya, Cagayan, Isabela agricultural towns</td>
+            </tr>
+            <tr>
+              <td><strong>Region X (Northern Mindanao)</strong></td>
+              <td>91</td>
+              <td>117</td>
+              <td>208</td>
+              <td><strong>53</strong></td>
+              <td>3.9</td>
+              <td>Misamis Oriental, Lanao del Norte agricultural clusters</td>
+            </tr>
+            <tr class="highlight-row" style="background:#EFF6FF; border:1.5px solid var(--blue-accent);">
+              <td><strong>Region III (Central Luzon) ★</strong></td>
+              <td>39</td>
+              <td>120</td>
+              <td>159</td>
+              <td><strong>41</strong></td>
+              <td>3.9</td>
+              <td><strong>Direct bridge from Pampanga trial into Nueva Ecija & Aurora</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Remaining 9 Regions Combined</strong></td>
+              <td>316</td>
+              <td>677</td>
+              <td>993</td>
+              <td><strong>255</strong></td>
+              <td>3.9</td>
+              <td>Regions I, V, IV-B, IX, XI, VII, XIII, NIR, XII</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -516,72 +657,75 @@
       <div class="slide-number">Slide 06 / 10</div>
     </div>
     
-    <div class="grid-4" style="margin-bottom: 18px;">
+    <div class="grid-4" style="margin-bottom: 12px;">
       <div class="card highlight">
         <div class="stat-label">Pampanga Foundation</div>
-        <div style="font-size:16px; font-weight:800; color:var(--navy); margin-top:4px;">3 Demo Sites</div>
+        <div style="font-size:15px; font-weight:800; color:var(--navy); margin-top:3px;">3 Demo Sites</div>
         <div class="stat-sub">Validates RF, Starlink & NTC</div>
       </div>
       <div class="card danger">
         <div class="stat-label">Region III Scope</div>
-        <div style="font-size:16px; font-weight:800; color:var(--navy); margin-top:4px;">159 Priority Brgys</div>
+        <div style="font-size:15px; font-weight:800; color:var(--navy); margin-top:3px;">159 Priority Brgys</div>
         <div class="stat-sub">39 Critical + 120 High GIDA</div>
       </div>
       <div class="card success">
         <div class="stat-label">Year 1 Allocation</div>
-        <div style="font-size:16px; font-weight:800; color:#10B981; margin-top:4px;">41 Macro Sites</div>
+        <div style="font-size:15px; font-weight:800; color:#10B981; margin-top:3px;">41 Macro Sites</div>
         <div class="stat-sub">Covers 100% of P1 brgys</div>
       </div>
       <div class="card">
         <div class="stat-label">Operational Synergy</div>
-        <div style="font-size:16px; font-weight:800; color:var(--navy); margin-top:4px;">Clark Hub & NOC</div>
+        <div style="font-size:15px; font-weight:800; color:var(--navy); margin-top:3px;">Clark Hub & NOC</div>
         <div class="stat-sub">Existing field teams & fiber</div>
       </div>
     </div>
 
     <div class="card" style="flex: 1;">
-      <h4 style="color: var(--navy); margin-bottom: 10px;">Region III Target Cluster Details:</h4>
-      <table>
-        <thead>
-          <tr>
-            <th>Province</th>
-            <th>Critical Brgys (≥50)</th>
-            <th>High GIDA (40-49)</th>
-            <th>Allocated Sites</th>
-            <th>Target Municipalities & Focus Clusters</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Nueva Ecija</strong></td>
-            <td>15</td>
-            <td>21</td>
-            <td><strong>10 Sites</strong></td>
-            <td>Cabanatuan City (12 crit brgys), Gen. Mamerto Natividad, Llanera, San Jose</td>
-          </tr>
-          <tr>
-            <td><strong>Aurora</strong></td>
-            <td>15</td>
-            <td>4</td>
-            <td><strong>5 Sites</strong></td>
-            <td>Baler, Casiguran, Dilasag, Dinalungan, Dipaculao coastal nodes</td>
-          </tr>
-          <tr>
-            <td><strong>Bulacan / Pampanga / Bataan</strong></td>
-            <td>5</td>
-            <td>91</td>
-            <td><strong>24 Sites</strong></td>
-            <td>Rural agricultural and coastal barangays (Sasmuan, Masantol, Hagonoy)</td>
-          </tr>
-          <tr>
-            <td><strong>Zambales & Tarlac</strong></td>
-            <td>4</td>
-            <td>4</td>
-            <td><strong>2 Sites</strong></td>
-            <td>Mountain valley communities along Olongapo-Bugallon corridor</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div>
+      <h4 style="color: var(--navy); margin-bottom: 8px;">Region III Target Cluster Details:</h4>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Province</th>
+              <th>Critical Brgys (≥50)</th>
+              <th>High GIDA (40-49)</th>
+              <th>Allocated Sites</th>
+              <th>Target Municipalities & Focus Clusters</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Nueva Ecija</strong></td>
+              <td>15</td>
+              <td>21</td>
+              <td><strong>10 Sites</strong></td>
+              <td>Cabanatuan City (12 crit brgys), Gen. Mamerto Natividad, Llanera, San Jose</td>
+            </tr>
+            <tr>
+              <td><strong>Aurora</strong></td>
+              <td>15</td>
+              <td>4</td>
+              <td><strong>5 Sites</strong></td>
+              <td>Baler, Casiguran, Dilasag, Dinalungan, Dipaculao coastal nodes</td>
+            </tr>
+            <tr>
+              <td><strong>Bulacan / Pampanga / Bataan</strong></td>
+              <td>5</td>
+              <td>91</td>
+              <td><strong>24 Sites</strong></td>
+              <td>Rural agricultural and coastal barangays (Sasmuan, Masantol, Hagonoy)</td>
+            </tr>
+            <tr>
+              <td><strong>Zambales & Tarlac</strong></td>
+              <td>4</td>
+              <td>4</td>
+              <td><strong>2 Sites</strong></td>
+              <td>Mountain valley communities along Olongapo-Bugallon corridor</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -599,11 +743,11 @@
       <div class="card highlight" style="display: flex; flex-direction: column; justify-content: space-between;">
         <div>
           <div class="stat-label">Phase 1: Year 1</div>
-          <div class="stat-val" style="font-size:32px; color:var(--blue-accent);">1,000 Sites</div>
-          <div style="font-size:15px; font-weight:800; color:var(--navy); margin:6px 0;">3,903 P1 Brgys</div>
-          <div class="stat-sub" style="font-size:14px; font-weight:700; color:#10B981; margin-bottom:12px;">600,000 Subs Capacity</div>
+          <div class="stat-val" style="font-size:26px; color:var(--blue-accent);">1,000 Sites</div>
+          <div style="font-size:14px; font-weight:800; color:var(--navy); margin:4px 0;">3,903 P1 Brgys</div>
+          <div class="stat-sub" style="font-size:13px; font-weight:700; color:#10B981; margin-bottom:8px;">600,000 Subs Capacity</div>
         </div>
-        <p style="font-size:13.5px; color:#475569;">
+        <p style="font-size:12.5px; color:#475569;">
           100% of provincial Critical GIDA (1,345) + 2,558 High GIDA barangays. 100% Starlink backhaul ready. Captures immediate DICT anchor contracts.
         </p>
       </div>
@@ -611,11 +755,11 @@
       <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
         <div>
           <div class="stat-label">Phase 2: Y2 – Y3</div>
-          <div class="stat-val" style="font-size:32px;">3,000 Sites Cum.</div>
-          <div style="font-size:15px; font-weight:800; color:var(--navy); margin:6px 0;">5,232 Mod Brgys</div>
-          <div class="stat-sub" style="font-size:14px; font-weight:700; color:#10B981; margin-bottom:12px;">1,800,000 Subs Capacity</div>
+          <div class="stat-val" style="font-size:26px;">3,000 Sites Cum.</div>
+          <div style="font-size:14px; font-weight:800; color:var(--navy); margin:4px 0;">5,232 Mod Brgys</div>
+          <div class="stat-sub" style="font-size:13px; font-weight:700; color:#10B981; margin-bottom:8px;">1,800,000 Subs Capacity</div>
         </div>
-        <p style="font-size:13.5px; color:#475569;">
+        <p style="font-size:12.5px; color:#475569;">
           Expansion into Tier 3 Moderate GIDA barangays (scores 35–45). Densification across Visayas & Mindanao agricultural corridors.
         </p>
       </div>
@@ -623,11 +767,11 @@
       <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
         <div>
           <div class="stat-label">Phase 3: Y4 – Y6</div>
-          <div class="stat-val" style="font-size:32px;">6,000 Sites Cum.</div>
-          <div style="font-size:15px; font-weight:800; color:var(--navy); margin:6px 0;">Semi-Urban Infill</div>
-          <div class="stat-sub" style="font-size:14px; font-weight:700; color:#10B981; margin-bottom:12px;">3,600,000 Subs Capacity</div>
+          <div class="stat-val" style="font-size:26px;">6,000 Sites Cum.</div>
+          <div style="font-size:14px; font-weight:800; color:var(--navy); margin:4px 0;">Semi-Urban Infill</div>
+          <div class="stat-sub" style="font-size:13px; font-weight:700; color:#10B981; margin-bottom:8px;">3,600,000 Subs Capacity</div>
         </div>
-        <p style="font-size:13.5px; color:#475569;">
+        <p style="font-size:12.5px; color:#475569;">
           Class 3–4 municipal centers and suburban fringe areas. Replaces declining copper and legacy DSL connections.
         </p>
       </div>
@@ -635,11 +779,11 @@
       <div class="card success" style="display: flex; flex-direction: column; justify-content: space-between;">
         <div>
           <div class="stat-label">Phase 4: Y7 – Y10</div>
-          <div class="stat-val positive" style="font-size:32px;">10,000 Sites Cum.</div>
-          <div style="font-size:15px; font-weight:800; color:#10B981; margin:6px 0;">Full Saturation</div>
-          <div class="stat-sub" style="font-size:14px; font-weight:700; color:#10B981; margin-bottom:12px;">6,000,000 Active Subs</div>
+          <div class="stat-val positive" style="font-size:26px;">10,000 Sites Cum.</div>
+          <div style="font-size:14px; font-weight:800; color:#10B981; margin:4px 0;">Full Saturation</div>
+          <div class="stat-sub" style="font-size:13px; font-weight:700; color:#10B981; margin-bottom:8px;">6,000,000 Active Subs</div>
         </div>
-        <p style="font-size:13.5px; color:#475569;">
+        <p style="font-size:12.5px; color:#475569;">
           Nationwide saturation across all 81 provinces and 1,489 municipalities; mature telecommunications unicorn footprint ($1.07B NPV).
         </p>
       </div>
@@ -656,12 +800,12 @@
       <div class="slide-number">Slide 08 / 10</div>
     </div>
 
-    <div class="grid-2" style="flex: 1; gap: 24px; align-items: stretch;">
-      <div class="card highlight" style="display: flex; flex-direction: column; gap: 14px; padding: 25px 30px;">
-        <h3 style="color: var(--blue-accent); font-size: 20px;">Stream A: Public Sector Anchor Tenant (DICT FPIAP)</h3>
-        <div class="stat-label" style="font-size: 13px;">Guaranteed Monthly Government Institutional Cash Flow</div>
-        <div style="font-size: 28px; font-weight: 800; color: var(--navy);">₱36,000 / month per site</div>
-        <ul style="font-size: 14px; line-height: 1.6;">
+    <div class="grid-2" style="flex: 1; gap: 16px; align-items: stretch;">
+      <div class="card highlight" style="display: flex; flex-direction: column; gap: 10px; padding: 20px 22px;">
+        <h3 style="color: var(--blue-accent); font-size: 18px;">Stream A: Public Sector Anchor Tenant (DICT FPIAP)</h3>
+        <div class="stat-label">Guaranteed Monthly Government Institutional Cash Flow</div>
+        <div style="font-size: 24px; font-weight: 800; color: var(--navy);">₱36,000 / month per site</div>
+        <ul style="font-size: 13.5px; line-height: 1.55;">
           <li>Contracted connection of 2 public facilities per macro cell (Barangay Hall + Public High School).</li>
           <li>Managed service contract @ ₱18,000 / facility / month under DICT FPIAP tender.</li>
           <li>Guaranteed institutional revenue completely de-risks TowerCo power and site maintenance costs before selling a single residential line.</li>
@@ -669,11 +813,11 @@
         </ul>
       </div>
 
-      <div class="card success" style="display: flex; flex-direction: column; gap: 14px; padding: 25px 30px;">
-        <h3 style="color: #065F46; font-size: 20px;">Stream B: Commercial Residential Retail Broadband</h3>
-        <div class="stat-label" style="font-size: 13px;">High-Margin Recurring Consumer Subscription Cash Cow</div>
-        <div style="font-size: 28px; font-weight: 800; color: #10B981;">₱359,400 / month per site</div>
-        <ul style="font-size: 14px; line-height: 1.6;">
+      <div class="card success" style="display: flex; flex-direction: column; gap: 10px; padding: 20px 22px;">
+        <h3 style="color: #065F46; font-size: 18px;">Stream B: Commercial Residential Retail Broadband</h3>
+        <div class="stat-label">High-Margin Recurring Consumer Subscription Cash Cow</div>
+        <div style="font-size: 24px; font-weight: 800; color: #10B981;">₱359,400 / month per site</div>
+        <ul style="font-size: 13.5px; line-height: 1.55;">
           <li>600 active residential subscribers per tower (out of 2,500–4,000 households in 3.5 km radius).</li>
           <li>Retail monthly subscription: ₱599 / month (50 Mbps unlimited Band n50 FWA).</li>
           <li>Delivers 62.3% Operating EBITDA margin with rapid 10.4-month simple payback.</li>
@@ -693,73 +837,76 @@
       <div class="slide-number">Slide 09 / 10</div>
     </div>
     
-    <div class="grid-4" style="margin-bottom: 18px;">
+    <div class="grid-4" style="margin-bottom: 12px;">
       <div class="card">
         <div class="stat-label">Gross Revenue</div>
-        <div class="stat-val" style="font-size:24px; color:var(--navy);">₱395.4k/mo</div>
+        <div class="stat-val" style="font-size:20px; color:var(--navy);">₱395.4k/mo</div>
         <div class="stat-sub">DICT Subsidy + 600 Retail Subs</div>
       </div>
       <div class="card">
         <div class="stat-label">Monthly OPEX</div>
-        <div class="stat-val" style="font-size:24px; color:#D97706;">₱149.0k/mo</div>
+        <div class="stat-val" style="font-size:20px; color:#D97706;">₱149.0k/mo</div>
         <div class="stat-sub">TowerCo + Starlink + Power</div>
       </div>
       <div class="card success">
         <div class="stat-label">Operating EBITDA</div>
-        <div class="stat-val positive" style="font-size:24px;">₱246.4k/mo</div>
+        <div class="stat-val positive" style="font-size:20px;">₱246.4k/mo</div>
         <div class="stat-sub">62.3% Operating EBITDA Margin</div>
       </div>
       <div class="card highlight">
         <div class="stat-label">Simple Payback</div>
-        <div class="stat-val" style="font-size:24px; color:var(--blue-accent);">10.4 Months</div>
+        <div class="stat-val" style="font-size:20px; color:var(--blue-accent);">10.4 Months</div>
         <div class="stat-sub">Initial CAPEX: ~₱2.56M ($45k)</div>
       </div>
     </div>
 
     <div class="card" style="flex: 1;">
-      <h4 style="color: var(--navy); margin-bottom: 10px;">Macro Tower Monthly Cash Flow Statement:</h4>
-      <table>
-        <thead>
-          <tr>
-            <th>Economic Component</th>
-            <th>Monthly Figure</th>
-            <th>Annualized Figure</th>
-            <th>Operational Breakdown & Assumptions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>DICT FPIAP Anchor Subsidy</strong></td>
-            <td>₱36,000</td>
-            <td>₱432,000</td>
-            <td>2 institutional sites @ ₱18k/mo guaranteed government contract</td>
-          </tr>
-          <tr>
-            <td><strong>Residential Retail Revenue</strong></td>
-            <td>₱359,400</td>
-            <td>₱4,312,800</td>
-            <td>600 subscribers @ ₱599/mo ARPU (50 Mbps unlimited)</td>
-          </tr>
-          <tr>
-            <td><strong>TowerCo Colocation Lease</strong></td>
-            <td>(₱98,000)</td>
-            <td>(₱1,176,000)</td>
-            <td>Negotiated under bulk 1,000-site Master Lease Agreement (Scenario 4)</td>
-          </tr>
-          <tr>
-            <td><strong>Starlink Business Backhaul</strong></td>
-            <td>(₱14,000)</td>
-            <td>(₱168,000)</td>
-            <td>Pooled enterprise capacity tier</td>
-          </tr>
-          <tr>
-            <td><strong>Power, Fuel & Field Maintenance</strong></td>
-            <td>(₱37,000)</td>
-            <td>(₱444,000)</td>
-            <td>Commercial grid + backup generator + routine spares</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div>
+      <h4 style="color: var(--navy); margin-bottom: 8px;">Macro Tower Monthly Cash Flow Statement:</h4>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Economic Component</th>
+              <th>Monthly Figure</th>
+              <th>Annualized Figure</th>
+              <th>Operational Breakdown & Assumptions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>DICT FPIAP Anchor Subsidy</strong></td>
+              <td>₱36,000</td>
+              <td>₱432,000</td>
+              <td>2 institutional sites @ ₱18k/mo guaranteed government contract</td>
+            </tr>
+            <tr>
+              <td><strong>Residential Retail Revenue</strong></td>
+              <td>₱359,400</td>
+              <td>₱4,312,800</td>
+              <td>600 subscribers @ ₱599/mo ARPU (50 Mbps unlimited)</td>
+            </tr>
+            <tr>
+              <td><strong>TowerCo Colocation Lease</strong></td>
+              <td>(₱98,000)</td>
+              <td>(₱1,176,000)</td>
+              <td>Negotiated under bulk 1,000-site Master Lease Agreement (Scenario 4)</td>
+            </tr>
+            <tr>
+              <td><strong>Starlink Business Backhaul</strong></td>
+              <td>(₱14,000)</td>
+              <td>(₱168,000)</td>
+              <td>Pooled enterprise capacity tier</td>
+            </tr>
+            <tr>
+              <td><strong>Power, Fuel & Field Maintenance</strong></td>
+              <td>(₱37,000)</td>
+              <td>(₱444,000)</td>
+              <td>Commercial grid + backup generator + routine spares</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -773,98 +920,111 @@
       <div class="slide-number">Slide 10 / 10</div>
     </div>
 
-    <div class="card" style="margin-bottom: 16px;">
-      <h4 style="color: var(--navy); margin-bottom: 8px;">10-Year Business Case Comparison:</h4>
-      <table>
-        <thead>
-          <tr>
-            <th>Financial Model</th>
-            <th>ARPU Profile</th>
-            <th>Deployment & Operating Assumptions</th>
-            <th>10-Yr NPV</th>
-            <th>Project IRR</th>
-            <th>Payback</th>
-            <th>Verdict</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Model 1: Baseline Dynamic</strong></td>
-            <td>Flat ₱699 / month across all 10 years</td>
-            <td>Mode 1 Ramp (25% Y1), ₱120k TowerCo lease, ₱6,800 Starlink</td>
-            <td>+$294.6M</td>
-            <td>17.7%</td>
-            <td>7.0y</td>
-            <td><span class="badge badge-go">GO</span></td>
-          </tr>
-          <tr class="highlight-row">
-            <td><strong>Model 2: Dynamic ARPU Migration</strong></td>
-            <td>₱599 entry in Y1–Y2 ➔ ₱794 by Y8+</td>
-            <td>Mode 1 Ramp, tiered speed upsells (50 Mbps & SME plans)</td>
-            <td>+$686.3M</td>
-            <td>26.8%</td>
-            <td>6.2y</td>
-            <td><span class="badge badge-go">STRONG GO</span></td>
-          </tr>
-          <tr class="highlight-row" style="background: #F0FDF4; border: 2px solid #22C55E;">
-            <td><strong>Model 3: Executive Best Case ★</strong></td>
-            <td>₱599 entry ➔ ₱794 mature ARPU</td>
-            <td>Mode 2 Pre-Sales (50% Day 1) + ₱98k TowerCo MLA + bulk Starlink</td>
-            <td><strong>+$1,068.0M</strong></td>
-            <td><strong>37.6%</strong></td>
-            <td><strong>4.8y</strong></td>
-            <td><span class="badge badge-go" style="background:#86EFAC;color:#064E3B;">★ UNICORN GO</span></td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="card" style="margin-bottom: 10px;">
+      <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div>
+      <h4 style="color: var(--navy); margin-bottom: 6px;">10-Year Business Case Comparison:</h4>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Financial Model</th>
+              <th>ARPU Profile</th>
+              <th>Deployment & Operating Assumptions</th>
+              <th>10-Yr NPV</th>
+              <th>Project IRR</th>
+              <th>Payback</th>
+              <th>Verdict</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Model 1: Baseline Dynamic</strong></td>
+              <td>Flat ₱699 / month across all 10 years</td>
+              <td>Mode 1 Ramp (25% Y1), ₱120k TowerCo lease, ₱6,800 Starlink</td>
+              <td>+$294.6M</td>
+              <td>17.7%</td>
+              <td>7.0y</td>
+              <td><span class="badge badge-go">GO</span></td>
+            </tr>
+            <tr class="highlight-row">
+              <td><strong>Model 2: Dynamic ARPU Migration</strong></td>
+              <td>₱599 entry in Y1–Y2 ➔ ₱794 by Y8+</td>
+              <td>Mode 1 Ramp, tiered speed upsells (50 Mbps & SME plans)</td>
+              <td>+$686.3M</td>
+              <td>26.8%</td>
+              <td>6.2y</td>
+              <td><span class="badge badge-go">STRONG GO</span></td>
+            </tr>
+            <tr class="highlight-row" style="background: #F0FDF4; border: 2px solid #22C55E;">
+              <td><strong>Model 3: Executive Best Case ★</strong></td>
+              <td>₱599 entry ➔ ₱794 mature ARPU</td>
+              <td>Mode 2 Pre-Sales (50% Day 1) + ₱98k TowerCo MLA + bulk Starlink</td>
+              <td><strong>+$1,068.0M</strong></td>
+              <td><strong>37.6%</strong></td>
+              <td><strong>4.8y</strong></td>
+              <td><span class="badge badge-go" style="background:#86EFAC;color:#064E3B;">★ UNICORN GO</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <div class="card" style="flex: 1;">
-      <h4 style="color: var(--navy); margin-bottom: 8px;">90-Day Execution Roadmap & Next Milestones:</h4>
-      <table>
-        <thead>
-          <tr>
-            <th>Timeframe</th>
-            <th>Workstream</th>
-            <th>Key Deliverables & Action Items</th>
-            <th>Responsible Lead</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Days 1 – 30</strong></td>
-            <td>Trial Completion & NTC Report</td>
-            <td>Complete 30-day propagation demo in Pampanga; submit comprehensive technical report to NTC.</td>
-            <td>Head of Regulatory & Engineering</td>
-          </tr>
-          <tr>
-            <td><strong>Days 15 – 45</strong></td>
-            <td>TowerCo MLA Execution</td>
-            <td>Finalize Master Lease Agreements (MLAs) with TowerCos for initial 1,000 GIDA sites.</td>
-            <td>Head of Network Rollout</td>
-          </tr>
-          <tr>
-            <td><strong>Days 30 – 60</strong></td>
-            <td>DICT FPIAP Bids & Starlink Facility</td>
-            <td>Submit qualified tenders for DICT FPIAP GIDA subsidies and contract Starlink enterprise pooling facility.</td>
-            <td>Chief Commercial Officer & CTO</td>
-          </tr>
-          <tr>
-            <td><strong>Days 45 – 90</strong></td>
-            <td>OEM Commercial Financing</td>
-            <td>Finalize 15% down, 85% vendor financing facility across initial 1,000 Band n50 macro RAN sites.</td>
-            <td>Chief Financial Officer</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div>
+      <h4 style="color: var(--navy); margin-bottom: 6px;">90-Day Execution Roadmap & Next Milestones:</h4>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Timeframe</th>
+              <th>Workstream</th>
+              <th>Key Deliverables & Action Items</th>
+              <th>Responsible Lead</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Days 1 – 30</strong></td>
+              <td>Trial Completion & NTC Report</td>
+              <td>Complete 30-day propagation demo in Pampanga; submit comprehensive technical report to NTC.</td>
+              <td>Head of Regulatory & Engineering</td>
+            </tr>
+            <tr>
+              <td><strong>Days 15 – 45</strong></td>
+              <td>TowerCo MLA Execution</td>
+              <td>Finalize Master Lease Agreements (MLAs) with TowerCos for initial 1,000 GIDA sites.</td>
+              <td>Head of Network Rollout</td>
+            </tr>
+            <tr>
+              <td><strong>Days 30 – 60</strong></td>
+              <td>DICT FPIAP Bids & Starlink Facility</td>
+              <td>Submit qualified tenders for DICT FPIAP GIDA subsidies and contract Starlink enterprise pooling facility.</td>
+              <td>Chief Commercial Officer & CTO</td>
+            </tr>
+            <tr>
+              <td><strong>Days 45 – 90</strong></td>
+              <td>OEM Commercial Financing</td>
+              <td>Finalize 15% down, 85% vendor financing facility across initial 1,000 Band n50 macro RAN sites.</td>
+              <td>Chief Financial Officer</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
 </div>
 
+<!-- Mobile Bottom Navigation Bar -->
+<div class="mobile-nav-bar">
+  <button onclick="prevSlide()" class="mobile-nav-btn">◀ Prev</button>
+  <div class="mobile-slide-indicator" id="mobile-slide-indicator">1 / 10</div>
+  <button onclick="nextSlide()" class="mobile-nav-btn primary">Next ▶</button>
+</div>
+
 <footer>
   <div>Use <strong>Left / Right Arrow Keys</strong> or navigation buttons to present · Press <strong>F</strong> for Fullscreen</div>
-  <div style="display: flex; align-items: center; gap: 18px;">
+  <div style="display: flex; align-items: center; gap: 14px;">
     <div class="progress-bar"><div id="progress" class="progress-fill"></div></div>
     <span>TelTech FWA 5G Initiative · DICT GIDA Rollout Plan (Slides 1–10)</span>
   </div>
@@ -884,15 +1044,18 @@
       if (i === currentSlide) {
         s.classList.add('active');
         s.style.display = 'flex';
+        s.scrollTop = 0; // Scroll back to top on slide change
       } else {
         s.classList.remove('active');
         s.style.display = 'none';
       }
     });
 
-    const indicator = document.getElementById('slide-indicator');
+    const dInd = document.getElementById('slide-indicator');
+    const mInd = document.getElementById('mobile-slide-indicator');
+    if (dInd) dInd.textContent = (currentSlide + 1) + ' / ' + slides.length;
+    if (mInd) mInd.textContent = (currentSlide + 1) + ' / ' + slides.length;
     const progress = document.getElementById('progress');
-    if (indicator) indicator.textContent = (currentSlide + 1) + ' / ' + slides.length;
     if (progress) progress.style.width = (((currentSlide + 1) / slides.length) * 100) + '%';
   }
 
@@ -905,6 +1068,32 @@
     if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
     if (e.key === 'f' || e.key === 'F') toggleFullScreen();
   });
+
+  // Touch Swipe Handling for Mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+  let touchStartY = 0;
+  let touchEndY = 0;
+
+  document.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+  }, { passive: true });
+
+  document.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY;
+    handleSwipe();
+  }, { passive: true });
+
+  function handleSwipe() {
+    const diffX = touchEndX - touchStartX;
+    const diffY = touchEndY - touchStartY;
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 45) {
+      if (diffX < 0) nextSlide();
+      else prevSlide();
+    }
+  }
 
   function toggleFullScreen() {
     if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(err => alert('Fullscreen error: ' + err.message));
@@ -922,12 +1111,12 @@
 
     if (isEditMode) {
       body.classList.add('edit-active');
-      if (editBtn) { editBtn.textContent = '🔒 Lock Editing'; editBtn.style.background = '#FEE2E2'; editBtn.style.color = '#991B1B'; }
+      if (editBtn) { editBtn.textContent = '🔒 Lock'; editBtn.style.background = '#FEE2E2'; editBtn.style.color = '#991B1B'; }
       if (saveBtn) saveBtn.style.display = 'inline-block';
       editableElements.forEach(el => el.setAttribute('contenteditable', 'true'));
     } else {
       body.classList.remove('edit-active');
-      if (editBtn) { editBtn.textContent = '✏️ Enable Editing'; editBtn.style.background = '#E0E7FF'; editBtn.style.color = '#3730A3'; }
+      if (editBtn) { editBtn.textContent = '✏️ Edit'; editBtn.style.background = '#E0E7FF'; editBtn.style.color = '#3730A3'; }
       if (saveBtn) saveBtn.style.display = 'none';
       editableElements.forEach(el => el.removeAttribute('contenteditable'));
       saveCurrentStateToStorage();
@@ -938,12 +1127,12 @@
     const slides = getSlides();
     const data = [];
     slides.forEach(s => data.push(s.innerHTML));
-    localStorage.setItem('fwa_gida_standalone_large_10slides', JSON.stringify(data));
+    localStorage.setItem('fwa_gida_standalone_mobile_v1', JSON.stringify(data));
   }
 
   function loadStateFromStorage() {
     try {
-      const stored = localStorage.getItem('fwa_gida_standalone_large_10slides');
+      const stored = localStorage.getItem('fwa_gida_standalone_mobile_v1');
       if (stored) {
         const data = JSON.parse(stored);
         const slides = getSlides();

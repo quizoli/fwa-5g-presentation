@@ -226,6 +226,86 @@
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     margin-top: auto;
   }
+
+  /* Mobile Responsive Breakpoints */
+  @media (max-width: 768px) {
+    header {
+      padding: 14px 18px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+    .brand-title {
+      font-size: 17px;
+    }
+    .brand-subtitle {
+      font-size: 11.5px;
+    }
+    .hero {
+      padding: 28px 14px 18px;
+    }
+    .hero-tag {
+      font-size: 10.5px;
+      padding: 4px 12px;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    .hero h1 {
+      font-size: 25px;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    .container {
+      padding: 0 14px;
+      margin-bottom: 30px;
+    }
+    .grid-decks {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .deck-card {
+      padding: 20px 16px;
+      border-radius: 12px;
+    }
+    .deck-card h2 {
+      font-size: 19px;
+    }
+    .deck-card p {
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+    .deck-features li {
+      font-size: 12px;
+    }
+    .btn-launch {
+      padding: 13px 16px;
+      font-size: 14px;
+    }
+    .download-section {
+      padding: 20px 16px;
+      flex-direction: column;
+      align-items: stretch;
+      text-align: left;
+      gap: 16px;
+    }
+    .btn-download {
+      width: 100%;
+      justify-content: center;
+      padding: 13px;
+      font-size: 13.5px;
+    }
+    footer {
+      padding: 20px 14px;
+      font-size: 11px;
+    }
+  }
+
 </style>
 </head>
 <body>
