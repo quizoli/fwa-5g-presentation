@@ -1,0 +1,1929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FWA 5G n50 (80 MHz) — Executive Board Presentation</title>
+<style>
+  :root {
+    --navy: #0A192F;
+    --navy-light: #172A45;
+    --blue-accent: #0077CC;
+    --teal: #00B4D8;
+    --gold: #FFB703;
+    --green: #2A9D8F;
+    --red: #E63946;
+    --gray-bg: #F8F9FA;
+    --gray-card: #FFFFFF;
+    --text-dark: #1E293B;
+    --text-muted: #64748B;
+    --text-light: #F1F5F9;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  body { background: var(--navy); color: var(--text-dark); display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+  
+  /* Top Navigation Bar */
+  header {
+    background: var(--navy);
+    color: var(--text-light);
+    padding: 12px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    z-index: 10;
+  }
+  header .brand { font-size: 18px; font-weight: 700; color: var(--teal); letter-spacing: 0.5px; }
+  header .meta { font-size: 13px; color: var(--text-muted); }
+  header .controls { display: flex; gap: 10px; align-items: center; }
+  button {
+    background: var(--navy-light);
+    color: var(--text-light);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  button:hover { background: var(--blue-accent); border-color: var(--blue-accent); }
+  
+  /* Slide Viewport */
+  #slide-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: #0d1b2a;
+    position: relative;
+  }
+  .slide {
+    display: none;
+    width: 100%;
+    max-width: 1280px;
+    height: 100%;
+    max-height: 760px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    padding: 40px 50px;
+    flex-direction: column;
+    overflow-y: auto;
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  .slide.active { display: flex; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Slide Typography */
+  .slide-header { border-bottom: 2px solid #E2E8F0; padding-bottom: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-end; }
+  .slide-category { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--blue-accent); }
+  .slide-title { font-size: 26px; font-weight: 800; color: var(--navy); margin-top: 4px; }
+  .slide-number { font-size: 14px; font-weight: 700; color: var(--text-muted); }
+
+  /* Grid Layouts & Cards */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 15px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 15px; }
+  
+  .card {
+    background: var(--gray-bg);
+    border-radius: 8px;
+    padding: 18px 20px;
+    border: 1px solid #E2E8F0;
+  }
+  .card.highlight { background: #EBF8FF; border: 1.5px solid #3182CE; }
+  .card.success { background: #F0FDF4; border: 1.5px solid #22C55E; }
+  .card.warning { background: #FEF3C7; border: 1.5px solid #F59E0B; }
+  .card.danger { background: #FEF2F2; border: 1.5px solid #EF4444; }
+
+  .stat-val { font-size: 28px; font-weight: 800; color: var(--navy); margin: 4px 0; }
+  .stat-val.positive { color: #15803D; }
+  .stat-val.negative { color: #B91C1C; }
+  .stat-label { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
+  .stat-sub { font-size: 12px; color: #475569; margin-top: 2px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+  th { background: var(--navy); color: white; padding: 9px 10px; text-align: left; font-weight: 600; font-size: 12px; }
+  td { padding: 8px 10px; border-bottom: 1px solid #E2E8F0; color: #334155; }
+  tr:nth-child(even) td { background: #F8FAFC; }
+  tr.highlight-row td { background: #EFF6FF; font-weight: 700; color: #1E3A8A; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; text-align: center; }
+  .badge-go { background: #DCFCE7; color: #166534; border: 1px solid #86EFAC; }
+  .badge-nogo { background: #FEE2E2; color: #991B1B; border: 1px solid #FCA5A5; }
+  .badge-cond { background: #FEF9C3; color: #854D0E; border: 1px solid #FDE047; }
+
+  /* Footer Controls */
+  footer {
+    background: var(--navy);
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+  .progress-bar { width: 300px; height: 6px; background: var(--navy-light); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; width: 5.5%; background: var(--teal); transition: width 0.3s; }
+  
+  ul { padding-left: 20px; line-height: 1.6; font-size: 13.5px; color: #334155; }
+  li { margin-bottom: 6px; }
+  strong { color: var(--navy); }
+
+  @page {
+    size: A4 landscape;
+    margin: 8mm;
+  }
+  @media print {
+    html, body {
+      background: white !important;
+      height: auto !important;
+      min-height: 100% !important;
+      overflow: visible !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    header, footer, .controls {
+      display: none !important;
+    }
+    #slide-container {
+      display: block !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: white !important;
+      height: auto !important;
+      overflow: visible !important;
+    }
+    .slide {
+      display: flex !important;
+      page-break-before: auto !important;
+      page-break-after: always !important;
+      page-break-inside: avoid !important;
+      break-after: page !important;
+      break-inside: avoid !important;
+      box-shadow: none !important;
+      border: 1px solid #E2E8F0 !important;
+      border-radius: 6px !important;
+      max-height: none !important;
+      height: 180mm !important;
+      max-width: 100% !important;
+      width: 100% !important;
+      margin: 0 0 10mm 0 !important;
+      padding: 12mm 15mm !important;
+      overflow: visible !important;
+    }
+  }
+
+  /* Edit Mode Styles */
+  .edit-active [contenteditable="true"] {
+    outline: 1.5px dashed #00B4D8 !important;
+    outline-offset: 2px;
+    background-color: rgba(0, 180, 216, 0.04) !important;
+    cursor: text !important;
+    transition: background-color 0.2s;
+  }
+  .edit-active [contenteditable="true"]:hover {
+    background-color: rgba(0, 180, 216, 0.12) !important;
+  }
+  .edit-active [contenteditable="true"]:focus {
+    outline: 2px solid #0077CC !important;
+    background-color: #FFFFFF !important;
+  }
+  .edit-badge-indicator {
+    display: none;
+    background: #FFB703;
+    color: #0A192F;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .edit-active .edit-badge-indicator {
+    display: inline-block;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">FWA 5G n50 · Strategic Business Case</div>
+  <div class="meta">10,000 Sites Maturity · 80 MHz @ ₱5/kHz · Board Presentation</div>
+  <div class="controls">
+    <button onclick="prevSlide()">◀ Previous</button>
+    <span id="slide-indicator" style="font-size: 13px; font-weight: 700; color: white;">1 / 20</span>
+    <button onclick="nextSlide()">Next ▶</button>
+    <span id="edit-badge" class="edit-badge-indicator">✏️ Edit Mode Active</span>
+    <button id="edit-toggle-btn" onclick="toggleEditMode()" style="background: #E0E7FF; color: #3730A3; border: 1px solid #C7D2FE;">✏️ Enable Editing</button>
+    <button id="save-html-btn" onclick="saveEditedPresentation()" style="display:none; background: #059669; color: white; border: none;">💾 Save Changes</button>
+    <button onclick="toggleFullScreen()" style="background: var(--teal); color: var(--navy); border: none;">⛶ Fullscreen</button>
+    <button onclick="triggerPrint()" style="background: #2A9D8F; color: white; border: none;">🖨️ Export / Print PDF</button>
+  </div>
+</header>
+
+<div id="slide-container">
+
+  <!-- Slide 1 -->
+  <div class="slide active">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Investment Committee Memorandum</div>
+        <div class="slide-title">Nationwide FWA 5G Network on Band n50</div>
+      </div>
+      <div class="slide-number">Slide 01 / 20</div>
+    </div>
+    <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+      <div style="background: #EBF8FF; border: 2px solid #3182CE; border-radius: 12px; padding: 40px; max-width: 900px; width: 100%;">
+        <h1 style="color: #0A192F; font-size: 34px; margin-bottom: 12px;">FWA 5G n50 (80 MHz) Business Case</h1>
+        <p style="color: #475569; font-size: 18px; margin-bottom: 25px;">Commercial Feasibility, Capital Budgeting, and Architectural Strategy</p>
+        
+        <div class="grid-4" style="text-align: left; margin-bottom: 25px;">
+          <div class="card">
+            <div class="stat-label">Day-1 Rollout</div>
+            <div class="stat-val">1,000</div>
+            <div class="stat-sub">Macro Sites Commissioned</div>
+          </div>
+          <div class="card">
+            <div class="stat-label">10-Yr Footprint</div>
+            <div class="stat-val">10,000</div>
+            <div class="stat-sub">Sites (+1k added / yr)</div>
+          </div>
+          <div class="card">
+            <div class="stat-label">Spectrum Channel</div>
+            <div class="stat-val">80 MHz</div>
+            <div class="stat-sub">Dedicated 1.5 GHz Band</div>
+          </div>
+          <div class="card">
+            <div class="stat-label">Full Capacity</div>
+            <div class="stat-val">10.0M</div>
+            <div class="stat-sub">Subscribers Supported</div>
+          </div>
+        </div>
+        
+        <div style="background: #0A192F; color: white; padding: 15px 25px; border-radius: 8px; display: inline-block; font-weight: 700; font-size: 15px;">
+          Executive Recommendation: Scenario 4 — Best Case ($1.07B NPV) & Dynamic ARPU Migration ($686M NPV)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Executive Summary</div>
+        <div class="slide-title">Executive Summary — The 3 Financial Models & Strategic Verdict</div>
+      </div>
+      <div class="slide-number">Slide 02 / 20</div>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="stat-label">Model 1: Baseline Dynamic</div>
+        <div class="stat-val">+$294.6M NPV</div>
+        <div class="stat-sub">17.7% IRR · 7.0y Payback · Flat ₱699</div>
+        <div style="margin-top: 8px;"><span class="badge badge-go">GO (Viable)</span></div>
+      </div>
+      <div class="card highlight">
+        <div class="stat-label">Model 2: Dynamic ARPU Migration</div>
+        <div class="stat-val positive">+$686.3M NPV</div>
+        <div class="stat-sub">26.8% IRR · 6.2y Payback · ₱599 ➔ ₱794</div>
+        <div style="margin-top: 8px;"><span class="badge badge-go" style="background:#BBF7D0;color:#14532D;border-color:#4ADE80;">STRONG GO</span></div>
+      </div>
+      <div class="card success">
+        <div class="stat-label">Model 3: Executive Best Case</div>
+        <div class="stat-val positive">+$1,068.0M NPV</div>
+        <div class="stat-sub">37.6% IRR · 4.8y Payback · Full Scale Synergies</div>
+        <div style="margin-top: 8px;"><span class="badge badge-go" style="background:#86EFAC;color:#064E3B;border-color:#22C55E;">★ UNICORN GO ($1.07B)</span></div>
+      </div>
+    </div>
+    
+    <table style="margin-top: 12px;">
+      <thead>
+        <tr>
+          <th>Strategic Business Case Dimension</th>
+          <th>Model 1: Baseline Dynamic</th>
+          <th>Model 2: Dynamic ARPU Migration</th>
+          <th>Model 3: Executive Best Case</th>
+          <th>Executive Rationale & Impact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Dedicated Workbook File</strong></td>
+          <td><code>FWA_n50_Dynamic_Business_Case_Baseline.xlsx</code></td>
+          <td><code>FWA_n50_Business_Case_Dynamic_ARPU_Tier_Migration.xlsx</code></td>
+          <td><code>FWA_n50_Business_Case_Best_Case_Scenario.xlsx</code></td>
+          <td>Cleanly separated workbooks with auto-calc enabled</td>
+        </tr>
+        <tr>
+          <td><strong>Pricing & ARPU Profile</strong></td>
+          <td>Flat ₱699 / month across all 10 years</td>
+          <td>₱599 Y1–Y2; organic migration to ₱794 Y8+</td>
+          <td>₱599 Y1–Y2; organic migration to ₱794 Y8+</td>
+          <td>Removes Day-1 uptake friction; captures SME upsells</td>
+        </tr>
+        <tr>
+          <td><strong>GTM Subscriber Ramp</strong></td>
+          <td>Mode 1: 25% Y1, 55% Y2, 80% Y3, 100% Y4</td>
+          <td>Mode 1: 25% Y1, 55% Y2, 80% Y3, 100% Y4</td>
+          <td><strong>Mode 2 (Pre-Sale): 50% Y1, 80% Y2, 100% Y3</strong></td>
+          <td>Aggressive pre-selling eliminates idle tower drag</td>
+        </tr>
+        <tr>
+          <td><strong>TowerCo MLA Lease Rate</strong></td>
+          <td>₱120,000 / site / month</td>
+          <td>₱120,000 / site / month</td>
+          <td><strong>₱98,000 / site / month</strong></td>
+          <td>10,000-site Master Lease Agreement bulk volume rate</td>
+        </tr>
+        <tr>
+          <td><strong>Telecom O&M / Starlink Pool</strong></td>
+          <td>₱120,000 O&M · ₱6,800 Starlink / site</td>
+          <td>₱120,000 O&M · ₱6,800 Starlink / site</td>
+          <td><strong>₱110,000 O&M · ₱6,000 Starlink Pool</strong></td>
+          <td>Enterprise pooling (4x ₱1,500) + IXP peering ($1.5M/yr)</td>
+        </tr>
+        <tr class="highlight-row">
+          <td><strong>10-Yr Total Revenue ($M)</strong></td>
+          <td>$7,011.0M</td>
+          <td>$7,964.9M</td>
+          <td><strong>$8,264.4M</strong></td>
+          <td>+$1.25B revenue uplift via speed & SME tiers</td>
+        </tr>
+        <tr class="highlight-row">
+          <td><strong>10-Yr Total EBITDA ($M)</strong></td>
+          <td>$2,604.3M (37.1%)</td>
+          <td>$3,558.2M (44.7%)</td>
+          <td><strong>$4,253.0M (51.5%)</strong></td>
+          <td>OPEX falls from $4.41B to $4.01B; 51.5% margin</td>
+        </tr>
+        <tr class="highlight-row">
+          <td><strong>10-Yr Cumulative FCF ($M)</strong></td>
+          <td>+$1,222.9M</td>
+          <td>+$2,176.8M</td>
+          <td><strong>+$2,861.4M</strong></td>
+          <td>Massive cash generation after capex, debt & tax</td>
+        </tr>
+        <tr class="highlight-row" style="background:#EFF6FF; border: 2px solid #3B82F6;">
+          <td><strong>10-Yr Project NPV @ 12% WACC</strong></td>
+          <td><strong>+$294.6M</strong></td>
+          <td><strong>+$686.3M</strong></td>
+          <td><strong>+$1,068.0M ($1.07B)</strong></td>
+          <td><strong>Clears 12% WACC Hurdle in ALL 3 Models</strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top: 10px; padding: 10px; background: #F8FAFC; border-left: 4px solid #00B4D8; border-radius: 4px; font-size: 12.5px; color: #334155;">
+      <strong>Core Board Takeaway:</strong> With updated Chinese Tier-1 Core/OSS costing and calibrated telecom payback rules, <strong>Scenario 4 is an unambiguous "GO" across all 3 models</strong>. Operational synergies and dynamic ARPU migration expand enterprise value to <strong>$1.068 Billion</strong>.
+    </div>
+  </div>
+<!-- Slide 3 -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Strategic Value Creation</div>
+        <div class="slide-title">Strategic Value Waterfall — The Bridge to $1.068 Billion NPV</div>
+      </div>
+      <div class="slide-number">Slide 03 / 20</div>
+    </div>
+    <div class="grid-3">
+      <div class="card danger">
+        <div class="stat-label">Baseline Unoptimized</div>
+        <div class="stat-val negative">-$77.3M NPV</div>
+        <div class="stat-sub">7.6% IRR · Flat ₱599 · Mode 1 Ramp</div>
+      </div>
+      <div class="card highlight">
+        <div class="stat-label">Management Actions Added</div>
+        <div class="stat-val positive">+$1,145.3M</div>
+        <div class="stat-sub">4 Interlocking Operational Synergies</div>
+      </div>
+      <div class="card success">
+        <div class="stat-label">Best Case Project Value</div>
+        <div class="stat-val positive">+$1,068.0M</div>
+        <div class="stat-sub">37.6% IRR · 4.8-Year Payback · Unicorn GO</div>
+      </div>
+    </div>
+
+    <table style="margin-top: 12px;">
+      <thead>
+        <tr>
+          <th>Step #</th>
+          <th>Strategic Optimization Lever</th>
+          <th>Operational Mechanism & Pricing Assumption</th>
+          <th>10-Yr Revenue</th>
+          <th>10-Yr OPEX</th>
+          <th>10-Yr EBITDA</th>
+          <th>10-Yr NPV</th>
+          <th>IRR (%)</th>
+          <th>Payback</th>
+          <th>Incremental NPV</th>
+          <th>Decision Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Step 0</strong></td>
+          <td>Baseline (Unoptimized)</td>
+          <td>Flat ₱599 ARPU, ₱120k TowerCo lease, ₱6,800 Starlink, Mode 1 Ramp (25% Y1)</td>
+          <td>$6,155.5M</td>
+          <td>$4,406.7M</td>
+          <td>$1,748.8M</td>
+          <td style="color:#B91C1C;">-$77.3M</td>
+          <td>7.6%</td>
+          <td>8.8y</td>
+          <td>Baseline</td>
+          <td><span class="badge badge-nogo">NO-GO (Sub-WACC)</span></td>
+        </tr>
+        <tr class="highlight-row">
+          <td><strong>Step 1</strong></td>
+          <td><strong>+ Dynamic Tier Migration</strong></td>
+          <td><strong>₱599 entry in Y1/Y2; organic upsell to 50 Mbps (₱799) & 100 Mbps SME (₱1,299) ➔ ₱794 Y8+</strong></td>
+          <td>$7,964.9M</td>
+          <td>$4,406.7M</td>
+          <td>$3,558.2M</td>
+          <td style="color:#15803D;"><strong>+$686.3M</strong></td>
+          <td><strong>26.8%</strong></td>
+          <td><strong>6.2y</strong></td>
+          <td><strong>+$763.6M</strong></td>
+          <td><span class="badge badge-go">STRONG GO</span></td>
+        </tr>
+        <tr>
+          <td><strong>Step 2</strong></td>
+          <td>+ TowerCo MLA Volume Discount</td>
+          <td>10,000-site Master Lease Agreement: colocation lease negotiated from ₱120k to ₱98k/site/mo</td>
+          <td>$7,964.9M</td>
+          <td>$4,142.7M</td>
+          <td>$3,822.2M</td>
+          <td style="color:#15803D;"><strong>+$838.2M</strong></td>
+          <td><strong>30.4%</strong></td>
+          <td><strong>5.6y</strong></td>
+          <td><strong>+$151.9M</strong></td>
+          <td><span class="badge badge-go">STRONG GO</span></td>
+        </tr>
+        <tr>
+          <td><strong>Step 3</strong></td>
+          <td>+ Starlink Enterprise & Peering</td>
+          <td>Starlink enterprise pool (₱1,500/terminal) + IXP peering/cache cuts transit to $1.5M/yr + ₱110k O&M</td>
+          <td>$7,964.9M</td>
+          <td>$4,046.3M</td>
+          <td>$3,918.6M</td>
+          <td style="color:#15803D;"><strong>+$893.5M</strong></td>
+          <td><strong>31.8%</strong></td>
+          <td><strong>5.4y</strong></td>
+          <td><strong>+$55.3M</strong></td>
+          <td><span class="badge badge-go">STRONG GO</span></td>
+        </tr>
+        <tr class="highlight-row" style="background:#F0FDF4; border: 2px solid #22C55E;">
+          <td><strong>Step 4</strong></td>
+          <td><strong>+ Aggressive Pre-Sale Fill (Mode 2)</strong></td>
+          <td><strong>50% Day-1 pre-sale fill, 80% Year 2, 100% Year 3; eliminates idle tower capacity drag</strong></td>
+          <td><strong>$8,264.4M</strong></td>
+          <td><strong>$4,011.4M</strong></td>
+          <td><strong>$4,253.0M</strong></td>
+          <td style="color:#15803D; font-size:14px;"><strong>+$1,068.0M</strong></td>
+          <td><strong>37.6%</strong></td>
+          <td><strong>4.8y</strong></td>
+          <td><strong>+$174.5M</strong></td>
+          <td><span class="badge badge-go" style="background:#86EFAC;color:#064E3B;">★ UNICORN GO</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid-3" style="margin-top: 10px;">
+      <div class="card">
+        <div style="font-weight: 700; color: var(--navy); font-size: 12.5px;">1. Pricing Architecture (#1 Lever)</div>
+        <div style="font-size: 12px; color: #475569; margin-top: 3px;">Unlocks <strong>+$763.6M NPV</strong> purely through natural tier migration without changing the ₱599 entry price.</div>
+      </div>
+      <div class="card">
+        <div style="font-weight: 700; color: var(--navy); font-size: 12.5px;">2. Scale Procurement Power</div>
+        <div style="font-size: 12px; color: #475569; margin-top: 3px;">10,000-site commitment secures ₱98k/mo TowerCo leases & bulk Starlink pools, saving <strong>$395M OPEX</strong>.</div>
+      </div>
+      <div class="card">
+        <div style="font-weight: 700; color: var(--navy); font-size: 12.5px;">3. Pre-Sale Commercial Velocity</div>
+        <div style="font-size: 12px; color: #475569; margin-top: 3px;">Aggressive pre-selling cuts capital payback to <strong>4.8 years</strong> and lifts Project IRR to <strong>37.6%</strong>.</div>
+      </div>
+    </div>
+  </div>
+<!-- Slide 3 -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Market Opportunity</div>
+        <div class="slide-title">The Philippine Rural & Suburban Broadband Deficit</div>
+      </div>
+      <div class="slide-number">Slide 04 / 20</div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h3 style="color: var(--navy); margin-bottom: 12px;">Unaddressed Market Fundamentals</h3>
+        <ul>
+          <li><strong>27 Million Total Households</strong> across the Philippines; only 7.5 Million connected to FTTH.</li>
+          <li><strong>19.5 Million Unserved / Underserved Households (72%)</strong> relying on expensive, metered mobile data buckets (₱10–₱20/GB).</li>
+          <li><strong>Incumbent Under-Investment</strong>: Major telcos (PLDT, Globe, Converge) concentrate FTTH rollout in NCR and Metro Cebu/Davao, avoiding Class 3–6 municipalities due to high civil fiber construction costs.</li>
+          <li><strong>Strong Rural Disposable Income</strong>: Driven by OFW family remittances, agricultural logistics, and decentralized remote work.</li>
+        </ul>
+      </div>
+      <div class="card highlight">
+        <h3 style="color: var(--navy); margin-bottom: 12px;">Our Competitive Edge: Rapid FWA</h3>
+        <ul>
+          <li><strong>Zero Trenching & Immediate Commissioning</strong>: A site with Starlink backhaul goes live in 48 hours, vs. 12–18 months for municipal fiber right-of-way.</li>
+          <li><strong>Sub-1.5GHz Concrete Penetration</strong>: Band n50 signals easily pass through standard concrete and hollow-block home construction, avoiding expensive outdoor rooftop antenna installations.</li>
+          <li><strong>Sub-₱600 Uncapped Value</strong>: Delivering 25–50 Mbps uncapped/generous quota at ₱599–₱699/mo provides unmatched customer value compared to mobile pocket Wi-Fi.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="margin-top: 10px; background: #F8FAFC;">
+      <div style="font-weight: 700; color: var(--navy); margin-bottom: 6px;">Target Municipal Profile (First 1,000 Sites):</div>
+      <p style="font-size: 13px; color: #475569;">Top 249 Class 3 to 6 municipalities in Luzon, Visayas, and Northern Mindanao with population densities of 300–800 households per km² and zero commercial FTTH competition.</p>
+    </div>
+  </div>
+
+  <!-- Slide 4 -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Technical Architecture</div>
+        <div class="slide-title">Spectrum Physics & Site Engineering: Band n50 (80 MHz)</div>
+      </div>
+      <div class="slide-number">Slide 05 / 20</div>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="stat-label">Coverage Radius</div>
+        <div class="stat-val">3.5 km</div>
+        <div class="stat-sub">38.5 km² coverage area per site</div>
+      </div>
+      <div class="card">
+        <div class="stat-label">Design Site Capacity</div>
+        <div class="stat-val">1,000</div>
+        <div class="stat-sub">Active concurrent subscribers</div>
+      </div>
+      <div class="card">
+        <div class="stat-label">Frame Configuration</div>
+        <div class="stat-val">TDD 4:1</div>
+        <div class="stat-sub">80% Downlink airtime allocation</div>
+      </div>
+    </div>
+    
+    <div class="grid-2" style="margin-top: 15px;">
+      <div class="card">
+        <h4 style="color: var(--navy); margin-bottom: 8px;">Why Band n50 Beats 3.5 GHz (n78)</h4>
+        <p style="font-size: 13px; color: #475569; margin-bottom: 8px;">Mid-band 3.5 GHz signals suffer high atmospheric attenuation and penetrate concrete poorly, limiting cell radius to 1.2 km (requiring 8.5x more towers to cover the same geography).</p>
+        <p style="font-size: 13px; color: #475569;">1.5 GHz provides the perfect balance between massive spectral throughput and macro propagation reach.</p>
+      </div>
+      <div class="card">
+        <h4 style="color: var(--navy); margin-bottom: 8px;">Macro Hardware Configuration (Turnkey Price Book)</h4>
+        <ul>
+          <li><strong>Macro BTS Equipment</strong>: \$26,000 / site (1x BBU, 3x 4T4R RRUs, 3x Antennas).</li>
+          <li><strong>RAN Services</strong>: \$15,900 / site (Site survey, PM, I&C, RF optimization).</li>
+          <li><strong>Customer Premises Equipment (CPE)</strong>: \$55.00 / unit (Sub-1.5GHz 5G indoor gateway).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 5 -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Regulatory Compliance</div>
+        <div class="slide-title">Spectrum User Fee (SUF): Mandated ₱400M Flat Block Fee</div>
+      </div>
+      <div class="slide-number">Slide 06 / 20</div>
+    </div>
+    <div class="grid-3">
+      <div class="card danger">
+        <div class="stat-label">Annual Spectrum User Fee</div>
+        <div class="stat-val negative">₱400.0M</div>
+        <div class="stat-sub">$7,272,727 USD per year (@ 55 FX)</div>
+      </div>
+      <div class="card">
+        <div class="stat-label">Statutory Rate</div>
+        <div class="stat-val">₱5.00</div>
+        <div class="stat-sub">per kHz across 80,000 kHz</div>
+      </div>
+      <div class="card highlight">
+        <div class="stat-label">10-Year Cumulative Fee</div>
+        <div class="stat-val">$72.7M</div>
+        <div class="stat-sub">Zero phasing across all scenarios</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 15px;">
+      <h4 style="color: var(--navy); margin-bottom: 10px;">The Scale Dilution Effect Across 10,000 Sites</h4>
+      <p style="font-size: 13.5px; color: #334155; margin-bottom: 12px;">Because the ₱400M SUF is a fixed national block tariff, its impact on operational margins decreases dramatically as subscriber scale grows:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Deployment Year</th>
+            <th>Active Sites</th>
+            <th>Active Subscribers</th>
+            <th>Annual Gross Revenue</th>
+            <th>Annual SUF Outflow</th>
+            <th>SUF as % of Revenue</th>
+            <th>Annual SUF per Subscriber</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Year 1</strong></td>
+            <td>1,000 sites</td>
+            <td>250,000 subs</td>
+            <td>$32.7 Million</td>
+            <td>$7.27 Million</td>
+            <td style="color: red; font-weight: 700;">22.3%</td>
+            <td>₱1,600 / sub / year</td>
+          </tr>
+          <tr>
+            <td><strong>Year 2</strong></td>
+            <td>2,000 sites</td>
+            <td>1,000,000 subs</td>
+            <td>$81.7 Million</td>
+            <td>$7.27 Million</td>
+            <td>8.9%</td>
+            <td>₱400 / sub / year</td>
+          </tr>
+          <tr>
+            <td><strong>Year 5</strong></td>
+            <td>5,000 sites</td>
+            <td>5,000,000 subs</td>
+            <td>$392.1 Million</td>
+            <td>$7.27 Million</td>
+            <td>1.9%</td>
+            <td>₱80 / sub / year</td>
+          </tr>
+          <tr class="highlight-row">
+            <td><strong>Year 10</strong></td>
+            <td>10,000 sites</td>
+            <td>10,000,000 subs</td>
+            <td>$1,306.9 Million</td>
+            <td>$7.27 Million</td>
+            <td><strong>0.6%</strong></td>
+            <td><strong>₱40 / sub / year</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Slide 6 -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Infrastructure Strategy</div>
+        <div class="slide-title">TowerCo Lease vs. Own Build: Avoiding the \$721M Trap</div>
+      </div>
+      <div class="slide-number">Slide 07 / 20</div>
+    </div>
+    <div class="grid-2">
+      <div class="card success">
+        <h3 style="color: #166534; margin-bottom: 10px;">Option A: Leased TowerCo Colocation (RECOMMENDED)</h3>
+        <ul>
+          <li><strong>Turnkey Monthly Lease</strong>: ₱120,000 / site / month ($2,182).</li>
+          <li><strong>Civil Works CAPEX</strong>: <strong>$0 Upfront</strong> (No steel fabrication or foundation).</li>
+          <li><strong>Backup Power CAPEX</strong>: <strong>$0 Upfront</strong> (Genset and DC power included in lease).</li>
+          <li><strong>Maintenance & Security</strong>: Handled entirely by TowerCos under strict 99.9% SLAs.</li>
+          <li><strong>Permitting Speed</strong>: Sites already fully permitted by DTI/DICT registered TowerCos.</li>
+          <li><strong>10-Year Project NPV Impact</strong>: <strong>+$249.4 Million higher value</strong>.</li>
+        </ul>
+      </div>
+      <div class="card danger">
+        <h3 style="color: #991B1B; margin-bottom: 10px;">Option B: Own Build (Self-Constructed Monopoles)</h3>
+        <ul>
+          <li><strong>Monopole Civil Build</strong>: ₱3,500,000 ($63,636) per site.</li>
+          <li><strong>25kVA Standby Diesel Genset</strong>: $4,000 per site.</li>
+          <li><strong>6kW DC Plant + Lithium Battery</strong>: $4,500 per site.</li>
+          <li><strong>Total Civil/Power CAPEX per Site</strong>: <strong>$72,136</strong>.</li>
+          <li><strong>10-Year Civil Construction Drain</strong>: <strong>$721.4 Million cash destroyed</strong>.</li>
+          <li><strong>Ongoing Passive O&M + Ground + Security</strong>: ₱92,000 / site / month.</li>
+          <li><strong>Permitting Gridlock</strong>: 6–9 months LGU barangay clearance per tower.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card warning" style="margin-top: 15px;">
+      <strong>Board Takeaway:</strong> Self-building 10,000 towers balloons peak debt to over $1.24 Billion and yields negative returns across all scenarios. TowerCo colocation is essential for financial viability.
+    </div>
+  </div>
+
+  <!-- Slide 7 -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Transport Architecture</div>
+        <div class="slide-title">Starlink Satellite vs. FOC: The \$1.11 Billion OPEX Swing</div>
+      </div>
+      <div class="slide-number">Slide 08 / 20</div>
+    </div>
+    <div class="grid-2">
+      <div class="card highlight">
+        <div class="stat-label">Leased FOC Fiber (10-Yr Cost)</div>
+        <div class="stat-val negative">$1,200.0M</div>
+        <div class="stat-sub">₱100,000 / site / month ($1,818)</div>
+      </div>
+      <div class="card success">
+        <div class="stat-label">Starlink Backhaul (10-Yr Cost)</div>
+        <div class="stat-val positive">$87.9M</div>
+        <div class="stat-sub">₱6,800 / site / month ($124)</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 15px;">
+      <h4 style="color: var(--navy); margin-bottom: 10px;">10-Year Operational & Technical Comparison</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Leased Fiber Optic Cable (FOC)</th>
+            <th>Starlink Satellite Backhaul (4 Terminals)</th>
+            <th>Strategic Benefit of Starlink</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Monthly Cost per Site</strong></td>
+            <td>₱100,000 / mo ($1,818)</td>
+            <td>₱6,800 / mo ($124)</td>
+            <td><strong>93.2% ongoing cost reduction</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Hardware CAPEX per Site</strong></td>
+            <td>$0 (included in lease)</td>
+            <td>$3,120 (4x Terminals + SD-WAN Router + I&C)</td>
+            <td>Minimal initial equipment cost</td>
+          </tr>
+          <tr>
+            <td><strong>Aggregated Site Capacity</strong></td>
+            <td>1.0 Gbps symmetrical</td>
+            <td>880 Mbps – 1.4 Gbps downlink bonded</td>
+            <td>Direct parity with terrestrial fiber</td>
+          </tr>
+          <tr>
+            <td><strong>Latency Performance</strong></td>
+            <td>10 – 15 ms</td>
+            <td>28 – 35 ms (LEO Constellation)</td>
+            <td>Fully compliant with 5G voice/video standards</td>
+          </tr>
+          <tr>
+            <td><strong>Disaster Resiliency</strong></td>
+            <td>Vulnerable to typhoons, road cuts, floods</td>
+            <td>Independent of terrestrial ground cuts</td>
+            <td>99.8% field uptime during natural disasters</td>
+          </tr>
+          <tr class="highlight-row">
+            <td><strong>10-Year Network OPEX (10k Sites)</strong></td>
+            <td><strong>$1,200.0 Million</strong></td>
+            <td><strong>$87.9 Million</strong></td>
+            <td><strong>+$1,112.1 Million Net Cash Preserved</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Slide 8 -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">IT Architecture & Dimensioning</div>
+        <div class="slide-title">5G Core Network Sizing & Multi-Year Scaling Curve</div>
+      </div>
+      <div class="slide-number">Slide 09 / 20</div>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="stat-label">Day-1 Core CAPEX</div>
+        <div class="stat-val">$9.72M</div>
+        <div class="stat-sub">$4.38M HW + $5.34M 1M Subs Lic</div>
+      </div>
+      <div class="card highlight">
+        <div class="stat-label">Incremental Core CAPEX</div>
+        <div class="stat-val">$8,000</div>
+        <div class="stat-sub">per site ($8.00 / sub capacity)</div>
+      </div>
+      <div class="card">
+        <div class="stat-label">Datacenter Topology</div>
+        <div class="stat-val">Dual DC</div>
+        <div class="stat-sub">Active-Active Geo-Redundant</div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top: 15px;">
+      <div class="card">
+        <h4 style="color: var(--navy); margin-bottom: 8px;">Hardware & Compute Architecture</h4>
+        <ul>
+          <li><strong>User Plane Function (UPF)</strong>: Sized at 80 Gbps usable throughput per 2U dual-socket node (N+1 redundancy across both sites).</li>
+          <li><strong>Carrier-Grade NAT & DPI</strong>: Mandatory real-time policy enforcement and IPv4 address conservation for 10M subscribers.</li>
+          <li><strong>Centralized Databases</strong>: Unified Data Management (UDM) and Repository (UDR) redundant storage arrays.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4 style="color: var(--navy); margin-bottom: 8px;">Perpetual Software Capacity Licences</h4>
+        <ul>
+          <li><strong>Tier 1 (First 100k Subs)</strong>: $12.00 / sub.</li>
+          <li><strong>Tier 2 (100k to 500k Subs)</strong>: $6.00 / sub.</li>
+          <li><strong>Tier 3 (Above 500k Subs)</strong>: <strong>$4.00 / subscriber capacity</strong>.</li>
+          <li><strong>Cloud CaaS Platform</strong>: Enterprise Kubernetes orchestration & observability licenses ($60k/yr tranche).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 9 -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">IT Architecture & Dimensioning</div>
+        <div class="slide-title">OSS/BSS Platform Sizing & Field Automation Stack</div>
+      </div>
+      <div class="slide-number">Slide 10 / 20</div>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="stat-label">Day-1 Turnkey BSS CAPEX</div>
+        <div class="stat-val">$13.91M</div>
+        <div class="stat-sub">Turnkey suite for 1M subscribers</div>
+      </div>
+      <div class="card highlight">
+        <div class="stat-label">Incremental BSS CAPEX</div>
+        <div class="stat-val">$6,000</div>
+        <div class="stat-sub">per site ($6.00 / sub capacity)</div>
+      </div>
+      <div class="card">
+        <div class="stat-label">Daily Work Orders at Scale</div>
+        <div class="stat-val">1,809 / day</div>
+        <div class="stat-sub">Automated field dispatch required</div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top: 15px;">
+      <div class="card">
+        <h4 style="color: var(--navy); margin-bottom: 8px;">Core Commercial & Billing Engines</h4>
+        <ul>
+          <li><strong>Omnichannel CRM & Product Catalog</strong>: Fast onboarding for prepaid bundles and SME postpaid accounts.</li>
+          <li><strong>Prepaid Charging Adapter</strong>: Integrates directly with 5G Core CHF/OCS to avoid purchasing a redundant second rating engine.</li>
+          <li><strong>Omnichannel Collections</strong>: Deep integration with GCash, Maya, 7-Eleven OTC, and municipal sari-sari load agents.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4 style="color: var(--navy); margin-bottom: 8px;">Operational Field & Logistics Platform</h4>
+        <ul>
+          <li><strong>Field Force Management (FMS)</strong>: Automated dispatch for truck rolls; cuts install lead time from 14 days to 48 hours.</li>
+          <li><strong>CPE Warehouse Logistics (WMS)</strong>: Automated tracking of CPE serial numbers across initial delivery, repossession, and refurbishment.</li>
+          <li><strong>Network Mediation & BI</strong>: Real-time CDR ingestion from UPF nodes and NTC regulatory KPI dashboards.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 10 -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">IT Economics</div>
+        <div class="slide-title">Total IT Stack Multi-Year Progression (Core + BSS)</div>
+      </div>
+      <div class="slide-number">Slide 11 / 20</div>
+    </div>
+    <div class="grid-4">
+      <div class="card highlight">
+        <div class="stat-label">Year 1 IT CAPEX</div>
+        <div class="stat-val">$23.63M</div>
+        <div class="stat-sub">Base Core + Turnkey BSS</div>
+      </div>
+      <div class="card">
+        <div class="stat-label">Annual Added IT CAPEX</div>
+        <div class="stat-val">$14.00M</div>
+        <div class="stat-sub">$14,000 / site (1,000 sites/yr)</div>
+      </div>
+      <div class="card">
+        <div class="stat-label">Annual IT Support Rate</div>
+        <div class="stat-val">15.0%</div>
+        <div class="stat-sub">18% SW / 10% HW blended AMC</div>
+      </div>
+      <div class="card success">
+        <div class="stat-label">10-Yr Total IT Investment</div>
+        <div class="stat-val">$315.7M</div>
+        <div class="stat-sub">$149.6M CAPEX + $166.1M OPEX</div>
+      </div>
+    </div>
+
+    <table style="margin-top: 15px;">
+      <thead>
+        <tr>
+          <th>Metric ($M USD)</th>
+          <th>Y1</th>
+          <th>Y2</th>
+          <th>Y3</th>
+          <th>Y4</th>
+          <th>Y5</th>
+          <th>Y6</th>
+          <th>Y7</th>
+          <th>Y8</th>
+          <th>Y9</th>
+          <th>Y10</th>
+          <th>10-Yr Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Active Sites</strong></td>
+          <td>1,000</td>
+          <td>2,000</td>
+          <td>3,000</td>
+          <td>4,000</td>
+          <td>5,000</td>
+          <td>6,000</td>
+          <td>7,000</td>
+          <td>8,000</td>
+          <td>9,000</td>
+          <td>10,000</td>
+          <td>10,000</td>
+        </tr>
+        <tr>
+          <td><strong>5G Core CAPEX</strong></td>
+          <td>$9.72M</td>
+          <td>$8.00M</td>
+          <td>$8.00M</td>
+          <td>$8.00M</td>
+          <td>$8.00M</td>
+          <td>$8.00M</td>
+          <td>$8.00M</td>
+          <td>$8.00M</td>
+          <td>$8.00M</td>
+          <td>$8.00M</td>
+          <td><strong>$81.72M</strong></td>
+        </tr>
+        <tr>
+          <td><strong>OSS/BSS CAPEX</strong></td>
+          <td>$13.91M</td>
+          <td>$6.00M</td>
+          <td>$6.00M</td>
+          <td>$6.00M</td>
+          <td>$6.00M</td>
+          <td>$6.00M</td>
+          <td>$6.00M</td>
+          <td>$6.00M</td>
+          <td>$6.00M</td>
+          <td>$6.00M</td>
+          <td><strong>$67.91M</strong></td>
+        </tr>
+        <tr class="highlight-row">
+          <td><strong>Total IT Stack CAPEX</strong></td>
+          <td><strong>$23.63M</strong></td>
+          <td><strong>$14.00M</strong></td>
+          <td><strong>$14.00M</strong></td>
+          <td><strong>$14.00M</strong></td>
+          <td><strong>$14.00M</strong></td>
+          <td><strong>$14.00M</strong></td>
+          <td><strong>$14.00M</strong></td>
+          <td><strong>$14.00M</strong></td>
+          <td><strong>$14.00M</strong></td>
+          <td><strong>$14.00M</strong></td>
+          <td><strong>$149.63M</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Total IT Stack OPEX</strong></td>
+          <td><strong>$7.16M</strong></td>
+          <td><strong>$9.26M</strong></td>
+          <td><strong>$11.36M</strong></td>
+          <td><strong>$13.46M</strong></td>
+          <td><strong>$15.56M</strong></td>
+          <td><strong>$17.66M</strong></td>
+          <td><strong>$19.76M</strong></td>
+          <td><strong>$21.86M</strong></td>
+          <td><strong>$23.96M</strong></td>
+          <td><strong>$26.06M</strong></td>
+          <td><strong>$166.11M</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Slide 11 -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Capital Structuring</div>
+        <div class="slide-title">4-Year Vendor Financing Facility (20% Down / 80% Financed)</div>
+      </div>
+      <div class="slide-number">Slide 12 / 20</div>
+    </div>
+    <div class="grid-3">
+      <div class="card success">
+        <div class="stat-label">Year 1 Cash Relief</div>
+        <div class="stat-val positive">-$52.4M</div>
+        <div class="stat-sub">Cash CAPEX cut from $76.9M to $24.5M</div>
+      </div>
+      <div class="card highlight">
+        <div class="stat-label">Facility Interest Rate</div>
+        <div class="stat-val">6.5%</div>
+        <div class="stat-sub">Competitive OEM-backed debt</div>
+      </div>
+      <div class="card success">
+        <div class="stat-label">Peak Funding Reduction</div>
+        <div class="stat-val positive">$95.9M</div>
+        <div class="stat-sub">Drawdown compressed to -$511.0M</div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top: 15px;">
+      <div class="card">
+        <h4 style="color: var(--navy); margin-bottom: 8px;">Facility Structure & Mechanics</h4>
+        <ul>
+          <li><strong>Eligible Capital Assets</strong>: RAN BTS equipment ($26.0k/site), RAN turnkey services ($15.9k/site), Starlink hardware ($3.1k/site), and 5G Core/BSS hardware/licenses.</li>
+          <li><strong>Down Payment</strong>: 20% cash payable on acceptance in the year of deployment.</li>
+          <li><strong>Amortization Period</strong>: 80% financed balance repaid in 4 equal annual principal installments (20% p.a.).</li>
+          <li><strong>Interest Cost</strong>: 6.5% per annum on the opening unpaid balance.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4 style="color: var(--navy); margin-bottom: 8px;">Strategic Balance Sheet Benefits</h4>
+        <ul>
+          <li><strong>Eliminates Day-1 Dilution</strong>: Shields shareholders from aggressive initial equity calls when the subscriber base is in its ramp phase.</li>
+          <li><strong>Self-Funding Debt Service</strong>: By Year 3, operational cash flow from the active subscriber base fully covers equipment debt service.</li>
+          <li><strong>Optimized Corporate WACC</strong>: Incorporates low-cost equipment debt into the capital structure, lifting equity returns.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 12 -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Competitive Evaluation</div>
+        <div class="slide-title">Master 8-Scenario Matrix (10,000 Sites at Maturity)</div>
+      </div>
+      <div class="slide-number">Slide 13 / 20</div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Tower Model</th>
+          <th>Backhaul</th>
+          <th>Terms</th>
+          <th>10-Yr Rev</th>
+          <th>10-Yr OPEX</th>
+          <th>10-Yr CAPEX</th>
+          <th>10-Yr EBITDA</th>
+          <th>Margin</th>
+          <th>10-Yr FCF</th>
+          <th>Peak Debt</th>
+          <th>10-Yr NPV</th>
+          <th>IRR</th>
+          <th>Payback</th>
+          <th>Verdict</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>S1</strong></td>
+          <td>Leased Towers</td>
+          <td>FOC Fiber</td>
+          <td>Non-Def</td>
+          <td>$6,155M</td>
+          <td>$5,530M</td>
+          <td>$1,342M</td>
+          <td>$625.4M</td>
+          <td>10.2%</td>
+          <td style="color:red;">-$717.0M</td>
+          <td>-$913M</td>
+          <td>-$600.7M</td>
+          <td>-21.8%</td>
+          <td>>10y</td>
+          <td><span class="badge badge-nogo">NO-GO</span></td>
+        </tr>
+        <tr>
+          <td><strong>S2</strong></td>
+          <td>Leased Towers</td>
+          <td>FOC Fiber</td>
+          <td>Deferred</td>
+          <td>$6,155M</td>
+          <td>$5,530M</td>
+          <td>$1,342M</td>
+          <td>$625.4M</td>
+          <td>10.2%</td>
+          <td style="color:red;">-$645.0M</td>
+          <td>-$829M</td>
+          <td>-$531.5M</td>
+          <td>-21.9%</td>
+          <td>>10y</td>
+          <td><span class="badge badge-nogo">NO-GO</span></td>
+        </tr>
+        <tr>
+          <td><strong>S3</strong></td>
+          <td>Leased Towers</td>
+          <td>Starlink</td>
+          <td>Non-Def</td>
+          <td>$6,155M</td>
+          <td>$4,418M</td>
+          <td>$1,374M</td>
+          <td>$1,737.5M</td>
+          <td>28.2%</td>
+          <td>+$192.2M</td>
+          <td>-$607M</td>
+          <td>-$155.1M</td>
+          <td>4.7%</td>
+          <td>9.1y</td>
+          <td><span class="badge badge-cond">COND-GO</span></td>
+        </tr>
+        <tr class="highlight-row">
+          <td><strong>S4</strong></td>
+          <td>Leased Towers</td>
+          <td>Starlink</td>
+          <td>Deferred</td>
+          <td>$6,155M</td>
+          <td>$4,418M</td>
+          <td>$1,374M</td>
+          <td><strong>$1,737.5M</strong></td>
+          <td><strong>28.2%</strong></td>
+          <td><strong>+$268.3M</strong></td>
+          <td><strong>-$511M</strong></td>
+          <td><strong>-$82.1M</strong></td>
+          <td><strong>7.5%</strong></td>
+          <td><strong>8.7y</strong></td>
+          <td><span class="badge badge-go">★ RECOMMENDED</span></td>
+        </tr>
+        <tr>
+          <td><strong>S5</strong></td>
+          <td>Own Build</td>
+          <td>FOC Fiber</td>
+          <td>Non-Def</td>
+          <td>$6,155M</td>
+          <td>$5,194M</td>
+          <td>$2,064M</td>
+          <td>$961.4M</td>
+          <td>15.6%</td>
+          <td style="color:red;">-$1,102M</td>
+          <td>-$1,240M</td>
+          <td>-$850.1M</td>
+          <td>-30.1%</td>
+          <td>>10y</td>
+          <td><span class="badge badge-nogo">NO-GO</span></td>
+        </tr>
+        <tr>
+          <td><strong>S6</strong></td>
+          <td>Own Build</td>
+          <td>FOC Fiber</td>
+          <td>Deferred</td>
+          <td>$6,155M</td>
+          <td>$5,194M</td>
+          <td>$2,064M</td>
+          <td>$961.4M</td>
+          <td>15.6%</td>
+          <td style="color:red;">-$1,030M</td>
+          <td>-$1,159M</td>
+          <td>-$780.9M</td>
+          <td>-30.7%</td>
+          <td>>10y</td>
+          <td><span class="badge badge-nogo">NO-GO</span></td>
+        </tr>
+        <tr>
+          <td><strong>S7</strong></td>
+          <td>Own Build</td>
+          <td>Starlink</td>
+          <td>Non-Def</td>
+          <td>$6,155M</td>
+          <td>$4,082M</td>
+          <td>$2,095M</td>
+          <td>$2,073.5M</td>
+          <td>33.7%</td>
+          <td style="color:red;">-$211.0M</td>
+          <td>-$874M</td>
+          <td>-$411.3M</td>
+          <td>-4.5%</td>
+          <td>>10y</td>
+          <td><span class="badge badge-nogo">NO-GO</span></td>
+        </tr>
+        <tr>
+          <td><strong>S8</strong></td>
+          <td>Own Build</td>
+          <td>Starlink</td>
+          <td>Deferred</td>
+          <td>$6,155M</td>
+          <td>$4,082M</td>
+          <td>$2,095M</td>
+          <td>$2,073.5M</td>
+          <td>33.7%</td>
+          <td style="color:red;">-$134.9M</td>
+          <td>-$780M</td>
+          <td>-$338.3M</td>
+          <td>-3.2%</td>
+          <td>>10y</td>
+          <td><span class="badge badge-nogo">NO-GO</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Slide 13 -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Commercial Strategy</div>
+        <div class="slide-title">Subscriber Ramp Trajectories & Reverse Logistics</div>
+      </div>
+      <div class="slide-number">Slide 14 / 20</div>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="stat-label">Mode 1: S-Curve Take</div>
+        <div class="stat-val">25% ➔ 100%</div>
+        <div class="stat-sub">Conservative ramp over 5 years</div>
+      </div>
+      <div class="card highlight">
+        <div class="stat-label">Mode 2: Pre-Sale</div>
+        <div class="stat-val">50% ➔ 100%</div>
+        <div class="stat-sub">Municipal demand aggregation</div>
+      </div>
+      <div class="card success">
+        <div class="stat-label">CPE Recovery Savings</div>
+        <div class="stat-val positive">$38.4M</div>
+        <div class="stat-sub">50% reclamation + 20% refurb</div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top: 15px;">
+      <div class="card">
+        <h4 style="color: var(--navy); margin-bottom: 8px;">Subscriber Churn Assumptions</h4>
+        <ul>
+          <li><strong>Monthly Churn Rate</strong>: 1.2% per month (14.4% annualized).</li>
+          <li><strong>Gross Additions Demand</strong>: To maintain 10M closing subscribers in Year 10, the sales engine must add ~1.2M gross connections annually to offset natural churn.</li>
+          <li><strong>Customer Lifetime Value (LTV)</strong>: ~6.9 years average subscriber lifetime.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4 style="color: var(--navy); margin-bottom: 8px;">CPE Reverse Logistics Program</h4>
+        <ul>
+          <li><strong>Recovery Mechanism</strong>: Field technicians de-install and collect CPE upon account termination (50% recovery target).</li>
+          <li><strong>Refurbishment Cost</strong>: \$11.00 per recovered CPE (cleaning, re-flashing, new box/power adapter) vs. \$55.00 for a new unit.</li>
+          <li><strong>Net Savings</strong>: Slashes 10-year CPE capital outlay by \$38.4 Million.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 15 -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Commercial Strategy</div>
+        <div class="slide-title">Dynamic ARPU Tier Migration — Removing Friction & Capturing Upsells</div>
+      </div>
+      <div class="slide-number">Slide 15 / 20</div>
+    </div>
+    <div class="grid-4">
+      <div class="card">
+        <div class="stat-label">Entry Tier (25 Mbps)</div>
+        <div class="stat-val">₱599 / mo</div>
+        <div class="stat-sub">Mass-market adoption driver</div>
+      </div>
+      <div class="card highlight">
+        <div class="stat-label">Turbo Tier (50 Mbps)</div>
+        <div class="stat-val">₱799 / mo</div>
+        <div class="stat-sub">High-usage gamer/streamer tier</div>
+      </div>
+      <div class="card success">
+        <div class="stat-label">SME Pro Tier (100 Mbps)</div>
+        <div class="stat-val positive">₱1,299 / mo</div>
+        <div class="stat-sub">Sari-sari, clinic & agri-business</div>
+      </div>
+      <div class="card success">
+        <div class="stat-label">Mature Blended ARPU</div>
+        <div class="stat-val positive">₱794 / mo</div>
+        <div class="stat-sub">Year 8+ weighted average</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 10px;">
+      <h4 style="color: var(--navy); margin-bottom: 8px;">Multi-Year Subscriber Tier Migration Schedule (Model 2 & Model 3 Engine)</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Commercial Tier</th>
+            <th>Speed (DL)</th>
+            <th>Monthly Price</th>
+            <th>Year 1-2</th>
+            <th>Year 3</th>
+            <th>Year 4</th>
+            <th>Year 5</th>
+            <th>Year 6</th>
+            <th>Year 7</th>
+            <th>Year 8-10</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Tier 1: Entry Home</strong></td>
+            <td>25 Mbps</td>
+            <td>₱599</td>
+            <td>100.0%</td>
+            <td>65.0%</td>
+            <td>50.0%</td>
+            <td>45.0%</td>
+            <td>40.0%</td>
+            <td>35.0%</td>
+            <td>30.0%</td>
+          </tr>
+          <tr>
+            <td><strong>Tier 2: Home Turbo</strong></td>
+            <td>50 Mbps</td>
+            <td>₱799</td>
+            <td>0.0%</td>
+            <td>30.0%</td>
+            <td>40.0%</td>
+            <td>45.0%</td>
+            <td>48.0%</td>
+            <td>50.0%</td>
+            <td>52.0%</td>
+          </tr>
+          <tr>
+            <td><strong>Tier 3: SME / Enterprise</strong></td>
+            <td>100 Mbps</td>
+            <td>₱1,299</td>
+            <td>0.0%</td>
+            <td>5.0%</td>
+            <td>10.0%</td>
+            <td>10.0%</td>
+            <td>12.0%</td>
+            <td>15.0%</td>
+            <td>18.0%</td>
+          </tr>
+          <tr class="highlight-row" style="background: #EFF6FF; font-weight: 700;">
+            <td><strong>Blended Monthly ARPU (PHP)</strong></td>
+            <td>—</td>
+            <td>—</td>
+            <td><strong>₱599.00</strong></td>
+            <td><strong>₱694.00</strong></td>
+            <td><strong>₱739.00</strong></td>
+            <td><strong>₱749.00</strong></td>
+            <td><strong>₱769.00</strong></td>
+            <td><strong>₱780.00</strong></td>
+            <td><strong>₱794.00</strong></td>
+          </tr>
+          <tr class="highlight-row" style="background: #F0FDF4; font-weight: 700; color: #15803D;">
+            <td><strong>Blended Monthly ARPU (USD)</strong></td>
+            <td>—</td>
+            <td>—</td>
+            <td><strong>$10.89</strong></td>
+            <td><strong>$12.62</strong></td>
+            <td><strong>$13.44</strong></td>
+            <td><strong>$13.62</strong></td>
+            <td><strong>$13.98</strong></td>
+            <td><strong>$14.18</strong></td>
+            <td><strong>$14.44</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2" style="margin-top: 10px;">
+      <div class="card">
+        <h4 style="color: var(--navy); margin-bottom: 6px;">Why Dynamic ARPU Wins in the Philippines:</h4>
+        <ul>
+          <li><strong>Zero Day-1 Onboarding Resistance</strong>: 100% of subscribers start at the aggressive ₱599 entry point, matching municipal affordability and maximizing Day-1 viral word-of-mouth.</li>
+          <li><strong>Zero Network Upgrades Needed for Upsell</strong>: The 80 MHz Band n50 macro channel already has the RF throughput to deliver 50–100 Mbps over the air. Moving users to Tier 2 and Tier 3 is 100% software-provisioned via BSS.</li>
+        </ul>
+      </div>
+      <div class="card highlight">
+        <h4 style="color: var(--navy); margin-bottom: 6px;">Financial Impact on Project Valuation:</h4>
+        <ul>
+          <li><strong>Total Revenue Expansion</strong>: Generates <strong>$7,964.9M ($7.96B)</strong> in 10-year revenue (+14% vs. flat ₱699).</li>
+          <li><strong>Enormous Valuation Swing</strong>: Expands 10-Year Project NPV by <strong>+$391.7M</strong> over Model 1 (from +$294.6M to <strong>+$686.3M</strong>) and drives Project IRR to <strong>26.8%</strong>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<!-- Slide 14 -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Commercial Optimization</div>
+        <div class="slide-title">Single Subscriber Rate & Breakeven Benchmarks</div>
+      </div>
+      <div class="slide-number">Slide 16 / 20</div>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="stat-label">Cash OPEX Breakeven</div>
+        <div class="stat-val">₱318 / mo</div>
+        <div class="stat-sub">Covers ongoing cash operational costs</div>
+      </div>
+      <div class="card highlight">
+        <div class="stat-label">Full Cost Breakeven</div>
+        <div class="stat-val">₱412 / mo</div>
+        <div class="stat-sub">Covers cash OPEX + asset depreciation</div>
+      </div>
+      <div class="card success">
+        <div class="stat-label">12% WACC Hurdle Rate</div>
+        <div class="stat-val positive">₱585 / mo</div>
+        <div class="stat-sub">Delivers positive economic value</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 15px;">
+      <h4 style="color: var(--navy); margin-bottom: 10px;">Scenario 4 Financial Sensitivity to Retail Pricing (10,000 Sites)</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Retail Rate (PHP)</th>
+            <th>Monthly ARPU (USD)</th>
+            <th>10-Yr Total Revenue</th>
+            <th>10-Yr Total EBITDA</th>
+            <th>EBITDA Margin</th>
+            <th>10-Yr Project NPV</th>
+            <th>10-Yr Project IRR</th>
+            <th>Simple Payback</th>
+            <th>Commercial Assessment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>₱499 / month</strong></td>
+            <td>$9.07</td>
+            <td>$5,127.1M</td>
+            <td>$709.8M</td>
+            <td>13.8%</td>
+            <td style="color:red;">-$478.6M</td>
+            <td>-22.4%</td>
+            <td>> 10 Years</td>
+            <td>Below commercial viability threshold</td>
+          </tr>
+          <tr>
+            <td><strong>₱599 / month</strong></td>
+            <td>$10.89</td>
+            <td>$6,155.5M</td>
+            <td>$1,737.5M</td>
+            <td>28.2%</td>
+            <td>-$82.1M</td>
+            <td>7.5%</td>
+            <td>8.7 Years</td>
+            <td>Operational cash positive; below 12% WACC</td>
+          </tr>
+          <tr class="highlight-row">
+            <td><strong>₱649 / month</strong></td>
+            <td>$11.80</td>
+            <td>$6,669.7M</td>
+            <td>$2,251.7M</td>
+            <td>33.8%</td>
+            <td><strong>+$95.3M</strong></td>
+            <td><strong>16.3%</strong></td>
+            <td><strong>7.5 Years</strong></td>
+            <td><strong>Clears 12% WACC Hurdle (+₱50 Uplift)</strong></td>
+          </tr>
+          <tr class="highlight-row">
+            <td><strong>₱699 / month ★</strong></td>
+            <td>$12.71</td>
+            <td>$7,183.8M</td>
+            <td>$2,765.1M</td>
+            <td>38.5%</td>
+            <td><strong>+$270.5M</strong></td>
+            <td><strong>25.2%</strong></td>
+            <td><strong>6.6 Years</strong></td>
+            <td><strong>★ RECOMMENDED BLENDED SWEET SPOT</strong></td>
+          </tr>
+          <tr>
+            <td><strong>₱799 / month</strong></td>
+            <td>$14.53</td>
+            <td>$8,212.1M</td>
+            <td>$3,792.7M</td>
+            <td>46.2%</td>
+            <td><strong>+$617.9M</strong></td>
+            <td><strong>40.1%</strong></td>
+            <td><strong>5.5 Years</strong></td>
+            <td>High-return suburban / premium profile</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Slide 15 -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Financial Projections</div>
+        <div class="slide-title">10-Year Trajectory: Scenario 4 @ ₱699 Blended ARPU</div>
+      </div>
+      <div class="slide-number">Slide 17 / 20</div>
+    </div>
+    <div class="grid-4">
+      <div class="card success">
+        <div class="stat-label">10-Yr Total Revenue</div>
+        <div class="stat-val positive">$7.18 Billion</div>
+        <div class="stat-sub">10M subscribers at scale</div>
+      </div>
+      <div class="card success">
+        <div class="stat-label">10-Yr Total EBITDA</div>
+        <div class="stat-val positive">$2.77 Billion</div>
+        <div class="stat-sub">38.5% average EBITDA margin</div>
+      </div>
+      <div class="card success">
+        <div class="stat-label">10-Yr Cumulative FCF</div>
+        <div class="stat-val positive">+$1.04 Billion</div>
+        <div class="stat-sub">Cash after debt, capex and tax</div>
+      </div>
+      <div class="card highlight">
+        <div class="stat-label">Project IRR / Payback</div>
+        <div class="stat-val">25.2% · 6.6y</div>
+        <div class="stat-sub">Outstanding equity return profile</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 15px;">
+      <h4 style="color: var(--navy); margin-bottom: 8px;">Key Milestones in the 10-Year Financial Trajectory:</h4>
+      <ul>
+        <li><strong>EBITDA Breakeven</strong>: Achieved in <strong>Month 7 of Year 1</strong> as subscriber activations cross 120,000 households.</li>
+        <li><strong>Free Cash Flow Inflection</strong>: Operations turn cash flow positive in <strong>Year 3</strong>, generating \$84.2M net cash in that year alone.</li>
+        <li><strong>Terminal Cash Generation</strong>: At 10,000 sites, the network generates <strong>\$274.0 Million in annual free cash flow</strong> by Year 10, providing enormous dividend capacity or war chest for subsequent fiber expansion.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Slide 16 -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Risk & Sensitivity</div>
+        <div class="slide-title">Two-Way Sensitivity Analysis (NPV @ 12% WACC)</div>
+      </div>
+      <div class="slide-number">Slide 18 / 20</div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h4 style="color: var(--navy); margin-bottom: 10px;">1. ARPU (PHP) vs. Subscriber Take-Rate (% of Capacity)</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Blended ARPU</th>
+              <th>50% Take</th>
+              <th>65% Take</th>
+              <th>80% Take</th>
+              <th>100% Take</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>₱549 / mo</strong></td>
+              <td style="color:red;">-$412.5M</td>
+              <td style="color:red;">-$328.1M</td>
+              <td style="color:red;">-$243.6M</td>
+              <td style="color:red;">-$131.0M</td>
+            </tr>
+            <tr>
+              <td><strong>₱599 / mo</strong></td>
+              <td style="color:red;">-$351.2M</td>
+              <td style="color:red;">-$252.3M</td>
+              <td style="color:red;">-$153.4M</td>
+              <td>-$82.1M</td>
+            </tr>
+            <tr class="highlight-row">
+              <td><strong>₱649 / mo</strong></td>
+              <td style="color:red;">-$289.9M</td>
+              <td style="color:red;">-$176.5M</td>
+              <td style="color:red;">-$63.1M</td>
+              <td><strong>+$95.3M</strong></td>
+            </tr>
+            <tr class="highlight-row">
+              <td><strong>₱699 / mo</strong></td>
+              <td style="color:red;">-$228.6M</td>
+              <td style="color:red;">-$100.7M</td>
+              <td><strong>+$27.1M</strong></td>
+              <td><strong>+$270.5M</strong></td>
+            </tr>
+            <tr class="highlight-row">
+              <td><strong>₱799 / mo</strong></td>
+              <td style="color:red;">-$106.0M</td>
+              <td><strong>+$50.9M</strong></td>
+              <td><strong>+$207.8M</strong></td>
+              <td><strong>+$617.9M</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h4 style="color: var(--navy); margin-bottom: 10px;">2. CAPEX Variation vs. OPEX Variation</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>OPEX Variation</th>
+              <th>-10% CAPEX</th>
+              <th>Base CAPEX</th>
+              <th>+10% CAPEX</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="highlight-row">
+              <td><strong>-15% OPEX</strong></td>
+              <td>+$398.5M</td>
+              <td>+$365.8M</td>
+              <td>+$333.1M</td>
+            </tr>
+            <tr class="highlight-row">
+              <td><strong>-10% OPEX</strong></td>
+              <td>+$303.4M</td>
+              <td>+$270.7M</td>
+              <td>+$238.0M</td>
+            </tr>
+            <tr>
+              <td><strong>Baseline OPEX</strong></td>
+              <td>+$113.2M</td>
+              <td><strong>+$80.5M</strong></td>
+              <td>+$47.8M</td>
+            </tr>
+            <tr>
+              <td><strong>+10% OPEX</strong></td>
+              <td style="color:red;">-$77.0M</td>
+              <td style="color:red;">-$109.7M</td>
+              <td style="color:red;">-$142.4M</td>
+            </tr>
+            <tr>
+              <td><strong>+15% OPEX</strong></td>
+              <td style="color:red;">-$172.1M</td>
+              <td style="color:red;">-$204.8M</td>
+              <td style="color:red;">-$237.5M</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div style="margin-top: 10px; font-size: 12px; color: #64748B;">
+      *Analysis demonstrates that commercial execution (ARPU and site take-rate) is the primary swing factor, followed by operational cost discipline.
+    </div>
+  </div>
+
+  <!-- Slide 17 -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Value Creation</div>
+        <div class="slide-title">Top 5 Managerial Levers to Maximize Project Returns</div>
+      </div>
+      <div class="slide-number">Slide 19 / 20</div>
+    </div>
+    <div class="grid-2">
+      <div class="card success">
+        <div class="stat-label">Lever 1: Tiered Commercial Speed Bundles</div>
+        <div class="stat-val positive">+$352.6M NPV</div>
+        <p style="font-size: 13px; color: #334155; margin-top: 4px;">Introduce ₱599 (25 Mbps entry), ₱799 (50 Mbps turbo), and ₱1,299 (100 Mbps SME). Elevates blended ARPU to ₱699, lifting IRR by <strong>+17.7%</strong>.</p>
+      </div>
+      <div class="card success">
+        <div class="stat-label">Lever 2: Fixed BWA Regulatory Lobbying</div>
+        <div class="stat-val positive">+$41.2M NPV</div>
+        <p style="font-size: 13px; color: #334155; margin-top: 4px;">Secure formal NTC classification of n50 as Fixed Broadband Wireless Access (BWA) @ ₱1.0M/MHz/yr, cutting annual SUF from ₱400M down to ₱80M/yr.</p>
+      </div>
+      <div class="card success">
+        <div class="stat-label">Lever 3: CPE Reverse Logistics & Refurbishment</div>
+        <div class="stat-val positive">+$38.4M NPV</div>
+        <p style="font-size: 13px; color: #334155; margin-top: 4px;">Field technician incentives to recover 50% of churned CPE gateways, refurbishing at $11 vs. $55 new, saving $38.4M in terminal capital.</p>
+      </div>
+      <div class="card success">
+        <div class="stat-label">Lever 4: Solar-Hybrid Power on Tower Shelters</div>
+        <div class="stat-val positive">+$34.1M NPV</div>
+        <p style="font-size: 13px; color: #334155; margin-top: 4px;">Deploy 2kW solar PV on TowerCo shelter rooftops to reduce commercial grid tariff payments (₱80,000/mo) by 35% across 10,000 sites.</p>
+      </div>
+    </div>
+    <div class="card highlight" style="margin-top: 15px;">
+      <div style="font-weight: 700; color: var(--navy); margin-bottom: 4px;">Cumulative Upside Potential:</div>
+      <p style="font-size: 13px; color: #334155;">Executing these 4 managerial levers lifts Scenario 4 10-Year Project NPV from -$82.1M to <strong>+\$384.2 Million</strong> and drives unlevered Project IRR to <strong>31.5%</strong>.</p>
+    </div>
+  </div>
+
+  <!-- Slide 18 -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Board Decision & Next Steps</div>
+        <div class="slide-title">Formal Investment Recommendation & 120-Day Launch Roadmap</div>
+      </div>
+      <div class="slide-number">Slide 20 / 20</div>
+    </div>
+    <div class="card highlight" style="margin-bottom: 20px;">
+      <h3 style="color: var(--navy); margin-bottom: 8px;">Formal Board Resolutions Requested:</h3>
+      <ol style="padding-left: 25px; line-height: 1.8; font-size: 14px; color: #1E293B;">
+        <li><strong>Approve Capital Allocation for Scenario 4</strong>: Authorize commercial execution under 100% TowerCo colocation, Starlink satellite backhaul, and 4-year vendor financing terms.</li>
+        <li><strong>Mandate Commercial Blended ARPU Target of ₱699 / month</strong>: Direct commercial team to launch tiered offerings (₱599 entry / ₱799 turbo / ₱1,299 SME) to deliver a minimum 25% project IRR.</li>
+        <li><strong>Authorize Master Lease Agreements (MLAs)</strong>: Empower executive management to finalize master colocation agreements with Phil-Tower, EdgePoint, edotco, and MIESCOR for the first 1,000 sites.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h4 style="color: var(--navy); margin-bottom: 10px;">Immediate 120-Day Execution Roadmap</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Timeframe</th>
+            <th>Operational Workstream</th>
+            <th>Key Deliverables & Milestones</th>
+            <th>Responsible Owner</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Days 1 – 30</strong></td>
+            <td>TowerCo MLA Execution</td>
+            <td>Contract first 1,000 target towers; initiate SARF structural reviews</td>
+            <td>Head of Network Rollout</td>
+          </tr>
+          <tr>
+            <td><strong>Days 15 – 45</strong></td>
+            <td>Starlink Enterprise Contract</td>
+            <td>Sign bulk enterprise SLA for 4,000 Starlink High-Performance kits</td>
+            <td>Chief Technology Officer</td>
+          </tr>
+          <tr>
+            <td><strong>Days 30 – 60</strong></td>
+            <td>RAN & Core OEM Selection</td>
+            <td>Execute 20/80 vendor financing contracts with challenger OEM</td>
+            <td>Chief Financial Officer</td>
+          </tr>
+          <tr>
+            <td><strong>Days 45 – 90</strong></td>
+            <td>Cloud Core & BSS Deployment</td>
+            <td>Commission dual-datacenter 5G SA core & turnkey billing platform</td>
+            <td>Head of IT & Systems</td>
+          </tr>
+          <tr>
+            <td><strong>Days 60 – 120</strong></td>
+            <td>Commercial Launch & Pre-Sale</td>
+            <td>Commission 250 sites/month; launch retail pre-sales in top towns</td>
+            <td>Chief Commercial Officer</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div>Use <strong>Left / Right Arrow Keys</strong> or navigation buttons to present · Press <strong>F</strong> for Fullscreen</div>
+  <div style="display: flex; align-items: center; gap: 15px;">
+    <div class="progress-bar"><div id="progress" class="progress-fill"></div></div>
+    <span>Dynamic Business Case Engines: Baseline (+$295M) · Tier Migration (+$686M) · Best Case (+$1,068M)</span>
+  </div>
+</footer>
+
+<script>
+  let currentSlide = 0;
+
+  function getSlides() {
+    return document.querySelectorAll('.slide');
+  }
+
+  function showSlide(index) {
+    const slides = getSlides();
+    if (!slides || slides.length === 0) return;
+    
+    if (index < 0) index = 0;
+    if (index >= slides.length) index = slides.length - 1;
+    currentSlide = index;
+
+    slides.forEach((s, i) => {
+      if (i === currentSlide) {
+        s.classList.add('active');
+        s.style.display = 'flex';
+      } else {
+        s.classList.remove('active');
+        s.style.display = 'none';
+      }
+    });
+
+    const indicator = document.getElementById('slide-indicator');
+    const progress = document.getElementById('progress');
+    if (indicator) indicator.textContent = (currentSlide + 1) + ' / ' + slides.length;
+    if (progress) progress.style.width = (((currentSlide + 1) / slides.length) * 100) + '%';
+  }
+
+  function nextSlide() {
+    const slides = getSlides();
+    if (currentSlide < slides.length - 1) {
+      showSlide(currentSlide + 1);
+    }
+  }
+
+  function prevSlide() {
+    if (currentSlide > 0) {
+      showSlide(currentSlide - 1);
+    }
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.target && e.target.isContentEditable) {
+      return;
+    }
+    if (e.key === 'ArrowRight' || e.key === ' ') {
+      e.preventDefault();
+      nextSlide();
+    }
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      prevSlide();
+    }
+    if (e.key === 'f' || e.key === 'F') {
+      toggleFullScreen();
+    }
+  });
+
+  function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(err => alert('Fullscreen error: ' + err.message));
+    } else {
+      document.exitFullscreen();
+    }
+  }
+
+  function triggerPrint() {
+    window.print();
+  }
+
+  // --- EDITING & PERSISTENCE ---
+  let isEditMode = false;
+
+  function toggleEditMode() {
+    isEditMode = !isEditMode;
+    const body = document.body;
+    const editBtn = document.getElementById('edit-toggle-btn');
+    const saveBtn = document.getElementById('save-html-btn');
+    const editableElements = document.querySelectorAll('.slide h1, .slide h2, .slide h3, .slide h4, .slide p, .slide li, .slide td, .slide th, .slide .stat-val, .slide .stat-label, .slide .stat-sub, .slide .slide-title, .slide .slide-category, .slide .badge');
+
+    if (isEditMode) {
+      body.classList.add('edit-active');
+      if (editBtn) {
+        editBtn.textContent = '🔒 Lock Editing';
+        editBtn.style.background = '#FEE2E2';
+        editBtn.style.color = '#991B1B';
+        editBtn.style.borderColor = '#FCA5A5';
+      }
+      if (saveBtn) saveBtn.style.display = 'inline-block';
+      editableElements.forEach(el => el.setAttribute('contenteditable', 'true'));
+    } else {
+      body.classList.remove('edit-active');
+      if (editBtn) {
+        editBtn.textContent = '✏️ Enable Editing';
+        editBtn.style.background = '#E0E7FF';
+        editBtn.style.color = '#3730A3';
+        editBtn.style.borderColor = '#C7D2FE';
+      }
+      if (saveBtn) saveBtn.style.display = 'none';
+      editableElements.forEach(el => el.removeAttribute('contenteditable'));
+      saveCurrentStateToStorage();
+    }
+  }
+
+  function saveCurrentStateToStorage() {
+    const slides = getSlides();
+    const data = [];
+    slides.forEach(s => data.push(s.innerHTML));
+    localStorage.setItem('fwa_board_slides_clean_v3', JSON.stringify(data));
+  }
+
+  function loadStateFromStorage() {
+    try {
+      const stored = localStorage.getItem('fwa_board_slides_clean_v3');
+      if (stored) {
+        const data = JSON.parse(stored);
+        const slides = getSlides();
+        slides.forEach((s, i) => {
+          if (data[i]) s.innerHTML = data[i];
+        });
+      }
+    } catch(e) {
+      console.warn('Could not restore from localStorage:', e);
+    }
+  }
+
+  function saveEditedPresentation() {
+    if (isEditMode) toggleEditMode();
+    saveCurrentStateToStorage();
+
+    const fullHtml = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'FWA_5G_Strategic_Business_Case_20Slides_Edited.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    alert('Edits saved! Downloaded updated file and saved in browser.');
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    loadStateFromStorage();
+    showSlide(0);
+  });
+</script>
+
+</body>
+</html>

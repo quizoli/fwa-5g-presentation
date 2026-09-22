@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TelTech & Comclark — FWA 5G Executive Presentation Portal</title>
+<style>
+  :root {
+    --navy: #0A192F;
+    --navy-light: #172A45;
+    --navy-card: #0F233D;
+    --blue-accent: #0077CC;
+    --teal: #00B4D8;
+    --gold: #FFB703;
+    --green: #10B981;
+    --text-light: #F1F5F9;
+    --text-muted: #94A3B8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  body {
+    background: var(--navy);
+    color: var(--text-light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+  header {
+    background: rgba(10, 25, 47, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+  }
+  .brand-title { font-size: 20px; font-weight: 800; color: var(--teal); letter-spacing: 1px; }
+  .brand-subtitle { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+  
+  .hero {
+    text-align: center;
+    padding: 50px 20px 30px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(0, 180, 216, 0.15);
+    color: var(--teal);
+    border: 1px solid rgba(0, 180, 216, 0.3);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 14px;
+    background: linear-gradient(135deg, #FFFFFF 0%, #CBD5E1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero p {
+    font-size: 17px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 780px;
+    margin: 0 auto 30px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto 50px;
+    padding: 0 20px;
+    width: 100%;
+  }
+
+  .grid-decks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .deck-card {
+    background: var(--navy-card);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .deck-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--teal);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.4);
+  }
+  .deck-card.featured {
+    border: 2px solid var(--teal);
+    background: linear-gradient(180deg, #112B4C 0%, #0F233D 100%);
+  }
+  .badge-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+  }
+  .badge-blue { background: rgba(0, 119, 204, 0.25); color: #60A5FA; border: 1px solid rgba(96, 165, 250, 0.3); }
+  .badge-teal { background: rgba(0, 180, 216, 0.25); color: var(--teal); border: 1px solid rgba(0, 180, 216, 0.3); }
+  .badge-gold { background: rgba(255, 183, 3, 0.2); color: var(--gold); border: 1px solid rgba(255, 183, 3, 0.3); }
+
+  .deck-card h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .deck-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin-bottom: 20px;
+  }
+
+  .deck-features {
+    list-style: none;
+    margin-bottom: 24px;
+  }
+  .deck-features li {
+    font-size: 13px;
+    color: #CBD5E1;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .deck-features li::before {
+    content: "✓";
+    color: var(--teal);
+    font-weight: 800;
+  }
+
+  .btn-launch {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: var(--blue-accent);
+    color: white;
+    text-decoration: none;
+    padding: 13px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14.5px;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-launch:hover {
+    background: #0090F0;
+    box-shadow: 0 4px 12px rgba(0, 119, 204, 0.4);
+  }
+  .btn-launch.featured-btn {
+    background: var(--teal);
+    color: #0A192F;
+  }
+  .btn-launch.featured-btn:hover {
+    background: #48CAE4;
+    box-shadow: 0 4px 12px rgba(0, 180, 216, 0.4);
+  }
+
+  .download-section {
+    background: var(--navy-card);
+    border: 1px dashed rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .download-info h3 { font-size: 18px; font-weight: 700; color: white; margin-bottom: 6px; }
+  .download-info p { font-size: 13.5px; color: var(--text-muted); }
+
+  .btn-download {
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+  }
+  .btn-download:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: white;
+  }
+
+  footer {
+    text-align: center;
+    padding: 30px;
+    font-size: 12px;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: auto;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="brand-title">TELTECH & COMCLARK</div>
+    <div class="brand-subtitle">5G Fixed Wireless Access (FWA) Executive Portal</div>
+  </div>
+  <div style="font-size: 12px; color: var(--teal); font-weight: 600;">
+    CONFIDENTIAL · SEPTEMBER 2026
+  </div>
+</header>
+
+<div class="hero">
+  <span class="hero-tag">Executive Presentation Suite</span>
+  <h1>Fixed Wireless Access (FWA) 5G Initiative</h1>
+  <p>
+    Empirical Propagation Demonstration in Pampanga & DICT GIDA Nationwide Barangay Rollout Master Plan using Band n50 (1.5 GHz) with Starlink LEO Satellite Backhaul.
+  </p>
+</div>
+
+<div class="container">
+  <div class="grid-decks">
+
+    <!-- Deck 1: Trial Demo Only -->
+    <div class="deck-card">
+      <div>
+        <span class="badge-tag badge-blue">Non-Commercial Trial · 7 Slides</span>
+        <h2>3-BTS Pampanga Trial & Demo Plan</h2>
+        <p>
+          Focused strictly on the technical propagation trial across Dolores (Mabalacat), Reliance IT Center (Angeles City), and Comclark NOC (Pasig).
+        </p>
+        <ul class="deck-features">
+          <li>NTC Permits BSD-0196 & BSD-0197-2026</li>
+          <li>Dual-Band (Band n50 & n77) technical architecture</li>
+          <li>Starlink Business LEO satellite backhaul latency</li>
+          <li>5-Phase empirical propagation testing framework</li>
+          <li>Technical risk assessment & mitigation matrix</li>
+        </ul>
+      </div>
+      <a href="demo.html" target="_blank" class="btn-launch">Launch Trial Demo Deck ➔</a>
+    </div>
+
+    <!-- Deck 2: GIDA Rollout Plan (Featured) -->
+    <div class="deck-card featured">
+      <div>
+        <span class="badge-tag badge-teal">Strategic Expansion · 10 Slides</span>
+        <h2>DICT GIDA Rollout Master Plan</h2>
+        <p>
+          Full nationwide deployment plan incorporating the official DICT FPIAP prioritization tool evaluating 42,001 barangays.
+        </p>
+        <ul class="deck-features">
+          <li>Full-page high-legibility executive layout</li>
+          <li>3,903 Priority 1 barangays (1,345 Critical + 2,558 High)</li>
+          <li>1,000-Site Year-1 macro cluster allocation quota</li>
+          <li>Region III bridge: 41 sites in Nueva Ecija & Aurora</li>
+          <li>Dual-Revenue Model: DICT subsidy + ₱599 retail</li>
+          <li>Macro site unit economics & 10.4-month payback</li>
+        </ul>
+      </div>
+      <a href="gida.html" target="_blank" class="btn-launch featured-btn">Launch GIDA Rollout Deck ➔</a>
+    </div>
+
+    <!-- Deck 3: Strategic 20-Slide Business Case -->
+    <div class="deck-card">
+      <div>
+        <span class="badge-tag badge-gold">Board Level · 20 Slides</span>
+        <h2>Strategic 20-Slide Business Case</h2>
+        <p>
+          Comprehensive commercial, engineering, and financial evaluation covering 10,000 sites across 10 years.
+        </p>
+        <ul class="deck-features">
+          <li>3 financial models (Baseline, Dynamic ARPU, Best Case)</li>
+          <li>+$1,068.0M Project NPV @ 12% WACC · 37.6% IRR</li>
+          <li>Strategic value waterfall (-$77M to +$1.07B)</li>
+          <li>TowerCo colocation vs. own-build ($721M savings)</li>
+          <li>Starlink pooled backhaul vs. fiber ($1.11B savings)</li>
+        </ul>
+      </div>
+      <a href="strategy.html" target="_blank" class="btn-launch">Launch Strategic Deck ➔</a>
+    </div>
+
+  </div>
+
+  <!-- Download Package Banner -->
+  <div class="download-section">
+    <div class="download-info">
+      <h3>Download Complete Meeting Deliverables (ZIP)</h3>
+      <p>Includes native PowerPoint files (.pptx), offline HTML files, the comprehensive DICT GIDA strategy report, and Excel models.</p>
+    </div>
+    <div>
+      <a href="FWA_5G_All_Presentations_Meeting_Pack.zip" download class="btn-download">
+        <span>📦 Download Meeting Pack (.zip)</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Telecommunications Technology Solutions Inc. (TelTech) & Comclark Network and Technology Corp. · Strict Confidentiality
+</footer>
+
+</body>
+</html>
