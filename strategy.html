@@ -181,11 +181,20 @@
 
   /* Edit Mode Styles */
   .edit-active [contenteditable="true"] {
-    outline: 1.5px dashed #00B4D8 !important;
+    outline: 2px dashed #00B4D8 !important;
     outline-offset: 2px;
-    background-color: rgba(0, 180, 216, 0.04) !important;
+    background-color: rgba(0, 180, 216, 0.06) !important;
     cursor: text !important;
-    transition: background-color 0.2s;
+    border-radius: 4px;
+  }
+  .edit-active [contenteditable="true"]:hover {
+    outline: 2px solid #0077CC !important;
+    background-color: rgba(0, 180, 216, 0.15) !important;
+  }
+  .edit-active [contenteditable="true"]:focus {
+    outline: 2px solid #00B4D8 !important;
+    background-color: #FFFFFF !important;
+    color: #0A192F !important;
   }
   .edit-active [contenteditable="true"]:hover {
     background-color: rgba(0, 180, 216, 0.12) !important;
@@ -353,6 +362,9 @@
     <button onclick="triggerPrint()" class="desktop-only" style="background: #2A9D8F; color: white; border: none;">🖨️ Export / Print PDF</button>
   </div>
 </header>
+<div id="edit-banner" style="display:none; background:#FEF3C7; border-bottom:2px solid #F59E0B; padding:8px 16px; text-align:center; font-size:13px; font-weight:700; color:#92400E; z-index:999;">
+  ✏️ <strong>EDIT MODE ACTIVE</strong> — Click on ANY text, title, metric, or card anywhere on this slide to edit it directly. When finished, click <strong>"🔒 Done"</strong>, or <strong>"💾 Save"</strong>.
+</div>
 
 <div id="slide-container">
 
@@ -2013,33 +2025,57 @@
   // --- EDITING & PERSISTENCE ---
   let isEditMode = false;
 
+  function getAllTextElements() {
+    const elements = [];
+    const candidates = document.querySelectorAll('.slide *, header .meta, header .brand');
+    candidates.forEach(el => {
+      if (['SCRIPT', 'STYLE', 'IMG', 'SVG', 'PATH', 'BUTTON', 'INPUT', 'SELECT', 'TEXTAREA'].includes(el.tagName)) return;
+      for (let node of el.childNodes) {
+        if (node.nodeType === Node.TEXT_NODE && node.textContent.trim().length > 0) {
+          elements.push(el);
+          break;
+        }
+      }
+    });
+    return elements;
+  }
+
   function toggleEditMode() {
     isEditMode = !isEditMode;
     const body = document.body;
     const editBtn = document.getElementById('edit-toggle-btn');
     const saveBtn = document.getElementById('save-html-btn');
-    const editableElements = document.querySelectorAll('.slide h1, .slide h2, .slide h3, .slide h4, .slide p, .slide li, .slide td, .slide th, .slide .stat-val, .slide .stat-label, .slide .stat-sub, .slide .slide-title, .slide .slide-category, .slide .badge');
+    const editBanner = document.getElementById('edit-banner');
+    const editableElements = getAllTextElements();
 
     if (isEditMode) {
       body.classList.add('edit-active');
       if (editBtn) {
-        editBtn.textContent = '🔒 Lock Editing';
-        editBtn.style.background = '#FEE2E2';
-        editBtn.style.color = '#991B1B';
-        editBtn.style.borderColor = '#FCA5A5';
+        editBtn.textContent = '🔒 Lock / Done';
+        editBtn.style.background = '#DC2626';
+        editBtn.style.color = '#FFFFFF';
+        editBtn.style.borderColor = '#B91C1C';
       }
       if (saveBtn) saveBtn.style.display = 'inline-block';
-      editableElements.forEach(el => el.setAttribute('contenteditable', 'true'));
+      if (editBanner) editBanner.style.display = 'block';
+      editableElements.forEach(el => {
+        el.setAttribute('contenteditable', 'true');
+        el.setAttribute('spellcheck', 'false');
+      });
     } else {
       body.classList.remove('edit-active');
       if (editBtn) {
-        editBtn.textContent = '✏️ Enable Editing';
+        editBtn.textContent = '✏️ Edit';
         editBtn.style.background = '#E0E7FF';
         editBtn.style.color = '#3730A3';
         editBtn.style.borderColor = '#C7D2FE';
       }
       if (saveBtn) saveBtn.style.display = 'none';
-      editableElements.forEach(el => el.removeAttribute('contenteditable'));
+      if (editBanner) editBanner.style.display = 'none';
+      editableElements.forEach(el => {
+        el.removeAttribute('contenteditable');
+        el.removeAttribute('spellcheck');
+      });
       saveCurrentStateToStorage();
     }
   }
@@ -2048,12 +2084,12 @@
     const slides = getSlides();
     const data = [];
     slides.forEach(s => data.push(s.innerHTML));
-    localStorage.setItem('fwa_board_slides_clean_v3', JSON.stringify(data));
+    localStorage.setItem('fwa_board_slides_clean_v4', JSON.stringify(data));
   }
 
   function loadStateFromStorage() {
     try {
-      const stored = localStorage.getItem('fwa_board_slides_clean_v3');
+      const stored = localStorage.getItem('fwa_board_slides_clean_v4');
       if (stored) {
         const data = JSON.parse(stored);
         const slides = getSlides();

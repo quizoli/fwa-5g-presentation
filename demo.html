@@ -220,7 +220,22 @@
     .slide { display: flex !important; page-break-after: always !important; break-after: page !important; box-shadow: none !important; border: 1px solid #CBD5E1 !important; height: 185mm !important; margin: 0 0 10mm 0 !important; padding: 12mm 15mm !important; }
   }
 
-  .edit-active [contenteditable="true"] { outline: 2px dashed #00B4D8 !important; outline-offset: 3px; background-color: rgba(0, 180, 216, 0.05) !important; border-radius: 4px; }
+  .edit-active [contenteditable="true"] {
+    outline: 2px dashed #00B4D8 !important;
+    outline-offset: 2px;
+    background-color: rgba(0, 180, 216, 0.06) !important;
+    cursor: text !important;
+    border-radius: 4px;
+  }
+  .edit-active [contenteditable="true"]:hover {
+    outline: 2px solid #0077CC !important;
+    background-color: rgba(0, 180, 216, 0.15) !important;
+  }
+  .edit-active [contenteditable="true"]:focus {
+    outline: 2px solid #00B4D8 !important;
+    background-color: #FFFFFF !important;
+    color: #0A192F !important;
+  }
 </style>
 </head>
 <body>
@@ -228,7 +243,7 @@
 <header>
   <div style="display: flex; align-items: center; gap: 14px;">
     <div class="brand">TELTECH & COMCLARK</div>
-    <div class="meta">Fixed Wireless Access (FWA) 5G Initiative · 3-BTS Pampanga Trial Plan</div>
+    <div class="meta">Fixed Wireless Access (FWA) 5G Initiative · 3-BTS Trial Plan (2 Pampanga + 1 Pasig City)</div>
   </div>
   <div class="controls">
     <button id="edit-toggle-btn" onclick="toggleEditMode()" style="background:#E0E7FF;color:#3730A3;border-color:#C7D2FE;">✏️ Edit</button>
@@ -240,6 +255,9 @@
     <button onclick="triggerPrint()" class="desktop-only">🖨️ PDF / Print</button>
   </div>
 </header>
+<div id="edit-banner" style="display:none; background:#FEF3C7; border-bottom:2px solid #F59E0B; padding:8px 16px; text-align:center; font-size:13px; font-weight:700; color:#92400E; z-index:999;">
+  ✏️ <strong>EDIT MODE ACTIVE</strong> — Click on ANY text, title, metric, or card anywhere on this slide to edit it directly. When finished, click <strong>"🔒 Done"</strong>, or <strong>"💾 Save"</strong>.
+</div>
 
 <div id="slide-container">
 
@@ -265,7 +283,7 @@
           </div>
           <div class="card">
             <div class="stat-label">Trial Topology</div>
-            <div style="font-size: 15px; font-weight: 800; color: var(--navy); margin-top: 4px;">3 Pampanga Sites</div>
+            <div style="font-size: 15px; font-weight: 800; color: var(--navy); margin-top: 4px;">2 Pampanga + 1 Pasig</div>
             <div class="stat-sub">Fiber & Starlink Backhaul</div>
           </div>
           <div class="card">
@@ -463,7 +481,7 @@
               <td><strong>Weather Resilience</strong></td>
               <td>99.99% availability in all weather</td>
               <td>Rain fade mitigated by adaptive coding</td>
-              <td>Empirically measure link degradation during severe tropical monsoon downpours in Pampanga.</td>
+              <td>Empirically measure link degradation during severe tropical monsoon downpours across Pampanga and Pasig test sites.</td>
             </tr>
             <tr>
               <td><strong>Deployment Lead Time</strong></td>
@@ -660,7 +678,7 @@
   <div>Use <strong>Left / Right Arrow Keys</strong> or navigation buttons to present · Press <strong>F</strong> for Fullscreen</div>
   <div style="display: flex; align-items: center; gap: 14px;">
     <div class="progress-bar"><div id="progress" class="progress-fill"></div></div>
-    <span>TelTech FWA 5G Initiative · 3-BTS Pampanga Trial Status (Slides 1–7)</span>
+    <span>TelTech FWA 5G Initiative · 3-BTS Trial Status: 2 Pampanga + 1 Pasig (Slides 1–7)</span>
   </div>
 </footer>
 
@@ -736,23 +754,58 @@
   function triggerPrint() { window.print(); }
 
   let isEditMode = false;
+
+  function getAllTextElements() {
+    const elements = [];
+    const candidates = document.querySelectorAll('.slide *, header .meta, header .brand');
+    candidates.forEach(el => {
+      if (['SCRIPT', 'STYLE', 'IMG', 'SVG', 'PATH', 'BUTTON', 'INPUT', 'SELECT', 'TEXTAREA'].includes(el.tagName)) return;
+      for (let node of el.childNodes) {
+        if (node.nodeType === Node.TEXT_NODE && node.textContent.trim().length > 0) {
+          elements.push(el);
+          break;
+        }
+      }
+    });
+    return elements;
+  }
+
   function toggleEditMode() {
     isEditMode = !isEditMode;
     const body = document.body;
     const editBtn = document.getElementById('edit-toggle-btn');
     const saveBtn = document.getElementById('save-html-btn');
-    const editableElements = document.querySelectorAll('.slide h1, .slide h2, .slide h3, .slide h4, .slide p, .slide li, .slide td, .slide th, .slide .stat-val, .slide .stat-label, .slide .stat-sub, .slide .slide-title, .slide .slide-category, .slide .badge');
+    const editBanner = document.getElementById('edit-banner');
+    const editableElements = getAllTextElements();
 
     if (isEditMode) {
       body.classList.add('edit-active');
-      if (editBtn) { editBtn.textContent = '🔒 Lock'; editBtn.style.background = '#FEE2E2'; editBtn.style.color = '#991B1B'; }
+      if (editBtn) {
+        editBtn.textContent = '🔒 Done';
+        editBtn.style.background = '#DC2626';
+        editBtn.style.color = '#FFFFFF';
+        editBtn.style.borderColor = '#B91C1C';
+      }
       if (saveBtn) saveBtn.style.display = 'inline-block';
-      editableElements.forEach(el => el.setAttribute('contenteditable', 'true'));
+      if (editBanner) editBanner.style.display = 'block';
+      editableElements.forEach(el => {
+        el.setAttribute('contenteditable', 'true');
+        el.setAttribute('spellcheck', 'false');
+      });
     } else {
       body.classList.remove('edit-active');
-      if (editBtn) { editBtn.textContent = '✏️ Edit'; editBtn.style.background = '#E0E7FF'; editBtn.style.color = '#3730A3'; }
+      if (editBtn) {
+        editBtn.textContent = '✏️ Edit';
+        editBtn.style.background = '#E0E7FF';
+        editBtn.style.color = '#3730A3';
+        editBtn.style.borderColor = '#C7D2FE';
+      }
       if (saveBtn) saveBtn.style.display = 'none';
-      editableElements.forEach(el => el.removeAttribute('contenteditable'));
+      if (editBanner) editBanner.style.display = 'none';
+      editableElements.forEach(el => {
+        el.removeAttribute('contenteditable');
+        el.removeAttribute('spellcheck');
+      });
       saveCurrentStateToStorage();
     }
   }
@@ -761,12 +814,12 @@
     const slides = getSlides();
     const data = [];
     slides.forEach(s => data.push(s.innerHTML));
-    localStorage.setItem('fwa_demo_standalone_mobile_v1', JSON.stringify(data));
+    localStorage.setItem('fwa_demo_standalone_mobile_v4', JSON.stringify(data));
   }
 
   function loadStateFromStorage() {
     try {
-      const stored = localStorage.getItem('fwa_demo_standalone_mobile_v1');
+      const stored = localStorage.getItem('fwa_demo_standalone_mobile_v4');
       if (stored) {
         const data = JSON.parse(stored);
         const slides = getSlides();
