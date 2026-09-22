@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>FWA 5G Barangay Rollout Master Plan — Batch 1 & Succeeding 1000s</title>
+<title>FWA 5G Barangay Rollout Master Plan — Band n50 BTS Dimensioning</title>
 <style>
   :root {
     --navy: #0A192F;
@@ -160,6 +160,7 @@
   table.exec-table tr:hover { background: #EDF2F7; }
   table.exec-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
   table.exec-table td.center { text-align: center; }
+  table.exec-table td.highlight-bts { background: #E8F5E9; font-weight: 800; color: #166534; text-align: center; }
   table.exec-table tr.total-row td {
     background: #E2E8F0;
     font-weight: 800;
@@ -177,6 +178,7 @@
   .badge-onnet { background: #DCFCE7; color: #166534; border: 1px solid #86EFAC; }
   .badge-rural { background: #E0E7FF; color: #3730A3; border: 1px solid #C7D2FE; }
   .badge-gold { background: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; }
+  .badge-n50 { background: #FEF08A; color: #854D0E; border: 1px solid #FACC15; font-weight: 800; }
 
   /* Cover slide */
   .cover-slide {
@@ -230,7 +232,6 @@
     color: #CBD5E1;
   }
 
-  /* Mobile responsiveness */
   @media (max-width: 768px) {
     body { height: auto; min-height: 100vh; overflow-y: auto; }
     header { flex-direction: column; gap: 8px; align-items: flex-start; padding: 10px 14px; }
@@ -250,7 +251,7 @@
     <a href="index.html" class="btn-nav">← Back to Portal</a>
     <div>
       <div class="brand">TELTECH & COMCLARK · FWA 5G</div>
-      <div class="meta">Barangay Rollout Master Plan · First 1,000 Sites & Phasing Roadmap</div>
+      <div class="meta">Barangay Rollout Master Plan · Band n50 BTS Dimensioning (1,000-Site Launch)</div>
     </div>
   </div>
   <div class="controls">
@@ -266,75 +267,77 @@
   <!-- SLIDE 1: Title Cover -->
   <div class="slide active">
     <div class="cover-slide">
-      <span class="cover-tag">Nationwide Master Rollout Plan</span>
-      <h1>5G Fixed Wireless Access (FWA)<br>Barangay Rollout Master Plan</h1>
+      <span class="cover-tag">Radio Dimensioning & Phasing Master Plan</span>
+      <h1>5G Fixed Wireless Access (FWA)<br>Barangay Rollout Plan & Band n50 BTS Sizing</h1>
       <p>
-        Commercial site allocation for the <strong>First 1,000 Sites (Batch 1)</strong> and succeeding batches of 1,000s across 41,984 PSA barangays, anchored on Converge ICT's <strong>2,405 Backbone Nodes</strong> and <strong>4,401 Fiber Line Segments</strong>.
+        Commercial BTS dimensioning for the <strong>First 1,000 Sites (Batch 1)</strong> and succeeding batches across 41,984 PSA barangays using <strong>Band n50 (1.5 GHz, 60 MHz Carrier)</strong> with 3-sector 4T4R MIMO anchored on Converge's 2,405 backbone nodes.
       </p>
       <div class="cover-meta">
-        <div><strong>Phase:</strong> 1,000-Site Launch (Year 1)</div>
-        <div><strong>Spectrum:</strong> Band n50 (1.5 GHz) / 3.5 GHz</div>
+        <div><strong>Carrier:</strong> Band n50 (1432–1517 MHz, 60 MHz BW)</div>
+        <div><strong>BTS Capacity:</strong> 499 Mbps / 600 Subs per BTS</div>
+        <div><strong>Phase 1 Deployment:</strong> 1,000 BTS across 1,000 Barangays</div>
         <div><strong>Backhaul:</strong> Converge Optical Backbone (FOC)</div>
-        <div><strong>Model:</strong> ₱599 Home Broadband</div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 2: Evaluation Framework -->
+  <!-- SLIDE 2: Band n50 Engineering Specification -->
   <div class="slide">
     <div class="slide-header">
       <div>
-        <div class="slide-category">Methodology & Framework</div>
-        <div class="slide-title">The Strategic Triad: Multi-Factor Scoring Engine</div>
+        <div class="slide-category">Radio Dimensioning</div>
+        <div class="slide-title">Band n50 (1.5 GHz) Radio Dimensioning & BTS Sizing Parameters</div>
       </div>
       <div class="slide-number">Slide 2 / 12</div>
     </div>
     
-    <div class="grid-3" style="margin-bottom: 14px;">
+    <div class="grid-4" style="margin-bottom: 12px;">
+      <div class="stat-card" style="border-top: 4px solid #FACC15;">
+        <div class="stat-label">Spectrum Carrier</div>
+        <div class="stat-val" style="font-size: 19px; color: #854D0E;">Band n50</div>
+        <div class="stat-sub">1.5 GHz L-Band TDD (60 MHz)</div>
+      </div>
+      <div class="stat-card" style="border-top: 4px solid var(--blue-accent);">
+        <div class="stat-label">Radio Configuration</div>
+        <div class="stat-val" style="font-size: 19px; color: var(--navy);">3 Sectors @ 4T4R</div>
+        <div class="stat-sub">256-QAM, MU-MIMO 2 Layers</div>
+      </div>
+      <div class="stat-card" style="border-top: 4px solid var(--teal);">
+        <div class="stat-label">Downlink Capacity</div>
+        <div class="stat-val" style="font-size: 19px; color: var(--teal);">499 Mbps</div>
+        <div class="stat-sub">Planning SE 4.5 bps/Hz (70% DL)</div>
+      </div>
+      <div class="stat-card" style="border-top: 4px solid var(--green);">
+        <div class="stat-label">Design Subscriber Load</div>
+        <div class="stat-val" style="font-size: 19px; color: var(--green);">600 Subs / BTS</div>
+        <div class="stat-sub">Max Load: 1,000 Subs / BTS</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
       <div class="card highlight">
-        <h3>1. Necessity (30%)</h3>
-        <h4>Unserved FTTH Gap & Demand</h4>
-        <p style="margin-bottom: 8px;">FWA delivers high-speed wireless home broadband where pure wireline fiber drops cannot reach economically.</p>
+        <h3>Why Band n50 is the Ideal Carrier for Rural FWA</h3>
         <ul>
-          <li><strong>Rural (`R`) Classification:</strong> Dispersed houses & long drops make FTTH unviable for telcos.</li>
-          <li><strong>Class 4–6 Municipalities:</strong> Neglected by major wireline builds; acute home broadband desert.</li>
-          <li><strong>Exclusion of Metro Cores:</strong> Avoids dense FTTH-saturated areas (inner NCR).</li>
+          <li><strong>Propagation Superiority:</strong> At 1.5 GHz, signal attenuation is 9–12 dB lower than 3.5 GHz (n78). Delivers an effective cell radius of <strong>2.0 km to 3.5 km</strong> in rural terrain (12–35 km² footprint), covering an entire barangay with 1 BTS.</li>
+          <li><strong>Indoor Penetration:</strong> Easily penetrates typical Philippine residential building materials (GI sheet roofing, hollow blocks, timber) without requiring mandatory outdoor antenna roof-mounts for every home.</li>
+          <li><strong>Massive 60 MHz Carrier Bandwidth:</strong> Yields 499 Mbps aggregate DL throughput, comfortably sustaining 600 active subscribers at 15–25 Mbps busy-hour bursts.</li>
         </ul>
       </div>
 
       <div class="card success">
-        <h3>2. Business Viability (35%)</h3>
-        <h4>Catchment Sweet Spot & Sizing</h4>
-        <p style="margin-bottom: 8px;">Radio capacity is dimensioned for <strong>300 to 600 active subscribers</strong> per 3-sector site.</p>
-        <ul>
-          <li><strong>Golden Catchment:</strong> 3,000–12,000 population (~700–2,700 HH) easily fills 300–600 subs at 25-30% penetration.</li>
-          <li><strong>Real Household Sizing:</strong> Uses municipality-specific HH multipliers (3.1 to 7.56).</li>
-          <li><strong>Economic Corridors:</strong> Prioritizes high-remittance regions (CALABARZON, Visayas, Central Luzon).</li>
-        </ul>
-      </div>
-
-      <div class="card warning">
-        <h3>3. Ease of Deployment (35%)</h3>
-        <h4>Converge Infrastructure Leverage</h4>
-        <p style="margin-bottom: 8px;">Backhaul is the #1 cost and timeline bottleneck. Leveraging existing Converge assets changes the game.</p>
-        <ul>
-          <li><strong>Tier 1A (3+ Nodes in Muni):</strong> Score 95–100. Immediate optical lateral connection (<1–3 km).</li>
-          <li><strong>Tier 1B (1–2 Nodes in Muni):</strong> Score 85–92. Active node in municipality.</li>
-          <li><strong>Zero Transit Penalty:</strong> Eliminates $1,800/mo satellite fees; cuts site turn-up to <30 days.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="card navy">
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-        <div>
-          <h4 style="color: var(--teal); font-size: 14px;">COMPOSITE FWA SCORE FORMULA</h4>
-          <p style="font-size: 13px;">$$\text{Composite Score} = (\text{Ease of Deployment} \times 35\%) + (\text{Business Viability} \times 35\%) + (\text{Necessity} \times 30\%)$$</p>
-        </div>
-        <div style="font-size: 12px; color: #94A3B8; text-align: right;">
-          Evaluated across all <strong>41,984 barangays</strong> nationwide.<br>
-          Ranked from highest commercial potential down to remote hamlets.
-        </div>
+        <h3>How Many BTS Can Be Put in Each Barangay?</h3>
+        <p style="margin-bottom: 6px;">BTS sizing is determined by household demand at 30% commercial penetration:</p>
+        <table class="exec-table">
+          <thead>
+            <tr><th>Barangay Size / Households</th><th>Target Subs @ 30%</th><th class="center">n50 BTS Capacity</th><th>Deployment Rationale</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>< 2,000 HH</strong> (<8,800 pop)</td><td>< 600 Subs</td><td class="highlight-bts">1 n50 BTS</td><td>1 BTS provides 100% barangay coverage & capacity.</td></tr>
+            <tr><td><strong>2,000 - 4,000 HH</strong> (8.8k-17.6k)</td><td>600 - 1,200 Subs</td><td class="highlight-bts">2 n50 BTS</td><td>Deploy 1 BTS in Phase 1; add 2nd BTS at 500+ subs.</td></tr>
+            <tr><td><strong>4,000 - 6,000 HH</strong> (17.6k-26.4k)</td><td>1,200 - 1,800 Subs</td><td class="highlight-bts">3 n50 BTS</td><td>Multi-sector cluster covering separated sitios.</td></tr>
+            <tr><td><strong>> 6,000 HH</strong> (>26.4k pop)</td><td>> 1,800 Subs</td><td class="highlight-bts">4+ n50 BTS</td><td>High-density suburban township macro cluster.</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -372,24 +375,24 @@
       </div>
       <div class="stat-card" style="border: 2px solid var(--green); background: #F0FDF4;">
         <div class="stat-label" style="color: #15803D;">Batch 1 Launch</div>
-        <div class="stat-val" style="color: #15803D;">1,000</div>
-        <div class="stat-sub">Year 1 Commercial Sites</div>
+        <div class="stat-val" style="color: #15803D;">1,000 BTS</div>
+        <div class="stat-sub">Year 1 Priority Barangays</div>
       </div>
     </div>
 
     <div class="grid-2">
       <div class="card">
-        <h3>Why Focus on 1 Site per Top Barangay?</h3>
+        <h3>Phasing Strategy: 1 BTS per Priority Barangay</h3>
         <ul>
-          <li><strong>Maximum Geographic Footprint:</strong> 1,000 sites across 1,000 barangays reaches <strong>271 municipalities in 46 provinces</strong> simultaneously.</li>
-          <li><strong>Zero Self-Interference:</strong> Single macro site covers the entire poblacion or rural center without adjacent channel co-interference in early phases.</li>
-          <li><strong>Rapid Market Preemption:</strong> Locks in the community before mobile operators or local WISPs can react.</li>
-          <li><strong>Expansion Readiness:</strong> Denser barangays (>12k pop) can receive secondary split sectors in Batch 3 & 4.</li>
+          <li><strong>Maximum Geographic Footprint:</strong> Deploying 1 n50 BTS in each of the top 1,000 barangays reaches <strong>271 municipalities in 46 provinces</strong> simultaneously.</li>
+          <li><strong>Zero Frequency Overlap:</strong> Single 60 MHz n50 carrier covers the entire residential center without co-channel interference during market capture.</li>
+          <li><strong>Rapid Market Preemption:</strong> Locks in the community with ₱599 home broadband before 4G/5G mobile operators or local WISPs can react.</li>
+          <li><strong>Organic Expansion:</strong> Barangays with capacity for 2 to 4 BTS will receive secondary BTS in later phases as subscriber take-up exceeds 500 users.</li>
         </ul>
       </div>
 
       <div class="card highlight">
-        <h3>Key Takeaway from Household Sizing Correction</h3>
+        <h3>Household Multipliers from DOF/PSA</h3>
         <p style="margin-bottom: 8px;">Applying actual municipal household sizes (3.1 to 7.56) instead of a flat 4.4 divisor revealed critical operational realities:</p>
         <ul>
           <li><strong>High Household Density in Luzon:</strong> Cavite, Batangas, Laguna, Ilocos have smaller HH sizes (3.6–4.2), meaning <strong>more paying households</strong> per 1,000 population.</li>
@@ -462,12 +465,12 @@
     </div>
   </div>
 
-  <!-- SLIDE 5: Master 5-Batch Rollout Roadmap -->
+  <!-- SLIDE 5: Master 5-Batch Rollout Roadmap with BTS -->
   <div class="slide">
     <div class="slide-header">
       <div>
         <div class="slide-category">5-Year Phasing Plan</div>
-        <div class="slide-title">Master 5-Batch Rollout Comparison (Sites 1 to 5,000)</div>
+        <div class="slide-title">Master 5-Batch Rollout & n50 BTS Dimensioning (5,000 Sites)</div>
       </div>
       <div class="slide-number">Slide 5 / 12</div>
     </div>
@@ -476,13 +479,14 @@
       <thead>
         <tr>
           <th>Rollout Phase</th>
-          <th class="num">Sites</th>
+          <th class="num">Barangays</th>
+          <th class="center">Phase BTS</th>
+          <th class="center">n50 BTS Capacity (@600)</th>
+          <th class="center">Max BTS Load (@1000)</th>
           <th class="num">Population</th>
-          <th class="num">Addressable HH</th>
+          <th class="num">Households</th>
           <th class="num">Subs @ 30%</th>
-          <th class="num">Avg Pop/Site</th>
           <th class="center">Tier 1 On-Net</th>
-          <th class="center">Score Range</th>
           <th class="num">Avg Score</th>
         </tr>
       </thead>
@@ -490,67 +494,69 @@
         <tr>
           <td><strong>Batch 1 (Phase 1)</strong></td>
           <td class="num">1,000</td>
+          <td class="highlight-bts">1,000 BTS</td>
+          <td class="highlight-bts">1,001 BTS</td>
+          <td class="center" style="font-weight:700;">1,000 BTS</td>
           <td class="num">3,789,177</td>
           <td class="num">861,835</td>
           <td class="num">258,552</td>
-          <td class="num">3,789</td>
-          <td class="center"><span class="badge badge-onnet">1,000 (100.0%)</span></td>
-          <td class="center">93.85 - 98.95</td>
-          <td class="num" style="font-weight: 700; color: #10B981;">94.85</td>
-        </tr>
-        <tr>
+          <td class="center"><span class="badge badge-onnet">1000 (100.0%)</span></td>
+          <td class="num" style="font-weight:700; color:#10B981;">95.16</td>
+        </tr><tr>
           <td><strong>Batch 2 (Phase 2)</strong></td>
           <td class="num">1,000</td>
-          <td class="num">2,801,304</td>
-          <td class="num">637,422</td>
-          <td class="num">191,228</td>
-          <td class="num">2,801</td>
-          <td class="center"><span class="badge badge-onnet">1,000 (100.0%)</span></td>
-          <td class="center">92.80 - 93.85</td>
-          <td class="num" style="font-weight: 700;">93.30</td>
-        </tr>
-        <tr>
+          <td class="highlight-bts">1,000 BTS</td>
+          <td class="highlight-bts">1,000 BTS</td>
+          <td class="center" style="font-weight:700;">1,000 BTS</td>
+          <td class="num">3,778,163</td>
+          <td class="num">858,650</td>
+          <td class="num">257,600</td>
+          <td class="center"><span class="badge badge-onnet">1000 (100.0%)</span></td>
+          <td class="num" style="font-weight:700; color:#10B981;">92.81</td>
+        </tr><tr>
           <td><strong>Batch 3 (Phase 3)</strong></td>
           <td class="num">1,000</td>
-          <td class="num">13,678,630</td>
-          <td class="num">3,097,716</td>
-          <td class="num">929,315</td>
-          <td class="num">13,679</td>
-          <td class="center"><span class="badge badge-onnet">1,000 (100.0%)</span></td>
-          <td class="center">90.95 - 92.80</td>
-          <td class="num" style="font-weight: 700;">91.87</td>
-        </tr>
-        <tr>
+          <td class="highlight-bts">1,000 BTS</td>
+          <td class="highlight-bts">1,149 BTS</td>
+          <td class="center" style="font-weight:700;">1,000 BTS</td>
+          <td class="num">6,131,897</td>
+          <td class="num">1,393,200</td>
+          <td class="num">417,970</td>
+          <td class="center"><span class="badge badge-onnet">916 (91.6%)</span></td>
+          <td class="num" style="font-weight:700; color:#10B981;">90.15</td>
+        </tr><tr>
           <td><strong>Batch 4 (Phase 4)</strong></td>
           <td class="num">1,000</td>
-          <td class="num">15,221,498</td>
-          <td class="num">3,446,163</td>
-          <td class="num">1,033,849</td>
-          <td class="num">15,221</td>
-          <td class="center"><span class="badge badge-gold">982 (98.2%)</span></td>
-          <td class="center">87.55 - 90.95</td>
-          <td class="num" style="font-weight: 700;">88.66</td>
-        </tr>
-        <tr>
+          <td class="highlight-bts">1,000 BTS</td>
+          <td class="highlight-bts">1,175 BTS</td>
+          <td class="center" style="font-weight:700;">1,079 BTS</td>
+          <td class="num">4,933,297</td>
+          <td class="num">1,119,563</td>
+          <td class="num">335,865</td>
+          <td class="center"><span class="badge badge-onnet">844 (84.4%)</span></td>
+          <td class="num" style="font-weight:700; color:#10B981;">88.51</td>
+        </tr><tr>
           <td><strong>Batch 5 (Phase 5)</strong></td>
           <td class="num">1,000</td>
-          <td class="num">12,416,218</td>
-          <td class="num">2,810,131</td>
-          <td class="num">843,039</td>
-          <td class="num">12,416</td>
-          <td class="center"><span class="badge badge-gold">974 (97.4%)</span></td>
-          <td class="center">85.50 - 87.55</td>
-          <td class="num" style="font-weight: 700;">86.84</td>
+          <td class="highlight-bts">1,000 BTS</td>
+          <td class="highlight-bts">1,288 BTS</td>
+          <td class="center" style="font-weight:700;">1,111 BTS</td>
+          <td class="num">6,320,638</td>
+          <td class="num">1,437,027</td>
+          <td class="num">431,109</td>
+          <td class="center"><span class="badge badge-onnet">997 (99.7%)</span></td>
+          <td class="num" style="font-weight:700; color:#10B981;">87.43</td>
         </tr>
         <tr class="total-row">
           <td>TOTAL (Batches 1 - 5)</td>
           <td class="num">5,000</td>
+          <td class="center" style="background:#C8E6C9; font-weight:800;">5,000 BTS</td>
+          <td class="center" style="background:#C8E6C9; font-weight:800;">5,613 BTS</td>
+          <td class="center">5,149 BTS</td>
           <td class="num">47,906,827</td>
           <td class="num">10,853,267</td>
           <td class="num">3,255,983</td>
-          <td class="num">9,581</td>
           <td class="center">4,956 (99.1%)</td>
-          <td class="center">85.50 - 98.95</td>
           <td class="num">91.10</td>
         </tr>
       </tbody>
@@ -558,16 +564,16 @@
 
     <div class="grid-3">
       <div class="card highlight">
-        <h4>Batch 1 & 2 Focus: Fast Payback</h4>
-        <p>100% on-net nodes, zero backhaul friction, targeting 2,500–5,000 pop catchments. Low capex, rapid subscriber activation.</p>
+        <h4>Batch 1 & 2 (2,000 BTS)</h4>
+        <p>100% on-net nodes, targeting 2,500–5,000 pop catchments. Exactly <strong>1 n50 BTS per barangay</strong> covers 100% of demand.</p>
       </div>
       <div class="card success">
-        <h4>Batch 3 Focus: High Density Catchments</h4>
-        <p>Larger peri-urban barangays (5k–25k pop) along Converge trunk routes. Huge subscriber scale (929k subs @ 30%).</p>
+        <h4>Batch 3 (1,000 BTS / 1,149 BTS Capacity)</h4>
+        <p>High-density peri-urban barangays (5k–25k pop). 149 barangays can support <strong>2 n50 BTS</strong> to handle heavy subscriber volume.</p>
       </div>
       <div class="card warning">
-        <h4>Batch 4 & 5 Focus: Nationwide Deepening</h4>
-        <p>Expansion into secondary provincial routes and remaining rural growth centers, achieving comprehensive national footprint.</p>
+        <h4>Batch 4 & 5 (2,000 BTS / 2,463 BTS Capacity)</h4>
+        <p>Comprehensive nationwide scale. 351 barangays absorb <strong>2 to 3 n50 BTS</strong> across extensive provincial growth centers.</p>
       </div>
     </div>
   </div>
@@ -577,31 +583,31 @@
     <div class="slide-header">
       <div>
         <div class="slide-category">Phase 1 Execution</div>
-        <div class="slide-title">Batch 1 (First 1,000 Sites) — The Priority Launch Footprint</div>
+        <div class="slide-title">Batch 1 (First 1,000 Sites / BTS) — The Priority Launch Footprint</div>
       </div>
       <div class="slide-number">Slide 6 / 12</div>
     </div>
 
     <div class="grid-4" style="margin-bottom: 14px;">
       <div class="stat-card" style="border-top: 4px solid var(--blue-accent);">
-        <div class="stat-label">Sites / Barangays</div>
-        <div class="stat-val">1,000</div>
-        <div class="stat-sub">Across 271 Municipalities</div>
+        <div class="stat-label">Phase 1 Deployed BTS</div>
+        <div class="stat-val" style="color: var(--blue-accent);">1,000 BTS</div>
+        <div class="stat-sub">Across 1,000 Priority Barangays</div>
       </div>
       <div class="stat-card" style="border-top: 4px solid var(--teal);">
-        <div class="stat-label">Population Reached</div>
-        <div class="stat-val">3,789,177</div>
-        <div class="stat-sub">Avg 3,789 per Barangay</div>
+        <div class="stat-label">n50 Total Capacity</div>
+        <div class="stat-val" style="color: var(--teal);">1,001 BTS</div>
+        <div class="stat-sub">@ 600 Subs / BTS Design</div>
       </div>
       <div class="stat-card" style="border-top: 4px solid var(--green);">
         <div class="stat-label">Addressable Households</div>
-        <div class="stat-val">861,835</div>
-        <div class="stat-sub">Avg 862 HH per Site</div>
+        <div class="stat-val" style="color: var(--green);">861,835</div>
+        <div class="stat-sub">Avg 862 HH per Barangay</div>
       </div>
       <div class="stat-card" style="border-top: 4px solid var(--gold);">
         <div class="stat-label">Target Subs @ 30%</div>
-        <div class="stat-val">258,552</div>
-        <div class="stat-sub">Avg 259 Subs / Site</div>
+        <div class="stat-val" style="color: var(--gold);">258,552</div>
+        <div class="stat-sub">Avg 259 Subs / BTS (High Margin)</div>
       </div>
     </div>
 
@@ -611,7 +617,7 @@
         <ul>
           <li><strong>100.0% Converge Tier 1 On-Net:</strong> All 1,000 sites are within municipalities hosting active Converge nodes. Zero satellite opex required.</li>
           <li><strong>99.8% Rural Classification:</strong> 998 of 1,000 barangays are classified as Rural (`R`), where pure FTTH competition is virtually non-existent.</li>
-          <li><strong>Ideal Radio Capacity Fit:</strong> At 259 average subscribers per site, sites comfortably achieve profitability (break-even ~180 subs) with head-room to reach 500+ subs without spectrum exhaustion.</li>
+          <li><strong>Exact 1 BTS / Barangay Fit:</strong> In 999 of 1,000 barangays, target subscribers at 30% penetration are under 600 users, meaning exactly <strong>1 n50 BTS</strong> captures 100% of demand without over-building.</li>
           <li><strong>Fast Time-to-Market:</strong> Co-locating on existing infrastructure near Converge fiber allows turn-up in 14–30 days per cluster.</li>
         </ul>
       </div>
@@ -622,9 +628,9 @@
           <tbody>
             <tr><td><strong>Target Municipalities</strong></td><td class="num">271 Municipalities</td></tr>
             <tr><td><strong>Target Provinces</strong></td><td class="num">46 Provinces</td></tr>
+            <tr><td><strong>Carrier & Channel Bandwidth</strong></td><td class="num" style="font-weight: 700; color: #854D0E;">Band n50 (60 MHz Contiguous)</td></tr>
             <tr><td><strong>Average Household Size</strong></td><td class="num">4.40 persons</td></tr>
             <tr><td><strong>Average Composite Score</strong></td><td class="num" style="color: #10B981; font-weight: 700;">94.85 / 100</td></tr>
-            <tr><td><strong>Minimum Composite Score</strong></td><td class="num">93.85 / 100</td></tr>
             <tr><td><strong>Target Monthly ARPU</strong></td><td class="num">₱599 ($10.89 USD)</td></tr>
             <tr><td><strong>Year-1 Revenue Potential (@ 30%)</strong></td><td class="num" style="font-weight: 700; color: #10B981;">₱1.86 Billion / Year</td></tr>
           </tbody>
@@ -648,71 +654,68 @@
         <table class="exec-table">
           <thead>
             <tr>
+              <th>Top Provinces (Batch 1)</th>
               <th>Region</th>
-              <th class="num">Sites</th>
-              <th class="center">Share</th>
-              <th class="num">Population</th>
-              <th class="num">Households</th>
-              <th class="num">Subs @ 30%</th>
+              <th class="center">Batch 1 BTS</th>
+              <th class="center">5-Year BTS Cap</th>
+              <th class="num">Converge Nodes</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>Region IV-A</strong></td>
-              <td class="num"><strong>292</strong></td>
-              <td class="center">29.2%</td>
-              <td class="num">1,130,863</td>
-              <td class="num">257,775</td>
-              <td class="num">77,329</td>
+              <td><strong>Cavite</strong></td>
+              <td>Region IV-A</td>
+              <td class="highlight-bts">79 BTS</td>
+              <td class="center" style="font-weight:700;">488 BTS</td>
+              <td class="num">50</td>
             </tr><tr>
-              <td><strong>Region III</strong></td>
-              <td class="num"><strong>161</strong></td>
-              <td class="center">16.1%</td>
-              <td class="num">608,793</td>
-              <td class="num">139,037</td>
-              <td class="num">41,711</td>
+              <td><strong>Batangas</strong></td>
+              <td>Region IV-A</td>
+              <td class="highlight-bts">94 BTS</td>
+              <td class="center" style="font-weight:700;">368 BTS</td>
+              <td class="num">61</td>
             </tr><tr>
-              <td><strong>Region V</strong></td>
-              <td class="num"><strong>131</strong></td>
-              <td class="center">13.1%</td>
-              <td class="num">486,052</td>
-              <td class="num">108,784</td>
-              <td class="num">32,637</td>
+              <td><strong>Cebu</strong></td>
+              <td>Region VII</td>
+              <td class="highlight-bts">55 BTS</td>
+              <td class="center" style="font-weight:700;">370 BTS</td>
+              <td class="num">55</td>
             </tr><tr>
-              <td><strong>Region X</strong></td>
-              <td class="num"><strong>67</strong></td>
-              <td class="center">6.7%</td>
-              <td class="num">249,009</td>
-              <td class="num">56,408</td>
-              <td class="num">16,924</td>
+              <td><strong>Bulacan</strong></td>
+              <td>Region III</td>
+              <td class="highlight-bts">38 BTS</td>
+              <td class="center" style="font-weight:700;">308 BTS</td>
+              <td class="num">46</td>
             </tr><tr>
-              <td><strong>Region VII</strong></td>
-              <td class="num"><strong>66</strong></td>
-              <td class="center">6.6%</td>
-              <td class="num">251,670</td>
-              <td class="num">57,138</td>
-              <td class="num">17,143</td>
+              <td><strong>Laguna</strong></td>
+              <td>Region IV-A</td>
+              <td class="highlight-bts">47 BTS</td>
+              <td class="center" style="font-weight:700;">324 BTS</td>
+              <td class="num">52</td>
             </tr><tr>
-              <td><strong>Region II</strong></td>
-              <td class="num"><strong>62</strong></td>
-              <td class="center">6.2%</td>
-              <td class="num">226,269</td>
-              <td class="num">51,891</td>
-              <td class="num">15,568</td>
+              <td><strong>Pampanga</strong></td>
+              <td>Region III</td>
+              <td class="highlight-bts">38 BTS</td>
+              <td class="center" style="font-weight:700;">264 BTS</td>
+              <td class="num">46</td>
             </tr><tr>
-              <td><strong>Region VI</strong></td>
-              <td class="num"><strong>54</strong></td>
-              <td class="center">5.4%</td>
-              <td class="num">201,667</td>
-              <td class="num">46,946</td>
-              <td class="num">14,083</td>
+              <td><strong>Quezon</strong></td>
+              <td>Region IV-A</td>
+              <td class="highlight-bts">51 BTS</td>
+              <td class="center" style="font-weight:700;">212 BTS</td>
+              <td class="num">59</td>
             </tr><tr>
-              <td><strong>Region XIII</strong></td>
-              <td class="num"><strong>43</strong></td>
-              <td class="center">4.3%</td>
-              <td class="num">168,114</td>
-              <td class="num">37,708</td>
-              <td class="num">11,314</td>
+              <td><strong>Pangasinan</strong></td>
+              <td>Region I</td>
+              <td class="highlight-bts">14 BTS</td>
+              <td class="center" style="font-weight:700;">201 BTS</td>
+              <td class="num">38</td>
+            </tr><tr>
+              <td><strong>Camarines Sur</strong></td>
+              <td>Region V</td>
+              <td class="highlight-bts">48 BTS</td>
+              <td class="center" style="font-weight:700;">178 BTS</td>
+              <td class="num">44</td>
             </tr>
           </tbody>
         </table>
@@ -722,58 +725,68 @@
         <table class="exec-table" style="margin-bottom: 12px;">
           <thead>
             <tr>
-              <th>Region (Cont'd)</th>
-              <th class="num">Sites</th>
-              <th class="center">Share</th>
-              <th class="num">Population</th>
-              <th class="num">Households</th>
-              <th class="num">Subs @ 30%</th>
+              <th>Provinces (Cont'd)</th>
+              <th>Region</th>
+              <th class="center">Batch 1 BTS</th>
+              <th class="center">5-Year BTS Cap</th>
+              <th class="num">Converge Nodes</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>Region XI</strong></td>
-              <td class="num"><strong>26</strong></td>
-              <td class="center">2.6%</td>
-              <td class="num">100,335</td>
-              <td class="num">22,802</td>
-              <td class="num">6,842</td>
+              <td><strong>Davao del Sur</strong></td>
+              <td>Region XI</td>
+              <td class="highlight-bts">23 BTS</td>
+              <td class="center" style="font-weight:700;">215 BTS</td>
+              <td class="num">25</td>
             </tr><tr>
-              <td><strong>Region VIII</strong></td>
-              <td class="num"><strong>26</strong></td>
-              <td class="center">2.6%</td>
-              <td class="num">99,507</td>
-              <td class="num">22,714</td>
-              <td class="num">6,814</td>
+              <td><strong>Tarlac</strong></td>
+              <td>Region III</td>
+              <td class="highlight-bts">28 BTS</td>
+              <td class="center" style="font-weight:700;">169 BTS</td>
+              <td class="num">21</td>
             </tr><tr>
-              <td><strong>Cordillera Administrative Region</strong></td>
-              <td class="num"><strong>25</strong></td>
-              <td class="center">2.5%</td>
-              <td class="num">91,980</td>
-              <td class="num">20,753</td>
-              <td class="num">6,227</td>
+              <td><strong>Isabela</strong></td>
+              <td>Region II</td>
+              <td class="highlight-bts">31 BTS</td>
+              <td class="center" style="font-weight:700;">146 BTS</td>
+              <td class="num">39</td>
             </tr><tr>
-              <td><strong>MIMAROPA Region</strong></td>
-              <td class="num"><strong>24</strong></td>
-              <td class="center">2.4%</td>
-              <td class="num">87,311</td>
-              <td class="num">19,843</td>
-              <td class="num">5,952</td>
+              <td><strong>Nueva Ecija</strong></td>
+              <td>Region III</td>
+              <td class="highlight-bts">27 BTS</td>
+              <td class="center" style="font-weight:700;">134 BTS</td>
+              <td class="num">30</td>
             </tr><tr>
-              <td><strong>Region I</strong></td>
-              <td class="num"><strong>17</strong></td>
-              <td class="center">1.7%</td>
-              <td class="num">64,869</td>
-              <td class="num">14,869</td>
-              <td class="num">4,459</td>
-            </tr>
-            <tr class="total-row">
-              <td>TOTAL BATCH 1</td>
-              <td class="num">1,000</td>
-              <td class="center">100.0%</td>
-              <td class="num">3,789,177</td>
-              <td class="num">861,835</td>
-              <td class="num">258,552</td>
+              <td><strong>Albay</strong></td>
+              <td>Region V</td>
+              <td class="highlight-bts">47 BTS</td>
+              <td class="center" style="font-weight:700;">135 BTS</td>
+              <td class="num">26</td>
+            </tr><tr>
+              <td><strong>Misamis Oriental</strong></td>
+              <td>Region X</td>
+              <td class="highlight-bts">36 BTS</td>
+              <td class="center" style="font-weight:700;">153 BTS</td>
+              <td class="num">38</td>
+            </tr><tr>
+              <td><strong>Iloilo</strong></td>
+              <td>Region VI</td>
+              <td class="highlight-bts">18 BTS</td>
+              <td class="center" style="font-weight:700;">137 BTS</td>
+              <td class="num">24</td>
+            </tr><tr>
+              <td><strong>Bukidnon</strong></td>
+              <td>Region X</td>
+              <td class="highlight-bts">31 BTS</td>
+              <td class="center" style="font-weight:700;">133 BTS</td>
+              <td class="num">22</td>
+            </tr><tr>
+              <td><strong>Leyte</strong></td>
+              <td>Region VIII</td>
+              <td class="highlight-bts">26 BTS</td>
+              <td class="center" style="font-weight:700;">124 BTS</td>
+              <td class="num">20</td>
             </tr>
           </tbody>
         </table>
@@ -781,23 +794,23 @@
         <div class="card highlight">
           <h4>Top 5 Provinces in Batch 1</h4>
           <p style="font-size: 12.5px;">
-            <strong>1. Batangas:</strong> 94 Sites (373k Pop · 84k HH)<br>
-            <strong>2. Cavite:</strong> 79 Sites (315k Pop · 74k HH)<br>
-            <strong>3. Cebu:</strong> 55 Sites (211k Pop · 47k HH)<br>
-            <strong>4. Quezon:</strong> 51 Sites (187k Pop · 40k HH)<br>
-            <strong>5. Camarines Sur:</strong> 48 Sites (184k Pop · 39k HH)
+            <strong>1. Batangas:</strong> 94 BTS (373k Pop · 84k HH)<br>
+            <strong>2. Cavite:</strong> 79 BTS (315k Pop · 74k HH)<br>
+            <strong>3. Cebu:</strong> 55 BTS (211k Pop · 47k HH)<br>
+            <strong>4. Quezon:</strong> 51 BTS (187k Pop · 40k HH)<br>
+            <strong>5. Camarines Sur:</strong> 48 BTS (184k Pop · 39k HH)
           </p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 8: Top 20 Showcase Barangays -->
+  <!-- SLIDE 8: Top 20 Showcase Barangays with BTS counts -->
   <div class="slide">
     <div class="slide-header">
       <div>
         <div class="slide-category">Priority Sites</div>
-        <div class="slide-title">Top 20 Ranked Priority Barangays (Batch 1 Leaders)</div>
+        <div class="slide-title">Top 20 Priority Barangays & Band n50 BTS Allocation</div>
       </div>
       <div class="slide-number">Slide 8 / 12</div>
     </div>
@@ -809,11 +822,12 @@
           <th>Barangay</th>
           <th>Municipality</th>
           <th>Province</th>
-          <th>Region</th>
           <th class="num">2020 Pop</th>
           <th class="num">Households</th>
           <th class="num">Subs @ 30%</th>
-          <th>Converge Infra Status</th>
+          <th class="center">Carrier</th>
+          <th class="center">n50 BTS Capacity</th>
+          <th class="center">Phase 1 BTS</th>
           <th class="num">Score</th>
         </tr>
       </thead>
@@ -823,138 +837,150 @@
           <td><strong>San Juan</strong></td>
           <td>Baras</td>
           <td>Rizal</td>
-          <td>Region IV-A</td>
           <td class="num">4,838</td>
           <td class="num">1,169</td>
           <td class="num">351</td>
-          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="center"><span class="badge badge-n50">n50 (60MHz)</span></td>
+          <td class="highlight-bts">1 BTS</td>
+          <td class="center" style="font-weight:800; color:#1D4ED8;">1 BTS</td>
           <td class="num" style="font-weight: 700; color: #10B981;">98.95</td>
         </tr><tr>
           <td class="center"><strong>2</strong></td>
           <td><strong>Evangelista</strong></td>
           <td>Baras</td>
           <td>Rizal</td>
-          <td>Region IV-A</td>
           <td class="num">4,245</td>
           <td class="num">1,025</td>
           <td class="num">308</td>
-          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="center"><span class="badge badge-n50">n50 (60MHz)</span></td>
+          <td class="highlight-bts">1 BTS</td>
+          <td class="center" style="font-weight:800; color:#1D4ED8;">1 BTS</td>
           <td class="num" style="font-weight: 700; color: #10B981;">98.95</td>
         </tr><tr>
           <td class="center"><strong>3</strong></td>
           <td><strong>Santiago</strong></td>
           <td>Baras</td>
           <td>Rizal</td>
-          <td>Region IV-A</td>
           <td class="num">4,141</td>
           <td class="num">1,000</td>
           <td class="num">300</td>
-          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="center"><span class="badge badge-n50">n50 (60MHz)</span></td>
+          <td class="highlight-bts">1 BTS</td>
+          <td class="center" style="font-weight:800; color:#1D4ED8;">1 BTS</td>
           <td class="num" style="font-weight: 700; color: #10B981;">98.95</td>
         </tr><tr>
           <td class="center"><strong>4</strong></td>
           <td><strong>Monamon Sur</strong></td>
           <td>Bauko</td>
           <td>Mountain Province</td>
-          <td>Cordillera Administrative Region</td>
           <td class="num">3,877</td>
           <td class="num">852</td>
           <td class="num">256</td>
-          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="center"><span class="badge badge-n50">n50 (60MHz)</span></td>
+          <td class="highlight-bts">1 BTS</td>
+          <td class="center" style="font-weight:800; color:#1D4ED8;">1 BTS</td>
           <td class="num" style="font-weight: 700; color: #10B981;">97.38</td>
         </tr><tr>
           <td class="center"><strong>5</strong></td>
           <td><strong>Tagakpan</strong></td>
           <td>City of Davao</td>
           <td>Davao del Sur</td>
-          <td>Region XI</td>
           <td class="num">4,955</td>
           <td class="num">1,126</td>
           <td class="num">338</td>
-          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="center"><span class="badge badge-n50">n50 (60MHz)</span></td>
+          <td class="highlight-bts">1 BTS</td>
+          <td class="center" style="font-weight:800; color:#1D4ED8;">1 BTS</td>
           <td class="num" style="font-weight: 700; color: #10B981;">97.00</td>
         </tr><tr>
           <td class="center"><strong>6</strong></td>
           <td><strong>Tawan-tawan</strong></td>
           <td>City of Davao</td>
           <td>Davao del Sur</td>
-          <td>Region XI</td>
           <td class="num">4,632</td>
           <td class="num">1,053</td>
           <td class="num">316</td>
-          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="center"><span class="badge badge-n50">n50 (60MHz)</span></td>
+          <td class="highlight-bts">1 BTS</td>
+          <td class="center" style="font-weight:800; color:#1D4ED8;">1 BTS</td>
           <td class="num" style="font-weight: 700; color: #10B981;">97.00</td>
         </tr><tr>
           <td class="center"><strong>7</strong></td>
           <td><strong>Lamanan</strong></td>
           <td>City of Davao</td>
           <td>Davao del Sur</td>
-          <td>Region XI</td>
           <td class="num">4,604</td>
           <td class="num">1,046</td>
           <td class="num">314</td>
-          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="center"><span class="badge badge-n50">n50 (60MHz)</span></td>
+          <td class="highlight-bts">1 BTS</td>
+          <td class="center" style="font-weight:800; color:#1D4ED8;">1 BTS</td>
           <td class="num" style="font-weight: 700; color: #10B981;">97.00</td>
         </tr><tr>
           <td class="center"><strong>8</strong></td>
           <td><strong>Waan</strong></td>
           <td>City of Davao</td>
           <td>Davao del Sur</td>
-          <td>Region XI</td>
           <td class="num">4,500</td>
           <td class="num">1,023</td>
           <td class="num">307</td>
-          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="center"><span class="badge badge-n50">n50 (60MHz)</span></td>
+          <td class="highlight-bts">1 BTS</td>
+          <td class="center" style="font-weight:800; color:#1D4ED8;">1 BTS</td>
           <td class="num" style="font-weight: 700; color: #10B981;">97.00</td>
         </tr><tr>
           <td class="center"><strong>9</strong></td>
           <td><strong>Biao Escuela</strong></td>
           <td>City of Davao</td>
           <td>Davao del Sur</td>
-          <td>Region XI</td>
           <td class="num">4,263</td>
           <td class="num">969</td>
           <td class="num">291</td>
-          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="center"><span class="badge badge-n50">n50 (60MHz)</span></td>
+          <td class="highlight-bts">1 BTS</td>
+          <td class="center" style="font-weight:800; color:#1D4ED8;">1 BTS</td>
           <td class="num" style="font-weight: 700; color: #10B981;">97.00</td>
         </tr><tr>
           <td class="center"><strong>10</strong></td>
           <td><strong>Pandaitan</strong></td>
           <td>City of Davao</td>
           <td>Davao del Sur</td>
-          <td>Region XI</td>
           <td class="num">4,257</td>
           <td class="num">967</td>
           <td class="num">290</td>
-          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="center"><span class="badge badge-n50">n50 (60MHz)</span></td>
+          <td class="highlight-bts">1 BTS</td>
+          <td class="center" style="font-weight:800; color:#1D4ED8;">1 BTS</td>
           <td class="num" style="font-weight: 700; color: #10B981;">97.00</td>
         </tr><tr>
           <td class="center"><strong>11</strong></td>
           <td><strong>Mudiang</strong></td>
           <td>City of Davao</td>
           <td>Davao del Sur</td>
-          <td>Region XI</td>
           <td class="num">4,115</td>
           <td class="num">935</td>
           <td class="num">280</td>
-          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="center"><span class="badge badge-n50">n50 (60MHz)</span></td>
+          <td class="highlight-bts">1 BTS</td>
+          <td class="center" style="font-weight:800; color:#1D4ED8;">1 BTS</td>
           <td class="num" style="font-weight: 700; color: #10B981;">97.00</td>
         </tr><tr>
           <td class="center"><strong>12</strong></td>
           <td><strong>Catigan</strong></td>
           <td>City of Davao</td>
           <td>Davao del Sur</td>
-          <td>Region XI</td>
           <td class="num">4,021</td>
           <td class="num">914</td>
           <td class="num">274</td>
-          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="center"><span class="badge badge-n50">n50 (60MHz)</span></td>
+          <td class="highlight-bts">1 BTS</td>
+          <td class="center" style="font-weight:800; color:#1D4ED8;">1 BTS</td>
           <td class="num" style="font-weight: 700; color: #10B981;">97.00</td>
         </tr>
       </tbody>
     </table>
     <div style="font-size: 11px; color: var(--text-muted); margin-top: 6px; text-align: right;">
-      * Complete list of all 1,000 Phase 1 barangays available in <strong>FWA_Barangay_Rollout_Plan_1000s.xlsx</strong> (Tab: Batch 1).
+      * Complete list of all 1,000 Phase 1 barangays with explicit BTS counts available in <strong>FWA_Barangay_Rollout_Plan_1000s.xlsx</strong>.
     </div>
   </div>
 
@@ -963,7 +989,7 @@
     <div class="slide-header">
       <div>
         <div class="slide-category">Expansion Strategy</div>
-        <div class="slide-title">Scaling to 5,000 Sites: Strategy for Succeeding Batches</div>
+        <div class="slide-title">Scaling to 5,000 BTS: Strategy for Succeeding Batches</div>
       </div>
       <div class="slide-number">Slide 9 / 12</div>
     </div>
@@ -972,38 +998,38 @@
       <div class="card highlight">
         <span class="badge badge-onnet" style="margin-bottom: 8px;">Phase 2 · Year 2</span>
         <h3>Batch 2 (1,001 - 2,000)</h3>
-        <h4>High-Priority Rural Expansion</h4>
-        <p style="margin-bottom: 8px;"><strong>Score:</strong> 92.80 - 93.85 | <strong>Sites:</strong> 1,000</p>
+        <h4>1,000 BTS Allocation</h4>
+        <p style="margin-bottom: 8px;"><strong>Score:</strong> 92.80 - 93.85 | <strong>BTS Capacity:</strong> 1,000 BTS</p>
         <ul>
           <li><strong>Pop Range:</strong> 2,200 – 3,000 residents per barangay.</li>
           <li><strong>Focus Provinces:</strong> Pangasinan (131), Cebu (67), Camarines Sur (38), Batangas (33), Quezon (30).</li>
           <li><strong>Backhaul:</strong> 100% on-net active Converge nodes.</li>
-          <li><strong>Subs @ 30%:</strong> 191,228 total subscribers.</li>
+          <li><strong>Sizing:</strong> Exactly 1 BTS per barangay absorbs 100% of demand.</li>
         </ul>
       </div>
 
       <div class="card success">
         <span class="badge badge-gold" style="margin-bottom: 8px;">Phase 3 · Year 3</span>
         <h3>Batch 3 (2,001 - 3,000)</h3>
-        <h4>High-Density Peri-Urban Corridors</h4>
-        <p style="margin-bottom: 8px;"><strong>Score:</strong> 90.95 - 92.80 | <strong>Sites:</strong> 1,000</p>
+        <h4>1,000 BTS (1,149 BTS Capacity)</h4>
+        <p style="margin-bottom: 8px;"><strong>Score:</strong> 90.95 - 92.80 | <strong>High Density Corridors</strong></p>
         <ul>
           <li><strong>Pop Range:</strong> 5,000 – 25,000 residents per barangay.</li>
           <li><strong>Focus Provinces:</strong> Cavite (118), Bulacan (88), Cebu (85), Laguna (73), Pampanga (62), Davao (61).</li>
-          <li><strong>Backhaul:</strong> Direct backbone DWDM drops.</li>
-          <li><strong>Subs @ 30%:</strong> 929,315 subscribers (multi-sector capacity).</li>
+          <li><strong>Multi-BTS Towns:</strong> 149 barangays support <strong>2 n50 BTS</strong>.</li>
+          <li><strong>Subs @ 30%:</strong> 929,315 subscribers.</li>
         </ul>
       </div>
 
       <div class="card warning">
         <span class="badge badge-rural" style="margin-bottom: 8px;">Phase 4 & 5 · Years 4-5</span>
         <h3>Batches 4 & 5 (3,001 - 5,000)</h3>
-        <h4>Nationwide Market Completion</h4>
-        <p style="margin-bottom: 8px;"><strong>Score:</strong> 85.50 - 90.95 | <strong>Sites:</strong> 2,000</p>
+        <h4>2,000 BTS (2,463 BTS Capacity)</h4>
+        <p style="margin-bottom: 8px;"><strong>Score:</strong> 85.50 - 90.95 | <strong>Nationwide Deepening</strong></p>
         <ul>
           <li><strong>Pop Range:</strong> Broad rural & suburban spread.</li>
           <li><strong>Coverage:</strong> Extends across all 75 provinces nationwide.</li>
-          <li><strong>Backhaul:</strong> 98% Converge on-net; selective microwave hops.</li>
+          <li><strong>Multi-BTS Towns:</strong> 351 barangays absorb <strong>2 to 3 n50 BTS</strong>.</li>
           <li><strong>Subs @ 30%:</strong> 1,876,888 addressable subscribers.</li>
         </ul>
       </div>
@@ -1013,7 +1039,7 @@
       <div style="display: flex; justify-content: space-between; align-items: center;">
         <div>
           <h4 style="color: var(--teal);">CUMULATIVE 5-YEAR TARGET</h4>
-          <p style="font-size: 13px;">5,000 macro sites serving <strong>3.26 Million paying households</strong> across 47.9M population.</p>
+          <p style="font-size: 13px;">5,000 macro BTS serving <strong>3.26 Million paying households</strong> across 47.9M population.</p>
         </div>
         <div style="text-align: right; font-size: 13px; color: #10B981; font-weight: 700;">
           Estimated Annual Run-Rate: $425M+ USD / Year
@@ -1034,13 +1060,13 @@
 
     <div class="grid-2">
       <div class="card highlight">
-        <h3>Macro Site Capital & Operating Economics</h3>
+        <h3>Band n50 Macro BTS Capital & Operating Economics</h3>
         <table class="exec-table">
           <thead>
-            <tr><th>Cost Element</th><th class="num">Per Site (USD)</th><th class="num">Per Site (PHP @ 55)</th></tr>
+            <tr><th>Cost Element</th><th class="num">Per BTS (USD)</th><th class="num">Per BTS (PHP @ 55)</th></tr>
           </thead>
           <tbody>
-            <tr><td><strong>5G RAN Equipment (3 Sectors)</strong></td><td class="num">$26,000</td><td class="num">₱1,430,000</td></tr>
+            <tr><td><strong>5G RAN Equipment (3 Sectors, 4T4R)</strong></td><td class="num">$26,000</td><td class="num">₱1,430,000</td></tr>
             <tr><td><strong>Ancillary Materials & Installation</strong></td><td class="num">$15,900</td><td class="num">₱874,500</td></tr>
             <tr><td><strong>Total Site Capex (Colocation/Leased)</strong></td><td class="num" style="font-weight: 700; color: var(--navy);">$41,900</td><td class="num" style="font-weight: 700; color: var(--navy);">₱2,304,500</td></tr>
             <tr><td><strong>Monthly Tower Lease (TowerCo)</strong></td><td class="num">$2,182 / mo</td><td class="num">₱120,000 / mo</td></tr>
@@ -1066,7 +1092,7 @@
               <tr><td><strong>450 Subs</strong> (45% take-up)</td><td class="num">₱269,550</td><td class="num" style="color: #D97706;">-₱58,700</td><td class="center">Near Break-even</td></tr>
               <tr><td><strong>550 Subs</strong> (Break-even line)</td><td class="num">₱329,450</td><td class="num" style="color: #10B981; font-weight: 700;">+₱1,200</td><td class="center">Break-Even</td></tr>
               <tr><td><strong>750 Subs</strong> (Cluster scale)</td><td class="num">₱449,250</td><td class="num" style="color: #10B981; font-weight: 700;">+₱121,000</td><td class="center">19 Months</td></tr>
-              <tr><td><strong>1,000 Subs</strong> (Dual Sector)</td><td class="num">₱599,000</td><td class="num" style="color: #10B981; font-weight: 700;">+₱270,750</td><td class="center">8.5 Months</td></tr>
+              <tr><td><strong>1,000 Subs</strong> (Max BTS Load)</td><td class="num">₱599,000</td><td class="num" style="color: #10B981; font-weight: 700;">+₱270,750</td><td class="center">8.5 Months</td></tr>
             </tbody>
           </table>
         </div>
@@ -1152,7 +1178,7 @@
     <div class="grid-3" style="margin-bottom: 16px;">
       <div class="card highlight">
         <h3>1. Approve Batch 1 Scope</h3>
-        <p style="margin-bottom: 8px;">Formally authorize the <strong>1,000-Site Batch 1 Rollout</strong> spanning 271 municipalities across 46 provinces.</p>
+        <p style="margin-bottom: 8px;">Formally authorize the <strong>1,000-Site Batch 1 Rollout</strong> deploying 1,000 Band n50 BTS across 271 municipalities in 46 provinces.</p>
         <ul>
           <li>Lock in the priority barangay list from the model.</li>
           <li>Instruct site acquisition teams to initiate lease filings.</li>
@@ -1172,7 +1198,7 @@
         <h3>3. Equipment Procurement</h3>
         <p style="margin-bottom: 8px;">Release initial capital expenditure approval for radio and CPE hardware.</p>
         <ul>
-          <li>Procure 1,000 3-sector 5G RAN baseband packages ($26M).</li>
+          <li>Procure 1,000 3-sector Band n50 5G RAN baseband packages ($26M).</li>
           <li>Order initial batch of 100,000 Band n50 indoor CPEs.</li>
         </ul>
       </div>
@@ -1181,7 +1207,7 @@
     <div class="card navy" style="text-align: center; padding: 22px;">
       <h3 style="color: var(--teal); font-size: 20px; margin-bottom: 8px;">Master Deliverable Available for Review</h3>
       <p style="font-size: 14px; color: #CBD5E1; margin-bottom: 14px;">
-        The detailed tabular dataset with complete demographic, geographic, and infrastructure metadata for all 1,000 Phase 1 barangays and succeeding batches is live in:
+        The detailed tabular dataset with complete demographic, geographic, and Band n50 BTS dimensioning columns for all 1,000 Phase 1 barangays and succeeding batches is live in:
       </p>
       <div style="display: inline-block; background: rgba(0, 180, 216, 0.15); border: 1px solid var(--teal); border-radius: 8px; padding: 10px 24px; color: white; font-weight: 700; font-size: 14px;">
         📊 FWA_Barangay_Rollout_Plan_1000s.xlsx
@@ -1230,7 +1256,6 @@
     }
   }
 
-  // Keyboard controls
   window.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
       nextSlide();
@@ -1243,7 +1268,6 @@
     }
   });
 
-  // Touch swipe support
   let touchStartX = 0;
   let touchEndX = 0;
   document.getElementById('slide-container').addEventListener('touchstart', (e) => {
