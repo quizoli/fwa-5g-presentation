@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>FWA 5G Barangay Rollout Master Plan — Batch 1 & Succeeding 1000s</title>
+<style>
+  :root {
+    --navy: #0A192F;
+    --navy-light: #172A45;
+    --navy-card: #0F233D;
+    --blue-accent: #0077CC;
+    --teal: #00B4D8;
+    --gold: #FFB703;
+    --green: #10B981;
+    --red: #EF4444;
+    --gray-bg: #F8F9FA;
+    --gray-card: #FFFFFF;
+    --text-dark: #1E293B;
+    --text-muted: #64748B;
+    --text-light: #F1F5F9;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  body { background: var(--navy); color: var(--text-dark); display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+  
+  header {
+    background: var(--navy);
+    color: var(--text-light);
+    padding: 10px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    z-index: 100;
+  }
+  header .brand-group { display: flex; align-items: center; gap: 14px; }
+  header .brand { font-size: 17px; font-weight: 800; color: var(--teal); letter-spacing: 0.5px; }
+  header .meta { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+  header .controls { display: flex; gap: 8px; align-items: center; }
+  
+  .btn-nav {
+    background: var(--navy-light);
+    color: var(--text-light);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12.5px;
+    font-weight: 600;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+  }
+  .btn-nav:hover { background: var(--blue-accent); border-color: var(--blue-accent); color: white; }
+  .btn-nav:disabled { opacity: 0.35; cursor: not-allowed; }
+  .slide-counter { min-width: 90px; text-align: center; font-weight: 700; color: var(--teal); font-size: 13px; }
+
+  #slide-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    overflow: hidden;
+    position: relative;
+    background: #060D17;
+  }
+  .slide {
+    background: var(--gray-bg);
+    width: 98vw;
+    max-width: 1460px;
+    height: 92vh;
+    max-height: 860px;
+    border-radius: 14px;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.6);
+    display: none;
+    flex-direction: column;
+    padding: 26px 36px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+  }
+  .slide.active { display: flex; }
+
+  .slide-header {
+    border-bottom: 2px solid #CBD5E1;
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .slide-category { font-size: 11px; text-transform: uppercase; font-weight: 800; color: var(--blue-accent); letter-spacing: 1px; }
+  .slide-title { font-size: 23px; font-weight: 800; color: var(--navy); line-height: 1.2; }
+  .slide-number { font-size: 14px; font-weight: 800; color: var(--text-muted); }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+
+  .card {
+    background: var(--gray-card);
+    border-radius: 8px;
+    padding: 14px 18px;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  }
+  .card.highlight { border-left: 5px solid var(--blue-accent); }
+  .card.success { border-left: 5px solid var(--green); }
+  .card.warning { border-left: 5px solid var(--gold); }
+  .card.danger { border-left: 5px solid var(--red); }
+  .card.navy { background: var(--navy); color: white; border: none; }
+  .card.navy h3, .card.navy h4 { color: white; }
+  .card.navy p, .card.navy li { color: #CBD5E1; }
+
+  h3 { font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+  h4 { font-size: 13.5px; font-weight: 700; color: var(--navy-light); margin-bottom: 4px; }
+  p, li { font-size: 13px; line-height: 1.5; color: var(--text-dark); }
+  ul { padding-left: 18px; }
+  li { margin-bottom: 4px; }
+
+  .stat-card {
+    background: white;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 12px 14px;
+    text-align: center;
+  }
+  .stat-label { font-size: 10.5px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; }
+  .stat-val { font-size: 22px; font-weight: 800; color: var(--navy); margin: 2px 0; }
+  .stat-sub { font-size: 11px; color: var(--text-muted); }
+
+  table.exec-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #E2E8F0;
+  }
+  table.exec-table th {
+    background: var(--navy);
+    color: white;
+    font-weight: 700;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 11.5px;
+    letter-spacing: 0.3px;
+  }
+  table.exec-table td {
+    padding: 7px 10px;
+    border-bottom: 1px solid #E2E8F0;
+    color: var(--text-dark);
+  }
+  table.exec-table tr:nth-child(even) { background: #F8FAFC; }
+  table.exec-table tr:hover { background: #EDF2F7; }
+  table.exec-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  table.exec-table td.center { text-align: center; }
+  table.exec-table tr.total-row td {
+    background: #E2E8F0;
+    font-weight: 800;
+    border-top: 2px solid var(--navy);
+    border-bottom: 2px solid var(--navy);
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 10.5px;
+    font-weight: 700;
+  }
+  .badge-onnet { background: #DCFCE7; color: #166534; border: 1px solid #86EFAC; }
+  .badge-rural { background: #E0E7FF; color: #3730A3; border: 1px solid #C7D2FE; }
+  .badge-gold { background: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; }
+
+  /* Cover slide */
+  .cover-slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    padding: 40px 20px;
+    background: radial-gradient(circle at center, #172A45 0%, #0A192F 100%);
+    color: white;
+    border-radius: 12px;
+  }
+  .cover-tag {
+    display: inline-block;
+    background: rgba(0, 180, 216, 0.15);
+    color: var(--teal);
+    border: 1px solid rgba(0, 180, 216, 0.3);
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+  }
+  .cover-slide h1 {
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 14px;
+    max-width: 980px;
+    background: linear-gradient(135deg, #FFFFFF 0%, #00B4D8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cover-slide p {
+    font-size: 16px;
+    color: #94A3B8;
+    max-width: 820px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 30px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    font-size: 13px;
+    color: #CBD5E1;
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    body { height: auto; min-height: 100vh; overflow-y: auto; }
+    header { flex-direction: column; gap: 8px; align-items: flex-start; padding: 10px 14px; }
+    #slide-container { padding: 8px; height: auto; }
+    .slide { height: auto; max-height: none; padding: 18px 14px; width: 100%; }
+    .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; }
+    .slide-title { font-size: 19px; }
+    .cover-slide h1 { font-size: 26px; }
+    .cover-meta { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand-group">
+    <a href="index.html" class="btn-nav">← Back to Portal</a>
+    <div>
+      <div class="brand">TELTECH & COMCLARK · FWA 5G</div>
+      <div class="meta">Barangay Rollout Master Plan · First 1,000 Sites & Phasing Roadmap</div>
+    </div>
+  </div>
+  <div class="controls">
+    <button class="btn-nav" id="prev-btn" onclick="prevSlide()">◀ Prev</button>
+    <div class="slide-counter" id="slide-num">Slide 1 / 12</div>
+    <button class="btn-nav" id="next-btn" onclick="nextSlide()">Next ▶</button>
+    <button class="btn-nav" onclick="toggleFullScreen()">⛶ Fullscreen</button>
+  </div>
+</header>
+
+<div id="slide-container">
+
+  <!-- SLIDE 1: Title Cover -->
+  <div class="slide active">
+    <div class="cover-slide">
+      <span class="cover-tag">Nationwide Master Rollout Plan</span>
+      <h1>5G Fixed Wireless Access (FWA)<br>Barangay Rollout Master Plan</h1>
+      <p>
+        Commercial site allocation for the <strong>First 1,000 Sites (Batch 1)</strong> and succeeding batches of 1,000s across 41,984 PSA barangays, anchored on Converge ICT's <strong>2,405 Backbone Nodes</strong> and <strong>4,401 Fiber Line Segments</strong>.
+      </p>
+      <div class="cover-meta">
+        <div><strong>Phase:</strong> 1,000-Site Launch (Year 1)</div>
+        <div><strong>Spectrum:</strong> Band n50 (1.5 GHz) / 3.5 GHz</div>
+        <div><strong>Backhaul:</strong> Converge Optical Backbone (FOC)</div>
+        <div><strong>Model:</strong> ₱599 Home Broadband</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: Evaluation Framework -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Methodology & Framework</div>
+        <div class="slide-title">The Strategic Triad: Multi-Factor Scoring Engine</div>
+      </div>
+      <div class="slide-number">Slide 2 / 12</div>
+    </div>
+    
+    <div class="grid-3" style="margin-bottom: 14px;">
+      <div class="card highlight">
+        <h3>1. Necessity (30%)</h3>
+        <h4>Unserved FTTH Gap & Demand</h4>
+        <p style="margin-bottom: 8px;">FWA delivers high-speed wireless home broadband where pure wireline fiber drops cannot reach economically.</p>
+        <ul>
+          <li><strong>Rural (`R`) Classification:</strong> Dispersed houses & long drops make FTTH unviable for telcos.</li>
+          <li><strong>Class 4–6 Municipalities:</strong> Neglected by major wireline builds; acute home broadband desert.</li>
+          <li><strong>Exclusion of Metro Cores:</strong> Avoids dense FTTH-saturated areas (inner NCR).</li>
+        </ul>
+      </div>
+
+      <div class="card success">
+        <h3>2. Business Viability (35%)</h3>
+        <h4>Catchment Sweet Spot & Sizing</h4>
+        <p style="margin-bottom: 8px;">Radio capacity is dimensioned for <strong>300 to 600 active subscribers</strong> per 3-sector site.</p>
+        <ul>
+          <li><strong>Golden Catchment:</strong> 3,000–12,000 population (~700–2,700 HH) easily fills 300–600 subs at 25-30% penetration.</li>
+          <li><strong>Real Household Sizing:</strong> Uses municipality-specific HH multipliers (3.1 to 7.56).</li>
+          <li><strong>Economic Corridors:</strong> Prioritizes high-remittance regions (CALABARZON, Visayas, Central Luzon).</li>
+        </ul>
+      </div>
+
+      <div class="card warning">
+        <h3>3. Ease of Deployment (35%)</h3>
+        <h4>Converge Infrastructure Leverage</h4>
+        <p style="margin-bottom: 8px;">Backhaul is the #1 cost and timeline bottleneck. Leveraging existing Converge assets changes the game.</p>
+        <ul>
+          <li><strong>Tier 1A (3+ Nodes in Muni):</strong> Score 95–100. Immediate optical lateral connection (<1–3 km).</li>
+          <li><strong>Tier 1B (1–2 Nodes in Muni):</strong> Score 85–92. Active node in municipality.</li>
+          <li><strong>Zero Transit Penalty:</strong> Eliminates $1,800/mo satellite fees; cuts site turn-up to <30 days.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card navy">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <div>
+          <h4 style="color: var(--teal); font-size: 14px;">COMPOSITE FWA SCORE FORMULA</h4>
+          <p style="font-size: 13px;">$$\text{Composite Score} = (\text{Ease of Deployment} \times 35\%) + (\text{Business Viability} \times 35\%) + (\text{Necessity} \times 30\%)$$</p>
+        </div>
+        <div style="font-size: 12px; color: #94A3B8; text-align: right;">
+          Evaluated across all <strong>41,984 barangays</strong> nationwide.<br>
+          Ranked from highest commercial potential down to remote hamlets.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: Nationwide Filtering Funnel -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Market Sizing</div>
+        <div class="slide-title">Nationwide Barangay Universe & Phasing Funnel</div>
+      </div>
+      <div class="slide-number">Slide 3 / 12</div>
+    </div>
+
+    <div class="grid-5" style="margin-bottom: 16px;">
+      <div class="stat-card">
+        <div class="stat-label">Total Barangays</div>
+        <div class="stat-val">41,984</div>
+        <div class="stat-sub">108.8M Total Population</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">In Converge Towns</div>
+        <div class="stat-val" style="color: var(--blue-accent);">21,055</div>
+        <div class="stat-sub">737 Municipalities (58.9% Pop)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Target Class 4–6 & Rural</div>
+        <div class="stat-val" style="color: var(--gold);">11,827</div>
+        <div class="stat-sub">Primary FTTH Deserts</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">5-Year Roadmap</div>
+        <div class="stat-val" style="color: var(--teal);">5,000</div>
+        <div class="stat-sub">Batches 1 to 5 (Top Tier)</div>
+      </div>
+      <div class="stat-card" style="border: 2px solid var(--green); background: #F0FDF4;">
+        <div class="stat-label" style="color: #15803D;">Batch 1 Launch</div>
+        <div class="stat-val" style="color: #15803D;">1,000</div>
+        <div class="stat-sub">Year 1 Commercial Sites</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Why Focus on 1 Site per Top Barangay?</h3>
+        <ul>
+          <li><strong>Maximum Geographic Footprint:</strong> 1,000 sites across 1,000 barangays reaches <strong>271 municipalities in 46 provinces</strong> simultaneously.</li>
+          <li><strong>Zero Self-Interference:</strong> Single macro site covers the entire poblacion or rural center without adjacent channel co-interference in early phases.</li>
+          <li><strong>Rapid Market Preemption:</strong> Locks in the community before mobile operators or local WISPs can react.</li>
+          <li><strong>Expansion Readiness:</strong> Denser barangays (>12k pop) can receive secondary split sectors in Batch 3 & 4.</li>
+        </ul>
+      </div>
+
+      <div class="card highlight">
+        <h3>Key Takeaway from Household Sizing Correction</h3>
+        <p style="margin-bottom: 8px;">Applying actual municipal household sizes (3.1 to 7.56) instead of a flat 4.4 divisor revealed critical operational realities:</p>
+        <ul>
+          <li><strong>High Household Density in Luzon:</strong> Cavite, Batangas, Laguna, Ilocos have smaller HH sizes (3.6–4.2), meaning <strong>more paying households</strong> per 1,000 population.</li>
+          <li><strong>BARMM Household Reality:</strong> Sulu, Tawi-Tawi, Lanao have 5.8–7.5 people per household, resulting in fewer distinct subscription units per macro tower.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: Converge Infrastructure Advantage -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Infrastructure Leverage</div>
+        <div class="slide-title">The Converge Backbone Advantage: Zero Backhaul Bottleneck</div>
+      </div>
+      <div class="slide-number">Slide 4 / 12</div>
+    </div>
+
+    <div class="grid-3" style="margin-bottom: 16px;">
+      <div class="card navy">
+        <h4 style="color: var(--teal);">2,405 BACKBONE NODES</h4>
+        <div style="font-size: 28px; font-weight: 800; color: white; margin: 4px 0;">771 Municipalities</div>
+        <p style="font-size: 12.5px;">Active POPs, Central Offices, and Core/Aggregation DWDM/OTN Nodes spanning South Luzon, Central/North Luzon, Visayas, and Mindanao.</p>
+      </div>
+
+      <div class="card navy">
+        <h4 style="color: var(--teal);">4,401 FIBER LINE STRINGS</h4>
+        <div style="font-size: 28px; font-weight: 800; color: white; margin: 4px 0;">Tens of Thousands Km</div>
+        <p style="font-size: 12.5px;">National highway backbone routes, regional rings, and submarine landings (e.g. CDO-Bacong, Tagbilaran, Roxas Mindoro, Panay, Cebu).</p>
+      </div>
+
+      <div class="card navy">
+        <h4 style="color: var(--teal);">100% ON-NET BATCH 1</h4>
+        <div style="font-size: 28px; font-weight: 800; color: #10B981; margin: 4px 0;">1,000 / 1,000 Sites</div>
+        <p style="font-size: 12.5px;">Every Batch 1 site is in a municipality with active Converge nodes, allowing optical lateral drops (<1–3 km) and instant activation.</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card highlight">
+        <h3>Backhaul Cost & Latency Benchmark</h3>
+        <table class="exec-table">
+          <thead>
+            <tr><th>Metric</th><th>Converge Optical (Our Model)</th><th>Satellite (Starlink LEO)</th><th>3rd-Party Leased Fiber</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Monthly Backhaul Opex</strong></td><td class="num" style="color: #10B981; font-weight: 700;">Internal Cost (~$150)</td><td class="num">$1,800 - $2,500/mo</td><td class="num">$1,200 - $1,800/mo</td></tr>
+            <tr><td><strong>Latency to Gateways</strong></td><td class="num" style="color: #10B981; font-weight: 700;">< 15 ms</td><td class="num">35 - 65 ms</td><td class="num">20 - 30 ms</td></tr>
+            <tr><td><strong>Peak Capacity per Site</strong></td><td class="num" style="color: #10B981; font-weight: 700;">1 Gbps - 10 Gbps Direct</td><td class="num">220 - 350 Mbps shared</td><td class="num">500 Mbps - 1 Gbps</td></tr>
+            <tr><td><strong>Deployment Lead Time</strong></td><td class="num" style="color: #10B981; font-weight: 700;">14 - 30 Days</td><td class="num">7 - 14 Days</td><td class="num">90 - 180 Days</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card success">
+        <h3>Top Provinces by Converge Node Presence</h3>
+        <p style="margin-bottom: 6px;">Concentration of active nodes in high-demand provincial growth centers:</p>
+        <ul style="font-size: 12.5px;">
+          <li><strong>Batangas:</strong> 61 nodes across 33 municipalities</li>
+          <li><strong>Quezon:</strong> 59 nodes across 34 municipalities</li>
+          <li><strong>Cebu:</strong> 55 nodes across 39 municipalities</li>
+          <li><strong>Laguna:</strong> 52 nodes across 31 municipalities</li>
+          <li><strong>Cavite:</strong> 50 nodes across 27 municipalities</li>
+          <li><strong>Bulacan & Pampanga:</strong> 46 nodes each (80+ munis)</li>
+          <li><strong>Camarines Sur & Albay:</strong> 70 nodes in Bicol corridor</li>
+          <li><strong>Pangasinan & Isabela:</strong> 77 nodes in North Luzon</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: Master 5-Batch Rollout Roadmap -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">5-Year Phasing Plan</div>
+        <div class="slide-title">Master 5-Batch Rollout Comparison (Sites 1 to 5,000)</div>
+      </div>
+      <div class="slide-number">Slide 5 / 12</div>
+    </div>
+
+    <table class="exec-table" style="margin-bottom: 14px;">
+      <thead>
+        <tr>
+          <th>Rollout Phase</th>
+          <th class="num">Sites</th>
+          <th class="num">Population</th>
+          <th class="num">Addressable HH</th>
+          <th class="num">Subs @ 30%</th>
+          <th class="num">Avg Pop/Site</th>
+          <th class="center">Tier 1 On-Net</th>
+          <th class="center">Score Range</th>
+          <th class="num">Avg Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Batch 1 (Phase 1)</strong></td>
+          <td class="num">1,000</td>
+          <td class="num">3,789,177</td>
+          <td class="num">861,835</td>
+          <td class="num">258,552</td>
+          <td class="num">3,789</td>
+          <td class="center"><span class="badge badge-onnet">1,000 (100.0%)</span></td>
+          <td class="center">93.85 - 98.95</td>
+          <td class="num" style="font-weight: 700; color: #10B981;">94.85</td>
+        </tr>
+        <tr>
+          <td><strong>Batch 2 (Phase 2)</strong></td>
+          <td class="num">1,000</td>
+          <td class="num">2,801,304</td>
+          <td class="num">637,422</td>
+          <td class="num">191,228</td>
+          <td class="num">2,801</td>
+          <td class="center"><span class="badge badge-onnet">1,000 (100.0%)</span></td>
+          <td class="center">92.80 - 93.85</td>
+          <td class="num" style="font-weight: 700;">93.30</td>
+        </tr>
+        <tr>
+          <td><strong>Batch 3 (Phase 3)</strong></td>
+          <td class="num">1,000</td>
+          <td class="num">13,678,630</td>
+          <td class="num">3,097,716</td>
+          <td class="num">929,315</td>
+          <td class="num">13,679</td>
+          <td class="center"><span class="badge badge-onnet">1,000 (100.0%)</span></td>
+          <td class="center">90.95 - 92.80</td>
+          <td class="num" style="font-weight: 700;">91.87</td>
+        </tr>
+        <tr>
+          <td><strong>Batch 4 (Phase 4)</strong></td>
+          <td class="num">1,000</td>
+          <td class="num">15,221,498</td>
+          <td class="num">3,446,163</td>
+          <td class="num">1,033,849</td>
+          <td class="num">15,221</td>
+          <td class="center"><span class="badge badge-gold">982 (98.2%)</span></td>
+          <td class="center">87.55 - 90.95</td>
+          <td class="num" style="font-weight: 700;">88.66</td>
+        </tr>
+        <tr>
+          <td><strong>Batch 5 (Phase 5)</strong></td>
+          <td class="num">1,000</td>
+          <td class="num">12,416,218</td>
+          <td class="num">2,810,131</td>
+          <td class="num">843,039</td>
+          <td class="num">12,416</td>
+          <td class="center"><span class="badge badge-gold">974 (97.4%)</span></td>
+          <td class="center">85.50 - 87.55</td>
+          <td class="num" style="font-weight: 700;">86.84</td>
+        </tr>
+        <tr class="total-row">
+          <td>TOTAL (Batches 1 - 5)</td>
+          <td class="num">5,000</td>
+          <td class="num">47,906,827</td>
+          <td class="num">10,853,267</td>
+          <td class="num">3,255,983</td>
+          <td class="num">9,581</td>
+          <td class="center">4,956 (99.1%)</td>
+          <td class="center">85.50 - 98.95</td>
+          <td class="num">91.10</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid-3">
+      <div class="card highlight">
+        <h4>Batch 1 & 2 Focus: Fast Payback</h4>
+        <p>100% on-net nodes, zero backhaul friction, targeting 2,500–5,000 pop catchments. Low capex, rapid subscriber activation.</p>
+      </div>
+      <div class="card success">
+        <h4>Batch 3 Focus: High Density Catchments</h4>
+        <p>Larger peri-urban barangays (5k–25k pop) along Converge trunk routes. Huge subscriber scale (929k subs @ 30%).</p>
+      </div>
+      <div class="card warning">
+        <h4>Batch 4 & 5 Focus: Nationwide Deepening</h4>
+        <p>Expansion into secondary provincial routes and remaining rural growth centers, achieving comprehensive national footprint.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: Batch 1 (First 1,000 Sites) Deep Dive -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Phase 1 Execution</div>
+        <div class="slide-title">Batch 1 (First 1,000 Sites) — The Priority Launch Footprint</div>
+      </div>
+      <div class="slide-number">Slide 6 / 12</div>
+    </div>
+
+    <div class="grid-4" style="margin-bottom: 14px;">
+      <div class="stat-card" style="border-top: 4px solid var(--blue-accent);">
+        <div class="stat-label">Sites / Barangays</div>
+        <div class="stat-val">1,000</div>
+        <div class="stat-sub">Across 271 Municipalities</div>
+      </div>
+      <div class="stat-card" style="border-top: 4px solid var(--teal);">
+        <div class="stat-label">Population Reached</div>
+        <div class="stat-val">3,789,177</div>
+        <div class="stat-sub">Avg 3,789 per Barangay</div>
+      </div>
+      <div class="stat-card" style="border-top: 4px solid var(--green);">
+        <div class="stat-label">Addressable Households</div>
+        <div class="stat-val">861,835</div>
+        <div class="stat-sub">Avg 862 HH per Site</div>
+      </div>
+      <div class="stat-card" style="border-top: 4px solid var(--gold);">
+        <div class="stat-label">Target Subs @ 30%</div>
+        <div class="stat-val">258,552</div>
+        <div class="stat-sub">Avg 259 Subs / Site</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card highlight">
+        <h3>Critical Strategic Highlights of Batch 1</h3>
+        <ul>
+          <li><strong>100.0% Converge Tier 1 On-Net:</strong> All 1,000 sites are within municipalities hosting active Converge nodes. Zero satellite opex required.</li>
+          <li><strong>99.8% Rural Classification:</strong> 998 of 1,000 barangays are classified as Rural (`R`), where pure FTTH competition is virtually non-existent.</li>
+          <li><strong>Ideal Radio Capacity Fit:</strong> At 259 average subscribers per site, sites comfortably achieve profitability (break-even ~180 subs) with head-room to reach 500+ subs without spectrum exhaustion.</li>
+          <li><strong>Fast Time-to-Market:</strong> Co-locating on existing infrastructure near Converge fiber allows turn-up in 14–30 days per cluster.</li>
+        </ul>
+      </div>
+
+      <div class="card success">
+        <h3>Batch 1 Operational Parameters</h3>
+        <table class="exec-table">
+          <tbody>
+            <tr><td><strong>Target Municipalities</strong></td><td class="num">271 Municipalities</td></tr>
+            <tr><td><strong>Target Provinces</strong></td><td class="num">46 Provinces</td></tr>
+            <tr><td><strong>Average Household Size</strong></td><td class="num">4.40 persons</td></tr>
+            <tr><td><strong>Average Composite Score</strong></td><td class="num" style="color: #10B981; font-weight: 700;">94.85 / 100</td></tr>
+            <tr><td><strong>Minimum Composite Score</strong></td><td class="num">93.85 / 100</td></tr>
+            <tr><td><strong>Target Monthly ARPU</strong></td><td class="num">₱599 ($10.89 USD)</td></tr>
+            <tr><td><strong>Year-1 Revenue Potential (@ 30%)</strong></td><td class="num" style="font-weight: 700; color: #10B981;">₱1.86 Billion / Year</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: Regional Breakdown of Batch 1 -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Geographic Distribution</div>
+        <div class="slide-title">Batch 1 Regional Footprint & Site Allocations</div>
+      </div>
+      <div class="slide-number">Slide 7 / 12</div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <table class="exec-table">
+          <thead>
+            <tr>
+              <th>Region</th>
+              <th class="num">Sites</th>
+              <th class="center">Share</th>
+              <th class="num">Population</th>
+              <th class="num">Households</th>
+              <th class="num">Subs @ 30%</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Region IV-A</strong></td>
+              <td class="num"><strong>292</strong></td>
+              <td class="center">29.2%</td>
+              <td class="num">1,130,863</td>
+              <td class="num">257,775</td>
+              <td class="num">77,329</td>
+            </tr><tr>
+              <td><strong>Region III</strong></td>
+              <td class="num"><strong>161</strong></td>
+              <td class="center">16.1%</td>
+              <td class="num">608,793</td>
+              <td class="num">139,037</td>
+              <td class="num">41,711</td>
+            </tr><tr>
+              <td><strong>Region V</strong></td>
+              <td class="num"><strong>131</strong></td>
+              <td class="center">13.1%</td>
+              <td class="num">486,052</td>
+              <td class="num">108,784</td>
+              <td class="num">32,637</td>
+            </tr><tr>
+              <td><strong>Region X</strong></td>
+              <td class="num"><strong>67</strong></td>
+              <td class="center">6.7%</td>
+              <td class="num">249,009</td>
+              <td class="num">56,408</td>
+              <td class="num">16,924</td>
+            </tr><tr>
+              <td><strong>Region VII</strong></td>
+              <td class="num"><strong>66</strong></td>
+              <td class="center">6.6%</td>
+              <td class="num">251,670</td>
+              <td class="num">57,138</td>
+              <td class="num">17,143</td>
+            </tr><tr>
+              <td><strong>Region II</strong></td>
+              <td class="num"><strong>62</strong></td>
+              <td class="center">6.2%</td>
+              <td class="num">226,269</td>
+              <td class="num">51,891</td>
+              <td class="num">15,568</td>
+            </tr><tr>
+              <td><strong>Region VI</strong></td>
+              <td class="num"><strong>54</strong></td>
+              <td class="center">5.4%</td>
+              <td class="num">201,667</td>
+              <td class="num">46,946</td>
+              <td class="num">14,083</td>
+            </tr><tr>
+              <td><strong>Region XIII</strong></td>
+              <td class="num"><strong>43</strong></td>
+              <td class="center">4.3%</td>
+              <td class="num">168,114</td>
+              <td class="num">37,708</td>
+              <td class="num">11,314</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <table class="exec-table" style="margin-bottom: 12px;">
+          <thead>
+            <tr>
+              <th>Region (Cont'd)</th>
+              <th class="num">Sites</th>
+              <th class="center">Share</th>
+              <th class="num">Population</th>
+              <th class="num">Households</th>
+              <th class="num">Subs @ 30%</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Region XI</strong></td>
+              <td class="num"><strong>26</strong></td>
+              <td class="center">2.6%</td>
+              <td class="num">100,335</td>
+              <td class="num">22,802</td>
+              <td class="num">6,842</td>
+            </tr><tr>
+              <td><strong>Region VIII</strong></td>
+              <td class="num"><strong>26</strong></td>
+              <td class="center">2.6%</td>
+              <td class="num">99,507</td>
+              <td class="num">22,714</td>
+              <td class="num">6,814</td>
+            </tr><tr>
+              <td><strong>Cordillera Administrative Region</strong></td>
+              <td class="num"><strong>25</strong></td>
+              <td class="center">2.5%</td>
+              <td class="num">91,980</td>
+              <td class="num">20,753</td>
+              <td class="num">6,227</td>
+            </tr><tr>
+              <td><strong>MIMAROPA Region</strong></td>
+              <td class="num"><strong>24</strong></td>
+              <td class="center">2.4%</td>
+              <td class="num">87,311</td>
+              <td class="num">19,843</td>
+              <td class="num">5,952</td>
+            </tr><tr>
+              <td><strong>Region I</strong></td>
+              <td class="num"><strong>17</strong></td>
+              <td class="center">1.7%</td>
+              <td class="num">64,869</td>
+              <td class="num">14,869</td>
+              <td class="num">4,459</td>
+            </tr>
+            <tr class="total-row">
+              <td>TOTAL BATCH 1</td>
+              <td class="num">1,000</td>
+              <td class="center">100.0%</td>
+              <td class="num">3,789,177</td>
+              <td class="num">861,835</td>
+              <td class="num">258,552</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="card highlight">
+          <h4>Top 5 Provinces in Batch 1</h4>
+          <p style="font-size: 12.5px;">
+            <strong>1. Batangas:</strong> 94 Sites (373k Pop · 84k HH)<br>
+            <strong>2. Cavite:</strong> 79 Sites (315k Pop · 74k HH)<br>
+            <strong>3. Cebu:</strong> 55 Sites (211k Pop · 47k HH)<br>
+            <strong>4. Quezon:</strong> 51 Sites (187k Pop · 40k HH)<br>
+            <strong>5. Camarines Sur:</strong> 48 Sites (184k Pop · 39k HH)
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: Top 20 Showcase Barangays -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Priority Sites</div>
+        <div class="slide-title">Top 20 Ranked Priority Barangays (Batch 1 Leaders)</div>
+      </div>
+      <div class="slide-number">Slide 8 / 12</div>
+    </div>
+
+    <table class="exec-table">
+      <thead>
+        <tr>
+          <th class="center">Rank</th>
+          <th>Barangay</th>
+          <th>Municipality</th>
+          <th>Province</th>
+          <th>Region</th>
+          <th class="num">2020 Pop</th>
+          <th class="num">Households</th>
+          <th class="num">Subs @ 30%</th>
+          <th>Converge Infra Status</th>
+          <th class="num">Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="center"><strong>1</strong></td>
+          <td><strong>San Juan</strong></td>
+          <td>Baras</td>
+          <td>Rizal</td>
+          <td>Region IV-A</td>
+          <td class="num">4,838</td>
+          <td class="num">1,169</td>
+          <td class="num">351</td>
+          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="num" style="font-weight: 700; color: #10B981;">98.95</td>
+        </tr><tr>
+          <td class="center"><strong>2</strong></td>
+          <td><strong>Evangelista</strong></td>
+          <td>Baras</td>
+          <td>Rizal</td>
+          <td>Region IV-A</td>
+          <td class="num">4,245</td>
+          <td class="num">1,025</td>
+          <td class="num">308</td>
+          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="num" style="font-weight: 700; color: #10B981;">98.95</td>
+        </tr><tr>
+          <td class="center"><strong>3</strong></td>
+          <td><strong>Santiago</strong></td>
+          <td>Baras</td>
+          <td>Rizal</td>
+          <td>Region IV-A</td>
+          <td class="num">4,141</td>
+          <td class="num">1,000</td>
+          <td class="num">300</td>
+          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="num" style="font-weight: 700; color: #10B981;">98.95</td>
+        </tr><tr>
+          <td class="center"><strong>4</strong></td>
+          <td><strong>Monamon Sur</strong></td>
+          <td>Bauko</td>
+          <td>Mountain Province</td>
+          <td>Cordillera Administrative Region</td>
+          <td class="num">3,877</td>
+          <td class="num">852</td>
+          <td class="num">256</td>
+          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="num" style="font-weight: 700; color: #10B981;">97.38</td>
+        </tr><tr>
+          <td class="center"><strong>5</strong></td>
+          <td><strong>Tagakpan</strong></td>
+          <td>City of Davao</td>
+          <td>Davao del Sur</td>
+          <td>Region XI</td>
+          <td class="num">4,955</td>
+          <td class="num">1,126</td>
+          <td class="num">338</td>
+          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="num" style="font-weight: 700; color: #10B981;">97.00</td>
+        </tr><tr>
+          <td class="center"><strong>6</strong></td>
+          <td><strong>Tawan-tawan</strong></td>
+          <td>City of Davao</td>
+          <td>Davao del Sur</td>
+          <td>Region XI</td>
+          <td class="num">4,632</td>
+          <td class="num">1,053</td>
+          <td class="num">316</td>
+          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="num" style="font-weight: 700; color: #10B981;">97.00</td>
+        </tr><tr>
+          <td class="center"><strong>7</strong></td>
+          <td><strong>Lamanan</strong></td>
+          <td>City of Davao</td>
+          <td>Davao del Sur</td>
+          <td>Region XI</td>
+          <td class="num">4,604</td>
+          <td class="num">1,046</td>
+          <td class="num">314</td>
+          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="num" style="font-weight: 700; color: #10B981;">97.00</td>
+        </tr><tr>
+          <td class="center"><strong>8</strong></td>
+          <td><strong>Waan</strong></td>
+          <td>City of Davao</td>
+          <td>Davao del Sur</td>
+          <td>Region XI</td>
+          <td class="num">4,500</td>
+          <td class="num">1,023</td>
+          <td class="num">307</td>
+          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="num" style="font-weight: 700; color: #10B981;">97.00</td>
+        </tr><tr>
+          <td class="center"><strong>9</strong></td>
+          <td><strong>Biao Escuela</strong></td>
+          <td>City of Davao</td>
+          <td>Davao del Sur</td>
+          <td>Region XI</td>
+          <td class="num">4,263</td>
+          <td class="num">969</td>
+          <td class="num">291</td>
+          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="num" style="font-weight: 700; color: #10B981;">97.00</td>
+        </tr><tr>
+          <td class="center"><strong>10</strong></td>
+          <td><strong>Pandaitan</strong></td>
+          <td>City of Davao</td>
+          <td>Davao del Sur</td>
+          <td>Region XI</td>
+          <td class="num">4,257</td>
+          <td class="num">967</td>
+          <td class="num">290</td>
+          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="num" style="font-weight: 700; color: #10B981;">97.00</td>
+        </tr><tr>
+          <td class="center"><strong>11</strong></td>
+          <td><strong>Mudiang</strong></td>
+          <td>City of Davao</td>
+          <td>Davao del Sur</td>
+          <td>Region XI</td>
+          <td class="num">4,115</td>
+          <td class="num">935</td>
+          <td class="num">280</td>
+          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="num" style="font-weight: 700; color: #10B981;">97.00</td>
+        </tr><tr>
+          <td class="center"><strong>12</strong></td>
+          <td><strong>Catigan</strong></td>
+          <td>City of Davao</td>
+          <td>Davao del Sur</td>
+          <td>Region XI</td>
+          <td class="num">4,021</td>
+          <td class="num">914</td>
+          <td class="num">274</td>
+          <td><span class="badge badge-onnet">Tier 1A</span></td>
+          <td class="num" style="font-weight: 700; color: #10B981;">97.00</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="font-size: 11px; color: var(--text-muted); margin-top: 6px; text-align: right;">
+      * Complete list of all 1,000 Phase 1 barangays available in <strong>FWA_Barangay_Rollout_Plan_1000s.xlsx</strong> (Tab: Batch 1).
+    </div>
+  </div>
+
+  <!-- SLIDE 9: Succeeding Batches Strategy -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Expansion Strategy</div>
+        <div class="slide-title">Scaling to 5,000 Sites: Strategy for Succeeding Batches</div>
+      </div>
+      <div class="slide-number">Slide 9 / 12</div>
+    </div>
+
+    <div class="grid-3" style="margin-bottom: 14px;">
+      <div class="card highlight">
+        <span class="badge badge-onnet" style="margin-bottom: 8px;">Phase 2 · Year 2</span>
+        <h3>Batch 2 (1,001 - 2,000)</h3>
+        <h4>High-Priority Rural Expansion</h4>
+        <p style="margin-bottom: 8px;"><strong>Score:</strong> 92.80 - 93.85 | <strong>Sites:</strong> 1,000</p>
+        <ul>
+          <li><strong>Pop Range:</strong> 2,200 – 3,000 residents per barangay.</li>
+          <li><strong>Focus Provinces:</strong> Pangasinan (131), Cebu (67), Camarines Sur (38), Batangas (33), Quezon (30).</li>
+          <li><strong>Backhaul:</strong> 100% on-net active Converge nodes.</li>
+          <li><strong>Subs @ 30%:</strong> 191,228 total subscribers.</li>
+        </ul>
+      </div>
+
+      <div class="card success">
+        <span class="badge badge-gold" style="margin-bottom: 8px;">Phase 3 · Year 3</span>
+        <h3>Batch 3 (2,001 - 3,000)</h3>
+        <h4>High-Density Peri-Urban Corridors</h4>
+        <p style="margin-bottom: 8px;"><strong>Score:</strong> 90.95 - 92.80 | <strong>Sites:</strong> 1,000</p>
+        <ul>
+          <li><strong>Pop Range:</strong> 5,000 – 25,000 residents per barangay.</li>
+          <li><strong>Focus Provinces:</strong> Cavite (118), Bulacan (88), Cebu (85), Laguna (73), Pampanga (62), Davao (61).</li>
+          <li><strong>Backhaul:</strong> Direct backbone DWDM drops.</li>
+          <li><strong>Subs @ 30%:</strong> 929,315 subscribers (multi-sector capacity).</li>
+        </ul>
+      </div>
+
+      <div class="card warning">
+        <span class="badge badge-rural" style="margin-bottom: 8px;">Phase 4 & 5 · Years 4-5</span>
+        <h3>Batches 4 & 5 (3,001 - 5,000)</h3>
+        <h4>Nationwide Market Completion</h4>
+        <p style="margin-bottom: 8px;"><strong>Score:</strong> 85.50 - 90.95 | <strong>Sites:</strong> 2,000</p>
+        <ul>
+          <li><strong>Pop Range:</strong> Broad rural & suburban spread.</li>
+          <li><strong>Coverage:</strong> Extends across all 75 provinces nationwide.</li>
+          <li><strong>Backhaul:</strong> 98% Converge on-net; selective microwave hops.</li>
+          <li><strong>Subs @ 30%:</strong> 1,876,888 addressable subscribers.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card navy">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <h4 style="color: var(--teal);">CUMULATIVE 5-YEAR TARGET</h4>
+          <p style="font-size: 13px;">5,000 macro sites serving <strong>3.26 Million paying households</strong> across 47.9M population.</p>
+        </div>
+        <div style="text-align: right; font-size: 13px; color: #10B981; font-weight: 700;">
+          Estimated Annual Run-Rate: $425M+ USD / Year
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 10: Unit Economics & Financial Returns -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Financial Model</div>
+        <div class="slide-title">Site Unit Economics & Subscriber Capacity Payback</div>
+      </div>
+      <div class="slide-number">Slide 10 / 12</div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card highlight">
+        <h3>Macro Site Capital & Operating Economics</h3>
+        <table class="exec-table">
+          <thead>
+            <tr><th>Cost Element</th><th class="num">Per Site (USD)</th><th class="num">Per Site (PHP @ 55)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>5G RAN Equipment (3 Sectors)</strong></td><td class="num">$26,000</td><td class="num">₱1,430,000</td></tr>
+            <tr><td><strong>Ancillary Materials & Installation</strong></td><td class="num">$15,900</td><td class="num">₱874,500</td></tr>
+            <tr><td><strong>Total Site Capex (Colocation/Leased)</strong></td><td class="num" style="font-weight: 700; color: var(--navy);">$41,900</td><td class="num" style="font-weight: 700; color: var(--navy);">₱2,304,500</td></tr>
+            <tr><td><strong>Monthly Tower Lease (TowerCo)</strong></td><td class="num">$2,182 / mo</td><td class="num">₱120,000 / mo</td></tr>
+            <tr><td><strong>Monthly Power & Electricity</strong></td><td class="num">$1,455 / mo</td><td class="num">₱80,000 / mo</td></tr>
+            <tr><td><strong>Monthly Converge FOC Backhaul</strong></td><td class="num" style="color: #10B981; font-weight: 700;">$150 / mo (Internal)</td><td class="num" style="color: #10B981; font-weight: 700;">₱8,250 / mo</td></tr>
+            <tr><td><strong>Monthly Telco O&M & Field Support</strong></td><td class="num">$2,182 / mo</td><td class="num">₱120,000 / mo</td></tr>
+            <tr class="total-row"><td>Total Monthly Site Fixed Opex</td><td class="num">$5,969 / mo</td><td class="num">₱328,250 / mo</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <div class="card success" style="margin-bottom: 12px;">
+          <h3>Revenue & Break-Even at ₱599 ARPU</h3>
+          <p style="margin-bottom: 8px;">Assuming retail plan at <strong>₱599 / month ($10.89 USD)</strong> with 50 Mbps uncapped data:</p>
+          <table class="exec-table">
+            <thead>
+              <tr><th>Active Subscribers</th><th class="num">Monthly Revenue</th><th class="num">Monthly EBITDA</th><th class="center">Payback Period</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>150 Subs</strong> (15% take-up)</td><td class="num">₱89,850</td><td class="num" style="color: #DC2626;">-₱238,400</td><td class="center">Negative</td></tr>
+              <tr><td><strong>300 Subs</strong> (30% take-up)</td><td class="num">₱179,700</td><td class="num" style="color: #D97706;">-₱148,550</td><td class="center">N/A</td></tr>
+              <tr><td><strong>450 Subs</strong> (45% take-up)</td><td class="num">₱269,550</td><td class="num" style="color: #D97706;">-₱58,700</td><td class="center">Near Break-even</td></tr>
+              <tr><td><strong>550 Subs</strong> (Break-even line)</td><td class="num">₱329,450</td><td class="num" style="color: #10B981; font-weight: 700;">+₱1,200</td><td class="center">Break-Even</td></tr>
+              <tr><td><strong>750 Subs</strong> (Cluster scale)</td><td class="num">₱449,250</td><td class="num" style="color: #10B981; font-weight: 700;">+₱121,000</td><td class="center">19 Months</td></tr>
+              <tr><td><strong>1,000 Subs</strong> (Dual Sector)</td><td class="num">₱599,000</td><td class="num" style="color: #10B981; font-weight: 700;">+₱270,750</td><td class="center">8.5 Months</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card warning">
+          <h4>Multi-Tenant Tower Lease Negotiation</h4>
+          <p style="font-size: 12.5px;">Negotiating TowerCo master lease rates down from ₱120k to ₱60k–₱80k (standard secondary colocation) drops site break-even to <strong>350 subscribers</strong>, unlocking massive profitability across all 1,000 Batch 1 sites.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 11: Execution Playbook -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Implementation</div>
+        <div class="slide-title">Site Acquisition & Turn-Up Execution Playbook</div>
+      </div>
+      <div class="slide-number">Slide 11 / 12</div>
+    </div>
+
+    <div class="grid-4" style="margin-bottom: 14px;">
+      <div class="card highlight">
+        <div class="badge badge-onnet" style="margin-bottom: 6px;">Day 1 - 30</div>
+        <h3>1. Site Acquisition</h3>
+        <ul>
+          <li>Submit target coordinates to TowerCos (EDOTCO, EdgePoint, PhilTower).</li>
+          <li>Prioritize existing towers within 1.5 km of barangay hall.</li>
+          <li>Secure municipal LGU clearance and barangay council resolutions.</li>
+        </ul>
+      </div>
+
+      <div class="card success">
+        <div class="badge badge-onnet" style="margin-bottom: 6px;">Day 15 - 45</div>
+        <h3>2. Converge OSP Link</h3>
+        <ul>
+          <li>Issue work order to Converge Outside Plant (OSP) engineering.</li>
+          <li>Splice optical drop cable from matching backbone node (0–3 km).</li>
+          <li>Terminate on dedicated 10G SFP+ port in baseband cabinet.</li>
+        </ul>
+      </div>
+
+      <div class="card warning">
+        <div class="badge badge-onnet" style="margin-bottom: 6px;">Day 30 - 60</div>
+        <h3>3. RAN & Core Integration</h3>
+        <ul>
+          <li>Install 3x 5G Active Antenna Units (AAUs) on tower mount.</li>
+          <li>Power connection & battery backup installation.</li>
+          <li>Commission gNodeB with Comclark 5G Core & OSS/BSS.</li>
+        </ul>
+      </div>
+
+      <div class="card danger">
+        <div class="badge badge-onnet" style="margin-bottom: 6px;">Day 45 - 75</div>
+        <h3>4. Sales & CPE Launch</h3>
+        <ul>
+          <li>Deploy barangay commercial roadshow & local load agents.</li>
+          <li>Offer zero-cashout CPE self-install kits for ₱599/mo promo.</li>
+          <li>Target 40% subscriber fill rate within first 45 days of on-air.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card navy">
+      <h4 style="color: var(--teal); margin-bottom: 4px;">FAST-TRACK ADVANTAGE</h4>
+      <p style="font-size: 13px;">
+        Because all 1,000 Batch 1 sites are in municipalities with <strong>pre-existing Converge fiber infrastructure</strong>, right-of-way hurdles and lengthy long-haul optical builds are eliminated, enabling simultaneous rollout across 10 regional clusters.
+      </p>
+    </div>
+  </div>
+
+  <!-- SLIDE 12: Board Recommendation & Next Steps -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Decision Mandate</div>
+        <div class="slide-title">Board Recommendations & Immediate Next Steps</div>
+      </div>
+      <div class="slide-number">Slide 12 / 12</div>
+    </div>
+
+    <div class="grid-3" style="margin-bottom: 16px;">
+      <div class="card highlight">
+        <h3>1. Approve Batch 1 Scope</h3>
+        <p style="margin-bottom: 8px;">Formally authorize the <strong>1,000-Site Batch 1 Rollout</strong> spanning 271 municipalities across 46 provinces.</p>
+        <ul>
+          <li>Lock in the priority barangay list from the model.</li>
+          <li>Instruct site acquisition teams to initiate lease filings.</li>
+        </ul>
+      </div>
+
+      <div class="card success">
+        <h3>2. Converge OSP Task Order</h3>
+        <p style="margin-bottom: 8px;">Issue joint technical directive to Converge Outside Plant engineering.</p>
+        <ul>
+          <li>Reserve optical core pairs at the 271 target node locations.</li>
+          <li>Standardize the 10G fiber lateral drop specification.</li>
+        </ul>
+      </div>
+
+      <div class="card warning">
+        <h3>3. Equipment Procurement</h3>
+        <p style="margin-bottom: 8px;">Release initial capital expenditure approval for radio and CPE hardware.</p>
+        <ul>
+          <li>Procure 1,000 3-sector 5G RAN baseband packages ($26M).</li>
+          <li>Order initial batch of 100,000 Band n50 indoor CPEs.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card navy" style="text-align: center; padding: 22px;">
+      <h3 style="color: var(--teal); font-size: 20px; margin-bottom: 8px;">Master Deliverable Available for Review</h3>
+      <p style="font-size: 14px; color: #CBD5E1; margin-bottom: 14px;">
+        The detailed tabular dataset with complete demographic, geographic, and infrastructure metadata for all 1,000 Phase 1 barangays and succeeding batches is live in:
+      </p>
+      <div style="display: inline-block; background: rgba(0, 180, 216, 0.15); border: 1px solid var(--teal); border-radius: 8px; padding: 10px 24px; color: white; font-weight: 700; font-size: 14px;">
+        📊 FWA_Barangay_Rollout_Plan_1000s.xlsx
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+  const slideNumEl = document.getElementById('slide-num');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+
+  function showSlide(index) {
+    if (index < 0) index = 0;
+    if (index >= totalSlides) index = totalSlides - 1;
+    currentSlide = index;
+
+    slides.forEach((s, idx) => {
+      s.classList.remove('active');
+      if (idx === currentSlide) s.classList.add('active');
+    });
+
+    slideNumEl.textContent = `Slide ${currentSlide + 1} / ${totalSlides}`;
+    prevBtn.disabled = (currentSlide === 0);
+    nextBtn.disabled = (currentSlide === totalSlides - 1);
+  }
+
+  function nextSlide() {
+    if (currentSlide < totalSlides - 1) showSlide(currentSlide + 1);
+  }
+
+  function prevSlide() {
+    if (currentSlide > 0) showSlide(currentSlide - 1);
+  }
+
+  function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(err => console.log(err));
+    } else {
+      if (document.exitFullscreen) document.exitFullscreen();
+    }
+  }
+
+  // Keyboard controls
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+      nextSlide();
+    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      prevSlide();
+    } else if (e.key === 'Home') {
+      showSlide(0);
+    } else if (e.key === 'End') {
+      showSlide(totalSlides - 1);
+    }
+  });
+
+  // Touch swipe support
+  let touchStartX = 0;
+  let touchEndX = 0;
+  document.getElementById('slide-container').addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, false);
+
+  document.getElementById('slide-container').addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    if (touchEndX < touchStartX - 50) nextSlide();
+    if (touchEndX > touchStartX + 50) prevSlide();
+  }, false);
+
+  showSlide(0);
+</script>
+
+</body>
+</html>
