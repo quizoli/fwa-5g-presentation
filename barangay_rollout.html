@@ -242,7 +242,61 @@
     .cover-slide h1 { font-size: 26px; }
     .cover-meta { flex-direction: column; gap: 8px; }
   }
+
+  /* Interactive Map Styles */
+  .map-phase-btn {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 6px;
+    color: #94A3B8;
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .map-phase-btn:hover {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+  }
+  .map-phase-btn.active {
+    background: #fff;
+    color: #0A192F;
+    border-color: #fff;
+    font-weight: 700;
+  }
+  .map-phase-btn.p1.active { background: #00B4D8; color: #0A192F; border-color: #00B4D8; }
+  .map-phase-btn.p2.active { background: #10B981; color: #0A192F; border-color: #10B981; }
+  .map-phase-btn.p3.active { background: #F59E0B; color: #0A192F; border-color: #F59E0B; }
+  .map-phase-btn.p4.active { background: #8B5CF6; color: #fff; border-color: #8B5CF6; }
+  .map-phase-btn.p5.active { background: #EF4444; color: #fff; border-color: #EF4444; }
+
+  /* Custom Leaflet Popup Styling */
+  .leaflet-popup-content-wrapper {
+    background: rgba(10, 25, 47, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    border-radius: 10px !important;
+    color: #E2E8F0 !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6) !important;
+  }
+  .leaflet-popup-tip {
+    background: rgba(10, 25, 47, 0.95) !important;
+  }
+  .leaflet-popup-content {
+    margin: 12px 14px !important;
+    font-family: inherit !important;
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+  }
+
 </style>
+
+  <!-- Leaflet GIS Mapping CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="fwa_sites_data.js"></script>
+
 </head>
 <body>
 
@@ -256,7 +310,7 @@
   </div>
   <div class="controls">
     <button class="btn-nav" id="prev-btn" onclick="prevSlide()">◀ Prev</button>
-    <div class="slide-counter" id="slide-num">Slide 1 / 12</div>
+    <div class="slide-counter" id="slide-num">Slide 1 / 13</div>
     <button class="btn-nav" id="next-btn" onclick="nextSlide()">Next ▶</button>
     <button class="btn-nav" onclick="toggleFullScreen()">⛶ Fullscreen</button>
   </div>
@@ -288,7 +342,7 @@
         <div class="slide-category">Radio Dimensioning</div>
         <div class="slide-title">Band n50 (1.5 GHz) Radio Dimensioning & BTS Sizing Parameters</div>
       </div>
-      <div class="slide-number">Slide 2 / 12</div>
+      <div class="slide-number">Slide 2 / 13</div>
     </div>
     
     <div class="grid-4" style="margin-bottom: 12px;">
@@ -349,7 +403,7 @@
         <div class="slide-category">Market Sizing</div>
         <div class="slide-title">Nationwide Barangay Universe & Phasing Funnel</div>
       </div>
-      <div class="slide-number">Slide 3 / 12</div>
+      <div class="slide-number">Slide 3 / 13</div>
     </div>
 
     <div class="grid-5" style="margin-bottom: 16px;">
@@ -409,7 +463,7 @@
         <div class="slide-category">Infrastructure Leverage</div>
         <div class="slide-title">The Converge Backbone Advantage: Zero Backhaul Bottleneck</div>
       </div>
-      <div class="slide-number">Slide 4 / 12</div>
+      <div class="slide-number">Slide 4 / 13</div>
     </div>
 
     <div class="grid-3" style="margin-bottom: 16px;">
@@ -472,7 +526,7 @@
         <div class="slide-category">5-Year Phasing Plan</div>
         <div class="slide-title">Master 5-Batch Rollout & n50 BTS Dimensioning (5,000 Sites)</div>
       </div>
-      <div class="slide-number">Slide 5 / 12</div>
+      <div class="slide-number">Slide 5 / 13</div>
     </div>
 
     <table class="exec-table" style="margin-bottom: 14px;">
@@ -585,7 +639,7 @@
         <div class="slide-category">Phase 1 Execution</div>
         <div class="slide-title">Batch 1 (First 1,000 Sites / BTS) — The Priority Launch Footprint</div>
       </div>
-      <div class="slide-number">Slide 6 / 12</div>
+      <div class="slide-number">Slide 6 / 13</div>
     </div>
 
     <div class="grid-4" style="margin-bottom: 14px;">
@@ -646,7 +700,7 @@
         <div class="slide-category">Geographic Distribution</div>
         <div class="slide-title">Batch 1 Regional Footprint & Site Allocations</div>
       </div>
-      <div class="slide-number">Slide 7 / 12</div>
+      <div class="slide-number">Slide 7 / 13</div>
     </div>
 
     <div class="grid-2">
@@ -806,13 +860,101 @@
   </div>
 
   <!-- SLIDE 8: Top 20 Showcase Barangays with BTS counts -->
-  <div class="slide">
+  
+  <!-- SLIDE 8: Interactive Site Map -->
+  <div class="slide" id="slide-interactive-map">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">GIS Visualization</div>
+        <div class="slide-title">Interactive Site Map: Phase 1 to 5 Rollout (5,000 Sites)</div>
+      </div>
+      <div class="slide-number">Slide 8 / 13</div>
+    </div>
+
+    <!-- Map Toolbar -->
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 10px; flex-wrap: wrap;">
+      <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap;" id="phase-filter-group">
+        <span style="font-size: 12px; font-weight: 700; color: #94A3B8; margin-right: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Filter Phase:</span>
+        <button class="map-phase-btn active" onclick="filterMapPhase(0)" id="btn-phase-0">All 5,000</button>
+        <button class="map-phase-btn p1" onclick="filterMapPhase(1)" id="btn-phase-1">Phase 1 (1k)</button>
+        <button class="map-phase-btn p2" onclick="filterMapPhase(2)" id="btn-phase-2">Phase 2 (1k)</button>
+        <button class="map-phase-btn p3" onclick="filterMapPhase(3)" id="btn-phase-3">Phase 3 (1k)</button>
+        <button class="map-phase-btn p4" onclick="filterMapPhase(4)" id="btn-phase-4">Phase 4 (1k)</button>
+        <button class="map-phase-btn p5" onclick="filterMapPhase(5)" id="btn-phase-5">Phase 5 (1k)</button>
+      </div>
+
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <div style="position: relative;">
+          <input type="text" id="map-search-input" placeholder="Search Barangay, City, Province..." 
+                 style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; padding: 6px 12px; color: #fff; font-size: 12px; width: 230px; outline: none;"
+                 onkeydown="if(event.key==='Enter') searchMapSite();">
+          <button onclick="searchMapSite()" style="position: absolute; right: 4px; top: 4px; background: var(--teal); border: none; border-radius: 4px; color: #0A192F; font-size: 11px; font-weight: 700; padding: 3px 8px; cursor: pointer;">Go</button>
+        </div>
+        <button onclick="resetMapView()" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; color: #CBD5E1; font-size: 12px; padding: 6px 12px; cursor: pointer; transition: all 0.2s;">Reset View</button>
+        <a href="FWA_Rollout_Sites_Master.kmz" download style="display: inline-flex; align-items: center; gap: 6px; background: rgba(0, 180, 216, 0.15); border: 1px solid var(--teal); border-radius: 6px; color: var(--teal); font-size: 12px; font-weight: 700; padding: 6px 12px; text-decoration: none; transition: all 0.2s;">
+          <span>🌍 Standalone KMZ (Google Earth)</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Map Viewport -->
+    <div style="position: relative; width: 100%; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 12px 30px rgba(0,0,0,0.5);">
+      <div id="fwa-sites-map" style="height: 485px; width: 100%; background: #0B132B;"></div>
+      
+      <!-- Live Map Stat Overlay -->
+      <div style="position: absolute; top: 12px; right: 12px; z-index: 1000; background: rgba(10, 25, 47, 0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 10px 14px; font-size: 11.5px; min-width: 190px; pointer-events: auto; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
+        <div style="font-weight: 700; color: #94A3B8; text-transform: uppercase; font-size: 10px; margin-bottom: 6px;" id="map-stat-title">Active Filter: All 5 Batches</div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+          <span style="color: #CBD5E1;">Sites Plotted:</span>
+          <span style="font-weight: 700; color: var(--teal);" id="map-stat-sites">5,000</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+          <span style="color: #CBD5E1;">n50 BTS Capacity:</span>
+          <span style="font-weight: 700; color: #10B981;" id="map-stat-bts">5,000 BTS</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+          <span style="color: #CBD5E1;">Population:</span>
+          <span style="font-weight: 700; color: #fff;" id="map-stat-pop">18.9M</span>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span style="color: #CBD5E1;">Target Subs @ 30%:</span>
+          <span style="font-weight: 700; color: #F59E0B;" id="map-stat-subs">1.29M</span>
+        </div>
+      </div>
+
+      <!-- Map Legend Overlay -->
+      <div style="position: absolute; bottom: 12px; left: 12px; z-index: 1000; background: rgba(10, 25, 47, 0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 8px 12px; font-size: 11px; display: flex; gap: 14px; align-items: center; box-shadow: 0 4px 16px rgba(0,0,0,0.3);">
+        <div style="display: flex; align-items: center; gap: 5px;">
+          <span style="width: 10px; height: 10px; border-radius: 50%; background: #00B4D8; display: inline-block;"></span>
+          <span style="color: #E2E8F0; font-weight: 600;">Phase 1 (1–1k)</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 5px;">
+          <span style="width: 10px; height: 10px; border-radius: 50%; background: #10B981; display: inline-block;"></span>
+          <span style="color: #E2E8F0; font-weight: 600;">Phase 2 (1–2k)</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 5px;">
+          <span style="width: 10px; height: 10px; border-radius: 50%; background: #F59E0B; display: inline-block;"></span>
+          <span style="color: #E2E8F0; font-weight: 600;">Phase 3 (2–3k)</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 5px;">
+          <span style="width: 10px; height: 10px; border-radius: 50%; background: #8B5CF6; display: inline-block;"></span>
+          <span style="color: #E2E8F0; font-weight: 600;">Phase 4 (3–4k)</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 5px;">
+          <span style="width: 10px; height: 10px; border-radius: 50%; background: #EF4444; display: inline-block;"></span>
+          <span style="color: #E2E8F0; font-weight: 600;">Phase 5 (4–5k)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="slide">
     <div class="slide-header">
       <div>
         <div class="slide-category">Priority Sites</div>
         <div class="slide-title">Top 20 Priority Barangays & Band n50 BTS Allocation</div>
       </div>
-      <div class="slide-number">Slide 8 / 12</div>
+      <div class="slide-number">Slide 8 / 13</div>
     </div>
 
     <table class="exec-table">
@@ -991,7 +1133,7 @@
         <div class="slide-category">Expansion Strategy</div>
         <div class="slide-title">Scaling to 5,000 BTS: Strategy for Succeeding Batches</div>
       </div>
-      <div class="slide-number">Slide 9 / 12</div>
+      <div class="slide-number">Slide 9 / 13</div>
     </div>
 
     <div class="grid-3" style="margin-bottom: 14px;">
@@ -1055,7 +1197,7 @@
         <div class="slide-category">Financial Model</div>
         <div class="slide-title">Site Unit Economics & Subscriber Capacity Payback</div>
       </div>
-      <div class="slide-number">Slide 10 / 12</div>
+      <div class="slide-number">Slide 10 / 13</div>
     </div>
 
     <div class="grid-2">
@@ -1112,7 +1254,7 @@
         <div class="slide-category">Implementation</div>
         <div class="slide-title">Site Acquisition & Turn-Up Execution Playbook</div>
       </div>
-      <div class="slide-number">Slide 11 / 12</div>
+      <div class="slide-number">Slide 12 / 13</div>
     </div>
 
     <div class="grid-4" style="margin-bottom: 14px;">
@@ -1172,7 +1314,7 @@
         <div class="slide-category">Decision Mandate</div>
         <div class="slide-title">Board Recommendations & Immediate Next Steps</div>
       </div>
-      <div class="slide-number">Slide 12 / 12</div>
+      <div class="slide-number">Slide 13 / 13</div>
     </div>
 
     <div class="grid-3" style="margin-bottom: 16px;">
@@ -1236,6 +1378,15 @@
     });
 
     slideNumEl.textContent = `Slide ${currentSlide + 1} / ${totalSlides}`;
+
+    // Invalidate Leaflet map size on slide activation
+    if (currentSlide === 7) {
+      setTimeout(() => {
+        initFwaMap();
+        if (leafletMap) leafletMap.invalidateSize();
+      }, 150);
+    }
+
     prevBtn.disabled = (currentSlide === 0);
     nextBtn.disabled = (currentSlide === totalSlides - 1);
   }
@@ -1263,6 +1414,173 @@
       prevSlide();
     } else if (e.key === 'Home') {
       showSlide(0);
+
+
+// ==========================================
+// INTERACTIVE GIS MAP ENGINE (5,000 SITES)
+// ==========================================
+const PHASE_CONFIG = {
+  1: { name: "Phase 1 (Batch 1)", color: "#00B4D8", radius: 4.5, border: "#ffffff" },
+  2: { name: "Phase 2 (Batch 2)", color: "#10B981", radius: 4.0, border: "#ffffff" },
+  3: { name: "Phase 3 (Batch 3)", color: "#F59E0B", radius: 3.8, border: "#ffffff" },
+  4: { name: "Phase 4 (Batch 4)", color: "#8B5CF6", radius: 3.5, border: "#ffffff" },
+  5: { name: "Phase 5 (Batch 5)", color: "#EF4444", radius: 3.5, border: "#ffffff" }
+};
+
+let leafletMap = null;
+let mapMarkers = [];
+let mapCanvasRenderer = null;
+let currentPhaseFilter = 0; // 0 = all
+
+function initFwaMap() {
+  if (leafletMap !== null) return;
+  const mapContainer = document.getElementById('fwa-sites-map');
+  if (!mapContainer) return;
+
+  leafletMap = L.map('fwa-sites-map', {
+    center: [12.8797, 121.7740],
+    zoom: 6,
+    minZoom: 5,
+    maxZoom: 16,
+    preferCanvas: true
+  });
+
+  // Dark basemap
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap &copy; CARTO',
+    subdomains: 'abcd',
+    maxZoom: 19
+  }).addTo(leafletMap);
+
+  mapCanvasRenderer = L.canvas({ padding: 0.5 });
+
+  // Render all 5,000 sites
+  renderMarkers(0);
+}
+
+function renderMarkers(phaseFilter) {
+  if (!leafletMap || !window.RAW_SITES_DATA) return;
+
+  // Clear existing
+  mapMarkers.forEach(m => leafletMap.removeLayer(m.marker));
+  mapMarkers = [];
+
+  let visibleCount = 0;
+  let visiblePop = 0;
+  let visibleSubs = 0;
+  let visibleBts = 0;
+
+  window.RAW_SITES_DATA.forEach(d => {
+    const [lat, lon, bgy, muni, prov, pop, hh, subs, bts1000, pNum, score, tier] = d;
+    if (phaseFilter !== 0 && pNum !== phaseFilter) return;
+
+    visibleCount++;
+    visiblePop += pop;
+    visibleSubs += subs;
+    visibleBts += bts1000;
+
+    const conf = PHASE_CONFIG[pNum];
+    const marker = L.circleMarker([lat, lon], {
+      renderer: mapCanvasRenderer,
+      radius: conf.radius,
+      fillColor: conf.color,
+      fillOpacity: 0.88,
+      color: conf.border,
+      weight: 1
+    });
+
+    const popupHtml = `
+      <div style="min-width: 250px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+          <span style="background:${conf.color}; color:#0A192F; font-size:10px; font-weight:800; padding:2px 7px; border-radius:4px; text-transform:uppercase;">
+            ${conf.name}
+          </span>
+          <span style="font-weight:700; color:#10B981; font-size:11px;">Score: ${score} / 100</span>
+        </div>
+        <h3 style="margin:0 0 2px 0; font-size:14px; color:#fff; font-weight:700;">${bgy}</h3>
+        <div style="color:#94A3B8; font-size:11px; margin-bottom:8px;">${muni}, ${prov}</div>
+        
+        <div style="background:rgba(255,255,255,0.06); border-radius:6px; padding:6px 8px; margin-bottom:8px;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
+            <span style="color:#94A3B8;">Population:</span>
+            <span style="color:#fff; font-weight:600;">${pop.toLocaleString()}</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
+            <span style="color:#94A3B8;">Households:</span>
+            <span style="color:#fff; font-weight:600;">${hh.toLocaleString()}</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
+            <span style="color:#94A3B8;">Target Subs @ 30%:</span>
+            <span style="color:#F59E0B; font-weight:700;">${subs.toLocaleString()}</span>
+          </div>
+          <div style="display:flex; justify-content:space-between;">
+            <span style="color:#94A3B8;">Band n50 BTS (@1k subs):</span>
+            <span style="color:#00B4D8; font-weight:700;">${bts1000} BTS</span>
+          </div>
+        </div>
+
+        <div style="font-size:11px; color:#CBD5E1; margin-bottom:3px;">
+          <b>Backhaul:</b> ${tier}
+        </div>
+        <div style="font-size:10.5px; color:#64748B;">
+          Coordinates: ${lat.toFixed(6)}, ${lon.toFixed(6)}
+        </div>
+      </div>
+    `;
+
+    marker.bindPopup(popupHtml);
+    marker.addTo(leafletMap);
+    mapMarkers.push({ marker, bgy, muni, prov, pNum, lat, lon });
+  });
+
+  // Update stat overlay
+  const statTitle = document.getElementById('map-stat-title');
+  if (statTitle) {
+    statTitle.textContent = phaseFilter === 0 ? "Active Filter: All 5 Batches" : `Active Filter: Phase ${phaseFilter} (1,000 Sites)`;
+  }
+  const statSites = document.getElementById('map-stat-sites');
+  if (statSites) statSites.textContent = visibleCount.toLocaleString();
+  const statBts = document.getElementById('map-stat-bts');
+  if (statBts) statBts.textContent = `${visibleBts.toLocaleString()} BTS`;
+  const statPop = document.getElementById('map-stat-pop');
+  if (statPop) statPop.textContent = (visiblePop >= 1000000 ? `${(visiblePop/1000000).toFixed(1)}M` : visiblePop.toLocaleString());
+  const statSubs = document.getElementById('map-stat-subs');
+  if (statSubs) statSubs.textContent = (visibleSubs >= 1000000 ? `${(visibleSubs/1000000).toFixed(2)}M` : `${Math.round(visibleSubs/1000)}k`);
+}
+
+function filterMapPhase(phaseNum) {
+  currentPhaseFilter = phaseNum;
+  document.querySelectorAll('.map-phase-btn').forEach(btn => btn.classList.remove('active'));
+  const activeBtn = document.getElementById(`btn-phase-${phaseNum}`);
+  if (activeBtn) activeBtn.classList.add('active');
+  renderMarkers(phaseNum);
+}
+
+function resetMapView() {
+  if (!leafletMap) return;
+  leafletMap.flyTo([12.8797, 121.7740], 6);
+}
+
+function searchMapSite() {
+  const query = document.getElementById('map-search-input').value.trim().toLowerCase();
+  if (!query) return;
+
+  const match = mapMarkers.find(m => 
+    m.bgy.toLowerCase().includes(query) || 
+    m.muni.toLowerCase().includes(query) || 
+    m.prov.toLowerCase().includes(query)
+  );
+
+  if (match) {
+    leafletMap.flyTo([match.lat, match.lon], 13);
+    setTimeout(() => {
+      match.marker.openPopup();
+    }, 400);
+  } else {
+    alert("No matching barangay or municipality found in top 5,000 sites.");
+  }
+}
+
     } else if (e.key === 'End') {
       showSlide(totalSlides - 1);
     }
@@ -1281,6 +1599,173 @@
   }, false);
 
   showSlide(0);
+
+
+// ==========================================
+// INTERACTIVE GIS MAP ENGINE (5,000 SITES)
+// ==========================================
+const PHASE_CONFIG = {
+  1: { name: "Phase 1 (Batch 1)", color: "#00B4D8", radius: 4.5, border: "#ffffff" },
+  2: { name: "Phase 2 (Batch 2)", color: "#10B981", radius: 4.0, border: "#ffffff" },
+  3: { name: "Phase 3 (Batch 3)", color: "#F59E0B", radius: 3.8, border: "#ffffff" },
+  4: { name: "Phase 4 (Batch 4)", color: "#8B5CF6", radius: 3.5, border: "#ffffff" },
+  5: { name: "Phase 5 (Batch 5)", color: "#EF4444", radius: 3.5, border: "#ffffff" }
+};
+
+let leafletMap = null;
+let mapMarkers = [];
+let mapCanvasRenderer = null;
+let currentPhaseFilter = 0; // 0 = all
+
+function initFwaMap() {
+  if (leafletMap !== null) return;
+  const mapContainer = document.getElementById('fwa-sites-map');
+  if (!mapContainer) return;
+
+  leafletMap = L.map('fwa-sites-map', {
+    center: [12.8797, 121.7740],
+    zoom: 6,
+    minZoom: 5,
+    maxZoom: 16,
+    preferCanvas: true
+  });
+
+  // Dark basemap
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap &copy; CARTO',
+    subdomains: 'abcd',
+    maxZoom: 19
+  }).addTo(leafletMap);
+
+  mapCanvasRenderer = L.canvas({ padding: 0.5 });
+
+  // Render all 5,000 sites
+  renderMarkers(0);
+}
+
+function renderMarkers(phaseFilter) {
+  if (!leafletMap || !window.RAW_SITES_DATA) return;
+
+  // Clear existing
+  mapMarkers.forEach(m => leafletMap.removeLayer(m.marker));
+  mapMarkers = [];
+
+  let visibleCount = 0;
+  let visiblePop = 0;
+  let visibleSubs = 0;
+  let visibleBts = 0;
+
+  window.RAW_SITES_DATA.forEach(d => {
+    const [lat, lon, bgy, muni, prov, pop, hh, subs, bts1000, pNum, score, tier] = d;
+    if (phaseFilter !== 0 && pNum !== phaseFilter) return;
+
+    visibleCount++;
+    visiblePop += pop;
+    visibleSubs += subs;
+    visibleBts += bts1000;
+
+    const conf = PHASE_CONFIG[pNum];
+    const marker = L.circleMarker([lat, lon], {
+      renderer: mapCanvasRenderer,
+      radius: conf.radius,
+      fillColor: conf.color,
+      fillOpacity: 0.88,
+      color: conf.border,
+      weight: 1
+    });
+
+    const popupHtml = `
+      <div style="min-width: 250px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+          <span style="background:${conf.color}; color:#0A192F; font-size:10px; font-weight:800; padding:2px 7px; border-radius:4px; text-transform:uppercase;">
+            ${conf.name}
+          </span>
+          <span style="font-weight:700; color:#10B981; font-size:11px;">Score: ${score} / 100</span>
+        </div>
+        <h3 style="margin:0 0 2px 0; font-size:14px; color:#fff; font-weight:700;">${bgy}</h3>
+        <div style="color:#94A3B8; font-size:11px; margin-bottom:8px;">${muni}, ${prov}</div>
+        
+        <div style="background:rgba(255,255,255,0.06); border-radius:6px; padding:6px 8px; margin-bottom:8px;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
+            <span style="color:#94A3B8;">Population:</span>
+            <span style="color:#fff; font-weight:600;">${pop.toLocaleString()}</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
+            <span style="color:#94A3B8;">Households:</span>
+            <span style="color:#fff; font-weight:600;">${hh.toLocaleString()}</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
+            <span style="color:#94A3B8;">Target Subs @ 30%:</span>
+            <span style="color:#F59E0B; font-weight:700;">${subs.toLocaleString()}</span>
+          </div>
+          <div style="display:flex; justify-content:space-between;">
+            <span style="color:#94A3B8;">Band n50 BTS (@1k subs):</span>
+            <span style="color:#00B4D8; font-weight:700;">${bts1000} BTS</span>
+          </div>
+        </div>
+
+        <div style="font-size:11px; color:#CBD5E1; margin-bottom:3px;">
+          <b>Backhaul:</b> ${tier}
+        </div>
+        <div style="font-size:10.5px; color:#64748B;">
+          Coordinates: ${lat.toFixed(6)}, ${lon.toFixed(6)}
+        </div>
+      </div>
+    `;
+
+    marker.bindPopup(popupHtml);
+    marker.addTo(leafletMap);
+    mapMarkers.push({ marker, bgy, muni, prov, pNum, lat, lon });
+  });
+
+  // Update stat overlay
+  const statTitle = document.getElementById('map-stat-title');
+  if (statTitle) {
+    statTitle.textContent = phaseFilter === 0 ? "Active Filter: All 5 Batches" : `Active Filter: Phase ${phaseFilter} (1,000 Sites)`;
+  }
+  const statSites = document.getElementById('map-stat-sites');
+  if (statSites) statSites.textContent = visibleCount.toLocaleString();
+  const statBts = document.getElementById('map-stat-bts');
+  if (statBts) statBts.textContent = `${visibleBts.toLocaleString()} BTS`;
+  const statPop = document.getElementById('map-stat-pop');
+  if (statPop) statPop.textContent = (visiblePop >= 1000000 ? `${(visiblePop/1000000).toFixed(1)}M` : visiblePop.toLocaleString());
+  const statSubs = document.getElementById('map-stat-subs');
+  if (statSubs) statSubs.textContent = (visibleSubs >= 1000000 ? `${(visibleSubs/1000000).toFixed(2)}M` : `${Math.round(visibleSubs/1000)}k`);
+}
+
+function filterMapPhase(phaseNum) {
+  currentPhaseFilter = phaseNum;
+  document.querySelectorAll('.map-phase-btn').forEach(btn => btn.classList.remove('active'));
+  const activeBtn = document.getElementById(`btn-phase-${phaseNum}`);
+  if (activeBtn) activeBtn.classList.add('active');
+  renderMarkers(phaseNum);
+}
+
+function resetMapView() {
+  if (!leafletMap) return;
+  leafletMap.flyTo([12.8797, 121.7740], 6);
+}
+
+function searchMapSite() {
+  const query = document.getElementById('map-search-input').value.trim().toLowerCase();
+  if (!query) return;
+
+  const match = mapMarkers.find(m => 
+    m.bgy.toLowerCase().includes(query) || 
+    m.muni.toLowerCase().includes(query) || 
+    m.prov.toLowerCase().includes(query)
+  );
+
+  if (match) {
+    leafletMap.flyTo([match.lat, match.lon], 13);
+    setTimeout(() => {
+      match.marker.openPopup();
+    }, 400);
+  } else {
+    alert("No matching barangay or municipality found in top 5,000 sites.");
+  }
+}
+
 </script>
 
 </body>
