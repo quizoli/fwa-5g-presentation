@@ -1,0 +1,16 @@
+Pillar / Dimension,Specific Metric,Weight,Data Source,Source URL,Technical Definition & Rationale
+Combined Hybrid Core,Commercial Viability Index,50%,POPCEN 2024 + Converge GIS + FIES,Internal Commercial Model,"Blends deployment ease (35%), viability (35%), and necessity (30%)."
+Combined Hybrid Core,DICT / UNDP GIDA Index,50%,UNDP Looker Studio Prioritization Tool,https://lookerstudio.google.com/u/0/reporting/7118ca47-1563-4f51-b0db-a19b8ea4f3c7/page/p_6h58g3u7ld,Standardized Looker Studio score based on 11 official multi-criteria indicators.
+Commercial Siting,Deployment Ease (Node/Line),35% (of Comm),Converge ICT Backbone GIS Nov 2024,Converge ICT Nov 2024 Infrastructure Report,Haversine distance decay to nearest optical node + fiber corridor bonus.
+Commercial Siting,Business Viability Curve,35% (of Comm),PSA 2024 POPCEN & FIES Poverty,https://psa.gov.ph/statistics/income-expenditure/fies/stat-tables/released/2026,"Subscribers sweet-spot [250-1,200] discounted by regional poverty rate."
+Commercial Siting,Broadband Necessity,30% (of Comm),"PSA Urbanity, DOF LGU Income Class",https://psa.gov.ph/content/2024-census-population-popcen-population-counts-declared-official-president,"Weighted composite of rural status (40%), LGU class 4-6 (25%), off-net (20%), poverty (15%)."
+GIDA Criteria,Mobile Downspeed,10% (of GIDA),Ookla Speedtest Intelligence,Looker Studio GIDA Database,Measures average cellular mobile download speed in the barangay.
+GIDA Criteria,FW4A Presence,10% (of GIDA),DICT Fixed Wireless Siting Audit,Looker Studio GIDA Database,Identifies existing Fixed Wireless Access 4G/5G deployments.
+GIDA Criteria,Nighttime Lights Radiance,15% (of GIDA),VIIRS / NASA Earth Observatory,Looker Studio GIDA Database,Measures electrification and nocturnal human settlement radiance.
+GIDA Criteria,Surrounding POIs,10% (of GIDA),OpenStreetMap / DepEd / DOH,Looker Studio GIDA Database,"Density of public schools, rural health units, and community centers."
+GIDA Criteria,Distance to Road Network,15% (of GIDA),DPWH / OSM National Road Layer,Looker Studio GIDA Database,Geographic distance to nearest paved all-weather transport route.
+GIDA Criteria,Hazard Vulnerability,10% (of GIDA),MGB / NOAH / PAGASA,Looker Studio GIDA Database,"Exposure index to typhoons, storm surge, and landslides."
+GIDA Criteria,Insurgency & Conflict,10% (of GIDA),AFP / PNP Peace & Order Index,Looker Studio GIDA Database,Security risk classification and historical incident counts.
+Transmission Layer,Direct Optical Backhaul (<3km),Routing,Converge ICT Terrestrial Network,Converge Nov 2024 Backbone,Direct optical drop to Converge node for sites within 3.0km.
+Transmission Layer,Near Optical / MW (3-5km),Routing,Converge ICT Feeder Routes,Converge Nov 2024 Backbone,Short-hop microwave or fiber corridor lateral for sites 3.0-5.0km.
+Transmission Layer,Starlink LEO Satellite (>5km),Routing,SpaceX Starlink Business Specifications,https://www.starlink.com/business,High-throughput satellite backhaul for sites > 5km from optical nodes.
