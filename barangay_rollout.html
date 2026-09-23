@@ -310,7 +310,7 @@
   </div>
   <div class="controls">
     <button class="btn-nav" id="prev-btn" onclick="prevSlide()">◀ Prev</button>
-    <div class="slide-counter" id="slide-num">Slide 1 / 13</div>
+    <div class="slide-counter" id="slide-num">Slide 1 / 14</div>
     <button class="btn-nav" id="next-btn" onclick="nextSlide()">Next ▶</button>
     <button class="btn-nav" onclick="toggleFullScreen()">⛶ Fullscreen</button>
   </div>
@@ -342,7 +342,7 @@
         <div class="slide-category">Radio Dimensioning</div>
         <div class="slide-title">Band n50 (1.5 GHz) Radio Dimensioning & BTS Sizing Parameters</div>
       </div>
-      <div class="slide-number">Slide 2 / 13</div>
+      <div class="slide-number">Slide 2 / 14</div>
     </div>
     
     <div class="grid-4" style="margin-bottom: 12px;">
@@ -363,8 +363,8 @@
       </div>
       <div class="stat-card" style="border-top: 4px solid var(--green);">
         <div class="stat-label">Design Subscriber Load</div>
-        <div class="stat-val" style="font-size: 19px; color: var(--green);">600 Subs / BTS</div>
-        <div class="stat-sub">Max Load: 1,000 Subs / BTS</div>
+        <div class="stat-val" style="font-size: 19px; color: var(--green);">1,000 Subs / BTS</div>
+        <div class="stat-sub">3 Sectors (~333 Subs/Sector)</div>
       </div>
     </div>
 
@@ -374,7 +374,7 @@
         <ul>
           <li><strong>Propagation Superiority:</strong> At 1.5 GHz, signal attenuation is 9–12 dB lower than 3.5 GHz (n78). Delivers an effective cell radius of <strong>2.0 km to 3.5 km</strong> in rural terrain (12–35 km² footprint), covering an entire barangay with 1 BTS.</li>
           <li><strong>Indoor Penetration:</strong> Easily penetrates typical Philippine residential building materials (GI sheet roofing, hollow blocks, timber) without requiring mandatory outdoor antenna roof-mounts for every home.</li>
-          <li><strong>Massive 60 MHz Carrier Bandwidth:</strong> Yields 499 Mbps aggregate DL throughput, comfortably sustaining 600 active subscribers at 15–25 Mbps busy-hour bursts.</li>
+          <li><strong>Massive 60 MHz Carrier Bandwidth:</strong> Yields 499 Mbps aggregate DL throughput, comfortably sustaining 1,000 active subscribers at 15–25 Mbps busy-hour bursts.</li>
         </ul>
       </div>
 
@@ -386,24 +386,97 @@
             <tr><th>Barangay Size / Households</th><th>Target Subs @ 30%</th><th class="center">n50 BTS Capacity</th><th>Deployment Rationale</th></tr>
           </thead>
           <tbody>
-            <tr><td><strong>< 2,000 HH</strong> (<8,800 pop)</td><td>< 600 Subs</td><td class="highlight-bts">1 n50 BTS</td><td>1 BTS provides 100% barangay coverage & capacity.</td></tr>
-            <tr><td><strong>2,000 - 4,000 HH</strong> (8.8k-17.6k)</td><td>600 - 1,200 Subs</td><td class="highlight-bts">2 n50 BTS</td><td>Deploy 1 BTS in Phase 1; add 2nd BTS at 500+ subs.</td></tr>
-            <tr><td><strong>4,000 - 6,000 HH</strong> (17.6k-26.4k)</td><td>1,200 - 1,800 Subs</td><td class="highlight-bts">3 n50 BTS</td><td>Multi-sector cluster covering separated sitios.</td></tr>
-            <tr><td><strong>> 6,000 HH</strong> (>26.4k pop)</td><td>> 1,800 Subs</td><td class="highlight-bts">4+ n50 BTS</td><td>High-density suburban township macro cluster.</td></tr>
+            <tr><td><strong>< 3,333 HH</strong> (<15k pop)</td><td>< 1,000 Subs</td><td class="highlight-bts">1 n50 BTS</td><td>1 BTS provides 100% barangay coverage & capacity.</td></tr>
+            <tr><td><strong>3,333 - 6,666 HH</strong> (15k-30k pop)</td><td>1,000 - 2,000 Subs</td><td class="highlight-bts">2 n50 BTS</td><td>Deploy 1 BTS in Phase 1; add 2nd BTS as subs approach 1,000.</td></tr>
+            <tr><td><strong>6,666 - 10,000 HH</strong> (30k-45k pop)</td><td>2,000 - 3,000 Subs</td><td class="highlight-bts">3 n50 BTS</td><td>Multi-sector cluster covering separated sitios/poblacion.</td></tr>
+            <tr><td><strong>> 10,000 HH</strong> (>45k pop)</td><td>> 3,000 Subs</td><td class="highlight-bts">4+ n50 BTS</td><td>High-density suburban township macro cluster.</td></tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 3: Nationwide Filtering Funnel -->
+  
+  <!-- SLIDE 3: Prioritization Framework -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Selection Methodology</div>
+        <div class="slide-title">Site Selection Pillars: Necessity, Viability & Ease of Deployment</div>
+      </div>
+      <div class="slide-number">Slide 3 / 14</div>
+    </div>
+
+    <div class="grid-3" style="margin-bottom: 14px;">
+      <!-- Pillar 1: Necessity -->
+      <div class="card danger">
+        <div class="badge badge-onnet" style="background: rgba(239, 68, 68, 0.2); color: #EF4444; border-color: rgba(239, 68, 68, 0.4); margin-bottom: 8px;">
+          Pillar 1 · 30% Weight
+        </div>
+        <h3 style="color: #EF4444; font-size: 16px; margin-bottom: 6px;">1. Necessity</h3>
+        <div style="font-weight: 700; color: #fff; font-size: 13px; margin-bottom: 8px;">Lack of Internet Service</div>
+        <ul style="font-size: 12.5px; line-height: 1.45;">
+          <li><strong>Wireline FTTH Deserts:</strong> Target rural barangay clusters where commercial FTTH, DSL, and cable broadband are completely absent.</li>
+          <li><strong>Overcome Mobile Congestion:</strong> Relieve severe mobile cellular 4G/5G data congestion with dedicated fixed wireless home capacity.</li>
+          <li><strong>Commercial Preemption:</strong> Capture unserved households before wireline telcos consider building out.</li>
+          <li><strong>Metro Overbuild Avoided:</strong> Metropolitan NCR deprioritized due to saturated fiber price competition.</li>
+        </ul>
+      </div>
+
+      <!-- Pillar 2: Business Viability -->
+      <div class="card highlight">
+        <div class="badge badge-onnet" style="background: rgba(0, 180, 216, 0.2); color: var(--teal); border-color: rgba(0, 180, 216, 0.4); margin-bottom: 8px;">
+          Pillar 2 · 35% Weight
+        </div>
+        <h3 style="color: var(--teal); font-size: 16px; margin-bottom: 6px;">2. Business Viability</h3>
+        <div style="font-weight: 700; color: #fff; font-size: 13px; margin-bottom: 8px;">Economic Activity to Generate Sales</div>
+        <ul style="font-size: 12.5px; line-height: 1.45;">
+          <li><strong>Addressable Household Density:</strong> Focus on 3,000 to 12,000 population (700 to 2,800 HH), providing ideal subscriber scale for 1 BTS.</li>
+          <li><strong>Purchasing Power:</strong> Prioritize 1st–4th class municipal trading centers with strong agricultural/commercial cash flow.</li>
+          <li><strong>Retail Sales Velocity:</strong> Proven consumer ability to sustain ₱599 to ₱999/mo recurring subscriptions.</li>
+          <li><strong>Rapid Payback:</strong> Fast customer take-up delivers full site CAPEX payback in <strong>14 to 22 months</strong>.</li>
+        </ul>
+      </div>
+
+      <!-- Pillar 3: Ease of Deployment -->
+      <div class="card success">
+        <div class="badge badge-onnet" style="background: rgba(16, 185, 129, 0.2); color: #10B981; border-color: rgba(16, 185, 129, 0.4); margin-bottom: 8px;">
+          Pillar 3 · 35% Weight
+        </div>
+        <h3 style="color: #10B981; font-size: 16px; margin-bottom: 6px;">3. Ease of Deployment</h3>
+        <div style="font-weight: 700; color: #fff; font-size: 13px; margin-bottom: 8px;">Towers, RoW, Fiber & Power</div>
+        <ul style="font-size: 12.5px; line-height: 1.45;">
+          <li><strong>Presence of Fiber:</strong> 100% of Batch 1 connects directly to Converge backbone nodes (<1–3 km drop), zero dark fiber civil works.</li>
+          <li><strong>Grid Power Availability:</strong> Connected to commercial 220V grid via Meralco or provincial Electric Cooperatives (BENECO, CASURECO, etc.).</li>
+          <li><strong>Tower Erection & Colocation:</strong> Co-locate on existing TowerCo structures (EDOTCO, EdgePoint) or rapid monopole erection.</li>
+          <li><strong>Right-of-Way & Road Access:</strong> Highway/provincial road proximity ensures heavy crane access and zero land disputes.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card navy">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <div>
+          <span style="color: var(--teal); font-weight: 700; font-size: 13px;">MATHEMATICAL COMPOSITE SCORING:</span>
+          <span style="font-size: 13px; color: #CBD5E1; margin-left: 8px;">
+            Score = (0.35 × Deployment) + (0.35 × Viability) + (0.30 × Necessity)
+          </span>
+        </div>
+        <div style="font-size: 12px; color: #94A3B8;">
+          All 41,984 barangays evaluated objectively without arbitrary government bias.
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- SLIDE 4: Nationwide Filtering Funnel -->
   <div class="slide">
     <div class="slide-header">
       <div>
         <div class="slide-category">Market Sizing</div>
         <div class="slide-title">Nationwide Barangay Universe & Phasing Funnel</div>
       </div>
-      <div class="slide-number">Slide 3 / 13</div>
+      <div class="slide-number">Slide 4 / 14</div>
     </div>
 
     <div class="grid-5" style="margin-bottom: 16px;">
@@ -463,7 +536,7 @@
         <div class="slide-category">Infrastructure Leverage</div>
         <div class="slide-title">The Converge Backbone Advantage: Zero Backhaul Bottleneck</div>
       </div>
-      <div class="slide-number">Slide 4 / 13</div>
+      <div class="slide-number">Slide 5 / 14</div>
     </div>
 
     <div class="grid-3" style="margin-bottom: 16px;">
@@ -526,7 +599,7 @@
         <div class="slide-category">5-Year Phasing Plan</div>
         <div class="slide-title">Master 5-Batch Rollout & n50 BTS Dimensioning (5,000 Sites)</div>
       </div>
-      <div class="slide-number">Slide 5 / 13</div>
+      <div class="slide-number">Slide 6 / 14</div>
     </div>
 
     <table class="exec-table" style="margin-bottom: 14px;">
@@ -639,7 +712,7 @@
         <div class="slide-category">Phase 1 Execution</div>
         <div class="slide-title">Batch 1 (First 1,000 Sites / BTS) — The Priority Launch Footprint</div>
       </div>
-      <div class="slide-number">Slide 6 / 13</div>
+      <div class="slide-number">Slide 7 / 14</div>
     </div>
 
     <div class="grid-4" style="margin-bottom: 14px;">
@@ -700,7 +773,7 @@
         <div class="slide-category">Geographic Distribution</div>
         <div class="slide-title">Batch 1 Regional Footprint & Site Allocations</div>
       </div>
-      <div class="slide-number">Slide 7 / 13</div>
+      <div class="slide-number">Slide 8 / 14</div>
     </div>
 
     <div class="grid-2">
@@ -868,7 +941,7 @@
         <div class="slide-category">GIS Visualization</div>
         <div class="slide-title">Interactive Site Map: Phase 1 to 5 Rollout (5,000 Sites)</div>
       </div>
-      <div class="slide-number">Slide 8 / 13</div>
+      <div class="slide-number">Slide 9 / 14</div>
     </div>
 
     <!-- Map Toolbar -->
@@ -954,7 +1027,7 @@
         <div class="slide-category">Priority Sites</div>
         <div class="slide-title">Top 20 Priority Barangays & Band n50 BTS Allocation</div>
       </div>
-      <div class="slide-number">Slide 8 / 13</div>
+      <div class="slide-number">Slide 10 / 14</div>
     </div>
 
     <table class="exec-table">
@@ -1133,7 +1206,7 @@
         <div class="slide-category">Expansion Strategy</div>
         <div class="slide-title">Scaling to 5,000 BTS: Strategy for Succeeding Batches</div>
       </div>
-      <div class="slide-number">Slide 9 / 13</div>
+      <div class="slide-number">Slide 11 / 14</div>
     </div>
 
     <div class="grid-3" style="margin-bottom: 14px;">
@@ -1197,7 +1270,7 @@
         <div class="slide-category">Financial Model</div>
         <div class="slide-title">Site Unit Economics & Subscriber Capacity Payback</div>
       </div>
-      <div class="slide-number">Slide 10 / 13</div>
+      <div class="slide-number">Slide 12 / 14</div>
     </div>
 
     <div class="grid-2">
@@ -1254,7 +1327,7 @@
         <div class="slide-category">Implementation</div>
         <div class="slide-title">Site Acquisition & Turn-Up Execution Playbook</div>
       </div>
-      <div class="slide-number">Slide 12 / 13</div>
+      <div class="slide-number">Slide 13 / 14</div>
     </div>
 
     <div class="grid-4" style="margin-bottom: 14px;">
@@ -1314,7 +1387,7 @@
         <div class="slide-category">Decision Mandate</div>
         <div class="slide-title">Board Recommendations & Immediate Next Steps</div>
       </div>
-      <div class="slide-number">Slide 13 / 13</div>
+      <div class="slide-number">Slide 14 / 14</div>
     </div>
 
     <div class="grid-3" style="margin-bottom: 16px;">
@@ -1380,7 +1453,7 @@
     slideNumEl.textContent = `Slide ${currentSlide + 1} / ${totalSlides}`;
 
     // Invalidate Leaflet map size on slide activation
-    if (currentSlide === 7) {
+    if (currentSlide === 8) {
       setTimeout(() => {
         initFwaMap();
         if (leafletMap) leafletMap.invalidateSize();
