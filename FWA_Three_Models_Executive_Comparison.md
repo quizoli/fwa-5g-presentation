@@ -40,23 +40,23 @@ The table below provides a 100% single-digit mathematically reconciled side-by-s
 | :--- | :---: | :---: | :---: | :--- |
 | **Batch 1 Sites** | 1,000 | 1,000 | 1,000 | Initial 1,000-site priority tranche |
 | **Total Program Sites** | 5,000 | 5,000 | 5,000 | 5 batches of 1,000 sites |
-| **Batch 1 Population Reach** | **7,106,961** | **2,247,393** | **8,500,438** | Combined captures dense unserved catchments |
-| **Total Population Reach (5k)** | **29,659,338** | **16,839,476** | **29,506,058** | Commercial covers 29.66M pop; GIDA covers 16.84M |
-| **Batch 1 Households** | **1,984,314** | **589,311** | **2,362,172** | Scaled via PSA provincial household matrix |
-| **Total Households (5k)** | **8,139,385** | **4,527,088** | **8,089,717** | Combined model captures 8.09M households |
-| **Batch 1 Target Subs (30%)** | **595,294** | **176,781** | **708,642** | Combined captures 708k addressable subscribers |
-| **Total Target Subs (5k)** | **2,441,841** | **1,358,095** | **2,426,936** | High-demand subscriber pool across 5k sites |
+| **Batch 1 Population Reach** | **6,940,881** | **2,247,393** | **8,500,438** | Combined captures dense unserved catchments |
+| **Total Population Reach (5k)** | **31,739,740** | **16,839,476** | **29,506,058** | Commercial covers 31.74M pop; GIDA covers 16.84M |
+| **Batch 1 Households** | **1,917,051** | **589,311** | **2,362,172** | Scaled via PSA provincial household matrix |
+| **Total Households (5k)** | **8,716,136** | **4,527,088** | **8,089,717** | Combined model captures 8.09M households |
+| **Batch 1 Target Subs (30%)** | **575,107** | **176,781** | **708,642** | Combined captures 708k addressable subscribers |
+| **Total Target Subs (5k)** | **2,614,891** | **1,358,095** | **2,426,936** | High-demand subscriber pool across 5k sites |
 | **Day 1 BTS Deployed** | **1,000 / 5,000** | **1,000 / 5,000** | **1,000 / 5,000** | Standardized 1 BTS per barangay initially |
-| **Batch 1 Peak BTS Dimensioned**| **1,229** | **1,031** | **1,371** | Sized @ 1,000 subs/BTS (~333/sector) |
-| **Total Peak BTS Dimensioned** | **5,781** | **5,554** | **6,102** | Full expansion node requirements |
+| **Batch 1 Peak BTS Dimensioned**| **1,194** | **1,031** | **1,371** | Sized @ 1,000 subs/BTS (~333/sector) |
+| **Total Peak BTS Dimensioned** | **5,926** | **5,554** | **6,102** | Full expansion node requirements |
 | **Batch 1 Direct Optical (<3km)**| **1,000 (100.0%)** | **373 (37.3%)** | **822 (82.2%)** | Direct fiber drop to Converge optical nodes |
-| **Total Direct Optical (<3km)** | **4,827 (96.5%)** | **2,696 (53.9%)** | **3,821 (76.4%)** | Major CAPEX savings via fiber colocation |
+| **Total Direct Optical (<3km)** | **4,655 (93.1%)** | **2,696 (53.9%)** | **3,821 (76.4%)** | Major CAPEX savings via fiber colocation |
 | **Batch 1 Near Optical (3-5km)** | **0 (0.0%)** | **62 (6.2%)** | **54 (5.4%)** | Short-hop microwave / fiber lateral corridor |
-| **Total Near Optical (3-5km)** | **169 (3.4%)** | **181 (3.6%)** | **290 (5.8%)** | Feeder link deployment |
+| **Total Near Optical (3-5km)** | **225 (4.5%)** | **181 (3.6%)** | **290 (5.8%)** | Feeder link deployment |
 | **Batch 1 Starlink LEO (>5km)** | **0 (0.0%)** | **565 (56.5%)** | **124 (12.4%)** | High-throughput remote satellite backhaul |
-| **Total Starlink LEO (>5km)** | **4 (0.1%)** | **2,123 (42.5%)** | **889 (17.8%)** | GIDA relies heavily on satellite due to isolation |
-| **Batch 1 Average Metric Score** | 78.45 / 100 | 54.36 / 69.91 (77.8%) | 69.17 / 100 | Looker raw score vs standardized scores |
-| **Total 5k Average Metric Score**| 70.71 / 100 | 48.47 / 69.91 (69.3%) | 62.31 / 100 | High score retention across all 5 phases |
+| **Total Starlink LEO (>5km)** | **120 (2.4%)** | **2,123 (42.5%)** | **889 (17.8%)** | GIDA relies heavily on satellite due to isolation |
+| **Batch 1 Average Metric Score** | 78.90 / 100 | 54.36 / 69.91 (77.8%) | 69.17 / 100 | Looker raw score vs standardized scores |
+| **Total 5k Average Metric Score**| 70.27 / 100 | 48.47 / 69.91 (69.3%) | 62.31 / 100 | High score retention across all 5 phases |
 
 ---
 

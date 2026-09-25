@@ -11,7 +11,7 @@ Integrated Datasets:
   3. NCR Barangay Population and Household Counts (NCR Statistical Table R13).
   4. PSA Family Income and Expenditure Survey (FIES) Official Poverty Statistics.
   5. Converge ICT National Optical Backbone (2,405 nodes, 334k line vertices).
-  6. DICT FPIAP GIDA Coordinates (41,981 verified GPS coordinates).
+  6. DepEd Schools Locations Masterfile (Public Schools Anchor Coordinates, Col F & Col K).
   7. Band n50 Dimensioning: 1,000 Subscribers per BTS Total (~333/sector).
 """
 
@@ -29,7 +29,7 @@ from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 
 # Output Directory
-OUT_DIR = "FWA Design Phase 2024 POPCEN"
+OUT_DIR = "POPCEN2024"
 os.makedirs(OUT_DIR, exist_ok=True)
 os.makedirs(os.path.join(OUT_DIR, "data"), exist_ok=True)
 
@@ -85,6 +85,17 @@ def clean_str(s):
     s = re.sub(r'\(.*?\)', '', s)
     s = re.sub(r'[^A-Z0-9]', '', s)
     return s.strip()
+
+def norm_name(s):
+    if not s: return ''
+    s = str(s).upper().strip()
+    s = re.sub(r'\(.*?\)', '', s)
+    s = re.sub(r'\bPOBLACION\b', 'POB', s)
+    s = re.sub(r'\bBARANGAY\b', '', s)
+    s = re.sub(r'\bBGY\b', '', s)
+    s = re.sub(r'[^A-Z0-9]', '', s)
+    return s
+
 
 def haversine(lat1, lon1, lat2, lon2):
     R = 6371.0088
@@ -348,6 +359,16 @@ Deliverables in this edition:
             f.write(html)
         print(f"  -> Reconciled {deck_path} ({os.path.getsize(deck_path):,} bytes).")
 
+    # Sync markdown and presentation deck to companion folders
+    import shutil
+    for d_dir in ["FWA Design Phase 2024 POPCEN", "fwa_online_portal/POPCEN2024"]:
+        if os.path.exists(d_dir):
+            if os.path.exists(md_path):
+                shutil.copy2(md_path, os.path.join(d_dir, "FWA_Barangay_Rollout_Executive_Summary_2024.md"))
+            if os.path.exists(deck_path):
+                shutil.copy2(deck_path, os.path.join(d_dir, "FWA_5G_Barangay_Rollout_Presentation_2024.html"))
+            print(f"  -> Synced summary and presentation deck to: {d_dir}")
+
 
 def run():
     print("=" * 80)
@@ -356,30 +377,55 @@ def run():
     t_start = time.time()
 
     # ------------------------------------------------------------------------
-    # STEP 1: Ingest Coordinates from DICT GIDA CSV
+    # STEP 1: Ingest Coordinates from DepEd Schools Masterfile (Col F Lat/Lon, Col K Bgy)
     # ------------------------------------------------------------------------
-    print("\n[Step 1/8] Ingesting Coordinates from DICT GIDA Dataset...")
-    csv_path = 'FWA_Meeting_Pack_Sep2026/2026 DICT FPIAP GIDA Barangay Prioritization Tool_Untitled Page_Table.csv'
+    print("\n[Step 1/8] Ingesting Coordinates from DepEd Schools Locations Masterfile...")
     coords_map = {}
     muni_coords = defaultdict(list)
     prov_coords = defaultdict(list)
 
-    with open(csv_path, mode='r', encoding='utf-8') as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            p = clean_str(row['Province'])
-            m = clean_str(row['Locality'])
-            b = clean_str(row['Barangay'])
-            try:
-                lat = float(row['Latitude'])
-                lon = float(row['Longitude'])
-                if 4.0 <= lat <= 22.0 and 115.0 <= lon <= 130.0:
-                    coords_map[(p, m, b)] = (lat, lon)
-                    muni_coords[(p, m)].append((lat, lon))
-                    prov_coords[p].append((lat, lon))
-            except (ValueError, KeyError):
-                pass
-    print(f"  -> Extracted verified coordinates for {len(coords_map):,} unique barangays.")
+    deped_path = 'FWA Design Phase/DepEd Schools_Locations_Masterfile_01292026-2.xlsx'
+    if not os.path.exists(deped_path):
+        deped_path = 'DepEd Schools_Locations_Masterfile_01292026-2.xlsx'
+
+    deped_schools_loaded = 0
+    if os.path.exists(deped_path):
+        wb_deped = openpyxl.load_workbook(deped_path, read_only=True)
+        ws_db = wb_deped['DB'] if 'DB' in wb_deped.sheetnames else wb_deped.active
+        for r_idx, row in enumerate(ws_db.iter_rows(values_only=True)):
+            if r_idx < 9: continue
+            if not row or len(row) < 11: continue
+            lat_lon_str = str(row[5]).strip() if row[5] is not None else ''  # Col F: Final Lat, Long
+            prov = str(row[7]).strip() if row[7] is not None else ''          # Col H: Province
+            muni = str(row[8]).strip() if row[8] is not None else ''          # Col I: Municipality
+            bgy = str(row[10]).strip() if row[10] is not None else ''         # Col K: Barangay
+            if lat_lon_str and ',' in lat_lon_str:
+                parts = lat_lon_str.split(',')
+                try:
+                    lat = float(parts[0].strip())
+                    lon = float(parts[1].strip())
+                    if 4.0 <= lat <= 22.0 and 115.0 <= lon <= 130.0:
+                        p = clean_str(prov)
+                        m = clean_str(muni)
+                        b = clean_str(bgy)
+                        np_ = norm_name(prov)
+                        nm_ = norm_name(muni)
+                        nb_ = norm_name(bgy)
+                        if (p, m, b) not in coords_map: coords_map[(p, m, b)] = (lat, lon)
+                        if (m, b) not in coords_map: coords_map[(m, b)] = (lat, lon)
+                        if (np_, nm_, nb_) not in coords_map: coords_map[(np_, nm_, nb_)] = (lat, lon)
+                        if (nm_, nb_) not in coords_map: coords_map[(nm_, nb_)] = (lat, lon)
+                        muni_coords[(p, m)].append((lat, lon))
+                        muni_coords[m].append((lat, lon))
+                        prov_coords[p].append((lat, lon))
+                        deped_schools_loaded += 1
+                except ValueError:
+                    pass
+        wb_deped.close()
+        print(f"  -> Ingested {deped_schools_loaded:,} valid public school coordinates from DepEd Masterfile.")
+        print(f"  -> Total verified DepEd coordinate mapping keys: {len(coords_map):,}.")
+    else:
+        raise FileNotFoundError(f"DepEd Schools Locations Masterfile not found at {deped_path}")
 
     # ------------------------------------------------------------------------
     # STEP 2: Ingest 2024 POPCEN Census and Household Size Data
@@ -493,6 +539,9 @@ def run():
             'cp': clean_str(prov),
             'cm': clean_str(mun),
             'cb': clean_str(bgy),
+            'np_': norm_name(prov),
+            'nm_': norm_name(mun),
+            'nb_': norm_name(bgy),
             'u_cm': cm,
             'u_cb': cb
         })
@@ -517,6 +566,10 @@ def run():
     for b in raw_bgys:
         cp = b['cp']
         cm = b['cm']
+        cb = b['cb']
+        np_ = b['np_']
+        nm_ = b['nm_']
+        nb_ = b['nb_']
         u_cm = b['u_cm']
         u_cb = b['u_cb']
         t_unit = b['target_unit']
@@ -562,7 +615,10 @@ def run():
             'poverty_rate': poverty_rate,
             'cp': cp,
             'cm': cm,
-            'cb': cb
+            'cb': cb,
+            'np_': np_,
+            'nm_': nm_,
+            'nb_': nb_
         })
 
     print(f"  -> Successfully scaled 41,976 barangays to 2024 POPCEN (Calculated National Pop: {national_2024_pop_calc:,}).")
@@ -664,12 +720,20 @@ def run():
 
     for b in all_bgys:
         cp, cm, cb = b['cp'], b['cm'], b['cb']
-        coords = coords_map.get((cp, cm, cb))
+        np_, nm_, nb_ = b['np_'], b['nm_'], b['nb_']
+        coords = (coords_map.get((cp, cm, cb)) or
+                  coords_map.get((cm, cb)) or
+                  coords_map.get((np_, nm_, nb_)) or
+                  coords_map.get((nm_, nb_)))
 
         if coords:
             lat, lon = coords
         elif (cp, cm) in muni_coords:
             pts = muni_coords[(cp, cm)]
+            lat = sum(p[0] for p in pts) / len(pts)
+            lon = sum(p[1] for p in pts) / len(pts)
+        elif cm in muni_coords:
+            pts = muni_coords[cm]
             lat = sum(p[0] for p in pts) / len(pts)
             lon = sum(p[1] for p in pts) / len(pts)
         elif cp in prov_coords:
@@ -1611,22 +1675,43 @@ def run():
         with open(jsp, "w", encoding="utf-8") as f: f.write(map_js_str)
 
     js_2024_str = "const FWA_SITES_2024 = " + json.dumps(js_data, separators=(',', ':')) + ";\n"
-    for jsp in [os.path.join(OUT_DIR, "fwa_sites_data_2024.js"), "fwa_online_portal/fwa_sites_data_2024.js"]:
-        with open(jsp, "w", encoding="utf-8") as f: f.write(js_2024_str)
+    js_targets = [
+        os.path.join(OUT_DIR, "fwa_sites_data_2024.js"),
+        "FWA Design Phase 2024 POPCEN/fwa_sites_data_2024.js",
+        "fwa_online_portal/fwa_sites_data_2024.js",
+        "fwa_online_portal/POPCEN2024/fwa_sites_data_2024.js"
+    ]
+    for jsp in js_targets:
+        if os.path.exists(os.path.dirname(jsp)):
+            with open(jsp, "w", encoding="utf-8") as f: f.write(js_2024_str)
 
-    # Copy deliverables to fwa_online_portal/
+    # Copy deliverables to companion folders & portal
     import shutil
-    portal_copies = [
+    deliverable_copies = [
+        # Companion folder: FWA Design Phase 2024 POPCEN
+        (xlsx_path, "FWA Design Phase 2024 POPCEN/FWA_Barangay_Rollout_Plan_2024_1000s.xlsx"),
+        (dyn_xlsx_path, "FWA Design Phase 2024 POPCEN/FWA_Barangay_Rollout_Plan_2024_1000s_Dynamic.xlsx"),
+        (kmz_path, "FWA Design Phase 2024 POPCEN/FWA_Rollout_Sites_Master_2024.kmz"),
+        (kml_path, "FWA Design Phase 2024 POPCEN/FWA_Rollout_Sites_Master_2024.kml"),
+        # Portal root
         (xlsx_path, "fwa_online_portal/FWA_Barangay_Rollout_Plan_2024_1000s.xlsx"),
         (dyn_xlsx_path, "fwa_online_portal/FWA_Barangay_Rollout_Plan_2024_1000s_Dynamic.xlsx"),
         (kmz_path, "fwa_online_portal/FWA_Rollout_Sites_Master_2024.kmz"),
-        ("FWA_Metric_to_Source_Mapping_2024.xlsx", "fwa_online_portal/FWA_Metric_to_Source_Mapping_2024.xlsx"),
-        ("FWA_Metric_to_Source_Mapping_2024.csv", "fwa_online_portal/FWA_Metric_to_Source_Mapping_2024.csv")
+        ("POPCEN2024/FWA_Metric_to_Source_Mapping_2024.xlsx", "fwa_online_portal/FWA_Metric_to_Source_Mapping_2024.xlsx"),
+        ("POPCEN2024/FWA_Metric_to_Source_Mapping_2024.csv", "fwa_online_portal/FWA_Metric_to_Source_Mapping_2024.csv"),
+        # Portal POPCEN2024 subdirectory
+        (xlsx_path, "fwa_online_portal/POPCEN2024/FWA_Barangay_Rollout_Plan_2024_1000s.xlsx"),
+        (dyn_xlsx_path, "fwa_online_portal/POPCEN2024/FWA_Barangay_Rollout_Plan_2024_1000s_Dynamic.xlsx"),
+        (kmz_path, "fwa_online_portal/POPCEN2024/FWA_Rollout_Sites_Master_2024.kmz"),
+        (kml_path, "fwa_online_portal/POPCEN2024/FWA_Rollout_Sites_Master_2024.kml"),
+        ("POPCEN2024/FWA_Metric_to_Source_Mapping_2024.xlsx", "fwa_online_portal/POPCEN2024/FWA_Metric_to_Source_Mapping_2024.xlsx"),
+        ("POPCEN2024/FWA_Metric_to_Source_Mapping_2024.csv", "fwa_online_portal/POPCEN2024/FWA_Metric_to_Source_Mapping_2024.csv"),
     ]
-    for src_f, dst_f in portal_copies:
+    for src_f, dst_f in deliverable_copies:
         if os.path.exists(src_f):
+            os.makedirs(os.path.dirname(dst_f), exist_ok=True)
             shutil.copy2(src_f, dst_f)
-            print(f"  -> Synced to portal: {dst_f}")
+            print(f"  -> Synced: {dst_f}")
 
     # Step 9: Reconcile Markdown & Decks
     auto_generate_markdown_and_decks(batch_stats, total_stat, top5k[:20], prov_batch_counts, OUT_DIR)
