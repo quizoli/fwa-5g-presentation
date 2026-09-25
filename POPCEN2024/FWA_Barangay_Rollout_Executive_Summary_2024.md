@@ -25,16 +25,16 @@ Deliverables in this edition:
 
 | Rollout Phase | Barangays | Initial Day 1 Build (BTS) | Peak 30% Demand Capacity (BTS) | Population (2024) | Addressable Households | Subs @ 30% | Rural % | Avg Dist to Node | Avg Score | Phase Color Code |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
-| **Batch 1 (Phase 1)** | **1,000** | **1,000 BTS** | **1,194 BTS** | **6,940,881** | **1,917,051** | **575,107** | 54.7% | 0.57 km | **78.90** | Cyan (`#00B4D8`) |
-| **Batch 2 (Phase 2)** | **1,000** | **1,000 BTS** | **1,241 BTS** | **7,446,473** | **2,051,208** | **615,371** | 48.4% | 1.01 km | **72.79** | Cyan (`#00B4D8`) |
-| **Batch 3 (Phase 3)** | **1,000** | **1,000 BTS** | **1,178 BTS** | **6,113,576** | **1,678,517** | **503,577** | 57.5% | 1.38 km | **69.08** | Cyan (`#00B4D8`) |
-| **Batch 4 (Phase 4)** | **1,000** | **1,000 BTS** | **1,165 BTS** | **5,824,259** | **1,593,195** | **477,968** | 59.6% | 2.32 km | **66.38** | Cyan (`#00B4D8`) |
-| **Batch 5 (Phase 5)** | **1,000** | **1,000 BTS** | **1,148 BTS** | **5,414,551** | **1,476,165** | **442,868** | 65.7% | 2.72 km | **64.18** | Cyan (`#00B4D8`) |
-| **TOTAL (5 Batches)** | **5,000** | **5,000 BTS** | **5,926 BTS** | **31,739,740** | **8,716,136** | **2,614,891** | **57.2%** | **1.60 km** | **70.27** | Complete 5-Batch Universe |
+| **Batch 1 (Phase 1)** | **1,000** | **1,000 BTS** | **1,203 BTS** | **7,060,034** | **1,940,365** | **582,100** | 53.1% | 0.59 km | **78.56** | Cyan (`#00B4D8`) |
+| **Batch 2 (Phase 2)** | **1,000** | **1,000 BTS** | **1,243 BTS** | **7,410,468** | **2,045,183** | **613,568** | 50.9% | 1.07 km | **72.40** | Cyan (`#00B4D8`) |
+| **Batch 3 (Phase 3)** | **1,000** | **1,000 BTS** | **1,184 BTS** | **6,262,888** | **1,726,501** | **517,961** | 54.9% | 1.44 km | **68.75** | Cyan (`#00B4D8`) |
+| **Batch 4 (Phase 4)** | **1,000** | **1,000 BTS** | **1,182 BTS** | **6,015,715** | **1,652,354** | **495,723** | 60.9% | 2.54 km | **65.99** | Cyan (`#00B4D8`) |
+| **Batch 5 (Phase 5)** | **1,000** | **1,000 BTS** | **1,153 BTS** | **5,590,570** | **1,528,018** | **458,418** | 64.7% | 2.77 km | **63.72** | Cyan (`#00B4D8`) |
+| **TOTAL (5 Batches)** | **5,000** | **5,000 BTS** | **5,965 BTS** | **32,339,675** | **8,892,421** | **2,667,770** | **56.9%** | **1.68 km** | **69.88** | Complete 5-Batch Universe |
 
 > **Operational Architecture Note (Option A: Day 1 Build vs. Peak Capacity)**:
 > - **Initial Day 1 Build (1,000 BTS per phase / 5,000 BTS total)**: Deploys exactly 1 BTS per priority barangay on Day 1 to establish immediate commercial presence without speculative overbuilding.
-> - **Peak 30% Demand Capacity (5,926 BTS total)**: Total subscriber absorption potential dimensioned at 1,000 subscribers per BTS, unlocking organic expansion BTS on existing site footprints without new land acquisition.
+> - **Peak 30% Demand Capacity (5,965 BTS total)**: Total subscriber absorption potential dimensioned at 1,000 subscribers per BTS, unlocking organic expansion BTS on existing site footprints without new land acquisition.
 
 ---
 
@@ -42,26 +42,26 @@ Deliverables in this edition:
 
 | Rank | Barangay | Municipality | Province | Region | Pop 2024 | Households | Subs @ 30% | Carrier | Peak 30% Cap | Day 1 Build | Score | Lat | Lon | Dist to Node |
 | :---: | :--- | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **1** | **Poblacion** | San Rafael | Iloilo | Region VI (Western Visayas) | 4,527 | 1,191 | 357 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **90.38** | 11.181406 | 122.829519 | 0.22 km |
-| **2** | **Poblacion** | Boljoon | Cebu | Region VII (Central Visayas) | 4,263 | 1,122 | 337 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **90.38** | 9.6253 | 123.48013 | 0.20 km |
-| **3** | **Poblacion** | Alcoy | Cebu | Region VII (Central Visayas) | 4,032 | 1,061 | 318 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **90.38** | 9.709702 | 123.507311 | 0.14 km |
-| **4** | **Poblacion** | Sugbongcogon | Misamis Oriental | Region X (Northern Mindanao) | 3,746 | 961 | 288 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **89.26** | 8.955645 | 124.78832 | 0.13 km |
-| **5** | **Matacong** | San Lorenzo Ruiz | Camarines Norte | Region V (Bicol Region) | 3,830 | 958 | 287 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.97** | 14.036076 | 122.865496 | 0.12 km |
-| **6** | **Dawis Norte** | Carmen | Cebu | Region VII (Central Visayas) | 4,807 | 1,265 | 380 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.76** | 10.576567 | 124.018142 | 0.10 km |
-| **7** | **Poblacion Zone II** | Capoocan | Leyte | Region VIII (Eastern Visayas) | 4,790 | 1,261 | 378 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.76** | 11.293095 | 124.638061 | 0.29 km |
-| **8** | **Bacolod** | Irosin | Sorsogon | Region V (Bicol Region) | 4,737 | 1,184 | 355 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.76** | 12.701407 | 124.035889 | 0.10 km |
-| **9** | **Poblacion North** | San Fernando | Cebu | Region VII (Central Visayas) | 4,710 | 1,239 | 372 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.76** | 10.164196 | 123.707844 | 0.21 km |
-| **10** | **Tacas** | Pontevedra | Capiz | Region VI (Western Visayas) | 4,684 | 1,233 | 370 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.76** | 11.476667 | 122.834722 | 0.16 km |
-| **11** | **Abuyog** | City of Sorsogon | Sorsogon | Region V (Bicol Region) | 4,670 | 1,168 | 350 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.76** | 12.946322 | 124.052426 | 0.10 km |
-| **12** | **Sagrada Familia** | Buhi | Camarines Sur | Region V (Bicol Region) | 4,566 | 1,087 | 326 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.76** | 13.415973 | 123.514163 | 0.02 km |
-| **13** | **San Isidro** | Castilla | Sorsogon | Region V (Bicol Region) | 4,377 | 1,094 | 328 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.76** | 12.973642 | 123.840237 | 0.29 km |
-| **14** | **Sacsac** | Bacong | Negros Oriental | Region VII (Central Visayas) | 4,372 | 1,151 | 345 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.76** | 9.25467 | 123.290063 | 0.23 km |
-| **15** | **Poblacion East** | Oton | Iloilo | Region VI (Western Visayas) | 4,302 | 1,132 | 340 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.76** | 10.6914 | 122.478744 | 0.24 km |
-| **16** | **Looc** | Villanueva | Misamis Oriental | Region X (Northern Mindanao) | 5,071 | 1,300 | 390 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.19** | 8.594267 | 124.773518 | 0.16 km |
-| **17** | **Consuelo** | Magsaysay | Misamis Oriental | Region X (Northern Mindanao) | 4,051 | 1,039 | 312 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.19** | 8.915472 | 125.187387 | 0.30 km |
-| **18** | **Poblacion** | Lagonglong | Misamis Oriental | Region X (Northern Mindanao) | 4,238 | 1,087 | 326 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.01** | 8.810485 | 124.789898 | 0.60 km |
-| **19** | **Buhang** | Magallanes | Agusan del Norte | Region XIII (Caraga) | 4,178 | 1,019 | 306 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **86.9** | 9.035413 | 125.524987 | 0.25 km |
-| **20** | **Diclum** | Manolo Fortich | Bukidnon | Region X (Northern Mindanao) | 5,043 | 1,327 | 398 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **86.6** | 8.373615 | 124.84948 | 0.37 km |
+| **1** | **Poblacion** | Boljoon | Cebu | Region VII (Central Visayas) | 4,263 | 1,122 | 337 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **90.38** | 9.6253 | 123.48013 | 0.20 km |
+| **2** | **Poblacion** | Alcoy | Cebu | Region VII (Central Visayas) | 4,032 | 1,061 | 318 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **90.38** | 9.709702 | 123.507311 | 0.14 km |
+| **3** | **Poblacion** | Sugbongcogon | Misamis Oriental | Region X (Northern Mindanao) | 3,746 | 961 | 288 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **89.26** | 8.955645 | 124.78832 | 0.13 km |
+| **4** | **Matacong** | San Lorenzo Ruiz | Camarines Norte | Region V (Bicol Region) | 3,830 | 958 | 287 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.97** | 14.036076 | 122.865496 | 0.12 km |
+| **5** | **Dawis Norte** | Carmen | Cebu | Region VII (Central Visayas) | 4,807 | 1,265 | 380 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.76** | 10.576567 | 124.018142 | 0.10 km |
+| **6** | **Poblacion Zone II** | Capoocan | Leyte | Region VIII (Eastern Visayas) | 4,790 | 1,261 | 378 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.76** | 11.293095 | 124.638061 | 0.29 km |
+| **7** | **Bacolod** | Irosin | Sorsogon | Region V (Bicol Region) | 4,737 | 1,184 | 355 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.76** | 12.701407 | 124.035889 | 0.10 km |
+| **8** | **Poblacion North** | San Fernando | Cebu | Region VII (Central Visayas) | 4,710 | 1,239 | 372 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.76** | 10.164196 | 123.707844 | 0.21 km |
+| **9** | **Tacas** | Pontevedra | Capiz | Region VI (Western Visayas) | 4,684 | 1,233 | 370 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.76** | 11.476667 | 122.834722 | 0.16 km |
+| **10** | **Abuyog** | City of Sorsogon | Sorsogon | Region V (Bicol Region) | 4,670 | 1,168 | 350 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.76** | 12.946322 | 124.052426 | 0.10 km |
+| **11** | **Sagrada Familia** | Buhi | Camarines Sur | Region V (Bicol Region) | 4,566 | 1,087 | 326 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.76** | 13.415973 | 123.514163 | 0.02 km |
+| **12** | **San Isidro** | Castilla | Sorsogon | Region V (Bicol Region) | 4,377 | 1,094 | 328 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.76** | 12.973642 | 123.840237 | 0.29 km |
+| **13** | **Sacsac** | Bacong | Negros Oriental | Region VII (Central Visayas) | 4,372 | 1,151 | 345 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.76** | 9.25467 | 123.290063 | 0.23 km |
+| **14** | **Poblacion East** | Oton | Iloilo | Region VI (Western Visayas) | 4,302 | 1,132 | 340 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.76** | 10.6914 | 122.478744 | 0.24 km |
+| **15** | **Looc** | Villanueva | Misamis Oriental | Region X (Northern Mindanao) | 5,071 | 1,300 | 390 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.19** | 8.594267 | 124.773518 | 0.16 km |
+| **16** | **Consuelo** | Magsaysay | Misamis Oriental | Region X (Northern Mindanao) | 4,051 | 1,039 | 312 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.19** | 8.915472 | 125.187387 | 0.30 km |
+| **17** | **Poblacion** | Lagonglong | Misamis Oriental | Region X (Northern Mindanao) | 4,238 | 1,087 | 326 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **87.01** | 8.810485 | 124.789898 | 0.60 km |
+| **18** | **Buhang** | Magallanes | Agusan del Norte | Region XIII (Caraga) | 4,178 | 1,019 | 306 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **86.9** | 9.035413 | 125.524987 | 0.25 km |
+| **19** | **Diclum** | Manolo Fortich | Bukidnon | Region X (Northern Mindanao) | 5,043 | 1,327 | 398 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **86.6** | 8.373615 | 124.84948 | 0.37 km |
+| **20** | **Poblacion** | Kitaotao | Bukidnon | Region X (Northern Mindanao) | 5,364 | 1,412 | 424 | Band n50 (1.5 GHz, 60 MHz) | **1 BTS** | **1 BTS** | **86.5** | 7.634214 | 125.006456 | 0.38 km |
 
 ---
 
