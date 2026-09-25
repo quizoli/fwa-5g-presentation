@@ -254,11 +254,14 @@
       </form>
 
       <div id="outputBlock" style="display: none; margin-top: 16px;">
-        <div style="font-size: 11px; font-weight: 700; color: var(--green); text-transform: uppercase;">Generated Command / Snippet:</div>
+        <div style="font-size: 11px; font-weight: 700; color: var(--green); text-transform: uppercase;">Generated Command:</div>
         <div class="code-output" id="outputCode"></div>
-        <div style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">
-          Run in terminal to deploy immediately: 
-          <code style="color: var(--teal);">python3 manage_users.py approve ...</code>
+        <div style="display: flex; gap: 8px; margin-top: 10px;">
+          <button type="button" class="btn-nav" onclick="copyGeneratedCmd()" style="font-size: 11px; padding: 6px 12px; background: rgba(0,180,216,0.2); border-color: var(--teal); color: var(--teal);">📋 Copy Command</button>
+          <button type="button" class="btn-nav" onclick="downloadUpdatedRegistry()" style="font-size: 11px; padding: 6px 12px; background: rgba(16,185,129,0.2); border-color: var(--green); color: var(--green);">💾 Download auth_registry.js</button>
+        </div>
+        <div style="font-size: 11px; color: var(--text-muted); margin-top: 8px; line-height: 1.4;">
+          <strong>Deployment:</strong> Paste the command in Terminal or replace <code style="color: var(--teal);">auth_registry.js</code> to push live to GitHub Pages.
         </div>
       </div>
     </div>
@@ -327,6 +330,15 @@
     });
   }
 
+  function copyGeneratedCmd() {
+    const code = document.getElementById('outputCode').textContent;
+    navigator.clipboard.writeText(code).then(() => {
+      alert("Command copied to clipboard! Paste it into Terminal to deploy.");
+    });
+  }
+
+  let latestRegistryUsers = null;
+
   async function handleAdminAddUser(e) {
     e.preventDefault();
     const name = document.getElementById('addName').value.trim();
@@ -338,9 +350,89 @@
     const pwHash = await window.FWAPortalAuth.computeSHA256(pw);
     const cmd = `python3 manage_users.py approve ${username} "${pw}" --name "${name}" --email "${email}" --role "${role}"`;
 
+    // Add to local state
+    const newUser = {
+      username: username,
+      name: name,
+      email: email,
+      organization: "Authorized Reviewer",
+      role: role,
+      isAdmin: false,
+      status: "active",
+      passwordHash: pwHash,
+      registeredAt: new Date().toISOString().split('T')[0]
+    };
+
+    latestRegistryUsers = [...currentUsers.filter(u => u.username !== username), newUser];
+    currentUsers = latestRegistryUsers;
+    renderUserTable();
+
     document.getElementById('outputCode').textContent = cmd;
     document.getElementById('outputBlock').style.display = 'block';
-    alert(`User entry generated for '${username}'. Run the generated command to commit and deploy live to GitHub Pages!`);
+  }
+
+  function downloadUpdatedRegistry() {
+    if (!latestRegistryUsers) latestRegistryUsers = currentUsers;
+    
+    let js = `/**
+ * TelTech & Comclark — 5G Fixed Wireless Access (FWA) Portal
+ * User Authentication & Cryptographic Clearance Registry
+ * Author: OLIVER TUNGOL (oliver.tungol@comclark.com.ph)
+ * Last Updated: ${new Date().toISOString().split('T')[0]}
+ */
+
+(function(window) {
+  const ADMIN_EMAIL = "oliver.tungol@comclark.com.ph";
+
+  const USER_REGISTRY = ${JSON.stringify(latestRegistryUsers, null, 4)};
+
+  async function computeSHA256(str) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(str);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+  }
+
+  async function authenticateUser(usernameOrEmail, password) {
+    if (!usernameOrEmail || !password) return { success: false, message: "Missing credentials" };
+    const query = usernameOrEmail.trim().toLowerCase();
+    const pwHash = await computeSHA256(password.trim());
+    const user = USER_REGISTRY.find(u => (u.username.toLowerCase() === query || u.email.toLowerCase() === query));
+    if (!user) return { success: false, message: "Unrecognized username or corporate email." };
+    if (user.status !== "active") return { success: false, message: "Access suspended. Please contact oliver.tungol@comclark.com.ph." };
+    if (user.passwordHash !== pwHash) return { success: false, message: "Invalid security passcode or password." };
+    return { success: true, user: { username: user.username, name: user.name, email: user.email, organization: user.organization, role: user.role, isAdmin: !!user.isAdmin } };
+  }
+
+  function getCurrentUser() {
+    try {
+      const raw = sessionStorage.getItem("fwa_auth_user");
+      return raw ? JSON.parse(raw) : null;
+    } catch(e) { return null; }
+  }
+
+  function setSessionUser(u) { sessionStorage.setItem("fwa_auth_user", JSON.stringify(u)); }
+  function clearSession() { sessionStorage.removeItem("fwa_auth_user"); }
+
+  window.FWAPortalAuth = {
+    USER_REGISTRY: USER_REGISTRY,
+    ADMIN_EMAIL: ADMIN_EMAIL,
+    computeSHA256: computeSHA256,
+    login: authenticateUser,
+    getCurrentUser: getCurrentUser,
+    setSessionUser: setSessionUser,
+    logout: clearSession
+  };
+})(window);
+`;
+
+    const blob = new Blob([js], { type: "application/javascript" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "auth_registry.js";
+    a.click();
+    URL.revokeObjectURL(a.href);
   }
 
   window.addEventListener('DOMContentLoaded', checkAdminAuth);

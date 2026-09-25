@@ -47,18 +47,6 @@
       // Hash of "fwa2026"
       passwordHash: "ef03da33db83125ac00fe6dbb96f6475117d1d640f76cd2344168efa1181bba8",
       registeredAt: "2026-09-25"
-    },
-    {
-      username: "corporate.pin",
-      name: "Band n50 Quick Passcode",
-      email: "guest@comclark.com.ph",
-      organization: "Authorized Reviewers",
-      role: "Presentation Viewer",
-      isAdmin: false,
-      status: "active",
-      // Hash of "5G2026"
-      passwordHash: "e42db7c77805f23205d8a7170fd56ddd860130d7d344a156be3dd8d233228407",
-      registeredAt: "2026-09-25"
     }
   ];
 
@@ -77,21 +65,6 @@
     
     const query = usernameOrEmail.trim().toLowerCase();
     const pwHash = await computeSHA256(password.trim());
-
-    // Check special corporate PIN override: if entered password or username matches corporate PIN hash
-    if (pwHash === "e42db7c77805f23205d8a7170fd56ddd860130d7d344a156be3dd8d233228407" || 
-        password.trim() === "5G2026") {
-      return {
-        success: true,
-        user: {
-          username: "executive.pin",
-          name: "Executive Passcode User",
-          email: "authorized@comclark.com.ph",
-          role: "Executive Reviewer",
-          isAdmin: false
-        }
-      };
-    }
 
     const user = USER_REGISTRY.find(u => 
       (u.username.toLowerCase() === query || u.email.toLowerCase() === query)

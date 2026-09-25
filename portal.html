@@ -618,7 +618,7 @@
     <div class="user-session-bar">
       <span class="user-status-dot"></span>
       <span class="user-name" id="portalUserDisplay">EXECUTIVE</span>
-      <a href="admin.html" id="adminConsoleLink" style="display: none; padding: 2px 8px; font-size: 11px; text-decoration: none; color: var(--teal); background: rgba(0,180,216,0.15); border: 1px solid rgba(0,180,216,0.3); border-radius: 4px; font-weight: 700;">🛡️ Admin</a>
+      <a href="admin.html" id="adminConsoleLink" style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; font-size: 11px; text-decoration: none; color: #FFB703; background: rgba(255,183,3,0.12); border: 1px solid rgba(255,183,3,0.35); border-radius: 6px; font-weight: 700;" title="User Administration & Clearance Console">🛡️ Manage Users</a>
       <button onclick="logoutPortal()" class="btn-logout" title="Sign out and lock portal">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
@@ -1086,10 +1086,6 @@
         const el = document.getElementById('portalUserDisplay');
         if (el && user.name) {
           el.textContent = user.name.toUpperCase();
-        }
-        if (user.isAdmin || user.username === 'oliver.tungol' || user.username === 'admin') {
-          const admLink = document.getElementById('adminConsoleLink');
-          if (admLink) admLink.style.display = 'inline-flex';
         }
       }
     } catch (e) {}
