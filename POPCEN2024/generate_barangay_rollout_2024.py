@@ -361,15 +361,24 @@ Deliverables in this edition:
             f.write(html)
         print(f"  -> Reconciled {deck_path} ({os.path.getsize(deck_path):,} bytes).")
 
-    # Sync markdown and presentation deck to companion folders & dated folder
+    # Sync markdown and presentation deck to companion folders, portal & dated folder
     import shutil
-    for d_dir in ["FWA Design Phase 2024 POPCEN", "fwa_online_portal/POPCEN2024", "2026-09-25_Revised_Models"]:
+    for d_dir in ["FWA Design Phase 2024 POPCEN", "fwa_online_portal/POPCEN2024", "2026-09-25_Revised_Models", "fwa_online_portal/2026-09-25_Revised_Models"]:
         os.makedirs(d_dir, exist_ok=True)
         if os.path.exists(md_path):
             shutil.copy2(md_path, os.path.join(d_dir, "FWA_Barangay_Rollout_Executive_Summary_2024.md"))
         if os.path.exists(deck_path):
             shutil.copy2(deck_path, os.path.join(d_dir, "FWA_5G_Barangay_Rollout_Presentation_2024.html"))
         print(f"  -> Synced summary and presentation deck to: {d_dir}")
+
+    # Also sync root portal deck
+    if os.path.exists(deck_path):
+        with open(deck_path, "r", encoding="utf-8") as f:
+            deck_content = f.read()
+        deck_root = deck_content.replace('<a href="../index.html" class="btn-nav">', '<a href="index.html" class="btn-nav">')
+        with open("fwa_online_portal/barangay_rollout.html", "w", encoding="utf-8") as f:
+            f.write(deck_root)
+        print("  -> Synced root fwa_online_portal/barangay_rollout.html")
 
 
 def run():
@@ -1710,7 +1719,14 @@ def run():
         })
 
     map_js_str = f"window.RAW_SITES_DATA = {json.dumps(map_sites, separators=(',', ':'))};\n"
-    for jsp in [os.path.join(OUT_DIR, "fwa_sites_data.js"), "fwa_online_portal/fwa_sites_data.js"]:
+    for jsp in [
+        os.path.join(OUT_DIR, "fwa_sites_data.js"),
+        "fwa_online_portal/fwa_sites_data.js",
+        "fwa_online_portal/POPCEN2024/fwa_sites_data.js",
+        "2026-09-25_Revised_Models/fwa_sites_data.js",
+        "fwa_online_portal/2026-09-25_Revised_Models/fwa_sites_data.js"
+    ]:
+        os.makedirs(os.path.dirname(jsp), exist_ok=True)
         with open(jsp, "w", encoding="utf-8") as f: f.write(map_js_str)
 
     js_2024_str = "const FWA_SITES_2024 = " + json.dumps(js_data, separators=(',', ':')) + ";\n"
@@ -1719,7 +1735,8 @@ def run():
         "FWA Design Phase 2024 POPCEN/fwa_sites_data_2024.js",
         "fwa_online_portal/fwa_sites_data_2024.js",
         "fwa_online_portal/POPCEN2024/fwa_sites_data_2024.js",
-        "2026-09-25_Revised_Models/fwa_sites_data_2024.js"
+        "2026-09-25_Revised_Models/fwa_sites_data_2024.js",
+        "fwa_online_portal/2026-09-25_Revised_Models/fwa_sites_data_2024.js"
     ]
     for jsp in js_targets:
         os.makedirs(os.path.dirname(jsp), exist_ok=True)
