@@ -3,1005 +3,168 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TelTech & Comclark — FWA 5G Executive Presentation Portal</title>
+<title>TelTech & Comclark — Portal Offline for Security Maintenance</title>
 <style>
   :root {
     --navy: #0A192F;
-    --navy-light: #172A45;
+    --navy-light: #112240;
     --navy-card: #0F233D;
-    --blue-accent: #0077CC;
     --teal: #00B4D8;
     --gold: #FFB703;
-    --green: #10B981;
+    --red: #EF4444;
     --text-light: #F1F5F9;
     --text-muted: #94A3B8;
   }
+
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+
   body {
-    background: var(--navy);
+    background: radial-gradient(circle at 50% 30%, #172A45 0%, #0A192F 75%, #060D1A 100%);
     color: var(--text-light);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 0;
-  }
-  header {
-    background: rgba(10, 25, 47, 0.95);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 20px 40px;
-    display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    backdrop-filter: blur(8px);
-  }
-  .brand-title { font-size: 20px; font-weight: 800; color: var(--teal); letter-spacing: 1px; }
-  .brand-subtitle { font-size: 13px; color: var(--text-muted); font-weight: 500; }
-  
-  .hero {
+    padding: 24px;
     text-align: center;
-    padding: 50px 20px 30px;
-    max-width: 960px;
-    margin: 0 auto;
-  }
-  .hero-tag {
-    display: inline-block;
-    background: rgba(0, 180, 216, 0.15);
-    color: var(--teal);
-    border: 1px solid rgba(0, 180, 216, 0.3);
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 18px;
-  }
-  .hero h1 {
-    font-size: 38px;
-    font-weight: 800;
-    line-height: 1.25;
-    margin-bottom: 14px;
-    background: linear-gradient(135deg, #FFFFFF 0%, #CBD5E1 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .hero p {
-    font-size: 17px;
-    color: var(--text-muted);
-    line-height: 1.6;
-    max-width: 780px;
-    margin: 0 auto 30px;
-  }
-
-  .container {
-    max-width: 1200px;
-    margin: 0 auto 50px;
-    padding: 0 20px;
-    width: 100%;
-  }
-
-  .grid-decks {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 24px;
-    margin-bottom: 40px;
-  }
-
-  .deck-card {
-    background: var(--navy-card);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    padding: 28px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
   }
-  .deck-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--teal);
-    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.4);
-  }
-  .deck-card.featured {
-    border: 2px solid var(--teal);
-    background: linear-gradient(180deg, #112B4C 0%, #0F233D 100%);
-  }
-  .badge-tag {
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 6px;
-    font-size: 11px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 14px;
-  }
-  .badge-blue { background: rgba(0, 119, 204, 0.25); color: #60A5FA; border: 1px solid rgba(96, 165, 250, 0.3); }
-  .badge-teal { background: rgba(0, 180, 216, 0.25); color: var(--teal); border: 1px solid rgba(0, 180, 216, 0.3); }
-  .badge-gold { background: rgba(255, 183, 3, 0.2); color: var(--gold); border: 1px solid rgba(255, 183, 3, 0.3); }
 
-  .deck-card h2 {
-    font-size: 22px;
-    font-weight: 700;
-    color: #FFFFFF;
-    margin-bottom: 10px;
-    line-height: 1.3;
-  }
-  .deck-card p {
-    font-size: 14px;
-    color: var(--text-muted);
-    line-height: 1.55;
-    margin-bottom: 20px;
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: 
+      linear-gradient(rgba(0, 180, 216, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 180, 216, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
   }
 
-  .deck-features {
-    list-style: none;
-    margin-bottom: 24px;
-  }
-  .deck-features li {
-    font-size: 13px;
-    color: #CBD5E1;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-  }
-  .deck-features li::before {
-    content: "✓";
-    color: var(--teal);
-    font-weight: 800;
-  }
-
-  .btn-launch {
-    display: block;
+  .card {
+    background: rgba(15, 35, 61, 0.9);
+    border: 1px solid rgba(255, 183, 3, 0.3);
+    border-radius: 20px;
+    padding: 48px 36px;
+    max-width: 520px;
     width: 100%;
-    text-align: center;
-    background: var(--blue-accent);
-    color: white;
-    text-decoration: none;
-    padding: 13px 20px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 14.5px;
-    transition: all 0.2s;
-    border: none;
-    cursor: pointer;
-  }
-  .btn-launch:hover {
-    background: #0090F0;
-    box-shadow: 0 4px 12px rgba(0, 119, 204, 0.4);
-  }
-  .btn-launch.featured-btn {
-    background: var(--teal);
-    color: #0A192F;
-  }
-  .btn-launch.featured-btn:hover {
-    background: #48CAE4;
-    box-shadow: 0 4px 12px rgba(0, 180, 216, 0.4);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 183, 3, 0.08);
+    position: relative;
+    z-index: 10;
   }
 
-  .download-section {
-    background: var(--navy-card);
-    border: 1px dashed rgba(255, 255, 255, 0.15);
-    border-radius: 16px;
-    padding: 30px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  .download-info h3 { font-size: 18px; font-weight: 700; color: white; margin-bottom: 6px; }
-  .download-info p { font-size: 13.5px; color: var(--text-muted); }
-
-  .btn-download {
-    background: rgba(255, 255, 255, 0.08);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 12px 24px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 700;
+  .status-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    transition: all 0.2s;
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #FCA5A5;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
   }
-  .btn-download:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: white;
+
+  .pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+    box-shadow: 0 0 8px var(--red);
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+
+  .brand-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--teal);
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+
+  .brand-subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+
+  h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+
+  p {
+    font-size: 14px;
+    color: #CBD5E1;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .security-notice {
+    background: rgba(10, 25, 47, 0.6);
+    border: 1px dashed rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: left;
+    line-height: 1.5;
+  }
+
+  .security-notice strong {
+    color: var(--gold);
   }
 
   footer {
-    text-align: center;
-    padding: 30px;
-    font-size: 12px;
-    color: var(--text-muted);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    margin-top: auto;
-  }
-
-  /* Model Visibility & Hide Controls */
-  .deck-card {
+    margin-top: 28px;
+    font-size: 11.5px;
+    color: #64748B;
     position: relative;
-    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 10;
   }
-  .deck-card.is-hidden {
-    display: none !important;
-  }
-  .btn-download.is-hidden {
-    display: none !important;
-  }
-
-  .card-hide-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    color: #94A3B8;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    transition: all 0.2s;
-    z-index: 5;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .card-hide-btn:hover {
-    background: rgba(239, 68, 68, 0.2);
-    border-color: rgba(239, 68, 68, 0.5);
-    color: #FCA5A5;
-    transform: scale(1.03);
-  }
-
-  .model-filter-toolbar {
-    background: var(--navy-card);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 14px;
-    padding: 18px 24px;
-    margin-bottom: 24px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-  }
-  .toolbar-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    margin-bottom: 14px;
-  }
-  .toolbar-title-wrap {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .toolbar-title {
-    font-size: 13.5px;
-    font-weight: 800;
-    color: #FFFFFF;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-  }
-  .visibility-status-pill {
-    background: rgba(0, 180, 216, 0.15);
-    color: var(--teal);
-    border: 1px solid rgba(0, 180, 216, 0.3);
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 11.5px;
-    font-weight: 700;
-  }
-  .visibility-status-pill.has-hidden {
-    background: rgba(255, 183, 3, 0.15);
-    color: var(--gold);
-    border-color: rgba(255, 183, 3, 0.3);
-  }
-  .toolbar-actions {
-    display: flex;
-    gap: 8px;
-  }
-  .btn-tool {
-    background: rgba(255, 255, 255, 0.07);
-    color: #CBD5E1;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 5px 12px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .btn-tool:hover {
-    background: rgba(255, 255, 255, 0.15);
-    color: white;
-  }
-  .btn-tool.primary {
-    background: rgba(0, 180, 216, 0.2);
-    color: var(--teal);
-    border-color: rgba(0, 180, 216, 0.4);
-  }
-  .btn-tool.primary:hover {
-    background: rgba(0, 180, 216, 0.35);
-  }
-
-  .filter-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: 12px;
-  }
-  .filter-row:last-child {
-    margin-bottom: 0;
-  }
-  .filter-row-label {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    min-width: 95px;
-  }
-  .chips-group {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    flex: 1;
-  }
-  .preset-chip {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #94A3B8;
-    padding: 5px 12px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .preset-chip:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-  }
-  .preset-chip.active {
-    background: var(--blue-accent);
-    border-color: #38BDF8;
-    color: white;
-    box-shadow: 0 2px 8px rgba(0, 119, 204, 0.4);
-  }
-
-  .toggle-pill {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: #CBD5E1;
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 11.5px;
-    font-weight: 600;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: all 0.2s;
-  }
-  .toggle-pill:hover {
-    background: rgba(255, 255, 255, 0.1);
-  }
-  .toggle-pill .dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #64748B;
-    transition: background 0.2s;
-  }
-  .toggle-pill.is-active {
-    background: rgba(16, 185, 129, 0.12);
-    border-color: rgba(16, 185, 129, 0.35);
-    color: #E2E8F0;
-  }
-  .toggle-pill.is-active .dot {
-    background: #10B981;
-    box-shadow: 0 0 6px #10B981;
-  }
-  .toggle-pill.is-inactive {
-    background: rgba(239, 68, 68, 0.08);
-    border-color: rgba(239, 68, 68, 0.25);
-    color: #94A3B8;
-    text-decoration: line-through;
-    opacity: 0.7;
-  }
-  .toggle-pill.is-inactive .dot {
-    background: #EF4444;
-  }
-
-  .hidden-alert-banner {
-    display: none;
-    background: rgba(255, 183, 3, 0.1);
-    border: 1px solid rgba(255, 183, 3, 0.3);
-    color: #FDE047;
-    padding: 10px 16px;
-    border-radius: 8px;
-    font-size: 13px;
-    margin-bottom: 20px;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-  }
-  .hidden-alert-banner.show {
-    display: flex;
-  }
-
-  /* Mobile Responsive Breakpoints */
-  @media (max-width: 768px) {
-    .card-hide-btn {
-      top: 14px;
-      right: 14px;
-      padding: 3px 8px;
-      font-size: 10px;
-    }
-    .model-filter-toolbar {
-      padding: 14px;
-    }
-    .filter-row {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 6px;
-    }
-    .filter-row-label {
-      min-width: 0;
-    }
-    header {
-      padding: 14px 18px;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 6px;
-    }
-    .brand-title {
-      font-size: 17px;
-    }
-    .brand-subtitle {
-      font-size: 11.5px;
-    }
-    .hero {
-      padding: 28px 14px 18px;
-    }
-    .hero-tag {
-      font-size: 10.5px;
-      padding: 4px 12px;
-      letter-spacing: 1px;
-      margin-bottom: 12px;
-    }
-    .hero h1 {
-      font-size: 25px;
-      line-height: 1.25;
-      margin-bottom: 10px;
-    }
-    .hero p {
-      font-size: 14px;
-      line-height: 1.5;
-      margin-bottom: 20px;
-    }
-    .container {
-      padding: 0 14px;
-      margin-bottom: 30px;
-    }
-    .grid-decks {
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-    .deck-card {
-      padding: 20px 16px;
-      border-radius: 12px;
-    }
-    .deck-card h2 {
-      font-size: 19px;
-    }
-    .deck-card p {
-      font-size: 13px;
-      margin-bottom: 16px;
-    }
-    .deck-features li {
-      font-size: 12px;
-    }
-    .btn-launch {
-      padding: 13px 16px;
-      font-size: 14px;
-    }
-    .download-section {
-      padding: 20px 16px;
-      flex-direction: column;
-      align-items: stretch;
-      text-align: left;
-      gap: 16px;
-    }
-    .btn-download {
-      width: 100%;
-      justify-content: center;
-      padding: 13px;
-      font-size: 13.5px;
-    }
-    footer {
-      padding: 20px 14px;
-      font-size: 11px;
-    }
-  }
-
 </style>
 </head>
 <body>
 
-<header>
-  <div>
-    <div class="brand-title">TELTECH & COMCLARK</div>
-    <div class="brand-subtitle">5G Fixed Wireless Access (FWA) Executive Portal</div>
+<div class="card">
+  <div class="status-badge">
+    <span class="pulse-dot"></span>
+    System Status: Portal Offline
   </div>
-  <div style="font-size: 12px; color: var(--teal); font-weight: 600;">
-    CONFIDENTIAL · SEPTEMBER 2026
-  </div>
-</header>
 
-<div class="hero">
-  <span class="hero-tag">Executive Presentation Suite</span>
-  <h1>Fixed Wireless Access (FWA) 5G Initiative</h1>
+  <div class="brand-title">TELTECH & COMCLARK</div>
+  <div class="brand-subtitle">5G Fixed Wireless Access (FWA) Executive Suite</div>
+
+  <h1>Portal Temporarily Offline</h1>
   <p>
-    Empirical Propagation Demonstration in Pampanga & DICT GIDA Nationwide Barangay Rollout Master Plan using Band n50 (1.5 GHz) with Starlink LEO Satellite Backhaul.
+    This portal has been temporarily taken offline by system administration for security maintenance, access control updates, and confidentiality hardening.
   </p>
-</div>
 
-<div class="container">
-
-  <!-- Model Visibility & Filtering Toolbar -->
-  <div class="model-filter-toolbar">
-    <div class="toolbar-top">
-      <div class="toolbar-title-wrap">
-        <span class="toolbar-title">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-            <circle cx="12" cy="12" r="3"></circle>
-          </svg>
-          Model Visibility & Presentation Controls
-        </span>
-        <span class="visibility-status-pill" id="visibilityStatusPill">Showing all 6 models</span>
-      </div>
-      <div class="toolbar-actions">
-        <button class="btn-tool primary" id="btnShowAll" onclick="showAllModels()">Show All Models</button>
-        <button class="btn-tool" id="btnResetView" onclick="resetModelVisibility()">Reset View</button>
-      </div>
-    </div>
-
-    <!-- Quick Presets -->
-    <div class="filter-row">
-      <span class="filter-row-label">Quick Views:</span>
-      <div class="chips-group" id="presetChipsGroup">
-        <button class="preset-chip active" data-preset="all" onclick="applyPreset('all')">All Presentations (6)</button>
-        <button class="preset-chip" data-preset="models-only" onclick="applyPreset('models-only')">3 Siting Models Only</button>
-        <button class="preset-chip" data-preset="commercial" onclick="applyPreset('commercial')">Model 1 (Commercial)</button>
-        <button class="preset-chip" data-preset="gida" onclick="applyPreset('gida')">Model 2 (GIDA)</button>
-        <button class="preset-chip" data-preset="hybrid" onclick="applyPreset('hybrid')">Model 3 (Hybrid)</button>
-        <button class="preset-chip" data-preset="briefings" onclick="applyPreset('briefings')">Trial Demo & Strategy</button>
-      </div>
-    </div>
-
-    <!-- Individual Model Toggles -->
-    <div class="filter-row">
-      <span class="filter-row-label">Toggle Models:</span>
-      <div class="chips-group" id="modelTogglesGroup">
-        <button class="toggle-pill is-active" data-model-id="demo" onclick="toggleModelVisibility('demo')">
-          <span class="dot"></span> Pilot Trial Demo
-        </button>
-        <button class="toggle-pill is-active" data-model-id="gida-deck" onclick="toggleModelVisibility('gida-deck')">
-          <span class="dot"></span> DICT GIDA Master Plan
-        </button>
-        <button class="toggle-pill is-active" data-model-id="strategy" onclick="toggleModelVisibility('strategy')">
-          <span class="dot"></span> 20-Slide Business Case
-        </button>
-        <button class="toggle-pill is-active" data-model-id="model1" onclick="toggleModelVisibility('model1')">
-          <span class="dot"></span> Model 1: Commercial (POPCEN 2024)
-        </button>
-        <button class="toggle-pill is-active" data-model-id="model2" onclick="toggleModelVisibility('model2')">
-          <span class="dot"></span> Model 2: DICT / UNDP GIDA
-        </button>
-        <button class="toggle-pill is-active" data-model-id="model3" onclick="toggleModelVisibility('model3')">
-          <span class="dot"></span> Model 3: Combined Hybrid
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Hidden Models Alert Banner -->
-  <div class="hidden-alert-banner" id="hiddenAlertBanner">
-    <div>
-      <strong>Notice:</strong> <span id="hiddenAlertText">Some models or decks are currently hidden from view.</span>
-    </div>
-    <button class="btn-tool primary" onclick="showAllModels()" style="padding: 4px 10px; font-size: 11.5px;">
-      Unhide All Models ➔
-    </button>
-  </div>
-
-  <div class="grid-decks">
-
-    <!-- Deck 1: Trial Demo Only -->
-    <div class="deck-card" data-model="demo">
-      <button class="card-hide-btn" onclick="hideModel('demo')" title="Hide this presentation from view">✕ Hide</button>
-      <div>
-        <span class="badge-tag badge-blue">Non-Commercial Trial · 7 Slides</span>
-        <h2>3-BTS Pilot Trial & Demo Plan</h2>
-        <p>
-          Focused strictly on the technical propagation trial across 2 sites in Pampanga (Dolores, Reliance IT Center) and 1 site in Pasig City (Comclark NOC).
-        </p>
-        <ul class="deck-features">
-          <li>NTC Permits BSD-0196 & BSD-0197-2026</li>
-          <li>Dual-Band (Band n50 & n77) technical architecture</li>
-          <li>Starlink Business LEO satellite backhaul latency</li>
-          <li>5-Phase empirical propagation testing framework</li>
-          <li>Technical risk assessment & mitigation matrix</li>
-        </ul>
-      </div>
-      <a href="demo.html" target="_blank" class="btn-launch">Launch Trial Demo Deck ➔</a>
-    </div>
-
-    <!-- Deck 2: GIDA Rollout Plan (Featured) -->
-    <div class="deck-card featured" data-model="gida-deck">
-      <button class="card-hide-btn" onclick="hideModel('gida-deck')" title="Hide this presentation from view">✕ Hide</button>
-      <div>
-        <span class="badge-tag badge-teal">Strategic Expansion · 10 Slides</span>
-        <h2>DICT GIDA Rollout Master Plan</h2>
-        <p>
-          Full nationwide deployment plan incorporating the official DICT FPIAP prioritization tool evaluating 42,001 barangays.
-        </p>
-        <ul class="deck-features">
-          <li>Full-page high-legibility executive layout</li>
-          <li>3,903 Priority 1 barangays (1,345 Critical + 2,558 High)</li>
-          <li>1,000-Site Year-1 macro cluster allocation quota</li>
-          <li>Region III bridge: 41 sites in Nueva Ecija & Aurora</li>
-          <li>Dual-Revenue Model: DICT subsidy + ₱599 retail</li>
-          <li>Macro site unit economics & 10.4-month payback</li>
-        </ul>
-      </div>
-      <a href="gida.html" target="_blank" class="btn-launch featured-btn">Launch GIDA Rollout Deck ➔</a>
-    </div>
-
-    <!-- Deck 3: Strategic 20-Slide Business Case -->
-    <div class="deck-card" data-model="strategy">
-      <button class="card-hide-btn" onclick="hideModel('strategy')" title="Hide this presentation from view">✕ Hide</button>
-      <div>
-        <span class="badge-tag badge-gold">Board Level · 20 Slides</span>
-        <h2>Strategic 20-Slide Business Case</h2>
-        <p>
-          Comprehensive commercial, engineering, and financial evaluation covering 10,000 sites across 10 years.
-        </p>
-        <ul class="deck-features">
-          <li>3 financial models (Baseline, Dynamic ARPU, Best Case)</li>
-          <li>+$1,068.0M Project NPV @ 12% WACC · 37.6% IRR</li>
-          <li>Strategic value waterfall (-$77M to +$1.07B)</li>
-          <li>TowerCo colocation vs. own-build ($721M savings)</li>
-          <li>Starlink pooled backhaul vs. fiber ($1.11B savings)</li>
-        </ul>
-      </div>
-      <a href="strategy.html" target="_blank" class="btn-launch">Launch Strategic Deck ➔</a>
-    </div>
-
-    <!-- Deck 4: Model 1 - POPCEN 2024 Commercial Viability -->
-    <div class="deck-card" data-model="model1" style="border-color: #10B981; background: linear-gradient(180deg, #0E2E3B 0%, #0F233D 100%);">
-      <button class="card-hide-btn" onclick="hideModel('model1')" title="Hide Model 1 from view">✕ Hide</button>
-      <div>
-        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
-          <span class="badge-tag" style="background: rgba(16, 185, 129, 0.25); color: #10B981; border: 1px solid rgba(16, 185, 129, 0.4);">
-            MODEL 1: COMMERCIAL VIABILITY
-          </span>
-          <span class="badge-tag" style="background: rgba(0, 180, 216, 0.2); color: #38BDF8; border: 1px solid rgba(0, 180, 216, 0.3);">
-            POPCEN 2024 · 14 Slides
-          </span>
-        </div>
-        <h2>Model 1: POPCEN 2024 Commercial Rollout</h2>
-        <p>
-          Prioritizes rapid commercial payback, fiber proximity (<3km), and high-purchasing power communities using official 2024 Census of Population (Proc. 973) and PSA FIES Poverty data.
-        </p>
-        <ul class="deck-features">
-          <li>Batch 1: 1,000 priority sites (7.06M pop · 1.94M households · 582k subs @ 30%)</li>
-          <li>Point-to-point fiber proximity: 100% within 3km of Converge optical nodes (Avg 0.59 km)</li>
-          <li>Band n50 radio dimensioned for 1,000 active subscribers per BTS total (3 sectors)</li>
-          <li>3 Selection Pillars: Ease of Deployment (35%), Viability (35%), Necessity (30%)</li>
-          <li>5-Batch master roadmap scaling to 5,000 sites, 32.34M pop, and 2.67M subscribers</li>
-          <li>Reconciled 25-column companion models: Standard & Dynamic Excel (Zero Duplicate Latitudes)</li>
-        </ul>
-      </div>
-      <a href="POPCEN2024/FWA_5G_Barangay_Rollout_Presentation_2024.html" target="_blank" class="btn-launch" style="background: #10B981; color: #0A192F;">Launch Model 1 Presentation ➔</a>
-    </div>
-
-    <!-- Deck 5: Model 2 - DICT / UNDP GIDA Prioritization Model -->
-    <div class="deck-card" data-model="model2" style="border-color: #38BDF8; background: linear-gradient(180deg, #0C2340 0%, #0F233D 100%);">
-      <button class="card-hide-btn" onclick="hideModel('model2')" title="Hide Model 2 from view">✕ Hide</button>
-      <div>
-        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
-          <span class="badge-tag" style="background: rgba(56, 189, 248, 0.25); color: #38BDF8; border: 1px solid rgba(56, 189, 248, 0.4);">
-            MODEL 2: GIDA PRIORITIZATION
-          </span>
-          <span class="badge-tag" style="background: rgba(255, 183, 3, 0.2); color: #FCD34D; border: 1px solid rgba(255, 183, 3, 0.3);">
-            11 UNDP Criteria
-          </span>
-        </div>
-        <h2>Model 2: Official DICT / UNDP GIDA Rollout</h2>
-        <p>
-          Driven strictly by the official Looker Studio Decision Support Tool (42,001 barangays), prioritizing acute digital deprivation, geographic isolation, and universal service using DepEd Masterfile coordinates.
-        </p>
-        <ul class="deck-features">
-          <li>Batch 1: 1,000 Tier 1 Critical GIDA sites (2.25M pop · 589k households · 177k subs @ 30%)</li>
-          <li>Evaluates 11 criteria: Mobile downspeed, road distance, nighttime lights, hazard, insurgency, poverty</li>
-          <li>Hybrid transmission: 27.0% direct fiber (<3km) + 14.7% near fiber (3-5km) + 58.3% Starlink LEO (>5km)</li>
-          <li>Total 5,000 sites cover 16.84M population across the country's most isolated barangays (62.3% Starlink LEO)</li>
-          <li>100% Unique Coordinates & Latitudes: 0 duplicates across all 5,000 sites</li>
-          <li>Reconciled 25-column companion models: Standard & Dynamic Excel</li>
-        </ul>
-      </div>
-      <a href="GIDA/FWA_5G_Barangay_Rollout_Presentation_GIDA.html" target="_blank" class="btn-launch" style="background: #38BDF8; color: #0A192F;">Launch Model 2 Presentation ➔</a>
-    </div>
-
-    <!-- Deck 6: Model 3 - Combined Hybrid Dual Optimization -->
-    <div class="deck-card featured" data-model="model3" style="border-color: #FFB703; background: linear-gradient(180deg, #2D2206 0%, #0F233D 100%);">
-      <button class="card-hide-btn" onclick="hideModel('model3')" title="Hide Model 3 from view">✕ Hide</button>
-      <div>
-        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
-          <span class="badge-tag" style="background: rgba(255, 183, 3, 0.25); color: #FCD34D; border: 1px solid rgba(255, 183, 3, 0.4);">
-            ★ MODEL 3: HYBRID DUAL OPTIMIZATION
-          </span>
-          <span class="badge-tag" style="background: rgba(16, 185, 129, 0.2); color: #86EFAC; border: 1px solid rgba(16, 185, 129, 0.3);">
-            50% Commercial + 50% GIDA
-          </span>
-        </div>
-        <h2>Model 3: Combined Hybrid Rollout Plan</h2>
-        <p>
-          Synthesizes commercial ROI with social inclusion, capturing high-demand communities that also fulfill universal service mandates with minimal CAPEX using DepEd Masterfile coordinates.
-        </p>
-        <ul class="deck-features">
-          <li>Batch 1: 1,000 hybrid priority sites (9.10M pop · 2.54M households · 761k subs @ 30%)</li>
-          <li>Captures 672 direct optical nodes (<3km), 129 near optical (3-5km), and 199 Starlink LEO (19.9%)</li>
-          <li>Total 5,000 sites reach 29.84M population, 8.18M households, and 2.45M subscribers</li>
-          <li>Transmission resilience: 49.7% direct optical (<3km) + 14.5% near optical (3-5km) + 35.7% Starlink LEO (>5km)</li>
-          <li>100% Unique Coordinates & Latitudes: 0 duplicates across all 5,000 sites</li>
-          <li>Live sensitivity tuning in Excel: dynamically shift commercial vs GIDA blend weights</li>
-        </ul>
-      </div>
-      <a href="Combined/FWA_5G_Barangay_Rollout_Presentation_Combined.html" target="_blank" class="btn-launch" style="background: #FFB703; color: #0A192F;">Launch Model 3 Presentation ➔</a>
-    </div>
-
-  </div>
-
-  <!-- Download Package Banner -->
-  <div class="download-section">
-    <div class="download-info">
-      <h3>Executive Deliverables Catalog & Audited Models (September 25, 2026 Reconciled Release)</h3>
-      <p>Download official companion sensitivity models, metric mappings, GIS layers, and comparative audit reports with 100% verified unique coordinates across all three models.</p>
-    </div>
-    <div style="display: flex; gap: 12px; flex-wrap: wrap; width: 100%;">
-      <!-- Master Comparison -->
-      <a href="FWA_Three_Models_Executive_Comparison.md" target="_blank" class="btn-download" style="background: rgba(255, 183, 3, 0.25); border-color: rgba(255, 183, 3, 0.6); color: #FDE047; font-weight: 800; width: 100%;">
-        <span>📋 Master Three-Model Executive Comparison Report (.md)</span>
-      </a>
-
-      <!-- Model 1 (Commercial) 2026-09-25 Revised -->
-      <a href="2026-09-25_Revised_Models/FWA_Barangay_Rollout_Plan_2024_1000s.xlsx" download class="btn-download" data-model="model1" style="background: rgba(16, 185, 129, 0.25); border-color: #10B981; color: #6EE7B7; font-weight: 700;">
-        <span>📁 Model 1: Commercial Rollout Plan (0 Dupes, .xlsx)</span>
-      </a>
-      <a href="2026-09-25_Revised_Models/FWA_Barangay_Rollout_Plan_2024_1000s_Dynamic.xlsx" download class="btn-download" data-model="model1" style="background: rgba(16, 185, 129, 0.25); border-color: #10B981; color: #6EE7B7;">
-        <span>⚡ Model 1: Dynamic Sensitivity Model (.xlsx)</span>
-      </a>
-      <a href="2026-09-25_Revised_Models/FWA_Rollout_Sites_Master_2024.kmz" download class="btn-download" data-model="model1" style="background: rgba(16, 185, 129, 0.15); border-color: #10B981; color: #6EE7B7;">
-        <span>🌍 Model 1: Google Earth Layer (.kmz)</span>
-      </a>
-
-      <!-- Model 2 (GIDA) 2026-09-25 Revised -->
-      <a href="2026-09-25_Revised_Models/FWA_Barangay_Rollout_Plan_GIDA_1000s.xlsx" download class="btn-download" data-model="model2" style="background: rgba(56, 189, 248, 0.25); border-color: rgba(56, 189, 248, 0.6); color: #7DD3FC; font-weight: 700;">
-        <span>📁 Model 2: GIDA Rollout Plan (0 Dupes, .xlsx)</span>
-      </a>
-      <a href="2026-09-25_Revised_Models/FWA_Barangay_Rollout_Plan_GIDA_1000s_Dynamic.xlsx" download class="btn-download" data-model="model2" style="background: rgba(56, 189, 248, 0.25); border-color: rgba(56, 189, 248, 0.6); color: #7DD3FC;">
-        <span>⚡ Model 2: Dynamic Sensitivity Model (.xlsx)</span>
-      </a>
-      <a href="2026-09-25_Revised_Models/FWA_Rollout_Sites_GIDA.kmz" download class="btn-download" data-model="model2" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.4); color: #7DD3FC;">
-        <span>🌍 Model 2: Google Earth Layer (.kmz)</span>
-      </a>
-
-      <!-- Model 3 (Combined) 2026-09-25 Revised -->
-      <a href="2026-09-25_Revised_Models/FWA_Barangay_Rollout_Plan_Combined_1000s.xlsx" download class="btn-download" data-model="model3" style="background: rgba(255, 183, 3, 0.25); border-color: rgba(255, 183, 3, 0.6); color: #FCD34D; font-weight: 700;">
-        <span>📁 Model 3: Combined Hybrid Plan (0 Dupes, .xlsx)</span>
-      </a>
-      <a href="2026-09-25_Revised_Models/FWA_Barangay_Rollout_Plan_Combined_1000s_Dynamic.xlsx" download class="btn-download" data-model="model3" style="background: rgba(255, 183, 3, 0.25); border-color: rgba(255, 183, 3, 0.6); color: #FCD34D;">
-        <span>⚡ Model 3: Dynamic Sensitivity Model (.xlsx)</span>
-      </a>
-      <a href="2026-09-25_Revised_Models/FWA_Rollout_Sites_Combined.kmz" download class="btn-download" data-model="model3" style="background: rgba(255, 183, 3, 0.15); border-color: rgba(255, 183, 3, 0.4); color: #FCD34D;">
-        <span>🌍 Model 3: Google Earth Layer (.kmz)</span>
-      </a>
-    </div>
+  <div class="security-notice">
+    <strong>Confidentiality Advisory:</strong><br/>
+    Access to presentation materials, rollout models, and engineering telemetry is currently restricted. Authorized personnel will be provided updated secure access credentials once authentication protocols are finalized.
   </div>
 </div>
 
 <footer>
-  Telecommunications Technology Solutions Inc. (TelTech) & Comclark Network and Technology Corp. · Strict Confidentiality
+  Telecommunications Technology Solutions Inc. (TelTech) & Comclark Network and Technology Corp.<br/>
+  Strict Confidentiality & Non-Disclosure Agreement Enforced
 </footer>
-
-<script>
-  const ALL_MODELS = ['demo', 'gida-deck', 'strategy', 'model1', 'model2', 'model3'];
-  const STORAGE_KEY = 'fwa_portal_hidden_models';
-
-  function getHiddenModels() {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      return stored ? JSON.parse(stored) : [];
-    } catch (e) {
-      return [];
-    }
-  }
-
-  function setHiddenModels(hiddenList) {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(hiddenList));
-    } catch (e) {}
-    renderVisibility();
-  }
-
-  function hideModel(modelId) {
-    const hidden = getHiddenModels();
-    if (!hidden.includes(modelId)) {
-      hidden.push(modelId);
-      setHiddenModels(hidden);
-    }
-    detectActivePreset();
-  }
-
-  function showModel(modelId) {
-    const hidden = getHiddenModels().filter(id => id !== modelId);
-    setHiddenModels(hidden);
-    detectActivePreset();
-  }
-
-  function toggleModelVisibility(modelId) {
-    const hidden = getHiddenModels();
-    if (hidden.includes(modelId)) {
-      showModel(modelId);
-    } else {
-      hideModel(modelId);
-    }
-  }
-
-  function showAllModels() {
-    setHiddenModels([]);
-    updateActivePreset('all');
-  }
-
-  function resetModelVisibility() {
-    localStorage.removeItem(STORAGE_KEY);
-    renderVisibility();
-    updateActivePreset('all');
-  }
-
-  function applyPreset(preset) {
-    let hidden = [];
-    if (preset === 'all') {
-      hidden = [];
-    } else if (preset === 'models-only') {
-      hidden = ['demo', 'gida-deck', 'strategy'];
-    } else if (preset === 'commercial') {
-      hidden = ['demo', 'gida-deck', 'model2', 'model3'];
-    } else if (preset === 'gida') {
-      hidden = ['demo', 'strategy', 'model1', 'model3'];
-    } else if (preset === 'hybrid') {
-      hidden = ['demo', 'gida-deck', 'strategy', 'model1', 'model2'];
-    } else if (preset === 'briefings') {
-      hidden = ['model1', 'model2', 'model3'];
-    }
-    setHiddenModels(hidden);
-    updateActivePreset(preset);
-  }
-
-  function updateActivePreset(preset) {
-    document.querySelectorAll('.preset-chip').forEach(btn => {
-      btn.classList.toggle('active', btn.getAttribute('data-preset') === preset);
-    });
-  }
-
-  function detectActivePreset() {
-    const hidden = getHiddenModels().slice().sort();
-    const presets = {
-      'all': [],
-      'models-only': ['demo', 'gida-deck', 'strategy'].sort(),
-      'commercial': ['demo', 'gida-deck', 'model2', 'model3'].sort(),
-      'gida': ['demo', 'model1', 'model3', 'strategy'].sort(),
-      'hybrid': ['demo', 'gida-deck', 'model1', 'model2', 'strategy'].sort(),
-      'briefings': ['model1', 'model2', 'model3'].sort()
-    };
-
-    let matchedPreset = null;
-    for (const [key, list] of Object.entries(presets)) {
-      if (list.length === hidden.length && list.every((val, idx) => val === hidden[idx])) {
-        matchedPreset = key;
-        break;
-      }
-    }
-    updateActivePreset(matchedPreset);
-  }
-
-  function renderVisibility() {
-    const hidden = getHiddenModels();
-    const visibleCount = ALL_MODELS.length - hidden.length;
-
-    // Update Cards
-    document.querySelectorAll('.deck-card[data-model]').forEach(card => {
-      const modelId = card.getAttribute('data-model');
-      if (hidden.includes(modelId)) {
-        card.classList.add('is-hidden');
-      } else {
-        card.classList.remove('is-hidden');
-      }
-    });
-
-    // Update Download Items
-    document.querySelectorAll('.btn-download[data-model]').forEach(btn => {
-      const modelId = btn.getAttribute('data-model');
-      if (hidden.includes(modelId)) {
-        btn.classList.add('is-hidden');
-      } else {
-        btn.classList.remove('is-hidden');
-      }
-    });
-
-    // Update Toggle Pills
-    document.querySelectorAll('.toggle-pill[data-model-id]').forEach(pill => {
-      const modelId = pill.getAttribute('data-model-id');
-      const isHidden = hidden.includes(modelId);
-      pill.classList.toggle('is-active', !isHidden);
-      pill.classList.toggle('is-inactive', isHidden);
-    });
-
-    // Update Status Pill & Alert Banner
-    const pill = document.getElementById('visibilityStatusPill');
-    const banner = document.getElementById('hiddenAlertBanner');
-    const bannerText = document.getElementById('hiddenAlertText');
-
-    if (hidden.length === 0) {
-      if (pill) {
-        pill.textContent = 'Showing all 6 models';
-        pill.classList.remove('has-hidden');
-      }
-      if (banner) banner.classList.remove('show');
-    } else {
-      if (pill) {
-        pill.textContent = `${visibleCount} of 6 visible · ${hidden.length} hidden`;
-        pill.classList.add('has-hidden');
-      }
-      if (banner) {
-        banner.classList.add('show');
-        if (bannerText) {
-          bannerText.textContent = `${hidden.length} model(s) or presentations are currently hidden.`;
-        }
-      }
-    }
-  }
-
-  // Initialize on page load
-  document.addEventListener('DOMContentLoaded', () => {
-    renderVisibility();
-    detectActivePreset();
-  });
-</script>
 
 </body>
 </html>

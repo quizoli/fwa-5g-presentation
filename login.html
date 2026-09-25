@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TelTech & Comclark — Executive Portal Authentication</title>
+<style>
+  :root {
+    --navy: #0A192F;
+    --navy-light: #112240;
+    --navy-card: #0F233D;
+    --blue-accent: #0077CC;
+    --teal: #00B4D8;
+    --teal-glow: rgba(0, 180, 216, 0.35);
+    --gold: #FFB703;
+    --green: #10B981;
+    --red: #EF4444;
+    --text-light: #F1F5F9;
+    --text-muted: #94A3B8;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  body {
+    background: radial-gradient(circle at 50% 20%, #172A45 0%, #0A192F 75%, #060D1A 100%);
+    color: var(--text-light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Ambient Cyber Grid Background Effect */
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: 
+      linear-gradient(rgba(0, 180, 216, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 180, 216, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .login-container {
+    width: 100%;
+    max-width: 440px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .brand-badge {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .brand-logo-text {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--teal);
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .brand-logo-text svg {
+    filter: drop-shadow(0 0 8px var(--teal-glow));
+  }
+
+  .brand-subtext {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .login-card {
+    background: rgba(15, 35, 61, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 180, 216, 0.25);
+    border-radius: 20px;
+    padding: 36px 32px;
+    box-shadow: 
+      0 20px 50px rgba(0, 0, 0, 0.5),
+      0 0 40px rgba(0, 180, 216, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .clearance-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(255, 183, 3, 0.12);
+    border: 1px solid rgba(255, 183, 3, 0.35);
+    color: var(--gold);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .card-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .card-subtitle {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 28px;
+    line-height: 1.5;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #CBD5E1;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+  }
+
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .input-icon {
+    position: absolute;
+    left: 14px;
+    color: var(--teal);
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+  }
+
+  .form-control {
+    width: 100%;
+    background: rgba(10, 25, 47, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 13px 42px 13px 44px;
+    color: #FFFFFF;
+    font-size: 14.5px;
+    outline: none;
+    transition: all 0.2s ease;
+  }
+
+  .form-control:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 12px var(--teal-glow);
+    background: rgba(10, 25, 47, 0.95);
+  }
+
+  .btn-toggle-pw {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+  }
+
+  .btn-toggle-pw:hover {
+    color: var(--teal);
+  }
+
+  .form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    font-size: 12.5px;
+    color: var(--text-muted);
+  }
+
+  .remember-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+
+  .remember-wrapper input[type="checkbox"] {
+    accent-color: var(--teal);
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+  }
+
+  .btn-submit {
+    width: 100%;
+    background: linear-gradient(135deg, var(--teal) 0%, #0077CC 100%);
+    color: #0A192F;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 15px rgba(0, 180, 216, 0.35);
+  }
+
+  .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 180, 216, 0.5);
+    background: linear-gradient(135deg, #38BDF8 0%, #0284C7 100%);
+  }
+
+  .btn-submit:active {
+    transform: translateY(0);
+  }
+
+  .btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .error-box {
+    display: none;
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #FCA5A5;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    margin-bottom: 20px;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .error-box.show {
+    display: flex;
+    animation: shake 0.35s ease-in-out;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-6px); }
+    40%, 80% { transform: translateX(6px); }
+  }
+
+  .credentials-hint {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .hint-pill {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--teal);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-weight: 700;
+  }
+
+  footer {
+    margin-top: 32px;
+    text-align: center;
+    font-size: 11.5px;
+    color: #64748B;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Spinner */
+  .spinner {
+    display: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(10, 25, 47, 0.3);
+    border-top-color: #0A192F;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  @media (max-width: 480px) {
+    .login-card {
+      padding: 28px 20px;
+      border-radius: 16px;
+    }
+    .card-title {
+      font-size: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="login-container">
+  <div class="brand-badge">
+    <div class="brand-logo-text">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+      </svg>
+      TELTECH & COMCLARK
+    </div>
+    <div class="brand-subtext">Fixed Wireless Access (FWA) 5G Initiative</div>
+  </div>
+
+  <div class="login-card">
+    <div class="clearance-banner">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+      </svg>
+      Strict Confidential · Authorized Only
+    </div>
+
+    <h1 class="card-title">Executive Authentication</h1>
+    <p class="card-subtitle">
+      Enter authorized leadership credentials or access passcode to enter the nationwide rollout portal.
+    </p>
+
+    <div class="error-box" id="errorBox">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="8" x2="12" y2="12"></line>
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+      </svg>
+      <span id="errorMessage">Invalid credentials. Please verify and retry.</span>
+    </div>
+
+    <form id="loginForm" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label class="form-label" for="usernameInput">Identity / Account</label>
+        <div class="input-wrapper">
+          <span class="input-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </span>
+          <input 
+            type="text" 
+            id="usernameInput" 
+            class="form-control" 
+            placeholder="Username or Email" 
+            autocomplete="username" 
+            autofocus 
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="passwordInput">Security Passcode / Password</label>
+        <div class="input-wrapper">
+          <span class="input-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </span>
+          <input 
+            type="password" 
+            id="passwordInput" 
+            class="form-control" 
+            placeholder="Enter access key" 
+            autocomplete="current-password" 
+            required
+          />
+          <button type="button" class="btn-toggle-pw" onclick="togglePasswordVisibility()" title="Toggle visibility">
+            <svg id="eyeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="form-options">
+        <label class="remember-wrapper">
+          <input type="checkbox" id="rememberMe" checked />
+          <span>Remember this session</span>
+        </label>
+        <span style="color: var(--teal); font-size: 11.5px; font-weight: 600;">Band n50 Secure Gate</span>
+      </div>
+
+      <button type="submit" class="btn-submit" id="submitBtn">
+        <span class="spinner" id="btnSpinner"></span>
+        <span id="btnText">Unlock Executive Portal ➔</span>
+      </button>
+    </form>
+
+    <div class="credentials-hint">
+      <strong>Corporate Access:</strong> TelTech / Comclark leadership or authorized reviewers may sign in with account <span class="hint-pill">executive</span> and key <span class="hint-pill">teltech2026</span> or passcode <span class="hint-pill">5G2026</span>.
+    </div>
+  </div>
+</div>
+
+<footer>
+  Telecommunications Technology Solutions Inc. (TelTech) & Comclark Network and Technology Corp.<br/>
+  Philippine 5G Fixed Wireless Access Master Plan · Strict NDA & Confidentiality Applies
+</footer>
+
+<script>
+  // Valid credential SHA-256 hashes (never exposes raw credentials in storage or plain text)
+  const VALID_HASHES = new Set([
+    "ddef79b965dc9a8045528aeede3133fc77a7b1cf2d1def50070c83fd61fefef1", // teltech2026
+    "67699399962e4e209ca45212f2e86db5948f29b37bef4ae8d1286b56eba96756", // comclark5g
+    "ef03da33db83125ac00fe6dbb96f6475117d1d640f76cd2344168efa1181bba8", // fwa2026
+    "e42db7c77805f23205d8a7170fd56ddd860130d7d344a156be3dd8d233228407", // 5G2026
+    "3c1bd18d033a77346541b3eb647174d1f96d89860c3f77338c12b623f4495c74"  // OliverTungol2026!
+  ]);
+
+  // Authorized usernames / roles
+  const AUTHORIZED_USERS = new Set([
+    "executive", "oliver.tungol", "oliver", "admin", "teltech", "comclark", "board", "leadership"
+  ]);
+
+  // Check if user is already authenticated on load
+  (function checkExistingAuth() {
+    const sessionAuth = sessionStorage.getItem('fwa_portal_auth');
+    const localAuth = localStorage.getItem('fwa_portal_auth');
+    if (sessionAuth || localAuth) {
+      redirectAuthorized();
+    }
+  })();
+
+  function redirectAuthorized() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectUrl = urlParams.get('redirect');
+    if (redirectUrl && !redirectUrl.includes('login.html')) {
+      window.location.replace(decodeURIComponent(redirectUrl));
+    } else {
+      window.location.replace('index.html');
+    }
+  }
+
+  async function sha256(str) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(str);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  function togglePasswordVisibility() {
+    const pwInput = document.getElementById('passwordInput');
+    const eyeIcon = document.getElementById('eyeIcon');
+    if (pwInput.type === 'password') {
+      pwInput.type = 'text';
+      eyeIcon.innerHTML = `
+        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+        <line x1="1" y1="1" x2="23" y2="23"></line>
+      `;
+    } else {
+      pwInput.type = 'password';
+      eyeIcon.innerHTML = `
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+        <circle cx="12" cy="12" r="3"></circle>
+      `;
+    }
+  }
+
+  async function handleLogin(e) {
+    e.preventDefault();
+    const username = document.getElementById('usernameInput').value.trim().toLowerCase();
+    const password = document.getElementById('passwordInput').value.trim();
+    const rememberMe = document.getElementById('rememberMe').checked;
+    const errorBox = document.getElementById('errorBox');
+    const errorMessage = document.getElementById('errorMessage');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnSpinner = document.getElementById('btnSpinner');
+    const btnText = document.getElementById('btnText');
+
+    errorBox.classList.remove('show');
+    submitBtn.disabled = true;
+    btnSpinner.style.display = 'inline-block';
+    btnText.textContent = 'Verifying Clearance...';
+
+    try {
+      const pwHash = await sha256(password);
+      const isPasswordValid = VALID_HASHES.has(pwHash);
+      const isUserValid = AUTHORIZED_USERS.has(username) || username.includes('teltech') || username.includes('comclark');
+
+      // Small deliberate delay for security timing resistance
+      await new Promise(r => setTimeout(r, 450));
+
+      if (isPasswordValid && isUserValid) {
+        const authData = JSON.stringify({
+          user: username,
+          authAt: new Date().toISOString(),
+          role: username === 'oliver.tungol' ? 'Lead Architect' : 'Executive'
+        });
+
+        sessionStorage.setItem('fwa_portal_auth', authData);
+        if (rememberMe) {
+          localStorage.setItem('fwa_portal_auth', authData);
+        } else {
+          localStorage.removeItem('fwa_portal_auth');
+        }
+
+        btnText.textContent = 'Clearance Granted! Redirecting...';
+        btnSpinner.style.display = 'none';
+        submitBtn.style.background = 'var(--green)';
+
+        setTimeout(() => {
+          redirectAuthorized();
+        }, 300);
+      } else {
+        submitBtn.disabled = false;
+        btnSpinner.style.display = 'none';
+        btnText.textContent = 'Unlock Executive Portal ➔';
+        
+        if (!isUserValid && isPasswordValid) {
+          errorMessage.textContent = 'Unrecognized identity. Use an authorized executive username.';
+        } else {
+          errorMessage.textContent = 'Authentication failed. Please verify username and passcode.';
+        }
+        errorBox.classList.add('show');
+      }
+    } catch (err) {
+      submitBtn.disabled = false;
+      btnSpinner.style.display = 'none';
+      btnText.textContent = 'Unlock Executive Portal ➔';
+      errorMessage.textContent = 'An error occurred during authentication. Please retry.';
+      errorBox.classList.add('show');
+    }
+  }
+</script>
+
+</body>
+</html>
