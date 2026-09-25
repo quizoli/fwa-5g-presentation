@@ -4,13 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TelTech & Comclark — FWA 5G Executive Presentation Portal</title>
+<script src="auth_registry.js"></script>
 <script>
   // Immediate Confidentiality & Authentication Guard
   (function() {
     var auth = sessionStorage.getItem('fwa_portal_auth') || localStorage.getItem('fwa_portal_auth');
     if (!auth) {
       var returnPath = encodeURIComponent(window.location.pathname + window.location.search);
-      window.location.replace('login.html?redirect=' + returnPath);
+      window.location.replace('index.html?redirect=' + returnPath);
     }
   })();
 </script>
@@ -617,6 +618,7 @@
     <div class="user-session-bar">
       <span class="user-status-dot"></span>
       <span class="user-name" id="portalUserDisplay">EXECUTIVE</span>
+      <a href="admin.html" id="adminConsoleLink" style="display: none; padding: 2px 8px; font-size: 11px; text-decoration: none; color: var(--teal); background: rgba(0,180,216,0.15); border: 1px solid rgba(0,180,216,0.3); border-radius: 4px; font-weight: 700;">🛡️ Admin</a>
       <button onclick="logoutPortal()" class="btn-logout" title="Sign out and lock portal">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
@@ -1065,6 +1067,33 @@
       }
     }
   }
+
+  function logoutPortal() {
+    if (window.FWAPortalAuth) {
+      window.FWAPortalAuth.terminateSession();
+    } else {
+      sessionStorage.removeItem('fwa_portal_auth');
+      localStorage.removeItem('fwa_portal_auth');
+      window.location.replace('index.html');
+    }
+  }
+
+  // Display authenticated username & check admin role
+  (function displayAuthUser() {
+    try {
+      const user = window.FWAPortalAuth ? window.FWAPortalAuth.getCurrentUser() : null;
+      if (user) {
+        const el = document.getElementById('portalUserDisplay');
+        if (el && user.name) {
+          el.textContent = user.name.toUpperCase();
+        }
+        if (user.isAdmin || user.username === 'oliver.tungol' || user.username === 'admin') {
+          const admLink = document.getElementById('adminConsoleLink');
+          if (admLink) admLink.style.display = 'inline-flex';
+        }
+      }
+    } catch (e) {}
+  })();
 
   // Initialize on page load
   document.addEventListener('DOMContentLoaded', () => {

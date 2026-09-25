@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+  (function() {
+    var auth = sessionStorage.getItem('fwa_portal_auth') || localStorage.getItem('fwa_portal_auth');
+    if (!auth) {
+      var returnPath = encodeURIComponent(window.location.pathname + window.location.search);
+      window.location.replace('index.html?redirect=' + returnPath);
+    }
+  })();
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>FWA 5G n50 (80 MHz) — Executive Board Presentation</title>

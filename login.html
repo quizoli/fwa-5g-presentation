@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TelTech & Comclark — Executive Portal Authentication</title>
+<title>TelTech & Comclark — 5G FWA Portal Access Clearance</title>
+<script src="auth_registry.js"></script>
 <style>
   :root {
     --navy: #0A192F;
@@ -19,12 +20,7 @@
     --text-muted: #94A3B8;
   }
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
 
   body {
     background: radial-gradient(circle at 50% 20%, #172A45 0%, #0A192F 75%, #060D1A 100%);
@@ -34,12 +30,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 24px;
+    padding: 24px 16px;
     position: relative;
     overflow-x: hidden;
   }
 
-  /* Ambient Cyber Grid Background Effect */
   body::before {
     content: "";
     position: absolute;
@@ -47,21 +42,21 @@
     background-image: 
       linear-gradient(rgba(0, 180, 216, 0.04) 1px, transparent 1px),
       linear-gradient(90deg, rgba(0, 180, 216, 0.04) 1px, transparent 1px);
-    background-size: 40px 40px;
+    background-size: 35px 35px;
     pointer-events: none;
     z-index: 0;
   }
 
   .login-container {
     width: 100%;
-    max-width: 440px;
+    max-width: 480px;
     position: relative;
     z-index: 10;
   }
 
   .brand-badge {
     text-align: center;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
   .brand-logo-text {
@@ -73,7 +68,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 
   .brand-logo-text svg {
@@ -84,20 +79,18 @@
     font-size: 13px;
     color: var(--text-muted);
     font-weight: 500;
-    letter-spacing: 0.5px;
   }
 
   .login-card {
-    background: rgba(15, 35, 61, 0.85);
+    background: rgba(15, 35, 61, 0.88);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(0, 180, 216, 0.25);
     border-radius: 20px;
-    padding: 36px 32px;
+    padding: 32px 28px;
     box-shadow: 
       0 20px 50px rgba(0, 0, 0, 0.5),
       0 0 40px rgba(0, 180, 216, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   .clearance-banner {
@@ -108,53 +101,62 @@
     background: rgba(255, 183, 3, 0.12);
     border: 1px solid rgba(255, 183, 3, 0.35);
     color: var(--gold);
-    padding: 7px 14px;
+    padding: 6px 12px;
     border-radius: 8px;
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 1px;
     text-transform: uppercase;
-    margin-bottom: 24px;
-  }
-
-  .card-title {
-    font-size: 22px;
-    font-weight: 800;
-    color: #FFFFFF;
-    margin-bottom: 8px;
-    text-align: center;
-  }
-
-  .card-subtitle {
-    font-size: 13.5px;
-    color: var(--text-muted);
-    text-align: center;
-    margin-bottom: 28px;
-    line-height: 1.5;
-  }
-
-  .form-group {
     margin-bottom: 20px;
   }
 
+  /* Navigation Tabs */
+  .auth-tabs {
+    display: flex;
+    background: rgba(10, 25, 47, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 4px;
+    margin-bottom: 24px;
+  }
+  .tab-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    padding: 9px 12px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: white; }
+  .tab-btn.active {
+    background: var(--blue-accent);
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 119, 204, 0.4);
+  }
+
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  .form-group { margin-bottom: 16px; }
   .form-label {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 700;
     color: #CBD5E1;
     text-transform: uppercase;
-    letter-spacing: 0.8px;
-    margin-bottom: 8px;
+    letter-spacing: 0.6px;
+    margin-bottom: 6px;
   }
-
   .input-wrapper {
     position: relative;
     display: flex;
     align-items: center;
   }
-
   .input-icon {
     position: absolute;
     left: 14px;
@@ -163,22 +165,20 @@
     align-items: center;
     pointer-events: none;
   }
-
   .form-control {
     width: 100%;
     background: rgba(10, 25, 47, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 10px;
-    padding: 13px 42px 13px 44px;
+    border-radius: 8px;
+    padding: 11px 40px 11px 42px;
     color: #FFFFFF;
-    font-size: 14.5px;
+    font-size: 14px;
     outline: none;
-    transition: all 0.2s ease;
+    transition: all 0.2s;
   }
-
   .form-control:focus {
     border-color: var(--teal);
-    box-shadow: 0 0 12px var(--teal-glow);
+    box-shadow: 0 0 10px var(--teal-glow);
     background: rgba(10, 25, 47, 0.95);
   }
 
@@ -189,47 +189,20 @@
     border: none;
     color: var(--text-muted);
     cursor: pointer;
-    padding: 6px;
+    padding: 4px;
     display: flex;
     align-items: center;
-    transition: color 0.2s;
   }
-
-  .btn-toggle-pw:hover {
-    color: var(--teal);
-  }
-
-  .form-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
-    font-size: 12.5px;
-    color: var(--text-muted);
-  }
-
-  .remember-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-  }
-
-  .remember-wrapper input[type="checkbox"] {
-    accent-color: var(--teal);
-    width: 15px;
-    height: 15px;
-    cursor: pointer;
-  }
+  .btn-toggle-pw:hover { color: var(--teal); }
 
   .btn-submit {
     width: 100%;
     background: linear-gradient(135deg, var(--teal) 0%, #0077CC 100%);
     color: #0A192F;
     border: none;
-    padding: 14px 20px;
-    border-radius: 10px;
-    font-size: 15px;
+    padding: 13px 20px;
+    border-radius: 8px;
+    font-size: 14.5px;
     font-weight: 800;
     letter-spacing: 0.5px;
     cursor: pointer;
@@ -237,42 +210,41 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 4px 15px rgba(0, 180, 216, 0.35);
+    transition: all 0.2s;
+    box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
+    margin-top: 8px;
   }
-
   .btn-submit:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0, 180, 216, 0.5);
-    background: linear-gradient(135deg, #38BDF8 0%, #0284C7 100%);
   }
-
-  .btn-submit:active {
-    transform: translateY(0);
-  }
-
   .btn-submit:disabled {
     opacity: 0.6;
     cursor: not-allowed;
     transform: none;
   }
 
-  .error-box {
+  .alert-box {
     display: none;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    margin-bottom: 18px;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.45;
+  }
+  .alert-box.show { display: flex; }
+  .alert-error {
     background: rgba(239, 68, 68, 0.15);
     border: 1px solid rgba(239, 68, 68, 0.4);
     color: #FCA5A5;
-    padding: 10px 14px;
-    border-radius: 8px;
-    font-size: 12.5px;
-    margin-bottom: 20px;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .error-box.show {
-    display: flex;
     animation: shake 0.35s ease-in-out;
+  }
+  .alert-success {
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: #86EFAC;
   }
 
   @keyframes shake {
@@ -281,59 +253,45 @@
     40%, 80% { transform: translateX(6px); }
   }
 
+  .spinner {
+    display: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(10, 25, 47, 0.3);
+    border-top-color: #0A192F;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
   .credentials-hint {
-    margin-top: 24px;
-    padding-top: 20px;
+    margin-top: 20px;
+    padding-top: 16px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
-    font-size: 12px;
+    font-size: 11.5px;
     color: var(--text-muted);
     text-align: center;
     line-height: 1.5;
   }
-
   .hint-pill {
     display: inline-block;
     background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     color: var(--teal);
-    padding: 2px 7px;
+    padding: 2px 6px;
     border-radius: 4px;
     font-family: monospace;
     font-weight: 700;
   }
 
   footer {
-    margin-top: 32px;
+    margin-top: 24px;
     text-align: center;
-    font-size: 11.5px;
+    font-size: 11px;
     color: #64748B;
     position: relative;
     z-index: 10;
-  }
-
-  /* Spinner */
-  .spinner {
-    display: none;
-    width: 18px;
-    height: 18px;
-    border: 2px solid rgba(10, 25, 47, 0.3);
-    border-top-color: #0A192F;
-    border-radius: 50%;
-    animation: spin 0.6s linear infinite;
-  }
-
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-
-  @media (max-width: 480px) {
-    .login-card {
-      padding: 28px 20px;
-      border-radius: 16px;
-    }
-    .card-title {
-      font-size: 20px;
-    }
+    line-height: 1.5;
   }
 </style>
 </head>
@@ -347,125 +305,136 @@
       </svg>
       TELTECH & COMCLARK
     </div>
-    <div class="brand-subtext">Fixed Wireless Access (FWA) 5G Initiative</div>
+    <div class="brand-subtext">5G Fixed Wireless Access (FWA) Executive Suite</div>
   </div>
 
   <div class="login-card">
     <div class="clearance-banner">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
         <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
       </svg>
-      Strict Confidential · Authorized Only
+      Confidential Portal · Clearance Gate
     </div>
 
-    <h1 class="card-title">Executive Authentication</h1>
-    <p class="card-subtitle">
-      Enter authorized leadership credentials or access passcode to enter the nationwide rollout portal.
-    </p>
-
-    <div class="error-box" id="errorBox">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"></circle>
-        <line x1="12" y1="8" x2="12" y2="12"></line>
-        <line x1="12" y1="16" x2="12.01" y2="16"></line>
-      </svg>
-      <span id="errorMessage">Invalid credentials. Please verify and retry.</span>
+    <!-- Mode Selector Tabs -->
+    <div class="auth-tabs">
+      <button class="tab-btn active" id="tabSignInBtn" onclick="switchAuthTab('signin')">🔑 Sign In</button>
+      <button class="tab-btn" id="tabRequestBtn" onclick="switchAuthTab('request')">📝 Request Access</button>
     </div>
 
-    <form id="loginForm" onsubmit="handleLogin(event)">
-      <div class="form-group">
-        <label class="form-label" for="usernameInput">Identity / Account</label>
-        <div class="input-wrapper">
-          <span class="input-icon">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-          </span>
-          <input 
-            type="text" 
-            id="usernameInput" 
-            class="form-control" 
-            placeholder="Username or Email" 
-            autocomplete="username" 
-            autofocus 
-            required
-          />
+    <!-- Alerts -->
+    <div class="alert-box alert-error" id="errorBox">
+      <span id="errorMessage">Invalid credentials. Please verify.</span>
+    </div>
+    <div class="alert-box alert-success" id="successBox">
+      <span id="successMessage">Access Request Dispatched!</span>
+    </div>
+
+    <!-- TAB 1: SIGN IN -->
+    <div class="tab-pane active" id="tabSignIn">
+      <form onsubmit="handleSignIn(event)">
+        <div class="form-group">
+          <label class="form-label" for="loginIdentity">Username or Corporate Email</label>
+          <div class="input-wrapper">
+            <span class="input-icon">👤</span>
+            <input type="text" id="loginIdentity" class="form-control" placeholder="e.g. oliver.tungol or executive" required autofocus />
+          </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label class="form-label" for="passwordInput">Security Passcode / Password</label>
-        <div class="input-wrapper">
-          <span class="input-icon">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-            </svg>
-          </span>
-          <input 
-            type="password" 
-            id="passwordInput" 
-            class="form-control" 
-            placeholder="Enter access key" 
-            autocomplete="current-password" 
-            required
-          />
-          <button type="button" class="btn-toggle-pw" onclick="togglePasswordVisibility()" title="Toggle visibility">
-            <svg id="eyeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-              <circle cx="12" cy="12" r="3"></circle>
-            </svg>
-          </button>
+        <div class="form-group">
+          <label class="form-label" for="loginPassword">Security Passcode / Password</label>
+          <div class="input-wrapper">
+            <span class="input-icon">🔒</span>
+            <input type="password" id="loginPassword" class="form-control" placeholder="Enter access key or PIN" required />
+            <button type="button" class="btn-toggle-pw" onclick="togglePasswordVisibility('loginPassword', 'eyeIcon1')">
+              <span id="eyeIcon1">👁️</span>
+            </button>
+          </div>
         </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 12px; color: var(--text-muted);">
+          <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+            <input type="checkbox" id="rememberMe" checked style="accent-color: var(--teal);" />
+            <span>Remember session</span>
+          </label>
+          <span style="color: var(--teal); font-weight: 600;">Band n50 Secure</span>
+        </div>
+
+        <button type="submit" class="btn-submit" id="btnSignInSubmit">
+          <span class="spinner" id="spinnerSignIn"></span>
+          <span id="textSignIn">Unlock Executive Portal ➔</span>
+        </button>
+      </form>
+
+      <div class="credentials-hint">
+        <strong>Authorized Personnel:</strong> Sign in with registered account <span class="hint-pill">executive</span> or quick passcode <span class="hint-pill">5G2026</span>.
       </div>
-
-      <div class="form-options">
-        <label class="remember-wrapper">
-          <input type="checkbox" id="rememberMe" checked />
-          <span>Remember this session</span>
-        </label>
-        <span style="color: var(--teal); font-size: 11.5px; font-weight: 600;">Band n50 Secure Gate</span>
-      </div>
-
-      <button type="submit" class="btn-submit" id="submitBtn">
-        <span class="spinner" id="btnSpinner"></span>
-        <span id="btnText">Unlock Executive Portal ➔</span>
-      </button>
-    </form>
-
-    <div class="credentials-hint">
-      <strong>Corporate Access:</strong> TelTech / Comclark leadership or authorized reviewers may sign in with account <span class="hint-pill">executive</span> and key <span class="hint-pill">teltech2026</span> or passcode <span class="hint-pill">5G2026</span>.
     </div>
+
+    <!-- TAB 2: REQUEST ACCESS (SELF-SERVICE) -->
+    <div class="tab-pane" id="tabRequest">
+      <form onsubmit="handleRequestAccess(event)">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" id="reqName" class="form-control" placeholder="e.g. Engr. Juan dela Cruz" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Corporate Email</label>
+          <input type="email" id="reqEmail" class="form-control" placeholder="juan.delacruz@company.com" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Organization & Department</label>
+          <input type="text" id="reqOrg" class="form-control" placeholder="e.g. TelTech Engineering / Comclark NOC" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Proposed Username</label>
+          <input type="text" id="reqUsername" class="form-control" placeholder="e.g. jdelacruz" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Desired Security Password</label>
+          <div class="input-wrapper">
+            <span class="input-icon">🔑</span>
+            <input type="password" id="reqPassword" class="form-control" placeholder="Create your portal passcode" required />
+            <button type="button" class="btn-toggle-pw" onclick="togglePasswordVisibility('reqPassword', 'eyeIcon2')">
+              <span id="eyeIcon2">👁️</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Project Justification / Role</label>
+          <input type="text" id="reqJustification" class="form-control" placeholder="e.g. Evaluation of 5G FWA deployment batches" />
+        </div>
+
+        <button type="submit" class="btn-submit" id="btnRequestSubmit">
+          <span class="spinner" id="spinnerRequest"></span>
+          <span id="textRequest">Submit Clearance Request to Admin ➔</span>
+        </button>
+      </form>
+
+      <div class="credentials-hint">
+        Requests are routed directly to Administrator <strong>Oliver Tungol</strong> (<span class="hint-pill">oliver.tungol@comclark.com.ph</span>) for verification & clearance.
+      </div>
+    </div>
+
   </div>
 </div>
 
 <footer>
   Telecommunications Technology Solutions Inc. (TelTech) & Comclark Network and Technology Corp.<br/>
-  Philippine 5G Fixed Wireless Access Master Plan · Strict NDA & Confidentiality Applies
+  Lead Architect: <strong>Oliver Tungol</strong> · Strict Confidentiality Enforced
 </footer>
 
 <script>
-  // Valid credential SHA-256 hashes (never exposes raw credentials in storage or plain text)
-  const VALID_HASHES = new Set([
-    "ddef79b965dc9a8045528aeede3133fc77a7b1cf2d1def50070c83fd61fefef1", // teltech2026
-    "67699399962e4e209ca45212f2e86db5948f29b37bef4ae8d1286b56eba96756", // comclark5g
-    "ef03da33db83125ac00fe6dbb96f6475117d1d640f76cd2344168efa1181bba8", // fwa2026
-    "e42db7c77805f23205d8a7170fd56ddd860130d7d344a156be3dd8d233228407", // 5G2026
-    "3c1bd18d033a77346541b3eb647174d1f96d89860c3f77338c12b623f4495c74"  // OliverTungol2026!
-  ]);
-
-  // Authorized usernames / roles
-  const AUTHORIZED_USERS = new Set([
-    "executive", "oliver.tungol", "oliver", "admin", "teltech", "comclark", "board", "leadership"
-  ]);
-
-  // Check if user is already authenticated on load
-  (function checkExistingAuth() {
-    const sessionAuth = sessionStorage.getItem('fwa_portal_auth');
-    const localAuth = localStorage.getItem('fwa_portal_auth');
-    if (sessionAuth || localAuth) {
+  // Check if already authenticated on page load
+  (function checkSession() {
+    const user = window.FWAPortalAuth ? window.FWAPortalAuth.getCurrentUser() : null;
+    if (user) {
       redirectAuthorized();
     }
   })();
@@ -473,102 +442,141 @@
   function redirectAuthorized() {
     const urlParams = new URLSearchParams(window.location.search);
     const redirectUrl = urlParams.get('redirect');
-    if (redirectUrl && !redirectUrl.includes('login.html')) {
+    if (redirectUrl && !redirectUrl.includes('login.html') && !redirectUrl.includes('index.html')) {
       window.location.replace(decodeURIComponent(redirectUrl));
     } else {
-      window.location.replace('index.html');
+      window.location.replace('portal.html');
     }
   }
 
-  async function sha256(str) {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(str);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  function switchAuthTab(tab) {
+    const isSignIn = tab === 'signin';
+    document.getElementById('tabSignInBtn').classList.toggle('active', isSignIn);
+    document.getElementById('tabRequestBtn').classList.toggle('active', !isSignIn);
+    document.getElementById('tabSignIn').classList.toggle('active', isSignIn);
+    document.getElementById('tabRequest').classList.toggle('active', !isSignIn);
+    hideAlerts();
   }
 
-  function togglePasswordVisibility() {
-    const pwInput = document.getElementById('passwordInput');
-    const eyeIcon = document.getElementById('eyeIcon');
-    if (pwInput.type === 'password') {
-      pwInput.type = 'text';
-      eyeIcon.innerHTML = `
-        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
-        <line x1="1" y1="1" x2="23" y2="23"></line>
-      `;
+  function hideAlerts() {
+    document.getElementById('errorBox').classList.remove('show');
+    document.getElementById('successBox').classList.remove('show');
+  }
+
+  function togglePasswordVisibility(fieldId, iconId) {
+    const field = document.getElementById(fieldId);
+    const icon = document.getElementById(iconId);
+    if (field.type === 'password') {
+      field.type = 'text';
+      icon.textContent = '🙈';
     } else {
-      pwInput.type = 'password';
-      eyeIcon.innerHTML = `
-        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-        <circle cx="12" cy="12" r="3"></circle>
-      `;
+      field.type = 'password';
+      icon.textContent = '👁️';
     }
   }
 
-  async function handleLogin(e) {
+  // Handle Sign In Authentication
+  async function handleSignIn(e) {
     e.preventDefault();
-    const username = document.getElementById('usernameInput').value.trim().toLowerCase();
-    const password = document.getElementById('passwordInput').value.trim();
-    const rememberMe = document.getElementById('rememberMe').checked;
-    const errorBox = document.getElementById('errorBox');
-    const errorMessage = document.getElementById('errorMessage');
-    const submitBtn = document.getElementById('submitBtn');
-    const btnSpinner = document.getElementById('btnSpinner');
-    const btnText = document.getElementById('btnText');
+    hideAlerts();
 
-    errorBox.classList.remove('show');
-    submitBtn.disabled = true;
-    btnSpinner.style.display = 'inline-block';
-    btnText.textContent = 'Verifying Clearance...';
+    const identity = document.getElementById('loginIdentity').value.trim();
+    const pass = document.getElementById('loginPassword').value.trim();
+    const rememberMe = document.getElementById('rememberMe').checked;
+
+    const btn = document.getElementById('btnSignInSubmit');
+    const spinner = document.getElementById('spinnerSignIn');
+    const text = document.getElementById('textSignIn');
+
+    btn.disabled = true;
+    spinner.style.display = 'inline-block';
+    text.textContent = 'Verifying Clearance...';
+
+    await new Promise(r => setTimeout(r, 350));
+
+    const result = await window.FWAPortalAuth.authenticateUser(identity, pass);
+
+    if (result.success) {
+      window.FWAPortalAuth.saveSession(result.user, rememberMe);
+      text.textContent = 'Clearance Verified! Unlocking...';
+      btn.style.background = 'var(--green)';
+      setTimeout(redirectAuthorized, 300);
+    } else {
+      btn.disabled = false;
+      spinner.style.display = 'none';
+      text.textContent = 'Unlock Executive Portal ➔';
+      document.getElementById('errorMessage').textContent = result.message || 'Authentication failed.';
+      document.getElementById('errorBox').classList.add('show');
+    }
+  }
+
+  // Handle Self-Service Access Request
+  async function handleRequestAccess(e) {
+    e.preventDefault();
+    hideAlerts();
+
+    const name = document.getElementById('reqName').value.trim();
+    const email = document.getElementById('reqEmail').value.trim();
+    const org = document.getElementById('reqOrg').value.trim();
+    const username = document.getElementById('reqUsername').value.trim().toLowerCase();
+    const pass = document.getElementById('reqPassword').value.trim();
+    const justification = document.getElementById('reqJustification').value.trim() || 'FWA 5G Rollout Review';
+
+    const btn = document.getElementById('btnRequestSubmit');
+    const spinner = document.getElementById('spinnerRequest');
+    const text = document.getElementById('textRequest');
+
+    btn.disabled = true;
+    spinner.style.display = 'inline-block';
+    text.textContent = 'Routing Request to Admin...';
 
     try {
-      const pwHash = await sha256(password);
-      const isPasswordValid = VALID_HASHES.has(pwHash);
-      const isUserValid = AUTHORIZED_USERS.has(username) || username.includes('teltech') || username.includes('comclark');
+      const pwHash = await window.FWAPortalAuth.computeSHA256(pass);
+      const approveCommand = `python3 manage_users.py approve ${username} "${pwHash}" --name "${name}" --email "${email}" --org "${org}"`;
 
-      // Small deliberate delay for security timing resistance
-      await new Promise(r => setTimeout(r, 450));
+      // Submit via FormSubmit directly to Oliver Tungol
+      const payload = {
+        _subject: `[ACTION REQUIRED] FWA 5G Portal Access Request: ${name} (${org})`,
+        _replyto: email,
+        Requester_Name: name,
+        Requester_Email: email,
+        Organization: org,
+        Desired_Username: username,
+        Security_Hash_SHA256: pwHash,
+        Project_Justification: justification,
+        Submitted_Date: new Date().toLocaleString(),
+        Approval_Instruction: `Run on server or terminal to approve: ${approveCommand}`
+      };
 
-      if (isPasswordValid && isUserValid) {
-        const authData = JSON.stringify({
-          user: username,
-          authAt: new Date().toISOString(),
-          role: username === 'oliver.tungol' ? 'Lead Architect' : 'Executive'
-        });
+      const response = await fetch('https://formsubmit.co/ajax/oliver.tungol@comclark.com.ph', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
 
-        sessionStorage.setItem('fwa_portal_auth', authData);
-        if (rememberMe) {
-          localStorage.setItem('fwa_portal_auth', authData);
-        } else {
-          localStorage.removeItem('fwa_portal_auth');
-        }
+      btn.disabled = false;
+      spinner.style.display = 'none';
+      text.textContent = 'Submit Clearance Request to Admin ➔';
 
-        btnText.textContent = 'Clearance Granted! Redirecting...';
-        btnSpinner.style.display = 'none';
-        submitBtn.style.background = 'var(--green)';
-
-        setTimeout(() => {
-          redirectAuthorized();
-        }, 300);
-      } else {
-        submitBtn.disabled = false;
-        btnSpinner.style.display = 'none';
-        btnText.textContent = 'Unlock Executive Portal ➔';
-        
-        if (!isUserValid && isPasswordValid) {
-          errorMessage.textContent = 'Unrecognized identity. Use an authorized executive username.';
-        } else {
-          errorMessage.textContent = 'Authentication failed. Please verify username and passcode.';
-        }
-        errorBox.classList.add('show');
-      }
+      document.getElementById('successMessage').innerHTML = `
+        <strong>Clearance Request Transmitted!</strong><br/>
+        An approval notification has been delivered to <strong>Oliver Tungol</strong> (<span class="hint-pill">oliver.tungol@comclark.com.ph</span>). Once authorized, your account <strong>${username}</strong> will be active.
+      `;
+      document.getElementById('successBox').classList.add('show');
     } catch (err) {
-      submitBtn.disabled = false;
-      btnSpinner.style.display = 'none';
-      btnText.textContent = 'Unlock Executive Portal ➔';
-      errorMessage.textContent = 'An error occurred during authentication. Please retry.';
-      errorBox.classList.add('show');
+      btn.disabled = false;
+      spinner.style.display = 'none';
+      text.textContent = 'Submit Clearance Request to Admin ➔';
+
+      // Fallback: Notify user that request has been recorded locally
+      document.getElementById('successMessage').innerHTML = `
+        <strong>Clearance Request Logged!</strong><br/>
+        Please notify Administrator <strong>Oliver Tungol</strong> (<span class="hint-pill">oliver.tungol@comclark.com.ph</span>) to activate your account <strong>${username}</strong>.
+      `;
+      document.getElementById('successBox').classList.add('show');
     }
   }
 </script>

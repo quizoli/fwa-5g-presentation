@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TelTech & Comclark — Portal User Administration</title>
+<script src="auth_registry.js"></script>
+<style>
+  :root {
+    --navy: #0A192F;
+    --navy-light: #112240;
+    --navy-card: #0F233D;
+    --teal: #00B4D8;
+    --gold: #FFB703;
+    --green: #10B981;
+    --red: #EF4444;
+    --text-light: #F1F5F9;
+    --text-muted: #94A3B8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  body {
+    background: var(--navy);
+    color: var(--text-light);
+    min-height: 100vh;
+    padding: 30px 20px;
+  }
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 30px;
+  }
+  .brand-title { font-size: 20px; font-weight: 800; color: var(--teal); }
+  .brand-subtitle { font-size: 13px; color: var(--text-muted); }
+  .btn-nav {
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .btn-nav:hover { background: rgba(255, 255, 255, 0.15); }
+  
+  .grid-admin {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 24px;
+    margin-bottom: 30px;
+  }
+  @media (max-width: 860px) {
+    .grid-admin { grid-template-columns: 1fr; }
+  }
+
+  .admin-card {
+    background: var(--navy-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 24px;
+  }
+  .card-title {
+    font-size: 17px;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th {
+    text-align: left;
+    padding: 10px 12px;
+    color: var(--teal);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #CBD5E1;
+  }
+  tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .status-pill {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .status-active { background: rgba(16, 185, 129, 0.15); color: var(--green); border: 1px solid rgba(16, 185, 129, 0.3); }
+  .status-suspended { background: rgba(239, 68, 68, 0.15); color: var(--red); border: 1px solid rgba(239, 68, 68, 0.3); }
+
+  .form-group { margin-bottom: 14px; }
+  .form-label { display: block; font-size: 11px; font-weight: 700; color: #94A3B8; margin-bottom: 5px; text-transform: uppercase; }
+  .form-control {
+    width: 100%;
+    background: rgba(10, 25, 47, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: white;
+    font-size: 13.5px;
+    outline: none;
+  }
+  .form-control:focus { border-color: var(--teal); }
+
+  .btn-submit {
+    width: 100%;
+    background: var(--teal);
+    color: #0A192F;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 13.5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.2s;
+  }
+  .btn-submit:hover { background: #38BDF8; }
+
+  .code-output {
+    background: #060D1A;
+    border: 1px solid rgba(0, 180, 216, 0.2);
+    border-radius: 8px;
+    padding: 12px;
+    font-family: monospace;
+    font-size: 12px;
+    color: #38BDF8;
+    word-break: break-all;
+    margin-top: 10px;
+    max-height: 140px;
+    overflow-y: auto;
+  }
+
+  .auth-gate-modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(10, 25, 47, 0.96);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  .auth-gate-card {
+    background: var(--navy-card);
+    border: 1px solid rgba(0, 180, 216, 0.3);
+    border-radius: 16px;
+    padding: 32px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<!-- Admin Access Clearance Gate -->
+<div class="auth-gate-modal" id="adminGateModal">
+  <div class="auth-gate-card">
+    <div style="font-size: 32px; margin-bottom: 12px;">🛡️</div>
+    <h2 style="font-size: 20px; font-weight: 800; color: #FFFFFF; margin-bottom: 8px;">Administrator Verification</h2>
+    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+      Enter Oliver Tungol's master administrative security passcode to open the User Management Console.
+    </p>
+    <input type="password" id="adminPassInput" class="form-control" placeholder="Admin Passcode" style="margin-bottom: 14px;" onkeydown="if(event.key==='Enter')verifyAdminGate()" />
+    <button class="btn-submit" onclick="verifyAdminGate()">Unlock Console ➔</button>
+    <div id="gateError" style="color: var(--red); font-size: 12px; margin-top: 10px; display: none;">Invalid administrator passcode.</div>
+  </div>
+</div>
+
+<div class="container" id="adminContent" style="display: none;">
+  <header>
+    <div>
+      <div class="brand-title">TELTECH & COMCLARK</div>
+      <div class="brand-subtitle">5G FWA Portal — User Clearance & Registry Administration</div>
+    </div>
+    <div style="display: flex; gap: 10px;">
+      <a href="index.html" class="btn-nav">➔ Open Portal</a>
+      <button onclick="logoutAdmin()" class="btn-nav" style="border-color: rgba(239, 68, 68, 0.4); color: #FCA5A5;">Sign Out</button>
+    </div>
+  </header>
+
+  <div class="grid-admin">
+    <!-- Active Users Table -->
+    <div class="admin-card">
+      <div class="card-title">
+        <span>👥 Registered & Approved Users</span>
+        <span style="font-size: 12px; background: rgba(0, 180, 216, 0.15); color: var(--teal); padding: 2px 8px; border-radius: 10px;" id="userCount">0 Users</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="userTableBody">
+          <!-- Populated dynamically -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Quick Approve / Add User Form -->
+    <div class="admin-card">
+      <div class="card-title">
+        <span>➕ Approve / Add User</span>
+      </div>
+      <form onsubmit="handleAdminAddUser(event)">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" id="addName" class="form-control" placeholder="e.g. Engr. Santos" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Corporate Email</label>
+          <input type="email" id="addEmail" class="form-control" placeholder="user@company.com" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Username</label>
+          <input type="text" id="addUsername" class="form-control" placeholder="e.g. msantos" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password / Passcode</label>
+          <input type="text" id="addPassword" class="form-control" placeholder="Password or SHA-256 hash" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Organization / Role</label>
+          <input type="text" id="addRole" class="form-control" placeholder="TelTech Engineering Reviewer" value="Executive Reviewer" />
+        </div>
+        <button type="submit" class="btn-submit">Approve & Generate Entry</button>
+      </form>
+
+      <div id="outputBlock" style="display: none; margin-top: 16px;">
+        <div style="font-size: 11px; font-weight: 700; color: var(--green); text-transform: uppercase;">Generated Command / Snippet:</div>
+        <div class="code-output" id="outputCode"></div>
+        <div style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">
+          Run in terminal to deploy immediately: 
+          <code style="color: var(--teal);">python3 manage_users.py approve ...</code>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentUsers = [];
+
+  function checkAdminAuth() {
+    const raw = sessionStorage.getItem('fwa_admin_auth');
+    if (raw === 'true') {
+      document.getElementById('adminGateModal').style.display = 'none';
+      document.getElementById('adminContent').style.display = 'block';
+      loadRegistry();
+    }
+  }
+
+  async function verifyAdminGate() {
+    const pw = document.getElementById('adminPassInput').value.trim();
+    const hash = await window.FWAPortalAuth.computeSHA256(pw);
+    
+    // Accepts OliverTungol2026!, teltech2026, or fwa2026
+    const validHashes = [
+      "3c1bd18d033a77346541b3eb647174d1f96d89860c3f77338c12b623f4495c74",
+      "ddef79b965dc9a8045528aeede3133fc77a7b1cf2d1def50070c83fd61fefef1",
+      "ef03da33db83125ac00fe6dbb96f6475117d1d640f76cd2344168efa1181bba8"
+    ];
+
+    if (validHashes.includes(hash) || pw === "OliverTungol2026!" || pw === "teltech2026") {
+      sessionStorage.setItem('fwa_admin_auth', 'true');
+      document.getElementById('adminGateModal').style.display = 'none';
+      document.getElementById('adminContent').style.display = 'block';
+      loadRegistry();
+    } else {
+      document.getElementById('gateError').style.display = 'block';
+    }
+  }
+
+  function logoutAdmin() {
+    sessionStorage.removeItem('fwa_admin_auth');
+    window.location.replace('index.html');
+  }
+
+  function loadRegistry() {
+    currentUsers = window.FWAPortalAuth.USER_REGISTRY || [];
+    renderUserTable();
+  }
+
+  function renderUserTable() {
+    const tbody = document.getElementById('userTableBody');
+    tbody.innerHTML = '';
+    document.getElementById('userCount').textContent = `${currentUsers.length} Users`;
+
+    currentUsers.forEach(u => {
+      const tr = document.createElement('tr');
+      const isAct = u.status === 'active';
+      tr.innerHTML = `
+        <td style="font-weight: 700; color: white;">${u.username}</td>
+        <td>${u.name || '-'}</td>
+        <td style="font-size: 12px; color: var(--text-muted);">${u.email || '-'}</td>
+        <td>${u.role || 'Reviewer'}</td>
+        <td><span class="status-pill ${isAct ? 'status-active' : 'status-suspended'}">${isAct ? 'Active' : 'Suspended'}</span></td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  async function handleAdminAddUser(e) {
+    e.preventDefault();
+    const name = document.getElementById('addName').value.trim();
+    const email = document.getElementById('addEmail').value.trim();
+    const username = document.getElementById('addUsername').value.trim().toLowerCase();
+    const pw = document.getElementById('addPassword').value.trim();
+    const role = document.getElementById('addRole').value.trim();
+
+    const pwHash = await window.FWAPortalAuth.computeSHA256(pw);
+    const cmd = `python3 manage_users.py approve ${username} "${pw}" --name "${name}" --email "${email}" --role "${role}"`;
+
+    document.getElementById('outputCode').textContent = cmd;
+    document.getElementById('outputBlock').style.display = 'block';
+    alert(`User entry generated for '${username}'. Run the generated command to commit and deploy live to GitHub Pages!`);
+  }
+
+  window.addEventListener('DOMContentLoaded', checkAdminAuth);
+</script>
+</body>
+</html>
