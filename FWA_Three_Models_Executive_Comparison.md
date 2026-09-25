@@ -2,7 +2,8 @@
 ## Strategic Comparative Audit: POPCEN 2024 Commercial, DICT/UNDP GIDA, & Combined Hybrid Models
 
 **Date:** September 25, 2026  
-**Target Spectrum:** Band n50 (1427 – 1518 MHz, 100 MHz TDD) — Single-Carrier Deployment  
+**Author & Lead Architect:** OLIVER TUNGOL  
+**Target Spectrum & Radio Model:** Band n50 (1427 – 1518 MHz, 100 MHz TDD) — 3-Sector 8T8R MIMO Single-Carrier Deployment  
 **BTS Siting Dimensioning Standard:** 1,000 Active Subscribers per BTS (~333 per 120° Sector across 3 Sectors, per TelTech & Comclark RAN Engineering)  
 **Transmission Anchor:** Converge ICT National Optical Backbone (2,405 nodes, 45k line vertices) + Starlink Business LEO Satellite  
 **Coordinate Standard:** DepEd Schools Locations Masterfile with Zero-Duplicate Spatial Dispersion Engine (100% unique coordinates and latitudes)  

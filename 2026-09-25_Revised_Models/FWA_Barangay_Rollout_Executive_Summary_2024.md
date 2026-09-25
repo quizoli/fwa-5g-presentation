@@ -6,7 +6,7 @@ To support the commercial rollout of 5G Fixed Wireless Access (FWA) home broadba
 
 Demographic data is cross-referenced against Converge ICT Solutions' **2,405 backbone nodes** and **4,401 fiber line segments / 334,462 vertices** (`NATIONAL & REGIONAL BACKBONE_NOV 2024_REPORT.kmz`), with verified coordinates for all barangays from the DICT GIDA database.
 
-The evaluation specifies **Band n50 (1432–1517 MHz, 1.5 GHz L-Band TDD)** as the primary access carrier, configured with **60 MHz contiguous channel bandwidth** and 3-sector 4T4R MIMO radio heads.
+The evaluation specifies **Band n50 (1432–1517 MHz, 1.5 GHz L-Band TDD)** as the primary access carrier, configured with **60 MHz contiguous channel bandwidth** and 3-sector 8T8R MIMO radio heads.
 
 Per commercial requirements, the radio network is dimensioned for **1,000 subscribers per BTS total (across 3 sectors, ~333 subscribers per sector)**.
 

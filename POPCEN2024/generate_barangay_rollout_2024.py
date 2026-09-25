@@ -233,7 +233,7 @@ To support the commercial rollout of 5G Fixed Wireless Access (FWA) home broadba
 
 Demographic data is cross-referenced against Converge ICT Solutions' **2,405 backbone nodes** and **4,401 fiber line segments / 334,462 vertices** (`NATIONAL & REGIONAL BACKBONE_NOV 2024_REPORT.kmz`), with verified coordinates for all barangays from the DICT GIDA database.
 
-The evaluation specifies **Band n50 (1432–1517 MHz, 1.5 GHz L-Band TDD)** as the primary access carrier, configured with **60 MHz contiguous channel bandwidth** and 3-sector 4T4R MIMO radio heads.
+The evaluation specifies **Band n50 (1432–1517 MHz, 1.5 GHz L-Band TDD)** as the primary access carrier, configured with **60 MHz contiguous channel bandwidth** and 3-sector 8T8R MIMO radio heads.
 
 Per commercial requirements, the radio network is dimensioned for **1,000 subscribers per BTS total (across 3 sectors, ~333 subscribers per sector)**.
 
@@ -1028,7 +1028,7 @@ def run():
         ("Poverty Indicator", "PSA Family Income & Expenditure Survey (FIES)", "Official regional poverty incidence integrated into Necessity (digital inclusion) and Business Viability (affordability discounting)."),
         ("Spectrum Carrier", "Band n50 (1432–1517 MHz, 1.5 GHz L-Band TDD)", "Primary sub-2 GHz FWA coverage carrier offering superior indoor penetration and 2.5–3.5 km rural cell radius."),
         ("Carrier Bandwidth", "60 MHz Contiguous TDD", "Delivers 499 Mbps aggregate DL capacity per BTS (planning SE = 4.5 bps/Hz, 70% DL frame split)."),
-        ("Radio Configuration", "3 Sectors @ 4T4R MIMO AAUs + Distributed BBU", "Standard 3-sector macro deployment (~120° azimuth per sector) with 256-QAM and multi-user MIMO."),
+        ("Radio Configuration", "3 Sectors @ 8T8R MIMO AAUs + Distributed BBU", "Standard 3-sector macro deployment (~120° azimuth per sector) with 256-QAM and multi-user MIMO."),
         ("Design Subscriber Load", "1,000 Subscribers per BTS Total", "Dimensioned for ~333 active subscribers per sector, sustaining 15–25 Mbps busy-hour bursts with high QoE."),
         ("Target Take-Rate", "30% Addressable Households", "Standard commercial adoption ceiling within target barangay catchments."),
         ("Optical Backhaul Anchor", "Converge ICT Backbone Infrastructure", "Anchored on Converge's 2,405 active backbone nodes and 334,462 fiber line vertices.")
@@ -1385,7 +1385,7 @@ def run():
         ("Deployment Ease Weight", "35.0%", "% Weight", "Point-to-point physical proximity to Converge nodes & fiber lines (range: 25% - 45%)."),
         ("Necessity Weight", "30.0%", "% Weight", "Lack of commercial internet service and rural broadband deficit (range: 20% - 40%)."),
         ("Penetration Rate", "30.0%", "% Take-Rate", "Commercial target penetration of addressable households (range: 15% - 50%)."),
-        ("n50 BTS Capacity", "1,000", "Subs / BTS", "3-sector 4T4R macro BTS subscriber design limit (~333 subs/sector; range: 600 - 1,200)."),
+        ("n50 BTS Capacity", "1,000", "Subs / BTS", "3-sector 8T8R macro BTS subscriber design limit (~333 subs/sector; range: 600 - 1,200)."),
         ("Viability Sweet Spot Low", "300", "Min Subs", "Minimum target subscribers for efficient 1-BTS amortization with high ROI."),
         ("Viability Sweet Spot High", "1,000", "Max Subs", "Maximum subscriber capacity for 1 BTS (scores 100% viability)."),
         ("Deploy Decay Factor", "3.0", "km", "Distance decay constant: score = 100 * exp(-dist / 3.0)."),
