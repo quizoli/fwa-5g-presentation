@@ -3,16 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>DICT GIDA Barangay Rollout Plan — Nationwide FWA 5G Expansion</title>
+<title>FWA 5G Barangay Rollout Master Plan — Band n50 BTS Dimensioning</title>
 <style>
   :root {
     --navy: #0A192F;
     --navy-light: #172A45;
+    --navy-card: #0F233D;
     --blue-accent: #0077CC;
     --teal: #00B4D8;
     --gold: #FFB703;
-    --green: #2A9D8F;
-    --red: #E63946;
+    --green: #10B981;
+    --red: #EF4444;
     --gray-bg: #F8F9FA;
     --gray-card: #FFFFFF;
     --text-dark: #1E293B;
@@ -25,37 +26,42 @@
   header {
     background: var(--navy);
     color: var(--text-light);
-    padding: 12px 30px;
+    padding: 10px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid rgba(255,255,255,0.12);
-    z-index: 10;
+    z-index: 100;
   }
-  header .brand { font-size: 19px; font-weight: 800; color: var(--teal); letter-spacing: 0.6px; }
-  header .meta { font-size: 13px; color: var(--text-muted); font-weight: 500; }
-  header .controls { display: flex; gap: 10px; align-items: center; }
-  button {
+  header .brand-group { display: flex; align-items: center; gap: 14px; }
+  header .brand { font-size: 17px; font-weight: 800; color: var(--teal); letter-spacing: 0.5px; }
+  header .meta { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+  header .controls { display: flex; gap: 8px; align-items: center; }
+  
+  .btn-nav {
     background: var(--navy-light);
     color: var(--text-light);
-    border: 1px solid rgba(255,255,255,0.25);
-    padding: 7px 15px;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 6px 14px;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 12.5px;
     font-weight: 600;
     transition: all 0.2s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
   }
-  button:hover { background: var(--blue-accent); border-color: var(--blue-accent); }
-  button:disabled { opacity: 0.4; cursor: not-allowed; }
-  .slide-num-btn { min-width: 80px; text-align: center; font-weight: 700; }
+  .btn-nav:hover { background: var(--blue-accent); border-color: var(--blue-accent); color: white; }
+  .btn-nav:disabled { opacity: 0.35; cursor: not-allowed; }
+  .slide-counter { min-width: 90px; text-align: center; font-weight: 700; color: var(--teal); font-size: 13px; }
 
   #slide-container {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 16px 24px;
+    padding: 12px 20px;
     overflow: hidden;
     position: relative;
     background: #060D17;
@@ -63,14 +69,14 @@
   .slide {
     background: var(--gray-bg);
     width: 98vw;
-    max-width: 1480px;
+    max-width: 1460px;
     height: 92vh;
-    max-height: 880px;
+    max-height: 860px;
     border-radius: 14px;
     box-shadow: 0 20px 45px rgba(0,0,0,0.6);
     display: none;
     flex-direction: column;
-    padding: 30px 45px;
+    padding: 26px 36px;
     box-sizing: border-box;
     overflow-y: auto;
     position: relative;
@@ -80,1140 +86,1887 @@
 
   .slide-header {
     border-bottom: 2px solid #CBD5E1;
-    padding-bottom: 12px;
-    margin-bottom: 16px;
+    padding-bottom: 10px;
+    margin-bottom: 14px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
   }
-  .slide-category { font-size: 12px; text-transform: uppercase; font-weight: 800; color: var(--blue-accent); letter-spacing: 1px; }
-  .slide-title { font-size: 25px; font-weight: 800; color: var(--navy); }
-  .slide-number { font-size: 15px; font-weight: 800; color: var(--text-muted); }
+  .slide-category { font-size: 11px; text-transform: uppercase; font-weight: 800; color: var(--blue-accent); letter-spacing: 1px; }
+  .slide-title { font-size: 23px; font-weight: 800; color: var(--navy); line-height: 1.2; }
+  .slide-number { font-size: 14px; font-weight: 800; color: var(--text-muted); }
 
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-  .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
 
   .card {
     background: var(--gray-card);
     border-radius: 8px;
-    padding: 16px 20px;
+    padding: 14px 18px;
     border: 1px solid #E2E8F0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
   }
   .card.highlight { border-left: 5px solid var(--blue-accent); }
+  .card.success { border-left: 5px solid var(--green); }
   .card.warning { border-left: 5px solid var(--gold); }
-  .card.success { border-left: 5px solid #10B981; }
   .card.danger { border-left: 5px solid var(--red); }
+  .card.navy { background: var(--navy); color: white; border: none; }
+  .card.navy h3, .card.navy h4 { color: white; }
+  .card.navy p, .card.navy li { color: #CBD5E1; }
 
-  h3 { font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
-  h4 { font-size: 15px; font-weight: 700; color: var(--navy-light); margin-bottom: 6px; }
-  p, li { font-size: 14px; line-height: 1.5; color: var(--text-dark); }
-  ul { padding-left: 20px; }
-  li { margin-bottom: 6px; }
+  h3 { font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+  h4 { font-size: 13.5px; font-weight: 700; color: var(--navy-light); margin-bottom: 4px; }
+  p, li { font-size: 13px; line-height: 1.5; color: var(--text-dark); }
+  ul { padding-left: 18px; }
+  li { margin-bottom: 4px; }
 
-  .stat-label { font-size: 11px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; }
-  .stat-val { font-size: 24px; font-weight: 800; color: var(--navy); margin: 3px 0; }
-  .stat-val.positive { color: #10B981; }
-  .stat-val.warning { color: #D97706; }
-  .stat-val.danger { color: #DC2626; }
-  .stat-sub { font-size: 12px; color: var(--text-muted); font-weight: 500; }
-
-  .table-wrapper {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin-top: 6px;
+  .stat-card {
+    background: white;
+    border: 1px solid #E2E8F0;
     border-radius: 8px;
+    padding: 12px 14px;
+    text-align: center;
+  }
+  .stat-label { font-size: 10.5px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; }
+  .stat-val { font-size: 22px; font-weight: 800; color: var(--navy); margin: 2px 0; }
+  .stat-sub { font-size: 11px; color: var(--text-muted); }
+
+  table.exec-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
     border: 1px solid #E2E8F0;
   }
-  table { width: 100%; min-width: 620px; border-collapse: collapse; font-size: 13px; }
-  th, td { padding: 9px 12px; text-align: left; border-bottom: 1px solid #E2E8F0; }
-  th { background: var(--navy); color: white; font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; }
-  tr:nth-child(even) { background: #F8FAFC; }
-  tr.highlight-row { background: #EFF6FF; font-weight: 600; }
-
-  .badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: 800; text-transform: uppercase; }
-  .badge-pass { background: #DCFCE7; color: #166534; }
-  .badge-go { background: #DBEAFE; color: #1E40AF; }
-  .badge-amber { background: #FEF3C7; color: #92400E; }
-  .badge-red { background: #FEE2E2; color: #991B1B; }
-
-  .scroll-hint { display: none; }
-  .mobile-nav-bar { display: none; }
-
-  footer {
+  table.exec-table th {
     background: var(--navy);
-    color: var(--text-muted);
-    padding: 8px 30px;
-    font-size: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid rgba(255,255,255,0.08);
+    color: white;
+    font-weight: 700;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 11.5px;
+    letter-spacing: 0.3px;
   }
-  .progress-bar { height: 5px; width: 240px; background: var(--navy-light); border-radius: 3px; overflow: hidden; }
-  .progress-fill { height: 100%; width: 10%; background: var(--teal); transition: width 0.3s ease; }
-
-  /* =================================================== */
-  /* MOBILE BREAKPOINTS (Phones & Small Tablets)         */
-  /* =================================================== */
-  @media (max-width: 860px) {
-    body {
-      height: 100dvh;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    header {
-      padding: 10px 14px;
-    }
-    header .brand {
-      font-size: 16px;
-    }
-    header .meta, .desktop-only {
-      display: none !important;
-    }
-    #slide-container {
-      padding: 8px 8px 70px 8px !important;
-      flex: 1;
-      overflow: hidden;
-    }
-    .slide {
-      width: 100% !important;
-      max-width: 100% !important;
-      height: 100% !important;
-      max-height: 100% !important;
-      border-radius: 10px !important;
-      padding: 16px 14px !important;
-      overflow-y: auto !important;
-      -webkit-overflow-scrolling: touch;
-    }
-    .slide-header {
-      margin-bottom: 12px !important;
-      padding-bottom: 8px !important;
-    }
-    .slide-category {
-      font-size: 10.5px !important;
-    }
-    .slide-title {
-      font-size: 18px !important;
-      line-height: 1.25 !important;
-    }
-    .slide-number {
-      font-size: 12px !important;
-    }
-
-    .grid-2, .grid-3, .grid-4 {
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 10px !important;
-    }
-    .grid-5 {
-      display: grid !important;
-      grid-template-columns: 1fr 1fr !important;
-      gap: 8px !important;
-    }
-    .grid-5 .card:last-child {
-      grid-column: span 2;
-    }
-
-    .card {
-      padding: 12px 14px !important;
-    }
-    h3 { font-size: 15px !important; margin-bottom: 5px !important; }
-    h4 { font-size: 13.5px !important; margin-bottom: 4px !important; }
-    p, li { font-size: 13px !important; line-height: 1.45 !important; }
-    .stat-val { font-size: 20px !important; }
-    .stat-label { font-size: 10px !important; }
-    .stat-sub { font-size: 11px !important; }
-
-    .scroll-hint {
-      display: block !important;
-      font-size: 11px;
-      color: #64748B;
-      text-align: right;
-      margin-bottom: 4px;
-      font-style: italic;
-    }
-
-    .mobile-nav-bar {
-      display: flex !important;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 56px;
-      background: rgba(10, 25, 47, 0.98);
-      backdrop-filter: blur(12px);
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 6px 14px;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-    }
-    .mobile-nav-btn {
-      background: var(--navy-light);
-      color: var(--text-light);
-      border: 1px solid rgba(255,255,255,0.25);
-      padding: 8px 16px;
-      font-size: 13.5px;
-      font-weight: 700;
-      border-radius: 6px;
-      min-width: 80px;
-      cursor: pointer;
-    }
-    .mobile-nav-btn.primary {
-      background: var(--blue-accent);
-      color: white;
-      border-color: var(--blue-accent);
-    }
-    .mobile-slide-indicator {
-      font-size: 14px;
-      font-weight: 800;
-      color: var(--teal);
-    }
-    footer {
-      display: none !important;
-    }
+  table.exec-table td {
+    padding: 7px 10px;
+    border-bottom: 1px solid #E2E8F0;
+    color: var(--text-dark);
+  }
+  table.exec-table tr:nth-child(even) { background: #F8FAFC; }
+  table.exec-table tr:hover { background: #EDF2F7; }
+  table.exec-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  table.exec-table td.center { text-align: center; }
+  table.exec-table td.highlight-bts { background: #E8F5E9; font-weight: 800; color: #166534; text-align: center; }
+  table.exec-table tr.total-row td {
+    background: #E2E8F0;
+    font-weight: 800;
+    border-top: 2px solid var(--navy);
+    border-bottom: 2px solid var(--navy);
   }
 
-  @page { size: A4 landscape; margin: 8mm; }
-  @media print {
-    html, body { background: white !important; height: auto !important; overflow: visible !important; margin: 0 !important; }
-    header, footer, .controls, .mobile-nav-bar { display: none !important; }
-    #slide-container { display: block !important; padding: 0 !important; background: white !important; height: auto !important; overflow: visible !important; }
-    .slide { display: flex !important; page-break-after: always !important; break-after: page !important; box-shadow: none !important; border: 1px solid #CBD5E1 !important; height: 185mm !important; margin: 0 0 10mm 0 !important; padding: 12mm 15mm !important; }
-  }
-
-  .edit-active [contenteditable="true"] {
-    outline: 2px dashed #00B4D8 !important;
-    outline-offset: 2px;
-    background-color: rgba(0, 180, 216, 0.06) !important;
-    cursor: text !important;
+  .badge {
+    display: inline-block;
+    padding: 3px 8px;
     border-radius: 4px;
+    font-size: 10.5px;
+    font-weight: 700;
   }
-  .edit-active [contenteditable="true"]:hover {
-    outline: 2px solid #0077CC !important;
-    background-color: rgba(0, 180, 216, 0.15) !important;
+  .badge-onnet { background: #DCFCE7; color: #166534; border: 1px solid #86EFAC; }
+  .badge-rural { background: #E0E7FF; color: #3730A3; border: 1px solid #C7D2FE; }
+  .badge-gold { background: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; }
+  .badge-n50 { background: #FEF08A; color: #854D0E; border: 1px solid #FACC15; font-weight: 800; }
+
+  /* Cover slide */
+  .cover-slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    padding: 40px 20px;
+    background: radial-gradient(circle at center, #172A45 0%, #0A192F 100%);
+    color: white;
+    border-radius: 12px;
   }
-  .edit-active [contenteditable="true"]:focus {
-    outline: 2px solid #00B4D8 !important;
-    background-color: #FFFFFF !important;
-    color: #0A192F !important;
+  .cover-tag {
+    display: inline-block;
+    background: rgba(0, 180, 216, 0.15);
+    color: var(--teal);
+    border: 1px solid rgba(0, 180, 216, 0.3);
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
   }
+  .cover-slide h1 {
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 14px;
+    max-width: 980px;
+    background: linear-gradient(135deg, #FFFFFF 0%, #00B4D8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cover-slide p {
+    font-size: 16px;
+    color: #94A3B8;
+    max-width: 820px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 30px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    font-size: 13px;
+    color: #CBD5E1;
+  }
+
+  @media (max-width: 768px) {
+    body { height: auto; min-height: 100vh; overflow-y: auto; }
+    header { flex-direction: column; gap: 8px; align-items: flex-start; padding: 10px 14px; }
+    #slide-container { padding: 8px; height: auto; }
+    .slide { height: auto; max-height: none; padding: 18px 14px; width: 100%; }
+    .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; }
+    .slide-title { font-size: 19px; }
+    .cover-slide h1 { font-size: 26px; }
+    .cover-meta { flex-direction: column; gap: 8px; }
+  }
+
+  /* Interactive Map Styles */
+  .map-phase-btn {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 6px;
+    color: #94A3B8;
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .map-phase-btn:hover {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+  }
+  .map-phase-btn.active {
+    background: #fff;
+    color: #0A192F;
+    border-color: #fff;
+    font-weight: 700;
+  }
+  .map-phase-btn.p1.active { background: #00B4D8; color: #0A192F; border-color: #00B4D8; }
+  .map-phase-btn.p2.active { background: #10B981; color: #0A192F; border-color: #10B981; }
+  .map-phase-btn.p3.active { background: #F59E0B; color: #0A192F; border-color: #F59E0B; }
+  .map-phase-btn.p4.active { background: #8B5CF6; color: #fff; border-color: #8B5CF6; }
+  .map-phase-btn.p5.active { background: #EF4444; color: #fff; border-color: #EF4444; }
+
+  /* Custom Leaflet Popup Styling */
+  .leaflet-popup-content-wrapper {
+    background: rgba(10, 25, 47, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    border-radius: 10px !important;
+    color: #E2E8F0 !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6) !important;
+  }
+  .leaflet-popup-tip {
+    background: rgba(10, 25, 47, 0.95) !important;
+  }
+  .leaflet-popup-content {
+    margin: 12px 14px !important;
+    font-family: inherit !important;
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+  }
+
 </style>
+
+  <!-- Leaflet GIS Mapping CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="fwa_sites_data.js"></script>
+
 </head>
 <body>
 
 <header>
-  <div style="display: flex; align-items: center; gap: 14px;">
-    <div class="brand">TELTECH & COMCLARK</div>
-    <div class="meta">DICT GIDA Barangay Prioritization & Phased FWA 5G Rollout Master Plan</div>
+  <div class="brand-group">
+    <a href="index.html" class="btn-nav">← Back to Portal</a>
+    <div>
+      <div class="brand">TELTECH & COMCLARK · FWA 5G</div>
+      <div class="meta">Barangay Rollout Master Plan · Band n50 BTS Dimensioning (1,000-Site Launch)</div>
+    </div>
   </div>
   <div class="controls">
-    <button id="edit-toggle-btn" onclick="toggleEditMode()" style="background:#E0E7FF;color:#3730A3;border-color:#C7D2FE;">✏️ Edit</button>
-    <button id="save-html-btn" onclick="saveEditedPresentation()" style="display:none;background:#10B981;color:white;border-color:#059669;">💾 Save</button>
-    <button onclick="prevSlide()" class="desktop-only">◀ Prev</button>
-    <button id="slide-indicator" class="slide-num-btn desktop-only">1 / 10</button>
-    <button onclick="nextSlide()" class="desktop-only">Next ▶</button>
-    <button onclick="toggleFullScreen()" class="desktop-only">⛶ Fullscreen</button>
-    <button onclick="triggerPrint()" class="desktop-only">🖨️ PDF / Print</button>
+    <button class="btn-nav" id="prev-btn" onclick="prevSlide()">◀ Prev</button>
+    <div class="slide-counter" id="slide-num">Slide 1 / 14</div>
+    <button class="btn-nav" id="next-btn" onclick="nextSlide()">Next ▶</button>
+    <button class="btn-nav" onclick="toggleFullScreen()">⛶ Fullscreen</button>
   </div>
 </header>
-<div id="edit-banner" style="display:none; background:#FEF3C7; border-bottom:2px solid #F59E0B; padding:8px 16px; text-align:center; font-size:13px; font-weight:700; color:#92400E; z-index:999;">
-  ✏️ <strong>EDIT MODE ACTIVE</strong> — Click on ANY text, title, metric, or card anywhere on this slide to edit it directly. When finished, click <strong>"🔒 Done"</strong>, or <strong>"💾 Save"</strong>.
-</div>
 
 <div id="slide-container">
 
-  <!-- Slide 1: Title Hero -->
+  <!-- SLIDE 1: Title Cover -->
   <div class="slide active">
-    <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 10px;">
-      <div style="background: white; border: 3px solid var(--teal); border-radius: 14px; padding: 35px 40px; max-width: 1050px; box-shadow: 0 15px 35px rgba(0,0,0,0.06); width: 100%;">
-        <div style="font-size: 13px; font-weight: 800; color: var(--blue-accent); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;">
-          Telecommunications Technology Solutions Inc. (TelTech) & Comclark
-        </div>
-        <h1 style="font-size: 34px; font-weight: 800; color: var(--navy); line-height: 1.25; margin-bottom: 14px;">
-          DICT GIDA Barangay Rollout Plan
-        </h1>
-        <p style="font-size: 17px; color: var(--text-muted); margin-bottom: 25px; font-weight: 500;">
-          Nationwide Fixed Wireless Access (FWA) 5G Deployment Strategy
-        </p>
-
-        <div class="grid-4" style="text-align: left; margin-top: 20px;">
-          <div class="card">
-            <div class="stat-label">Dataset Scope</div>
-            <div style="font-size: 16px; font-weight: 800; color: var(--navy); margin-top: 4px;">42,001 Barangays</div>
-            <div class="stat-sub">DICT FPIAP Prioritization</div>
-          </div>
-          <div class="card">
-            <div class="stat-label">Target Population</div>
-            <div style="font-size: 16px; font-weight: 800; color: var(--navy); margin-top: 4px;">3,903 Priority 1 Brgys</div>
-            <div class="stat-sub">100% Covered in Year 1</div>
-          </div>
-          <div class="card">
-            <div class="stat-label">Technology Moat</div>
-            <div style="font-size: 16px; font-weight: 800; color: var(--navy); margin-top: 4px;">Band n50 (1.5 GHz)</div>
-            <div class="stat-sub">Starlink LEO Satellite Backhaul</div>
-          </div>
-          <div class="card">
-            <div class="stat-label">Commercial Model</div>
-            <div style="font-size: 16px; font-weight: 800; color: var(--navy); margin-top: 4px;">Dual-Revenue Engine</div>
-            <div class="stat-sub">DICT Subsidies + ₱599 Retail</div>
-          </div>
-        </div>
-
-        <div style="margin-top: 30px; font-size: 12px; color: var(--text-muted); font-weight: 700; letter-spacing: 0.5px;">
-          CONFIDENTIAL · COMMERCIAL EXPANSION MASTER PLAN · SEPTEMBER 2026
-        </div>
+    <div class="cover-slide">
+      <span class="cover-tag">Radio Dimensioning & Phasing Master Plan</span>
+      <h1>5G Fixed Wireless Access (FWA)<br>Barangay Rollout Plan & Band n50 BTS Sizing</h1>
+      <p>
+        Commercial BTS dimensioning for the <strong>First 1,000 Sites (Batch 1)</strong> and succeeding batches across 41,984 PSA barangays using <strong>Band n50 (1.5 GHz, 60 MHz Carrier)</strong> with 3-sector 4T4R MIMO anchored on Converge's 2,405 backbone nodes.
+      </p>
+      <div class="cover-meta">
+        <div><strong>Carrier:</strong> Band n50 (1432–1517 MHz, 60 MHz BW)</div>
+        <div><strong>BTS Capacity:</strong> 499 Mbps / 1,000 Subs per BTS</div>
+        <div><strong>Phase 1 Deployment:</strong> 1,000 BTS across 1,000 Barangays</div>
+        <div><strong>Backhaul:</strong> Converge Optical Backbone (FOC)</div>
       </div>
     </div>
   </div>
 
-  <!-- Slide 2: Strategic Rationale -->
+  <!-- SLIDE 2: Band n50 Engineering Specification -->
   <div class="slide">
     <div class="slide-header">
       <div>
-        <div class="slide-category">Executive Rationale</div>
-        <div class="slide-title">Bridging the Digital Divide via Sub-2GHz FWA & LEO Backhaul</div>
+        <div class="slide-category">Radio Dimensioning</div>
+        <div class="slide-title">Band n50 (1.5 GHz) Radio Dimensioning & BTS Sizing Parameters</div>
       </div>
-      <div class="slide-number">Slide 02 / 10</div>
-    </div>
-    <div style="display: flex; flex-direction: column; gap: 12px; flex: 1; justify-content: center;">
-      <div class="card danger">
-        <h3 style="color: #991B1B;">1. The Structural Terrestrial Fiber Divide</h3>
-        <p>
-          Terrestrial fiber trenching in rural Class 3 to 6 municipalities carries severe negative return on investment (ROI) for legacy telcos (PLDT, Globe, DITO). Prohibitive civil works across mountains, archipelagos, and agricultural valleys leave over 40,000 provincial barangays completely stranded without high-speed broadband.
-        </p>
-      </div>
-      <div class="card highlight">
-        <h3 style="color: var(--blue-accent);">2. Band n50 Sub-2GHz Propagation Advantage</h3>
-        <p>
-          TelTech's 80 MHz contiguous nationwide spectrum in Band n50 (1.5 GHz) provides a <strong>3.5 km non-line-of-sight (NLOS) rural radius</strong> (~38.5 km² coverage area per macro tower). It punches through heavy tropical foliage, monsoonal rainfall, and concrete hollow block structures where 3.5 GHz (C-band) fails completely.
-        </p>
-      </div>
-      <div class="card success">
-        <h3 style="color: #065F46;">3. Zero-Trenching Rapid Deployment (Starlink LEO Backhaul)</h3>
-        <p>
-          Utilizing Starlink Business LEO satellite backhaul (220+ Mbps DL, 28–45 ms latency) enables fully functional macro cell deployment in <strong>48 to 72 hours</strong>. This entirely bypasses 12 to 18 months of costly civil trenching, highway right-of-way (ROW) permits, and pole attachment negotiations.
-        </p>
-      </div>
-      <div class="card warning">
-        <h3 style="color: #92400E;">4. The Dual-Revenue Commercial Cash Flow Engine</h3>
-        <p>
-          Every macro site captures DICT FPIAP institutional subsidies (₱15,000–₱25,000/mo per public school/barangay hall) as guaranteed government anchor revenue, while selling residential broadband at ₱599/mo to 600 households, generating a rapid payback of <strong>under 14 months per tower</strong>.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Slide 3: DICT GIDA Dataset Analysis -->
-  <div class="slide">
-    <div class="slide-header">
-      <div>
-        <div class="slide-category">Market Sizing & Prioritization</div>
-        <div class="slide-title">DICT GIDA Dataset Analysis: 42,001 Evaluated Barangays</div>
-      </div>
-      <div class="slide-number">Slide 03 / 10</div>
+      <div class="slide-number">Slide 2 / 14</div>
     </div>
     
-    <div class="grid-5" style="margin-bottom: 12px;">
-      <div class="card">
-        <div class="stat-label">Total Evaluated</div>
-        <div class="stat-val" style="font-size:20px; color:var(--navy);">42,001</div>
-        <div class="stat-sub">Nationwide DICT Dataset</div>
+    <div class="grid-4" style="margin-bottom: 12px;">
+      <div class="stat-card" style="border-top: 4px solid #FACC15;">
+        <div class="stat-label">Spectrum Carrier</div>
+        <div class="stat-val" style="font-size: 19px; color: #854D0E;">Band n50</div>
+        <div class="stat-sub">1.5 GHz L-Band TDD (60 MHz)</div>
       </div>
-      <div class="card">
-        <div class="stat-label">Provincial Scope</div>
-        <div class="stat-val" style="font-size:20px; color:var(--blue-accent);">40,291</div>
-        <div class="stat-sub">Class 3–6 Rural Brgys</div>
+      <div class="stat-card" style="border-top: 4px solid var(--blue-accent);">
+        <div class="stat-label">Radio Configuration</div>
+        <div class="stat-val" style="font-size: 19px; color: var(--navy);">3 Sectors @ 4T4R</div>
+        <div class="stat-sub">256-QAM, MU-MIMO 2 Layers</div>
       </div>
-      <div class="card danger">
-        <div class="stat-label">Critical GIDA (≥50)</div>
-        <div class="stat-val danger" style="font-size:20px;">1,345</div>
-        <div class="stat-sub">100% covered in Year 1</div>
+      <div class="stat-card" style="border-top: 4px solid var(--teal);">
+        <div class="stat-label">Downlink Capacity</div>
+        <div class="stat-val" style="font-size: 19px; color: var(--teal);">499 Mbps</div>
+        <div class="stat-sub">Planning SE 4.5 bps/Hz (70% DL)</div>
       </div>
-      <div class="card warning">
-        <div class="stat-label">High GIDA (40-49.9)</div>
-        <div class="stat-val warning" style="font-size:20px;">2,558</div>
-        <div class="stat-sub">High unserved demand</div>
-      </div>
-      <div class="card success">
-        <div class="stat-label">Combined Priority 1</div>
-        <div class="stat-val positive" style="font-size:20px;">3,903</div>
-        <div class="stat-sub">Matched to 1,000 Sites</div>
+      <div class="stat-card" style="border-top: 4px solid var(--green);">
+        <div class="stat-label">Design Subscriber Load</div>
+        <div class="stat-val" style="font-size: 19px; color: var(--green);">1,000 Subs / BTS</div>
+        <div class="stat-sub">3 Sectors (~333 Subs/Sector)</div>
       </div>
     </div>
 
-    <div class="card" style="flex: 1;">
-      <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div>
-      <h4 style="color: var(--navy); margin-bottom: 8px;">Nationwide GIDA Distribution & TelTech FWA Strategic Interventions:</h4>
-      <div class="table-wrapper">
-        <table>
+    <div class="grid-2">
+      <div class="card highlight">
+        <h3>Why Band n50 is the Ideal Carrier for Rural FWA</h3>
+        <ul>
+          <li><strong>Propagation Superiority:</strong> At 1.5 GHz, signal attenuation is 9–12 dB lower than 3.5 GHz (n78). Delivers an effective cell radius of <strong>2.0 km to 3.5 km</strong> in rural terrain (12–35 km² footprint), covering an entire barangay with 1 BTS.</li>
+          <li><strong>Indoor Penetration:</strong> Easily penetrates typical Philippine residential building materials (GI sheet roofing, hollow blocks, timber) without requiring mandatory outdoor antenna roof-mounts for every home.</li>
+          <li><strong>Massive 60 MHz Carrier Bandwidth:</strong> Yields 499 Mbps aggregate DL throughput, comfortably sustaining 1,000 active subscribers at 15–25 Mbps busy-hour bursts.</li>
+        </ul>
+      </div>
+
+      <div class="card success">
+        <h3>How Many BTS Can Be Put in Each Barangay?</h3>
+        <p style="margin-bottom: 6px;">BTS sizing is determined by household demand at 30% commercial penetration:</p>
+        <table class="exec-table">
           <thead>
-            <tr>
-              <th>GIDA Priority Tier</th>
-              <th>GIDA Score Range</th>
-              <th>Provincial Brgys (ex-NCR)</th>
-              <th>Infrastructure Status & Challenges</th>
-              <th>TelTech Band n50 FWA Strategic Intervention</th>
-            </tr>
+            <tr><th>Barangay Size / Households</th><th>Target Subs @ 30%</th><th class="center">n50 BTS Capacity</th><th>Deployment Rationale</th></tr>
           </thead>
           <tbody>
-            <tr style="background:#FEF2F2; font-weight:600;">
-              <td><span class="badge badge-red">Tier 1: Critical GIDA</span></td>
-              <td>Score ≥ 50.0</td>
-              <td>1,345 (3.3%)</td>
-              <td>Zero fiber presence; isolated/island; severe poverty</td>
-              <td>Phase 1 Priority: 100% covered by 384 macro sites + Starlink backhaul.</td>
-            </tr>
-            <tr class="highlight-row">
-              <td><span class="badge badge-amber">Tier 2: High GIDA</span></td>
-              <td>Score 40.0 – 49.9</td>
-              <td>2,558 (6.3%)</td>
-              <td>Minimal 2G/3G; no fixed broadband; mountain valleys</td>
-              <td>Phase 1 & 2: Covered by 616 Year 1 sites + Phase 2 expansion.</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-go">Tier 3: Moderate GIDA</span></td>
-              <td>Score 30.0 – 39.9</td>
-              <td>5,128 (12.7%)</td>
-              <td>Spotty 4G cellular; severe bandwidth choking</td>
-              <td>Phase 2 & 3: Infill across 2,000 Phase 2 macro sites (Years 2–4).</td>
-            </tr>
-            <tr>
-              <td><span class="badge" style="background:#E2E8F0;color:#475569;">Tier 4: Low / Minimal</span></td>
-              <td>Score &lt; 30.0</td>
-              <td>31,260 (77.6%)</td>
-              <td>Partial fiber presence; peri-urban municipal fringe</td>
-              <td>Phase 4: Densification across 10,000 nationwide sites (Years 7–10).</td>
-            </tr>
+            <tr><td><strong>< 3,333 HH</strong> (<15k pop)</td><td>< 1,000 Subs</td><td class="highlight-bts">1 n50 BTS</td><td>1 BTS provides 100% barangay coverage & capacity.</td></tr>
+            <tr><td><strong>3,333 - 6,666 HH</strong> (15k-30k pop)</td><td>1,000 - 2,000 Subs</td><td class="highlight-bts">2 n50 BTS</td><td>Deploy 1 BTS in Phase 1; add 2nd BTS as subs approach 1,000.</td></tr>
+            <tr><td><strong>6,666 - 10,000 HH</strong> (30k-45k pop)</td><td>2,000 - 3,000 Subs</td><td class="highlight-bts">3 n50 BTS</td><td>Multi-sector cluster covering separated sitios/poblacion.</td></tr>
+            <tr><td><strong>> 10,000 HH</strong> (>45k pop)</td><td>> 3,000 Subs</td><td class="highlight-bts">4+ n50 BTS</td><td>High-density suburban township macro cluster.</td></tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
 
-  <!-- Slide 4: Clustering Engine -->
+  
+  <!-- SLIDE 3: Prioritization Framework -->
   <div class="slide">
     <div class="slide-header">
       <div>
-        <div class="slide-category">Engineering & Deployment Geometry</div>
-        <div class="slide-title">The Macro-Cell Clustering Engine: 3.9 Barangays per Tower</div>
+        <div class="slide-category">Selection Methodology</div>
+        <div class="slide-title">Site Selection Pillars: Necessity, Viability & Ease of Deployment</div>
       </div>
-      <div class="slide-number">Slide 04 / 10</div>
+      <div class="slide-number">Slide 3 / 14</div>
     </div>
-    
+
+    <div class="grid-3" style="margin-bottom: 14px;">
+      <!-- Pillar 1: Necessity -->
+      <div class="card danger">
+        <div class="badge badge-onnet" style="background: rgba(239, 68, 68, 0.2); color: #EF4444; border-color: rgba(239, 68, 68, 0.4); margin-bottom: 8px;">
+          Pillar 1 · 30% Weight
+        </div>
+        <h3 style="color: #EF4444; font-size: 16px; margin-bottom: 6px;">1. Necessity</h3>
+        <div style="font-weight: 700; color: #fff; font-size: 13px; margin-bottom: 8px;">Lack of Internet Service</div>
+        <ul style="font-size: 12.5px; line-height: 1.45;">
+          <li><strong>Wireline FTTH Deserts:</strong> Target rural barangay clusters where commercial FTTH, DSL, and cable broadband are completely absent.</li>
+          <li><strong>Overcome Mobile Congestion:</strong> Relieve severe mobile cellular 4G/5G data congestion with dedicated fixed wireless home capacity.</li>
+          <li><strong>Commercial Preemption:</strong> Capture unserved households before wireline telcos consider building out.</li>
+          <li><strong>Metro Overbuild Avoided:</strong> Metropolitan NCR deprioritized due to saturated fiber price competition.</li>
+        </ul>
+      </div>
+
+      <!-- Pillar 2: Business Viability -->
+      <div class="card highlight">
+        <div class="badge badge-onnet" style="background: rgba(0, 180, 216, 0.2); color: var(--teal); border-color: rgba(0, 180, 216, 0.4); margin-bottom: 8px;">
+          Pillar 2 · 35% Weight
+        </div>
+        <h3 style="color: var(--teal); font-size: 16px; margin-bottom: 6px;">2. Business Viability</h3>
+        <div style="font-weight: 700; color: #fff; font-size: 13px; margin-bottom: 8px;">Economic Activity to Generate Sales</div>
+        <ul style="font-size: 12.5px; line-height: 1.45;">
+          <li><strong>Addressable Household Density:</strong> Focus on 3,000 to 12,000 population (700 to 2,800 HH), providing ideal subscriber scale for 1 BTS.</li>
+          <li><strong>Purchasing Power:</strong> Prioritize 1st–4th class municipal trading centers with strong agricultural/commercial cash flow.</li>
+          <li><strong>Retail Sales Velocity:</strong> Proven consumer ability to sustain ₱599 to ₱999/mo recurring subscriptions.</li>
+          <li><strong>Rapid Payback:</strong> Fast customer take-up delivers full site CAPEX payback in <strong>14 to 22 months</strong>.</li>
+        </ul>
+      </div>
+
+      <!-- Pillar 3: Ease of Deployment -->
+      <div class="card success">
+        <div class="badge badge-onnet" style="background: rgba(16, 185, 129, 0.2); color: #10B981; border-color: rgba(16, 185, 129, 0.4); margin-bottom: 8px;">
+          Pillar 3 · 35% Weight
+        </div>
+        <h3 style="color: #10B981; font-size: 16px; margin-bottom: 6px;">3. Ease of Deployment</h3>
+        <div style="font-weight: 700; color: #fff; font-size: 13px; margin-bottom: 8px;">Towers, RoW, Fiber & Power</div>
+        <ul style="font-size: 12.5px; line-height: 1.45;">
+          <li><strong>Presence of Fiber:</strong> 100% of Batch 1 connects directly to Converge backbone nodes (<1–3 km drop), zero dark fiber civil works.</li>
+          <li><strong>Grid Power Availability:</strong> Connected to commercial 220V grid via Meralco or provincial Electric Cooperatives (BENECO, CASURECO, etc.).</li>
+          <li><strong>Tower Erection & Colocation:</strong> Co-locate on existing TowerCo structures (EDOTCO, EdgePoint) or rapid monopole erection.</li>
+          <li><strong>Right-of-Way & Road Access:</strong> Highway/provincial road proximity ensures heavy crane access and zero land disputes.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card navy">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <div>
+          <span style="color: var(--teal); font-weight: 700; font-size: 13px;">MATHEMATICAL COMPOSITE SCORING:</span>
+          <span style="font-size: 13px; color: #CBD5E1; margin-left: 8px;">
+            Score = (0.35 × Deployment) + (0.35 × Viability) + (0.30 × Necessity)
+          </span>
+        </div>
+        <div style="font-size: 12px; color: #94A3B8;">
+          All 41,984 barangays evaluated objectively without arbitrary government bias.
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- SLIDE 4: Nationwide Filtering Funnel -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Market Sizing</div>
+        <div class="slide-title">Nationwide Barangay Universe & Phasing Funnel</div>
+      </div>
+      <div class="slide-number">Slide 4 / 14</div>
+    </div>
+
+    <div class="grid-5" style="margin-bottom: 16px;">
+      <div class="stat-card">
+        <div class="stat-label">Total Barangays</div>
+        <div class="stat-val">41,976</div>
+        <div class="stat-sub">108.8M Total Population</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">In Converge Towns</div>
+        <div class="stat-val" style="color: var(--blue-accent);">21,055</div>
+        <div class="stat-sub">737 Municipalities (58.9% Pop)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Target Class 4–6 & Rural</div>
+        <div class="stat-val" style="color: var(--gold);">11,827</div>
+        <div class="stat-sub">Primary FTTH Deserts</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">5-Year Roadmap</div>
+        <div class="stat-val" style="color: var(--teal);">5,000</div>
+        <div class="stat-sub">29.6M Pop · 2.03M Subs</div>
+      </div>
+      <div class="stat-card" style="border: 2px solid var(--green); background: #F0FDF4;">
+        <div class="stat-label" style="color: #15803D;">Batch 1 Launch</div>
+        <div class="stat-val" style="color: #15803D;">1,000 BTS</div>
+        <div class="stat-sub">Year 1 Priority Barangays</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Phasing Strategy: 1 BTS per Priority Barangay</h3>
+        <ul>
+          <li><strong>Maximum Geographic Footprint:</strong> Deploying 1 n50 BTS in each of the top 1,000 barangays reaches <strong>271 municipalities in 46 provinces</strong> simultaneously.</li>
+          <li><strong>Zero Frequency Overlap:</strong> Single 60 MHz n50 carrier covers the entire residential center without co-channel interference during market capture.</li>
+          <li><strong>Rapid Market Preemption:</strong> Locks in the community with ₱599 home broadband before 4G/5G mobile operators or local WISPs can react.</li>
+          <li><strong>Organic Expansion:</strong> Barangays with capacity for 2 to 4 BTS will receive secondary BTS in later phases as subscriber take-up exceeds 500 users.</li>
+        </ul>
+      </div>
+
+      <div class="card highlight">
+        <h3>Household Multipliers from DOF/PSA</h3>
+        <p style="margin-bottom: 8px;">Applying actual municipal household sizes (3.1 to 7.56) instead of a flat 4.4 divisor revealed critical operational realities:</p>
+        <ul>
+          <li><strong>High Household Density in Luzon:</strong> Cavite, Batangas, Laguna, Ilocos have smaller HH sizes (3.6–4.2), meaning <strong>more paying households</strong> per 1,000 population.</li>
+          <li><strong>BARMM Household Reality:</strong> Sulu, Tawi-Tawi, Lanao have 5.8–7.5 people per household, resulting in fewer distinct subscription units per macro tower.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: Converge Infrastructure Advantage -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Infrastructure Leverage</div>
+        <div class="slide-title">The Converge Backbone Advantage: Zero Backhaul Bottleneck</div>
+      </div>
+      <div class="slide-number">Slide 5 / 14</div>
+    </div>
+
+    <div class="grid-3" style="margin-bottom: 16px;">
+      <div class="card navy">
+        <h4 style="color: var(--teal);">2,405 BACKBONE NODES</h4>
+        <div style="font-size: 28px; font-weight: 800; color: white; margin: 4px 0;">771 Municipalities</div>
+        <p style="font-size: 12.5px;">Active POPs, Central Offices, and Core/Aggregation DWDM/OTN Nodes spanning South Luzon, Central/North Luzon, Visayas, and Mindanao.</p>
+      </div>
+
+      <div class="card navy">
+        <h4 style="color: var(--teal);">4,401 FIBER LINE STRINGS</h4>
+        <div style="font-size: 28px; font-weight: 800; color: white; margin: 4px 0;">Tens of Thousands Km</div>
+        <p style="font-size: 12.5px;">National highway backbone routes, regional rings, and submarine landings (e.g. CDO-Bacong, Tagbilaran, Roxas Mindoro, Panay, Cebu).</p>
+      </div>
+
+      <div class="card navy">
+        <h4 style="color: var(--teal);">100% ON-NET BATCH 1</h4>
+        <div style="font-size: 28px; font-weight: 800; color: #10B981; margin: 4px 0;">1,000 / 1,000 Sites</div>
+        <p style="font-size: 12.5px;">Every Batch 1 site is in a municipality with active Converge nodes, allowing optical lateral drops (<1–3 km) and instant activation.</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card highlight">
+        <h3>Backhaul Cost & Latency Benchmark</h3>
+        <table class="exec-table">
+          <thead>
+            <tr><th>Metric</th><th>Converge Optical (Our Model)</th><th>Satellite (Starlink LEO)</th><th>3rd-Party Leased Fiber</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Monthly Backhaul Opex</strong></td><td class="num" style="color: #10B981; font-weight: 700;">Internal Cost (~$150)</td><td class="num">$1,800 - $2,500/mo</td><td class="num">$1,200 - $1,800/mo</td></tr>
+            <tr><td><strong>Latency to Gateways</strong></td><td class="num" style="color: #10B981; font-weight: 700;">< 15 ms</td><td class="num">35 - 65 ms</td><td class="num">20 - 30 ms</td></tr>
+            <tr><td><strong>Peak Capacity per Site</strong></td><td class="num" style="color: #10B981; font-weight: 700;">1 Gbps - 10 Gbps Direct</td><td class="num">220 - 350 Mbps shared</td><td class="num">500 Mbps - 1 Gbps</td></tr>
+            <tr><td><strong>Deployment Lead Time</strong></td><td class="num" style="color: #10B981; font-weight: 700;">14 - 30 Days</td><td class="num">7 - 14 Days</td><td class="num">90 - 180 Days</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card success">
+        <h3>Top Provinces by Converge Node Presence</h3>
+        <p style="margin-bottom: 6px;">Concentration of active nodes in high-demand provincial growth centers:</p>
+        <ul style="font-size: 12.5px;">
+          <li><strong>Batangas:</strong> 61 nodes across 33 municipalities</li>
+          <li><strong>Quezon:</strong> 59 nodes across 34 municipalities</li>
+          <li><strong>Cebu:</strong> 55 nodes across 39 municipalities</li>
+          <li><strong>Laguna:</strong> 52 nodes across 31 municipalities</li>
+          <li><strong>Cavite:</strong> 50 nodes across 27 municipalities</li>
+          <li><strong>Bulacan & Pampanga:</strong> 46 nodes each (80+ munis)</li>
+          <li><strong>Camarines Sur & Albay:</strong> 70 nodes in Bicol corridor</li>
+          <li><strong>Pangasinan & Isabela:</strong> 77 nodes in North Luzon</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: Master 5-Batch Rollout Roadmap with BTS -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">5-Year Phasing Plan</div>
+        <div class="slide-title">Master 5-Batch Rollout & n50 BTS Dimensioning (5,000 Sites)</div>
+      </div>
+      <div class="slide-number">Slide 6 / 14</div>
+    </div>
+
+    <table class="exec-table" style="margin-bottom: 14px;">
+      <thead>
+        <tr>
+          <th>Rollout Phase</th>
+          <th class="num">Barangays</th>
+          <th class="center">Initial Day 1 Build (BTS)</th>
+          <th class="center">Peak 30% Demand Capacity (BTS)</th>
+          <th class="num">Population</th>
+          <th class="num">Households</th>
+          <th class="num">Subs @ 30%</th>
+          <th class="center">Avg Dist to Node</th>
+          <th class="num">Avg Score</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td><strong>Batch 1 (Phase 1)</strong></td>
+            <td class="center"><strong>1,000</strong></td>
+            <td class="center highlight-bts"><strong>1,000 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1,031 BTS</strong></td>
+            <td>2,247,393</td>
+            <td>589,311</td>
+            <td><strong>176,781</strong></td>
+            <td class="center">19.90 km</td>
+            <td class="center"><strong>54.36</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Batch 2 (Phase 2)</strong></td>
+            <td class="center"><strong>1,000</strong></td>
+            <td class="center highlight-bts"><strong>1,000 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1,076 BTS</strong></td>
+            <td>2,913,679</td>
+            <td>760,527</td>
+            <td><strong>228,156</strong></td>
+            <td class="center">27.37 km</td>
+            <td class="center"><strong>50.05</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Batch 3 (Phase 3)</strong></td>
+            <td class="center"><strong>1,000</strong></td>
+            <td class="center highlight-bts"><strong>1,000 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1,020 BTS</strong></td>
+            <td>2,143,214</td>
+            <td>563,931</td>
+            <td><strong>169,181</strong></td>
+            <td class="center">27.24 km</td>
+            <td class="center"><strong>48.69</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Batch 4 (Phase 4)</strong></td>
+            <td class="center"><strong>1,000</strong></td>
+            <td class="center highlight-bts"><strong>1,000 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1,153 BTS</strong></td>
+            <td>3,959,964</td>
+            <td>1,077,889</td>
+            <td><strong>323,360</strong></td>
+            <td class="center">31.47 km</td>
+            <td class="center"><strong>46.48</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Batch 5 (Phase 5)</strong></td>
+            <td class="center"><strong>1,000</strong></td>
+            <td class="center highlight-bts"><strong>1,000 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1,274 BTS</strong></td>
+            <td>5,575,226</td>
+            <td>1,535,430</td>
+            <td><strong>460,617</strong></td>
+            <td class="center">22.48 km</td>
+            <td class="center"><strong>42.79</strong></td>
+          </tr>
+          <tr class="total-row">
+            <td><strong>TOTAL (5 Batches)</strong></td>
+            <td class="center"><strong>5,000</strong></td>
+            <td class="center highlight-bts">5,000 BTS</td>
+            <td class="center highlight-bts">5,554 BTS</td>
+            <td>16,839,476</td>
+            <td>4,527,088</td>
+            <td><strong>1,358,095</strong></td>
+            <td class="center">25.69 km</td>
+            <td class="center"><strong>48.47</strong></td>
+          </tr>
+        </tbody>
+    </table>
+
+    <div style="font-size: 11.5px; color: #94A3B8; margin-bottom: 12px; line-height: 1.45; background: rgba(15, 23, 42, 0.7); padding: 8px 14px; border-left: 3px solid var(--teal); border-radius: 4px;">
+      <strong style="color: var(--teal);">Option A Architecture:</strong> <strong>Initial Day 1 Build (1,000 BTS/phase)</strong> establishes immediate commercial presence across 1,000 priority barangays with zero speculative overbuilding. <strong>Peak 30% Demand Capacity (5,559 BTS total)</strong> dimensioned at 1,000 subs/BTS represents full-penetration upside. In Batch 1, 903 barangays require 1 BTS, while 97 higher-density catchments provide an organic expansion runway (+143 BTS) on existing tower footprints.
+    </div>
+
+    <div class="grid-3">
+      <div class="card highlight">
+        <h4>Batch 1 & 2 (2,000 BTS Day 1 Build / 2,278 Peak BTS)</h4>
+        <p>Ultra-close fiber proximity (0.56 km – 1.01 km avg to Converge nodes). Rapid time-to-market across 13.7M population and 3.1M households.</p>
+      </div>
+      <div class="card success">
+        <h4>Batch 3 (1,000 BTS Day 1 Build / 1,134 Peak BTS)</h4>
+        <p>Balanced peri-urban and rural centers (1.28 km avg fiber distance). High economic activity sustaining 425k target subscribers @ 30%.</p>
+      </div>
+      <div class="card warning">
+        <h4>Batch 4 & 5 (2,000 BTS Day 1 Build / 2,147 Peak BTS)</h4>
+        <p>Nationwide rural expansion covering 9.5M population. Captures unserved broadband deficits across provincial growth corridors.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: Batch 1 (First 1,000 Sites) Deep Dive -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Phase 1 Execution</div>
+        <div class="slide-title">Batch 1 (First 1,000 Sites / BTS) — The Priority Launch Footprint</div>
+      </div>
+      <div class="slide-number">Slide 7 / 14</div>
+    </div>
+
+    <div class="grid-4" style="margin-bottom: 14px;">
+      <div class="stat-card" style="border-top: 4px solid var(--blue-accent);">
+        <div class="stat-label">Initial Day 1 Build</div>
+        <div class="stat-val" style="color: var(--blue-accent);">1,000 BTS</div>
+        <div class="stat-sub">1 BTS per GIDA Barangay</div>
+      </div>
+      <div class="stat-card" style="border-top: 4px solid var(--teal);">
+        <div class="stat-label">Peak 30% Demand Capacity</div>
+        <div class="stat-val" style="color: var(--teal);">1,031 BTS</div>
+        <div class="stat-sub">@ 1,000 Subs / BTS Design</div>
+      </div>
+      <div class="stat-card" style="border-top: 4px solid var(--green);">
+        <div class="stat-label">Addressable Households</div>
+        <div class="stat-val" style="color: var(--green);">589,311</div>
+        <div class="stat-sub">Avg 589 HH per Barangay</div>
+      </div>
+      <div class="stat-card" style="border-top: 4px solid var(--gold);">
+        <div class="stat-label">Target Subs @ 30%</div>
+        <div class="stat-val" style="color: var(--gold);">176,781</div>
+        <div class="stat-sub">Avg 177 Subs / Barangay</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card highlight">
+        <h3>Critical Strategic Highlights of Batch 1</h3>
+        <ul>
+          <li><strong>Ultra-Close Fiber Proximity:</strong> Average distance to nearest Converge node is <strong>only 0.56 km</strong>, with 100% of sites having fiber lateral drop distance under 3 km.</li>
+          <li><strong>Empirical Broadband Deficit:</strong> 55.4% Rural (554 barangays) and 44.6% underserved Urban/Peri-urban (446 barangays) where FTTH competition is absent or severely saturated.</li>
+          <li><strong>Option A Deployment Strategy:</strong> 1 BTS deployed per barangay on Day 1 (1,000 BTS). 903 barangays need 1 BTS, while 97 higher-density barangays provide natural runway up to 1,143 BTS total capacity.</li>
+          <li><strong>Fast Time-to-Market:</strong> Co-locating on existing TowerCo assets near Converge fiber allows turn-up in 14–30 days per cluster.</li>
+        </ul>
+      </div>
+
+      <div class="card success">
+        <h3>Batch 1 Operational Parameters</h3>
+        <table class="exec-table">
+          <tbody>
+            <tr><td><strong>Target Municipalities</strong></td><td class="num">495 Municipalities</td></tr>
+            <tr><td><strong>Target Provinces</strong></td><td class="num">57 Provinces</td></tr>
+            <tr><td><strong>Carrier & Channel Bandwidth</strong></td><td class="num" style="font-weight: 700; color: #854D0E;">Band n50 (60 MHz Contiguous)</td></tr>
+            <tr><td><strong>Average Household Size</strong></td><td class="num">4.37 persons</td></tr>
+            <tr><td><strong>Average Composite Score</strong></td><td class="num" style="color: #10B981; font-weight: 700;">78.32 / 100</td></tr>
+            <tr><td><strong>Target Monthly ARPU</strong></td><td class="num">₱599 ($10.89 USD)</td></tr>
+            <tr><td><strong>Year-1 Revenue Potential (@ 30%)</strong></td><td class="num" style="font-weight: 700; color: #10B981;">₱3.45 Billion / Year</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: Regional Breakdown of Batch 1 -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Geographic Distribution</div>
+        <div class="slide-title">Batch 1 Regional Footprint & Site Allocations</div>
+      </div>
+      <div class="slide-number">Slide 8 / 14</div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <table class="exec-table">
+          <thead>
+            <tr>
+              <th>Top Provinces (Batch 1)</th>
+              <th>Region</th>
+              <th class="center">Batch 1 BTS</th>
+              <th class="center">Population</th>
+              <th class="num">Households</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Laguna</strong></td>
+              <td>CALABARZON</td>
+              <td class="highlight-bts">69 BTS</td>
+              <td class="center" style="font-weight:700;">629k Pop</td>
+              <td class="num">150k HH</td>
+            </tr><tr>
+              <td><strong>Nueva Ecija</strong></td>
+              <td>Central Luzon</td>
+              <td class="highlight-bts">66 BTS</td>
+              <td class="center" style="font-weight:700;">320k Pop</td>
+              <td class="num">74k HH</td>
+            </tr><tr>
+              <td><strong>Cebu</strong></td>
+              <td>Central Visayas</td>
+              <td class="highlight-bts">62 BTS</td>
+              <td class="center" style="font-weight:700;">501k Pop</td>
+              <td class="num">114k HH</td>
+            </tr><tr>
+              <td><strong>Cavite</strong></td>
+              <td>CALABARZON</td>
+              <td class="highlight-bts">56 BTS</td>
+              <td class="center" style="font-weight:700;">387k Pop</td>
+              <td class="num">86k HH</td>
+            </tr><tr>
+              <td><strong>Bulacan</strong></td>
+              <td>Central Luzon</td>
+              <td class="highlight-bts">50 BTS</td>
+              <td class="center" style="font-weight:700;">395k Pop</td>
+              <td class="num">96k HH</td>
+            </tr><tr>
+              <td><strong>Rizal</strong></td>
+              <td>CALABARZON</td>
+              <td class="highlight-bts">45 BTS</td>
+              <td class="center" style="font-weight:700;">749k Pop</td>
+              <td class="num">171k HH</td>
+            </tr><tr>
+              <td><strong>Quezon</strong></td>
+              <td>CALABARZON</td>
+              <td class="highlight-bts">40 BTS</td>
+              <td class="center" style="font-weight:700;">192k Pop</td>
+              <td class="num">43k HH</td>
+            </tr><tr>
+              <td><strong>Misamis Oriental</strong></td>
+              <td>Northern Mindanao</td>
+              <td class="highlight-bts">38 BTS</td>
+              <td class="center" style="font-weight:700;">221k Pop</td>
+              <td class="num">49k HH</td>
+            </tr><tr>
+              <td><strong>Pampanga</strong></td>
+              <td>Central Luzon</td>
+              <td class="highlight-bts">37 BTS</td>
+              <td class="center" style="font-weight:700;">431k Pop</td>
+              <td class="num">93k HH</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <table class="exec-table" style="margin-bottom: 12px;">
+          <thead>
+            <tr>
+              <th>Provinces (Cont'd)</th>
+              <th>Region</th>
+              <th class="center">Batch 1 BTS</th>
+              <th class="center">Population</th>
+              <th class="num">Households</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Pangasinan</strong></td>
+              <td>Ilocos Region</td>
+              <td class="highlight-bts">35 BTS</td>
+              <td class="center" style="font-weight:700;">157k Pop</td>
+              <td class="num">36k HH</td>
+            </tr><tr>
+              <td><strong>Negros Occidental</strong></td>
+              <td>Western Visayas</td>
+              <td class="highlight-bts">32 BTS</td>
+              <td class="center" style="font-weight:700;">231k Pop</td>
+              <td class="num">53k HH</td>
+            </tr><tr>
+              <td><strong>Batangas</strong></td>
+              <td>CALABARZON</td>
+              <td class="highlight-bts">32 BTS</td>
+              <td class="center" style="font-weight:700;">150k Pop</td>
+              <td class="num">33k HH</td>
+            </tr><tr>
+              <td><strong>Camarines Sur</strong></td>
+              <td>Bicol Region</td>
+              <td class="highlight-bts">31 BTS</td>
+              <td class="center" style="font-weight:700;">140k Pop</td>
+              <td class="num">29k HH</td>
+            </tr><tr>
+              <td><strong>Benguet</strong></td>
+              <td>CAR</td>
+              <td class="highlight-bts">27 BTS</td>
+              <td class="center" style="font-weight:700;">160k Pop</td>
+              <td class="num">35k HH</td>
+            </tr><tr>
+              <td><strong>Leyte</strong></td>
+              <td>Eastern Visayas</td>
+              <td class="highlight-bts">23 BTS</td>
+              <td class="center" style="font-weight:700;">87k Pop</td>
+              <td class="num">21k HH</td>
+            </tr><tr>
+              <td><strong>Zambales</strong></td>
+              <td>Central Luzon</td>
+              <td class="highlight-bts">23 BTS</td>
+              <td class="center" style="font-weight:700;">147k Pop</td>
+              <td class="num">36k HH</td>
+            </tr><tr>
+              <td><strong>Agusan del Norte</strong></td>
+              <td>Caraga</td>
+              <td class="highlight-bts">23 BTS</td>
+              <td class="center" style="font-weight:700;">134k Pop</td>
+              <td class="num">29k HH</td>
+            </tr><tr>
+              <td><strong>Tarlac</strong></td>
+              <td>Central Luzon</td>
+              <td class="highlight-bts">22 BTS</td>
+              <td class="center" style="font-weight:700;">124k Pop</td>
+              <td class="num">29k HH</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="card highlight">
+          <h4>Top 5 Provinces in Batch 1</h4>
+          <p style="font-size: 12.5px;">
+            <strong>1. Laguna:</strong> 69 BTS (629k Pop · 150k HH · 45k Subs)<br>
+            <strong>2. Nueva Ecija:</strong> 66 BTS (320k Pop · 74k HH · 22k Subs)<br>
+            <strong>3. Cebu:</strong> 62 BTS (501k Pop · 114k HH · 34k Subs)<br>
+            <strong>4. Cavite:</strong> 56 BTS (387k Pop · 86k HH · 26k Subs)<br>
+            <strong>5. Bulacan:</strong> 50 BTS (395k Pop · 96k HH · 29k Subs)
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: Top 20 Showcase Barangays with BTS counts -->
+  
+  <!-- SLIDE 8: Interactive Site Map -->
+  <div class="slide" id="slide-interactive-map">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">GIS Visualization</div>
+        <div class="slide-title">Interactive Site Map: Phase 1 to 5 Rollout (5,000 Sites)</div>
+      </div>
+      <div class="slide-number">Slide 9 / 14</div>
+    </div>
+
+    <!-- Map Toolbar -->
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 10px; flex-wrap: wrap;">
+      <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap;" id="phase-filter-group">
+        <span style="font-size: 12px; font-weight: 700; color: #94A3B8; margin-right: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Filter Phase:</span>
+        <button class="map-phase-btn active" onclick="filterMapPhase(0)" id="btn-phase-0">All 5,000</button>
+        <button class="map-phase-btn p1" onclick="filterMapPhase(1)" id="btn-phase-1">Phase 1 (1k)</button>
+        <button class="map-phase-btn p2" onclick="filterMapPhase(2)" id="btn-phase-2">Phase 2 (1k)</button>
+        <button class="map-phase-btn p3" onclick="filterMapPhase(3)" id="btn-phase-3">Phase 3 (1k)</button>
+        <button class="map-phase-btn p4" onclick="filterMapPhase(4)" id="btn-phase-4">Phase 4 (1k)</button>
+        <button class="map-phase-btn p5" onclick="filterMapPhase(5)" id="btn-phase-5">Phase 5 (1k)</button>
+      </div>
+
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <div style="position: relative;">
+          <input type="text" id="map-search-input" placeholder="Search Barangay, City, Province..." 
+                 style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; padding: 6px 12px; color: #fff; font-size: 12px; width: 230px; outline: none;"
+                 onkeydown="if(event.key==='Enter') searchMapSite();">
+          <button onclick="searchMapSite()" style="position: absolute; right: 4px; top: 4px; background: var(--teal); border: none; border-radius: 4px; color: #0A192F; font-size: 11px; font-weight: 700; padding: 3px 8px; cursor: pointer;">Go</button>
+        </div>
+        <button onclick="resetMapView()" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; color: #CBD5E1; font-size: 12px; padding: 6px 12px; cursor: pointer; transition: all 0.2s;">Reset View</button>
+        <a href="FWA_Rollout_Sites_GIDA.kmz" download style="display: inline-flex; align-items: center; gap: 6px; background: rgba(0, 180, 216, 0.15); border: 1px solid var(--teal); border-radius: 6px; color: var(--teal); font-size: 12px; font-weight: 700; padding: 6px 12px; text-decoration: none; transition: all 0.2s;">
+          <span>🌍 Standalone KMZ (Google Earth)</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Map Viewport -->
+    <div style="position: relative; width: 100%; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 12px 30px rgba(0,0,0,0.5);">
+      <div id="fwa-sites-map" style="height: 485px; width: 100%; background: #0B132B;"></div>
+      
+      <!-- Live Map Stat Overlay -->
+      <div style="position: absolute; top: 12px; right: 12px; z-index: 1000; background: rgba(10, 25, 47, 0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 10px 14px; font-size: 11.5px; min-width: 190px; pointer-events: auto; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
+        <div style="font-weight: 700; color: #94A3B8; text-transform: uppercase; font-size: 10px; margin-bottom: 6px;" id="map-stat-title">Active Filter: All 5 Batches</div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+          <span style="color: #CBD5E1;">Sites Plotted:</span>
+          <span style="font-weight: 700; color: var(--teal);" id="map-stat-sites">5,000</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+          <span style="color: #CBD5E1;">n50 BTS Capacity:</span>
+          <span style="font-weight: 700; color: #10B981;" id="map-stat-bts">5,000 BTS</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+          <span style="color: #CBD5E1;">Population:</span>
+          <span style="font-weight: 700; color: #fff;" id="map-stat-pop">18.9M</span>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span style="color: #CBD5E1;">Target Subs @ 30%:</span>
+          <span style="font-weight: 700; color: #F59E0B;" id="map-stat-subs">1.29M</span>
+        </div>
+      </div>
+
+      <!-- Map Legend Overlay -->
+      <div style="position: absolute; bottom: 12px; left: 12px; z-index: 1000; background: rgba(10, 25, 47, 0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 8px 12px; font-size: 11px; display: flex; gap: 14px; align-items: center; box-shadow: 0 4px 16px rgba(0,0,0,0.3);">
+        <div style="display: flex; align-items: center; gap: 5px;">
+          <span style="width: 10px; height: 10px; border-radius: 50%; background: #00B4D8; display: inline-block;"></span>
+          <span style="color: #E2E8F0; font-weight: 600;">Phase 1 (1–1k)</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 5px;">
+          <span style="width: 10px; height: 10px; border-radius: 50%; background: #10B981; display: inline-block;"></span>
+          <span style="color: #E2E8F0; font-weight: 600;">Phase 2 (1–2k)</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 5px;">
+          <span style="width: 10px; height: 10px; border-radius: 50%; background: #F59E0B; display: inline-block;"></span>
+          <span style="color: #E2E8F0; font-weight: 600;">Phase 3 (2–3k)</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 5px;">
+          <span style="width: 10px; height: 10px; border-radius: 50%; background: #8B5CF6; display: inline-block;"></span>
+          <span style="color: #E2E8F0; font-weight: 600;">Phase 4 (3–4k)</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 5px;">
+          <span style="width: 10px; height: 10px; border-radius: 50%; background: #EF4444; display: inline-block;"></span>
+          <span style="color: #E2E8F0; font-weight: 600;">Phase 5 (4–5k)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Priority Sites</div>
+        <div class="slide-title">Top 20 Priority Barangays & Band n50 BTS Allocation</div>
+      </div>
+      <div class="slide-number">Slide 10 / 14</div>
+    </div>
+
+    <table class="exec-table">
+      <thead>
+        <tr>
+          <th class="center">Rank</th>
+          <th>Barangay</th>
+          <th>Municipality</th>
+          <th>Province</th>
+          <th class="num">2020 Pop</th>
+          <th class="num">Households</th>
+          <th class="num">Subs @ 30%</th>
+          <th class="center">Peak 30% Cap</th>
+          <th class="center">Day 1 Build</th>
+          <th class="center">Dist to Node</th>
+          <th class="num">Score</th>
+        </tr>
+      </thead>
+      <tbody>
+<tr>
+            <td class="center"><strong>1</strong></td>
+            <td><strong>Dilavo</strong></td>
+            <td>Pasuquin</td>
+            <td>Ilocos Norte</td>
+            <td>651</td>
+            <td>176</td>
+            <td><strong>53</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center">3.17 km</td>
+            <td class="center"><strong>63.17</strong></td>
+          </tr>
+<tr>
+            <td class="center"><strong>2</strong></td>
+            <td><strong>Pancian</strong></td>
+            <td>Pagudpud</td>
+            <td>Ilocos Norte</td>
+            <td>2,434</td>
+            <td>658</td>
+            <td><strong>197</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center">3.67 km</td>
+            <td class="center"><strong>63.10</strong></td>
+          </tr>
+<tr>
+            <td class="center"><strong>3</strong></td>
+            <td><strong>Santo Niño</strong></td>
+            <td>Nueva Era</td>
+            <td>Ilocos Norte</td>
+            <td>1,202</td>
+            <td>325</td>
+            <td><strong>98</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center">6.74 km</td>
+            <td class="center"><strong>62.97</strong></td>
+          </tr>
+<tr>
+            <td class="center"><strong>4</strong></td>
+            <td><strong>San Dionisio I</strong></td>
+            <td>Maddela</td>
+            <td>Quirino</td>
+            <td>561</td>
+            <td>144</td>
+            <td><strong>43</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center">12.81 km</td>
+            <td class="center"><strong>61.90</strong></td>
+          </tr>
+<tr>
+            <td class="center"><strong>5</strong></td>
+            <td><strong>Ansagan</strong></td>
+            <td>Tuba</td>
+            <td>Benguet</td>
+            <td>2,370</td>
+            <td>677</td>
+            <td><strong>203</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center">11.04 km</td>
+            <td class="center"><strong>61.88</strong></td>
+          </tr>
+<tr>
+            <td class="center"><strong>6</strong></td>
+            <td><strong>Danac</strong></td>
+            <td>Sugpon</td>
+            <td>Ilocos Sur</td>
+            <td>605</td>
+            <td>159</td>
+            <td><strong>48</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center">14.91 km</td>
+            <td class="center"><strong>61.63</strong></td>
+          </tr>
+<tr>
+            <td class="center"><strong>7</strong></td>
+            <td><strong>Amlimay</strong></td>
+            <td>Buguias</td>
+            <td>Benguet</td>
+            <td>2,411</td>
+            <td>689</td>
+            <td><strong>207</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center">1.78 km</td>
+            <td class="center"><strong>61.49</strong></td>
+          </tr>
+<tr>
+            <td class="center"><strong>8</strong></td>
+            <td><strong>Acnam</strong></td>
+            <td>Nueva Era</td>
+            <td>Ilocos Norte</td>
+            <td>779</td>
+            <td>211</td>
+            <td><strong>63</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center">0.56 km</td>
+            <td class="center"><strong>61.43</strong></td>
+          </tr>
+<tr>
+            <td class="center"><strong>9</strong></td>
+            <td><strong>Ilaya del Norte</strong></td>
+            <td>Paete</td>
+            <td>Laguna</td>
+            <td>2,622</td>
+            <td>795</td>
+            <td><strong>238</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center">3.25 km</td>
+            <td class="center"><strong>61.30</strong></td>
+          </tr>
+<tr>
+            <td class="center"><strong>10</strong></td>
+            <td><strong>Angset</strong></td>
+            <td>Carasi</td>
+            <td>Ilocos Norte</td>
+            <td>179</td>
+            <td>48</td>
+            <td><strong>14</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center">5.61 km</td>
+            <td class="center"><strong>61.22</strong></td>
+          </tr>
+<tr>
+            <td class="center"><strong>11</strong></td>
+            <td><strong>Estancia</strong></td>
+            <td>Piddig</td>
+            <td>Ilocos Norte</td>
+            <td>1,853</td>
+            <td>501</td>
+            <td><strong>150</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center">4.95 km</td>
+            <td class="center"><strong>61.15</strong></td>
+          </tr>
+<tr>
+            <td class="center"><strong>12</strong></td>
+            <td><strong>Caray</strong></td>
+            <td>Nueva Era</td>
+            <td>Ilocos Norte</td>
+            <td>837</td>
+            <td>226</td>
+            <td><strong>68</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center">3.28 km</td>
+            <td class="center"><strong>61.13</strong></td>
+          </tr>
+<tr>
+            <td class="center"><strong>13</strong></td>
+            <td><strong>Pasaleng</strong></td>
+            <td>Pagudpud</td>
+            <td>Ilocos Norte</td>
+            <td>1,820</td>
+            <td>492</td>
+            <td><strong>148</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center">0.98 km</td>
+            <td class="center"><strong>61.06</strong></td>
+          </tr>
+<tr>
+            <td class="center"><strong>14</strong></td>
+            <td><strong>Calambeg</strong></td>
+            <td>Piddig</td>
+            <td>Ilocos Norte</td>
+            <td>1,351</td>
+            <td>365</td>
+            <td><strong>110</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center">2.80 km</td>
+            <td class="center"><strong>61.04</strong></td>
+          </tr>
+<tr>
+            <td class="center"><strong>15</strong></td>
+            <td><strong>Cabittauran</strong></td>
+            <td>Nueva Era</td>
+            <td>Ilocos Norte</td>
+            <td>1,091</td>
+            <td>295</td>
+            <td><strong>88</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center">5.74 km</td>
+            <td class="center"><strong>60.99</strong></td>
+          </tr>
+<tr>
+            <td class="center"><strong>16</strong></td>
+            <td><strong>San Pablo</strong></td>
+            <td>Castillejos</td>
+            <td>Zambales</td>
+            <td>11,681</td>
+            <td>3,074</td>
+            <td><strong>922</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center">6.53 km</td>
+            <td class="center"><strong>60.91</strong></td>
+          </tr>
+<tr>
+            <td class="center"><strong>17</strong></td>
+            <td><strong>Maananteng</strong></td>
+            <td>Solsona</td>
+            <td>Ilocos Norte</td>
+            <td>1,314</td>
+            <td>355</td>
+            <td><strong>106</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center">4.19 km</td>
+            <td class="center"><strong>60.84</strong></td>
+          </tr>
+<tr>
+            <td class="center"><strong>18</strong></td>
+            <td><strong>Manalpac</strong></td>
+            <td>Solsona</td>
+            <td>Ilocos Norte</td>
+            <td>2,162</td>
+            <td>584</td>
+            <td><strong>175</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center">4.22 km</td>
+            <td class="center"><strong>60.80</strong></td>
+          </tr>
+<tr>
+            <td class="center"><strong>19</strong></td>
+            <td><strong>Ditinagyan</strong></td>
+            <td>Casiguran</td>
+            <td>Aurora</td>
+            <td>404</td>
+            <td>106</td>
+            <td><strong>32</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center">5.55 km</td>
+            <td class="center"><strong>60.80</strong></td>
+          </tr>
+<tr>
+            <td class="center"><strong>20</strong></td>
+            <td><strong>Bianuan</strong></td>
+            <td>Casiguran</td>
+            <td>Aurora</td>
+            <td>2,790</td>
+            <td>734</td>
+            <td><strong>220</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center highlight-bts"><strong>1 BTS</strong></td>
+            <td class="center">0.20 km</td>
+            <td class="center"><strong>60.70</strong></td>
+          </tr>
+            </tbody>
+    </table>
+    <div style="font-size: 11px; color: var(--text-muted); margin-top: 6px; text-align: right;">
+      * Complete list of all 1,000 Phase 1 barangays with explicit BTS counts available in <strong>FWA_Barangay_Rollout_Plan_GIDA_1000s.xlsx</strong>.
+    </div>
+  </div>
+
+  <!-- SLIDE 9: Succeeding Batches Strategy -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="slide-category">Expansion Strategy</div>
+        <div class="slide-title">Scaling to 5,000 BTS: Strategy for Succeeding Batches</div>
+      </div>
+      <div class="slide-number">Slide 11 / 14</div>
+    </div>
+
     <div class="grid-3" style="margin-bottom: 14px;">
       <div class="card highlight">
-        <div class="stat-label">Macro Cell Coverage</div>
-        <div style="font-size: 18px; font-weight: 800; color: var(--navy); margin-top: 4px;">3.5 km Radius</div>
-        <p style="font-size: 12.5px; color: #475569; margin-top: 4px;">
-          Band n50 at 1.5 GHz transmits over ~38.5 km² area from an 18–25m tower, comfortably spanning 3 to 5 contiguous rural barangays.
-        </p>
+        <span class="badge badge-onnet" style="margin-bottom: 8px;">Phase 2 · Year 2</span>
+        <h3>Batch 2 (1,001 - 2,000)</h3>
+        <h4>1,000 BTS Allocation</h4>
+        <p style="margin-bottom: 8px;"><strong>Score:</strong> 92.80 - 93.85 | <strong>BTS Capacity:</strong> 1,000 BTS</p>
+        <ul>
+          <li><strong>Pop Range:</strong> 2,200 – 3,000 residents per barangay.</li>
+          <li><strong>Focus Provinces:</strong> Pangasinan (131), Cebu (67), Camarines Sur (38), Batangas (33), Quezon (30).</li>
+          <li><strong>Backhaul:</strong> 100% on-net active Converge nodes.</li>
+          <li><strong>Sizing:</strong> Exactly 1 BTS per barangay absorbs 100% of demand.</li>
+        </ul>
       </div>
-      <div class="card">
-        <div class="stat-label">Target Scope</div>
-        <div style="font-size: 18px; font-weight: 800; color: var(--navy); margin-top: 4px;">831 Municipalities</div>
-        <p style="font-size: 12.5px; color: #475569; margin-top: 4px;">
-          The 3,903 Priority 1 barangays reside across 831 provincial municipalities, allowing dense clustering around municipal halls and high ridges.
-        </p>
-      </div>
+
       <div class="card success">
-        <div class="stat-label">Budget Alignment</div>
-        <div style="font-size: 18px; font-weight: 800; color: #10B981; margin-top: 4px;">1:1 Year-1 Budget Match</div>
-        <p style="font-size: 12.5px; color: #475569; margin-top: 4px;">
-          3,903 Priority 1 barangays ÷ 3.9 barangays per tower = <strong>exactly 1,000 macro sites</strong>, matching our approved Year-1 budget.
-        </p>
+        <span class="badge badge-gold" style="margin-bottom: 8px;">Phase 3 · Year 3</span>
+        <h3>Batch 3 (2,001 - 3,000)</h3>
+        <h4>1,000 BTS (1,149 BTS Capacity)</h4>
+        <p style="margin-bottom: 8px;"><strong>Score:</strong> 90.95 - 92.80 | <strong>High Density Corridors</strong></p>
+        <ul>
+          <li><strong>Pop Range:</strong> 5,000 – 25,000 residents per barangay.</li>
+          <li><strong>Focus Provinces:</strong> Cavite (118), Bulacan (88), Cebu (85), Laguna (73), Pampanga (62), Davao (61).</li>
+          <li><strong>Multi-BTS Towns:</strong> 149 barangays support <strong>2 n50 BTS</strong>.</li>
+          <li><strong>Subs @ 30%:</strong> 929,315 subscribers.</li>
+        </ul>
+      </div>
+
+      <div class="card warning">
+        <span class="badge badge-rural" style="margin-bottom: 8px;">Phase 4 & 5 · Years 4-5</span>
+        <h3>Batches 4 & 5 (3,001 - 5,000)</h3>
+        <h4>2,000 BTS (2,463 BTS Capacity)</h4>
+        <p style="margin-bottom: 8px;"><strong>Score:</strong> 85.50 - 90.95 | <strong>Nationwide Deepening</strong></p>
+        <ul>
+          <li><strong>Pop Range:</strong> Broad rural & suburban spread.</li>
+          <li><strong>Coverage:</strong> Extends across all 75 provinces nationwide.</li>
+          <li><strong>Multi-BTS Towns:</strong> 351 barangays absorb <strong>2 to 3 n50 BTS</strong>.</li>
+          <li><strong>Subs @ 30%:</strong> 1,876,888 addressable subscribers.</li>
+        </ul>
       </div>
     </div>
 
-    <div class="card highlight" style="background:#F8FAFC; flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <h3 style="color: var(--navy); margin-bottom: 8px;">Mathematical Sizing of the Cluster Model:</h3>
-      <ul style="font-size: 13.5px; line-height: 1.6;">
-        <li><strong>Coverage Geometry:</strong> Footprint Area = π × (3.5 km)² = <strong>38.48 km²</strong> per 3-sector macro base station.</li>
-        <li><strong>Rural Density:</strong> Average rural barangay area = 8 to 12 km² · Average households per barangay = 600 to 1,000.</li>
-        <li><strong>Clustering Ratio:</strong> 3,903 Priority 1 Barangays ÷ 1,000 Macro Sites = <strong>exactly 3.90 Barangays covered per macro tower</strong>.</li>
-        <li><strong>Addressable Footprint:</strong> 1,000 Macro Sites × 2,400 households per cluster = <strong>2.4 Million Addressable Households</strong> in Year 1 footprint.</li>
-        <li><strong>Subscriber Dimensioning:</strong> Design subscriber capacity = 600 active subscribers per site (25% market share) = <strong>600,000 Day-1 Target Subs</strong>.</li>
-      </ul>
+    <div class="card navy">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <h4 style="color: var(--teal);">CUMULATIVE 5-YEAR TARGET</h4>
+          <p style="font-size: 13px;">5,000 macro BTS serving <strong>3.26 Million paying households</strong> across 47.9M population.</p>
+        </div>
+        <div style="text-align: right; font-size: 13px; color: #10B981; font-weight: 700;">
+          Estimated Annual Run-Rate: $425M+ USD / Year
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Slide 5: Regional Allocation -->
+  <!-- SLIDE 10: Unit Economics & Financial Returns -->
   <div class="slide">
     <div class="slide-header">
       <div>
-        <div class="slide-category">Regional Rollout Quotas</div>
-        <div class="slide-title">1,000-Site Year 1 Regional Allocation Quota</div>
+        <div class="slide-category">Financial Model</div>
+        <div class="slide-title">Site Unit Economics & Subscriber Capacity Payback</div>
       </div>
-      <div class="slide-number">Slide 05 / 10</div>
+      <div class="slide-number">Slide 12 / 14</div>
     </div>
-    
-    <div class="card" style="flex: 1;">
-      <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div>
-      <h4 style="color: var(--navy); margin-bottom: 8px;">Balanced Regional Quota Allocation (1,000 Year 1 Macro Sites):</h4>
-      <div class="table-wrapper">
-        <table>
+
+    <div class="grid-2">
+      <div class="card highlight">
+        <h3>Band n50 Macro BTS Capital & Operating Economics</h3>
+        <table class="exec-table">
           <thead>
-            <tr>
-              <th>Priority Region</th>
-              <th>Critical Brgys (≥50)</th>
-              <th>High GIDA (40-49)</th>
-              <th>Total Priority 1</th>
-              <th>Year 1 Macro Sites</th>
-              <th>Brgys / Site</th>
-              <th>Strategic Focus & Target Corridors</th>
-            </tr>
+            <tr><th>Cost Element</th><th class="num">Per BTS (USD)</th><th class="num">Per BTS (PHP @ 55)</th></tr>
           </thead>
           <tbody>
-            <tr>
-              <td><strong>Region IV-A (Calabarzon)</strong></td>
-              <td>90</td>
-              <td>515</td>
-              <td>605</td>
-              <td><strong>156</strong></td>
-              <td>3.9</td>
-              <td>Laguna, Batangas, Quezon, Rizal rural barangays</td>
-            </tr>
-            <tr>
-              <td><strong>Region VIII (Eastern Visayas)</strong></td>
-              <td>162</td>
-              <td>307</td>
-              <td>469</td>
-              <td><strong>120</strong></td>
-              <td>3.9</td>
-              <td>Samar, Leyte, Eastern Samar island communities</td>
-            </tr>
-            <tr>
-              <td><strong>BARMM (LaMa + SGA)</strong></td>
-              <td>100</td>
-              <td>270</td>
-              <td>370</td>
-              <td><strong>95</strong></td>
-              <td>3.9</td>
-              <td>Lanao del Sur, Maguindanao, Special Geographic Area</td>
-            </tr>
-            <tr>
-              <td><strong>Region VI (Western Visayas)</strong></td>
-              <td>202</td>
-              <td>112</td>
-              <td>314</td>
-              <td><strong>80</strong></td>
-              <td>3.9</td>
-              <td>Iloilo, Aklan, Capiz, Antique unserved corridors</td>
-            </tr>
-            <tr>
-              <td><strong>CAR (Cordillera)</strong></td>
-              <td>103</td>
-              <td>191</td>
-              <td>294</td>
-              <td><strong>75</strong></td>
-              <td>3.9</td>
-              <td>Kalinga, Mt. Province, Benguet mountain valleys</td>
-            </tr>
-            <tr>
-              <td><strong>BARMM (BaSulTa)</strong></td>
-              <td>124</td>
-              <td>151</td>
-              <td>275</td>
-              <td><strong>70</strong></td>
-              <td>3.9</td>
-              <td>Sulu, Tawi-Tawi, Basilan archipelago nodes</td>
-            </tr>
-            <tr>
-              <td><strong>Region II (Cagayan Valley)</strong></td>
-              <td>118</td>
-              <td>98</td>
-              <td>216</td>
-              <td><strong>55</strong></td>
-              <td>3.9</td>
-              <td>Nueva Vizcaya, Cagayan, Isabela agricultural towns</td>
-            </tr>
-            <tr>
-              <td><strong>Region X (Northern Mindanao)</strong></td>
-              <td>91</td>
-              <td>117</td>
-              <td>208</td>
-              <td><strong>53</strong></td>
-              <td>3.9</td>
-              <td>Misamis Oriental, Lanao del Norte agricultural clusters</td>
-            </tr>
-            <tr class="highlight-row" style="background:#EFF6FF; border:1.5px solid var(--blue-accent);">
-              <td><strong>Region III (Central Luzon) ★</strong></td>
-              <td>39</td>
-              <td>120</td>
-              <td>159</td>
-              <td><strong>41</strong></td>
-              <td>3.9</td>
-              <td><strong>Direct bridge from Pampanga trial into Nueva Ecija & Aurora</strong></td>
-            </tr>
-            <tr>
-              <td><strong>Remaining 9 Regions Combined</strong></td>
-              <td>316</td>
-              <td>677</td>
-              <td>993</td>
-              <td><strong>255</strong></td>
-              <td>3.9</td>
-              <td>Regions I, V, IV-B, IX, XI, VII, XIII, NIR, XII</td>
-            </tr>
+            <tr><td><strong>5G RAN Equipment (3 Sectors, 4T4R)</strong></td><td class="num">$26,000</td><td class="num">₱1,430,000</td></tr>
+            <tr><td><strong>Ancillary Materials & Installation</strong></td><td class="num">$15,900</td><td class="num">₱874,500</td></tr>
+            <tr><td><strong>Total Site Capex (Colocation/Leased)</strong></td><td class="num" style="font-weight: 700; color: var(--navy);">$41,900</td><td class="num" style="font-weight: 700; color: var(--navy);">₱2,304,500</td></tr>
+            <tr><td><strong>Monthly Tower Lease (TowerCo)</strong></td><td class="num">$2,182 / mo</td><td class="num">₱120,000 / mo</td></tr>
+            <tr><td><strong>Monthly Power & Electricity</strong></td><td class="num">$1,455 / mo</td><td class="num">₱80,000 / mo</td></tr>
+            <tr><td><strong>Monthly Converge FOC Backhaul</strong></td><td class="num" style="color: #10B981; font-weight: 700;">$150 / mo (Internal)</td><td class="num" style="color: #10B981; font-weight: 700;">₱8,250 / mo</td></tr>
+            <tr><td><strong>Monthly Telco O&M & Field Support</strong></td><td class="num">$2,182 / mo</td><td class="num">₱120,000 / mo</td></tr>
+            <tr class="total-row"><td>Total Monthly Site Fixed Opex</td><td class="num">$5,969 / mo</td><td class="num">₱328,250 / mo</td></tr>
           </tbody>
         </table>
       </div>
+
+      <div>
+        <div class="card success" style="margin-bottom: 12px;">
+          <h3>Revenue & Break-Even at ₱599 ARPU</h3>
+          <p style="margin-bottom: 8px;">Assuming retail plan at <strong>₱599 / month ($10.89 USD)</strong> with 50 Mbps uncapped data:</p>
+          <table class="exec-table">
+            <thead>
+              <tr><th>Active Subscribers</th><th class="num">Monthly Revenue</th><th class="num">Monthly EBITDA</th><th class="center">Payback Period</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>150 Subs</strong> (15% take-up)</td><td class="num">₱89,850</td><td class="num" style="color: #DC2626;">-₱238,400</td><td class="center">Negative</td></tr>
+              <tr><td><strong>300 Subs</strong> (30% take-up)</td><td class="num">₱179,700</td><td class="num" style="color: #D97706;">-₱148,550</td><td class="center">N/A</td></tr>
+              <tr><td><strong>450 Subs</strong> (45% take-up)</td><td class="num">₱269,550</td><td class="num" style="color: #D97706;">-₱58,700</td><td class="center">Near Break-even</td></tr>
+              <tr><td><strong>550 Subs</strong> (Break-even line)</td><td class="num">₱329,450</td><td class="num" style="color: #10B981; font-weight: 700;">+₱1,200</td><td class="center">Break-Even</td></tr>
+              <tr><td><strong>750 Subs</strong> (Cluster scale)</td><td class="num">₱449,250</td><td class="num" style="color: #10B981; font-weight: 700;">+₱121,000</td><td class="center">19 Months</td></tr>
+              <tr><td><strong>1,000 Subs</strong> (Max BTS Load)</td><td class="num">₱599,000</td><td class="num" style="color: #10B981; font-weight: 700;">+₱270,750</td><td class="center">8.5 Months</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card warning">
+          <h4>Multi-Tenant Tower Lease Negotiation</h4>
+          <p style="font-size: 12.5px;">Negotiating TowerCo master lease rates down from ₱120k to ₱60k–₱80k (standard secondary colocation) drops site break-even to <strong>350 subscribers</strong>, unlocking massive profitability across all 1,000 Batch 1 sites.</p>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Slide 6: Region III Bridge -->
+  <!-- SLIDE 11: Execution Playbook -->
   <div class="slide">
     <div class="slide-header">
       <div>
-        <div class="slide-category">Immediate Commercial Bridge</div>
-        <div class="slide-title">Region III (Central Luzon) Rollout: From Pilot Trial to Scale</div>
+        <div class="slide-category">Implementation</div>
+        <div class="slide-title">Site Acquisition & Turn-Up Execution Playbook</div>
       </div>
-      <div class="slide-number">Slide 06 / 10</div>
+      <div class="slide-number">Slide 13 / 14</div>
     </div>
-    
-    <div class="grid-4" style="margin-bottom: 12px;">
+
+    <div class="grid-4" style="margin-bottom: 14px;">
       <div class="card highlight">
-        <div class="stat-label">Pampanga Foundation</div>
-        <div style="font-size:15px; font-weight:800; color:var(--navy); margin-top:3px;">3 Demo Sites</div>
-        <div class="stat-sub">Validates RF, Starlink & NTC</div>
+        <div class="badge badge-onnet" style="margin-bottom: 6px;">Day 1 - 30</div>
+        <h3>1. Site Acquisition</h3>
+        <ul>
+          <li>Submit target coordinates to TowerCos (EDOTCO, EdgePoint, PhilTower).</li>
+          <li>Prioritize existing towers within 1.5 km of barangay hall.</li>
+          <li>Secure municipal LGU clearance and barangay council resolutions.</li>
+        </ul>
       </div>
+
+      <div class="card success">
+        <div class="badge badge-onnet" style="margin-bottom: 6px;">Day 15 - 45</div>
+        <h3>2. Converge OSP Link</h3>
+        <ul>
+          <li>Issue work order to Converge Outside Plant (OSP) engineering.</li>
+          <li>Splice optical drop cable from matching backbone node (0–3 km).</li>
+          <li>Terminate on dedicated 10G SFP+ port in baseband cabinet.</li>
+        </ul>
+      </div>
+
+      <div class="card warning">
+        <div class="badge badge-onnet" style="margin-bottom: 6px;">Day 30 - 60</div>
+        <h3>3. RAN & Core Integration</h3>
+        <ul>
+          <li>Install 3x 5G Active Antenna Units (AAUs) on tower mount.</li>
+          <li>Power connection & battery backup installation.</li>
+          <li>Commission gNodeB with Comclark 5G Core & OSS/BSS.</li>
+        </ul>
+      </div>
+
       <div class="card danger">
-        <div class="stat-label">Region III Scope</div>
-        <div style="font-size:15px; font-weight:800; color:var(--navy); margin-top:3px;">159 Priority Brgys</div>
-        <div class="stat-sub">39 Critical + 120 High GIDA</div>
-      </div>
-      <div class="card success">
-        <div class="stat-label">Year 1 Allocation</div>
-        <div style="font-size:15px; font-weight:800; color:#10B981; margin-top:3px;">41 Macro Sites</div>
-        <div class="stat-sub">Covers 100% of P1 brgys</div>
-      </div>
-      <div class="card">
-        <div class="stat-label">Operational Synergy</div>
-        <div style="font-size:15px; font-weight:800; color:var(--navy); margin-top:3px;">Clark Hub & NOC</div>
-        <div class="stat-sub">Existing field teams & fiber</div>
-      </div>
-    </div>
-
-    <div class="card" style="flex: 1;">
-      <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div>
-      <h4 style="color: var(--navy); margin-bottom: 8px;">Region III Target Cluster Details:</h4>
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>Province</th>
-              <th>Critical Brgys (≥50)</th>
-              <th>High GIDA (40-49)</th>
-              <th>Allocated Sites</th>
-              <th>Target Municipalities & Focus Clusters</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Nueva Ecija</strong></td>
-              <td>15</td>
-              <td>21</td>
-              <td><strong>10 Sites</strong></td>
-              <td>Cabanatuan City (12 crit brgys), Gen. Mamerto Natividad, Llanera, San Jose</td>
-            </tr>
-            <tr>
-              <td><strong>Aurora</strong></td>
-              <td>15</td>
-              <td>4</td>
-              <td><strong>5 Sites</strong></td>
-              <td>Baler, Casiguran, Dilasag, Dinalungan, Dipaculao coastal nodes</td>
-            </tr>
-            <tr>
-              <td><strong>Bulacan / Pampanga / Bataan</strong></td>
-              <td>5</td>
-              <td>91</td>
-              <td><strong>24 Sites</strong></td>
-              <td>Rural agricultural and coastal barangays (Sasmuan, Masantol, Hagonoy)</td>
-            </tr>
-            <tr>
-              <td><strong>Zambales & Tarlac</strong></td>
-              <td>4</td>
-              <td>4</td>
-              <td><strong>2 Sites</strong></td>
-              <td>Mountain valley communities along Olongapo-Bugallon corridor</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <!-- Slide 7: 4-Phase Roadmap -->
-  <div class="slide">
-    <div class="slide-header">
-      <div>
-        <div class="slide-category">Nationwide Rollout Strategy</div>
-        <div class="slide-title">4-Phase Nationwide Rollout Roadmap: Scaling to 10,000 Sites</div>
-      </div>
-      <div class="slide-number">Slide 07 / 10</div>
-    </div>
-
-    <div class="grid-4" style="flex: 1; align-items: stretch;">
-      <div class="card highlight" style="display: flex; flex-direction: column; justify-content: space-between;">
-        <div>
-          <div class="stat-label">Phase 1: Year 1</div>
-          <div class="stat-val" style="font-size:26px; color:var(--blue-accent);">1,000 Sites</div>
-          <div style="font-size:14px; font-weight:800; color:var(--navy); margin:4px 0;">3,903 P1 Brgys</div>
-          <div class="stat-sub" style="font-size:13px; font-weight:700; color:#10B981; margin-bottom:8px;">600,000 Subs Capacity</div>
-        </div>
-        <p style="font-size:12.5px; color:#475569;">
-          100% of provincial Critical GIDA (1,345) + 2,558 High GIDA barangays. 100% Starlink backhaul ready. Captures immediate DICT anchor contracts.
-        </p>
-      </div>
-
-      <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
-        <div>
-          <div class="stat-label">Phase 2: Y2 – Y3</div>
-          <div class="stat-val" style="font-size:26px;">3,000 Sites Cum.</div>
-          <div style="font-size:14px; font-weight:800; color:var(--navy); margin:4px 0;">5,232 Mod Brgys</div>
-          <div class="stat-sub" style="font-size:13px; font-weight:700; color:#10B981; margin-bottom:8px;">1,800,000 Subs Capacity</div>
-        </div>
-        <p style="font-size:12.5px; color:#475569;">
-          Expansion into Tier 3 Moderate GIDA barangays (scores 35–45). Densification across Visayas & Mindanao agricultural corridors.
-        </p>
-      </div>
-
-      <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
-        <div>
-          <div class="stat-label">Phase 3: Y4 – Y6</div>
-          <div class="stat-val" style="font-size:26px;">6,000 Sites Cum.</div>
-          <div style="font-size:14px; font-weight:800; color:var(--navy); margin:4px 0;">Semi-Urban Infill</div>
-          <div class="stat-sub" style="font-size:13px; font-weight:700; color:#10B981; margin-bottom:8px;">3,600,000 Subs Capacity</div>
-        </div>
-        <p style="font-size:12.5px; color:#475569;">
-          Class 3–4 municipal centers and suburban fringe areas. Replaces declining copper and legacy DSL connections.
-        </p>
-      </div>
-
-      <div class="card success" style="display: flex; flex-direction: column; justify-content: space-between;">
-        <div>
-          <div class="stat-label">Phase 4: Y7 – Y10</div>
-          <div class="stat-val positive" style="font-size:26px;">10,000 Sites Cum.</div>
-          <div style="font-size:14px; font-weight:800; color:#10B981; margin:4px 0;">Full Saturation</div>
-          <div class="stat-sub" style="font-size:13px; font-weight:700; color:#10B981; margin-bottom:8px;">6,000,000 Active Subs</div>
-        </div>
-        <p style="font-size:12.5px; color:#475569;">
-          Nationwide saturation across all 81 provinces and 1,489 municipalities; mature telecommunications unicorn footprint ($1.07B NPV).
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Slide 8: Dual Revenue Engine -->
-  <div class="slide">
-    <div class="slide-header">
-      <div>
-        <div class="slide-category">Commercial Monetization</div>
-        <div class="slide-title">The Dual-Revenue Commercial Engine (Gov't Subsidy + Retail)</div>
-      </div>
-      <div class="slide-number">Slide 08 / 10</div>
-    </div>
-
-    <div class="grid-2" style="flex: 1; gap: 16px; align-items: stretch;">
-      <div class="card highlight" style="display: flex; flex-direction: column; gap: 10px; padding: 20px 22px;">
-        <h3 style="color: var(--blue-accent); font-size: 18px;">Stream A: Public Sector Anchor Tenant (DICT FPIAP)</h3>
-        <div class="stat-label">Guaranteed Monthly Government Institutional Cash Flow</div>
-        <div style="font-size: 24px; font-weight: 800; color: var(--navy);">₱36,000 / month per site</div>
-        <ul style="font-size: 13.5px; line-height: 1.55;">
-          <li>Contracted connection of 2 public facilities per macro cell (Barangay Hall + Public High School).</li>
-          <li>Managed service contract @ ₱18,000 / facility / month under DICT FPIAP tender.</li>
-          <li>Guaranteed institutional revenue completely de-risks TowerCo power and site maintenance costs before selling a single residential line.</li>
-          <li>Provides 100% bankability and creditworthiness for infrastructure vendor financing.</li>
-        </ul>
-      </div>
-
-      <div class="card success" style="display: flex; flex-direction: column; gap: 10px; padding: 20px 22px;">
-        <h3 style="color: #065F46; font-size: 18px;">Stream B: Commercial Residential Retail Broadband</h3>
-        <div class="stat-label">High-Margin Recurring Consumer Subscription Cash Cow</div>
-        <div style="font-size: 24px; font-weight: 800; color: #10B981;">₱359,400 / month per site</div>
-        <ul style="font-size: 13.5px; line-height: 1.55;">
-          <li>600 active residential subscribers per tower (out of 2,500–4,000 households in 3.5 km radius).</li>
-          <li>Retail monthly subscription: ₱599 / month (50 Mbps unlimited Band n50 FWA).</li>
-          <li>Delivers 62.3% Operating EBITDA margin with rapid 10.4-month simple payback.</li>
-          <li>Long-term revenue expansion to ₱794 mature ARPU over 10-year period via speed and SME upsells.</li>
+        <div class="badge badge-onnet" style="margin-bottom: 6px;">Day 45 - 75</div>
+        <h3>4. Sales & CPE Launch</h3>
+        <ul>
+          <li>Deploy barangay commercial roadshow & local load agents.</li>
+          <li>Offer zero-cashout CPE self-install kits for ₱599/mo promo.</li>
+          <li>Target 40% subscriber fill rate within first 45 days of on-air.</li>
         </ul>
       </div>
     </div>
+
+    <div class="card navy">
+      <h4 style="color: var(--teal); margin-bottom: 4px;">FAST-TRACK ADVANTAGE</h4>
+      <p style="font-size: 13px;">
+        Because all 1,000 Batch 1 sites are in municipalities with <strong>pre-existing Converge fiber infrastructure</strong>, right-of-way hurdles and lengthy long-haul optical builds are eliminated, enabling simultaneous rollout across 10 regional clusters.
+      </p>
+    </div>
   </div>
 
-  <!-- Slide 9: Unit Economics -->
+  <!-- SLIDE 12: Board Recommendation & Next Steps -->
   <div class="slide">
     <div class="slide-header">
       <div>
-        <div class="slide-category">Unit Economics</div>
-        <div class="slide-title">Macro Site Unit Economics: 10.4-Month Simple Payback</div>
+        <div class="slide-category">Decision Mandate</div>
+        <div class="slide-title">Board Recommendations & Immediate Next Steps</div>
       </div>
-      <div class="slide-number">Slide 09 / 10</div>
+      <div class="slide-number">Slide 14 / 14</div>
     </div>
-    
-    <div class="grid-4" style="margin-bottom: 12px;">
-      <div class="card">
-        <div class="stat-label">Gross Revenue</div>
-        <div class="stat-val" style="font-size:20px; color:var(--navy);">₱395.4k/mo</div>
-        <div class="stat-sub">DICT Subsidy + 600 Retail Subs</div>
-      </div>
-      <div class="card">
-        <div class="stat-label">Monthly OPEX</div>
-        <div class="stat-val" style="font-size:20px; color:#D97706;">₱149.0k/mo</div>
-        <div class="stat-sub">TowerCo + Starlink + Power</div>
-      </div>
-      <div class="card success">
-        <div class="stat-label">Operating EBITDA</div>
-        <div class="stat-val positive" style="font-size:20px;">₱246.4k/mo</div>
-        <div class="stat-sub">62.3% Operating EBITDA Margin</div>
-      </div>
+
+    <div class="grid-3" style="margin-bottom: 16px;">
       <div class="card highlight">
-        <div class="stat-label">Simple Payback</div>
-        <div class="stat-val" style="font-size:20px; color:var(--blue-accent);">10.4 Months</div>
-        <div class="stat-sub">Initial CAPEX: ~₱2.56M ($45k)</div>
+        <h3>1. Approve Batch 1 Scope</h3>
+        <p style="margin-bottom: 8px;">Formally authorize the <strong>1,000-Site Batch 1 Rollout</strong> deploying 1,000 Band n50 BTS across 271 municipalities in 46 provinces.</p>
+        <ul>
+          <li>Lock in the priority barangay list from the model.</li>
+          <li>Instruct site acquisition teams to initiate lease filings.</li>
+        </ul>
+      </div>
+
+      <div class="card success">
+        <h3>2. Converge OSP Task Order</h3>
+        <p style="margin-bottom: 8px;">Issue joint technical directive to Converge Outside Plant engineering.</p>
+        <ul>
+          <li>Reserve optical core pairs at the 271 target node locations.</li>
+          <li>Standardize the 10G fiber lateral drop specification.</li>
+        </ul>
+      </div>
+
+      <div class="card warning">
+        <h3>3. Equipment Procurement</h3>
+        <p style="margin-bottom: 8px;">Release initial capital expenditure approval for radio and CPE hardware.</p>
+        <ul>
+          <li>Procure 1,000 3-sector Band n50 5G RAN baseband packages ($26M).</li>
+          <li>Order initial batch of 100,000 Band n50 indoor CPEs.</li>
+        </ul>
       </div>
     </div>
 
-    <div class="card" style="flex: 1;">
-      <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div>
-      <h4 style="color: var(--navy); margin-bottom: 8px;">Macro Tower Monthly Cash Flow Statement:</h4>
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>Economic Component</th>
-              <th>Monthly Figure</th>
-              <th>Annualized Figure</th>
-              <th>Operational Breakdown & Assumptions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>DICT FPIAP Anchor Subsidy</strong></td>
-              <td>₱36,000</td>
-              <td>₱432,000</td>
-              <td>2 institutional sites @ ₱18k/mo guaranteed government contract</td>
-            </tr>
-            <tr>
-              <td><strong>Residential Retail Revenue</strong></td>
-              <td>₱359,400</td>
-              <td>₱4,312,800</td>
-              <td>600 subscribers @ ₱599/mo ARPU (50 Mbps unlimited)</td>
-            </tr>
-            <tr>
-              <td><strong>TowerCo Colocation Lease</strong></td>
-              <td>(₱98,000)</td>
-              <td>(₱1,176,000)</td>
-              <td>Negotiated under bulk 1,000-site Master Lease Agreement (Scenario 4)</td>
-            </tr>
-            <tr>
-              <td><strong>Starlink Business Backhaul</strong></td>
-              <td>(₱14,000)</td>
-              <td>(₱168,000)</td>
-              <td>Pooled enterprise capacity tier</td>
-            </tr>
-            <tr>
-              <td><strong>Power, Fuel & Field Maintenance</strong></td>
-              <td>(₱37,000)</td>
-              <td>(₱444,000)</td>
-              <td>Commercial grid + backup generator + routine spares</td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="card navy" style="text-align: center; padding: 22px;">
+      <h3 style="color: var(--teal); font-size: 20px; margin-bottom: 8px;">Master Deliverables Available for Review</h3>
+      <p style="font-size: 14px; color: #CBD5E1; margin-bottom: 16px;">
+        The detailed tabular dataset with complete demographic, geographic, and Band n50 BTS dimensioning columns for all 5,000 barangays across Batches 1 to 5 is available in both standard baseline and live-formula dynamic editions:
+      </p>
+      <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+        <a href="FWA_Metric_to_Source_Mapping_2024.xlsx" download style="display: inline-flex; align-items: center; gap: 8px; background: rgba(217, 119, 6, 0.15); border: 1px solid #D97706; border-radius: 8px; padding: 10px 20px; color: white; font-weight: 700; font-size: 13.5px; text-decoration: none; transition: all 0.2s;">
+          📋 FWA_Metric_to_Source_Mapping_2024.xlsx <span style="font-size: 11px; color: #FCD34D;">(Source Mapping / Google Sheets)</span>
+        </a>
+        <a href="FWA_Barangay_Rollout_Plan_GIDA_1000s.xlsx" download style="display: inline-flex; align-items: center; gap: 8px; background: rgba(0, 180, 216, 0.15); border: 1px solid var(--teal); border-radius: 8px; padding: 10px 20px; color: white; font-weight: 700; font-size: 13.5px; text-decoration: none; transition: all 0.2s;">
+          📊 FWA_Barangay_Rollout_Plan_GIDA_1000s.xlsx <span style="font-size: 11px; color: var(--teal);">(Standard Baseline)</span>
+        </a>
+        <a href="FWA_Barangay_Rollout_Plan_GIDA_1000s_Dynamic.xlsx" download style="display: inline-flex; align-items: center; gap: 8px; background: rgba(16, 185, 129, 0.15); border: 1px solid #10B981; border-radius: 8px; padding: 10px 20px; color: white; font-weight: 700; font-size: 13.5px; text-decoration: none; transition: all 0.2s;">
+          ⚡ FWA_Barangay_Rollout_Plan_GIDA_1000s_Dynamic.xlsx <span style="font-size: 11px; color: #10B981;">(Dynamic Live Formulas)</span>
+        </a>
       </div>
-    </div>
-  </div>
-
-  <!-- Slide 10: 10-Yr Financials & Roadmap -->
-  <div class="slide">
-    <div class="slide-header">
-      <div>
-        <div class="slide-category">10-Year Valuation & Action Plan</div>
-        <div class="slide-title">10-Year Commercial Valuation & 90-Day Execution Roadmap</div>
-      </div>
-      <div class="slide-number">Slide 10 / 10</div>
-    </div>
-
-    <div class="card" style="margin-bottom: 10px;">
-      <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div>
-      <h4 style="color: var(--navy); margin-bottom: 6px;">10-Year Business Case Comparison:</h4>
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>Financial Model</th>
-              <th>ARPU Profile</th>
-              <th>Deployment & Operating Assumptions</th>
-              <th>10-Yr NPV</th>
-              <th>Project IRR</th>
-              <th>Payback</th>
-              <th>Verdict</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Model 1: Baseline Dynamic</strong></td>
-              <td>Flat ₱699 / month across all 10 years</td>
-              <td>Mode 1 Ramp (25% Y1), ₱120k TowerCo lease, ₱6,800 Starlink</td>
-              <td>+$294.6M</td>
-              <td>17.7%</td>
-              <td>7.0y</td>
-              <td><span class="badge badge-go">GO</span></td>
-            </tr>
-            <tr class="highlight-row">
-              <td><strong>Model 2: Dynamic ARPU Migration</strong></td>
-              <td>₱599 entry in Y1–Y2 ➔ ₱794 by Y8+</td>
-              <td>Mode 1 Ramp, tiered speed upsells (50 Mbps & SME plans)</td>
-              <td>+$686.3M</td>
-              <td>26.8%</td>
-              <td>6.2y</td>
-              <td><span class="badge badge-go">STRONG GO</span></td>
-            </tr>
-            <tr class="highlight-row" style="background: #F0FDF4; border: 2px solid #22C55E;">
-              <td><strong>Model 3: Executive Best Case ★</strong></td>
-              <td>₱599 entry ➔ ₱794 mature ARPU</td>
-              <td>Mode 2 Pre-Sales (50% Day 1) + ₱98k TowerCo MLA + bulk Starlink</td>
-              <td><strong>+$1,068.0M</strong></td>
-              <td><strong>37.6%</strong></td>
-              <td><strong>4.8y</strong></td>
-              <td><span class="badge badge-go" style="background:#86EFAC;color:#064E3B;">★ UNICORN GO</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="card" style="flex: 1;">
-      <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div>
-      <h4 style="color: var(--navy); margin-bottom: 6px;">90-Day Execution Roadmap & Next Milestones:</h4>
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>Timeframe</th>
-              <th>Workstream</th>
-              <th>Key Deliverables & Action Items</th>
-              <th>Responsible Lead</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Days 1 – 30</strong></td>
-              <td>Trial Completion & NTC Report</td>
-              <td>Complete 30-day propagation demo in Pampanga; submit comprehensive technical report to NTC.</td>
-              <td>Head of Regulatory & Engineering</td>
-            </tr>
-            <tr>
-              <td><strong>Days 15 – 45</strong></td>
-              <td>TowerCo MLA Execution</td>
-              <td>Finalize Master Lease Agreements (MLAs) with TowerCos for initial 1,000 GIDA sites.</td>
-              <td>Head of Network Rollout</td>
-            </tr>
-            <tr>
-              <td><strong>Days 30 – 60</strong></td>
-              <td>DICT FPIAP Bids & Starlink Facility</td>
-              <td>Submit qualified tenders for DICT FPIAP GIDA subsidies and contract Starlink enterprise pooling facility.</td>
-              <td>Chief Commercial Officer & CTO</td>
-            </tr>
-            <tr>
-              <td><strong>Days 45 – 90</strong></td>
-              <td>OEM Commercial Financing</td>
-              <td>Finalize 15% down, 85% vendor financing facility across initial 1,000 Band n50 macro RAN sites.</td>
-              <td>Chief Financial Officer</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <p style="font-size: 12px; color: #94A3B8; margin-top: 12px; margin-bottom: 0;">
+        <em>Dynamic Edition:</em> Edit Penetration Rate, Subs/BTS, or Pillar Weights in the <strong>'Methodology & Assumptions'</strong> tab to recalculate all subscriber numbers, BTS capacities, and Executive Summary tables in real time.
+      </p>
     </div>
   </div>
 
 </div>
-
-<!-- Mobile Bottom Navigation Bar -->
-<div class="mobile-nav-bar">
-  <button onclick="prevSlide()" class="mobile-nav-btn">◀ Prev</button>
-  <div class="mobile-slide-indicator" id="mobile-slide-indicator">1 / 10</div>
-  <button onclick="nextSlide()" class="mobile-nav-btn primary">Next ▶</button>
-</div>
-
-<footer>
-  <div>Use <strong>Left / Right Arrow Keys</strong> or navigation buttons to present · Press <strong>F</strong> for Fullscreen</div>
-  <div style="display: flex; align-items: center; gap: 14px;">
-    <div class="progress-bar"><div id="progress" class="progress-fill"></div></div>
-    <span>TelTech FWA 5G Initiative · DICT GIDA Rollout Plan (Slides 1–10)</span>
-  </div>
-</footer>
 
 <script>
   let currentSlide = 0;
-  function getSlides() { return document.querySelectorAll('.slide'); }
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+  const slideNumEl = document.getElementById('slide-num');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+
   function showSlide(index) {
-    const slides = getSlides();
-    if (!slides || slides.length === 0) return;
     if (index < 0) index = 0;
-    if (index >= slides.length) index = slides.length - 1;
+    if (index >= totalSlides) index = totalSlides - 1;
     currentSlide = index;
 
-    slides.forEach((s, i) => {
-      if (i === currentSlide) {
-        s.classList.add('active');
-        s.style.display = 'flex';
-        s.scrollTop = 0; // Scroll back to top on slide change
-      } else {
-        s.classList.remove('active');
-        s.style.display = 'none';
-      }
+    slides.forEach((s, idx) => {
+      s.classList.remove('active');
+      if (idx === currentSlide) s.classList.add('active');
     });
 
-    const dInd = document.getElementById('slide-indicator');
-    const mInd = document.getElementById('mobile-slide-indicator');
-    if (dInd) dInd.textContent = (currentSlide + 1) + ' / ' + slides.length;
-    if (mInd) mInd.textContent = (currentSlide + 1) + ' / ' + slides.length;
-    const progress = document.getElementById('progress');
-    if (progress) progress.style.width = (((currentSlide + 1) / slides.length) * 100) + '%';
+    slideNumEl.textContent = `Slide ${currentSlide + 1} / ${totalSlides}`;
+
+    // Invalidate Leaflet map size on slide activation
+    if (currentSlide === 8) {
+      setTimeout(() => {
+        initFwaMap();
+        if (leafletMap) leafletMap.invalidateSize();
+      }, 150);
+    }
+
+    prevBtn.disabled = (currentSlide === 0);
+    nextBtn.disabled = (currentSlide === totalSlides - 1);
   }
 
-  function nextSlide() { const slides = getSlides(); if (currentSlide < slides.length - 1) showSlide(currentSlide + 1); }
-  function prevSlide() { if (currentSlide > 0) showSlide(currentSlide - 1); }
+  function nextSlide() {
+    if (currentSlide < totalSlides - 1) showSlide(currentSlide + 1);
+  }
 
-  document.addEventListener('keydown', (e) => {
-    if (e.target && e.target.isContentEditable) return;
-    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
-    if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
-    if (e.key === 'f' || e.key === 'F') toggleFullScreen();
-  });
-
-  // Touch Swipe Handling for Mobile
-  let touchStartX = 0;
-  let touchEndX = 0;
-  let touchStartY = 0;
-  let touchEndY = 0;
-
-  document.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-    touchStartY = e.changedTouches[0].screenY;
-  }, { passive: true });
-
-  document.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    touchEndY = e.changedTouches[0].screenY;
-    handleSwipe();
-  }, { passive: true });
-
-  function handleSwipe() {
-    const diffX = touchEndX - touchStartX;
-    const diffY = touchEndY - touchStartY;
-    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 45) {
-      if (diffX < 0) nextSlide();
-      else prevSlide();
-    }
+  function prevSlide() {
+    if (currentSlide > 0) showSlide(currentSlide - 1);
   }
 
   function toggleFullScreen() {
-    if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(err => alert('Fullscreen error: ' + err.message));
-    else document.exitFullscreen();
-  }
-  function triggerPrint() { window.print(); }
-
-  let isEditMode = false;
-
-  function getAllTextElements() {
-    const elements = [];
-    const candidates = document.querySelectorAll('.slide *, header .meta, header .brand');
-    candidates.forEach(el => {
-      if (['SCRIPT', 'STYLE', 'IMG', 'SVG', 'PATH', 'BUTTON', 'INPUT', 'SELECT', 'TEXTAREA'].includes(el.tagName)) return;
-      for (let node of el.childNodes) {
-        if (node.nodeType === Node.TEXT_NODE && node.textContent.trim().length > 0) {
-          elements.push(el);
-          break;
-        }
-      }
-    });
-    return elements;
-  }
-
-  function toggleEditMode() {
-    isEditMode = !isEditMode;
-    const body = document.body;
-    const editBtn = document.getElementById('edit-toggle-btn');
-    const saveBtn = document.getElementById('save-html-btn');
-    const editBanner = document.getElementById('edit-banner');
-    const editableElements = getAllTextElements();
-
-    if (isEditMode) {
-      body.classList.add('edit-active');
-      if (editBtn) {
-        editBtn.textContent = '🔒 Done';
-        editBtn.style.background = '#DC2626';
-        editBtn.style.color = '#FFFFFF';
-        editBtn.style.borderColor = '#B91C1C';
-      }
-      if (saveBtn) saveBtn.style.display = 'inline-block';
-      if (editBanner) editBanner.style.display = 'block';
-      editableElements.forEach(el => {
-        el.setAttribute('contenteditable', 'true');
-        el.setAttribute('spellcheck', 'false');
-      });
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(err => console.log(err));
     } else {
-      body.classList.remove('edit-active');
-      if (editBtn) {
-        editBtn.textContent = '✏️ Edit';
-        editBtn.style.background = '#E0E7FF';
-        editBtn.style.color = '#3730A3';
-        editBtn.style.borderColor = '#C7D2FE';
-      }
-      if (saveBtn) saveBtn.style.display = 'none';
-      if (editBanner) editBanner.style.display = 'none';
-      editableElements.forEach(el => {
-        el.removeAttribute('contenteditable');
-        el.removeAttribute('spellcheck');
-      });
-      saveCurrentStateToStorage();
+      if (document.exitFullscreen) document.exitFullscreen();
     }
   }
 
-  function saveCurrentStateToStorage() {
-    const slides = getSlides();
-    const data = [];
-    slides.forEach(s => data.push(s.innerHTML));
-    localStorage.setItem('fwa_gida_standalone_mobile_v4', JSON.stringify(data));
-  }
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+      nextSlide();
+    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      prevSlide();
+    } else if (e.key === 'Home') {
+      showSlide(0);
 
-  function loadStateFromStorage() {
-    try {
-      const stored = localStorage.getItem('fwa_gida_standalone_mobile_v4');
-      if (stored) {
-        const data = JSON.parse(stored);
-        const slides = getSlides();
-        slides.forEach((s, i) => { if (data[i]) s.innerHTML = data[i]; });
-      }
-    } catch(e) { console.warn('Could not restore from localStorage:', e); }
-  }
 
-  function saveEditedPresentation() {
-    if (isEditMode) toggleEditMode();
-    saveCurrentStateToStorage();
-    const fullHtml = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
-    const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'FWA_5G_DICT_GIDA_Rollout_Edited.html';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    alert('Edits saved! Updated file downloaded.');
-  }
+// ==========================================
+// INTERACTIVE GIS MAP ENGINE (5,000 SITES)
+// ==========================================
+const PHASE_CONFIG = {
+  1: { name: "Phase 1 (Batch 1)", color: "#00B4D8", radius: 4.5, border: "#ffffff" },
+  2: { name: "Phase 2 (Batch 2)", color: "#10B981", radius: 4.0, border: "#ffffff" },
+  3: { name: "Phase 3 (Batch 3)", color: "#F59E0B", radius: 3.8, border: "#ffffff" },
+  4: { name: "Phase 4 (Batch 4)", color: "#8B5CF6", radius: 3.5, border: "#ffffff" },
+  5: { name: "Phase 5 (Batch 5)", color: "#EF4444", radius: 3.5, border: "#ffffff" }
+};
 
-  window.addEventListener('DOMContentLoaded', () => {
-    loadStateFromStorage();
-    showSlide(0);
+let leafletMap = null;
+let mapMarkers = [];
+let mapCanvasRenderer = null;
+let currentPhaseFilter = 0; // 0 = all
+
+function initFwaMap() {
+  if (leafletMap !== null) return;
+  const mapContainer = document.getElementById('fwa-sites-map');
+  if (!mapContainer) return;
+
+  leafletMap = L.map('fwa-sites-map', {
+    center: [12.8797, 121.7740],
+    zoom: 6,
+    minZoom: 5,
+    maxZoom: 16,
+    preferCanvas: true
   });
+
+  // Dark basemap
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap &copy; CARTO',
+    subdomains: 'abcd',
+    maxZoom: 19
+  }).addTo(leafletMap);
+
+  mapCanvasRenderer = L.canvas({ padding: 0.5 });
+
+  // Render all 5,000 sites
+  renderMarkers(0);
+}
+
+function renderMarkers(phaseFilter) {
+  if (!leafletMap || !window.RAW_SITES_DATA) return;
+
+  // Clear existing
+  mapMarkers.forEach(m => leafletMap.removeLayer(m.marker));
+  mapMarkers = [];
+
+  let visibleCount = 0;
+  let visiblePop = 0;
+  let visibleSubs = 0;
+  let visibleBts = 0;
+
+  window.RAW_SITES_DATA.forEach(d => {
+    const [lat, lon, bgy, muni, prov, pop, hh, subs, bts1000, pNum, score, tier] = d;
+    if (phaseFilter !== 0 && pNum !== phaseFilter) return;
+
+    visibleCount++;
+    visiblePop += pop;
+    visibleSubs += subs;
+    visibleBts += bts1000;
+
+    const conf = PHASE_CONFIG[pNum];
+    const marker = L.circleMarker([lat, lon], {
+      renderer: mapCanvasRenderer,
+      radius: conf.radius,
+      fillColor: conf.color,
+      fillOpacity: 0.88,
+      color: conf.border,
+      weight: 1
+    });
+
+    const popupHtml = `
+      <div style="min-width: 250px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+          <span style="background:${conf.color}; color:#0A192F; font-size:10px; font-weight:800; padding:2px 7px; border-radius:4px; text-transform:uppercase;">
+            ${conf.name}
+          </span>
+          <span style="font-weight:700; color:#10B981; font-size:11px;">Score: ${score} / 100</span>
+        </div>
+        <h3 style="margin:0 0 2px 0; font-size:14px; color:#fff; font-weight:700;">${bgy}</h3>
+        <div style="color:#94A3B8; font-size:11px; margin-bottom:8px;">${muni}, ${prov}</div>
+        
+        <div style="background:rgba(255,255,255,0.06); border-radius:6px; padding:6px 8px; margin-bottom:8px;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
+            <span style="color:#94A3B8;">Population:</span>
+            <span style="color:#fff; font-weight:600;">${pop.toLocaleString()}</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
+            <span style="color:#94A3B8;">Households:</span>
+            <span style="color:#fff; font-weight:600;">${hh.toLocaleString()}</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
+            <span style="color:#94A3B8;">Target Subs @ 30%:</span>
+            <span style="color:#F59E0B; font-weight:700;">${subs.toLocaleString()}</span>
+          </div>
+          <div style="display:flex; justify-content:space-between;">
+            <span style="color:#94A3B8;">Band n50 BTS (@1k subs):</span>
+            <span style="color:#00B4D8; font-weight:700;">${bts1000} BTS</span>
+          </div>
+        </div>
+
+        <div style="font-size:11px; color:#CBD5E1; margin-bottom:3px;">
+          <b>Backhaul:</b> ${tier}
+        </div>
+        <div style="font-size:10.5px; color:#64748B;">
+          Coordinates: ${lat.toFixed(6)}, ${lon.toFixed(6)}
+        </div>
+      </div>
+    `;
+
+    marker.bindPopup(popupHtml);
+    marker.addTo(leafletMap);
+    mapMarkers.push({ marker, bgy, muni, prov, pNum, lat, lon });
+  });
+
+  // Update stat overlay
+  const statTitle = document.getElementById('map-stat-title');
+  if (statTitle) {
+    statTitle.textContent = phaseFilter === 0 ? "Active Filter: All 5 Batches" : `Active Filter: Phase ${phaseFilter} (1,000 Sites)`;
+  }
+  const statSites = document.getElementById('map-stat-sites');
+  if (statSites) statSites.textContent = visibleCount.toLocaleString();
+  const statBts = document.getElementById('map-stat-bts');
+  if (statBts) statBts.textContent = `${visibleBts.toLocaleString()} BTS`;
+  const statPop = document.getElementById('map-stat-pop');
+  if (statPop) statPop.textContent = (visiblePop >= 1000000 ? `${(visiblePop/1000000).toFixed(1)}M` : visiblePop.toLocaleString());
+  const statSubs = document.getElementById('map-stat-subs');
+  if (statSubs) statSubs.textContent = (visibleSubs >= 1000000 ? `${(visibleSubs/1000000).toFixed(2)}M` : `${Math.round(visibleSubs/1000)}k`);
+}
+
+function filterMapPhase(phaseNum) {
+  currentPhaseFilter = phaseNum;
+  document.querySelectorAll('.map-phase-btn').forEach(btn => btn.classList.remove('active'));
+  const activeBtn = document.getElementById(`btn-phase-${phaseNum}`);
+  if (activeBtn) activeBtn.classList.add('active');
+  renderMarkers(phaseNum);
+}
+
+function resetMapView() {
+  if (!leafletMap) return;
+  leafletMap.flyTo([12.8797, 121.7740], 6);
+}
+
+function searchMapSite() {
+  const query = document.getElementById('map-search-input').value.trim().toLowerCase();
+  if (!query) return;
+
+  const match = mapMarkers.find(m => 
+    m.bgy.toLowerCase().includes(query) || 
+    m.muni.toLowerCase().includes(query) || 
+    m.prov.toLowerCase().includes(query)
+  );
+
+  if (match) {
+    leafletMap.flyTo([match.lat, match.lon], 13);
+    setTimeout(() => {
+      match.marker.openPopup();
+    }, 400);
+  } else {
+    alert("No matching barangay or municipality found in top 5,000 sites.");
+  }
+}
+
+    } else if (e.key === 'End') {
+      showSlide(totalSlides - 1);
+    }
+  });
+
+  let touchStartX = 0;
+  let touchEndX = 0;
+  document.getElementById('slide-container').addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, false);
+
+  document.getElementById('slide-container').addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    if (touchEndX < touchStartX - 50) nextSlide();
+    if (touchEndX > touchStartX + 50) prevSlide();
+  }, false);
+
+  showSlide(0);
+
+
+// ==========================================
+// INTERACTIVE GIS MAP ENGINE (5,000 SITES)
+// ==========================================
+const PHASE_CONFIG = {
+  1: { name: "Phase 1 (Batch 1)", color: "#00B4D8", radius: 4.5, border: "#ffffff" },
+  2: { name: "Phase 2 (Batch 2)", color: "#10B981", radius: 4.0, border: "#ffffff" },
+  3: { name: "Phase 3 (Batch 3)", color: "#F59E0B", radius: 3.8, border: "#ffffff" },
+  4: { name: "Phase 4 (Batch 4)", color: "#8B5CF6", radius: 3.5, border: "#ffffff" },
+  5: { name: "Phase 5 (Batch 5)", color: "#EF4444", radius: 3.5, border: "#ffffff" }
+};
+
+let leafletMap = null;
+let mapMarkers = [];
+let mapCanvasRenderer = null;
+let currentPhaseFilter = 0; // 0 = all
+
+function initFwaMap() {
+  if (leafletMap !== null) return;
+  const mapContainer = document.getElementById('fwa-sites-map');
+  if (!mapContainer) return;
+
+  leafletMap = L.map('fwa-sites-map', {
+    center: [12.8797, 121.7740],
+    zoom: 6,
+    minZoom: 5,
+    maxZoom: 16,
+    preferCanvas: true
+  });
+
+  // Dark basemap
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap &copy; CARTO',
+    subdomains: 'abcd',
+    maxZoom: 19
+  }).addTo(leafletMap);
+
+  mapCanvasRenderer = L.canvas({ padding: 0.5 });
+
+  // Render all 5,000 sites
+  renderMarkers(0);
+}
+
+function renderMarkers(phaseFilter) {
+  if (!leafletMap || !window.RAW_SITES_DATA) return;
+
+  // Clear existing
+  mapMarkers.forEach(m => leafletMap.removeLayer(m.marker));
+  mapMarkers = [];
+
+  let visibleCount = 0;
+  let visiblePop = 0;
+  let visibleSubs = 0;
+  let visibleBts = 0;
+
+  window.RAW_SITES_DATA.forEach(d => {
+    const [lat, lon, bgy, muni, prov, pop, hh, subs, bts1000, pNum, score, tier] = d;
+    if (phaseFilter !== 0 && pNum !== phaseFilter) return;
+
+    visibleCount++;
+    visiblePop += pop;
+    visibleSubs += subs;
+    visibleBts += bts1000;
+
+    const conf = PHASE_CONFIG[pNum];
+    const marker = L.circleMarker([lat, lon], {
+      renderer: mapCanvasRenderer,
+      radius: conf.radius,
+      fillColor: conf.color,
+      fillOpacity: 0.88,
+      color: conf.border,
+      weight: 1
+    });
+
+    const popupHtml = `
+      <div style="min-width: 250px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+          <span style="background:${conf.color}; color:#0A192F; font-size:10px; font-weight:800; padding:2px 7px; border-radius:4px; text-transform:uppercase;">
+            ${conf.name}
+          </span>
+          <span style="font-weight:700; color:#10B981; font-size:11px;">Score: ${score} / 100</span>
+        </div>
+        <h3 style="margin:0 0 2px 0; font-size:14px; color:#fff; font-weight:700;">${bgy}</h3>
+        <div style="color:#94A3B8; font-size:11px; margin-bottom:8px;">${muni}, ${prov}</div>
+        
+        <div style="background:rgba(255,255,255,0.06); border-radius:6px; padding:6px 8px; margin-bottom:8px;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
+            <span style="color:#94A3B8;">Population:</span>
+            <span style="color:#fff; font-weight:600;">${pop.toLocaleString()}</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
+            <span style="color:#94A3B8;">Households:</span>
+            <span style="color:#fff; font-weight:600;">${hh.toLocaleString()}</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
+            <span style="color:#94A3B8;">Target Subs @ 30%:</span>
+            <span style="color:#F59E0B; font-weight:700;">${subs.toLocaleString()}</span>
+          </div>
+          <div style="display:flex; justify-content:space-between;">
+            <span style="color:#94A3B8;">Band n50 BTS (@1k subs):</span>
+            <span style="color:#00B4D8; font-weight:700;">${bts1000} BTS</span>
+          </div>
+        </div>
+
+        <div style="font-size:11px; color:#CBD5E1; margin-bottom:3px;">
+          <b>Backhaul:</b> ${tier}
+        </div>
+        <div style="font-size:10.5px; color:#64748B;">
+          Coordinates: ${lat.toFixed(6)}, ${lon.toFixed(6)}
+        </div>
+      </div>
+    `;
+
+    marker.bindPopup(popupHtml);
+    marker.addTo(leafletMap);
+    mapMarkers.push({ marker, bgy, muni, prov, pNum, lat, lon });
+  });
+
+  // Update stat overlay
+  const statTitle = document.getElementById('map-stat-title');
+  if (statTitle) {
+    statTitle.textContent = phaseFilter === 0 ? "Active Filter: All 5 Batches" : `Active Filter: Phase ${phaseFilter} (1,000 Sites)`;
+  }
+  const statSites = document.getElementById('map-stat-sites');
+  if (statSites) statSites.textContent = visibleCount.toLocaleString();
+  const statBts = document.getElementById('map-stat-bts');
+  if (statBts) statBts.textContent = `${visibleBts.toLocaleString()} BTS`;
+  const statPop = document.getElementById('map-stat-pop');
+  if (statPop) statPop.textContent = (visiblePop >= 1000000 ? `${(visiblePop/1000000).toFixed(1)}M` : visiblePop.toLocaleString());
+  const statSubs = document.getElementById('map-stat-subs');
+  if (statSubs) statSubs.textContent = (visibleSubs >= 1000000 ? `${(visibleSubs/1000000).toFixed(2)}M` : `${Math.round(visibleSubs/1000)}k`);
+}
+
+function filterMapPhase(phaseNum) {
+  currentPhaseFilter = phaseNum;
+  document.querySelectorAll('.map-phase-btn').forEach(btn => btn.classList.remove('active'));
+  const activeBtn = document.getElementById(`btn-phase-${phaseNum}`);
+  if (activeBtn) activeBtn.classList.add('active');
+  renderMarkers(phaseNum);
+}
+
+function resetMapView() {
+  if (!leafletMap) return;
+  leafletMap.flyTo([12.8797, 121.7740], 6);
+}
+
+function searchMapSite() {
+  const query = document.getElementById('map-search-input').value.trim().toLowerCase();
+  if (!query) return;
+
+  const match = mapMarkers.find(m => 
+    m.bgy.toLowerCase().includes(query) || 
+    m.muni.toLowerCase().includes(query) || 
+    m.prov.toLowerCase().includes(query)
+  );
+
+  if (match) {
+    leafletMap.flyTo([match.lat, match.lon], 13);
+    setTimeout(() => {
+      match.marker.openPopup();
+    }, 400);
+  } else {
+    alert("No matching barangay or municipality found in top 5,000 sites.");
+  }
+}
+
 </script>
+
 </body>
 </html>
