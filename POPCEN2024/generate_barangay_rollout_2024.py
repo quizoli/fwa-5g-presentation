@@ -1641,7 +1641,7 @@ def run():
         '<Document>',
         '  <name>FWA 5G Barangay Rollout Master Plan (Top 5,000 Sites — 2024 POPCEN Edition)</name>',
         '  <open>1</open>',
-        '  <description>Nationwide Fixed Wireless Access (FWA) site locations color-coded by rollout phase (Band n50 @ 60 MHz, dimensioned for 1,000 subscribers per BTS, anchored on Converge infrastructure, 2024 POPCEN & FIES poverty integrated).</description>'
+        '  <description>Nationwide Fixed Wireless Access (FWA) site locations color-coded by rollout phase (Band n50 @ 60 MHz, dimensioned for 1,000 subscribers per BTS, anchored on Converge infrastructure, 2024 POPCEN &amp; FIES poverty integrated).</description>'
     ]
 
     for p_num, p_info in phase_colors.items():
@@ -1681,8 +1681,9 @@ def run():
   </table>
 </div>
 ]]>'''
+            b_name = f"{b['barangay']} ({b['municipality']})".replace('&', '&amp;')
             kml_parts.append(f'''    <Placemark>
-      <name>{b['barangay']} ({b['municipality']})</name>
+      <name>{b_name}</name>
       <styleUrl>#phase{p_num}_style</styleUrl>
       <description>{desc_html}</description>
       <Point>

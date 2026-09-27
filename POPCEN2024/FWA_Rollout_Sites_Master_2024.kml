@@ -3,7 +3,7 @@
 <Document>
   <name>FWA 5G Barangay Rollout Master Plan (Top 5,000 Sites — 2024 POPCEN Edition)</name>
   <open>1</open>
-  <description>Nationwide Fixed Wireless Access (FWA) site locations color-coded by rollout phase (Band n50 @ 60 MHz, dimensioned for 1,000 subscribers per BTS, anchored on Converge infrastructure, 2024 POPCEN & FIES poverty integrated).</description>
+  <description>Nationwide Fixed Wireless Access (FWA) site locations color-coded by rollout phase (Band n50 @ 60 MHz, dimensioned for 1,000 subscribers per BTS, anchored on Converge infrastructure, 2024 POPCEN &amp; FIES poverty integrated).</description>
   <Style id="phase1_style">
     <IconStyle>
       <color>ffd8b400</color>
@@ -56156,7 +56156,7 @@
       </Point>
     </Placemark>
     <Placemark>
-      <name>Palangue 2 & 3 (Naic)</name>
+      <name>Palangue 2 &amp; 3 (Naic)</name>
       <styleUrl>#phase3_style</styleUrl>
       <description><![CDATA[
 <div style="font-family:Arial,sans-serif; width:300px; font-size:12px;">
