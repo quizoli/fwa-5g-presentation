@@ -1,0 +1,184 @@
+{
+  "sites": 5000,
+  "point_features": 2405,
+  "node_candidates": 1296,
+  "unique_node_coordinates": 1287,
+  "line_features": 4401,
+  "line_vertices": 334462,
+  "line_categories": {
+    "Conditional - mapped route, status unverified": 2218,
+    "Stronger evidence - built or existing label": 459,
+    "Excluded - no cable or not built": 56,
+    "Excluded - planned or ongoing": 280,
+    "Excluded - civil works only or unclear cable": 1018,
+    "Excluded - CCTV dedicated network": 313,
+    "Excluded - submarine folder": 50,
+    "Conditional - acceptance pending": 7
+  },
+  "node_reproduced_0.011km": 5000,
+  "vertex_reproduced_0.011km": 2641,
+  "raw_point_not_node": 149,
+  "node_increase_over_500m": 88,
+  "node_crosses_1km": 53,
+  "node_crosses_3km": 38,
+  "vertex_overstatement_500m": 45,
+  "vertex_overstatement_100m": 273,
+  "excluded_nearest_line": 834,
+  "score_reproduced_within_0.3": 4870,
+  "classes": {
+    "A - Node within 0.5 km": 919,
+    "B - Node 0.5-1 km": 1053,
+    "C - Line within 0.5 km; node over 1 km": 1153,
+    "D - Other node or line within 3 km": 1790,
+    "E - Nearest node or line 3-5 km": 48,
+    "F - Nearest node and line over 5 km": 37
+  },
+  "stats": {
+    "Workbook node km": {
+      "mean": 1.683272,
+      "median": 1.25,
+      "p90": 2.76,
+      "max": 89.47
+    },
+    "Screened node km": {
+      "mean": 1.753947417677586,
+      "median": 1.268670081110001,
+      "p90": 2.834549299195438,
+      "max": 89.28197363426929
+    },
+    "Workbook line-vertex km": {
+      "mean": 1.7732059999999998,
+      "median": 0.56,
+      "p90": 4.39,
+      "max": 125.08
+    },
+    "All-line segment km": {
+      "mean": 1.700076853277626,
+      "median": 0.4984393910041011,
+      "p90": 4.332887633227355,
+      "max": 125.20573429949242
+    },
+    "Screened line km": {
+      "mean": 2.1607820254408456,
+      "median": 0.5946978190332111,
+      "p90": 5.526585373643092,
+      "max": 125.20573429949242
+    },
+    "Stronger-evidence line km": {
+      "mean": 3.9443386311979642,
+      "median": 1.0259895991546681,
+      "p90": 9.327761818120749,
+      "max": 125.20573429949242
+    }
+  },
+  "phase": [
+    {
+      "phase": 1,
+      "sites": 1000,
+      "class_counts": {
+        "A": 442,
+        "B": 382,
+        "C": 85,
+        "D": 89,
+        "E": 2
+      },
+      "workbook_node_mean": 0.58951,
+      "node_mean": 0.6683319797543316,
+      "line_mean": 1.7107561565851812,
+      "node_1km": 824,
+      "either_3km": 998,
+      "strong_either_3km": 995,
+      "node_misclassified": 47
+    },
+    {
+      "phase": 2,
+      "sites": 1000,
+      "class_counts": {
+        "B": 328,
+        "D": 316,
+        "A": 145,
+        "C": 210,
+        "F": 1
+      },
+      "workbook_node_mean": 1.0702800000000001,
+      "node_mean": 1.1221802510717267,
+      "line_mean": 2.083919970619062,
+      "node_1km": 473,
+      "either_3km": 999,
+      "strong_either_3km": 997,
+      "node_misclassified": 18
+    },
+    {
+      "phase": 3,
+      "sites": 1000,
+      "class_counts": {
+        "D": 440,
+        "B": 130,
+        "A": 141,
+        "C": 284,
+        "F": 2,
+        "E": 3
+      },
+      "workbook_node_mean": 1.4393699999999998,
+      "node_mean": 1.5350285335550746,
+      "line_mean": 2.0117242041768235,
+      "node_1km": 271,
+      "either_3km": 995,
+      "strong_either_3km": 988,
+      "node_misclassified": 29
+    },
+    {
+      "phase": 4,
+      "sites": 1000,
+      "class_counts": {
+        "C": 281,
+        "D": 489,
+        "B": 106,
+        "A": 101,
+        "E": 9,
+        "F": 14
+      },
+      "workbook_node_mean": 2.54409,
+      "node_mean": 2.594071489906717,
+      "line_mean": 2.406515491992933,
+      "node_1km": 207,
+      "either_3km": 977,
+      "strong_either_3km": 946,
+      "node_misclassified": 24
+    },
+    {
+      "phase": 5,
+      "sites": 1000,
+      "class_counts": {
+        "C": 293,
+        "D": 456,
+        "B": 107,
+        "F": 20,
+        "E": 34,
+        "A": 90
+      },
+      "workbook_node_mean": 2.7731099999999995,
+      "node_mean": 2.850124834100081,
+      "line_mean": 2.5909943038302274,
+      "node_1km": 197,
+      "either_3km": 946,
+      "strong_either_3km": 908,
+      "node_misclassified": 31
+    }
+  ],
+  "validation": {
+    "independent_segment_checks": 30,
+    "maximum_error_m": 2.0940937872637733e-09,
+    "all_5000_geometry_and_asset_checks": "passed"
+  },
+  "vertex_discrepancy_over_100m": 760,
+  "score25_unexplained": 123,
+  "score15_unexplained": 5,
+  "conditional_line_winners": 2250,
+  "node_under_3km": 4574,
+  "screened_line_under_500m": 2317,
+  "either_under_3km": 4915,
+  "phase1_node_over_3km": 10,
+  "line_increase_500m": 314,
+  "node_exact_rounding": 4999
+}

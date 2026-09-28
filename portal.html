@@ -602,6 +602,163 @@
     }
   }
 
+
+  /* Master Revision Switcher Styles */
+  .revision-control-panel {
+    background: linear-gradient(135deg, rgba(15, 35, 61, 0.95) 0%, rgba(23, 42, 69, 0.95) 100%);
+    border: 1px solid rgba(0, 180, 216, 0.35);
+    border-radius: 16px;
+    padding: 22px 28px;
+    margin-bottom: 28px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+  }
+  .revision-control-panel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--teal) 0%, var(--blue-accent) 100%);
+  }
+  .rev-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .rev-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .rev-badge {
+    font-size: 10.5px;
+    font-weight: 800;
+    color: var(--teal);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .rev-heading {
+    font-size: 20px;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .rev-switch-pills {
+    display: flex;
+    background: rgba(10, 25, 47, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 4px;
+    gap: 6px;
+  }
+  .rev-pill-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    border: 1px solid transparent;
+    color: #94A3B8;
+    padding: 8px 16px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    text-align: left;
+  }
+  .rev-pill-btn:hover {
+    color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .rev-pill-btn.active {
+    background: rgba(0, 180, 216, 0.18);
+    border-color: rgba(0, 180, 216, 0.5);
+    color: #FFFFFF;
+    box-shadow: 0 4px 15px rgba(0, 180, 216, 0.25);
+  }
+  .rev-pill-icon {
+    font-size: 18px;
+  }
+  .rev-pill-text {
+    display: flex;
+    flex-direction: column;
+  }
+  .rev-pill-name {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .rev-pill-date {
+    font-size: 10.5px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .rev-pill-btn.active .rev-pill-date {
+    color: #CBD5E1;
+  }
+  .rev-active-tag {
+    background: #10B981;
+    color: #0A192F;
+    font-size: 9.5px;
+    font-weight: 900;
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+  .rev-description {
+    background: rgba(10, 25, 47, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #CBD5E1;
+    line-height: 1.5;
+  }
+  .rev-description strong {
+    color: var(--teal);
+  }
+  .rev-description .highlight-gold {
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .rev-description .highlight-green {
+    color: #10B981;
+    font-weight: 700;
+  }
+
+  /* Revision-sensitive UI tags */
+  .rev-indicator-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10.5px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .rev-indicator-rev1 {
+    background: rgba(148, 163, 184, 0.15);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    color: #94A3B8;
+  }
+  .rev-indicator-rev2 {
+    background: rgba(16, 185, 129, 0.2);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: #34D399;
+  }
+
 </style>
 </head>
 <body>
@@ -640,6 +797,40 @@
 </div>
 
 <div class="container">
+
+  <!-- Master Revision Architecture Switcher (Rev 1 vs Rev 2) -->
+  <div class="revision-control-panel">
+    <div class="rev-header">
+      <div class="rev-title-group">
+        <span class="rev-badge">ENTERPRISE RELEASE ARCHITECTURE</span>
+        <h2 class="rev-heading">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+          </svg>
+          Planning Revision & Engineering Baseline
+        </h2>
+      </div>
+      <div class="rev-switch-pills">
+        <button class="rev-pill-btn" id="btnRev1" onclick="switchRevision('rev1')">
+          <span class="rev-pill-icon">📁</span>
+          <div class="rev-pill-text">
+            <span class="rev-pill-name">Revision 1</span>
+            <span class="rev-pill-date">Sep 25, 2026 · Siting Baseline</span>
+          </div>
+        </button>
+        <button class="rev-pill-btn active" id="btnRev2" onclick="switchRevision('rev2')">
+          <span class="rev-pill-icon">🛡️</span>
+          <div class="rev-pill-text">
+            <span class="rev-pill-name">Revision 2 <span class="rev-active-tag">AUDITED ★</span></span>
+            <span class="rev-pill-date">Sep 28, 2026 · Optical Backbone & Economics</span>
+          </div>
+        </button>
+      </div>
+    </div>
+    <div class="rev-description" id="revDescriptionText">
+      <!-- Injected dynamically by JS -->
+    </div>
+  </div>
 
   <!-- Model Visibility & Filtering Toolbar -->
   <div class="model-filter-toolbar">
@@ -775,7 +966,33 @@
     <!-- Deck 4: Model 1 - POPCEN 2024 Commercial Viability -->
     <div class="deck-card" data-model="model1" style="border-color: #10B981; background: linear-gradient(180deg, #0E2E3B 0%, #0F233D 100%);">
       <button class="card-hide-btn" onclick="hideModel('model1')" title="Hide Model 1 from view">✕ Hide</button>
-      <div>
+      <!-- Model 1 Rev 2 (Audited Fiber Engineering) -->
+      <div class="rev-content rev2-content">
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+          <span class="badge-tag" style="background: rgba(16, 185, 129, 0.25); color: #10B981; border: 1px solid rgba(16, 185, 129, 0.4);">
+            MODEL 1: AUDITED COMMERCIAL
+          </span>
+          <span class="badge-tag" style="background: rgba(0, 180, 216, 0.2); color: #38BDF8; border: 1px solid rgba(0, 180, 216, 0.3);">
+            POPCEN 2024 · 31-COL WORKBOOK
+          </span>
+          <span class="rev-indicator-chip rev-indicator-rev2">REV 2 AUDITED</span>
+        </div>
+        <h2>Model 1: POPCEN 2024 Commercial Rollout</h2>
+        <p>
+          Ingests Codex's independent spatial screening of the Converge optical backbone across 5,000 barangays, categorizing sites into Classes A–F with continuous line segment distances and 4-tier transmission economics.
+        </p>
+        <ul class="deck-features">
+          <li><strong>Phase 1 Direct Node Lateral:</strong> <strong>824 sites &le; 1.0 km (82.4%)</strong> ready for immediate direct drop build</li>
+          <li><strong>Phase 1 Line-Tap Workstream:</strong> <strong>85 sites &le; 500m (8.5%)</strong> for splice closure tap</li>
+          <li><strong>Transmission Feasibility:</strong> 99.8% of Phase 1 within 3 km of fiber (only 2 Starlink sites Day 1)</li>
+          <li><strong>Total 5,000-Site Footprint:</strong> 98.3% fiber connectivity (&lt;3km); only 85 total Starlink LEO sites (1.7%)</li>
+          <li><strong>Band n50 3-Sector 8T8R MIMO:</strong> Dimensioned for 1,000 active subscribers per BTS (~333/sector)</li>
+          <li><strong>Audited Deliverables:</strong> Standard & Dynamic 31-Column Workbooks + 10-Yr Financial Model (+$1.07B NPV)</li>
+        </ul>
+      </div>
+
+      <!-- Model 1 Rev 1 (Siting Baseline) -->
+      <div class="rev-content rev1-content" style="display: none;">
         <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
           <span class="badge-tag" style="background: rgba(16, 185, 129, 0.25); color: #10B981; border: 1px solid rgba(16, 185, 129, 0.4);">
             MODEL 1: COMMERCIAL VIABILITY
@@ -783,10 +1000,11 @@
           <span class="badge-tag" style="background: rgba(0, 180, 216, 0.2); color: #38BDF8; border: 1px solid rgba(0, 180, 216, 0.3);">
             POPCEN 2024 · 14 Slides
           </span>
+          <span class="rev-indicator-chip rev-indicator-rev1">REV 1 BASELINE</span>
         </div>
         <h2>Model 1: POPCEN 2024 Commercial Rollout</h2>
         <p>
-          Prioritizes rapid commercial payback, fiber proximity (<3km), and high-purchasing power communities using official 2024 Census of Population (Proc. 973) and PSA FIES Poverty data.
+          Prioritizes rapid commercial payback, fiber proximity (&lt;3km), and high-purchasing power communities using official 2024 Census of Population (Proc. 973) and PSA FIES Poverty data.
         </p>
         <ul class="deck-features">
           <li>Batch 1: 1,000 priority sites (7.06M pop · 1.94M households · 582k subs @ 30%)</li>
@@ -803,7 +1021,33 @@
     <!-- Deck 5: Model 2 - DICT / UNDP GIDA Prioritization Model -->
     <div class="deck-card" data-model="model2" style="border-color: #38BDF8; background: linear-gradient(180deg, #0C2340 0%, #0F233D 100%);">
       <button class="card-hide-btn" onclick="hideModel('model2')" title="Hide Model 2 from view">✕ Hide</button>
-      <div>
+      <!-- Model 2 Rev 2 (Audited Fiber Engineering) -->
+      <div class="rev-content rev2-content">
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+          <span class="badge-tag" style="background: rgba(56, 189, 248, 0.25); color: #38BDF8; border: 1px solid rgba(56, 189, 248, 0.4);">
+            MODEL 2: AUDITED GIDA
+          </span>
+          <span class="badge-tag" style="background: rgba(255, 183, 3, 0.2); color: #FCD34D; border: 1px solid rgba(255, 183, 3, 0.3);">
+            11 UNDP CRITERIA · 31-COL
+          </span>
+          <span class="rev-indicator-chip rev-indicator-rev2">REV 2 AUDITED</span>
+        </div>
+        <h2>Model 2: Official DICT / UNDP GIDA Rollout</h2>
+        <p>
+          Subjected to full optical backbone spatial screening. Reveals true fiber isolation across remote barangays, establishing an unassailable engineering rationale for Starlink LEO satellite backhaul.
+        </p>
+        <ul class="deck-features">
+          <li><strong>Phase 1 Direct Node Lateral:</strong> <strong>85 sites &le; 1.0 km (8.5%)</strong> with screened Converge optical drop</li>
+          <li><strong>Phase 1 Line-Tap Workstream:</strong> <strong>69 sites &le; 500m (6.9%)</strong> adjacent to verified aerial lines</li>
+          <li><strong>Starlink LEO Satellite Backhaul:</strong> <strong>644 Phase 1 sites (64.4%)</strong> have no asset &le; 3km</li>
+          <li><strong>Total 5,000-Site Footprint:</strong> <strong>3,327 sites (66.5%)</strong> require Starlink LEO satellite backhaul</li>
+          <li><strong>Band n50 3-Sector 8T8R MIMO:</strong> Solar-ready off-grid / weak-grid architecture</li>
+          <li><strong>Audited Deliverables:</strong> Standard & Dynamic 31-Column Workbooks + 10-Yr Universal Service Financial Model</li>
+        </ul>
+      </div>
+
+      <!-- Model 2 Rev 1 (Siting Baseline) -->
+      <div class="rev-content rev1-content" style="display: none;">
         <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
           <span class="badge-tag" style="background: rgba(56, 189, 248, 0.25); color: #38BDF8; border: 1px solid rgba(56, 189, 248, 0.4);">
             MODEL 2: GIDA PRIORITIZATION
@@ -811,6 +1055,7 @@
           <span class="badge-tag" style="background: rgba(255, 183, 3, 0.2); color: #FCD34D; border: 1px solid rgba(255, 183, 3, 0.3);">
             11 UNDP Criteria
           </span>
+          <span class="rev-indicator-chip rev-indicator-rev1">REV 1 BASELINE</span>
         </div>
         <h2>Model 2: Official DICT / UNDP GIDA Rollout</h2>
         <p>
@@ -819,7 +1064,7 @@
         <ul class="deck-features">
           <li>Batch 1: 1,000 Tier 1 Critical GIDA sites (2.25M pop · 589k households · 177k subs @ 30%)</li>
           <li>Evaluates 11 criteria: Mobile downspeed, road distance, nighttime lights, hazard, insurgency, poverty</li>
-          <li>Hybrid transmission: 27.0% direct fiber (<3km) + 14.7% near fiber (3-5km) + 58.3% Starlink LEO (>5km)</li>
+          <li>Hybrid transmission: 27.0% direct fiber (&lt;3km) + 14.7% near fiber (3-5km) + 58.3% Starlink LEO (&gt;5km)</li>
           <li>Total 5,000 sites cover 16.84M population across the country's most isolated barangays (62.3% Starlink LEO)</li>
           <li>100% Unique Coordinates & Latitudes: 0 duplicates across all 5,000 sites</li>
           <li>Reconciled 25-column companion models: Standard & Dynamic Excel</li>
@@ -831,7 +1076,33 @@
     <!-- Deck 6: Model 3 - Combined Hybrid Dual Optimization -->
     <div class="deck-card featured" data-model="model3" style="border-color: #FFB703; background: linear-gradient(180deg, #2D2206 0%, #0F233D 100%);">
       <button class="card-hide-btn" onclick="hideModel('model3')" title="Hide Model 3 from view">✕ Hide</button>
-      <div>
+      <!-- Model 3 Rev 2 (Audited Fiber Engineering) -->
+      <div class="rev-content rev2-content">
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+          <span class="badge-tag" style="background: rgba(255, 183, 3, 0.25); color: #FCD34D; border: 1px solid rgba(255, 183, 3, 0.4);">
+            ★ MODEL 3: AUDITED HYBRID
+          </span>
+          <span class="badge-tag" style="background: rgba(16, 185, 129, 0.2); color: #86EFAC; border: 1px solid rgba(16, 185, 129, 0.3);">
+            DUAL OPTIMIZATION · 31-COL
+          </span>
+          <span class="rev-indicator-chip rev-indicator-rev2">REV 2 AUDITED</span>
+        </div>
+        <h2>Model 3: Combined Hybrid Rollout Plan</h2>
+        <p>
+          The optimal enterprise rollout balance: captures high-volume suburban unserved demand while delivering universal access. Spatial audit reveals balanced 60/40 fiber-to-satellite architecture.
+        </p>
+        <ul class="deck-features">
+          <li><strong>Phase 1 Direct Node Lateral:</strong> <strong>282 sites &le; 1.0 km (28.2%)</strong> ready for rapid fiber drop</li>
+          <li><strong>Phase 1 Line-Tap Workstream:</strong> <strong>170 sites &le; 500m (17.0%)</strong> for mainline cable splice tap</li>
+          <li><strong>Phase 1 Starlink Satellite Backhaul:</strong> <strong>251 sites &gt; 3.0 km (25.1%)</strong> deployed via LEO satellite</li>
+          <li><strong>Total 5,000-Site Footprint:</strong> <strong>2,994 fiber sites (59.9%)</strong> + <strong>2,006 Starlink sites (40.1%)</strong></li>
+          <li><strong>Demographic Power:</strong> 29.84M population, 8.18M households, and 2.45M target subscribers</li>
+          <li><strong>Audited Deliverables:</strong> Standard & Dynamic 31-Column Workbooks + 10-Yr Financial Model (+$842M NPV, 29.4% IRR)</li>
+        </ul>
+      </div>
+
+      <!-- Model 3 Rev 1 (Siting Baseline) -->
+      <div class="rev-content rev1-content" style="display: none;">
         <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
           <span class="badge-tag" style="background: rgba(255, 183, 3, 0.25); color: #FCD34D; border: 1px solid rgba(255, 183, 3, 0.4);">
             ★ MODEL 3: HYBRID DUAL OPTIMIZATION
@@ -839,6 +1110,7 @@
           <span class="badge-tag" style="background: rgba(16, 185, 129, 0.2); color: #86EFAC; border: 1px solid rgba(16, 185, 129, 0.3);">
             50% Commercial + 50% GIDA
           </span>
+          <span class="rev-indicator-chip rev-indicator-rev1">REV 1 BASELINE</span>
         </div>
         <h2>Model 3: Combined Hybrid Rollout Plan</h2>
         <p>
@@ -846,9 +1118,9 @@
         </p>
         <ul class="deck-features">
           <li>Batch 1: 1,000 hybrid priority sites (9.10M pop · 2.54M households · 761k subs @ 30%)</li>
-          <li>Captures 672 direct optical nodes (<3km), 129 near optical (3-5km), and 199 Starlink LEO (19.9%)</li>
+          <li>Captures 672 direct optical nodes (&lt;3km), 129 near optical (3-5km), and 199 Starlink LEO (19.9%)</li>
           <li>Total 5,000 sites reach 29.84M population, 8.18M households, and 2.45M subscribers</li>
-          <li>Transmission resilience: 49.7% direct optical (<3km) + 14.5% near optical (3-5km) + 35.7% Starlink LEO (>5km)</li>
+          <li>Transmission resilience: 49.7% direct optical (&lt;3km) + 14.5% near optical (3-5km) + 35.7% Starlink LEO (&gt;5km)</li>
           <li>100% Unique Coordinates & Latitudes: 0 duplicates across all 5,000 sites</li>
           <li>Live sensitivity tuning in Excel: dynamically shift commercial vs GIDA blend weights</li>
         </ul>
@@ -861,16 +1133,103 @@
   <!-- Download Package Banner -->
   <div class="download-section">
     <div class="download-info">
-      <h3>Executive Deliverables Catalog & Audited Models (September 25, 2026 Reconciled Release)</h3>
-      <p>Download official companion sensitivity models, metric mappings, GIS layers, and comparative audit reports with 100% verified unique coordinates across all three models.</p>
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+        <h3 id="downloadCatalogTitle" style="margin-bottom: 0;">Executive Deliverables Catalog & Audited Models</h3>
+        <span class="rev-indicator-chip rev-indicator-rev2" id="downloadCatalogBadge">REV 2 AUDITED RELEASE</span>
+      </div>
+      <p id="downloadCatalogDesc">Download official companion sensitivity models, 31-column audited workbooks, 10-year financial business case models, color-coded Google Earth layers, and Codex's independent spatial audit package.</p>
     </div>
-    <div style="display: flex; gap: 12px; flex-wrap: wrap; width: 100%;">
+
+    <!-- REVISION 2 DOWNLOAD CATALOG (ACTIVE / RECOMMENDED) -->
+    <div id="download-catalog-rev2" style="display: flex; gap: 12px; flex-wrap: wrap; width: 100%;">
+      <!-- Master Comparison & Financial Models -->
+      <a href="2026-09-28_Audited_Fiber_Models_Rev2/00_FWA_Three_Models_Financial_Master_Rev2.xlsx" download class="btn-download" style="background: rgba(255, 183, 3, 0.25); border-color: rgba(255, 183, 3, 0.6); color: #FDE047; font-weight: 800; width: 100%;">
+        <span>💰 Three-Model Financial & Engineering Master Comparison Rev 2 (.xlsx)</span>
+      </a>
+      <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Three_Models_Executive_Comparison_Rev2.md" target="_blank" class="btn-download" style="background: rgba(0, 180, 216, 0.2); border-color: rgba(0, 180, 216, 0.4); color: #7DD3FC; font-weight: 700; width: calc(50% - 6px);">
+        <span>📋 Master Executive Comparison Report Rev 2 (.md)</span>
+      </a>
+      <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Three_Models_Financial_Business_Case_Comparison_Rev2.md" target="_blank" class="btn-download" style="background: rgba(0, 180, 216, 0.2); border-color: rgba(0, 180, 216, 0.4); color: #7DD3FC; font-weight: 700; width: calc(50% - 6px);">
+        <span>📊 10-Year Financial Comparison Analysis Rev 2 (.md)</span>
+      </a>
+
+      <!-- Model 1 (Commercial Rev 2) -->
+      <div style="width: 100%; margin-top: 8px; font-size: 11.5px; font-weight: 800; color: #10B981; letter-spacing: 1px; text-transform: uppercase;">
+        MODEL 1: COMMERCIAL VIABILITY (POPCEN 2024 REV 2)
+      </div>
+      <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Barangay_Rollout_Plan_2024_1000s_Rev2.xlsx" download class="btn-download" data-model="model1" style="background: rgba(16, 185, 129, 0.22); border-color: #10B981; color: #6EE7B7; font-weight: 700;">
+        <span>📁 M1: 31-Col Audited Rollout Plan (.xlsx)</span>
+      </a>
+      <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Barangay_Rollout_Plan_2024_1000s_Rev2_Dynamic.xlsx" download class="btn-download" data-model="model1" style="background: rgba(16, 185, 129, 0.22); border-color: #10B981; color: #6EE7B7;">
+        <span>⚡ M1: Dynamic Sensitivity Model (.xlsx)</span>
+      </a>
+      <a href="2026-09-28_Audited_Fiber_Models_Rev2/01_FWA_Business_Case_Commercial_Rev2.xlsx" download class="btn-download" data-model="model1" style="background: rgba(16, 185, 129, 0.22); border-color: #10B981; color: #6EE7B7; font-weight: 700;">
+        <span>💵 M1: 10-Yr Financial Business Case (.xlsx)</span>
+      </a>
+      <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Rollout_Sites_Master_2024_Rev2.kmz" download class="btn-download" data-model="model1" style="background: rgba(16, 185, 129, 0.15); border-color: #10B981; color: #6EE7B7;">
+        <span>🌍 M1: Audited Color-Coded Google Earth (.kmz)</span>
+      </a>
+
+      <!-- Model 2 (GIDA Rev 2) -->
+      <div style="width: 100%; margin-top: 8px; font-size: 11.5px; font-weight: 800; color: #38BDF8; letter-spacing: 1px; text-transform: uppercase;">
+        MODEL 2: UNIVERSAL ACCESS (DICT / UNDP GIDA REV 2)
+      </div>
+      <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Barangay_Rollout_Plan_GIDA_1000s_Rev2.xlsx" download class="btn-download" data-model="model2" style="background: rgba(56, 189, 248, 0.22); border-color: rgba(56, 189, 248, 0.6); color: #7DD3FC; font-weight: 700;">
+        <span>📁 M2: 31-Col Audited GIDA Rollout Plan (.xlsx)</span>
+      </a>
+      <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Barangay_Rollout_Plan_GIDA_1000s_Rev2_Dynamic.xlsx" download class="btn-download" data-model="model2" style="background: rgba(56, 189, 248, 0.22); border-color: rgba(56, 189, 248, 0.6); color: #7DD3FC;">
+        <span>⚡ M2: Dynamic Sensitivity Model (.xlsx)</span>
+      </a>
+      <a href="2026-09-28_Audited_Fiber_Models_Rev2/02_FWA_Business_Case_GIDA_Rev2.xlsx" download class="btn-download" data-model="model2" style="background: rgba(56, 189, 248, 0.22); border-color: rgba(56, 189, 248, 0.6); color: #7DD3FC; font-weight: 700;">
+        <span>💵 M2: 10-Yr Financial Business Case (.xlsx)</span>
+      </a>
+      <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Rollout_Sites_GIDA_Rev2.kmz" download class="btn-download" data-model="model2" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.4); color: #7DD3FC;">
+        <span>🌍 M2: Audited Color-Coded Google Earth (.kmz)</span>
+      </a>
+
+      <!-- Model 3 (Combined Rev 2) -->
+      <div style="width: 100%; margin-top: 8px; font-size: 11.5px; font-weight: 800; color: #FFB703; letter-spacing: 1px; text-transform: uppercase;">
+        MODEL 3: COMBINED HYBRID DUAL OPTIMIZATION (REV 2)
+      </div>
+      <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Barangay_Rollout_Plan_Combined_1000s_Rev2.xlsx" download class="btn-download" data-model="model3" style="background: rgba(255, 183, 3, 0.22); border-color: rgba(255, 183, 3, 0.6); color: #FCD34D; font-weight: 700;">
+        <span>📁 M3: 31-Col Audited Hybrid Rollout Plan (.xlsx)</span>
+      </a>
+      <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Barangay_Rollout_Plan_Combined_1000s_Rev2_Dynamic.xlsx" download class="btn-download" data-model="model3" style="background: rgba(255, 183, 3, 0.22); border-color: rgba(255, 183, 3, 0.6); color: #FCD34D;">
+        <span>⚡ M3: Dynamic Sensitivity Model (.xlsx)</span>
+      </a>
+      <a href="2026-09-28_Audited_Fiber_Models_Rev2/03_FWA_Business_Case_Combined_Rev2.xlsx" download class="btn-download" data-model="model3" style="background: rgba(255, 183, 3, 0.22); border-color: rgba(255, 183, 3, 0.6); color: #FCD34D; font-weight: 700;">
+        <span>💵 M3: 10-Yr Financial Business Case (.xlsx)</span>
+      </a>
+      <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Rollout_Sites_Combined_Rev2.kmz" download class="btn-download" data-model="model3" style="background: rgba(255, 183, 3, 0.15); border-color: rgba(255, 183, 3, 0.4); color: #FCD34D;">
+        <span>🌍 M3: Audited Color-Coded Google Earth (.kmz)</span>
+      </a>
+
+      <!-- Codex Independent Audit Package -->
+      <div style="width: 100%; margin-top: 10px; font-size: 11.5px; font-weight: 800; color: #E2E8F0; letter-spacing: 1px; text-transform: uppercase; border-top: 1px dashed rgba(255,255,255,0.15); padding-top: 12px;">
+        🔍 CODEX INDEPENDENT SPATIAL AUDIT PACKAGE
+      </div>
+      <a href="2026-09-28_Audited_Fiber_Models_Rev2/codex_audit/FWA_All_5000_Site_Validation.csv" download class="btn-download" style="background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.25); color: #FFFFFF; font-weight: 700;">
+        <span>📊 Codex 5,000-Site Audit Matrix (.csv)</span>
+      </a>
+      <a href="2026-09-28_Audited_Fiber_Models_Rev2/codex_audit/FWA_Fiber_Deployment_Analysis.html" target="_blank" class="btn-download" style="background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.25); color: #FFFFFF;">
+        <span>📑 Codex Interactive Audit Report (.html)</span>
+      </a>
+      <a href="2026-09-28_Audited_Fiber_Models_Rev2/codex_audit/FWA_Validated_Fiber_Deployment.kmz" download class="btn-download" style="background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.25); color: #FFFFFF;">
+        <span>🛰️ Codex Validated Earth Layer (.kmz)</span>
+      </a>
+    </div>
+
+    <!-- REVISION 1 DOWNLOAD CATALOG (BASELINE / ARCHIVED) -->
+    <div id="download-catalog-rev1" style="display: none; gap: 12px; flex-wrap: wrap; width: 100%;">
       <!-- Master Comparison -->
       <a href="FWA_Three_Models_Executive_Comparison.md" target="_blank" class="btn-download" style="background: rgba(255, 183, 3, 0.25); border-color: rgba(255, 183, 3, 0.6); color: #FDE047; font-weight: 800; width: 100%;">
-        <span>📋 Master Three-Model Executive Comparison Report (.md)</span>
+        <span>📋 Master Three-Model Executive Comparison Report Rev 1 (.md)</span>
       </a>
 
       <!-- Model 1 (Commercial) 2026-09-25 Revised -->
+      <div style="width: 100%; margin-top: 8px; font-size: 11.5px; font-weight: 800; color: #10B981; letter-spacing: 1px; text-transform: uppercase;">
+        MODEL 1: COMMERCIAL VIABILITY (REV 1 BASELINE)
+      </div>
       <a href="2026-09-25_Revised_Models/FWA_Barangay_Rollout_Plan_2024_1000s.xlsx" download class="btn-download" data-model="model1" style="background: rgba(16, 185, 129, 0.25); border-color: #10B981; color: #6EE7B7; font-weight: 700;">
         <span>📁 Model 1: Commercial Rollout Plan (0 Dupes, .xlsx)</span>
       </a>
@@ -882,6 +1241,9 @@
       </a>
 
       <!-- Model 2 (GIDA) 2026-09-25 Revised -->
+      <div style="width: 100%; margin-top: 8px; font-size: 11.5px; font-weight: 800; color: #38BDF8; letter-spacing: 1px; text-transform: uppercase;">
+        MODEL 2: UNIVERSAL ACCESS (REV 1 BASELINE)
+      </div>
       <a href="2026-09-25_Revised_Models/FWA_Barangay_Rollout_Plan_GIDA_1000s.xlsx" download class="btn-download" data-model="model2" style="background: rgba(56, 189, 248, 0.25); border-color: rgba(56, 189, 248, 0.6); color: #7DD3FC; font-weight: 700;">
         <span>📁 Model 2: GIDA Rollout Plan (0 Dupes, .xlsx)</span>
       </a>
@@ -893,6 +1255,9 @@
       </a>
 
       <!-- Model 3 (Combined) 2026-09-25 Revised -->
+      <div style="width: 100%; margin-top: 8px; font-size: 11.5px; font-weight: 800; color: #FFB703; letter-spacing: 1px; text-transform: uppercase;">
+        MODEL 3: COMBINED HYBRID DUAL OPTIMIZATION (REV 1 BASELINE)
+      </div>
       <a href="2026-09-25_Revised_Models/FWA_Barangay_Rollout_Plan_Combined_1000s.xlsx" download class="btn-download" data-model="model3" style="background: rgba(255, 183, 3, 0.25); border-color: rgba(255, 183, 3, 0.6); color: #FCD34D; font-weight: 700;">
         <span>📁 Model 3: Combined Hybrid Plan (0 Dupes, .xlsx)</span>
       </a>
@@ -1078,6 +1443,83 @@
     }
   }
 
+
+  // ==========================================
+  // REVISION SWITCHER LOGIC (REV 1 vs REV 2)
+  // ==========================================
+  const REV_STORAGE_KEY = 'fwa_portal_active_revision';
+
+  const REV_DESCRIPTIONS = {
+    rev1: `<strong>Revision 1 Baseline (Sep 25, 2026):</strong> Established nationwide 5,000-site macro footprints, POPCEN 2024 demographic sizing, and DICT Looker Studio multi-criteria evaluation with 100% deduplicated coordinates across all three models. Assumed preliminary node proximity.`,
+    rev2: `<strong>Revision 2 Audited Fiber Engineering (Sep 28, 2026):</strong> <span class="highlight-green">Codex Independent Audit Standard.</span> Ingests screened optical backbone (Classes A–F), continuous line segment distances, and 4-tier transmission economics. Confirms <strong>Model 1 is 98.3% fiber</strong> (824 Phase 1 node drops &le;1km), while proving <strong>Model 2 requires 66.5% Starlink LEO satellite backhaul</strong> (3,327 sites). Model 3 delivers balanced 60/40 fiber-satellite synergy.`
+  };
+
+  function getActiveRevision() {
+    try {
+      return localStorage.getItem(REV_STORAGE_KEY) || 'rev2';
+    } catch (e) {
+      return 'rev2';
+    }
+  }
+
+  function switchRevision(rev) {
+    try {
+      localStorage.setItem(REV_STORAGE_KEY, rev);
+    } catch (e) {}
+
+    // Update Pill Buttons
+    const btnRev1 = document.getElementById('btnRev1');
+    const btnRev2 = document.getElementById('btnRev2');
+    if (btnRev1 && btnRev2) {
+      btnRev1.classList.toggle('active', rev === 'rev1');
+      btnRev2.classList.toggle('active', rev === 'rev2');
+    }
+
+    // Update Description Text
+    const descEl = document.getElementById('revDescriptionText');
+    if (descEl) {
+      descEl.innerHTML = REV_DESCRIPTIONS[rev] || REV_DESCRIPTIONS.rev2;
+    }
+
+    // Toggle Card Bodies
+    document.querySelectorAll('.rev1-content').forEach(el => {
+      el.style.display = rev === 'rev1' ? 'block' : 'none';
+    });
+    document.querySelectorAll('.rev2-content').forEach(el => {
+      el.style.display = rev === 'rev2' ? 'block' : 'none';
+    });
+
+    // Toggle Download Catalogs
+    const dlRev1 = document.getElementById('download-catalog-rev1');
+    const dlRev2 = document.getElementById('download-catalog-rev2');
+    const dlTitle = document.getElementById('downloadCatalogTitle');
+    const dlBadge = document.getElementById('downloadCatalogBadge');
+    const dlDesc = document.getElementById('downloadCatalogDesc');
+
+    if (rev === 'rev1') {
+      if (dlRev1) dlRev1.style.display = 'flex';
+      if (dlRev2) dlRev2.style.display = 'none';
+      if (dlTitle) dlTitle.textContent = 'Executive Deliverables Catalog (Revision 1 Siting Baseline)';
+      if (dlBadge) {
+        dlBadge.textContent = 'REV 1 BASELINE ARCHIVE';
+        dlBadge.className = 'rev-indicator-chip rev-indicator-rev1';
+      }
+      if (dlDesc) dlDesc.textContent = 'Download September 25, 2026 siting baseline models, 25-column workbooks, and Google Earth layers with verified deduplicated coordinates.';
+    } else {
+      if (dlRev1) dlRev1.style.display = 'none';
+      if (dlRev2) dlRev2.style.display = 'flex';
+      if (dlTitle) dlTitle.textContent = 'Executive Deliverables Catalog & Audited Models';
+      if (dlBadge) {
+        dlBadge.textContent = 'REV 2 AUDITED RELEASE';
+        dlBadge.className = 'rev-indicator-chip rev-indicator-rev2';
+      }
+      if (dlDesc) dlDesc.textContent = "Download official companion sensitivity models, 31-column audited workbooks, 10-year financial business case models, color-coded Google Earth layers, and Codex's independent spatial audit package.";
+    }
+
+    // Re-apply visibility filtering so hidden cards remain hidden
+    renderVisibility();
+  }
+
   // Display authenticated username & check admin role
   (function displayAuthUser() {
     try {
@@ -1093,6 +1535,7 @@
 
   // Initialize on page load
   document.addEventListener('DOMContentLoaded', () => {
+    switchRevision(getActiveRevision());
     renderVisibility();
     detectActivePreset();
   });
