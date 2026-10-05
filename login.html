@@ -294,28 +294,6 @@
     line-height: 1.5;
   }
 
-  .btn-quick-login {
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #F1F5F9;
-    padding: 7px 12px;
-    border-radius: 6px;
-    font-size: 11.5px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .btn-quick-login:hover {
-    background: var(--teal);
-    color: #0A192F;
-    border-color: var(--teal);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 180, 216, 0.35);
-  }
-
 </style>
 </head>
 <body>
@@ -390,17 +368,6 @@
         </button>
       </form>
 
-      
-        <div style="margin-top: 16px; padding: 12px 14px; background: rgba(0, 180, 216, 0.08); border: 1px solid rgba(0, 180, 216, 0.25); border-radius: 9px; text-align: center;">
-          <div style="font-size: 11px; font-weight: 800; color: var(--teal); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px;">
-            ⚡ Instant One-Click Reviewer Access
-          </div>
-          <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
-            <button type="button" class="btn-quick-login" onclick="quickLogin('executive', 'teltech2026')">👔 Executive Leadership</button>
-            <button type="button" class="btn-quick-login" onclick="quickLogin('oliver.tungol', 'OliverTungol2026!')">👑 Lead Architect</button>
-          </div>
-        </div>
-
       <div class="credentials-hint">
         <strong>Restricted Access:</strong> Enter your approved corporate credentials. New users must submit a clearance request via the <span class="hint-pill" onclick="switchAuthTab('request')" style="cursor: pointer;">Request Access</span> tab.
       </div>
@@ -451,17 +418,6 @@
         </button>
       </form>
 
-      
-        <div style="margin-top: 16px; padding: 12px 14px; background: rgba(0, 180, 216, 0.08); border: 1px solid rgba(0, 180, 216, 0.25); border-radius: 9px; text-align: center;">
-          <div style="font-size: 11px; font-weight: 800; color: var(--teal); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px;">
-            ⚡ Instant One-Click Reviewer Access
-          </div>
-          <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
-            <button type="button" class="btn-quick-login" onclick="quickLogin('executive', 'teltech2026')">👔 Executive Leadership</button>
-            <button type="button" class="btn-quick-login" onclick="quickLogin('oliver.tungol', 'OliverTungol2026!')">👑 Lead Architect</button>
-          </div>
-        </div>
-
       <div class="credentials-hint">
         Requests are routed directly to Administrator <strong>Oliver Tungol</strong> (<span class="hint-pill">oliver.tungol@comclark.com.ph</span>) for verification & clearance.
       </div>
@@ -497,20 +453,6 @@
   
   // Global Aliases & Quick Login Helpers
   window.switchTab = switchAuthTab;
-
-  function quickLogin(identity, pass) {
-    hideAlerts();
-    document.getElementById('loginIdentity').value = identity;
-    document.getElementById('loginPassword').value = pass;
-    const form = document.querySelector('#tabSignIn form');
-    if (form) {
-      if (form.requestSubmit) {
-        form.requestSubmit();
-      } else {
-        handleSignIn(new Event('submit'));
-      }
-    }
-  }
 
   function switchAuthTab(tab) {
     const isSignIn = tab === 'signin';
@@ -669,15 +611,12 @@ System: TelTech & Comclark Fixed Wireless Access Portal`);
         <strong>✅ Clearance Request Prepared for ${name}!</strong>
       </div>
       <div style="font-size: 12px; color: #CBD5E1; line-height: 1.5; margin-bottom: 12px;">
-        Click below to dispatch this clearance request directly to Administrator <strong>Oliver Tungol</strong> via your email app, or use instant reviewer access:
+        Click below to dispatch this clearance request directly to Administrator <strong>Oliver Tungol</strong> via your email app for authorization:
       </div>
       <div style="display: flex; flex-direction: column; gap: 8px;">
         <a href="${mailtoUrl}" target="_blank" class="btn-submit" style="background: var(--teal); color: #0A192F; text-decoration: none; text-align: center; padding: 10px; font-weight: 800; border-radius: 6px; font-size: 12.5px;">
-          📧 Open Email App to Send to Oliver Tungol
+          📧 Open Email App to Send Clearance Request to Oliver Tungol
         </a>
-        <button type="button" class="btn-submit" onclick="quickLogin('executive', 'teltech2026')" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #F1F5F9; padding: 9px; font-size: 12px;">
-          ⚡ Or Enter Immediately as Executive Reviewer
-        </button>
       </div>
     `;
     document.getElementById('successBox').classList.add('show');
