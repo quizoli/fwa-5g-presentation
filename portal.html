@@ -759,6 +759,29 @@
     color: #34D399;
   }
 
+
+  .catalog-filter-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-light);
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .catalog-filter-btn:hover {
+    background: rgba(0, 180, 216, 0.2);
+    border-color: var(--teal);
+    color: #FFFFFF;
+  }
+  .catalog-filter-btn.active {
+    background: var(--teal);
+    color: var(--navy);
+    border-color: var(--teal);
+    box-shadow: 0 0 10px rgba(0, 180, 216, 0.4);
+  }
 </style>
 </head>
 <body>
@@ -1021,11 +1044,14 @@
         </ul>
       </div>
       <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px;">
-        <a href="POPCEN2024/FWA_5G_Barangay_Rollout_Presentation_2024.html" target="_blank" class="btn-launch" style="background: #10B981; color: #0A192F; flex: 1; min-width: 170px;">Launch Model 1 Presentation ➔</a>
-        <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Barangay_Rollout_Plan_2024_1000s_Rev2.xlsx" download class="btn-download" style="background: rgba(16, 185, 129, 0.22); border: 1px solid #10B981; color: #6EE7B7; padding: 12px 12px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
-          📥 Rollout (.xlsx)
+        <a href="POPCEN2024/FWA_Tower_Overlay_POPCEN_Executive_Explanation.md" target="_blank" class="btn-download" style="background: rgba(0, 180, 216, 0.2); border-color: rgba(0, 180, 216, 0.5); color: #7DD3FC; font-weight: 700; flex: 1; min-width: 240px;">
+            <span>📖 Tower Overlay Technical Guide (.md)</span>
+          </a>
+          <a href="POPCEN2024/FWA_5G_Barangay_Rollout_Presentation_2024.html" target="_blank" class="btn-launch" style="background: #10B981; color: #0A192F; flex: 1; min-width: 170px;">Launch POPCEN 2024 Deck ➔</a>
+        <a href="POPCEN2024/FWA_Barangay_Rollout_Plan_2024_1000s_Tower_Overlay.xlsx" download class="btn-download" style="background: rgba(16, 185, 129, 0.22); border: 1px solid #10B981; color: #6EE7B7; padding: 12px 12px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
+          📥 POPCEN + Towers (.xlsx)
         </a>
-        <a href="2026-09-28_Audited_Fiber_Models_Rev2/01_FWA_Business_Case_Commercial_Rev2.xlsx" download class="btn-download" style="background: rgba(16, 185, 129, 0.22); border: 1px solid #10B981; color: #6EE7B7; padding: 12px 12px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
+        <a href="POPCEN2024/01_FWA_Business_Case_Commercial_Rev2.xlsx" download class="btn-download" style="background: rgba(16, 185, 129, 0.22); border: 1px solid #10B981; color: #6EE7B7; padding: 12px 12px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
           📥 Financial Case (.xlsx)
         </a>
       </div>
@@ -1159,182 +1185,289 @@
 
   </div>
 
-  <!-- File Naming Guide & Quick Reference Box -->
-  <div style="background: rgba(15, 35, 61, 0.85); border: 1px solid rgba(0, 180, 216, 0.35); border-radius: 12px; padding: 20px 24px; margin-bottom: 24px;">
-    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-      <span style="font-size: 20px;">📖</span>
-      <h3 style="color: #00B4D8; font-size: 18px; margin: 0; font-weight: 700;">Understanding the Excel File Names & Models</h3>
+  <!-- Project Folder Directory & Architecture Guide -->
+  <div style="background: rgba(15, 35, 61, 0.9); border: 1px solid rgba(0, 180, 216, 0.4); border-radius: 12px; padding: 22px 26px; margin-bottom: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🗺️</span>
+        <h3 style="color: #00B4D8; font-size: 19px; margin: 0; font-weight: 800; letter-spacing: 0.5px;">Master Project Directory & Model Lineage Guide</h3>
+      </div>
+      <span style="font-size: 11.5px; background: rgba(16, 185, 129, 0.2); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.4); padding: 3px 10px; border-radius: 20px; font-weight: 700;">All Models & Folders Preserved</span>
     </div>
-    <p style="color: #CBD5E1; font-size: 13.5px; line-height: 1.6; margin-bottom: 14px;">
-      The models are phased into <strong>5 batches of exactly 1,000 sites each (5,000 sites total)</strong> — this is why files contain <code>1000s</code> in their name. Here is what each file represents:
+    <p style="color: #CBD5E1; font-size: 13.5px; line-height: 1.6; margin-bottom: 16px;">
+      Every modeling phase and demographic baseline remains <strong>100% active, safe, and downloadable</strong> below. The <strong>POPCEN 2024</strong> census standard is the foundational demographic engine for our commercial rollout, while <strong>Rev 2 Audited</strong> enhances those exact same POPCEN sites with Converge fiber line screening and 13,746 operational cell towers:
     </p>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px;">
-      <div style="background: rgba(16, 185, 129, 0.1); border-left: 3px solid #10B981; padding: 10px 14px; border-radius: 0 8px 8px 0;">
-        <div style="font-weight: 800; color: #6EE7B7; font-size: 13px;">Model 1: Commercial Viability (<code>2024_1000s</code>)</div>
-        <div style="font-size: 12px; color: #94A3B8; margin-top: 3px;">POPCEN 2024 official census. Sites ranked by commercial viability, household density, and close fiber proximity.</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 14px;">
+      <!-- POPCEN 2024 Folder -->
+      <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.35); border-left: 4px solid #10B981; padding: 14px 16px; border-radius: 0 10px 10px 0;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+          <div style="font-weight: 800; color: #6EE7B7; font-size: 13.5px;">📁 POPCEN2024 /</div>
+          <span style="font-size: 10px; background: #10B981; color: #0A192F; font-weight: 900; padding: 1px 6px; border-radius: 3px;">COMMERCIAL SUITE</span>
+        </div>
+        <div style="font-size: 12px; color: #94A3B8; line-height: 1.5;">
+          Contains the official PSA POPCEN 2024 commercial models (Proclamation No. 973). Now includes <strong>both</strong> the original 25-col baseline AND the upgraded <strong>Tower Overlay models</strong> (29-col & 35-col), 13,746 TowerCo list, and financial models.
+        </div>
       </div>
-      <div style="background: rgba(56, 189, 248, 0.1); border-left: 3px solid #38BDF8; padding: 10px 14px; border-radius: 0 8px 8px 0;">
-        <div style="font-weight: 800; color: #7DD3FC; font-size: 13px;">Model 2: GIDA Digital Inclusion (<code>GIDA_1000s</code>)</div>
-        <div style="font-size: 12px; color: #94A3B8; margin-top: 3px;">DICT / UNDP unserved areas. Sited by digital deprivation tier, school presence, and universal service access.</div>
+
+      <!-- Rev 2 Audited Fiber Folder -->
+      <div style="background: rgba(0, 180, 216, 0.08); border: 1px solid rgba(0, 180, 216, 0.35); border-left: 4px solid #00B4D8; padding: 14px 16px; border-radius: 0 10px 10px 0;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+          <div style="font-weight: 800; color: #38BDF8; font-size: 13.5px;">📁 2026-09-28_Audited_Fiber_Models_Rev2 /</div>
+          <span style="font-size: 10px; background: #00B4D8; color: #0A192F; font-weight: 900; padding: 1px 6px; border-radius: 3px;">MULTI-MODEL REV 2</span>
+        </div>
+        <div style="font-size: 12px; color: #94A3B8; line-height: 1.5;">
+          The engineering upgrade suite across all 3 models (Commercial POPCEN 2024, GIDA, and Combined) with 35 columns, Converge optical backbone spatial audit, and TowerCo co-location overlays.
+        </div>
       </div>
-      <div style="background: rgba(255, 183, 3, 0.1); border-left: 3px solid #FFB703; padding: 10px 14px; border-radius: 0 8px 8px 0;">
-        <div style="font-weight: 800; color: #FCD34D; font-size: 13px;">Model 3: Combined Hybrid (<code>Combined_1000s</code>)</div>
-        <div style="font-size: 12px; color: #94A3B8; margin-top: 3px;">Dual-optimization: 50% Commercial Viability + 50% GIDA Inclusion. Recommended balanced executive rollout.</div>
+
+      <!-- GIDA Folder -->
+      <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.3); border-left: 4px solid #38BDF8; padding: 14px 16px; border-radius: 0 10px 10px 0;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+          <div style="font-weight: 800; color: #7DD3FC; font-size: 13.5px;">📁 GIDA /</div>
+          <span style="font-size: 10px; background: #38BDF8; color: #0A192F; font-weight: 900; padding: 1px 6px; border-radius: 3px;">UNIVERSAL ACCESS</span>
+        </div>
+        <div style="font-size: 12px; color: #94A3B8; line-height: 1.5;">
+          Official DICT / UNDP unserved areas rollout driven by the 11-criteria Looker Studio tool. Focuses on social inclusion and Starlink satellite backhaul.
+        </div>
       </div>
-      <div style="background: rgba(168, 85, 247, 0.1); border-left: 3px solid #C084FC; padding: 10px 14px; border-radius: 0 8px 8px 0;">
-        <div style="font-weight: 800; color: #E9D5FF; font-size: 13px;">Dynamic vs Standard Workbooks</div>
-        <div style="font-size: 12px; color: #94A3B8; margin-top: 3px;"><code>_Dynamic.xlsx</code> contains live formulas wired to <em>Methodology & Assumptions</em>. Standard <code>.xlsx</code> contains static verified figures.</div>
+
+      <!-- Combined Folder -->
+      <div style="background: rgba(255, 183, 3, 0.08); border: 1px solid rgba(255, 183, 3, 0.3); border-left: 4px solid #FFB703; padding: 14px 16px; border-radius: 0 10px 10px 0;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+          <div style="font-weight: 800; color: #FCD34D; font-size: 13.5px;">📁 Combined /</div>
+          <span style="font-size: 10px; background: #FFB703; color: #0A192F; font-weight: 900; padding: 1px 6px; border-radius: 3px;">50/50 HYBRID</span>
+        </div>
+        <div style="font-size: 12px; color: #94A3B8; line-height: 1.5;">
+          The balanced dual-optimization model balancing 50% POPCEN Commercial ROI with 50% GIDA Universal Service.
+        </div>
+      </div>
+
+      <!-- Root 2020 CPH Archive -->
+      <div style="background: rgba(148, 163, 184, 0.08); border: 1px solid rgba(148, 163, 184, 0.25); border-left: 4px solid #94A3B8; padding: 14px 16px; border-radius: 0 10px 10px 0;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+          <div style="font-weight: 800; color: #CBD5E1; font-size: 13.5px;">📁 Root / 2020 CPH Archive</div>
+          <span style="font-size: 10px; background: #64748B; color: #FFFFFF; font-weight: 900; padding: 1px 6px; border-radius: 3px;">INITIAL BASELINE</span>
+        </div>
+        <div style="font-size: 12px; color: #94A3B8; line-height: 1.5;">
+          The early planning baseline models based on 2020 Census of Population and Housing and initial September 14 dynamic business cases.
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Download Package Banner -->
-  <div class="download-section">
+  <!-- Master Unified Deliverables Catalog -->
+  <div class="download-section" style="border-color: rgba(0, 180, 216, 0.4);">
     <div class="download-info">
-      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-        <h3 id="downloadCatalogTitle" style="margin-bottom: 0;">Executive Deliverables Catalog & Audited Models</h3>
-        <span class="rev-indicator-chip rev-indicator-rev2" id="downloadCatalogBadge">REV 2 AUDITED RELEASE</span>
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 8px;">
+        <div>
+          <h3 style="margin-bottom: 4px; font-size: 20px; font-weight: 800; color: #F1F5F9;">Executive Deliverables & Model Repository</h3>
+          <p style="font-size: 13px; color: #94A3B8; margin: 0;">Access all model suites, POPCEN 2024 workbooks, TowerCo overlay sheets, and financial cases across all project phases.</p>
+        </div>
+        <span class="rev-indicator-chip rev-indicator-rev2" style="font-size: 11px; padding: 4px 12px;">COMPLETE ALL-MODEL CATALOG</span>
       </div>
-      <p id="downloadCatalogDesc">Download official companion sensitivity models, 31-column audited workbooks, 10-year financial business case models, color-coded Google Earth layers, and Codex's independent spatial audit package.</p>
+
+      <!-- Catalog Tab Filter Buttons -->
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; margin-bottom: 18px;">
+        <button class="catalog-filter-btn active" data-cat="all" onclick="filterCatalog('all')">★ All Models & Deliverables</button>
+        <button class="catalog-filter-btn" data-cat="popcen" onclick="filterCatalog('popcen')">🏢 POPCEN 2024 Commercial Suite</button>
+        <button class="catalog-filter-btn" data-cat="rev2" onclick="filterCatalog('rev2')">📡 Audited Fiber & TowerCo Rev 2</button>
+        <button class="catalog-filter-btn" data-cat="gida" onclick="filterCatalog('gida')">🌐 DICT GIDA & Combined Hybrid</button>
+        <button class="catalog-filter-btn" data-cat="finance" onclick="filterCatalog('finance')">💰 Financial Models & Towers</button>
+        <button class="catalog-filter-btn" data-cat="cph2020" onclick="filterCatalog('cph2020')">🏛️ 2020 CPH Archive</button>
+      </div>
     </div>
 
-    <!-- REVISION 2 DOWNLOAD CATALOG (ACTIVE / RECOMMENDED) -->
-    <div id="download-catalog-rev2" style="display: flex; gap: 12px; flex-wrap: wrap; width: 100%;">
-      <!-- Master Comparison & Financial Models -->
-      <a href="2026-09-28_Audited_Fiber_Models_Rev2/00_FWA_Three_Models_Financial_Master_Rev2.xlsx" download class="btn-download" style="background: rgba(255, 183, 3, 0.25); border-color: rgba(255, 183, 3, 0.6); color: #FDE047; font-weight: 800; width: 100%;">
-        <span>💰 Three-Model Financial & Engineering Master Comparison Rev 2 (.xlsx)</span>
-      </a>
-      <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Three_Models_Executive_Comparison_Rev2.md" target="_blank" class="btn-download" style="background: rgba(0, 180, 216, 0.2); border-color: rgba(0, 180, 216, 0.4); color: #7DD3FC; font-weight: 700; width: calc(50% - 6px);">
-        <span>📋 Master Executive Comparison Report Rev 2 (.md)</span>
-      </a>
-      <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Three_Models_Financial_Business_Case_Comparison_Rev2.md" target="_blank" class="btn-download" style="background: rgba(0, 180, 216, 0.2); border-color: rgba(0, 180, 216, 0.4); color: #7DD3FC; font-weight: 700; width: calc(50% - 6px);">
-        <span>📊 10-Year Financial Comparison Analysis Rev 2 (.md)</span>
-      </a>
-      <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_n50_Dynamic_Business_Case_Rev2.xlsx" download class="btn-download" style="background: rgba(255, 183, 3, 0.28); border-color: rgba(255, 183, 3, 0.7); color: #FDE047; font-weight: 800; width: calc(50% - 6px);">
-        <span>⚡ FWA 5G Dynamic Business Case Rev 2 (.xlsx)</span>
-      </a>
-      <a href="FWA_n50_Dynamic_Business_Case_Sep14.xlsx" download class="btn-download" style="background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.2); color: #E2E8F0; font-weight: 700; width: calc(50% - 6px);">
-        <span>📄 Original Dynamic Business Case Sep 14 (.xlsx)</span>
-      </a>
+    <!-- Catalog Content Container -->
+    <div id="unified-catalog-container" style="display: flex; flex-direction: column; gap: 20px; width: 100%;">
 
-      <!-- Model 1 (Commercial Rev 2) -->
-      <div style="width: 100%; margin-top: 8px; font-size: 11.5px; font-weight: 800; color: #10B981; letter-spacing: 1px; text-transform: uppercase;">
-        MODEL 1: COMMERCIAL VIABILITY (POPCEN 2024 REV 2)
+      <!-- SECTION A: POPCEN 2024 COMMERCIAL SUITE -->
+      <div class="catalog-group" data-group="popcen" style="background: rgba(16, 185, 129, 0.04); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 10px; padding: 18px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(16, 185, 129, 0.2); padding-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 18px;">🏢</span>
+            <span style="font-size: 15px; font-weight: 800; color: #6EE7B7; text-transform: uppercase; letter-spacing: 0.5px;">POPCEN 2024 Commercial Suite (Official PSA Census Proc. 973)</span>
+          </div>
+          <span style="font-size: 11px; background: rgba(16, 185, 129, 0.2); color: #34D399; padding: 2px 8px; border-radius: 4px; font-weight: 700;">Folder: POPCEN2024/</span>
+        </div>
+        <p style="font-size: 12.5px; color: #CBD5E1; margin-bottom: 14px; line-height: 1.5;">
+          Official 5,000-site commercial rollout model sized with 2024 Census demographics and FIES household purchasing power. Includes the new <strong>13,746 cell tower co-location overlay</strong>, nearest tower distances, TowerCo leasing economics, and verified deduplicated coordinates.
+        </p>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <a href="POPCEN2024/FWA_Barangay_Rollout_Plan_2024_1000s_Tower_Overlay.xlsx" download class="btn-download" style="background: rgba(16, 185, 129, 0.25); border-color: #10B981; color: #A7F3D0; font-weight: 800; flex: 1; min-width: 280px;">
+            <span>🗼 POPCEN 2024: 35-Col TowerCo & Fiber Rollout (.xlsx)</span>
+          </a>
+          <a href="POPCEN2024/FWA_Barangay_Rollout_Plan_2024_1000s_Tower_Overlay_Dynamic.xlsx" download class="btn-download" style="background: rgba(16, 185, 129, 0.2); border-color: #10B981; color: #6EE7B7; flex: 1; min-width: 260px;">
+            <span>⚡ POPCEN 2024: Dynamic Model with Towers (.xlsx)</span>
+          </a>
+          <a href="POPCEN2024/FWA_Barangay_Rollout_Plan_2024_1000s_Pure_POPCEN_with_Towers_29col.xlsx" download class="btn-download" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.6); color: #6EE7B7; flex: 1; min-width: 260px;">
+            <span>📊 Pure POPCEN + Towers (29-Col Clean) (.xlsx)</span>
+          </a>
+          <a href="POPCEN2024/FWA_Barangay_Rollout_Plan_2024_1000s.xlsx" download class="btn-download" style="background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.2); color: #E2E8F0; flex: 1; min-width: 240px;">
+            <span>📄 POPCEN 2024: 25-Col Baseline Rollout (.xlsx)</span>
+          </a>
+          <a href="POPCEN2024/01_FWA_Business_Case_Commercial_Rev2.xlsx" download class="btn-download" style="background: rgba(255, 183, 3, 0.2); border-color: rgba(255, 183, 3, 0.6); color: #FDE047; font-weight: 700; flex: 1; min-width: 240px;">
+            <span>💵 POPCEN Commercial 10-Yr Financial Case (.xlsx)</span>
+          </a>
+          <a href="POPCEN2024/Towerco_list.xlsx" download class="btn-download" style="background: rgba(255, 183, 3, 0.2); border-color: rgba(255, 183, 3, 0.6); color: #FDE047; font-weight: 700; flex: 1; min-width: 240px;">
+            <span>🗼 Master TowerCo Database (13,746 Towers) (.xlsx)</span>
+          </a>
+          <a href="POPCEN2024/FWA_Rollout_Sites_Master_2024_Rev2.kmz" download class="btn-download" style="background: rgba(16, 185, 129, 0.12); border-color: rgba(16, 185, 129, 0.4); color: #6EE7B7; flex: 1; min-width: 200px;">
+            <span>🌍 POPCEN 2024 Google Earth (.kmz)</span>
+          </a>
+          <a href="POPCEN2024/FWA_Tower_Overlay_POPCEN_Executive_Explanation.md" target="_blank" class="btn-download" style="background: rgba(0, 180, 216, 0.2); border-color: rgba(0, 180, 216, 0.5); color: #7DD3FC; font-weight: 700; flex: 1; min-width: 240px;">
+            <span>📖 Tower Overlay Technical Guide (.md)</span>
+          </a>
+          <a href="POPCEN2024/FWA_5G_Barangay_Rollout_Presentation_2024.html" target="_blank" class="btn-download" style="background: #10B981; color: #0A192F; font-weight: 800; flex: 1; min-width: 220px;">
+            <span>🖥️ Launch POPCEN 2024 Presentation ➔</span>
+          </a>
+        </div>
       </div>
-      <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Barangay_Rollout_Plan_2024_1000s_Rev2.xlsx" download class="btn-download" data-model="model1" style="background: rgba(16, 185, 129, 0.22); border-color: #10B981; color: #6EE7B7; font-weight: 700;">
-        <span>📁 M1: 31-Col Audited Rollout Plan (.xlsx)</span>
-      </a>
-      <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Barangay_Rollout_Plan_2024_1000s_Rev2_Dynamic.xlsx" download class="btn-download" data-model="model1" style="background: rgba(16, 185, 129, 0.22); border-color: #10B981; color: #6EE7B7;">
-        <span>⚡ M1: Dynamic Sensitivity Model (.xlsx)</span>
-      </a>
-      <a href="2026-09-28_Audited_Fiber_Models_Rev2/01_FWA_Business_Case_Commercial_Rev2.xlsx" download class="btn-download" data-model="model1" style="background: rgba(16, 185, 129, 0.22); border-color: #10B981; color: #6EE7B7; font-weight: 700;">
-        <span>💵 M1: 10-Yr Financial Business Case (.xlsx)</span>
-      </a>
-      <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Rollout_Sites_Master_2024_Rev2.kmz" download class="btn-download" data-model="model1" style="background: rgba(16, 185, 129, 0.15); border-color: #10B981; color: #6EE7B7;">
-        <span>🌍 M1: Audited Color-Coded Google Earth (.kmz)</span>
-      </a>
 
-      <!-- Model 2 (GIDA Rev 2) -->
-      <div style="width: 100%; margin-top: 8px; font-size: 11.5px; font-weight: 800; color: #38BDF8; letter-spacing: 1px; text-transform: uppercase;">
-        MODEL 2: UNIVERSAL ACCESS (DICT / UNDP GIDA REV 2)
+      <!-- SECTION B: AUDITED FIBER & TOWERCO (REV 2 FULL SUITE) -->
+      <div class="catalog-group" data-group="rev2" style="background: rgba(0, 180, 216, 0.04); border: 1px solid rgba(0, 180, 216, 0.3); border-radius: 10px; padding: 18px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(0, 180, 216, 0.2); padding-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 18px;">📡</span>
+            <span style="font-size: 15px; font-weight: 800; color: #38BDF8; text-transform: uppercase; letter-spacing: 0.5px;">Revision 2: Audited Fiber & TowerCo 35-Column Models</span>
+          </div>
+          <span style="font-size: 11px; background: rgba(0, 180, 216, 0.2); color: #38BDF8; padding: 2px 8px; border-radius: 4px; font-weight: 700;">Folder: 2026-09-28_Audited_Fiber_Models_Rev2/</span>
+        </div>
+        <p style="font-size: 12.5px; color: #CBD5E1; margin-bottom: 14px; line-height: 1.5;">
+          The comprehensive multi-model engineering release incorporating Codex independent Converge optical backbone screening (Classes A–F) and the 13,746 operational cell tower database across all three siting methodologies.
+        </p>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <a href="2026-09-28_Audited_Fiber_Models_Rev2/00_FWA_Three_Models_Financial_Master_Rev2.xlsx" download class="btn-download" style="background: rgba(255, 183, 3, 0.25); border-color: rgba(255, 183, 3, 0.6); color: #FDE047; font-weight: 800; width: 100%;">
+            <span>💰 Three-Model Financial & Engineering Master Comparison Rev 2 (.xlsx)</span>
+          </a>
+          <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Barangay_Rollout_Plan_2024_1000s_Rev2.xlsx" download class="btn-download" style="background: rgba(16, 185, 129, 0.22); border-color: #10B981; color: #6EE7B7; font-weight: 700; flex: 1; min-width: 250px;">
+            <span>📁 M1 Commercial (POPCEN) Rev 2 (.xlsx)</span>
+          </a>
+          <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Barangay_Rollout_Plan_GIDA_1000s_Rev2.xlsx" download class="btn-download" style="background: rgba(56, 189, 248, 0.22); border-color: rgba(56, 189, 248, 0.6); color: #7DD3FC; font-weight: 700; flex: 1; min-width: 250px;">
+            <span>📁 M2 GIDA Universal Access Rev 2 (.xlsx)</span>
+          </a>
+          <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Barangay_Rollout_Plan_Combined_1000s_Rev2.xlsx" download class="btn-download" style="background: rgba(255, 183, 3, 0.22); border-color: rgba(255, 183, 3, 0.6); color: #FCD34D; font-weight: 700; flex: 1; min-width: 250px;">
+            <span>📁 M3 Combined Hybrid Rev 2 (.xlsx)</span>
+          </a>
+          <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_n50_Dynamic_Business_Case_Rev2.xlsx" download class="btn-download" style="background: rgba(255, 183, 3, 0.22); border-color: rgba(255, 183, 3, 0.6); color: #FDE047; font-weight: 700; flex: 1; min-width: 240px;">
+            <span>⚡ FWA Dynamic Business Case Rev 2 (.xlsx)</span>
+          </a>
+          <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Three_Models_Executive_Comparison_Rev2.md" target="_blank" class="btn-download" style="background: rgba(0, 180, 216, 0.2); border-color: rgba(0, 180, 216, 0.4); color: #7DD3FC; flex: 1; min-width: 220px;">
+            <span>📋 Executive Comparison Report (.md)</span>
+          </a>
+          <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Three_Models_Financial_Business_Case_Comparison_Rev2.md" target="_blank" class="btn-download" style="background: rgba(0, 180, 216, 0.2); border-color: rgba(0, 180, 216, 0.4); color: #7DD3FC; flex: 1; min-width: 220px;">
+            <span>📊 10-Yr Financial Comparison (.md)</span>
+          </a>
+        </div>
       </div>
-      <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Barangay_Rollout_Plan_GIDA_1000s_Rev2.xlsx" download class="btn-download" data-model="model2" style="background: rgba(56, 189, 248, 0.22); border-color: rgba(56, 189, 248, 0.6); color: #7DD3FC; font-weight: 700;">
-        <span>📁 M2: 31-Col Audited GIDA Rollout Plan (.xlsx)</span>
-      </a>
-      <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Barangay_Rollout_Plan_GIDA_1000s_Rev2_Dynamic.xlsx" download class="btn-download" data-model="model2" style="background: rgba(56, 189, 248, 0.22); border-color: rgba(56, 189, 248, 0.6); color: #7DD3FC;">
-        <span>⚡ M2: Dynamic Sensitivity Model (.xlsx)</span>
-      </a>
-      <a href="2026-09-28_Audited_Fiber_Models_Rev2/02_FWA_Business_Case_GIDA_Rev2.xlsx" download class="btn-download" data-model="model2" style="background: rgba(56, 189, 248, 0.22); border-color: rgba(56, 189, 248, 0.6); color: #7DD3FC; font-weight: 700;">
-        <span>💵 M2: 10-Yr Financial Business Case (.xlsx)</span>
-      </a>
-      <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Rollout_Sites_GIDA_Rev2.kmz" download class="btn-download" data-model="model2" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.4); color: #7DD3FC;">
-        <span>🌍 M2: Audited Color-Coded Google Earth (.kmz)</span>
-      </a>
 
-      <!-- Model 3 (Combined Rev 2) -->
-      <div style="width: 100%; margin-top: 8px; font-size: 11.5px; font-weight: 800; color: #FFB703; letter-spacing: 1px; text-transform: uppercase;">
-        MODEL 3: COMBINED HYBRID DUAL OPTIMIZATION (REV 2)
+      <!-- SECTION C: DICT GIDA & COMBINED HYBRID SUITES -->
+      <div class="catalog-group" data-group="gida" style="background: rgba(56, 189, 248, 0.04); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 18px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 18px;">🌐</span>
+            <span style="font-size: 15px; font-weight: 800; color: #7DD3FC; text-transform: uppercase; letter-spacing: 0.5px;">DICT GIDA Universal Access & Combined Hybrid Suites</span>
+          </div>
+          <span style="font-size: 11px; background: rgba(56, 189, 248, 0.2); color: #38BDF8; padding: 2px 8px; border-radius: 4px; font-weight: 700;">Folders: GIDA/ & Combined/</span>
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <a href="GIDA/FWA_Barangay_Rollout_Plan_GIDA_1000s.xlsx" download class="btn-download" style="background: rgba(56, 189, 248, 0.22); border-color: rgba(56, 189, 248, 0.6); color: #7DD3FC; font-weight: 700; flex: 1; min-width: 240px;">
+            <span>📁 GIDA: Rollout Plan (.xlsx)</span>
+          </a>
+          <a href="GIDA/FWA_Barangay_Rollout_Plan_GIDA_1000s_Dynamic.xlsx" download class="btn-download" style="background: rgba(56, 189, 248, 0.18); border-color: rgba(56, 189, 248, 0.5); color: #7DD3FC; flex: 1; min-width: 240px;">
+            <span>⚡ GIDA: Dynamic Sensitivity (.xlsx)</span>
+          </a>
+          <a href="GIDA/FWA_5G_Barangay_Rollout_Presentation_GIDA.html" target="_blank" class="btn-download" style="background: #38BDF8; color: #0A192F; font-weight: 800; flex: 1; min-width: 220px;">
+            <span>🖥️ Launch GIDA Presentation ➔</span>
+          </a>
+          <a href="Combined/FWA_Barangay_Rollout_Plan_Combined_1000s.xlsx" download class="btn-download" style="background: rgba(255, 183, 3, 0.22); border-color: rgba(255, 183, 3, 0.6); color: #FCD34D; font-weight: 700; flex: 1; min-width: 240px;">
+            <span>📁 Combined: Rollout Plan (.xlsx)</span>
+          </a>
+          <a href="Combined/FWA_Barangay_Rollout_Plan_Combined_1000s_Dynamic.xlsx" download class="btn-download" style="background: rgba(255, 183, 3, 0.18); border-color: rgba(255, 183, 3, 0.5); color: #FCD34D; flex: 1; min-width: 240px;">
+            <span>⚡ Combined: Dynamic Sensitivity (.xlsx)</span>
+          </a>
+          <a href="Combined/FWA_5G_Barangay_Rollout_Presentation_Combined.html" target="_blank" class="btn-download" style="background: #FFB703; color: #0A192F; font-weight: 800; flex: 1; min-width: 220px;">
+            <span>🖥️ Launch Combined Presentation ➔</span>
+          </a>
+        </div>
       </div>
-      <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Barangay_Rollout_Plan_Combined_1000s_Rev2.xlsx" download class="btn-download" data-model="model3" style="background: rgba(255, 183, 3, 0.22); border-color: rgba(255, 183, 3, 0.6); color: #FCD34D; font-weight: 700;">
-        <span>📁 M3: 31-Col Audited Hybrid Rollout Plan (.xlsx)</span>
-      </a>
-      <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Barangay_Rollout_Plan_Combined_1000s_Rev2_Dynamic.xlsx" download class="btn-download" data-model="model3" style="background: rgba(255, 183, 3, 0.22); border-color: rgba(255, 183, 3, 0.6); color: #FCD34D;">
-        <span>⚡ M3: Dynamic Sensitivity Model (.xlsx)</span>
-      </a>
-      <a href="2026-09-28_Audited_Fiber_Models_Rev2/03_FWA_Business_Case_Combined_Rev2.xlsx" download class="btn-download" data-model="model3" style="background: rgba(255, 183, 3, 0.22); border-color: rgba(255, 183, 3, 0.6); color: #FCD34D; font-weight: 700;">
-        <span>💵 M3: 10-Yr Financial Business Case (.xlsx)</span>
-      </a>
-      <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_Rollout_Sites_Combined_Rev2.kmz" download class="btn-download" data-model="model3" style="background: rgba(255, 183, 3, 0.15); border-color: rgba(255, 183, 3, 0.4); color: #FCD34D;">
-        <span>🌍 M3: Audited Color-Coded Google Earth (.kmz)</span>
-      </a>
 
-      <!-- Codex Independent Audit Package -->
-      <div style="width: 100%; margin-top: 10px; font-size: 11.5px; font-weight: 800; color: #E2E8F0; letter-spacing: 1px; text-transform: uppercase; border-top: 1px dashed rgba(255,255,255,0.15); padding-top: 12px;">
-        🔍 CODEX INDEPENDENT SPATIAL AUDIT PACKAGE
+      <!-- SECTION D: FINANCIAL ENGINES & INFRASTRUCTURE DATABASES -->
+      <div class="catalog-group" data-group="finance" style="background: rgba(255, 183, 3, 0.04); border: 1px solid rgba(255, 183, 3, 0.3); border-radius: 10px; padding: 18px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(255, 183, 3, 0.2); padding-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 18px;">💰</span>
+            <span style="font-size: 15px; font-weight: 800; color: #FDE047; text-transform: uppercase; letter-spacing: 0.5px;">Financial Business Case Engines & TowerCo Database</span>
+          </div>
+          <span style="font-size: 11px; background: rgba(255, 183, 3, 0.2); color: #FDE047; padding: 2px 8px; border-radius: 4px; font-weight: 700;">10-Year Financial Modeling</span>
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <a href="POPCEN2024/01_FWA_Business_Case_Commercial_Rev2.xlsx" download class="btn-download" style="background: rgba(16, 185, 129, 0.22); border-color: #10B981; color: #6EE7B7; font-weight: 700; flex: 1; min-width: 240px;">
+            <span>💵 01 Commercial (POPCEN) Model Rev 2 (.xlsx)</span>
+          </a>
+          <a href="2026-09-28_Audited_Fiber_Models_Rev2/02_FWA_Business_Case_GIDA_Rev2.xlsx" download class="btn-download" style="background: rgba(56, 189, 248, 0.22); border-color: rgba(56, 189, 248, 0.6); color: #7DD3FC; font-weight: 700; flex: 1; min-width: 240px;">
+            <span>💵 02 GIDA Financial Model Rev 2 (.xlsx)</span>
+          </a>
+          <a href="2026-09-28_Audited_Fiber_Models_Rev2/03_FWA_Business_Case_Combined_Rev2.xlsx" download class="btn-download" style="background: rgba(255, 183, 3, 0.22); border-color: rgba(255, 183, 3, 0.6); color: #FCD34D; font-weight: 700; flex: 1; min-width: 240px;">
+            <span>💵 03 Combined Financial Model Rev 2 (.xlsx)</span>
+          </a>
+          <a href="POPCEN2024/Towerco_list.xlsx" download class="btn-download" style="background: rgba(255, 183, 3, 0.25); border-color: rgba(255, 183, 3, 0.7); color: #FDE047; font-weight: 800; flex: 1; min-width: 280px;">
+            <span>🗼 Master TowerCo Database (13,746 Towers) (.xlsx)</span>
+          </a>
+          <a href="FWA_n50_Dynamic_Business_Case_Sep14.xlsx" download class="btn-download" style="background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.2); color: #CBD5E1; flex: 1; min-width: 240px;">
+            <span>📄 Original Dynamic Business Case Sep 14 (.xlsx)</span>
+          </a>
+        </div>
       </div>
-      <a href="2026-09-28_Audited_Fiber_Models_Rev2/codex_audit/FWA_All_5000_Site_Validation.csv" download class="btn-download" style="background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.25); color: #FFFFFF; font-weight: 700;">
-        <span>📊 Codex 5,000-Site Audit Matrix (.csv)</span>
-      </a>
-      <a href="2026-09-28_Audited_Fiber_Models_Rev2/codex_audit/FWA_Fiber_Deployment_Analysis.html" target="_blank" class="btn-download" style="background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.25); color: #FFFFFF;">
-        <span>📑 Codex Interactive Audit Report (.html)</span>
-      </a>
-      <a href="2026-09-28_Audited_Fiber_Models_Rev2/codex_audit/FWA_Validated_Fiber_Deployment.kmz" download class="btn-download" style="background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.25); color: #FFFFFF;">
-        <span>🛰️ Codex Validated Earth Layer (.kmz)</span>
-      </a>
+
+      <!-- SECTION E: 2020 CPH HISTORICAL BASELINE ARCHIVE -->
+      <div class="catalog-group" data-group="cph2020" style="background: rgba(148, 163, 184, 0.04); border: 1px solid rgba(148, 163, 184, 0.25); border-radius: 10px; padding: 18px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(148, 163, 184, 0.2); padding-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 18px;">🏛️</span>
+            <span style="font-size: 15px; font-weight: 800; color: #CBD5E1; text-transform: uppercase; letter-spacing: 0.5px;">Historical 2020 CPH Baseline Archive</span>
+          </div>
+          <span style="font-size: 11px; background: rgba(148, 163, 184, 0.2); color: #94A3B8; padding: 2px 8px; border-radius: 4px; font-weight: 700;">Folder: Root Archive</span>
+        </div>
+        <p style="font-size: 12.5px; color: #94A3B8; margin-bottom: 14px; line-height: 1.5;">
+          Original siting model based on the 2020 Census of Population & Housing (CPH), preserved for auditability and demographic trend benchmarking.
+        </p>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <a href="FWA_Barangay_Rollout_Plan_1000s.xlsx" download class="btn-download" style="background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.2); color: #E2E8F0; flex: 1; min-width: 240px;">
+            <span>📁 2020 CPH: 1,000s Rollout Plan (.xlsx)</span>
+          </a>
+          <a href="FWA_Barangay_Rollout_Plan_Dynamic.xlsx" download class="btn-download" style="background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.2); color: #E2E8F0; flex: 1; min-width: 240px;">
+            <span>⚡ 2020 CPH: Dynamic Sensitivity (.xlsx)</span>
+          </a>
+          <a href="FWA_Rollout_Sites_Master.kmz" download class="btn-download" style="background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.2); color: #E2E8F0; flex: 1; min-width: 200px;">
+            <span>🌍 2020 CPH Google Earth (.kmz)</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- SECTION F: CODEX SPATIAL AUDIT PACKAGE -->
+      <div class="catalog-group" data-group="rev2" style="background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 18px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px dashed rgba(255, 255, 255, 0.15); padding-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 18px;">🔍</span>
+            <span style="font-size: 15px; font-weight: 800; color: #FFFFFF; text-transform: uppercase; letter-spacing: 0.5px;">Codex Independent Spatial Optical Audit Package</span>
+          </div>
+          <span style="font-size: 11px; background: rgba(255, 255, 255, 0.1); color: #E2E8F0; padding: 2px 8px; border-radius: 4px; font-weight: 700;">Folder: codex_audit/</span>
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <a href="2026-09-28_Audited_Fiber_Models_Rev2/codex_audit/FWA_All_5000_Site_Validation.csv" download class="btn-download" style="background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.25); color: #FFFFFF; font-weight: 700; flex: 1; min-width: 240px;">
+            <span>📊 Codex 5,000-Site Audit Matrix (.csv)</span>
+          </a>
+          <a href="2026-09-28_Audited_Fiber_Models_Rev2/codex_audit/FWA_Fiber_Deployment_Analysis.html" target="_blank" class="btn-download" style="background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.25); color: #FFFFFF; flex: 1; min-width: 240px;">
+            <span>📑 Codex Interactive Audit Report (.html)</span>
+          </a>
+          <a href="2026-09-28_Audited_Fiber_Models_Rev2/codex_audit/FWA_Validated_Fiber_Deployment.kmz" download class="btn-download" style="background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.25); color: #FFFFFF; flex: 1; min-width: 240px;">
+            <span>🛰️ Codex Validated Earth Layer (.kmz)</span>
+          </a>
+        </div>
+      </div>
+
     </div>
-
-    <!-- REVISION 1 DOWNLOAD CATALOG (BASELINE / ARCHIVED) -->
-    <div id="download-catalog-rev1" style="display: none; gap: 12px; flex-wrap: wrap; width: 100%;">
-      <!-- Master Comparison -->
-      <a href="FWA_Three_Models_Executive_Comparison.md" target="_blank" class="btn-download" style="background: rgba(255, 183, 3, 0.25); border-color: rgba(255, 183, 3, 0.6); color: #FDE047; font-weight: 800; width: 100%;">
-        <span>📋 Master Three-Model Executive Comparison Report Rev 1 (.md)</span>
-      </a>
-      <a href="FWA_n50_Dynamic_Business_Case_Sep14.xlsx" download class="btn-download" style="background: rgba(255, 183, 3, 0.25); border-color: rgba(255, 183, 3, 0.6); color: #FDE047; font-weight: 800; width: 100%;">
-        <span>⚡ FWA 5G n50 Dynamic Business Case Engine (Sep 14 Baseline, .xlsx)</span>
-      </a>
-
-      <!-- Model 1 (Commercial) 2026-09-25 Revised -->
-      <div style="width: 100%; margin-top: 8px; font-size: 11.5px; font-weight: 800; color: #10B981; letter-spacing: 1px; text-transform: uppercase;">
-        MODEL 1: COMMERCIAL VIABILITY (REV 1 BASELINE)
-      </div>
-      <a href="2026-09-25_Revised_Models/FWA_Barangay_Rollout_Plan_2024_1000s.xlsx" download class="btn-download" data-model="model1" style="background: rgba(16, 185, 129, 0.25); border-color: #10B981; color: #6EE7B7; font-weight: 700;">
-        <span>📁 Model 1: Commercial Rollout Plan (0 Dupes, .xlsx)</span>
-      </a>
-      <a href="2026-09-25_Revised_Models/FWA_Barangay_Rollout_Plan_2024_1000s_Dynamic.xlsx" download class="btn-download" data-model="model1" style="background: rgba(16, 185, 129, 0.25); border-color: #10B981; color: #6EE7B7;">
-        <span>⚡ Model 1: Dynamic Sensitivity Model (.xlsx)</span>
-      </a>
-      <a href="2026-09-25_Revised_Models/FWA_Rollout_Sites_Master_2024.kmz" download class="btn-download" data-model="model1" style="background: rgba(16, 185, 129, 0.15); border-color: #10B981; color: #6EE7B7;">
-        <span>🌍 Model 1: Google Earth Layer (.kmz)</span>
-      </a>
-
-      <!-- Model 2 (GIDA) 2026-09-25 Revised -->
-      <div style="width: 100%; margin-top: 8px; font-size: 11.5px; font-weight: 800; color: #38BDF8; letter-spacing: 1px; text-transform: uppercase;">
-        MODEL 2: UNIVERSAL ACCESS (REV 1 BASELINE)
-      </div>
-      <a href="2026-09-25_Revised_Models/FWA_Barangay_Rollout_Plan_GIDA_1000s.xlsx" download class="btn-download" data-model="model2" style="background: rgba(56, 189, 248, 0.25); border-color: rgba(56, 189, 248, 0.6); color: #7DD3FC; font-weight: 700;">
-        <span>📁 Model 2: GIDA Rollout Plan (0 Dupes, .xlsx)</span>
-      </a>
-      <a href="2026-09-25_Revised_Models/FWA_Barangay_Rollout_Plan_GIDA_1000s_Dynamic.xlsx" download class="btn-download" data-model="model2" style="background: rgba(56, 189, 248, 0.25); border-color: rgba(56, 189, 248, 0.6); color: #7DD3FC;">
-        <span>⚡ Model 2: Dynamic Sensitivity Model (.xlsx)</span>
-      </a>
-      <a href="2026-09-25_Revised_Models/FWA_Rollout_Sites_GIDA.kmz" download class="btn-download" data-model="model2" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.4); color: #7DD3FC;">
-        <span>🌍 Model 2: Google Earth Layer (.kmz)</span>
-      </a>
-
-      <!-- Model 3 (Combined) 2026-09-25 Revised -->
-      <div style="width: 100%; margin-top: 8px; font-size: 11.5px; font-weight: 800; color: #FFB703; letter-spacing: 1px; text-transform: uppercase;">
-        MODEL 3: COMBINED HYBRID DUAL OPTIMIZATION (REV 1 BASELINE)
-      </div>
-      <a href="2026-09-25_Revised_Models/FWA_Barangay_Rollout_Plan_Combined_1000s.xlsx" download class="btn-download" data-model="model3" style="background: rgba(255, 183, 3, 0.25); border-color: rgba(255, 183, 3, 0.6); color: #FCD34D; font-weight: 700;">
-        <span>📁 Model 3: Combined Hybrid Plan (0 Dupes, .xlsx)</span>
-      </a>
-      <a href="2026-09-25_Revised_Models/FWA_Barangay_Rollout_Plan_Combined_1000s_Dynamic.xlsx" download class="btn-download" data-model="model3" style="background: rgba(255, 183, 3, 0.25); border-color: rgba(255, 183, 3, 0.6); color: #FCD34D;">
-        <span>⚡ Model 3: Dynamic Sensitivity Model (.xlsx)</span>
-      </a>
-      <a href="2026-09-25_Revised_Models/FWA_Rollout_Sites_Combined.kmz" download class="btn-download" data-model="model3" style="background: rgba(255, 183, 3, 0.15); border-color: rgba(255, 183, 3, 0.4); color: #FCD34D;">
-        <span>🌍 Model 3: Google Earth Layer (.kmz)</span>
-      </a>
-    </div>
+  </div>
   </div>
 </div>
 
@@ -1606,6 +1739,23 @@
     renderVisibility();
     detectActivePreset();
   });
+
+  function filterCatalog(category) {
+    document.querySelectorAll('.catalog-filter-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-cat') === category);
+    });
+
+    document.querySelectorAll('.catalog-group').forEach(group => {
+      const gType = group.getAttribute('data-group');
+      if (category === 'all') {
+        group.style.display = 'block';
+      } else if (category === gType) {
+        group.style.display = 'block';
+      } else {
+        group.style.display = 'none';
+      }
+    });
+  }
 </script>
 
 </body>
