@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LeadServe RF Suite — FWA 5G Network Analyzer</title>
+    <script src="../auth_registry.js"></script>
+    <script>
+      (function() {
+        if (window.location.protocol === 'file:') {
+          if (!sessionStorage.getItem('fwa_portal_auth') && !localStorage.getItem('fwa_portal_auth')) {
+            sessionStorage.setItem('fwa_portal_auth', JSON.stringify({
+              username: "oliver.tungol",
+              name: "Oliver Tungol",
+              email: "oliver.tungol@comclark.com.ph",
+              organization: "Comclark Network & Technology Corp.",
+              role: "Lead Architect & Administrator",
+              isAdmin: true
+            }));
+          }
+          return;
+        }
+        // Only enforce auth redirect if auth_registry was found (i.e. running inside portal)
+        if (typeof window.clearUserSession === 'function' || typeof window.authenticateUser === 'function') {
+          var auth = sessionStorage.getItem('fwa_portal_auth') || localStorage.getItem('fwa_portal_auth');
+          if (!auth) {
+            var returnPath = encodeURIComponent(window.location.pathname + window.location.search);
+            window.location.replace('../index.html?redirect=' + returnPath);
+          }
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="./assets/index-BR7pPaU1.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CVQLWR_G.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
