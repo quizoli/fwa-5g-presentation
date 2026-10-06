@@ -2,296 +2,602 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Appendix C: SLAs, Network KPIs & Liquidated Damages — 5G FWA Tender Specification</title>
+<title>Service Level Agreements (SLAs), Network KPIs & Liquidated Damages — TelTech</title>
 <style>
   @page {
     size: A4 portrait;
-    margin: 20mm 15mm 20mm 15mm;
+    margin: 18mm 14mm 18mm 14mm;
+    @bottom-center {
+      content: "Page " counter(page) " of " counter(pages);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      font-size: 8pt;
+      color: #94a3b8;
+    }
   }
-  :root {
-    --primary: #1E3A8A;
-    --primary-light: #3B82F6;
-    --accent: #0D9488;
-    --text-dark: #0F172A;
-    --text-muted: #475569;
-    --border: #E2E8F0;
-    --bg-card: #F8FAFC;
+
+  *, *:before, *:after {
+    box-sizing: border-box;
   }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    color: var(--text-dark);
-    background: #FFFFFF;
-    line-height: 1.6;
-    font-size: 10pt;
+
+  html, body {
     margin: 0;
     padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1e293b;
+    background-color: #ffffff;
+    font-size: 9pt;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
   }
-  .screen-nav {
-    background: #0F172A;
-    color: #FFFFFF;
-    padding: 12px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-  }
-  .screen-nav a {
-    color: #93C5FD;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 13px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .screen-nav .btn-print {
-    background: #2563EB;
-    color: #FFFFFF;
-    border: none;
-    padding: 6px 14px;
-    border-radius: 6px;
-    font-weight: 700;
-    cursor: pointer;
-    font-size: 12px;
-  }
-  .screen-nav .btn-pdf {
-    background: #059669;
-    color: #FFFFFF;
-    text-decoration: none;
-    padding: 6px 14px;
-    border-radius: 6px;
-    font-weight: 700;
-    font-size: 12px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .container {
-    max-width: 900px;
+
+  .document-container {
+    padding: 10px 10px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 30px 25px;
   }
-  .formal-header {
-    border-bottom: 3px double #1E3A8A;
-    padding-bottom: 16px;
-    margin-bottom: 24px;
+
+  /* Header banner */
+  .doc-header-banner {
+    border-bottom: 2px solid #0f3460;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: flex-end;
+  }
+  .corp-badge {
+    display: inline-block;
+    background: #0f3460;
+    color: #ffffff;
+    font-size: 7pt;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin-bottom: 5px;
   }
   .corp-name {
     font-size: 13pt;
-    font-weight: 900;
-    color: #1E3A8A;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.2px;
+    line-height: 1.2;
+    margin: 0;
   }
   .corp-sub {
-    font-size: 9pt;
-    color: #64748B;
-    font-weight: 600;
-    text-transform: uppercase;
+    font-size: 8pt;
+    color: #64748b;
+    font-weight: 500;
+    margin-top: 2px;
   }
-  .doc-meta {
+  .doc-meta-card {
     text-align: right;
-    font-size: 8.5pt;
-    color: #475569;
-  }
-  .doc-h1 {
-    font-size: 17pt;
-    color: #1E3A8A;
-    font-weight: 800;
-    margin-top: 0;
-    margin-bottom: 12px;
-    line-height: 1.25;
-  }
-  .doc-h2 {
-    font-size: 12.5pt;
-    color: #1E3A8A;
-    border-bottom: 1.5px solid #CBD5E1;
-    padding-bottom: 6px;
-    margin-top: 24px;
-    margin-bottom: 10px;
-    font-weight: 700;
-    page-break-after: avoid;
-  }
-  .doc-h3 {
-    font-size: 11pt;
-    color: #0F172A;
-    margin-top: 18px;
-    margin-bottom: 8px;
-    font-weight: 700;
-    page-break-after: avoid;
-  }
-  .doc-h4 {
-    font-size: 10pt;
+    font-size: 8pt;
     color: #334155;
-    margin-top: 14px;
-    margin-bottom: 6px;
-    font-weight: 700;
+    line-height: 1.45;
   }
-  p, li {
-    color: #1E293B;
+  .doc-meta-card .doc-code {
+    font-weight: 700;
+    color: #0f3460;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 8pt;
+  }
+
+  /* Title Box */
+  .doc-title-block {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #0f3460;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+  }
+  .doc-main-title {
+    font-size: 14pt;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.3;
+    margin: 0 0 4px 0;
+    letter-spacing: -0.3px;
+  }
+  .doc-sub-title {
     font-size: 9.5pt;
+    font-weight: 600;
+    color: #334155;
+    margin: 0 0 12px 0;
+    line-height: 1.35;
+  }
+  .doc-metadata-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #e2e8f0;
+    font-size: 8pt;
+  }
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+  }
+  .meta-label {
+    font-size: 6.5pt;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 0.5px;
+    margin-bottom: 1px;
+  }
+  .meta-value {
+    font-weight: 600;
+    color: #0f172a;
+  }
+
+  /* Headings */
+  h1 { display: none; }
+  h2 {
+    color: #0f3460;
+    font-size: 11pt;
+    font-weight: 700;
+    margin-top: 22px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #cbd5e1;
+    page-break-after: avoid;
+    break-after: avoid;
+    letter-spacing: -0.2px;
+  }
+  h3 {
+    color: #1e293b;
+    font-size: 9.5pt;
+    font-weight: 700;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  h4 {
+    color: #334155;
+    font-size: 9pt;
+    font-weight: 600;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 8px;
     text-align: justify;
+    text-justify: inter-word;
   }
   ul, ol {
-    padding-left: 20px;
-    margin-top: 6px;
+    margin-top: 0;
     margin-bottom: 10px;
+    padding-left: 18px;
   }
   li {
     margin-bottom: 4px;
   }
-  .doc-divider {
-    border: 0;
-    border-top: 1px solid #E2E8F0;
-    margin: 20px 0;
+  strong {
+    color: #0f172a;
+    font-weight: 600;
   }
-  .callout {
-    background: #F0FDF4;
-    border-left: 4px solid #10B981;
-    padding: 10px 14px;
-    margin: 12px 0;
-    font-size: 9pt;
-    color: #065F46;
-    border-radius: 0 4px 4px 0;
-  }
-  .table-responsive {
-    width: 100%;
-    overflow-x: auto;
-    margin: 14px 0;
-    page-break-inside: avoid;
-  }
-  .tender-table {
+
+  /* Tables: Crisp borders, zero gray fills, consistent padding, clean typography */
+  table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 8.5pt;
-    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 16px;
+    font-size: 7.5pt;
+    line-height: 1.35;
+    page-break-inside: auto;
+    break-inside: auto;
+    border: 1px solid #cbd5e1;
   }
-  .tender-table th {
-    background: #1E3A8A;
-    color: #FFFFFF;
+  thead {
+    display: table-header-group;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  tr {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  th {
+    background-color: #f1f5f9;
+    color: #0f172a;
     font-weight: 700;
+    text-transform: uppercase;
+    font-size: 7pt;
+    letter-spacing: 0.3px;
     padding: 6px 8px;
-    border: 1px solid #1E3A8A;
+    border: 1px solid #cbd5e1;
     text-align: left;
+    vertical-align: middle;
   }
-  .tender-table td {
+  td {
     padding: 5px 8px;
-    border: 1px solid #CBD5E1;
-    color: #1E293B;
+    border: 1px solid #e2e8f0;
+    vertical-align: top;
+    background-color: #ffffff;
+    color: #1e293b;
   }
-  .tender-table tr:nth-child(even) {
-    background: #F8FAFC;
+  tbody tr:nth-child(even) td {
+    background-color: #f8fafc;
   }
-  .code-block {
-    background: #0F172A;
-    color: #38BDF8;
-    padding: 12px;
-    border-radius: 6px;
-    font-family: "SF Mono", Consolas, Menlo, Courier, monospace;
+
+  /* Inline code inside tables and general text - zero background fill, neat font */
+  table code {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    font-family: inherit !important;
+    font-size: inherit !important;
+    color: #0284c7 !important; /* Elegant cyan/slate accent */
+    font-style: italic;
+  }
+
+  /* General inline code */
+  code {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 7.5pt;
+    padding: 1px 4px;
+    border-radius: 2px;
+    border: 1px solid #e2e8f0;
+  }
+
+  pre, .code-block {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 3px solid #0f3460;
+    padding: 8px 12px;
+    border-radius: 3px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 8pt;
-    overflow-x: auto;
+    color: #0f172a;
+    margin: 10px 0 14px 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  pre code {
+    background: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+    font-size: 8pt !important;
+    color: inherit !important;
+    font-style: normal !important;
+  }
+
+  blockquote {
+    margin: 10px 0;
+    padding: 6px 12px;
+    background-color: #f8fafc;
+    border-left: 3px solid #0f3460;
+    color: #334155;
+    font-size: 8.5pt;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 18px 0;
+  }
+
+  .doc-footer-note {
+    margin-top: 24px;
+    padding-top: 10px;
+    border-top: 1px solid #e2e8f0;
+    font-size: 7pt;
+    color: #64748b;
+    text-align: center;
     page-break-inside: avoid;
   }
-  code {
-    font-family: "SF Mono", Consolas, Menlo, Courier, monospace;
-    background: #F1F5F9;
-    color: #0F172A;
-    padding: 1px 4px;
-    border-radius: 3px;
-    font-size: 8.5pt;
-  }
+
   @media print {
-    .screen-nav { display: none !important; }
-    .container { max-width: 100% !important; padding: 0 !important; }
-    body { font-size: 9pt; }
-    .tender-table th { background: #1E3A8A !important; -webkit-print-color-adjust: exact; color: white !important; }
-    .tender-table td { -webkit-print-color-adjust: exact; }
-    a { color: #0F172A; text-decoration: none; }
+    body { padding: 0; }
   }
 </style>
 </head>
 <body>
+<div class="document-container">
 
-<div class="screen-nav">
-  <a href="../portal.html">◀ Back to Executive Portal</a>
-  <div style="display: flex; gap: 10px; align-items: center;">
-    <a href="04_Appendix_C_SLAs_KPIs_Liquidated_Damages.pdf" download class="btn-pdf">📥 Download Official PDF</a>
-    <button onclick="window.print()" class="btn-print">🖨️ Print / Save PDF</button>
-  </div>
-</div>
-
-<div class="container">
-  <div class="formal-header">
+  <!-- Header Banner -->
+  <div class="doc-header-banner">
     <div>
-      <div class="corp-name">Telecommunications Technology Solutions Incorporated (TelTech)</div>
-      <div class="corp-sub">Nationwide 5G Fixed Wireless Access (FWA) Infrastructure Program</div>
+      <div class="corp-badge">Official Bidding Document</div>
+      <div class="corp-name">Telecommunications Technology Solutions Inc. (TelTech)</div>
+      <div class="corp-sub">Corporate Tender Secretariat · Procurement & Network Engineering Division</div>
     </div>
-    <div class="doc-meta">
-      <div><strong>Tender No:</strong> RFP-TELTECH-FWA-2026-001</div>
-      <div><strong>Author & Lead Architect:</strong> OLIVER TUNGOL</div>
-      <div><strong>Date:</strong> October 6, 2026 · Rev 2.0 (Official Bidding Version)</div>
+    <div class="doc-meta-card">
+      <div class="doc-code">RFP-TELTECH-FWA-2026-001 / APPENDIX C</div>
+      <div><strong>Author:</strong> OLIVER TUNGOL</div>
+      <div><strong>Date:</strong> October 6, 2026</div>
     </div>
   </div>
 
-  <h1 class="doc-h1">APPENDIX C: SERVICE LEVEL AGREEMENTS (SLAS), NETWORK KPIS & LIQUIDATED DAMAGES</h1>
-<h2 class="doc-h2">5G FWA PROGRAM (5,000 SITES NATIONWIDE) <strong>Tender Reference:</strong> RFP-TELTECH-FWA-2026-001 <strong>Project:</strong> Nationwide 5G FWA Project (Band n50, 60 MHz TDD) <strong>Operator:</strong> Telecommunications Technology Solutions Incorporated (TelTech) <strong>Author:</strong> OLIVER TUNGOL --- ## 1. OBJECTIVE & GOVERNANCE PRINCIPLES</h2>
-<p>This Appendix defines the mandatory Service Level Agreements (SLAs), Key Performance Indicators (KPIs), measurement methodologies, reporting intervals, and financial remedies (Service Credits and Liquidated Damages) governing:</p>
-<ol start="1"><li><strong>Turnkey Deployment & Commissioning Phases (Lots 1, 2, 5)</strong></li><li><strong>5G Radio & Core Network Operational Performance (Lots 1, 3)</strong></li><li><strong>OSS/BSS Platform Reliability & Field Dispatch Operations (Lot 4)</strong></li><li><strong>Managed Services & First Line Maintenance Operations (Lot 6)</strong> Performance shall be evaluated on a calendar monthly basis using the automated performance management OSS and audited ticketing records. --- ## 2. PROJECT ROLLOUT & DELIVERY SLAS ### 2.1 Milestone Delivery Schedule</li></ol>
-<p>The Contractor shall adhere strictly to the following turnkey delivery schedule for Phase 1 (1,000 sites):</p>
-<ul><li><strong>Milestone 1 (TSSR & Nominal Engineering Approval):</strong> Within <strong>45 Calendar Days</strong> of contract award for all 1,000 priority sites.</li><li><strong>Milestone 2 (First 200 Sites Commercial On-Air):</strong> Within <strong>120 Calendar Days</strong> of contract award.</li><li><strong>Milestone 3 (Cumulative 500 Sites Commercial On-Air):</strong> Within <strong>210 Calendar Days</strong> of contract award.</li><li><strong>Milestone 4 (Cumulative 1,000 Sites Commercial On-Air & Integrated):</strong> Within <strong>365 Calendar Days</strong> of contract award. ### 2.2 Delay Liquidated Damages (Rollout)</li><li>If the Contractor fails to achieve Final Acceptance of a milestone by the scheduled completion date, the Operator shall deduct <strong>Delay Liquidated Damages (DLD)</strong> equal to <strong>0.5% of the total milestone contract value per calendar week of delay</strong>, up to a maximum aggregate cap of <strong>10.0% of the total contract value</strong>.</li><li>Delays exceeding 60 calendar days beyond the milestone date shall entitle the Operator to terminate for default and draw down on the Contractor's Performance Bond. --- ## 3. RADIO ACCESS NETWORK (RAN) OPERATIONAL KPIS & SERVICE CREDITS ### 3.1 Core Radio KPIs (Calculated 24/7/365 Nationwide) <code></code>`</li></ul>
-<p>Radio Availability (%) = [(Total Operating Cell Hours - Total Unplanned Outage Cell Hours) / Total Operating Cell Hours] * 100</p>
-<pre class="code-block">
-| :--- | :--- | :--- | :---: | :---: | :--- |
-| <strong>KPI-RAN-01</strong> | <strong>Radio Network Availability</strong> | Monthly aggregate across all active cells | <strong>&gt;= 99.95%</strong> | <strong>99.70%</strong> | 1.0% of monthly O&M fee per 0.1% shortfall |
-| <strong>KPI-RAN-02</strong> | <strong>5G Session Setup Success (CSSR)</strong>| Initial RRC connection + 5G QoS flow setup | <strong>&gt;= 99.60%</strong> | <strong>99.00%</strong> | 0.5% of monthly O&M fee per 0.2% shortfall |
-| <strong>KPI-RAN-03</strong> | <strong>5G Session Drop Rate (CDDR)</strong> | Abnormal session drops during active data sessions | <strong>&lt;= 0.15%</strong> | <strong>0.50%</strong> | 0.5% of monthly O&M fee per 0.1% excess |
-| <strong>KPI-RAN-04</strong> | <strong>Peak Sector DL Throughput</strong> | Busy hour average across cell cluster | <strong>&gt;= 450 Mbps</strong> | <strong>380 Mbps</strong> | Mandatory RF re-tuning within 5 days |
-| <strong>KPI-RAN-05</strong> | <strong>Cell-Edge DL User Speed</strong> | 95th percentile stationary CPE speed | <strong>&gt;= 50 Mbps</strong> | <strong>25 Mbps</strong> | Mandatory antenna tilt optimization |
-| <strong>KPI-RAN-06</strong> | <strong>Cell-Edge UL User Speed</strong> | 95th percentile stationary CPE upload | <strong>&gt;= 15 Mbps</strong> | <strong>5 Mbps</strong> | Uplink power control re-configuration |
-| <strong>KPI-RAN-07</strong> | <strong>Radio Round-Trip Latency (RTT)</strong>| CPE to local gNodeB/UPF edge | <strong>&lt;= 18 ms</strong> | <strong>30 ms</strong> | Audit packet buffering & backhaul |
-| <strong>KPI-RAN-08</strong> | <strong>Packet Loss Rate (PLR)</strong> | User plane packet discard rate | <strong>&lt;= 0.01%</strong> | <strong>0.10%</strong> | Transport & radio QoS re-profiling | --- ## 4. 5G CORE NETWORK & CLOUD PLATFORM KPIS ### 4.1 5GC High Availability Benchmarks | KPI Identifier | Metric Description | Measurement Target | Calculation Interval | Liquidated Remedy |
-| :--- | :--- | :---: | :---: | :--- |
-| <strong>KPI-5GC-01</strong> | <strong>Control Plane NF Availability (AMF/SMF/UDM)</strong> | <strong>&gt;= 99.999%</strong> ("Five Nines") | Monthly | \10,000USD$ per hour outage exceeding threshold |
-| <strong>KPI-5GC-02</strong> | <strong>User Plane (UPF) Packet Availability</strong> | <strong>&gt;= 99.999%</strong> | Monthly | \10,000USD$ per hour outage exceeding threshold |
-| <strong>KPI-5GC-03</strong> | <strong>PDU Session Establishment Success Rate</strong> | <strong>&gt;= 99.80%</strong> | 24-hr Rolling | Root-cause analysis within 12 hours |
-| <strong>KPI-5GC-04</strong> | <strong>CG-NAT Port Allocation Success Rate</strong> | <strong>&gt;= 99.99%</strong> | Monthly | \5,000USD$ penalty for subscriber drop |
-| <strong>KPI-5GC-05</strong> | <strong>Active-Active Datacenter Failover Time</strong> | <strong>&lt;= 30Seconds</strong> | Semi-annual Drill | Penalty of 5% annual core AMC if drill fails |
-| <strong>KPI-5GC-06</strong> | <strong>UPF Internal Packet Latency</strong> | <strong>&lt;= 1.0 ms</strong> | Continuous | Hardware NIC DPDK tuning | --- ## 5. OSS/BSS & FIELD OPERATIONS SLAS ### 5.1 Commercial & Operational Velocity Metrics | KPI Identifier | Service Level Domain | Mandatory Target | Impact on Failure |
-| :--- | :--- | :---: | :--- |
-| <strong>KPI-BSS-01</strong> | <strong>Converged Charging System (CHF) Uptime</strong> | <strong>&gt;= 99.99%</strong> | 2.0% monthly BSS maintenance fee deduction |
-| <strong>KPI-BSS-02</strong> | <strong>Top-Up Processing Speed (GCash / Maya)</strong> | <strong>&lt;= 3.0Seconds</strong> | Mandatory optimization of API gateway queues |
-| <strong>KPI-OSS-01</strong> | <strong>New Installation Dispatch Lead Time</strong> | <strong>&lt;= 48Hours</strong> | &gt;= 95% of orders completed within 48h SLA |
-| <strong>KPI-OSS-02</strong> | <strong>First-Time-Right (FTR) Installation Rate</strong>| <strong>&gt;= 96.0%</strong> | Repeat truck rolls at Contractor expense |
-| <strong>KPI-OSS-03</strong> | <strong>Churned CPE Hardware Recovery Rate</strong> | <strong>&gt;= 70.0%</strong> | Contractor debited \55USD$ per unrecovered unit below 70% |
-| <strong>KPI-OSS-04</strong> | <strong>Automated Work-Order Dispatch Engine Capacity</strong>| <strong>&gt;= 3,500orders/day</strong> | Zero backlog accumulation during peak campaigns | --- ## 6. MANAGED SERVICES & FIELD INCIDENT RESTORATION SLAS ### 6.1 Incident Classification & Mean Time to Restore (MTTR) Incidents logged by the 24/7 NOC are classified into four severity tiers: <code></code>`
-+---------------------------------------------------------------------------------------------------+
-| Severity Level | Definition / Operational Impact | Response SLA | MTTR SLA (Urban) | MTTR SLA (Rural) |
-+---------------------------------------------------------------------------------------------------+
-| Severity 1 | Complete macro site outage; Core NF failure; | &lt;= 15 Mins | &lt;= 2.0 Hours | &lt;= 4.0 Hours |
-| (Critical) | &gt;500 subscribers out of service; major backhaul| | | |
-+---------------------------------------------------------------------------------------------------+
-| Severity 2 | Single sector down; degraded throughput; | &lt;= 30 Mins | &lt;= 4.0 Hours | &lt;= 6.0 Hours |
-| (Major) | loss of DC battery backup; generator fault | | | |
-+---------------------------------------------------------------------------------------------------+
-| Severity 3 | Non-service affecting hardware fault; loss of | &lt;= 1 Hour | &lt;= 12.0 Hours | &lt;= 24.0 Hours |
-| (Minor) | redundancy (single PSU failed, SFP degraded) | | | |
-+---------------------------------------------------------------------------------------------------+
-| Severity 4 | Configuration inquiry, routine audit, planned | &lt;= 4 Hours | &lt;= 48.0 Hours | &lt;= 72.0 Hours |
-| (Warning/Info) | preventative maintenance scheduling | | | |
-+---------------------------------------------------------------------------------------------------+
-</pre>
-<p>For every hour (or fraction thereof) that a Severity 1 incident exceeds the mandated MTTR threshold, the Operator shall deduct:</p>
-<ul><li><strong>Urban / Suburban Sites:</strong> <strong>0.5% of monthly site Managed Services fee per hour</strong> of prolonged outage.</li><li><strong>Rural Sites:</strong> <strong>0.25% of monthly site Managed Services fee per hour</strong> of prolonged outage.</li><li>Total monthly service credit deductions for Managed Services shall be capped at <strong>20.0% of the total monthly Managed Services fee</strong>. --- ## 7. MONTHLY REPORTING & GOVERNANCE CADENCE 1. <strong>Daily Operational Flash Report:</strong> Generated automatically at 06:00 PHT summarizing the previous 24 hours of network availability, outages, MTTR compliance, and work orders.</li></ul>
-<ol start="2"><li><strong>Weekly Engineering Review:</strong> Joint operations meeting reviewing open trouble tickets, cluster drive tests, and rollout milestone progress.</li><li><strong>Monthly Governance & SLA True-Up:</strong> Formal executive session reviewing all KPI metrics against SLA thresholds, finalizing service credits, and approving contractor invoices. ---</li></ol>
-<p><em>(End of Appendix C — Service Level Agreements, Network KPIs & Liquidated Damages)</em></p>
-</div>
+  <!-- Document Title & Metadata Block -->
+  <div class="doc-title-block">
+    <div class="doc-main-title">Service Level Agreements (SLAs), Network KPIs & Liquidated Damages</div>
+    <div class="doc-sub-title">Operational Performance Benchmarks, Severity MTTR & Financial Penalty Schedules</div>
+    <div class="doc-metadata-grid">
+      <div class="meta-item">
+        <span class="meta-label">Document Number</span>
+        <span class="meta-value">RFP-TELTECH-FWA-2026-001</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Author</span>
+        <span class="meta-value">OLIVER TUNGOL</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Target Spectrum</span>
+        <span class="meta-value">Band n50 (1.5 GHz, 60 MHz TDD)</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Bidding Status</span>
+        <span class="meta-value">Official Request for Proposal</span>
+      </div>
+    </div>
+  </div>
 
+  <!-- Main Content -->
+  <h2>1. OBJECTIVE &amp; GOVERNANCE PRINCIPLES</h2>
+<p>This Appendix defines the mandatory Service Level Agreements (SLAs), Key Performance Indicators (KPIs), measurement methodologies, reporting intervals, and financial remedies (Service Credits and Liquidated Damages) governing:<br />
+1. <strong>Turnkey Deployment &amp; Commissioning Phases (Lots 1, 2, 5)</strong><br />
+2. <strong>5G Radio &amp; Core Network Operational Performance (Lots 1, 3)</strong><br />
+3. <strong>OSS/BSS Platform Reliability &amp; Field Dispatch Operations (Lot 4)</strong><br />
+4. <strong>Managed Services &amp; First Line Maintenance Operations (Lot 6)</strong></p>
+<p>Performance shall be evaluated on a calendar monthly basis using the automated performance management OSS and audited ticketing records.</p>
+<hr />
+<h2>2. PROJECT ROLLOUT &amp; DELIVERY SLAS</h2>
+<h3>2.1 Milestone Delivery Schedule</h3>
+<p>The Contractor shall adhere strictly to the following turnkey delivery schedule for Phase 1 (1,000 sites):<br />
+* <strong>Milestone 1 (TSSR &amp; Nominal Engineering Approval):</strong> Within <strong>45 Calendar Days</strong> of contract award for all 1,000 priority sites.<br />
+* <strong>Milestone 2 (First 200 Sites Commercial On-Air):</strong> Within <strong>120 Calendar Days</strong> of contract award.<br />
+* <strong>Milestone 3 (Cumulative 500 Sites Commercial On-Air):</strong> Within <strong>210 Calendar Days</strong> of contract award.<br />
+* <strong>Milestone 4 (Cumulative 1,000 Sites Commercial On-Air &amp; Integrated):</strong> Within <strong>365 Calendar Days</strong> of contract award.</p>
+<h3>2.2 Delay Liquidated Damages (Rollout)</h3>
+<ul>
+<li>If the Contractor fails to achieve Final Acceptance of a milestone by the scheduled completion date, the Operator shall deduct <strong>Delay Liquidated Damages (DLD)</strong> equal to <strong>0.5% of the total milestone contract value per calendar week of delay</strong>, up to a maximum aggregate cap of <strong>10.0% of the total contract value</strong>.</li>
+<li>Delays exceeding 60 calendar days beyond the milestone date shall entitle the Operator to terminate for default and draw down on the Contractor's Performance Bond.</li>
+</ul>
+<hr />
+<h2>3. RADIO ACCESS NETWORK (RAN) OPERATIONAL KPIS &amp; SERVICE CREDITS</h2>
+<h3>3.1 Core Radio KPIs (Calculated 24/7/365 Nationwide)</h3>
+<pre><code>Radio Availability (%) = [(Total Operating Cell Hours - Total Unplanned Outage Cell Hours) / Total Operating Cell Hours] * 100
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">KPI Identifier</th>
+<th style="text-align: left;">Metric Description</th>
+<th style="text-align: left;">Measurement Methodology</th>
+<th style="text-align: center;">Target Standard</th>
+<th style="text-align: center;">Minimum Threshold</th>
+<th style="text-align: left;">Service Credit Penalty (&lt; Threshold)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>KPI-RAN-01</strong></td>
+<td style="text-align: left;"><strong>Radio Network Availability</strong></td>
+<td style="text-align: left;">Monthly aggregate across all active cells</td>
+<td style="text-align: center;"><strong>&gt;= 99.95%</strong></td>
+<td style="text-align: center;"><strong>99.70%</strong></td>
+<td style="text-align: left;">1.0% of monthly O&amp;M fee per 0.1% shortfall</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>KPI-RAN-02</strong></td>
+<td style="text-align: left;"><strong>5G Session Setup Success (CSSR)</strong></td>
+<td style="text-align: left;">Initial RRC connection + 5G QoS flow setup</td>
+<td style="text-align: center;"><strong>&gt;= 99.60%</strong></td>
+<td style="text-align: center;"><strong>99.00%</strong></td>
+<td style="text-align: left;">0.5% of monthly O&amp;M fee per 0.2% shortfall</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>KPI-RAN-03</strong></td>
+<td style="text-align: left;"><strong>5G Session Drop Rate (CDDR)</strong></td>
+<td style="text-align: left;">Abnormal session drops during active data sessions</td>
+<td style="text-align: center;"><strong>&lt;= 0.15%</strong></td>
+<td style="text-align: center;"><strong>0.50%</strong></td>
+<td style="text-align: left;">0.5% of monthly O&amp;M fee per 0.1% excess</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>KPI-RAN-04</strong></td>
+<td style="text-align: left;"><strong>Peak Sector DL Throughput</strong></td>
+<td style="text-align: left;">Busy hour average across cell cluster</td>
+<td style="text-align: center;"><strong>&gt;= 450 Mbps</strong></td>
+<td style="text-align: center;"><strong>380 Mbps</strong></td>
+<td style="text-align: left;">Mandatory RF re-tuning within 5 days</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>KPI-RAN-05</strong></td>
+<td style="text-align: left;"><strong>Cell-Edge DL User Speed</strong></td>
+<td style="text-align: left;">95th percentile stationary CPE speed</td>
+<td style="text-align: center;"><strong>&gt;= 50 Mbps</strong></td>
+<td style="text-align: center;"><strong>25 Mbps</strong></td>
+<td style="text-align: left;">Mandatory antenna tilt optimization</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>KPI-RAN-06</strong></td>
+<td style="text-align: left;"><strong>Cell-Edge UL User Speed</strong></td>
+<td style="text-align: left;">95th percentile stationary CPE upload</td>
+<td style="text-align: center;"><strong>&gt;= 15 Mbps</strong></td>
+<td style="text-align: center;"><strong>5 Mbps</strong></td>
+<td style="text-align: left;">Uplink power control re-configuration</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>KPI-RAN-07</strong></td>
+<td style="text-align: left;"><strong>Radio Round-Trip Latency (RTT)</strong></td>
+<td style="text-align: left;">CPE to local gNodeB/UPF edge</td>
+<td style="text-align: center;"><strong>&lt;= 18 ms</strong></td>
+<td style="text-align: center;"><strong>30 ms</strong></td>
+<td style="text-align: left;">Audit packet buffering &amp; backhaul</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>KPI-RAN-08</strong></td>
+<td style="text-align: left;"><strong>Packet Loss Rate (PLR)</strong></td>
+<td style="text-align: left;">User plane packet discard rate</td>
+<td style="text-align: center;"><strong>&lt;= 0.01%</strong></td>
+<td style="text-align: center;"><strong>0.10%</strong></td>
+<td style="text-align: left;">Transport &amp; radio QoS re-profiling</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 5G CORE NETWORK &amp; CLOUD PLATFORM KPIS</h2>
+<h3>4.1 5GC High Availability Benchmarks</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">KPI Identifier</th>
+<th style="text-align: left;">Metric Description</th>
+<th style="text-align: center;">Measurement Target</th>
+<th style="text-align: center;">Calculation Interval</th>
+<th style="text-align: left;">Liquidated Remedy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>KPI-5GC-01</strong></td>
+<td style="text-align: left;"><strong>Control Plane NF Availability (AMF/SMF/UDM)</strong></td>
+<td style="text-align: center;"><strong>&gt;= 99.999%</strong> ("Five Nines")</td>
+<td style="text-align: center;">Monthly</td>
+<td style="text-align: left;">$10,000 USD per hour outage exceeding threshold</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>KPI-5GC-02</strong></td>
+<td style="text-align: left;"><strong>User Plane (UPF) Packet Availability</strong></td>
+<td style="text-align: center;"><strong>&gt;= 99.999%</strong></td>
+<td style="text-align: center;">Monthly</td>
+<td style="text-align: left;">$10,000 USD per hour outage exceeding threshold</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>KPI-5GC-03</strong></td>
+<td style="text-align: left;"><strong>PDU Session Establishment Success Rate</strong></td>
+<td style="text-align: center;"><strong>&gt;= 99.80%</strong></td>
+<td style="text-align: center;">24-hr Rolling</td>
+<td style="text-align: left;">Root-cause analysis within 12 hours</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>KPI-5GC-04</strong></td>
+<td style="text-align: left;"><strong>CG-NAT Port Allocation Success Rate</strong></td>
+<td style="text-align: center;"><strong>&gt;= 99.99%</strong></td>
+<td style="text-align: center;">Monthly</td>
+<td style="text-align: left;">$5,000 USD penalty for subscriber drop</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>KPI-5GC-05</strong></td>
+<td style="text-align: left;"><strong>Active-Active Datacenter Failover Time</strong></td>
+<td style="text-align: center;"><strong>&lt;= 30 Seconds</strong></td>
+<td style="text-align: center;">Semi-annual Drill</td>
+<td style="text-align: left;">Penalty of 5% annual core AMC if drill fails</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>KPI-5GC-06</strong></td>
+<td style="text-align: left;"><strong>UPF Internal Packet Latency</strong></td>
+<td style="text-align: center;"><strong>&lt;= 1.0 ms</strong></td>
+<td style="text-align: center;">Continuous</td>
+<td style="text-align: left;">Hardware NIC DPDK tuning</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. OSS/BSS &amp; FIELD OPERATIONS SLAS</h2>
+<h3>5.1 Commercial &amp; Operational Velocity Metrics</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">KPI Identifier</th>
+<th style="text-align: left;">Service Level Domain</th>
+<th style="text-align: center;">Mandatory Target</th>
+<th style="text-align: left;">Impact on Failure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>KPI-BSS-01</strong></td>
+<td style="text-align: left;"><strong>Converged Charging System (CHF) Uptime</strong></td>
+<td style="text-align: center;"><strong>&gt;= 99.99%</strong></td>
+<td style="text-align: left;">2.0% monthly BSS maintenance fee deduction</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>KPI-BSS-02</strong></td>
+<td style="text-align: left;"><strong>Top-Up Processing Speed (GCash / Maya)</strong></td>
+<td style="text-align: center;"><strong>&lt;= 3.0 Seconds</strong></td>
+<td style="text-align: left;">Mandatory optimization of API gateway queues</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>KPI-OSS-01</strong></td>
+<td style="text-align: left;"><strong>New Installation Dispatch Lead Time</strong></td>
+<td style="text-align: center;"><strong>&lt;= 48 Hours</strong></td>
+<td style="text-align: left;">&gt;= 95% of orders completed within 48h SLA</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>KPI-OSS-02</strong></td>
+<td style="text-align: left;"><strong>First-Time-Right (FTR) Installation Rate</strong></td>
+<td style="text-align: center;"><strong>&gt;= 96.0%</strong></td>
+<td style="text-align: left;">Repeat truck rolls at Contractor expense</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>KPI-OSS-03</strong></td>
+<td style="text-align: left;"><strong>Churned CPE Hardware Recovery Rate</strong></td>
+<td style="text-align: center;"><strong>&gt;= 70.0%</strong></td>
+<td style="text-align: left;">Contractor debited $55 USD per unrecovered unit below 70%</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>KPI-OSS-04</strong></td>
+<td style="text-align: left;"><strong>Automated Work-Order Dispatch Engine Capacity</strong></td>
+<td style="text-align: center;"><strong>&gt;= 3,500orders/day</strong></td>
+<td style="text-align: left;">Zero backlog accumulation during peak campaigns</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. MANAGED SERVICES &amp; FIELD INCIDENT RESTORATION SLAS</h2>
+<h3>6.1 Incident Classification &amp; Mean Time to Restore (MTTR)</h3>
+<p>Incidents logged by the 24/7 NOC are classified into four severity tiers:</p>
+<pre><code>+---------------------------------------------------------------------------------------------------+
+| Severity Level | Definition / Operational Impact                | Response SLA | MTTR SLA (Urban) | MTTR SLA (Rural) |
++---------------------------------------------------------------------------------------------------+
+| Severity 1     | Complete macro site outage; Core NF failure;   | &lt;= 15 Mins   | &lt;= 2.0 Hours     | &lt;= 4.0 Hours     |
+| (Critical)     | &gt;500 subscribers out of service; major backhaul|              |                  |                  |
++---------------------------------------------------------------------------------------------------+
+| Severity 2     | Single sector down; degraded throughput;       | &lt;= 30 Mins   | &lt;= 4.0 Hours     | &lt;= 6.0 Hours     |
+| (Major)        | loss of DC battery backup; generator fault      |              |                  |                  |
++---------------------------------------------------------------------------------------------------+
+| Severity 3     | Non-service affecting hardware fault; loss of  | &lt;= 1 Hour    | &lt;= 12.0 Hours    | &lt;= 24.0 Hours    |
+| (Minor)        | redundancy (single PSU failed, SFP degraded)   |              |                  |                  |
++---------------------------------------------------------------------------------------------------+
+| Severity 4     | Configuration inquiry, routine audit, planned  | &lt;= 4 Hours   | &lt;= 48.0 Hours    | &lt;= 72.0 Hours    |
+| (Warning/Info) | preventative maintenance scheduling            |              |                  |                  |
++---------------------------------------------------------------------------------------------------+
+</code></pre>
+<h3>6.2 Service Credits for MTTR Breaches</h3>
+<p>For every hour (or fraction thereof) that a Severity 1 incident exceeds the mandated MTTR threshold, the Operator shall deduct:<br />
+* <strong>Urban / Suburban Sites:</strong> <strong>0.5% of monthly site Managed Services fee per hour</strong> of prolonged outage.<br />
+* <strong>Rural Sites:</strong> <strong>0.25% of monthly site Managed Services fee per hour</strong> of prolonged outage.<br />
+* Total monthly service credit deductions for Managed Services shall be capped at <strong>20.0% of the total monthly Managed Services fee</strong>.</p>
+<hr />
+<h2>7. MONTHLY REPORTING &amp; GOVERNANCE CADENCE</h2>
+<ol>
+<li><strong>Daily Operational Flash Report:</strong> Generated automatically at 06:00 PHT summarizing the previous 24 hours of network availability, outages, MTTR compliance, and work orders.</li>
+<li><strong>Weekly Engineering Review:</strong> Joint operations meeting reviewing open trouble tickets, cluster drive tests, and rollout milestone progress.</li>
+<li><strong>Monthly Governance &amp; SLA True-Up:</strong> Formal executive session reviewing all KPI metrics against SLA thresholds, finalizing service credits, and approving contractor invoices.</li>
+</ol>
+<hr />
+<p><em>(End of Appendix C — Service Level Agreements, Network KPIs &amp; Liquidated Damages)</em></p>
+
+  <div class="doc-footer-note">
+    Telecommunications Technology Solutions Incorporated (TelTech) · RFP-TELTECH-FWA-2026-001 · Author: OLIVER TUNGOL · Strictly Confidential
+  </div>
+
+</div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 # 🗼 Executive Technical Guide: Operational Cell Tower Overlay on POPCEN 2024 (13,746 Towers)
 
-**Author & Lead Architect:** Oliver Tungol  
+**Author:** Oliver Tungol  
 **Entity:** Comclark Network and Technology Corp. / Telecommunications Technology Solutions Inc. (TelTech)  
 **Date:** October 5, 2026  
 **Document Code:** FWA-ENG-TOWER-POPCEN-2026-V2  
@@ -40,7 +40,10 @@ A total of **13,746 unique operational macro towers** were ingested, validated, 
 
 For each of the 5,000 nominal barangay coordinates from the official POPCEN 2024 rollout plan, the **Haversine great-circle distance** was computed against all 13,746 operational towers:
 
-34058\Delta\sigma = 2 rcsin \left( \sqrt{\sin^2\left(rac{\Delta\phi}{2}ight) + \cos(\phi_1)\cos(\phi_2)\sin^2\left(rac{\Delta\lambda}{2}ight)} ight), \quad d = 6371.0 	imes \Delta\sigma 	ext{ km}34058
+34058\Delta\sigma = 2 rcsin \left( \sqrt{\sin^2\left(rac{\Delta\phi}{2}
+ight) + \cos(\phi_1)\cos(\phi_2)\sin^2\left(rac{\Delta\lambda}{2}
+ight)} 
+ight), \quad d = 6371.0 	imes \Delta\sigma 	ext{ km}34058
 
 ### Nearest Tower Metrics Appended to Model (Columns 32–35):
 1. **Column 32 ():** The exact distance from the barangay nominal centroid to the nearest operational tower.
@@ -65,7 +68,8 @@ For each of the 5,000 nominal barangay coordinates from the official POPCEN 2024
 
 To reflect the substantial commercial and operational advantage of existing infrastructure, **Tower Bonus Points** were directly incorporated into the **Ease of Deployment Pillar (35% Weight)**:
 
-34058	ext{Ease Score}_{	ext{new}} = \min\left(100, \; 	ext{Ease Score}_{	ext{base}} + 	ext{Bonus}_{	ext{tower}}ight)34058
+34058	ext{Ease Score}_{	ext{new}} = \min\left(100, \; 	ext{Ease Score}_{	ext{base}} + 	ext{Bonus}_{	ext{tower}}
+ight)34058
 
 * **Class T1 (≤ 0.5 km):** **+10 Bonus Points**
 * **Class T2 (0.5 – 1.0 km):** **+5 Bonus Points**

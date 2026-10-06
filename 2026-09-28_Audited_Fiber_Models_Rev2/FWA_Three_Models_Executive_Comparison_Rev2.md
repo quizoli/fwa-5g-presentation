@@ -3,7 +3,7 @@
 ### Incorporating Independent Optical Backbone Spatial Audit (Classes A through F)
 
 **Date:** September 28, 2026  
-**Author & Lead Architect:** OLIVER TUNGOL  
+**Author:** OLIVER TUNGOL  
 **Target Spectrum & Radio Model:** Band n50 (1427 – 1518 MHz, 100 MHz TDD) — 3-Sector 8T8R MIMO Single-Carrier Deployment  
 **BTS Siting Dimensioning Standard:** 1,000 Active Subscribers per BTS (~333 per 120° Sector across 3 Sectors, per TelTech & Comclark RAN Engineering)  
 **Transmission Anchor:** Converge ICT National Optical Backbone (Audited Node Folders: 1,296 nodes, Screened Cable Routes: 2,684 features) + Starlink Business LEO Satellite  

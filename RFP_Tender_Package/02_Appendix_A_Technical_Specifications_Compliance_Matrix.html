@@ -2,318 +2,925 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Appendix A: Technical Specifications & Compliance Matrix — 5G FWA Tender Specification</title>
+<title>Technical Specifications & Compliance Matrix — TelTech</title>
 <style>
   @page {
     size: A4 portrait;
-    margin: 20mm 15mm 20mm 15mm;
+    margin: 18mm 14mm 18mm 14mm;
+    @bottom-center {
+      content: "Page " counter(page) " of " counter(pages);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      font-size: 8pt;
+      color: #94a3b8;
+    }
   }
-  :root {
-    --primary: #1E3A8A;
-    --primary-light: #3B82F6;
-    --accent: #0D9488;
-    --text-dark: #0F172A;
-    --text-muted: #475569;
-    --border: #E2E8F0;
-    --bg-card: #F8FAFC;
+
+  *, *:before, *:after {
+    box-sizing: border-box;
   }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    color: var(--text-dark);
-    background: #FFFFFF;
-    line-height: 1.6;
-    font-size: 10pt;
+
+  html, body {
     margin: 0;
     padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1e293b;
+    background-color: #ffffff;
+    font-size: 9pt;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
   }
-  .screen-nav {
-    background: #0F172A;
-    color: #FFFFFF;
-    padding: 12px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-  }
-  .screen-nav a {
-    color: #93C5FD;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 13px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .screen-nav .btn-print {
-    background: #2563EB;
-    color: #FFFFFF;
-    border: none;
-    padding: 6px 14px;
-    border-radius: 6px;
-    font-weight: 700;
-    cursor: pointer;
-    font-size: 12px;
-  }
-  .screen-nav .btn-pdf {
-    background: #059669;
-    color: #FFFFFF;
-    text-decoration: none;
-    padding: 6px 14px;
-    border-radius: 6px;
-    font-weight: 700;
-    font-size: 12px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .container {
-    max-width: 900px;
+
+  .document-container {
+    padding: 10px 10px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 30px 25px;
   }
-  .formal-header {
-    border-bottom: 3px double #1E3A8A;
-    padding-bottom: 16px;
-    margin-bottom: 24px;
+
+  /* Header banner */
+  .doc-header-banner {
+    border-bottom: 2px solid #0f3460;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: flex-end;
+  }
+  .corp-badge {
+    display: inline-block;
+    background: #0f3460;
+    color: #ffffff;
+    font-size: 7pt;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin-bottom: 5px;
   }
   .corp-name {
     font-size: 13pt;
-    font-weight: 900;
-    color: #1E3A8A;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.2px;
+    line-height: 1.2;
+    margin: 0;
   }
   .corp-sub {
-    font-size: 9pt;
-    color: #64748B;
-    font-weight: 600;
-    text-transform: uppercase;
+    font-size: 8pt;
+    color: #64748b;
+    font-weight: 500;
+    margin-top: 2px;
   }
-  .doc-meta {
+  .doc-meta-card {
     text-align: right;
-    font-size: 8.5pt;
-    color: #475569;
-  }
-  .doc-h1 {
-    font-size: 17pt;
-    color: #1E3A8A;
-    font-weight: 800;
-    margin-top: 0;
-    margin-bottom: 12px;
-    line-height: 1.25;
-  }
-  .doc-h2 {
-    font-size: 12.5pt;
-    color: #1E3A8A;
-    border-bottom: 1.5px solid #CBD5E1;
-    padding-bottom: 6px;
-    margin-top: 24px;
-    margin-bottom: 10px;
-    font-weight: 700;
-    page-break-after: avoid;
-  }
-  .doc-h3 {
-    font-size: 11pt;
-    color: #0F172A;
-    margin-top: 18px;
-    margin-bottom: 8px;
-    font-weight: 700;
-    page-break-after: avoid;
-  }
-  .doc-h4 {
-    font-size: 10pt;
+    font-size: 8pt;
     color: #334155;
-    margin-top: 14px;
-    margin-bottom: 6px;
-    font-weight: 700;
+    line-height: 1.45;
   }
-  p, li {
-    color: #1E293B;
+  .doc-meta-card .doc-code {
+    font-weight: 700;
+    color: #0f3460;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 8pt;
+  }
+
+  /* Title Box */
+  .doc-title-block {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #0f3460;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+  }
+  .doc-main-title {
+    font-size: 14pt;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.3;
+    margin: 0 0 4px 0;
+    letter-spacing: -0.3px;
+  }
+  .doc-sub-title {
     font-size: 9.5pt;
+    font-weight: 600;
+    color: #334155;
+    margin: 0 0 12px 0;
+    line-height: 1.35;
+  }
+  .doc-metadata-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #e2e8f0;
+    font-size: 8pt;
+  }
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+  }
+  .meta-label {
+    font-size: 6.5pt;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 0.5px;
+    margin-bottom: 1px;
+  }
+  .meta-value {
+    font-weight: 600;
+    color: #0f172a;
+  }
+
+  /* Headings */
+  h1 { display: none; }
+  h2 {
+    color: #0f3460;
+    font-size: 11pt;
+    font-weight: 700;
+    margin-top: 22px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #cbd5e1;
+    page-break-after: avoid;
+    break-after: avoid;
+    letter-spacing: -0.2px;
+  }
+  h3 {
+    color: #1e293b;
+    font-size: 9.5pt;
+    font-weight: 700;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  h4 {
+    color: #334155;
+    font-size: 9pt;
+    font-weight: 600;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 8px;
     text-align: justify;
+    text-justify: inter-word;
   }
   ul, ol {
-    padding-left: 20px;
-    margin-top: 6px;
+    margin-top: 0;
     margin-bottom: 10px;
+    padding-left: 18px;
   }
   li {
     margin-bottom: 4px;
   }
-  .doc-divider {
-    border: 0;
-    border-top: 1px solid #E2E8F0;
-    margin: 20px 0;
+  strong {
+    color: #0f172a;
+    font-weight: 600;
   }
-  .callout {
-    background: #F0FDF4;
-    border-left: 4px solid #10B981;
-    padding: 10px 14px;
-    margin: 12px 0;
-    font-size: 9pt;
-    color: #065F46;
-    border-radius: 0 4px 4px 0;
-  }
-  .table-responsive {
-    width: 100%;
-    overflow-x: auto;
-    margin: 14px 0;
-    page-break-inside: avoid;
-  }
-  .tender-table {
+
+  /* Tables: Crisp borders, zero gray fills, consistent padding, clean typography */
+  table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 8.5pt;
-    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 16px;
+    font-size: 7.5pt;
+    line-height: 1.35;
+    page-break-inside: auto;
+    break-inside: auto;
+    border: 1px solid #cbd5e1;
   }
-  .tender-table th {
-    background: #1E3A8A;
-    color: #FFFFFF;
+  thead {
+    display: table-header-group;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  tr {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  th {
+    background-color: #f1f5f9;
+    color: #0f172a;
     font-weight: 700;
+    text-transform: uppercase;
+    font-size: 7pt;
+    letter-spacing: 0.3px;
     padding: 6px 8px;
-    border: 1px solid #1E3A8A;
+    border: 1px solid #cbd5e1;
     text-align: left;
+    vertical-align: middle;
   }
-  .tender-table td {
+  td {
     padding: 5px 8px;
-    border: 1px solid #CBD5E1;
-    color: #1E293B;
+    border: 1px solid #e2e8f0;
+    vertical-align: top;
+    background-color: #ffffff;
+    color: #1e293b;
   }
-  .tender-table tr:nth-child(even) {
-    background: #F8FAFC;
+  tbody tr:nth-child(even) td {
+    background-color: #f8fafc;
   }
-  .code-block {
-    background: #0F172A;
-    color: #38BDF8;
-    padding: 12px;
-    border-radius: 6px;
-    font-family: "SF Mono", Consolas, Menlo, Courier, monospace;
+
+  /* Inline code inside tables and general text - zero background fill, neat font */
+  table code {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    font-family: inherit !important;
+    font-size: inherit !important;
+    color: #0284c7 !important; /* Elegant cyan/slate accent */
+    font-style: italic;
+  }
+
+  /* General inline code */
+  code {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 7.5pt;
+    padding: 1px 4px;
+    border-radius: 2px;
+    border: 1px solid #e2e8f0;
+  }
+
+  pre, .code-block {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 3px solid #0f3460;
+    padding: 8px 12px;
+    border-radius: 3px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 8pt;
-    overflow-x: auto;
+    color: #0f172a;
+    margin: 10px 0 14px 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  pre code {
+    background: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+    font-size: 8pt !important;
+    color: inherit !important;
+    font-style: normal !important;
+  }
+
+  blockquote {
+    margin: 10px 0;
+    padding: 6px 12px;
+    background-color: #f8fafc;
+    border-left: 3px solid #0f3460;
+    color: #334155;
+    font-size: 8.5pt;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 18px 0;
+  }
+
+  .doc-footer-note {
+    margin-top: 24px;
+    padding-top: 10px;
+    border-top: 1px solid #e2e8f0;
+    font-size: 7pt;
+    color: #64748b;
+    text-align: center;
     page-break-inside: avoid;
   }
-  code {
-    font-family: "SF Mono", Consolas, Menlo, Courier, monospace;
-    background: #F1F5F9;
-    color: #0F172A;
-    padding: 1px 4px;
-    border-radius: 3px;
-    font-size: 8.5pt;
-  }
+
   @media print {
-    .screen-nav { display: none !important; }
-    .container { max-width: 100% !important; padding: 0 !important; }
-    body { font-size: 9pt; }
-    .tender-table th { background: #1E3A8A !important; -webkit-print-color-adjust: exact; color: white !important; }
-    .tender-table td { -webkit-print-color-adjust: exact; }
-    a { color: #0F172A; text-decoration: none; }
+    body { padding: 0; }
   }
 </style>
 </head>
 <body>
+<div class="document-container">
 
-<div class="screen-nav">
-  <a href="../portal.html">◀ Back to Executive Portal</a>
-  <div style="display: flex; gap: 10px; align-items: center;">
-    <a href="02_Appendix_A_Technical_Specifications_Compliance_Matrix.pdf" download class="btn-pdf">📥 Download Official PDF</a>
-    <button onclick="window.print()" class="btn-print">🖨️ Print / Save PDF</button>
-  </div>
-</div>
-
-<div class="container">
-  <div class="formal-header">
+  <!-- Header Banner -->
+  <div class="doc-header-banner">
     <div>
-      <div class="corp-name">Telecommunications Technology Solutions Incorporated (TelTech)</div>
-      <div class="corp-sub">Nationwide 5G Fixed Wireless Access (FWA) Infrastructure Program</div>
+      <div class="corp-badge">Official Bidding Document</div>
+      <div class="corp-name">Telecommunications Technology Solutions Inc. (TelTech)</div>
+      <div class="corp-sub">Corporate Tender Secretariat · Procurement & Network Engineering Division</div>
     </div>
-    <div class="doc-meta">
-      <div><strong>Tender No:</strong> RFP-TELTECH-FWA-2026-001</div>
-      <div><strong>Author & Lead Architect:</strong> OLIVER TUNGOL</div>
-      <div><strong>Date:</strong> October 6, 2026 · Rev 2.0 (Official Bidding Version)</div>
+    <div class="doc-meta-card">
+      <div class="doc-code">RFP-TELTECH-FWA-2026-001 / APPENDIX A</div>
+      <div><strong>Author:</strong> OLIVER TUNGOL</div>
+      <div><strong>Date:</strong> October 6, 2026</div>
     </div>
   </div>
 
-  <h1 class="doc-h1">APPENDIX A: TECHNICAL SPECIFICATIONS & COMPLIANCE MATRIX</h1>
-<h2 class="doc-h2">5G FWA NETWORK: RAN, POWER, 5GC, OSS/BSS, RF & MANAGED SERVICES <strong>Tender Reference:</strong> RFP-TELTECH-FWA-2026-001 <strong>Project:</strong> Nationwide 5G FWA Project (Band n50, 60 MHz TDD) <strong>Operator:</strong> Telecommunications Technology Solutions Incorporated (TelTech) <strong>Author:</strong> OLIVER TUNGOL <em>Instructions to Bidders: Complete Column D with "C" (Full Compliance), "M" (Minor Deviation - explain in remarks), or "NC" (Non-Compliant). Bidders must provide specific technical values and document references.</em> --- ### SECTION 1: RADIO ACCESS NETWORK (RAN) TECHNICAL SPECIFICATIONS | Item ID | Sub-System / Feature | Detailed Specification Requirement | Compliance (C / M / NC) | Bidder Proposed Specification & Reference |</h2>
-<div class="table-responsive"><table class="tender-table">
-<thead><tr><th><strong>RAN-01</strong></th><th><strong>3GPP Standard</strong></th><th>3GPP Release 16 and Release 17 compliant 5G NR Standalone (SA) architecture.</th><th></th><th></th></tr></thead><tbody>
-<tr><th><strong>RAN-02</strong></th><th><strong>Frequency Band</strong></th><th>Band n50 (1432 – 1517 MHz, 1.5 GHz L-Band TDD). Full RF support for 1432–1517 MHz.</th><th></th><th></th></tr>
-<tr><th><strong>RAN-03</strong></th><th><strong>Channel Bandwidth</strong></th><th>Continuous 60 MHz channel bandwidth on a single carrier; software-configurable to 40 MHz / 50 MHz / 60 MHz.</th><th></th><th></th></tr>
-<tr><th><strong>RAN-04</strong></th><th><strong>Duplex Mode</strong></th><th>Time Division Duplex (TDD) with flexible frame configuration (e.g., 4:1 DL:UL ratio with special slot 10:2:2).</th><th></th><th></th></tr>
-<tr><th><strong>RAN-05</strong></th><th><strong>Subcarrier Spacing</strong></th><th>30 kHz Subcarrier Spacing (SCS) with normal cyclic prefix (CP).</th><th></th><th></th></tr>
-<tr><th><strong>RAN-06</strong></th><th><strong>Synchronization</strong></th><th>IEEE 1588v2 Precision Time Protocol (PTP G.8275.1 profile), Synchronous Ethernet (SyncE), and GNSS (GPS/BeiDou/GLONASS) receiver onboard BBU.</th><th></th><th></th></tr>
-<tr><th><strong>RAN-07</strong></th><th><strong>Radio Configuration</strong></th><th>Standard macro site: 3 sectors, 8T8R configuration (3x 8T8R RRU or integrated AAU per site).</th><th></th><th></th></tr>
-<tr><th><strong>RAN-08</strong></th><th><strong>RF Output Power</strong></th><th>Minimum 8x 40W (320W total RF output power per sector/RRU). Digital power control with dynamic power backoff.</th><th></th><th></th></tr>
-<tr><th><strong>RAN-09</strong></th><th><strong>Beamforming</strong></th><th>Digital + analog beamforming (horizontal and vertical); dynamic Multi-User MIMO (MU-MIMO) pairing in DL and UL.</th><th></th><th></th></tr>
-<tr><th><strong>RAN-10</strong></th><th><strong>Modulation Schemes</strong></th><th>Downlink: Up to 256-QAM adaptive modulation.<br>Uplink: Up to 64-QAM / 256-QAM adaptive modulation.</th><th></th><th></th></tr>
-<tr><th><strong>RAN-11</strong></th><th><strong>MIMO Support</strong></th><th>Downlink: Up to 8-layer transmission across multiple users (MU-MIMO); up to 4-layer transmission to single 4R CPE.<br>Uplink: Up to 2-layer single user MIMO; 4-layer MU-MIMO.</th><th></th><th></th></tr>
-<tr><th><strong>RAN-12</strong></th><th><strong>Sector Throughput</strong></th><th>Aggregated single-sector peak throughput >= 450 Mbps in 60 MHz DL under 4:1 TDD frame configuration.</th><th></th><th></th></tr>
-<tr><th><strong>RAN-13</strong></th><th><strong>Subscriber Capacity</strong></th><th>BBU and sector software must support >= 350 active concurrent RRC connected CPEs per sector (>= 1,000 per 3-sector site) without degradation.</th><th></th><th></th></tr>
-<tr><th><strong>RAN-14</strong></th><th><strong>BBU Architecture</strong></th><th>Modular 19" rack-mountable subrack (<= 3U height). Dual hot-swappable -48V DC power supplies. Redundant main control units.</th><th></th><th></th></tr>
-<tr><th><strong>RAN-15</strong></th><th><strong>Fronthaul Interfaces</strong></th><th>Minimum 6x 25GE eCPRI optical interfaces per BBU; support for fiber-saving BiDi transceivers.</th><th></th><th></th></tr>
-<tr><th><strong>RAN-16</strong></th><th><strong>Backhaul Interfaces</strong></th><th>Minimum 2x 10GE + 2x 25GE SFP28 interfaces supporting IP routing, VLAN tagging (802.1Q), and Segment Routing / IP MPLS.</th><th></th><th></th></tr>
-<tr><th><strong>RAN-17</strong></th><th><strong>Environmental Rating</strong></th><th>Outdoor RRU/AAU: IP65 / IP67 ingress protection; operating temperature -40°C to +55°C; wind load resistance up to 250 km/h.</th><th></th><th></th></tr>
-<tr><th><strong>RAN-18</strong></th><th><strong>Energy Saving Modes</strong></th><th>Micro-sleep, symbol shutdown, deep sleep during low-traffic periods, reducing idle power consumption by >= 40%.</th><th></th><th></th></tr>
-<tr><th><strong>RAN-19</strong></th><th><strong>Antenna Specifications</strong></th><th>8-port cross-pol antenna, 65° horizontal HPBW, >= 17.5 dBi gain, integrated AISG 2.0 internal remote electrical tilt (eRET) adjustable 2° to 12°.</th><th></th><th></th></tr>
-<tr><th><strong>RAN-20</strong></th><th><strong>PIM Performance</strong></th><th>Passive Intermodulation (PIM) <= -153dBc @ 2 x 43 dBm carrier test.</th><th></th><th></th><th>--- ### SECTION 2: POWER SYSTEMS & PASSIVE SITE INFRASTRUCTURE</th><th>Item ID</th><th>Sub-System / Feature</th><th>Detailed Specification Requirement</th><th>Compliance (C / M / NC)</th><th>Bidder Proposed Specification & Reference</th></tr>
-<tr><td><strong>PWR-01</strong></td><td><strong>DC Power Plant</strong></td><td>19" 3U/4U modular high-efficiency switchmode rectifier system; continuous rating >= 6.0 kW @ -48V DC.</td><td></td><td></td></tr>
-<tr><td><strong>PWR-02</strong></td><td><strong>Rectifier Modules</strong></td><td>Hot-swappable 2.0 kW or 3.0 kW modules in N+1 redundant configuration. Operating efficiency >= 96.0%.</td><td></td><td></td></tr>
-<tr><td><strong>PWR-03</strong></td><td><strong>Input Voltage Range</strong></td><td>Wide AC input operating range: 85V AC to 300V AC nominal single phase (230V, 60 Hz), withstanding rural grid fluctuations.</td><td></td><td></td></tr>
-<tr><td><strong>PWR-04</strong></td><td><strong>Lithium Battery (BESS)</strong></td><td>Lithium Iron Phosphate (LiFePO4 / LFP) battery bank: minimum 48V / 150 Ah capacity (>= 7.2kWh energy storage).</td><td></td><td></td></tr>
-<tr><td><strong>PWR-05</strong></td><td><strong>Battery Autonomy</strong></td><td>Guaranteed >= 4.0hours continuous operation at 2.5–3.0 kW continuous BTS load without AC utility input.</td><td></td><td></td></tr>
-<tr><td><strong>PWR-06</strong></td><td><strong>Battery Cycle Life</strong></td><td>>= 4,000 cycles at 80% Depth of Discharge (DoD) at +25°C; built-in intelligent Battery Management System (BMS).</td><td></td><td></td></tr>
-<tr><td><strong>PWR-07</strong></td><td><strong>Standby Genset</strong></td><td>For Greenfield (Class T4) sites: 15 kVA / 12 kW prime, 230V, 60 Hz diesel generator in sound-attenuated weatherproof canopy (<68dBA @ 7m).</td><td></td><td></td></tr>
-<tr><td><strong>PWR-08</strong></td><td><strong>Fuel Autonomy</strong></td><td>Integrated sub-base fuel tank with minimum 500L–1,000L capacity providing >= 72hours continuous runtime under full load.</td><td></td><td></td></tr>
-<tr><td><strong>PWR-09</strong></td><td><strong>Automatic Transfer (ATS)</strong></td><td>Microprocessor-controlled ATS with 4-pole motorized breaker and mechanical interlock, transferring power within 30 seconds of grid failure.</td><td></td><td></td></tr>
-<tr><td><strong>PWR-10</strong></td><td><strong>Surge Protection</strong></td><td>Coordinated SPD Type 1+2 on AC input (>= 40kA) and DC distribution busbar (>= 20kA).</td><td></td><td></td></tr>
-<tr><td><strong>PWR-11</strong></td><td><strong>TowerCo Tap-Off Kit</strong></td><td>Standardized co-location DC tap box with integrated Class 1.0 revenue-grade kWh energy meter and RS485/Modbus telemetry.</td><td></td><td></td></tr>
-<tr><td><strong>PWR-12</strong></td><td><strong>Grounding & Lightning</strong></td><td>Comprehensive grounding system achieving <= 5.0 Ohms earth electrode resistance; copper busbars and copper-clad steel ground rods.</td><td></td><td></td><td>--- ### SECTION 3: 5G CORE NETWORK (5GC SA) & DATACENTER INFRASTRUCTURE</td><td>Item ID</td><td>Sub-System / Feature</td><td>Detailed Specification Requirement</td><td>Compliance (C / M / NC)</td><td>Bidder Proposed Specification & Reference</td></tr>
-<tr><td><strong>5GC-01</strong></td><td><strong>Architecture</strong></td><td>Cloud-native, containerized microservices 5G Standalone (5GC SA) compliant with 3GPP Release 16/17 Service-Based Architecture (SBA).</td><td></td><td></td></tr>
-<tr><td><strong>5GC-02</strong></td><td><strong>Network Functions</strong></td><td>Full NF suite: AMF, SMF, UPF, PCF, UDM, UDR, AUSF, NRF, NSSF, NEF, CHF, and SEPP.</td><td></td><td></td></tr>
-<tr><td><strong>5GC-03</strong></td><td><strong>Subscriber Sizing</strong></td><td>Day-1 licensed capacity: 1,000,000 registered FWA subscribers. Scalable in 500k increments up to 3,000,000 subscribers.</td><td></td><td></td></tr>
-<tr><td><strong>5GC-04</strong></td><td><strong>Geo-Redundancy</strong></td><td>Active-Active geo-redundant dual-datacenter deployment (Metro Manila Primary DC and Clark Pampanga DR DC).</td><td></td><td></td></tr>
-<tr><td><strong>5GC-05</strong></td><td><strong>Hitless Failover</strong></td><td>Automatic session continuity and zero data plane loss during DC failover; state replication across UDR/UDM and SMF clusters.</td><td></td><td></td></tr>
-<tr><td><strong>5GC-06</strong></td><td><strong>UPF Throughput</strong></td><td>UPF dimensioned for >= 80 Gbps usable wire-speed throughput per 2U dual-socket compute node with DPDK and SR-IOV acceleration.</td><td></td><td></td></tr>
-<tr><td><strong>5GC-07</strong></td><td><strong>Carrier-Grade NAT</strong></td><td>Integrated or inline CG-NAT supporting deterministic port allocation, logging per NTC legal intercept mandate, and 10:1 to 16:1 subscriber ratio.</td><td></td><td></td></tr>
-<tr><td><strong>5GC-08</strong></td><td><strong>Deep Packet Inspection</strong></td><td>Embedded DPI capable of Layer-7 application recognition, speed throttling per subscriber tariff tier, and fair-use policy enforcement.</td><td></td><td></td></tr>
-<tr><td><strong>5GC-09</strong></td><td><strong>QoS & Slicing</strong></td><td>5G QoS Flow mapping (5QI 1, 2, 7, 8, 9) and Network Slicing (S-NSSAI) separating consumer FWA, SME enterprise, and management traffic.</td><td></td><td></td></tr>
-<tr><td><strong>5GC-10</strong></td><td><strong>Datacenter Compute</strong></td><td>Enterprise 2U server nodes (Dual Intel Xeon Gold / AMD EPYC, 512GB RAM, redundant NVMe enterprise SSDs, dual 100GE NICs).</td><td></td><td></td></tr>
-<tr><td><strong>5GC-11</strong></td><td><strong>Datacenter Fabric</strong></td><td>Leaf-spine datacenter networking architecture (32 x 100GE spine switches, 48 x 25GE + 6 x 100GE leaf switches) with EVPN-VXLAN.</td><td></td><td></td></tr>
-<tr><td><strong>5GC-12</strong></td><td><strong>Security & Scrubbing</strong></td><td>Redundant carrier-grade perimeter next-generation firewalls (>= 100 Gbps throughput) and inline anti-DDoS scrubbing appliances.</td><td></td><td></td><td>--- ### SECTION 4: CONVERGED DIGITAL OSS/BSS & FIELD FORCE AUTOMATION</td><td>Item ID</td><td>Sub-System / Feature</td><td>Detailed Specification Requirement</td><td>Compliance (C / M / NC)</td><td>Bidder Proposed Specification & Reference</td></tr>
-<tr><td><strong>BSS-01</strong></td><td><strong>Product Catalog & Tariffs</strong></td><td>Configurable telecom product catalog supporting 4 consumer FWA plans (₱599, ₱799, ₱999, ₱1,299), SME tiers, and flexible speed-cap policies.</td><td></td><td></td></tr>
-<tr><td><strong>BSS-02</strong></td><td><strong>Prepaid Charging (CHF)</strong></td><td>Real-time convergent charging system (CCS/CHF) integrated via 3GPP Nchf/Diameter Ro, supporting real-time balance rating and session cutoff.</td><td></td><td></td></tr>
-<tr><td><strong>BSS-03</strong></td><td><strong>Omnichannel Payments</strong></td><td>Native REST API integration with Philippine payment gateways: GCash, Maya (PayMaya), 7-Eleven CLiQQ OTC, Bayad Center, and QR Ph.</td><td></td><td></td></tr>
-<tr><td><strong>BSS-04</strong></td><td><strong>Subscriber Portal & App</strong></td><td>Native Android/iOS subscriber self-care mobile app and responsive web portal for balance checking, online top-up, and speed-test diagnostics.</td><td></td><td></td></tr>
-<tr><td><strong>OSS-01</strong></td><td><strong>Field Force App (FMS)</strong></td><td>Mobile app for field technicians: Real-time work-order dispatch, turn-by-turn navigation, barcode/QR scan of CPE serials, and digital e-signature.</td><td></td><td></td></tr>
-<tr><td><strong>OSS-02</strong></td><td><strong>RF Signal Verification</strong></td><td>Mobile field tool must perform live outdoor RF signal validation (RSRP >= -95 dBm, SINR >= 10 dB) before allowing install closure.</td><td></td><td></td></tr>
-<tr><td><strong>OSS-03</strong></td><td><strong>Dispatch Throughput</strong></td><td>Algorithmic dispatch engine capable of dynamically optimizing and dispatching >= 3,500 installation and maintenance work orders daily.</td><td></td><td></td></tr>
-<tr><td><strong>OSS-04</strong></td><td><strong>CPE Inventory & WMS</strong></td><td>Serialized lifecycle tracking of CPE hardware across central warehouse, technician vehicle float, active subscriber homes, and repossession.</td><td></td><td></td></tr>
-<tr><td><strong>OSS-05</strong></td><td><strong>Reverse Logistics</strong></td><td>Reverse logistics workflow tracking recovered churned CPEs through testing, factory reset, cleaning, re-boxing, and return to stock (>= 70% target).</td><td></td><td></td></tr>
-<tr><td><strong>OSS-06</strong></td><td><strong>Fault & Performance OSS</strong></td><td>Unified multi-vendor EMS/NMS monitoring 5,000 RAN sites, transmission links, and 5G Core with automated RCA and alarm correlation.</td><td></td><td></td></tr>
-<tr><td><strong>OSS-07</strong></td><td><strong>Regulatory Compliance</strong></td><td>Automated generation of quarterly NTC Quality of Service (QoS) and broadband speed performance audit reports.</td><td></td><td></td><td>--- ### SECTION 5: RF PLANNING, SITE SURVEY & CLUSTER OPTIMIZATION</td><td>Item ID</td><td>Sub-System / Feature</td><td>Detailed Specification Requirement</td><td>Compliance (C / M / NC)</td><td>Bidder Proposed Specification & Reference</td></tr>
-<tr><td><strong>RFP-01</strong></td><td><strong>Planning Tool</strong></td><td>Carrier-grade RF planning tool (Atoll, Asset, Planet) with high-resolution digital terrain and clutter data (<= 5m resolution).</td><td></td><td></td></tr>
-<tr><td><strong>RFP-02</strong></td><td><strong>Propagation Model</strong></td><td>Calibrated Band n50 (1.5 GHz) 3D ray-tracing / standard propagation model calibrated against local Philippine terrain clutter.</td><td></td><td></td></tr>
-<tr><td><strong>RFP-03</strong></td><td><strong>Nominal Siting & Audit</strong></td><td>Siting validation against 13,746 tower inventory and Codex fiber backbone routes; production of candidate search rings.</td><td></td><td></td></tr>
-<tr><td><strong>RFP-04</strong></td><td><strong>Technical Site Survey</strong></td><td>Comprehensive TSSR per site including tower structural load audit, wind-load calculation, panoramic drone photography (360°), and power audit.</td><td></td><td></td></tr>
-<tr><td><strong>RFP-05</strong></td><td><strong>Coverage Target</strong></td><td>Guaranteed outdoor RSRP >= -95 dBm and SINR >= 10 dB across >= 90% of residential settlement footprint in target barangay.</td><td></td><td></td></tr>
-<tr><td><strong>RFP-06</strong></td><td><strong>Single Site Acceptance</strong></td><td>Single Site Verification (SSV) stationary and drive tests verifying sector radiation, antenna RET, PCI, TAC, and max throughput.</td><td></td><td></td></tr>
-<tr><td><strong>RFP-07</strong></td><td><strong>Cluster Tuning</strong></td><td>Cluster optimization across 10–20 site clusters: Interference analysis, tilt/azimuth physical optimization, handover parameter tuning.</td><td></td><td></td><td>--- ### SECTION 6: MANAGED SERVICES & 24/7 NETWORK OPERATIONS (MS)</td><td>Item ID</td><td>Sub-System / Feature</td><td>Detailed Specification Requirement</td><td>Compliance (C / M / NC)</td><td>Bidder Proposed Specification & Reference</td></tr>
-<tr><td><strong>MS-01</strong></td><td><strong>24/7 Tier-2/Tier-3 NOC</strong></td><td>Continuous 24/7/365 active monitoring, incident triage, alarm dispatch, and escalation management across all network domains.</td><td></td><td></td></tr>
-<tr><td><strong>MS-02</strong></td><td><strong>Network Availability</strong></td><td>Overall end-to-end radio and core network service availability >= 99.70% monthly SLA.</td><td></td><td></td></tr>
-<tr><td><strong>MS-03</strong></td><td><strong>Critical Incident MTTR</strong></td><td>Mean Time to Restore full service for Critical / Severity-1 outages: <= 2hours in urban areas; <= 4hours in rural areas.</td><td></td><td></td></tr>
-<tr><td><strong>MS-04</strong></td><td><strong>First Line Maint. (FLM)</strong></td><td>Dedicated nationwide field dispatch teams with dedicated 4x4 vehicles, fusion splicers, OTDRs, spectrum analyzers, and climbing gear.</td><td></td><td></td></tr>
-<tr><td><strong>MS-05</strong></td><td><strong>Preventive Maintenance</strong></td><td>Quarterly scheduled site inspections: Antenna bracket torque checks, RF cable weatherproofing, battery impedance tests, genset runs.</td><td></td><td></td></tr>
-</tbody></table></div>
-<p>| <strong>MS-06</strong> | <strong>Spare Parts Logistics</strong> | Automated SPMS maintaining regional buffer stock; guaranteed Next Business Day (NBD) hardware replacement delivery nationwide. | | | ---</p>
-<p><em>(End of Appendix A — Technical Specifications & Compliance Matrix)</em></p>
-</div>
+  <!-- Document Title & Metadata Block -->
+  <div class="doc-title-block">
+    <div class="doc-main-title">Technical Specifications & Compliance Matrix</div>
+    <div class="doc-sub-title">Mandatory Technical Requirements for RAN, Power, 5GC, OSS/BSS, RF & Managed Services</div>
+    <div class="doc-metadata-grid">
+      <div class="meta-item">
+        <span class="meta-label">Document Number</span>
+        <span class="meta-value">RFP-TELTECH-FWA-2026-001</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Author</span>
+        <span class="meta-value">OLIVER TUNGOL</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Target Spectrum</span>
+        <span class="meta-value">Band n50 (1.5 GHz, 60 MHz TDD)</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Bidding Status</span>
+        <span class="meta-value">Official Request for Proposal</span>
+      </div>
+    </div>
+  </div>
 
+  <!-- Main Content -->
+  <p><em>Instructions to Bidders: Complete Column D with "C" (Full Compliance), "M" (Minor Deviation - explain in remarks), or "NC" (Non-Compliant). Bidders must provide specific technical values and document references.</em></p>
+<hr />
+<h3>SECTION 1: RADIO ACCESS NETWORK (RAN) TECHNICAL SPECIFICATIONS</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Item ID</th>
+<th style="text-align: left;">Sub-System / Feature</th>
+<th style="text-align: left;">Detailed Specification Requirement</th>
+<th style="text-align: center;">Compliance (C / M / NC)</th>
+<th style="text-align: left;">Bidder Proposed Specification &amp; Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>RAN-01</strong></td>
+<td style="text-align: left;"><strong>3GPP Standard</strong></td>
+<td style="text-align: left;">3GPP Release 16 and Release 17 compliant 5G NR Standalone (SA) architecture.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RAN-02</strong></td>
+<td style="text-align: left;"><strong>Frequency Band</strong></td>
+<td style="text-align: left;">Band n50 (1432 – 1517 MHz, 1.5 GHz L-Band TDD). Full RF support for 1432–1517 MHz.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RAN-03</strong></td>
+<td style="text-align: left;"><strong>Channel Bandwidth</strong></td>
+<td style="text-align: left;">Continuous 60 MHz channel bandwidth on a single carrier; software-configurable to 40 MHz / 50 MHz / 60 MHz.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RAN-04</strong></td>
+<td style="text-align: left;"><strong>Duplex Mode</strong></td>
+<td style="text-align: left;">Time Division Duplex (TDD) with flexible frame configuration (e.g., 4:1 DL:UL ratio with special slot 10:2:2).</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RAN-05</strong></td>
+<td style="text-align: left;"><strong>Subcarrier Spacing</strong></td>
+<td style="text-align: left;">30 kHz Subcarrier Spacing (SCS) with normal cyclic prefix (CP).</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RAN-06</strong></td>
+<td style="text-align: left;"><strong>Synchronization</strong></td>
+<td style="text-align: left;">IEEE 1588v2 Precision Time Protocol (PTP G.8275.1 profile), Synchronous Ethernet (SyncE), and GNSS (GPS/BeiDou/GLONASS) receiver onboard BBU.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RAN-07</strong></td>
+<td style="text-align: left;"><strong>Radio Configuration</strong></td>
+<td style="text-align: left;">Standard macro site: 3 sectors, 8T8R configuration (3x 8T8R RRU or integrated AAU per site).</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RAN-08</strong></td>
+<td style="text-align: left;"><strong>RF Output Power</strong></td>
+<td style="text-align: left;">Minimum 8x 40W (320W total RF output power per sector/RRU). Digital power control with dynamic power backoff.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RAN-09</strong></td>
+<td style="text-align: left;"><strong>Beamforming</strong></td>
+<td style="text-align: left;">Digital + analog beamforming (horizontal and vertical); dynamic Multi-User MIMO (MU-MIMO) pairing in DL and UL.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RAN-10</strong></td>
+<td style="text-align: left;"><strong>Modulation Schemes</strong></td>
+<td style="text-align: left;">Downlink: Up to 256-QAM adaptive modulation.<br>Uplink: Up to 64-QAM / 256-QAM adaptive modulation.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RAN-11</strong></td>
+<td style="text-align: left;"><strong>MIMO Support</strong></td>
+<td style="text-align: left;">Downlink: Up to 8-layer transmission across multiple users (MU-MIMO); up to 4-layer transmission to single 4R CPE.<br>Uplink: Up to 2-layer single user MIMO; 4-layer MU-MIMO.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RAN-12</strong></td>
+<td style="text-align: left;"><strong>Sector Throughput</strong></td>
+<td style="text-align: left;">Aggregated single-sector peak throughput &gt;= 450 Mbps in 60 MHz DL under 4:1 TDD frame configuration.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RAN-13</strong></td>
+<td style="text-align: left;"><strong>Subscriber Capacity</strong></td>
+<td style="text-align: left;">BBU and sector software must support &gt;= 350 active concurrent RRC connected CPEs per sector (&gt;= 1,000 per 3-sector site) without degradation.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RAN-14</strong></td>
+<td style="text-align: left;"><strong>BBU Architecture</strong></td>
+<td style="text-align: left;">Modular 19" rack-mountable subrack (&lt;= 3U height). Dual hot-swappable -48V DC power supplies. Redundant main control units.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RAN-15</strong></td>
+<td style="text-align: left;"><strong>Fronthaul Interfaces</strong></td>
+<td style="text-align: left;">Minimum 6x 25GE eCPRI optical interfaces per BBU; support for fiber-saving BiDi transceivers.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RAN-16</strong></td>
+<td style="text-align: left;"><strong>Backhaul Interfaces</strong></td>
+<td style="text-align: left;">Minimum 2x 10GE + 2x 25GE SFP28 interfaces supporting IP routing, VLAN tagging (802.1Q), and Segment Routing / IP MPLS.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RAN-17</strong></td>
+<td style="text-align: left;"><strong>Environmental Rating</strong></td>
+<td style="text-align: left;">Outdoor RRU/AAU: IP65 / IP67 ingress protection; operating temperature -40°C to +55°C; wind load resistance up to 250 km/h.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RAN-18</strong></td>
+<td style="text-align: left;"><strong>Energy Saving Modes</strong></td>
+<td style="text-align: left;">Micro-sleep, symbol shutdown, deep sleep during low-traffic periods, reducing idle power consumption by &gt;= 40%.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RAN-19</strong></td>
+<td style="text-align: left;"><strong>Antenna Specifications</strong></td>
+<td style="text-align: left;">8-port cross-pol antenna, 65° horizontal HPBW, &gt;= 17.5 dBi gain, integrated AISG 2.0 internal remote electrical tilt (eRET) adjustable 2° to 12°.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RAN-20</strong></td>
+<td style="text-align: left;"><strong>PIM Performance</strong></td>
+<td style="text-align: left;">Passive Intermodulation (PIM) &lt;= -153dBc @ 2 x 43 dBm carrier test.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>SECTION 2: POWER SYSTEMS &amp; PASSIVE SITE INFRASTRUCTURE</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Item ID</th>
+<th style="text-align: left;">Sub-System / Feature</th>
+<th style="text-align: left;">Detailed Specification Requirement</th>
+<th style="text-align: center;">Compliance (C / M / NC)</th>
+<th style="text-align: left;">Bidder Proposed Specification &amp; Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>PWR-01</strong></td>
+<td style="text-align: left;"><strong>DC Power Plant</strong></td>
+<td style="text-align: left;">19" 3U/4U modular high-efficiency switchmode rectifier system; continuous rating &gt;= 6.0 kW @ -48V DC.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PWR-02</strong></td>
+<td style="text-align: left;"><strong>Rectifier Modules</strong></td>
+<td style="text-align: left;">Hot-swappable 2.0 kW or 3.0 kW modules in N+1 redundant configuration. Operating efficiency &gt;= 96.0%.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PWR-03</strong></td>
+<td style="text-align: left;"><strong>Input Voltage Range</strong></td>
+<td style="text-align: left;">Wide AC input operating range: 85V AC to 300V AC nominal single phase (230V, 60 Hz), withstanding rural grid fluctuations.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PWR-04</strong></td>
+<td style="text-align: left;"><strong>Lithium Battery (BESS)</strong></td>
+<td style="text-align: left;">Lithium Iron Phosphate (LiFePO4 / LFP) battery bank: minimum 48V / 150 Ah capacity (&gt;= 7.2 kWh energy storage).</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PWR-05</strong></td>
+<td style="text-align: left;"><strong>Battery Autonomy</strong></td>
+<td style="text-align: left;">Guaranteed &gt;= 4.0hours continuous operation at 2.5–3.0 kW continuous BTS load without AC utility input.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PWR-06</strong></td>
+<td style="text-align: left;"><strong>Battery Cycle Life</strong></td>
+<td style="text-align: left;">&gt;= 4,000 cycles at 80% Depth of Discharge (DoD) at +25°C; built-in intelligent Battery Management System (BMS).</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PWR-07</strong></td>
+<td style="text-align: left;"><strong>Standby Genset</strong></td>
+<td style="text-align: left;">For Greenfield (Class T4) sites: 15 kVA / 12 kW prime, 230V, 60 Hz diesel generator in sound-attenuated weatherproof canopy (&lt;68dBA @ 7m).</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PWR-08</strong></td>
+<td style="text-align: left;"><strong>Fuel Autonomy</strong></td>
+<td style="text-align: left;">Integrated sub-base fuel tank with minimum 500L–1,000L capacity providing &gt;= 72hours continuous runtime under full load.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PWR-09</strong></td>
+<td style="text-align: left;"><strong>Automatic Transfer (ATS)</strong></td>
+<td style="text-align: left;">Microprocessor-controlled ATS with 4-pole motorized breaker and mechanical interlock, transferring power within 30 seconds of grid failure.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PWR-10</strong></td>
+<td style="text-align: left;"><strong>Surge Protection</strong></td>
+<td style="text-align: left;">Coordinated SPD Type 1+2 on AC input (&gt;= 40kA) and DC distribution busbar (&gt;= 20kA).</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PWR-11</strong></td>
+<td style="text-align: left;"><strong>TowerCo Tap-Off Kit</strong></td>
+<td style="text-align: left;">Standardized co-location DC tap box with integrated Class 1.0 revenue-grade kWh energy meter and RS485/Modbus telemetry.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PWR-12</strong></td>
+<td style="text-align: left;"><strong>Grounding &amp; Lightning</strong></td>
+<td style="text-align: left;">Comprehensive grounding system achieving &lt;= 5.0 Ohms earth electrode resistance; copper busbars and copper-clad steel ground rods.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>SECTION 3: 5G CORE NETWORK (5GC SA) &amp; DATACENTER INFRASTRUCTURE</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Item ID</th>
+<th style="text-align: left;">Sub-System / Feature</th>
+<th style="text-align: left;">Detailed Specification Requirement</th>
+<th style="text-align: center;">Compliance (C / M / NC)</th>
+<th style="text-align: left;">Bidder Proposed Specification &amp; Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>5GC-01</strong></td>
+<td style="text-align: left;"><strong>Architecture</strong></td>
+<td style="text-align: left;">Cloud-native, containerized microservices 5G Standalone (5GC SA) compliant with 3GPP Release 16/17 Service-Based Architecture (SBA).</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>5GC-02</strong></td>
+<td style="text-align: left;"><strong>Network Functions</strong></td>
+<td style="text-align: left;">Full NF suite: AMF, SMF, UPF, PCF, UDM, UDR, AUSF, NRF, NSSF, NEF, CHF, and SEPP.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>5GC-03</strong></td>
+<td style="text-align: left;"><strong>Subscriber Sizing</strong></td>
+<td style="text-align: left;">Day-1 licensed capacity: 1,000,000 registered FWA subscribers. Scalable in 500k increments up to 3,000,000 subscribers.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>5GC-04</strong></td>
+<td style="text-align: left;"><strong>Geo-Redundancy</strong></td>
+<td style="text-align: left;">Active-Active geo-redundant dual-datacenter deployment (Metro Manila Primary DC and Clark Pampanga DR DC).</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>5GC-05</strong></td>
+<td style="text-align: left;"><strong>Hitless Failover</strong></td>
+<td style="text-align: left;">Automatic session continuity and zero data plane loss during DC failover; state replication across UDR/UDM and SMF clusters.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>5GC-06</strong></td>
+<td style="text-align: left;"><strong>UPF Throughput</strong></td>
+<td style="text-align: left;">UPF dimensioned for &gt;= 80 Gbps usable wire-speed throughput per 2U dual-socket compute node with DPDK and SR-IOV acceleration.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>5GC-07</strong></td>
+<td style="text-align: left;"><strong>Carrier-Grade NAT</strong></td>
+<td style="text-align: left;">Integrated or inline CG-NAT supporting deterministic port allocation, logging per NTC legal intercept mandate, and 10:1 to 16:1 subscriber ratio.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>5GC-08</strong></td>
+<td style="text-align: left;"><strong>Deep Packet Inspection</strong></td>
+<td style="text-align: left;">Embedded DPI capable of Layer-7 application recognition, speed throttling per subscriber tariff tier, and fair-use policy enforcement.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>5GC-09</strong></td>
+<td style="text-align: left;"><strong>QoS &amp; Slicing</strong></td>
+<td style="text-align: left;">5G QoS Flow mapping (5QI 1, 2, 7, 8, 9) and Network Slicing (S-NSSAI) separating consumer FWA, SME enterprise, and management traffic.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>5GC-10</strong></td>
+<td style="text-align: left;"><strong>Datacenter Compute</strong></td>
+<td style="text-align: left;">Enterprise 2U server nodes (Dual Intel Xeon Gold / AMD EPYC, 512GB RAM, redundant NVMe enterprise SSDs, dual 100GE NICs).</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>5GC-11</strong></td>
+<td style="text-align: left;"><strong>Datacenter Fabric</strong></td>
+<td style="text-align: left;">Leaf-spine datacenter networking architecture (32 x 100GE spine switches, 48 x 25GE + 6 x 100GE leaf switches) with EVPN-VXLAN.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>5GC-12</strong></td>
+<td style="text-align: left;"><strong>Security &amp; Scrubbing</strong></td>
+<td style="text-align: left;">Redundant carrier-grade perimeter next-generation firewalls (&gt;= 100 Gbps throughput) and inline anti-DDoS scrubbing appliances.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>SECTION 4: CONVERGED DIGITAL OSS/BSS &amp; FIELD FORCE AUTOMATION</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Item ID</th>
+<th style="text-align: left;">Sub-System / Feature</th>
+<th style="text-align: left;">Detailed Specification Requirement</th>
+<th style="text-align: center;">Compliance (C / M / NC)</th>
+<th style="text-align: left;">Bidder Proposed Specification &amp; Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>BSS-01</strong></td>
+<td style="text-align: left;"><strong>Product Catalog &amp; Tariffs</strong></td>
+<td style="text-align: left;">Configurable telecom product catalog supporting 4 consumer FWA plans (₱599, ₱799, ₱999, ₱1,299), SME tiers, and flexible speed-cap policies.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>BSS-02</strong></td>
+<td style="text-align: left;"><strong>Prepaid Charging (CHF)</strong></td>
+<td style="text-align: left;">Real-time convergent charging system (CCS/CHF) integrated via 3GPP Nchf/Diameter Ro, supporting real-time balance rating and session cutoff.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>BSS-03</strong></td>
+<td style="text-align: left;"><strong>Omnichannel Payments</strong></td>
+<td style="text-align: left;">Native REST API integration with Philippine payment gateways: GCash, Maya (PayMaya), 7-Eleven CLiQQ OTC, Bayad Center, and QR Ph.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>BSS-04</strong></td>
+<td style="text-align: left;"><strong>Subscriber Portal &amp; App</strong></td>
+<td style="text-align: left;">Native Android/iOS subscriber self-care mobile app and responsive web portal for balance checking, online top-up, and speed-test diagnostics.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>OSS-01</strong></td>
+<td style="text-align: left;"><strong>Field Force App (FMS)</strong></td>
+<td style="text-align: left;">Mobile app for field technicians: Real-time work-order dispatch, turn-by-turn navigation, barcode/QR scan of CPE serials, and digital e-signature.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>OSS-02</strong></td>
+<td style="text-align: left;"><strong>RF Signal Verification</strong></td>
+<td style="text-align: left;">Mobile field tool must perform live outdoor RF signal validation (RSRP &gt;= -95 dBm, SINR &gt;= 10 dB) before allowing install closure.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>OSS-03</strong></td>
+<td style="text-align: left;"><strong>Dispatch Throughput</strong></td>
+<td style="text-align: left;">Algorithmic dispatch engine capable of dynamically optimizing and dispatching &gt;= 3,500 installation and maintenance work orders daily.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>OSS-04</strong></td>
+<td style="text-align: left;"><strong>CPE Inventory &amp; WMS</strong></td>
+<td style="text-align: left;">Serialized lifecycle tracking of CPE hardware across central warehouse, technician vehicle float, active subscriber homes, and repossession.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>OSS-05</strong></td>
+<td style="text-align: left;"><strong>Reverse Logistics</strong></td>
+<td style="text-align: left;">Reverse logistics workflow tracking recovered churned CPEs through testing, factory reset, cleaning, re-boxing, and return to stock (&gt;= 70% target).</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>OSS-06</strong></td>
+<td style="text-align: left;"><strong>Fault &amp; Performance OSS</strong></td>
+<td style="text-align: left;">Unified multi-vendor EMS/NMS monitoring 5,000 RAN sites, transmission links, and 5G Core with automated RCA and alarm correlation.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>OSS-07</strong></td>
+<td style="text-align: left;"><strong>Regulatory Compliance</strong></td>
+<td style="text-align: left;">Automated generation of quarterly NTC Quality of Service (QoS) and broadband speed performance audit reports.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>SECTION 5: RF PLANNING, SITE SURVEY &amp; CLUSTER OPTIMIZATION</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Item ID</th>
+<th style="text-align: left;">Sub-System / Feature</th>
+<th style="text-align: left;">Detailed Specification Requirement</th>
+<th style="text-align: center;">Compliance (C / M / NC)</th>
+<th style="text-align: left;">Bidder Proposed Specification &amp; Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>RFP-01</strong></td>
+<td style="text-align: left;"><strong>Planning Tool</strong></td>
+<td style="text-align: left;">Carrier-grade RF planning tool (Atoll, Asset, Planet) with high-resolution digital terrain and clutter data (&lt;= 5m resolution).</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RFP-02</strong></td>
+<td style="text-align: left;"><strong>Propagation Model</strong></td>
+<td style="text-align: left;">Calibrated Band n50 (1.5 GHz) 3D ray-tracing / standard propagation model calibrated against local Philippine terrain clutter.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RFP-03</strong></td>
+<td style="text-align: left;"><strong>Nominal Siting &amp; Audit</strong></td>
+<td style="text-align: left;">Siting validation against 13,746 tower inventory and Codex fiber backbone routes; production of candidate search rings.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RFP-04</strong></td>
+<td style="text-align: left;"><strong>Technical Site Survey</strong></td>
+<td style="text-align: left;">Comprehensive TSSR per site including tower structural load audit, wind-load calculation, panoramic drone photography (360°), and power audit.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RFP-05</strong></td>
+<td style="text-align: left;"><strong>Coverage Target</strong></td>
+<td style="text-align: left;">Guaranteed outdoor RSRP &gt;= -95 dBm and SINR &gt;= 10 dB across &gt;= 90% of residential settlement footprint in target barangay.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RFP-06</strong></td>
+<td style="text-align: left;"><strong>Single Site Acceptance</strong></td>
+<td style="text-align: left;">Single Site Verification (SSV) stationary and drive tests verifying sector radiation, antenna RET, PCI, TAC, and max throughput.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RFP-07</strong></td>
+<td style="text-align: left;"><strong>Cluster Tuning</strong></td>
+<td style="text-align: left;">Cluster optimization across 10–20 site clusters: Interference analysis, tilt/azimuth physical optimization, handover parameter tuning.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>SECTION 6: MANAGED SERVICES &amp; 24/7 NETWORK OPERATIONS (MS)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Item ID</th>
+<th style="text-align: left;">Sub-System / Feature</th>
+<th style="text-align: left;">Detailed Specification Requirement</th>
+<th style="text-align: center;">Compliance (C / M / NC)</th>
+<th style="text-align: left;">Bidder Proposed Specification &amp; Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>MS-01</strong></td>
+<td style="text-align: left;"><strong>24/7 Tier-2/Tier-3 NOC</strong></td>
+<td style="text-align: left;">Continuous 24/7/365 active monitoring, incident triage, alarm dispatch, and escalation management across all network domains.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>MS-02</strong></td>
+<td style="text-align: left;"><strong>Network Availability</strong></td>
+<td style="text-align: left;">Overall end-to-end radio and core network service availability &gt;= 99.70% monthly SLA.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>MS-03</strong></td>
+<td style="text-align: left;"><strong>Critical Incident MTTR</strong></td>
+<td style="text-align: left;">Mean Time to Restore full service for Critical / Severity-1 outages: &lt;= 2hours in urban areas; &lt;= 4hours in rural areas.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>MS-04</strong></td>
+<td style="text-align: left;"><strong>First Line Maint. (FLM)</strong></td>
+<td style="text-align: left;">Dedicated nationwide field dispatch teams with dedicated 4x4 vehicles, fusion splicers, OTDRs, spectrum analyzers, and climbing gear.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>MS-05</strong></td>
+<td style="text-align: left;"><strong>Preventive Maintenance</strong></td>
+<td style="text-align: left;">Quarterly scheduled site inspections: Antenna bracket torque checks, RF cable weatherproofing, battery impedance tests, genset runs.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>MS-06</strong></td>
+<td style="text-align: left;"><strong>Spare Parts Logistics</strong></td>
+<td style="text-align: left;">Automated SPMS maintaining regional buffer stock; guaranteed Next Business Day (NBD) hardware replacement delivery nationwide.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>(End of Appendix A — Technical Specifications &amp; Compliance Matrix)</em></p>
+
+  <div class="doc-footer-note">
+    Telecommunications Technology Solutions Incorporated (TelTech) · RFP-TELTECH-FWA-2026-001 · Author: OLIVER TUNGOL · Strictly Confidential
+  </div>
+
+</div>
 </body>
 </html>

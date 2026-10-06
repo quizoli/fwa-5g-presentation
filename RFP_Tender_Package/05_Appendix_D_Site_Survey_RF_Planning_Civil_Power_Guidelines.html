@@ -2,270 +2,558 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Appendix D: Site Survey, RF Planning & Civil Engineering Guidelines — 5G FWA Tender Specification</title>
+<title>Site Survey, RF Planning & Civil/Power Engineering Guidelines — TelTech</title>
 <style>
   @page {
     size: A4 portrait;
-    margin: 20mm 15mm 20mm 15mm;
+    margin: 18mm 14mm 18mm 14mm;
+    @bottom-center {
+      content: "Page " counter(page) " of " counter(pages);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      font-size: 8pt;
+      color: #94a3b8;
+    }
   }
-  :root {
-    --primary: #1E3A8A;
-    --primary-light: #3B82F6;
-    --accent: #0D9488;
-    --text-dark: #0F172A;
-    --text-muted: #475569;
-    --border: #E2E8F0;
-    --bg-card: #F8FAFC;
+
+  *, *:before, *:after {
+    box-sizing: border-box;
   }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    color: var(--text-dark);
-    background: #FFFFFF;
-    line-height: 1.6;
-    font-size: 10pt;
+
+  html, body {
     margin: 0;
     padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1e293b;
+    background-color: #ffffff;
+    font-size: 9pt;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
   }
-  .screen-nav {
-    background: #0F172A;
-    color: #FFFFFF;
-    padding: 12px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-  }
-  .screen-nav a {
-    color: #93C5FD;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 13px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .screen-nav .btn-print {
-    background: #2563EB;
-    color: #FFFFFF;
-    border: none;
-    padding: 6px 14px;
-    border-radius: 6px;
-    font-weight: 700;
-    cursor: pointer;
-    font-size: 12px;
-  }
-  .screen-nav .btn-pdf {
-    background: #059669;
-    color: #FFFFFF;
-    text-decoration: none;
-    padding: 6px 14px;
-    border-radius: 6px;
-    font-weight: 700;
-    font-size: 12px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .container {
-    max-width: 900px;
+
+  .document-container {
+    padding: 10px 10px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 30px 25px;
   }
-  .formal-header {
-    border-bottom: 3px double #1E3A8A;
-    padding-bottom: 16px;
-    margin-bottom: 24px;
+
+  /* Header banner */
+  .doc-header-banner {
+    border-bottom: 2px solid #0f3460;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: flex-end;
+  }
+  .corp-badge {
+    display: inline-block;
+    background: #0f3460;
+    color: #ffffff;
+    font-size: 7pt;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin-bottom: 5px;
   }
   .corp-name {
     font-size: 13pt;
-    font-weight: 900;
-    color: #1E3A8A;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.2px;
+    line-height: 1.2;
+    margin: 0;
   }
   .corp-sub {
-    font-size: 9pt;
-    color: #64748B;
-    font-weight: 600;
-    text-transform: uppercase;
+    font-size: 8pt;
+    color: #64748b;
+    font-weight: 500;
+    margin-top: 2px;
   }
-  .doc-meta {
+  .doc-meta-card {
     text-align: right;
-    font-size: 8.5pt;
-    color: #475569;
-  }
-  .doc-h1 {
-    font-size: 17pt;
-    color: #1E3A8A;
-    font-weight: 800;
-    margin-top: 0;
-    margin-bottom: 12px;
-    line-height: 1.25;
-  }
-  .doc-h2 {
-    font-size: 12.5pt;
-    color: #1E3A8A;
-    border-bottom: 1.5px solid #CBD5E1;
-    padding-bottom: 6px;
-    margin-top: 24px;
-    margin-bottom: 10px;
-    font-weight: 700;
-    page-break-after: avoid;
-  }
-  .doc-h3 {
-    font-size: 11pt;
-    color: #0F172A;
-    margin-top: 18px;
-    margin-bottom: 8px;
-    font-weight: 700;
-    page-break-after: avoid;
-  }
-  .doc-h4 {
-    font-size: 10pt;
+    font-size: 8pt;
     color: #334155;
-    margin-top: 14px;
-    margin-bottom: 6px;
-    font-weight: 700;
+    line-height: 1.45;
   }
-  p, li {
-    color: #1E293B;
+  .doc-meta-card .doc-code {
+    font-weight: 700;
+    color: #0f3460;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 8pt;
+  }
+
+  /* Title Box */
+  .doc-title-block {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #0f3460;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+  }
+  .doc-main-title {
+    font-size: 14pt;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.3;
+    margin: 0 0 4px 0;
+    letter-spacing: -0.3px;
+  }
+  .doc-sub-title {
     font-size: 9.5pt;
+    font-weight: 600;
+    color: #334155;
+    margin: 0 0 12px 0;
+    line-height: 1.35;
+  }
+  .doc-metadata-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #e2e8f0;
+    font-size: 8pt;
+  }
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+  }
+  .meta-label {
+    font-size: 6.5pt;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 0.5px;
+    margin-bottom: 1px;
+  }
+  .meta-value {
+    font-weight: 600;
+    color: #0f172a;
+  }
+
+  /* Headings */
+  h1 { display: none; }
+  h2 {
+    color: #0f3460;
+    font-size: 11pt;
+    font-weight: 700;
+    margin-top: 22px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #cbd5e1;
+    page-break-after: avoid;
+    break-after: avoid;
+    letter-spacing: -0.2px;
+  }
+  h3 {
+    color: #1e293b;
+    font-size: 9.5pt;
+    font-weight: 700;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  h4 {
+    color: #334155;
+    font-size: 9pt;
+    font-weight: 600;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 8px;
     text-align: justify;
+    text-justify: inter-word;
   }
   ul, ol {
-    padding-left: 20px;
-    margin-top: 6px;
+    margin-top: 0;
     margin-bottom: 10px;
+    padding-left: 18px;
   }
   li {
     margin-bottom: 4px;
   }
-  .doc-divider {
-    border: 0;
-    border-top: 1px solid #E2E8F0;
-    margin: 20px 0;
+  strong {
+    color: #0f172a;
+    font-weight: 600;
   }
-  .callout {
-    background: #F0FDF4;
-    border-left: 4px solid #10B981;
-    padding: 10px 14px;
-    margin: 12px 0;
-    font-size: 9pt;
-    color: #065F46;
-    border-radius: 0 4px 4px 0;
-  }
-  .table-responsive {
-    width: 100%;
-    overflow-x: auto;
-    margin: 14px 0;
-    page-break-inside: avoid;
-  }
-  .tender-table {
+
+  /* Tables: Crisp borders, zero gray fills, consistent padding, clean typography */
+  table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 8.5pt;
-    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 16px;
+    font-size: 7.5pt;
+    line-height: 1.35;
+    page-break-inside: auto;
+    break-inside: auto;
+    border: 1px solid #cbd5e1;
   }
-  .tender-table th {
-    background: #1E3A8A;
-    color: #FFFFFF;
+  thead {
+    display: table-header-group;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  tr {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  th {
+    background-color: #f1f5f9;
+    color: #0f172a;
     font-weight: 700;
+    text-transform: uppercase;
+    font-size: 7pt;
+    letter-spacing: 0.3px;
     padding: 6px 8px;
-    border: 1px solid #1E3A8A;
+    border: 1px solid #cbd5e1;
     text-align: left;
+    vertical-align: middle;
   }
-  .tender-table td {
+  td {
     padding: 5px 8px;
-    border: 1px solid #CBD5E1;
-    color: #1E293B;
+    border: 1px solid #e2e8f0;
+    vertical-align: top;
+    background-color: #ffffff;
+    color: #1e293b;
   }
-  .tender-table tr:nth-child(even) {
-    background: #F8FAFC;
+  tbody tr:nth-child(even) td {
+    background-color: #f8fafc;
   }
-  .code-block {
-    background: #0F172A;
-    color: #38BDF8;
-    padding: 12px;
-    border-radius: 6px;
-    font-family: "SF Mono", Consolas, Menlo, Courier, monospace;
+
+  /* Inline code inside tables and general text - zero background fill, neat font */
+  table code {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    font-family: inherit !important;
+    font-size: inherit !important;
+    color: #0284c7 !important; /* Elegant cyan/slate accent */
+    font-style: italic;
+  }
+
+  /* General inline code */
+  code {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 7.5pt;
+    padding: 1px 4px;
+    border-radius: 2px;
+    border: 1px solid #e2e8f0;
+  }
+
+  pre, .code-block {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 3px solid #0f3460;
+    padding: 8px 12px;
+    border-radius: 3px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 8pt;
-    overflow-x: auto;
+    color: #0f172a;
+    margin: 10px 0 14px 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  pre code {
+    background: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+    font-size: 8pt !important;
+    color: inherit !important;
+    font-style: normal !important;
+  }
+
+  blockquote {
+    margin: 10px 0;
+    padding: 6px 12px;
+    background-color: #f8fafc;
+    border-left: 3px solid #0f3460;
+    color: #334155;
+    font-size: 8.5pt;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 18px 0;
+  }
+
+  .doc-footer-note {
+    margin-top: 24px;
+    padding-top: 10px;
+    border-top: 1px solid #e2e8f0;
+    font-size: 7pt;
+    color: #64748b;
+    text-align: center;
     page-break-inside: avoid;
   }
-  code {
-    font-family: "SF Mono", Consolas, Menlo, Courier, monospace;
-    background: #F1F5F9;
-    color: #0F172A;
-    padding: 1px 4px;
-    border-radius: 3px;
-    font-size: 8.5pt;
-  }
+
   @media print {
-    .screen-nav { display: none !important; }
-    .container { max-width: 100% !important; padding: 0 !important; }
-    body { font-size: 9pt; }
-    .tender-table th { background: #1E3A8A !important; -webkit-print-color-adjust: exact; color: white !important; }
-    .tender-table td { -webkit-print-color-adjust: exact; }
-    a { color: #0F172A; text-decoration: none; }
+    body { padding: 0; }
   }
 </style>
 </head>
 <body>
+<div class="document-container">
 
-<div class="screen-nav">
-  <a href="../portal.html">◀ Back to Executive Portal</a>
-  <div style="display: flex; gap: 10px; align-items: center;">
-    <a href="05_Appendix_D_Site_Survey_RF_Planning_Civil_Power_Guidelines.pdf" download class="btn-pdf">📥 Download Official PDF</a>
-    <button onclick="window.print()" class="btn-print">🖨️ Print / Save PDF</button>
-  </div>
-</div>
-
-<div class="container">
-  <div class="formal-header">
+  <!-- Header Banner -->
+  <div class="doc-header-banner">
     <div>
-      <div class="corp-name">Telecommunications Technology Solutions Incorporated (TelTech)</div>
-      <div class="corp-sub">Nationwide 5G Fixed Wireless Access (FWA) Infrastructure Program</div>
+      <div class="corp-badge">Official Bidding Document</div>
+      <div class="corp-name">Telecommunications Technology Solutions Inc. (TelTech)</div>
+      <div class="corp-sub">Corporate Tender Secretariat · Procurement & Network Engineering Division</div>
     </div>
-    <div class="doc-meta">
-      <div><strong>Tender No:</strong> RFP-TELTECH-FWA-2026-001</div>
-      <div><strong>Author & Lead Architect:</strong> OLIVER TUNGOL</div>
-      <div><strong>Date:</strong> October 6, 2026 · Rev 2.0 (Official Bidding Version)</div>
+    <div class="doc-meta-card">
+      <div class="doc-code">RFP-TELTECH-FWA-2026-001 / APPENDIX D</div>
+      <div><strong>Author:</strong> OLIVER TUNGOL</div>
+      <div><strong>Date:</strong> October 6, 2026</div>
     </div>
   </div>
 
-  <h1 class="doc-h1">APPENDIX D: SITE SURVEY, RF PLANNING & CIVIL/POWER ENGINEERING GUIDELINES</h1>
-<h2 class="doc-h2">5G FWA PROGRAM (5,000 SITES NATIONWIDE) <strong>Tender Reference:</strong> RFP-TELTECH-FWA-2026-001 <strong>Project:</strong> Nationwide 5G FWA Project (Band n50, 60 MHz TDD) <strong>Operator:</strong> Telecommunications Technology Solutions Incorporated (TelTech) <strong>Author:</strong> OLIVER TUNGOL --- ## 1. ENGINEERING PRINCIPLES & SITING ARCHITECTURE ### 1.1 Siting Philosophy</h2>
-<p>The primary engineering objective of the 5G FWA rollout is to maximize household population coverage within high-density suburban and rural barangay settlement clusters while minimizing civil capital expenditures and permitting lead times.</p>
-<ul><li><strong>TowerCo Co-Location First (Option A — Baseline):</strong> The Operator leverages an audited master database of <strong>13,746 operational towers</strong>. For every candidate barangay, field teams must prioritize existing towers within <= 2.0km (Classes T1, T2, and T3).</li><li><strong>Greenfield Monopole (Class T4):</strong> Restricted strictly to candidate barangays located > 2.0km from any verified operational tower structure (~9.3% of sites nationwide; 103 sites in Phase 1). --- ## 2. DETAILED TECHNICAL SITE SURVEY REPORT (TSSR) REQUIREMENTS For every nominal site candidate, the Contractor shall complete and submit a comprehensive TSSR conforming to the following structure: ### 2.1 General Site Identification & Geography</li><li>Site Name, Candidate ID, Official PSGC Code, Region, Province, Municipality, and Barangay.</li><li>Precision WGS84 GPS Coordinates (Latitude, Longitude recorded with >= 6 decimal places via dual-frequency GPS receiver).</li><li>Ground Elevation Above Mean Sea Level (AMSL in meters).</li><li>Access Road Assessment: Road surface type (concrete, asphalt, macadam, dirt trail), bridge weight limits, and 4x4 hauling accessibility during monsoon seasons. ### 2.2 Tower Structure & Loading Audit (Co-Location Sites)</li><li>Operating TowerCo Entity (PTCI/MIDC, FTAP Globe, EdgePoint, FTAP Smart, LDIC, FTAP BTS).</li><li>Tower Type (Self-Supporting 3-Leg/4-Leg Tower, Monopole, Guyed Mast, Rooftop Tower).</li><li>Tower Height Above Ground Level (AGL in meters).</li><li>Structural Space Audit: Proposed mounting height for 3x Band n50 antennas (recommended centerline: 30m to 45m AGL).</li><li>Structural Loading Verification: Confirmation that existing tower members and foundation can accommodate additional 3x 8T8R RRUs/AAUs (<45kg each) and wind load profile of 250 km/h.</li><li>Panoramic Drone Photographic Survey: High-resolution 360° continuous panoramic video and 12-cardinal-point still photos at proposed antenna centerline height to verify optical line-of-sight across populated settlements. ### 2.3 Power Infrastructure & Utility Audit</li><li>Existing Commercial AC Utility Power: Electric Cooperative / Distribution Utility name (e.g., MERALCO, PELCO, BENECO, CAPELCO, ILPI).</li><li>Service Entrance Capacity: Transformer rating (kVA), service voltage (230V / 400V, 60 Hz), breaker rating, and phase balance.</li><li>TowerCo DC Power Availability: Sourcing from TowerCo DC busbar (-48V DC) vs. installing Operator-dedicated rectifier subrack.</li><li>Sub-metering feasibility and cable tray routing for power cables.</li><li>Grounding System Audit: Measurement of existing earth ground resistance using a 3-point fall-of-potential earth tester. Earth resistance must be <= 5.0 Ohms. ### 2.4 Backhaul Transmission Path Survey</li><li>Audited Codex Optical Screening Match: Distance to nearest confirmed node candidate (Class A <= 0.5km, Class B <= 1.0km) or line-tap closure (Class C <= 0.5km).</li><li>Cable Entry Facility: Manhole, handhole, or aerial pole lead-in routing into tower shelter/compound.</li><li>For Remote Class E/F Sites: Satellite antenna mounting location (unobstructed sky view with 0° to 80° northern elevation arc for Starlink constellation tracking). --- ## 3. RF PROPAGATION & CELL DIMENSIONING GUIDELINES ### 3.1 Link Budget Parameters (Band n50, 1.5 GHz) | Parameter | Unit | Value (Downlink) | Value (Uplink) | Technical Notes |</li></ul>
-<div class="table-responsive"><table class="tender-table">
-<thead><tr><th><strong>Operating Frequency</strong></th><th>MHz</th><th>1475.0 (Center)</th><th>1475.0 (Center)</th><th>Band n50 TDD</th></tr></thead><tbody>
-<tr><th><strong>Channel Bandwidth</strong></th><th>MHz</th><th>60.0</th><th>60.0</th><th>162 Resource Blocks (SCS 30 kHz)</th></tr>
-<tr><th><strong>BTS Maximum Conducted Power</strong></th><th>dBm / W</th><th>55.0 dBm (320 W)</th><th>N/A</th><th>8 x 40W RRU configuration</th></tr>
-<tr><th><strong>BTS Power per Resource Block</strong></th><th>dBm</th><th>32.9 dBm</th><th>N/A</th><th>Uniform power distribution</th></tr>
-<tr><th><strong>BTS Antenna Gain</strong></th><th>dBi</th><th>17.5 dBi</th><th>17.5 dBi</th><th>8-port cross-pol macro antenna</th></tr>
-<tr><th><strong>BTS Cable / Jumper Loss</strong></th><th>dB</th><th>1.0 dB</th><th>1.0 dB</th><th>Short optical/RF jumper interface</th></tr>
-<tr><th><strong>CPE Maximum Transmit Power</strong></th><th>dBm / W</th><th>N/A</th><th>23.0 dBm (200 mW)</th><th>Power Class 3 UE (or Class 2 26 dBm)</th></tr>
-<tr><th><strong>CPE Antenna Gain</strong></th><th>dBi</th><th>9.0 dBi</th><th>9.0 dBi</th><th>High-gain directional indoor/outdoor</th></tr>
-<tr><th><strong>CPE Body / Indoor Penetration Loss</strong></th><th>dB</th><th>8.0 dB</th><th>8.0 dB</th><th>Concrete hollow block & glass attenuation</th></tr>
-<tr><th><strong>Foliage / Clutter Margin</strong></th><th>dB</th><th>6.0 dB</th><th>6.0 dB</th><th>Typical rural tropical tree canopy</th></tr>
-<tr><th><strong>Shadowing Margin (Log-Normal)</strong></th><th>dB</th><th>7.0 dB</th><th>7.0 dB</th><th>90% edge cell coverage reliability</th></tr>
-<tr><th><strong>Thermal Noise Density</strong></th><th>dBm/Hz</th><th>-174.0</th><th>-174.0</th><th>kT @ 290K</th></tr>
-<tr><th><strong>Receiver Noise Figure</strong></th><th>dB</th><th>6.0 dB (CPE)</th><th>3.5 dB (gNodeB)</th><th>Active RF front-end</th></tr>
-<tr><th><strong>Target SINR for Min Service</strong></th><th>dB</th><th>-1.0 dB</th><th>-2.0 dB</th><th>QPSK rate 1/3 (Cell Edge 25 Mbps DL)</th></tr>
-<tr><th><strong>Maximum Allowable Path Loss (MAPL)</strong></th><th><strong>dB</strong></th><th><strong>144.5 dB</strong></th><th><strong>139.8 dB</strong></th><th><strong>Uplink is coverage limiting</strong></th></tr>
-</tbody></table></div>
-<p>| <strong>Calculated Reliable Cell Radius</strong>| <strong>km</strong> | <strong>3.5 km</strong> | <strong>3.2 km</strong> | <strong>Standard suburban/rural clutter</strong> | ### 3.2 Nominal Sector Azimuth & Tilt Strategy</p>
-<ul><li><strong>Sector Count:</strong> 3 sectors per macro site with 120° nominal separation (0°, 120°, 240°). Azimuths must be tailored during TSSR to track actual barangay population concentrations along transport corridors and coastal plains.</li><li><strong>Electrical Remote Downtilt (eRET):</strong> Antennas must feature AISG 2.0 remote tilt adjustable between 2° and 10° from the central OSS. Mechanical tilt shall only be applied when required to clear close-in obstructions (>15°). --- ## 4. CIVIL WORKS & STRUCTURAL ENGINEERING (CLASS T4 GREENFIELD SITES) For the ~10% of sites requiring self-constructed greenfield towers, the Contractor shall adhere to the following civil standards:</li></ul>
-<ol start="1"><li><strong>Monopole Tower Specification:</strong> <em> 30-meter or 40-meter polygonal tubular steel monopole constructed in 3 to 4 slip-joint sections. </em> Structural steel: ASTM A572 Grade 50 (or equivalent high-strength structural grade) hot-dip galvanized per ASTM A123 (>= 85microns zinc coating). <em> Design Wind Speed: Minimum <strong>250 km/h 3-second gust</strong> in accordance with the National Structural Code of the Philippines (NSCP 2015 / TIA-222-G/H). </em> Top antenna mounting platform capable of supporting 6x antennas/RRUs and microwave dish mountings.</li><li><strong>Compound Civil Works:</strong> <em> Compound Footprint: Standard 8.0m x 8.0m (64 m²) gravel-topped compound. </em> Perimeter Fencing: 2.4-meter high cyclone wire mesh fence topped with 3 strands of galvanized concertina razor wire. * Equipment Pad: Reinforced concrete equipment plinth (Class A concrete, 28-day compressive strength >= 21MPa / 3,000psi) for outdoor cabinets and generator set.</li><li><strong>Lightning Protection & Grounding Grid:</strong> <em> Air terminal (lightning rod) installed at monopole top extending >= 2.0m above uppermost antenna. </em> Down-conductor: 70mm² bare stranded copper cable routed externally and clamped every 1.0m to tower shaft. * Earth ground ring: Continuous buried bare copper loop around tower base and compound with copper-clad steel ground rods (19mm dia x 3.0m length) exothermically welded (Cadweld) at all junctions, achieving <= 5.0 Ohms. --- ## 5. SINGLE SITE VERIFICATION (SSV) & CLUSTER ACCEPTANCE CRITERIA Before any site is granted Commercial On-Air Acceptance, the Contractor must complete and submit a signed SSV Report verifying:</li><li><strong>Stationary Functional Tests:</strong> <em> Sector Verification: Physical azimuth and tilt match TSSR approval within +/- 2°. </em> RF Transmit Power: Conducted power on all 8 transmit paths within +/- 0.5 dB of nominal. <em> VSWR / Return Loss: Return loss >= 15 dB across all antenna feeder lines. </em> Max Throughput Test: Single CPE situated in line-of-sight achieving >= 450 Mbps DL and >= 60 Mbps UL.</li><li><strong>Short Drive Test & Static Multi-Point Test:</strong> <em> 5 stationary measurement points per sector (Near: 500m, Mid: 1.5km, Far/Edge: 3.0km). </em> RSRP >= -95 dBm across >= 90% of surveyed barangay inhabited zone. <em> Ping RTT <= 20 ms to local UPF IP address; zero packet loss over 1,000 continuous pings. </em> Inter-sector handover execution without drop during transition. ---</li></ol>
-<p><em>(End of Appendix D — Site Survey, RF Planning & Civil Engineering Guidelines)</em></p>
-</div>
+  <!-- Document Title & Metadata Block -->
+  <div class="doc-title-block">
+    <div class="doc-main-title">Site Survey, RF Planning & Civil/Power Engineering Guidelines</div>
+    <div class="doc-sub-title">TowerCo Co-Location Standard, Greenfield Siting & Link Budget Engineering Standards</div>
+    <div class="doc-metadata-grid">
+      <div class="meta-item">
+        <span class="meta-label">Document Number</span>
+        <span class="meta-value">RFP-TELTECH-FWA-2026-001</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Author</span>
+        <span class="meta-value">OLIVER TUNGOL</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Target Spectrum</span>
+        <span class="meta-value">Band n50 (1.5 GHz, 60 MHz TDD)</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Bidding Status</span>
+        <span class="meta-value">Official Request for Proposal</span>
+      </div>
+    </div>
+  </div>
 
+  <!-- Main Content -->
+  <h2>1. ENGINEERING PRINCIPLES &amp; SITING ARCHITECTURE</h2>
+<h3>1.1 Siting Philosophy</h3>
+<p>The primary engineering objective of the 5G FWA rollout is to maximize household population coverage within high-density suburban and rural barangay settlement clusters while minimizing civil capital expenditures and permitting lead times.<br />
+* <strong>TowerCo Co-Location First (Option A — Baseline):</strong> The Operator leverages an audited master database of <strong>13,746 operational towers</strong>. For every candidate barangay, field teams must prioritize existing towers within &lt;= 2.0 km (Classes T1, T2, and T3).<br />
+* <strong>Greenfield Monopole (Class T4):</strong> Restricted strictly to candidate barangays located &gt; 2.0 km from any verified operational tower structure (~9.3% of sites nationwide; 103 sites in Phase 1).</p>
+<hr />
+<h2>2. DETAILED TECHNICAL SITE SURVEY REPORT (TSSR) REQUIREMENTS</h2>
+<p>For every nominal site candidate, the Contractor shall complete and submit a comprehensive TSSR conforming to the following structure:</p>
+<h3>2.1 General Site Identification &amp; Geography</h3>
+<ul>
+<li>Site Name, Candidate ID, Official PSGC Code, Region, Province, Municipality, and Barangay.</li>
+<li>Precision WGS84 GPS Coordinates (Latitude, Longitude recorded with &gt;= 6 decimal places via dual-frequency GPS receiver).</li>
+<li>Ground Elevation Above Mean Sea Level (AMSL in meters).</li>
+<li>Access Road Assessment: Road surface type (concrete, asphalt, macadam, dirt trail), bridge weight limits, and 4x4 hauling accessibility during monsoon seasons.</li>
+</ul>
+<h3>2.2 Tower Structure &amp; Loading Audit (Co-Location Sites)</h3>
+<ul>
+<li>Operating TowerCo Entity (PTCI/MIDC, FTAP Globe, EdgePoint, FTAP Smart, LDIC, FTAP BTS).</li>
+<li>Tower Type (Self-Supporting 3-Leg/4-Leg Tower, Monopole, Guyed Mast, Rooftop Tower).</li>
+<li>Tower Height Above Ground Level (AGL in meters).</li>
+<li>Structural Space Audit: Proposed mounting height for 3x Band n50 antennas (recommended centerline: 30m to 45m AGL).</li>
+<li>Structural Loading Verification: Confirmation that existing tower members and foundation can accommodate additional 3x 8T8R RRUs/AAUs (&lt; 45 kg each) and wind load profile of 250 km/h.</li>
+<li>Panoramic Drone Photographic Survey: High-resolution 360° continuous panoramic video and 12-cardinal-point still photos at proposed antenna centerline height to verify optical line-of-sight across populated settlements.</li>
+</ul>
+<h3>2.3 Power Infrastructure &amp; Utility Audit</h3>
+<ul>
+<li>Existing Commercial AC Utility Power: Electric Cooperative / Distribution Utility name (e.g., MERALCO, PELCO, BENECO, CAPELCO, ILPI).</li>
+<li>Service Entrance Capacity: Transformer rating (kVA), service voltage (230V / 400V, 60 Hz), breaker rating, and phase balance.</li>
+<li>TowerCo DC Power Availability: Sourcing from TowerCo DC busbar (-48V DC) vs. installing Operator-dedicated rectifier subrack.</li>
+<li>Sub-metering feasibility and cable tray routing for power cables.</li>
+<li>Grounding System Audit: Measurement of existing earth ground resistance using a 3-point fall-of-potential earth tester. Earth resistance must be &lt;= 5.0 Ohms.</li>
+</ul>
+<h3>2.4 Backhaul Transmission Path Survey</h3>
+<ul>
+<li>Audited Codex Optical Screening Match: Distance to nearest confirmed node candidate (Class A &lt;= 0.5 km, Class B &lt;= 1.0 km) or line-tap closure (Class C &lt;= 0.5 km).</li>
+<li>Cable Entry Facility: Manhole, handhole, or aerial pole lead-in routing into tower shelter/compound.</li>
+<li>For Remote Class E/F Sites: Satellite antenna mounting location (unobstructed sky view with 0° to 80° northern elevation arc for Starlink constellation tracking).</li>
+</ul>
+<hr />
+<h2>3. RF PROPAGATION &amp; CELL DIMENSIONING GUIDELINES</h2>
+<h3>3.1 Link Budget Parameters (Band n50, 1.5 GHz)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parameter</th>
+<th style="text-align: center;">Unit</th>
+<th style="text-align: center;">Value (Downlink)</th>
+<th style="text-align: center;">Value (Uplink)</th>
+<th style="text-align: left;">Technical Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Operating Frequency</strong></td>
+<td style="text-align: center;">MHz</td>
+<td style="text-align: center;">1475.0 (Center)</td>
+<td style="text-align: center;">1475.0 (Center)</td>
+<td style="text-align: left;">Band n50 TDD</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Channel Bandwidth</strong></td>
+<td style="text-align: center;">MHz</td>
+<td style="text-align: center;">60.0</td>
+<td style="text-align: center;">60.0</td>
+<td style="text-align: left;">162 Resource Blocks (SCS 30 kHz)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>BTS Maximum Conducted Power</strong></td>
+<td style="text-align: center;">dBm / W</td>
+<td style="text-align: center;">55.0 dBm (320 W)</td>
+<td style="text-align: center;">N/A</td>
+<td style="text-align: left;">8 x 40W RRU configuration</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>BTS Power per Resource Block</strong></td>
+<td style="text-align: center;">dBm</td>
+<td style="text-align: center;">32.9 dBm</td>
+<td style="text-align: center;">N/A</td>
+<td style="text-align: left;">Uniform power distribution</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>BTS Antenna Gain</strong></td>
+<td style="text-align: center;">dBi</td>
+<td style="text-align: center;">17.5 dBi</td>
+<td style="text-align: center;">17.5 dBi</td>
+<td style="text-align: left;">8-port cross-pol macro antenna</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>BTS Cable / Jumper Loss</strong></td>
+<td style="text-align: center;">dB</td>
+<td style="text-align: center;">1.0 dB</td>
+<td style="text-align: center;">1.0 dB</td>
+<td style="text-align: left;">Short optical/RF jumper interface</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CPE Maximum Transmit Power</strong></td>
+<td style="text-align: center;">dBm / W</td>
+<td style="text-align: center;">N/A</td>
+<td style="text-align: center;">23.0 dBm (200 mW)</td>
+<td style="text-align: left;">Power Class 3 UE (or Class 2 26 dBm)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CPE Antenna Gain</strong></td>
+<td style="text-align: center;">dBi</td>
+<td style="text-align: center;">9.0 dBi</td>
+<td style="text-align: center;">9.0 dBi</td>
+<td style="text-align: left;">High-gain directional indoor/outdoor</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CPE Body / Indoor Penetration Loss</strong></td>
+<td style="text-align: center;">dB</td>
+<td style="text-align: center;">8.0 dB</td>
+<td style="text-align: center;">8.0 dB</td>
+<td style="text-align: left;">Concrete hollow block &amp; glass attenuation</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Foliage / Clutter Margin</strong></td>
+<td style="text-align: center;">dB</td>
+<td style="text-align: center;">6.0 dB</td>
+<td style="text-align: center;">6.0 dB</td>
+<td style="text-align: left;">Typical rural tropical tree canopy</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Shadowing Margin (Log-Normal)</strong></td>
+<td style="text-align: center;">dB</td>
+<td style="text-align: center;">7.0 dB</td>
+<td style="text-align: center;">7.0 dB</td>
+<td style="text-align: left;">90% edge cell coverage reliability</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Thermal Noise Density</strong></td>
+<td style="text-align: center;">dBm/Hz</td>
+<td style="text-align: center;">-174.0</td>
+<td style="text-align: center;">-174.0</td>
+<td style="text-align: left;">kT @ 290K</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Receiver Noise Figure</strong></td>
+<td style="text-align: center;">dB</td>
+<td style="text-align: center;">6.0 dB (CPE)</td>
+<td style="text-align: center;">3.5 dB (gNodeB)</td>
+<td style="text-align: left;">Active RF front-end</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Target SINR for Min Service</strong></td>
+<td style="text-align: center;">dB</td>
+<td style="text-align: center;">-1.0 dB</td>
+<td style="text-align: center;">-2.0 dB</td>
+<td style="text-align: left;">QPSK rate 1/3 (Cell Edge 25 Mbps DL)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Maximum Allowable Path Loss (MAPL)</strong></td>
+<td style="text-align: center;"><strong>dB</strong></td>
+<td style="text-align: center;"><strong>144.5 dB</strong></td>
+<td style="text-align: center;"><strong>139.8 dB</strong></td>
+<td style="text-align: left;"><strong>Uplink is coverage limiting</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Calculated Reliable Cell Radius</strong></td>
+<td style="text-align: center;"><strong>km</strong></td>
+<td style="text-align: center;"><strong>{3.5 km}</strong></td>
+<td style="text-align: center;"><strong>{3.2 km}</strong></td>
+<td style="text-align: left;"><strong>Standard suburban/rural clutter</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>3.2 Nominal Sector Azimuth &amp; Tilt Strategy</h3>
+<ul>
+<li><strong>Sector Count:</strong> 3 sectors per macro site with 120° nominal separation (0°, 120°, 240°). Azimuths must be tailored during TSSR to track actual barangay population concentrations along transport corridors and coastal plains.</li>
+<li><strong>Electrical Remote Downtilt (eRET):</strong> Antennas must feature AISG 2.0 remote tilt adjustable between 2° and 10° from the central OSS. Mechanical tilt shall only be applied when required to clear close-in obstructions (&gt;15°).</li>
+</ul>
+<hr />
+<h2>4. CIVIL WORKS &amp; STRUCTURAL ENGINEERING (CLASS T4 GREENFIELD SITES)</h2>
+<p>For the ~10% of sites requiring self-constructed greenfield towers, the Contractor shall adhere to the following civil standards:<br />
+1. <strong>Monopole Tower Specification:</strong><br />
+   * 30-meter or 40-meter polygonal tubular steel monopole constructed in 3 to 4 slip-joint sections.<br />
+   * Structural steel: ASTM A572 Grade 50 (or equivalent high-strength structural grade) hot-dip galvanized per ASTM A123 (&gt;= 85microns zinc coating).<br />
+   * Design Wind Speed: Minimum <strong>250 km/h 3-second gust</strong> in accordance with the National Structural Code of the Philippines (NSCP 2015 / TIA-222-G/H).<br />
+   * Top antenna mounting platform capable of supporting 6x antennas/RRUs and microwave dish mountings.<br />
+2. <strong>Compound Civil Works:</strong><br />
+   * Compound Footprint: Standard 8.0m x 8.0m (64 m²) gravel-topped compound.<br />
+   * Perimeter Fencing: 2.4-meter high cyclone wire mesh fence topped with 3 strands of galvanized concertina razor wire.<br />
+   * Equipment Pad: Reinforced concrete equipment plinth (Class A concrete, 28-day compressive strength &gt;= 21MPa / 3,000psi) for outdoor cabinets and generator set.<br />
+3. <strong>Lightning Protection &amp; Grounding Grid:</strong><br />
+   * Air terminal (lightning rod) installed at monopole top extending &gt;= 2.0m above uppermost antenna.<br />
+   * Down-conductor: 70mm² bare stranded copper cable routed externally and clamped every 1.0m to tower shaft.<br />
+   * Earth ground ring: Continuous buried bare copper loop around tower base and compound with copper-clad steel ground rods (19mm dia x 3.0m length) exothermically welded (Cadweld) at all junctions, achieving &lt;= 5.0 Ohms.</p>
+<hr />
+<h2>5. SINGLE SITE VERIFICATION (SSV) &amp; CLUSTER ACCEPTANCE CRITERIA</h2>
+<p>Before any site is granted Commercial On-Air Acceptance, the Contractor must complete and submit a signed SSV Report verifying:<br />
+1. <strong>Stationary Functional Tests:</strong><br />
+   * Sector Verification: Physical azimuth and tilt match TSSR approval within +/- 2°.<br />
+   * RF Transmit Power: Conducted power on all 8 transmit paths within +/- 0.5 dB of nominal.<br />
+   * VSWR / Return Loss: Return loss &gt;= 15 dB across all antenna feeder lines.<br />
+   * Max Throughput Test: Single CPE situated in line-of-sight achieving &gt;= 450 Mbps DL and &gt;= 60 Mbps UL.<br />
+2. <strong>Short Drive Test &amp; Static Multi-Point Test:</strong><br />
+   * 5 stationary measurement points per sector (Near: 500m, Mid: 1.5 km, Far/Edge: 3.0 km).<br />
+   * RSRP &gt;= -95 dBm across &gt;= 90% of surveyed barangay inhabited zone.<br />
+   * Ping RTT &lt;= 20 ms to local UPF IP address; zero packet loss over 1,000 continuous pings.<br />
+   * Inter-sector handover execution without drop during transition.</p>
+<hr />
+<p><em>(End of Appendix D — Site Survey, RF Planning &amp; Civil Engineering Guidelines)</em></p>
+
+  <div class="doc-footer-note">
+    Telecommunications Technology Solutions Incorporated (TelTech) · RFP-TELTECH-FWA-2026-001 · Author: OLIVER TUNGOL · Strictly Confidential
+  </div>
+
+</div>
 </body>
 </html>
