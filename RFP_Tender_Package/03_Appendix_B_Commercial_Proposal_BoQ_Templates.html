@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Appendix B: Commercial BoQ & Pricing Templates (Clean Bidding Version) — 5G FWA Tender Specification</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 20mm 15mm 20mm 15mm;
+  }
+  :root {
+    --primary: #1E3A8A;
+    --primary-light: #3B82F6;
+    --accent: #0D9488;
+    --text-dark: #0F172A;
+    --text-muted: #475569;
+    --border: #E2E8F0;
+    --bg-card: #F8FAFC;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text-dark);
+    background: #FFFFFF;
+    line-height: 1.6;
+    font-size: 10pt;
+    margin: 0;
+    padding: 0;
+  }
+  .screen-nav {
+    background: #0F172A;
+    color: #FFFFFF;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  }
+  .screen-nav a {
+    color: #93C5FD;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .screen-nav .btn-print {
+    background: #2563EB;
+    color: #FFFFFF;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .screen-nav .btn-pdf {
+    background: #059669;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 25px;
+  }
+  .formal-header {
+    border-bottom: 3px double #1E3A8A;
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .corp-name {
+    font-size: 14pt;
+    font-weight: 900;
+    color: #1E3A8A;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .corp-sub {
+    font-size: 9pt;
+    color: #64748B;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .doc-meta {
+    text-align: right;
+    font-size: 8.5pt;
+    color: #475569;
+  }
+  .doc-h1 {
+    font-size: 18pt;
+    color: #1E3A8A;
+    font-weight: 800;
+    margin-top: 0;
+    margin-bottom: 12px;
+    line-height: 1.25;
+  }
+  .doc-h2 {
+    font-size: 13pt;
+    color: #1E3A8A;
+    border-bottom: 1.5px solid #CBD5E1;
+    padding-bottom: 6px;
+    margin-top: 24px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    page-break-after: avoid;
+  }
+  .doc-h3 {
+    font-size: 11pt;
+    color: #0F172A;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    font-weight: 700;
+    page-break-after: avoid;
+  }
+  .doc-h4 {
+    font-size: 10pt;
+    color: #334155;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+  p, li {
+    color: #1E293B;
+    font-size: 9.5pt;
+    text-align: justify;
+  }
+  ul, ol {
+    padding-left: 20px;
+    margin-top: 6px;
+    margin-bottom: 10px;
+  }
+  li {
+    margin-bottom: 4px;
+  }
+  .doc-divider {
+    border: 0;
+    border-top: 1px solid #E2E8F0;
+    margin: 20px 0;
+  }
+  .callout {
+    background: #F0FDF4;
+    border-left: 4px solid #10B981;
+    padding: 10px 14px;
+    margin: 12px 0;
+    font-size: 9pt;
+    color: #065F46;
+    border-radius: 0 4px 4px 0;
+  }
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    margin: 14px 0;
+    page-break-inside: avoid;
+  }
+  .tender-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+    text-align: left;
+  }
+  .tender-table th {
+    background: #1E3A8A;
+    color: #FFFFFF;
+    font-weight: 700;
+    padding: 6px 8px;
+    border: 1px solid #1E3A8A;
+    text-align: left;
+  }
+  .tender-table td {
+    padding: 5px 8px;
+    border: 1px solid #CBD5E1;
+    color: #1E293B;
+  }
+  .tender-table tr:nth-child(even) {
+    background: #F8FAFC;
+  }
+  .code-block {
+    background: #0F172A;
+    color: #38BDF8;
+    padding: 12px;
+    border-radius: 6px;
+    font-family: "SF Mono", Consolas, Menlo, Courier, monospace;
+    font-size: 8pt;
+    overflow-x: auto;
+    page-break-inside: avoid;
+  }
+  code {
+    font-family: "SF Mono", Consolas, Menlo, Courier, monospace;
+    background: #F1F5F9;
+    color: #0F172A;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 8.5pt;
+  }
+  @media print {
+    .screen-nav { display: none !important; }
+    .container { max-width: 100% !important; padding: 0 !important; }
+    body { font-size: 9pt; }
+    .tender-table th { background: #1E3A8A !important; -webkit-print-color-adjust: exact; color: white !important; }
+    .tender-table td { -webkit-print-color-adjust: exact; }
+    a { color: #0F172A; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="screen-nav">
+  <a href="../portal.html">◀ Back to Executive Portal</a>
+  <div style="display: flex; gap: 10px; align-items: center;">
+    <a href="03_Appendix_B_Commercial_Proposal_BoQ_Templates.pdf" download class="btn-pdf">📥 Download Official PDF</a>
+    <button onclick="window.print()" class="btn-print">🖨️ Print / Save PDF</button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="formal-header">
+    <div>
+      <div class="corp-name">Comclark Network & Technology Corp. / TelTech</div>
+      <div class="corp-sub">Nationwide 5G Fixed Wireless Access (FWA) Infrastructure Program</div>
+    </div>
+    <div class="doc-meta">
+      <div><strong>Tender No:</strong> RFP-TELTECH-FWA-2026-001</div>
+      <div><strong>Author:</strong> OLIVER TUNGOL</div>
+      <div><strong>Date:</strong> October 6, 2026 · Rev 2.0 (Official Bidding Version)</div>
+    </div>
+  </div>
+
+  <h1 class="doc-h1">APPENDIX B: COMMERCIAL PROPOSAL, BILL OF QUANTITIES (BOQ) & PRICING TEMPLATES</h1>
+<h2 class="doc-h2">5G FWA PROGRAM (5,000 SITES NATIONWIDE)</h2>
+<p><strong>Tender Reference:</strong> RFP-TELTECH-FWA-2026-001</p>
+<p><strong>Project:</strong> Nationwide 5G FWA Project (Band n50, 60 MHz TDD)</p>
+<p><strong>Operator:</strong> Comclark Network & Technology Corp. / TelTech</p>
+<p><strong>Author & Authority:</strong> OLIVER TUNGOL</p>
+<p><em>Instructions to Bidders: Complete all unit rates in USD ($) and Philippine Pesos (PHP ₱ at baseline FX 55.00) using the official Excel BoQ file (<code>06_RFP_Commercial_Price_Book_and_BoQ_Template.xlsx</code>). All prices must be firm, fixed, and valid for 180 days.</em></p>
+<hr class="doc-divider"/>
+<h3 class="doc-h3">TABLE 1: LOT 1 — RAN HARDWARE & ACCESS EQUIPMENT (PER SITE BASIS)</h3>
+<div class="table-responsive"><table class="tender-table">
+<thead><tr><th>Item Ref</th><th>Equipment Description</th><th>Technical Sizing / Model</th><th>Qty per Site</th><th>Unit Price (USD) [Bidder to Quote]</th><th>Total Price per Site (USD)</th><th>Remarks / Bidder Model</th></tr></thead><tbody>
+<tr><td><strong>RAN-HW-01</strong></td><td><strong>5G Baseband Unit (BBU)</strong></td><td>19" subrack, dual -48V DC PSU, 4x 25G backhaul, 6x 25G eCPRI</td><td>1 set</td><td><code>[Bidder Quote]</code></td><td><code>[Formula = Qty * Rate]</code></td><td>Specify model & datasheet</td></tr>
+<tr><td><strong>RAN-HW-02</strong></td><td><strong>8T8R Remote Radio Unit (RRU)</strong></td><td>Band n50 (1.5 GHz), 60 MHz IBW, 8x40W (320W total RF power)</td><td>3 sets</td><td><code>[Bidder Quote]</code></td><td><code>[Formula = Qty * Rate]</code></td><td>3 Sectors per site</td></tr>
+<tr><td><strong>RAN-HW-03</strong></td><td><strong>Macro High-Gain Antennas</strong></td><td>8-port cross-pol, $17.5\text{ dBi}$ gain, AISG 2.0 internal eRET</td><td>3 sets</td><td><code>[Bidder Quote]</code></td><td><code>[Formula = Qty * Rate]</code></td><td>Or integrated AAU option</td></tr>
+<tr><td><strong>RAN-HW-04</strong></td><td><strong>RF Jumpers & Optical Patchcords</strong></td><td>High-grade armored optical fiber, weatherproof boots, grounding kits</td><td>1 lot</td><td><code>[Bidder Quote]</code></td><td><code>[Formula = Qty * Rate]</code></td><td>All accessories included</td></tr>
+<tr><td><strong>RAN-HW-05</strong></td><td><strong>BBU Base Software & 5G Features</strong></td><td>Band n50 carrier license, MU-MIMO, beamforming, sleep-mode energy saving</td><td>1 lot</td><td><code>[Bidder Quote]</code></td><td><code>[Formula = Qty * Rate]</code></td><td>Perpetual base software</td></tr>
+<tr><td><strong>SUBTOTAL</strong></td><td><strong>BTS Equipment Package per Site</strong></td><td><em>(BBU x1, 8T8R RRU x3, Antennas x3, SW)</em></td><td><strong>1 Site</strong></td><td>—</td><td><strong><code>[Sum of Items HW-01 to HW-05]</code></strong></td><td><em>Total BTS Hardware</em></td></tr>
+</tbody></table></div>
+<hr class="doc-divider"/>
+<h3 class="doc-h3">TABLE 2: LOT 1 — RAN TURNKEY ROLLOUT SERVICES (PER SITE BASIS)</h3>
+<div class="table-responsive"><table class="tender-table">
+<thead><tr><th>Item Ref</th><th>Service Description</th><th>Scope of Work</th><th>Qty per Site</th><th>Unit Price (USD) [Bidder to Quote]</th><th>Remarks / Methodology</th></tr></thead><tbody>
+<tr><td><strong>RAN-SVC-01</strong></td><td><strong>Site Survey, Engineering & TSSR</strong></td><td>Tower audit, structural verification, drone LOS photo sweep, civil sketch</td><td>1 site</td><td><code>[Bidder Quote]</code></td><td>Field survey report delivery</td></tr>
+<tr><td><strong>RAN-SVC-02</strong></td><td><strong>Project Management & Mobilization</strong></td><td>Dedicated rollout PMO, site acquisition coordination, milestone tracking</td><td>1 site</td><td><code>[Bidder Quote]</code></td><td>Dedicated PM team</td></tr>
+<tr><td><strong>RAN-SVC-03</strong></td><td><strong>Installation & Commissioning (I&C)</strong></td><td>Rigging, antenna mounting, cable routing, BBU wiring, initial power-up</td><td>1 site</td><td><code>[Bidder Quote]</code></td><td>Civil and telecom I&C</td></tr>
+<tr><td><strong>RAN-SVC-04</strong></td><td><strong>Single Site Optimization (SSO/SSV)</strong></td><td>Station testing, sector drive test, throughput call, ping, handover test</td><td>1 site</td><td><code>[Bidder Quote]</code></td><td>SSV acceptance sign-off</td></tr>
+<tr><td><strong>RAN-SVC-05</strong></td><td><strong>Cluster Optimization Services</strong></td><td>Cluster tuning, inter-site interference, tilt adjustments (per site share)</td><td>1 site</td><td><code>[Bidder Quote]</code></td><td>Cluster drive testing</td></tr>
+<tr><td><strong>RAN-SVC-06</strong></td><td><strong>Central Warehousing & Logistics</strong></td><td>Staging, asset tagging, kitting, indoor climate storage</td><td>1 site</td><td><code>[Bidder Quote]</code></td><td>Inventory management</td></tr>
+<tr><td><strong>RAN-SVC-07</strong></td><td><strong>Delivery & Basic Hauling to Site</strong></td><td>Regional hauling, rough-road 4x4 transport to rural barangay location</td><td>1 site</td><td><code>[Bidder Quote]</code></td><td>Complete site delivery</td></tr>
+<tr><td><strong>SUBTOTAL</strong></td><td><strong>RAN Turnkey Services per Site</strong></td><td><em>Full Turnkey Rollout & Commissioning Services</em></td><td><strong>1 Site</strong></td><td><strong><code>[Sum of Items SVC-01 to SVC-07]</code></strong></td><td><em>Total Turnkey Services</em></td></tr>
+</tbody></table></div>
+<blockquote class="callout"><strong>Total Day-1 RAN Capex per Site (Equipment + Turnkey Services):</strong> <code>[Sum of Hardware + Turnkey Services]</code></blockquote>
+<blockquote class="callout"><strong>Phase 1 Program Total (1,000 Sites):</strong> <code>[Total per Site * 1,000]</code></blockquote>
+<hr class="doc-divider"/>
+<h3 class="doc-h3">TABLE 3: LOT 2 — POWER SYSTEMS & PASSIVE INFRASTRUCTURE</h3>
+<div class="table-responsive"><table class="tender-table">
+<thead><tr><th>Item Ref</th><th>System Description</th><th>Technical Sizing</th><th>Application</th><th>Unit Price (USD) [Bidder Quote]</th><th>Unit Price (PHP @ 55 FX)</th></tr></thead><tbody>
+<tr><td><strong>PWR-EQ-01</strong></td><td><strong>6.0 kW Modular DC Rectifier Plant</strong></td><td>19" 3U subrack, $3 \times 3.0\text{ kW}$ modules ($N+1$), SMPS controller</td><td>Co-loc / Greenfield</td><td><code>[Bidder Quote]</code></td><td><code>[Formula = USD * 55]</code></td></tr>
+<tr><td><strong>PWR-EQ-02</strong></td><td><strong>48V / 150Ah LiFePO4 Battery Bank</strong></td><td>High-cycle Lithium Iron Phosphate with smart BMS ($\ge 4\text{ hrs}$ backup)</td><td>Co-loc / Greenfield</td><td><code>[Bidder Quote]</code></td><td><code>[Formula = USD * 55]</code></td></tr>
+<tr><td><strong>PWR-EQ-03</strong></td><td><strong>TowerCo DC Tap-Off & Metering Kit</strong></td><td>DC tap enclosure, revenue Class 1.0 kWh meter, SPD Type 2</td><td>Leased TowerCo</td><td><code>[Bidder Quote]</code></td><td><code>[Formula = USD * 55]</code></td></tr>
+<tr><td><strong>PWR-EQ-04</strong></td><td><strong>15 kVA Diesel Generator Set</strong></td><td>Soundproof canopy, 500L–1000L tank, ATS, auto-start</td><td>Greenfield (Class T4)</td><td><code>[Bidder Quote]</code></td><td><code>[Formula = USD * 55]</code></td></tr>
+<tr><td><strong>CIV-EQ-01</strong></td><td><strong>30m Monopole Tower & Foundation</strong></td><td>Galvanized steel monopole, pile/pad foundation, compound fence</td><td>Greenfield (Class T4)</td><td><code>[Bidder Quote]</code></td><td><code>[Formula = USD * 55]</code></td></tr>
+<tr><td><strong>CIV-EQ-02</strong></td><td><strong>Grounding Grid & Lightning System</strong></td><td>Copper earth ring, Cadweld, ground rods, air terminal ($\le 5\ \Omega$)</td><td>Greenfield (Class T4)</td><td><code>[Bidder Quote]</code></td><td><code>[Formula = USD * 55]</code></td></tr>
+</tbody></table></div>
+<hr class="doc-divider"/>
+<h3 class="doc-h3">TABLE 4: LOT 3 — 5G CORE NETWORK (5GC SA) & DATACENTER</h3>
+<div class="table-responsive"><table class="tender-table">
+<thead><tr><th>Item Ref</th><th>Subsystem Component</th><th>Dimensioning / Sizing</th><th>Model Type</th><th>Total Year 1 Price (USD) [Bidder Quote]</th></tr></thead><tbody>
+<tr><td><strong>5GC-HW-01</strong></td><td><strong>Compute Server Nodes (2U)</strong></td><td>Dual Xeon Gold / EPYC, 512GB RAM, NVMe (Dual Sites, $N+1$)</td><td>Hardware Purchase</td><td><code>[Bidder Quote]</code></td></tr>
+<tr><td><strong>5GC-HW-02</strong></td><td><strong>High-Throughput UPF Nodes</strong></td><td>80 Gbps line-rate forwarding per node with DPDK ($N+1$ per DC)</td><td>Hardware Purchase</td><td><code>[Bidder Quote]</code></td></tr>
+<tr><td><strong>5GC-HW-03</strong></td><td><strong>Datacenter Network Fabric</strong></td><td>Spine/leaf switches ($100\text{GE} / 25\text{GE}$), perimeter firewalls, anti-DDoS</td><td>Hardware Purchase</td><td><code>[Bidder Quote]</code></td></tr>
+<tr><td><strong>5GC-HW-04</strong></td><td><strong>Storage Array & Backup System</strong></td><td>High-IOPS redundant enterprise NVMe storage arrays</td><td>Hardware Purchase</td><td><code>[Bidder Quote]</code></td></tr>
+<tr><td><strong>5GC-SW-01</strong></td><td><strong>5GC Control Plane Software (1M)</strong></td><td>AMF, SMF, PCF, UDM, UDR, AUSF, NRF, NSSF, CHF (1,000,000 Subs)</td><td>Perpetual License</td><td><code>[Bidder Quote]</code></td></tr>
+<tr><td><strong>5GC-SW-02</strong></td><td><strong>Carrier-Grade NAT & DPI Software</strong></td><td>CG-NAT deterministic port license + Layer-7 DPI bandwidth policing</td><td>Perpetual License</td><td><code>[Bidder Quote]</code></td></tr>
+<tr><td><strong>5GC-SW-03</strong></td><td><strong>CaaS / Kubernetes Orchestration</strong></td><td>Enterprise Kubernetes platform & container management</td><td>Perpetual / Annual</td><td><code>[Bidder Quote]</code></td></tr>
+<tr><td><strong>5GC-SVC-01</strong></td><td><strong>Integration, IOT with RAN & UAT</strong></td><td>End-to-end design, commissioning, RAN interoperability testing</td><td>Professional Services</td><td><code>[Bidder Quote]</code></td></tr>
+<tr><td><strong>SUBTOTAL</strong></td><td><strong>5G Core Year 1 Turnkey Package</strong></td><td><em>Dual Datacenter Active-Active Setup (1M Subs)</em></td><td><strong>Turnkey Initial</strong></td><td><strong><code>[Sum of Items 5GC-01 to SVC-01]</code></strong></td></tr>
+</tbody></table></div>
+<p><em>Incremental Capacity Expansion License (Tiers above 1,000,000 Subscribers):</em></p>
+<ul><li><em>Subscribers 1,000,001 to 2,000,000:</em> $\$ \text{[Bidder to Quote]}$ per registered subscriber.</li><li><em>Subscribers 2,000,001 to 3,000,000:</em> $\$ \text{[Bidder to Quote]}$ per registered subscriber.</li><li><em>Annual Software Maintenance & Support (AMC):</em> $\text{[Bidder to Quote]} \%$ per annum.</li></ul>
+<hr class="doc-divider"/>
+<h3 class="doc-h3">TABLE 5: LOT 4 — DIGITAL OSS/BSS & FIELD FORCE AUTOMATION</h3>
+<div class="table-responsive"><table class="tender-table">
+<thead><tr><th>Item Ref</th><th>OSS/BSS Functional Module</th><th>Detailed Functional Scope</th><th>License Type</th><th>Total Year 1 Price (USD) [Bidder Quote]</th></tr></thead><tbody>
+<tr><td><strong>BSS-01</strong></td><td><strong>Converged CRM & Product Catalog</strong></td><td>Omnichannel customer onboarding, product catalog (4 FWA tariffs)</td><td>Perpetual / Enterprise</td><td><code>[Bidder Quote]</code></td></tr>
+<tr><td><strong>BSS-02</strong></td><td><strong>Real-Time Balance & Rating Engine</strong></td><td>CHF adapter, real-time prepaid quota metering, zero-balance redirect</td><td>Perpetual License</td><td><code>[Bidder Quote]</code></td></tr>
+<tr><td><strong>BSS-03</strong></td><td><strong>Payment Channel Integration</strong></td><td>Native API integrations: GCash, Maya, 7-Eleven CLiQQ, Bayad Center</td><td>Integration Module</td><td><code>[Bidder Quote]</code></td></tr>
+<tr><td><strong>BSS-04</strong></td><td><strong>Billing & Invoicing Engine</strong></td><td>Postpaid billing engine for SME and enterprise anchor tenants</td><td>Perpetual License</td><td><code>[Bidder Quote]</code></td></tr>
+<tr><td><strong>OSS-01</strong></td><td><strong>Field Force Management (FMS)</strong></td><td>Algorithmic automated dispatch handling 3,500 daily work orders</td><td>Enterprise License</td><td><code>[Bidder Quote]</code></td></tr>
+<tr><td><strong>OSS-02</strong></td><td><strong>Mobile Technician Android App</strong></td><td>Barcode scan, GPS dispatch, live RF RSRP/SINR validation tool</td><td>Unlimited Users</td><td><code>[Bidder Quote]</code></td></tr>
+<tr><td><strong>OSS-03</strong></td><td><strong>CPE Warehouse Logistics & Reverse WMS</strong></td><td>Serialized asset lifecycle tracking, repossession & refurbishment module</td><td>Enterprise License</td><td><code>[Bidder Quote]</code></td></tr>
+<tr><td><strong>OSS-04</strong></td><td><strong>Network Performance & Fault OSS</strong></td><td>Multi-vendor RAN/Core EMS integration, alarm correlation, RCA</td><td>Enterprise License</td><td><code>[Bidder Quote]</code></td></tr>
+<tr><td><strong>OSS-05</strong></td><td><strong>Regulatory BI & NTC Dashboard</strong></td><td>Automated QoS speed compliance reporting to NTC</td><td>Included</td><td><code>[Bidder Quote]</code></td></tr>
+<tr><td><strong>OSS-SVC</strong></td><td><strong>Systems Integration & UAT Launch</strong></td><td>End-to-end configuration, test scripts, launch support</td><td>Professional Services</td><td><code>[Bidder Quote]</code></td></tr>
+<tr><td><strong>SUBTOTAL</strong></td><td><strong>OSS/BSS Turnkey Year 1 Package</strong></td><td><em>Full Stack Suite Dimensioned for 1M Subscribers</em></td><td><strong>Turnkey Initial</strong></td><td><strong><code>[Sum of Items BSS-01 to OSS-SVC]</code></strong></td></tr>
+</tbody></table></div>
+<hr class="doc-divider"/>
+<h3 class="doc-h3">TABLE 6: LOT 6 — MANAGED SERVICES & 24/7 NETWORK OPERATIONS (ANNUAL OPEX)</h3>
+<div class="table-responsive"><table class="tender-table">
+<thead><tr><th>Item Ref</th><th>Managed Operations Domain</th><th>Scope of Services</th><th>Pricing Basis</th><th>Monthly Rate (PHP) [Bidder Quote]</th><th>Monthly Rate (USD @ 55 FX)</th><th>Annual Cost / Site (USD)</th></tr></thead><tbody>
+<tr><td><strong>MS-OP-01</strong></td><td><strong>24/7 Tier-2/Tier-3 Central NOC</strong></td><td>Active surveillance, incident triage, vendor escalation</td><td>Per Site / Month</td><td><code>[Bidder Quote]</code></td><td><code>[PHP / 55]</code></td><td><code>[Monthly USD * 12]</code></td></tr>
+<tr><td><strong>MS-OP-02</strong></td><td><strong>Field First Line Maintenance (FLM)</strong></td><td>24/7 nationwide emergency restoration, MTTR $\le 2-4\text{ hrs}$</td><td>Per Site / Month</td><td><code>[Bidder Quote]</code></td><td><code>[PHP / 55]</code></td><td><code>[Monthly USD * 12]</code></td></tr>
+<tr><td><strong>MS-OP-03</strong></td><td><strong>Scheduled Preventive Maintenance</strong></td><td>Quarterly site inspection, power, battery, grounding</td><td>Per Site / Month</td><td><code>[Bidder Quote]</code></td><td><code>[PHP / 55]</code></td><td><code>[Monthly USD * 12]</code></td></tr>
+<tr><td><strong>MS-OP-04</strong></td><td><strong>Spare Parts Logistics & Warehousing</strong></td><td>Regional buffer stock, NBD replacement delivery</td><td>Per Site / Month</td><td><code>[Bidder Quote]</code></td><td><code>[PHP / 55]</code></td><td><code>[Monthly USD * 12]</code></td></tr>
+<tr><td><strong>MS-OP-05</strong></td><td><strong>Continuous Network RF Optimization</strong></td><td>Routine KPI monitoring, neighbor tuning, interference mgmt</td><td>Per Site / Month</td><td><code>[Bidder Quote]</code></td><td><code>[PHP / 55]</code></td><td><code>[Monthly USD * 12]</code></td></tr>
+<tr><td><strong>TOTAL</strong></td><td><strong>Active Network O&M Fee</strong></td><td><em>All inclusive active telecom managed operations</em></td><td><strong>Per Site / Month</strong></td><td><strong><code>[Sum of OP-01 to OP-05]</code></strong></td><td><strong><code>[Sum of USD]</code></strong></td><td><strong><code>[Annual Total USD]</code></strong></td></tr>
+</tbody></table></div>
+<hr class="doc-divider"/>
+<h3 class="doc-h3">TABLE 7: LOT 7 — 5G CUSTOMER PREMISES EQUIPMENT (CPE)</h3>
+<div class="table-responsive"><table class="tender-table">
+<thead><tr><th>Item Ref</th><th>Device Description</th><th>Minimum Technical Specifications</th><th>Target Qty (Phase 1)</th><th>Unit Price (USD) [Bidder to Quote]</th><th>Total Phase 1 Cost (USD)</th></tr></thead><tbody>
+<tr><td><strong>CPE-01</strong></td><td><strong>Indoor 5G High-Gain FWA Router</strong></td><td>Band n50 native, 8-10 dBi internal antenna, Wi-Fi 6 AX1800, 2.5GE port, TR-069</td><td>350,000 units</td><td><code>[Bidder Quote]</code></td><td><code>[Formula = Qty * Rate]</code></td></tr>
+<tr><td><strong>CPE-02</strong></td><td><strong>Outdoor 5G High-Gain FWA Unit</strong></td><td>Band n50, IP67 enclosure, 12 dBi directional antenna, PoE injector, 2.5GE LAN</td><td>15,000 units</td><td><code>[Bidder Quote]</code></td><td><code>[Formula = Qty * Rate]</code></td></tr>
+<tr><td><strong>CPE-SVC</strong></td><td><strong>Staging, Pre-Config & SIM-Locking</strong></td><td>APN, firmware customization, PLMN locking, customer packaging</td><td>350,000 units</td><td><code>[Bidder Quote]</code></td><td><code>[Formula = Qty * Rate]</code></td></tr>
+</tbody></table></div>
+<hr class="doc-divider"/>
+<h3 class="doc-h3">TABLE 8: MANDATORY VENDOR FINANCING FACILITY (FORM D)</h3>
+<p>The Bidder must submit a formal, legally binding financing term sheet with the following parameters:</p>
+<div class="table-responsive"><table class="tender-table">
+<thead><tr><th>Financing Lever</th><th>Operator Mandatory Requirement</th><th>Bidder Binding Offer [Bidder to Complete]</th></tr></thead><tbody>
+<tr><td><strong>Financing Structure</strong></td><td>OEM-backed Buyer's Credit or Export Credit Agency (ECA) facility</td><td><code>[Bidder to Specify Facility Structure]</code></td></tr>
+<tr><td><strong>Financing Quantum</strong></td><td>Minimum <strong>80% of Eligible Capital Expenditure</strong> (Lots 1, 3, Turnkey Services)</td><td><code>[Bidder to State % Financed]</code></td></tr>
+<tr><td><strong>Equity Downpayment</strong></td><td>Maximum <strong>20% Downpayment</strong> upon contract signing</td><td><code>[Bidder to State Downpayment %]</code></td></tr>
+<tr><td><strong>Facility Tenor</strong></td><td><strong>4 to 5 Years</strong> total facility duration</td><td><code>[Bidder to State Tenor in Months]</code></td></tr>
+<tr><td><strong>Principal Grace Period</strong></td><td><strong>12 to 18 Months</strong> grace period from first disbursement</td><td><code>[Bidder to State Grace Period]</code></td></tr>
+<tr><td><strong>Indicative Interest Rate</strong></td><td>Fixed commercial rate (or SOFR + competitive margin)</td><td><code>[Bidder to State Fixed Rate or Spread]</code></td></tr>
+<tr><td><strong>Security / Collateral</strong></td><td>Pledge on network equipment assets without restrictive operational covenants</td><td><code>[Bidder to Specify Security Terms]</code></td></tr>
+<tr><td><strong>Repayment Frequency</strong></td><td>Semi-annual or quarterly principal and interest amortizations</td><td><code>[Bidder to Specify Payment Cadence]</code></td></tr>
+</tbody></table></div>
+<hr class="doc-divider"/>
+<p><em>(End of Appendix B — Commercial Proposal & Pricing Templates)</em></p>
+</div>
+
+</body>
+</html>

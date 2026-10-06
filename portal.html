@@ -798,6 +798,9 @@
     <a href="rf_analyzer/index.html" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; font-size: 12px; text-decoration: none; color: #0A192F; background: #10B981; border: 1px solid #10B981; border-radius: 20px; font-weight: 700; box-shadow: 0 0 10px rgba(16,185,129,0.3); transition: all 0.2s;" title="Open Hosted LeadServe RF Suite Network Analyzer">
       📡 LeadServe RF Suite
     </a>
+    <a href="#tender-package-section" onclick="filterCatalog('tender'); document.getElementById('tender-package-section').scrollIntoView({behavior: 'smooth'});" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; font-size: 12px; text-decoration: none; color: #FFFFFF; background: #2563EB; border: 1px solid #3B82F6; border-radius: 20px; font-weight: 700; box-shadow: 0 0 10px rgba(37,99,235,0.4); transition: all 0.2s;" title="Jump to 5G FWA Master Tender & RFP Package">
+      📑 5G FWA Tender (RFP)
+    </a>
     <div class="user-session-bar">
       <span class="user-status-dot"></span>
       <span class="user-name" id="portalUserDisplay">EXECUTIVE</span>
@@ -990,6 +993,47 @@
         <a href="strategy.html" target="_blank" class="btn-launch" style="flex: 1; min-width: 170px;">Launch Strategic Deck ➔</a>
         <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_n50_Dynamic_Business_Case_Rev2.xlsx" download class="btn-download" style="background: rgba(255, 183, 3, 0.25); border: 1px solid rgba(255, 183, 3, 0.7); color: #FDE047; font-weight: 800; text-decoration: none; padding: 12px 14px; border-radius: 8px; font-size: 13px; display: inline-flex; align-items: center; gap: 6px;">
           📥 Download Excel Business Case (.xlsx)
+        </a>
+      </div>
+    </div>
+
+    <!-- Deck 3.5: Master 5G FWA Turnkey Tender & RFP Package -->
+    <div class="deck-card featured" data-model="tender-deck" style="border-color: #3B82F6; background: linear-gradient(180deg, #0F172A 0%, #1E293B 100%);">
+      <button class="card-hide-btn" onclick="hideModel('tender-deck')" title="Hide this card from view">✕ Hide</button>
+      <div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px;">
+          <span class="badge-tag" style="background: rgba(37, 99, 235, 0.25); color: #60A5FA; border: 1px solid rgba(59, 130, 246, 0.5);">
+            RFP-TELTECH-FWA-2026-001
+          </span>
+          <span class="badge-tag" style="background: rgba(16, 185, 129, 0.2); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.4);">
+            AUTHOR: OLIVER TUNGOL
+          </span>
+          <span class="badge-tag" style="background: rgba(255, 183, 3, 0.2); color: #FDE047; border: 1px solid rgba(255, 183, 3, 0.4);">
+            5,000 SITES NATIONWIDE
+          </span>
+        </div>
+        <h2 style="color: #60A5FA;">5G FWA Turnkey Tender Package (RFP)</h2>
+        <p style="color: #CBD5E1;">
+          Commercial and technical procurement specification for prospective bidders. Covers RAN, Power, 5G Core SA, OSS/BSS, RF Planning, Managed Services, and high-gain CPE terminals.
+        </p>
+        <ul class="deck-features">
+          <li><strong>Band n50 60 MHz TDD:</strong> 3-Sector 8T8R MIMO access equipment & turnkey rollout services</li>
+          <li><strong>Power Systems:</strong> 6.0 kW DC rectifiers, 150Ah LiFePO4 batteries, gensets & TowerCo tap kits</li>
+          <li><strong>Cloud-Native 5GC:</strong> Active-Active dual DC (NCR + Clark DR) with 80 Gbps line-rate DPDK UPF</li>
+          <li><strong>Prepaid BSS/OSS:</strong> Real-time CHF, native GCash/Maya/7-Eleven APIs, 3,500 daily field dispatches</li>
+          <li><strong>Managed Services:</strong> 24/7 Tier-2/3 NOC, First Line Maintenance (FLM), MTTR &lt;= 2-4 hrs, NBD spares</li>
+          <li><strong>Mandatory Vendor Financing:</strong> 80% Capex debt facility @ competitive interest over 4-5 years</li>
+        </ul>
+      </div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px;">
+        <a href="RFP_Tender_Package/01_RFP_5G_FWA_Master_Tender_Document.html" target="_blank" class="btn-launch featured-btn" style="flex: 1; min-width: 190px; background: #2563EB; border-color: #3B82F6;">
+          📖 View Master Tender (HTML) ➔
+        </a>
+        <a href="RFP_Tender_Package/01_RFP_5G_FWA_Master_Tender_Document.pdf" download class="btn-download" style="background: rgba(239, 68, 68, 0.25); border: 1px solid rgba(239, 68, 68, 0.7); color: #FCA5A5; font-weight: 800; text-decoration: none; padding: 12px 14px; border-radius: 8px; font-size: 13px; display: inline-flex; align-items: center; gap: 6px;">
+          📕 Download Official PDF
+        </a>
+        <a href="RFP_Tender_Package/06_RFP_Commercial_Price_Book_and_BoQ_Template.xlsx" download class="btn-download" style="background: rgba(16, 185, 129, 0.25); border: 1px solid rgba(16, 185, 129, 0.7); color: #A7F3D0; font-weight: 800; text-decoration: none; padding: 12px 14px; border-radius: 8px; font-size: 13px; display: inline-flex; align-items: center; gap: 6px;">
+          📊 Download Excel Price Book (.xlsx)
         </a>
       </div>
     </div>
@@ -1321,6 +1365,7 @@
       <!-- Catalog Tab Filter Buttons -->
       <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; margin-bottom: 18px;">
         <button class="catalog-filter-btn active" data-cat="all" onclick="filterCatalog('all')">★ All Models & Deliverables</button>
+        <button class="catalog-filter-btn" data-cat="tender" onclick="filterCatalog('tender')">📑 5G FWA Master Tender (RFP)</button>
         <button class="catalog-filter-btn" data-cat="popcen" onclick="filterCatalog('popcen')">🏢 POPCEN 2024 Commercial Suite</button>
         <button class="catalog-filter-btn" data-cat="rev2" onclick="filterCatalog('rev2')">📡 Audited Fiber & TowerCo Rev 2</button>
         <button class="catalog-filter-btn" data-cat="gida" onclick="filterCatalog('gida')">🌐 DICT GIDA & Combined Hybrid</button>
@@ -1331,6 +1376,71 @@
 
     <!-- Catalog Content Container -->
     <div id="unified-catalog-container" style="display: flex; flex-direction: column; gap: 20px; width: 100%;">
+
+      <!-- SECTION T: 5G FWA TURNKEY TENDER PACKAGE (RFP) -->
+      <div class="catalog-group" data-group="tender" id="tender-package-section" style="background: rgba(37, 99, 235, 0.05); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 18px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(59, 130, 246, 0.25); padding-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 18px;">📑</span>
+            <span style="font-size: 15px; font-weight: 800; color: #93C5FD; text-transform: uppercase; letter-spacing: 0.5px;">Nationwide 5G FWA Master Tender Package (RFP-TELTECH-FWA-2026-001)</span>
+          </div>
+          <span style="font-size: 11px; background: rgba(37, 99, 235, 0.25); color: #93C5FD; padding: 2px 8px; border-radius: 4px; font-weight: 700;">Folder: RFP_Tender_Package/ · Author: OLIVER TUNGOL</span>
+        </div>
+        <p style="font-size: 12.5px; color: #CBD5E1; margin-bottom: 14px; line-height: 1.5;">
+          Official carrier-grade procurement tender specification for prospective bidders. Covers turnkey supply, delivery, installation, integration, optimization, and managed services for 5,000 sites across Band n50 (1.5 GHz TDD, 60 MHz). Includes line-by-line compliance matrices, commercial BoQ price book, SLAs & KPIs, civil/RF guidelines, and mandatory vendor financing terms.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <!-- Master RFP Document Row -->
+          <div style="display: flex; gap: 10px; align-items: center; background: rgba(255,255,255,0.04); padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 250px;">
+              <div style="font-weight: 800; color: #FFFFFF; font-size: 13.5px;">📖 01. Master Tender RFP Specification (5,000 Sites Footprint)</div>
+              <div style="font-size: 11.5px; color: #94A3B8;">Turnkey procurement rules, 7 lots, evaluation criteria, and 4-year vendor financing terms.</div>
+            </div>
+            <a href="RFP_Tender_Package/01_RFP_5G_FWA_Master_Tender_Document.html" target="_blank" class="btn-launch" style="padding: 7px 14px; font-size: 12px; background: #2563EB;">Web View (HTML) ➔</a>
+            <a href="RFP_Tender_Package/01_RFP_5G_FWA_Master_Tender_Document.pdf" download class="btn-download" style="padding: 7px 14px; font-size: 12px; background: rgba(239, 68, 68, 0.25); border-color: #EF4444; color: #FCA5A5;">📕 Official PDF</a>
+          </div>
+
+          <!-- Appendix A Row -->
+          <div style="display: flex; gap: 10px; align-items: center; background: rgba(255,255,255,0.04); padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 250px;">
+              <div style="font-weight: 800; color: #FFFFFF; font-size: 13.5px;">📋 Appendix A: Technical Specifications & Compliance Matrix</div>
+              <div style="font-size: 11.5px; color: #94A3B8;">Detailed line-by-line compliance sheets for RAN, Power, 5GC, OSS/BSS, RF and Managed Services.</div>
+            </div>
+            <a href="RFP_Tender_Package/02_Appendix_A_Technical_Specifications_Compliance_Matrix.html" target="_blank" class="btn-launch" style="padding: 7px 14px; font-size: 12px; background: #2563EB;">Web View (HTML) ➔</a>
+            <a href="RFP_Tender_Package/02_Appendix_A_Technical_Specifications_Compliance_Matrix.pdf" download class="btn-download" style="padding: 7px 14px; font-size: 12px; background: rgba(239, 68, 68, 0.25); border-color: #EF4444; color: #FCA5A5;">📕 Official PDF</a>
+          </div>
+
+          <!-- Appendix B & BoQ Excel Row -->
+          <div style="display: flex; gap: 10px; align-items: center; background: rgba(16, 185, 129, 0.08); padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(16, 185, 129, 0.3); flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 250px;">
+              <div style="font-weight: 800; color: #6EE7B7; font-size: 13.5px;">📊 06. RFP Commercial Price Book & Bill of Quantities (BoQ)</div>
+              <div style="font-size: 11.5px; color: #CBD5E1;">Official Clean Bidding Version with <strong>Read Me Data Dictionary</strong> tab and yellow bidder input cells.</div>
+            </div>
+            <a href="RFP_Tender_Package/06_RFP_Commercial_Price_Book_and_BoQ_Template.xlsx" download class="btn-download" style="padding: 7px 14px; font-size: 12px; background: rgba(16, 185, 129, 0.3); border-color: #10B981; color: #A7F3D0; font-weight: 800;">📥 Download Excel (.xlsx)</a>
+            <a href="RFP_Tender_Package/03_Appendix_B_Commercial_Proposal_BoQ_Templates.pdf" download class="btn-download" style="padding: 7px 14px; font-size: 12px; background: rgba(239, 68, 68, 0.25); border-color: #EF4444; color: #FCA5A5;">📕 BoQ PDF</a>
+          </div>
+
+          <!-- Appendix C Row -->
+          <div style="display: flex; gap: 10px; align-items: center; background: rgba(255,255,255,0.04); padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 250px;">
+              <div style="font-weight: 800; color: #FFFFFF; font-size: 13.5px;">⏱️ Appendix C: Service Level Agreements, Network KPIs & Liquidated Damages</div>
+              <div style="font-size: 11.5px; color: #94A3B8;">3GPP carrier-grade availability, CSSR/CDDR, throughput, latency, MTTR restoration, and penalties.</div>
+            </div>
+            <a href="RFP_Tender_Package/04_Appendix_C_SLAs_KPIs_Liquidated_Damages.html" target="_blank" class="btn-launch" style="padding: 7px 14px; font-size: 12px; background: #2563EB;">Web View (HTML) ➔</a>
+            <a href="RFP_Tender_Package/04_Appendix_C_SLAs_KPIs_Liquidated_Damages.pdf" download class="btn-download" style="padding: 7px 14px; font-size: 12px; background: rgba(239, 68, 68, 0.25); border-color: #EF4444; color: #FCA5A5;">📕 Official PDF</a>
+          </div>
+
+          <!-- Appendix D Row -->
+          <div style="display: flex; gap: 10px; align-items: center; background: rgba(255,255,255,0.04); padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 250px;">
+              <div style="font-weight: 800; color: #FFFFFF; font-size: 13.5px;">📡 Appendix D: Site Survey, RF Planning & Civil/Power Engineering Guidelines</div>
+              <div style="font-size: 11.5px; color: #94A3B8;">TSSR format, 139.8 dB link budget (3.5 km radius), 250 km/h monopole civil standards, and SSV tests.</div>
+            </div>
+            <a href="RFP_Tender_Package/05_Appendix_D_Site_Survey_RF_Planning_Civil_Power_Guidelines.html" target="_blank" class="btn-launch" style="padding: 7px 14px; font-size: 12px; background: #2563EB;">Web View (HTML) ➔</a>
+            <a href="RFP_Tender_Package/05_Appendix_D_Site_Survey_RF_Planning_Civil_Power_Guidelines.pdf" download class="btn-download" style="padding: 7px 14px; font-size: 12px; background: rgba(239, 68, 68, 0.25); border-color: #EF4444; color: #FCA5A5;">📕 Official PDF</a>
+          </div>
+        </div>
+      </div>
 
       <!-- SECTION A: POPCEN 2024 COMMERCIAL SUITE -->
       <div class="catalog-group" data-group="popcen" style="background: rgba(16, 185, 129, 0.04); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 10px; padding: 18px 20px;">
