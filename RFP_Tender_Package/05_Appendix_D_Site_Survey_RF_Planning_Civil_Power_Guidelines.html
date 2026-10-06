@@ -84,7 +84,7 @@
     align-items: flex-start;
   }
   .corp-name {
-    font-size: 14pt;
+    font-size: 13pt;
     font-weight: 900;
     color: #1E3A8A;
     letter-spacing: 0.5px;
@@ -102,7 +102,7 @@
     color: #475569;
   }
   .doc-h1 {
-    font-size: 18pt;
+    font-size: 17pt;
     color: #1E3A8A;
     font-weight: 800;
     margin-top: 0;
@@ -110,7 +110,7 @@
     line-height: 1.25;
   }
   .doc-h2 {
-    font-size: 13pt;
+    font-size: 12.5pt;
     color: #1E3A8A;
     border-bottom: 1.5px solid #CBD5E1;
     padding-bottom: 6px;
@@ -230,79 +230,40 @@
 <div class="container">
   <div class="formal-header">
     <div>
-      <div class="corp-name">Comclark Network & Technology Corp. / TelTech</div>
+      <div class="corp-name">Telecommunications Technology Solutions Incorporated (TelTech)</div>
       <div class="corp-sub">Nationwide 5G Fixed Wireless Access (FWA) Infrastructure Program</div>
     </div>
     <div class="doc-meta">
       <div><strong>Tender No:</strong> RFP-TELTECH-FWA-2026-001</div>
-      <div><strong>Author:</strong> OLIVER TUNGOL</div>
+      <div><strong>Author & Lead Architect:</strong> OLIVER TUNGOL</div>
       <div><strong>Date:</strong> October 6, 2026 · Rev 2.0 (Official Bidding Version)</div>
     </div>
   </div>
 
   <h1 class="doc-h1">APPENDIX D: SITE SURVEY, RF PLANNING & CIVIL/POWER ENGINEERING GUIDELINES</h1>
-<h2 class="doc-h2">5G FWA PROGRAM (5,000 SITES NATIONWIDE)</h2>
-<p><strong>Tender Reference:</strong> RFP-TELTECH-FWA-2026-001</p>
-<p><strong>Project:</strong> Nationwide 5G FWA Project (Band n50, 60 MHz TDD)</p>
-<p><strong>Operator:</strong> Comclark Network & Technology Corp. / TelTech</p>
-<p><strong>Author:</strong> OLIVER TUNGOL</p>
-<hr class="doc-divider"/>
-<h2 class="doc-h2">1. ENGINEERING PRINCIPLES & SITING ARCHITECTURE</h2>
-<h3 class="doc-h3">1.1 Siting Philosophy</h3>
+<h2 class="doc-h2">5G FWA PROGRAM (5,000 SITES NATIONWIDE) <strong>Tender Reference:</strong> RFP-TELTECH-FWA-2026-001 <strong>Project:</strong> Nationwide 5G FWA Project (Band n50, 60 MHz TDD) <strong>Operator:</strong> Telecommunications Technology Solutions Incorporated (TelTech) <strong>Author:</strong> OLIVER TUNGOL --- ## 1. ENGINEERING PRINCIPLES & SITING ARCHITECTURE ### 1.1 Siting Philosophy</h2>
 <p>The primary engineering objective of the 5G FWA rollout is to maximize household population coverage within high-density suburban and rural barangay settlement clusters while minimizing civil capital expenditures and permitting lead times.</p>
-<ul><li><strong>TowerCo Co-Location First (Option A — Baseline):</strong> The Operator leverages an audited master database of <strong>13,746 operational towers</strong>. For every candidate barangay, field teams must prioritize existing towers within $\le 2.0\text{ km}$ (Classes T1, T2, and T3).</li><li><strong>Greenfield Monopole (Class T4):</strong> Restricted strictly to candidate barangays located $> 2.0\text{ km}$ from any verified operational tower structure (~9.3% of sites nationwide; 103 sites in Phase 1).</li></ul>
-<hr class="doc-divider"/>
-<h2 class="doc-h2">2. DETAILED TECHNICAL SITE SURVEY REPORT (TSSR) REQUIREMENTS</h2>
-<p>For every nominal site candidate, the Contractor shall complete and submit a comprehensive TSSR conforming to the following structure:</p>
-<h3 class="doc-h3">2.1 General Site Identification & Geography</h3>
-<ul><li>Site Name, Candidate ID, Official PSGC Code, Region, Province, Municipality, and Barangay.</li><li>Precision WGS84 GPS Coordinates (Latitude, Longitude recorded with $\ge 6$ decimal places via dual-frequency GPS receiver).</li><li>Ground Elevation Above Mean Sea Level (AMSL in meters).</li><li>Access Road Assessment: Road surface type (concrete, asphalt, macadam, dirt trail), bridge weight limits, and 4x4 hauling accessibility during monsoon seasons.</li></ul>
-<h3 class="doc-h3">2.2 Tower Structure & Loading Audit (Co-Location Sites)</h3>
-<ul><li>Operating TowerCo Entity (PTCI/MIDC, FTAP Globe, EdgePoint, FTAP Smart, LDIC, FTAP BTS).</li><li>Tower Type (Self-Supporting 3-Leg/4-Leg Tower, Monopole, Guyed Mast, Rooftop Tower).</li><li>Tower Height Above Ground Level (AGL in meters).</li><li>Structural Space Audit: Proposed mounting height for 3x Band n50 antennas (recommended centerline: 30m to 45m AGL).</li><li>Structural Loading Verification: Confirmation that existing tower members and foundation can accommodate additional 3x 8T8R RRUs/AAUs ($<45\text{ kg}$ each) and wind load profile of $250\text{ km/h}$.</li><li>Panoramic Drone Photographic Survey: High-resolution $360^\circ$ continuous panoramic video and 12-cardinal-point still photos at proposed antenna centerline height to verify optical line-of-sight across populated settlements.</li></ul>
-<h3 class="doc-h3">2.3 Power Infrastructure & Utility Audit</h3>
-<ul><li>Existing Commercial AC Utility Power: Electric Cooperative / Distribution Utility name (e.g., MERALCO, PELCO, BENECO, CAPELCO, ILPI).</li><li>Service Entrance Capacity: Transformer rating (kVA), service voltage (230V / 400V, 60 Hz), breaker rating, and phase balance.</li><li>TowerCo DC Power Availability: Sourcing from TowerCo DC busbar (-48V DC) vs. installing Operator-dedicated rectifier subrack.</li><li>Sub-metering feasibility and cable tray routing for power cables.</li><li>Grounding System Audit: Measurement of existing earth ground resistance using a 3-point fall-of-potential earth tester. Earth resistance must be $\le 5.0\text{ Ohms}$.</li></ul>
-<h3 class="doc-h3">2.4 Backhaul Transmission Path Survey</h3>
-<ul><li>Audited Codex Optical Screening Match: Distance to nearest confirmed node candidate (Class A $\le 0.5\text{ km}$, Class B $\le 1.0\text{ km}$) or line-tap closure (Class C $\le 0.5\text{ km}$).</li><li>Cable Entry Facility: Manhole, handhole, or aerial pole lead-in routing into tower shelter/compound.</li><li>For Remote Class E/F Sites: Satellite antenna mounting location (unobstructed sky view with $0^\circ$ to $80^\circ$ northern elevation arc for Starlink constellation tracking).</li></ul>
-<hr class="doc-divider"/>
-<h2 class="doc-h2">3. RF PROPAGATION & CELL DIMENSIONING GUIDELINES</h2>
-<h3 class="doc-h3">3.1 Link Budget Parameters (Band n50, 1.5 GHz)</h3>
+<ul><li><strong>TowerCo Co-Location First (Option A — Baseline):</strong> The Operator leverages an audited master database of <strong>13,746 operational towers</strong>. For every candidate barangay, field teams must prioritize existing towers within <= 2.0km (Classes T1, T2, and T3).</li><li><strong>Greenfield Monopole (Class T4):</strong> Restricted strictly to candidate barangays located > 2.0km from any verified operational tower structure (~9.3% of sites nationwide; 103 sites in Phase 1). --- ## 2. DETAILED TECHNICAL SITE SURVEY REPORT (TSSR) REQUIREMENTS For every nominal site candidate, the Contractor shall complete and submit a comprehensive TSSR conforming to the following structure: ### 2.1 General Site Identification & Geography</li><li>Site Name, Candidate ID, Official PSGC Code, Region, Province, Municipality, and Barangay.</li><li>Precision WGS84 GPS Coordinates (Latitude, Longitude recorded with >= 6 decimal places via dual-frequency GPS receiver).</li><li>Ground Elevation Above Mean Sea Level (AMSL in meters).</li><li>Access Road Assessment: Road surface type (concrete, asphalt, macadam, dirt trail), bridge weight limits, and 4x4 hauling accessibility during monsoon seasons. ### 2.2 Tower Structure & Loading Audit (Co-Location Sites)</li><li>Operating TowerCo Entity (PTCI/MIDC, FTAP Globe, EdgePoint, FTAP Smart, LDIC, FTAP BTS).</li><li>Tower Type (Self-Supporting 3-Leg/4-Leg Tower, Monopole, Guyed Mast, Rooftop Tower).</li><li>Tower Height Above Ground Level (AGL in meters).</li><li>Structural Space Audit: Proposed mounting height for 3x Band n50 antennas (recommended centerline: 30m to 45m AGL).</li><li>Structural Loading Verification: Confirmation that existing tower members and foundation can accommodate additional 3x 8T8R RRUs/AAUs (<45kg each) and wind load profile of 250 km/h.</li><li>Panoramic Drone Photographic Survey: High-resolution 360° continuous panoramic video and 12-cardinal-point still photos at proposed antenna centerline height to verify optical line-of-sight across populated settlements. ### 2.3 Power Infrastructure & Utility Audit</li><li>Existing Commercial AC Utility Power: Electric Cooperative / Distribution Utility name (e.g., MERALCO, PELCO, BENECO, CAPELCO, ILPI).</li><li>Service Entrance Capacity: Transformer rating (kVA), service voltage (230V / 400V, 60 Hz), breaker rating, and phase balance.</li><li>TowerCo DC Power Availability: Sourcing from TowerCo DC busbar (-48V DC) vs. installing Operator-dedicated rectifier subrack.</li><li>Sub-metering feasibility and cable tray routing for power cables.</li><li>Grounding System Audit: Measurement of existing earth ground resistance using a 3-point fall-of-potential earth tester. Earth resistance must be <= 5.0 Ohms. ### 2.4 Backhaul Transmission Path Survey</li><li>Audited Codex Optical Screening Match: Distance to nearest confirmed node candidate (Class A <= 0.5km, Class B <= 1.0km) or line-tap closure (Class C <= 0.5km).</li><li>Cable Entry Facility: Manhole, handhole, or aerial pole lead-in routing into tower shelter/compound.</li><li>For Remote Class E/F Sites: Satellite antenna mounting location (unobstructed sky view with 0° to 80° northern elevation arc for Starlink constellation tracking). --- ## 3. RF PROPAGATION & CELL DIMENSIONING GUIDELINES ### 3.1 Link Budget Parameters (Band n50, 1.5 GHz) | Parameter | Unit | Value (Downlink) | Value (Uplink) | Technical Notes |</li></ul>
 <div class="table-responsive"><table class="tender-table">
-<thead><tr><th>Parameter</th><th>Unit</th><th>Value (Downlink)</th><th>Value (Uplink)</th><th>Technical Notes</th></tr></thead><tbody>
-<tr><td><strong>Operating Frequency</strong></td><td>MHz</td><td>1475.0 (Center)</td><td>1475.0 (Center)</td><td>Band n50 TDD</td></tr>
-<tr><td><strong>Channel Bandwidth</strong></td><td>MHz</td><td>60.0</td><td>60.0</td><td>162 Resource Blocks (SCS 30 kHz)</td></tr>
-<tr><td><strong>BTS Maximum Conducted Power</strong></td><td>dBm / W</td><td>$55.0\text{ dBm}$ (320 W)</td><td>N/A</td><td>$8 \times 40\text{ W}$ RRU configuration</td></tr>
-<tr><td><strong>BTS Power per Resource Block</strong></td><td>dBm</td><td>$32.9\text{ dBm}$</td><td>N/A</td><td>Uniform power distribution</td></tr>
-<tr><td><strong>BTS Antenna Gain</strong></td><td>dBi</td><td>$17.5\text{ dBi}$</td><td>$17.5\text{ dBi}$</td><td>8-port cross-pol macro antenna</td></tr>
-<tr><td><strong>BTS Cable / Jumper Loss</strong></td><td>dB</td><td>$1.0\text{ dB}$</td><td>$1.0\text{ dB}$</td><td>Short optical/RF jumper interface</td></tr>
-<tr><td><strong>CPE Maximum Transmit Power</strong></td><td>dBm / W</td><td>N/A</td><td>$23.0\text{ dBm}$ (200 mW)</td><td>Power Class 3 UE (or Class 2 26 dBm)</td></tr>
-<tr><td><strong>CPE Antenna Gain</strong></td><td>dBi</td><td>$9.0\text{ dBi}$</td><td>$9.0\text{ dBi}$</td><td>High-gain directional indoor/outdoor</td></tr>
-<tr><td><strong>CPE Body / Indoor Penetration Loss</strong></td><td>dB</td><td>$8.0\text{ dB}$</td><td>$8.0\text{ dB}$</td><td>Concrete hollow block & glass attenuation</td></tr>
-<tr><td><strong>Foliage / Clutter Margin</strong></td><td>dB</td><td>$6.0\text{ dB}$</td><td>$6.0\text{ dB}$</td><td>Typical rural tropical tree canopy</td></tr>
-<tr><td><strong>Shadowing Margin (Log-Normal)</strong></td><td>dB</td><td>$7.0\text{ dB}$</td><td>$7.0\text{ dB}$</td><td>90% edge cell coverage reliability</td></tr>
-<tr><td><strong>Thermal Noise Density</strong></td><td>dBm/Hz</td><td>-174.0</td><td>-174.0</td><td>$kT$ @ $290\text{ K}$</td></tr>
-<tr><td><strong>Receiver Noise Figure</strong></td><td>dB</td><td>$6.0\text{ dB}$ (CPE)</td><td>$3.5\text{ dB}$ (gNodeB)</td><td>Active RF front-end</td></tr>
-<tr><td><strong>Target SINR for Min Service</strong></td><td>dB</td><td>$-1.0\text{ dB}$</td><td>$-2.0\text{ dB}$</td><td>QPSK rate 1/3 (Cell Edge 25 Mbps DL)</td></tr>
-<tr><td><strong>Maximum Allowable Path Loss (MAPL)</strong></td><td><strong>dB</strong></td><td><strong>$144.5\text{ dB}$</strong></td><td><strong>$139.8\text{ dB}$</strong></td><td><strong>Uplink is coverage limiting</strong></td></tr>
-<tr><td><strong>Calculated Reliable Cell Radius</strong></td><td><strong>km</strong></td><td><strong>$\mathbf{3.5\text{ km}}$</strong></td><td><strong>$\mathbf{3.2\text{ km}}$</strong></td><td><strong>Standard suburban/rural clutter</strong></td></tr>
+<thead><tr><th><strong>Operating Frequency</strong></th><th>MHz</th><th>1475.0 (Center)</th><th>1475.0 (Center)</th><th>Band n50 TDD</th></tr></thead><tbody>
+<tr><th><strong>Channel Bandwidth</strong></th><th>MHz</th><th>60.0</th><th>60.0</th><th>162 Resource Blocks (SCS 30 kHz)</th></tr>
+<tr><th><strong>BTS Maximum Conducted Power</strong></th><th>dBm / W</th><th>55.0 dBm (320 W)</th><th>N/A</th><th>8 x 40W RRU configuration</th></tr>
+<tr><th><strong>BTS Power per Resource Block</strong></th><th>dBm</th><th>32.9 dBm</th><th>N/A</th><th>Uniform power distribution</th></tr>
+<tr><th><strong>BTS Antenna Gain</strong></th><th>dBi</th><th>17.5 dBi</th><th>17.5 dBi</th><th>8-port cross-pol macro antenna</th></tr>
+<tr><th><strong>BTS Cable / Jumper Loss</strong></th><th>dB</th><th>1.0 dB</th><th>1.0 dB</th><th>Short optical/RF jumper interface</th></tr>
+<tr><th><strong>CPE Maximum Transmit Power</strong></th><th>dBm / W</th><th>N/A</th><th>23.0 dBm (200 mW)</th><th>Power Class 3 UE (or Class 2 26 dBm)</th></tr>
+<tr><th><strong>CPE Antenna Gain</strong></th><th>dBi</th><th>9.0 dBi</th><th>9.0 dBi</th><th>High-gain directional indoor/outdoor</th></tr>
+<tr><th><strong>CPE Body / Indoor Penetration Loss</strong></th><th>dB</th><th>8.0 dB</th><th>8.0 dB</th><th>Concrete hollow block & glass attenuation</th></tr>
+<tr><th><strong>Foliage / Clutter Margin</strong></th><th>dB</th><th>6.0 dB</th><th>6.0 dB</th><th>Typical rural tropical tree canopy</th></tr>
+<tr><th><strong>Shadowing Margin (Log-Normal)</strong></th><th>dB</th><th>7.0 dB</th><th>7.0 dB</th><th>90% edge cell coverage reliability</th></tr>
+<tr><th><strong>Thermal Noise Density</strong></th><th>dBm/Hz</th><th>-174.0</th><th>-174.0</th><th>kT @ 290K</th></tr>
+<tr><th><strong>Receiver Noise Figure</strong></th><th>dB</th><th>6.0 dB (CPE)</th><th>3.5 dB (gNodeB)</th><th>Active RF front-end</th></tr>
+<tr><th><strong>Target SINR for Min Service</strong></th><th>dB</th><th>-1.0 dB</th><th>-2.0 dB</th><th>QPSK rate 1/3 (Cell Edge 25 Mbps DL)</th></tr>
+<tr><th><strong>Maximum Allowable Path Loss (MAPL)</strong></th><th><strong>dB</strong></th><th><strong>144.5 dB</strong></th><th><strong>139.8 dB</strong></th><th><strong>Uplink is coverage limiting</strong></th></tr>
 </tbody></table></div>
-<h3 class="doc-h3">3.2 Nominal Sector Azimuth & Tilt Strategy</h3>
-<ul><li><strong>Sector Count:</strong> 3 sectors per macro site with $120^\circ$ nominal separation ($0^\circ, 120^\circ, 240^\circ$). Azimuths must be tailored during TSSR to track actual barangay population concentrations along transport corridors and coastal plains.</li><li><strong>Electrical Remote Downtilt (eRET):</strong> Antennas must feature AISG 2.0 remote tilt adjustable between $2^\circ$ and $10^\circ$ from the central OSS. Mechanical tilt shall only be applied when required to clear close-in obstructions ($>15^\circ$).</li></ul>
-<hr class="doc-divider"/>
-<h2 class="doc-h2">4. CIVIL WORKS & STRUCTURAL ENGINEERING (CLASS T4 GREENFIELD SITES)</h2>
-<p>For the ~10% of sites requiring self-constructed greenfield towers, the Contractor shall adhere to the following civil standards:</p>
-<ol start="1"><li><strong>Monopole Tower Specification:</strong></li></ol>
-<ul><li>30-meter or 40-meter polygonal tubular steel monopole constructed in 3 to 4 slip-joint sections.</li><li>Structural steel: ASTM A572 Grade 50 (or equivalent high-strength structural grade) hot-dip galvanized per ASTM A123 ($\ge 85\text{ microns}$ zinc coating).</li><li>Design Wind Speed: Minimum <strong>$250\text{ km/h}$ 3-second gust</strong> in accordance with the National Structural Code of the Philippines (NSCP 2015 / TIA-222-G/H).</li><li>Top antenna mounting platform capable of supporting 6x antennas/RRUs and microwave dish mountings.</li></ul>
-<ol start="2"><li><strong>Compound Civil Works:</strong></li></ol>
-<ul><li>Compound Footprint: Standard $8.0\text{m} \times 8.0\text{m}$ (64 m²) gravel-topped compound.</li><li>Perimeter Fencing: 2.4-meter high cyclone wire mesh fence topped with 3 strands of galvanized concertina razor wire.</li><li>Equipment Pad: Reinforced concrete equipment plinth (Class A concrete, 28-day compressive strength $\ge 21\text{ MPa} / 3,000\text{ psi}$) for outdoor cabinets and generator set.</li></ul>
-<ol start="3"><li><strong>Lightning Protection & Grounding Grid:</strong></li></ol>
-<ul><li>Air terminal (lightning rod) installed at monopole top extending $\ge 2.0\text{m}$ above uppermost antenna.</li><li>Down-conductor: $70\text{ mm²}$ bare stranded copper cable routed externally and clamped every 1.0m to tower shaft.</li><li>Earth ground ring: Continuous buried bare copper loop around tower base and compound with copper-clad steel ground rods ($19\text{mm dia} \times 3.0\text{m}$ length) exothermically welded (Cadweld) at all junctions, achieving $\le 5.0\text{ Ohms}$.</li></ul>
-<hr class="doc-divider"/>
-<h2 class="doc-h2">5. SINGLE SITE VERIFICATION (SSV) & CLUSTER ACCEPTANCE CRITERIA</h2>
-<p>Before any site is granted Commercial On-Air Acceptance, the Contractor must complete and submit a signed SSV Report verifying:</p>
-<ol start="1"><li><strong>Stationary Functional Tests:</strong></li></ol>
-<ul><li>Sector Verification: Physical azimuth and tilt match TSSR approval within $\pm 2^\circ$.</li><li>RF Transmit Power: Conducted power on all 8 transmit paths within $\pm 0.5\text{ dB}$ of nominal.</li><li>VSWR / Return Loss: Return loss $\ge 15\text{ dB}$ across all antenna feeder lines.</li><li>Max Throughput Test: Single CPE situated in line-of-sight achieving $\ge 450\text{ Mbps}$ DL and $\ge 60\text{ Mbps}$ UL.</li></ul>
-<ol start="2"><li><strong>Short Drive Test & Static Multi-Point Test:</strong></li></ol>
-<ul><li>5 stationary measurement points per sector (Near: 500m, Mid: 1.5km, Far/Edge: 3.0km).</li><li>RSRP $\ge -95\text{ dBm}$ across $\ge 90\%$ of surveyed barangay inhabited zone.</li><li>Ping RTT $\le 20\text{ ms}$ to local UPF IP address; zero packet loss over 1,000 continuous pings.</li><li>Inter-sector handover execution without drop during transition.</li></ul>
-<hr class="doc-divider"/>
+<p>| <strong>Calculated Reliable Cell Radius</strong>| <strong>km</strong> | <strong>3.5 km</strong> | <strong>3.2 km</strong> | <strong>Standard suburban/rural clutter</strong> | ### 3.2 Nominal Sector Azimuth & Tilt Strategy</p>
+<ul><li><strong>Sector Count:</strong> 3 sectors per macro site with 120° nominal separation (0°, 120°, 240°). Azimuths must be tailored during TSSR to track actual barangay population concentrations along transport corridors and coastal plains.</li><li><strong>Electrical Remote Downtilt (eRET):</strong> Antennas must feature AISG 2.0 remote tilt adjustable between 2° and 10° from the central OSS. Mechanical tilt shall only be applied when required to clear close-in obstructions (>15°). --- ## 4. CIVIL WORKS & STRUCTURAL ENGINEERING (CLASS T4 GREENFIELD SITES) For the ~10% of sites requiring self-constructed greenfield towers, the Contractor shall adhere to the following civil standards:</li></ul>
+<ol start="1"><li><strong>Monopole Tower Specification:</strong> <em> 30-meter or 40-meter polygonal tubular steel monopole constructed in 3 to 4 slip-joint sections. </em> Structural steel: ASTM A572 Grade 50 (or equivalent high-strength structural grade) hot-dip galvanized per ASTM A123 (>= 85microns zinc coating). <em> Design Wind Speed: Minimum <strong>250 km/h 3-second gust</strong> in accordance with the National Structural Code of the Philippines (NSCP 2015 / TIA-222-G/H). </em> Top antenna mounting platform capable of supporting 6x antennas/RRUs and microwave dish mountings.</li><li><strong>Compound Civil Works:</strong> <em> Compound Footprint: Standard 8.0m x 8.0m (64 m²) gravel-topped compound. </em> Perimeter Fencing: 2.4-meter high cyclone wire mesh fence topped with 3 strands of galvanized concertina razor wire. * Equipment Pad: Reinforced concrete equipment plinth (Class A concrete, 28-day compressive strength >= 21MPa / 3,000psi) for outdoor cabinets and generator set.</li><li><strong>Lightning Protection & Grounding Grid:</strong> <em> Air terminal (lightning rod) installed at monopole top extending >= 2.0m above uppermost antenna. </em> Down-conductor: 70mm² bare stranded copper cable routed externally and clamped every 1.0m to tower shaft. * Earth ground ring: Continuous buried bare copper loop around tower base and compound with copper-clad steel ground rods (19mm dia x 3.0m length) exothermically welded (Cadweld) at all junctions, achieving <= 5.0 Ohms. --- ## 5. SINGLE SITE VERIFICATION (SSV) & CLUSTER ACCEPTANCE CRITERIA Before any site is granted Commercial On-Air Acceptance, the Contractor must complete and submit a signed SSV Report verifying:</li><li><strong>Stationary Functional Tests:</strong> <em> Sector Verification: Physical azimuth and tilt match TSSR approval within +/- 2°. </em> RF Transmit Power: Conducted power on all 8 transmit paths within +/- 0.5 dB of nominal. <em> VSWR / Return Loss: Return loss >= 15 dB across all antenna feeder lines. </em> Max Throughput Test: Single CPE situated in line-of-sight achieving >= 450 Mbps DL and >= 60 Mbps UL.</li><li><strong>Short Drive Test & Static Multi-Point Test:</strong> <em> 5 stationary measurement points per sector (Near: 500m, Mid: 1.5km, Far/Edge: 3.0km). </em> RSRP >= -95 dBm across >= 90% of surveyed barangay inhabited zone. <em> Ping RTT <= 20 ms to local UPF IP address; zero packet loss over 1,000 continuous pings. </em> Inter-sector handover execution without drop during transition. ---</li></ol>
 <p><em>(End of Appendix D — Site Survey, RF Planning & Civil Engineering Guidelines)</em></p>
 </div>
 
