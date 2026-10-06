@@ -43,7 +43,7 @@ For every nominal site candidate, the Contractor shall complete and submit a com
 * Grounding System Audit: Measurement of existing earth ground resistance using a 3-point fall-of-potential earth tester. Earth resistance must be <= 5.0 Ohms.
 
 ### 2.4 Backhaul Transmission Path Survey
-* Audited Codex Optical Screening Match: Distance to nearest confirmed node candidate (Class A <= 0.5 km, Class B <= 1.0 km) or line-tap closure (Class C <= 0.5 km).
+* Audited Converge Fiber Network Match (subject to verification on the ground): Distance to nearest confirmed node candidate (Class A <= 0.5 km, Class B <= 1.0 km) or line-tap closure (Class C <= 0.5 km).
 * Cable Entry Facility: Manhole, handhole, or aerial pole lead-in routing into tower shelter/compound.
 * For Remote Class E/F Sites: Satellite antenna mounting location (unobstructed sky view with 0° to 80° northern elevation arc for Starlink constellation tracking).
 

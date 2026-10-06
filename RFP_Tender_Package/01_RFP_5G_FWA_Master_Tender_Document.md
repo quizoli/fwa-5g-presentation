@@ -63,7 +63,7 @@ The operator has completed a nationwide spatial overlay matching the 5,000 candi
 * **Class T4 (Greenfield Monopole Required, > 2.0 km):** 10.3% of Phase 1 sites (9.3% nationwide; ~460 sites total). Requires self-constructed 30m/40m monopole, civil shelter, dedicated utility transformer drop, and backup diesel/solar generation.
 
 ### 2.3 Transmission & Backhaul Topology
-Transmission connectivity has been audited via the independent Codex Optical Backbone screening (1,296 confirmed optical nodes and 4,401 fiber segments):
+Transmission connectivity has been audited via the Converge fiber network audit (1,296 confirmed optical nodes and 4,401 fiber segments; subject to verification on the ground):
 * **Terrestrial Fiber Optic Cable (FOC):** 98.3% of Phase 1 sites connect via terrestrial fiber drops (Class A: Node <= 0.5 km; Class B: Node <= 1.0 km; Class C: Line-tap splice closure <= 0.5 km; Class D: Lateral/Microwave <= 3.0 km).
 * **Satellite LEO Backhaul (Starlink Business):** 1.7% of Commercial Phase 1 sites (and up to 34.4%–43.5% in remote universal access/GIDA sites) utilize 4-terminal Starlink Business arrays (delivering aggregated 400–800 Mbps burst with SD-WAN bonding and traffic shaping).
 
@@ -311,7 +311,7 @@ Total Evaluation Score = (Technical Score × 60%) + (Commercial & Financing Scor
 
 ### 8.1 Clarifications and Communications
 All formal communications, requests for interpretation, and tender queries must be submitted in writing via official email to:
-* **Tender Secretariat:** `fwa.tender@teltech.com.ph`
+* **Tender Secretariat:** `oliver.tungol@comclark.com.ph`
 * **Attention:** Technical Evaluation Board / OLIVER TUNGOL (Author)
 * **Subject Line:** `[RFP-TELTECH-FWA-2026-001] Technical Clarification Request - <Bidder Name>`
 

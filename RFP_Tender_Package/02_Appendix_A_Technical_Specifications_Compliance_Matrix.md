@@ -99,7 +99,7 @@
 | :--- | :--- | :--- | :---: | :--- |
 | **RFP-01** | **Planning Tool** | Carrier-grade RF planning tool (Atoll, Asset, Planet) with high-resolution digital terrain and clutter data (<= 5m resolution). | | |
 | **RFP-02** | **Propagation Model** | Calibrated Band n50 (1.5 GHz) 3D ray-tracing / standard propagation model calibrated against local Philippine terrain clutter. | | |
-| **RFP-03** | **Nominal Siting & Audit** | Siting validation against 13,746 tower inventory and Codex fiber backbone routes; production of candidate search rings. | | |
+| **RFP-03** | **Nominal Siting & Audit** | Siting validation against 13,746 tower inventory and Converge fiber network backbone routes (subject to verification on the ground); production of candidate search rings. | | |
 | **RFP-04** | **Technical Site Survey** | Comprehensive TSSR per site including tower structural load audit, wind-load calculation, panoramic drone photography (360°), and power audit. | | |
 | **RFP-05** | **Coverage Target** | Guaranteed outdoor RSRP >= -95 dBm and SINR >= 10 dB across >= 90% of residential settlement footprint in target barangay. | | |
 | **RFP-06** | **Single Site Acceptance**| Single Site Verification (SSV) stationary and drive tests verifying sector radiation, antenna RET, PCI, TAC, and max throughput. | | |
