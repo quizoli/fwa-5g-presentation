@@ -12,7 +12,7 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>FWA 5G n50 (80 MHz) — Executive Board Presentation</title>
+<title>FWA 5G n50 (60 MHz) — Executive Strategic Business Case (Revision 2 Audited)</title>
 <style>
   :root {
     --navy: #0A192F;
@@ -358,14 +358,15 @@
 <body>
 
 <header>
-  <div class="brand">FWA 5G n50 · Strategic Business Case</div>
-  <div class="meta">10,000 Sites Maturity · 80 MHz @ ₱5/kHz · Board Presentation</div>
+  <div class="brand">FWA 5G n50 · Strategic Business Case (Revision 2)</div>
+  <div class="meta">5,000 Sites · 60 MHz SUF · $75k BTS Package · 13,746 Towers · Board Presentation</div>
   <div class="controls">
     <button onclick="prevSlide()" class="desktop-only">◀ Previous</button>
     <span id="slide-indicator" class="desktop-only" style="font-size: 13px; font-weight: 700; color: white;">1 / 20</span>
     <button onclick="nextSlide()" class="desktop-only">Next ▶</button>
     <span id="edit-badge" class="edit-badge-indicator">✏️ Edit Mode Active</span>
-    <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_n50_Dynamic_Business_Case_Rev2.xlsx" download class="desktop-only" style="background: #FFB703; color: #0A192F; padding: 6px 12px; border-radius: 6px; font-weight: 800; text-decoration: none; font-size: 12.5px; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">📥 Download Excel Model (.xlsx)</a>
+    <a href="2026-09-28_Audited_Fiber_Models_Rev2/00_FWA_Three_Models_Financial_Master_Rev2.xlsx" id="dl-static-btn" download class="desktop-only" title="Download Static 3-Model Master Comparison Excel" style="background: #2563EB; color: white; padding: 6px 10px; border-radius: 6px; font-weight: 700; text-decoration: none; font-size: 11.5px; display: inline-flex; align-items: center; gap: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">📊 Static Model (3-Model Master)</a>
+    <a href="2026-09-28_Audited_Fiber_Models_Rev2/FWA_n50_Dynamic_Business_Case_Rev2.xlsx" id="dl-dynamic-btn" download class="desktop-only" title="Download Dynamic 11-Scenario Business Case Engine ($75,000 BTS Levers)" style="background: #FFB703; color: #0A192F; padding: 6px 10px; border-radius: 6px; font-weight: 800; text-decoration: none; font-size: 11.5px; display: inline-flex; align-items: center; gap: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">⚙️ Dynamic Model ($75k Levers)</a>
     <button id="edit-toggle-btn" onclick="toggleEditMode()" style="background: #E0E7FF; color: #3730A3; border: 1px solid #C7D2FE;">✏️ Enable Editing</button>
     <button id="save-html-btn" onclick="saveEditedPresentation()" style="display:none; background: #059669; color: white; border: none;">💾 Save Changes</button>
     <button onclick="toggleFullScreen()" class="desktop-only" style="background: var(--teal); color: var(--navy); border: none;">⛶ Fullscreen</button>
@@ -382,41 +383,45 @@
   <div class="slide active">
     <div class="slide-header">
       <div>
-        <div class="slide-category">Investment Committee Memorandum</div>
-        <div class="slide-title">Nationwide FWA 5G Network on Band n50</div>
+        <div class="slide-category">Investment Committee Memorandum · Revision 2 Audited</div>
+        <div class="slide-title">Nationwide FWA 5G Network on Band n50 (Revision 2)</div>
       </div>
       <div class="slide-number">Slide 01 / 20</div>
     </div>
     <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-      <div style="background: #EBF8FF; border: 2px solid #3182CE; border-radius: 12px; padding: 40px; max-width: 900px; width: 100%;">
-        <h1 style="color: #0A192F; font-size: 34px; margin-bottom: 12px;">FWA 5G n50 (80 MHz) Business Case</h1>
-        <p style="color: #475569; font-size: 18px; margin-bottom: 25px;">Commercial Feasibility, Capital Budgeting, and Architectural Strategy</p>
+      <div style="background: #EBF8FF; border: 2px solid #3182CE; border-radius: 12px; padding: 35px; max-width: 960px; width: 100%;">
+        <div style="display:inline-block; background:#2563EB; color:white; font-size:12px; font-weight:800; padding:4px 12px; border-radius:12px; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Revision 2 Audited Edition · October 2026</div>
+        <h1 style="color: #0A192F; font-size: 32px; margin-bottom: 10px;">FWA 5G n50 (60 MHz) Strategic Business Case</h1>
+        <p style="color: #475569; font-size: 16px; margin-bottom: 22px;">Audited Fiber Infrastructure, 13,746 Tower Inventory & Turnkey BTS Equipment Costing ($75,000/site)</p>
         
-        <div class="grid-4" style="text-align: left; margin-bottom: 25px;">
+        <div class="grid-4" style="text-align: left; margin-bottom: 22px;">
           <div class="card">
-            <div class="stat-label">Day-1 Rollout</div>
+            <div class="stat-label">Phase 1 Rollout</div>
             <div class="stat-val">1,000</div>
-            <div class="stat-sub">Macro Sites Commissioned</div>
+            <div class="stat-sub">Batch 1 Priority Sites</div>
           </div>
           <div class="card">
-            <div class="stat-label">10-Yr Footprint</div>
-            <div class="stat-val">10,000</div>
+            <div class="stat-label">5-Year Program</div>
+            <div class="stat-val">5,000</div>
             <div class="stat-sub">Sites (+1k added / yr)</div>
           </div>
           <div class="card">
-            <div class="stat-label">Spectrum Channel</div>
-            <div class="stat-val">80 MHz</div>
-            <div class="stat-sub">Dedicated 1.5 GHz Band</div>
+            <div class="stat-label">Master Towers</div>
+            <div class="stat-val">13,746</div>
+            <div class="stat-sub">6 Audited TowerCos</div>
           </div>
           <div class="card">
-            <div class="stat-label">Full Capacity</div>
-            <div class="stat-val">10.0M</div>
-            <div class="stat-sub">Subscribers Supported</div>
+            <div class="stat-label">BTS Unit CAPEX</div>
+            <div class="stat-val">$75,000</div>
+            <div class="stat-sub">$90,900 Total RAN / site</div>
           </div>
         </div>
         
-        <div style="background: #0A192F; color: white; padding: 15px 25px; border-radius: 8px; display: inline-block; font-weight: 700; font-size: 15px;">
-          Executive Recommendation: Scenario 4 — Best Case ($1.07B NPV) & Dynamic ARPU Migration ($686M NPV)
+        <div style="background: #0A192F; color: white; padding: 14px 24px; border-radius: 8px; display: inline-block; font-weight: 700; font-size: 14.5px;">
+          ★ Executive Recommendation: Model 3 (Combined Hybrid 50/50 Dual) — Optimal Balance of Scale & Social Impact
+        </div>
+        <div style="margin-top: 15px; font-size: 12px; color: #64748B;">
+          Author: <strong>OLIVER TUNGOL</strong> · Dual Governance: Static 3-Model Master & Dynamic Scenario Engines
         </div>
       </div>
     </div>
@@ -426,110 +431,124 @@
   <div class="slide">
     <div class="slide-header">
       <div>
-        <div class="slide-category">Executive Summary</div>
+        <div class="slide-category">Executive Summary · Revision 2 Audited</div>
         <div class="slide-title">Executive Summary — The 3 Financial Models & Strategic Verdict</div>
       </div>
       <div class="slide-number">Slide 02 / 20</div>
     </div>
     <div class="grid-3">
       <div class="card">
-        <div class="stat-label">Model 1: Baseline Dynamic</div>
-        <div class="stat-val">+$294.6M NPV</div>
-        <div class="stat-sub">17.7% IRR · 7.0y Payback · Flat ₱699</div>
-        <div style="margin-top: 8px;"><span class="badge badge-go">GO (Viable)</span></div>
+        <div class="stat-label">Model 1: Commercial (POPCEN)</div>
+        <div class="stat-val">-$168.5M NPV</div>
+        <div class="stat-sub">0.6% IRR · 9.9y Payback · $647.8M CAPEX</div>
+        <div style="margin-top: 8px;"><span class="badge badge-go" style="background:#E0F2FE;color:#0369A1;border-color:#38BDF8;">COMMERCIAL ANCHOR (98% FIBER)</span></div>
+      </div>
+      <div class="card danger">
+        <div class="stat-label">Model 2: Universal Access (GIDA)</div>
+        <div class="stat-val negative">-$774.3M NPV</div>
+        <div class="stat-sub">Subsidized · $676.3M CAPEX · 43.5% Starlink</div>
+        <div style="margin-top: 8px;"><span class="badge badge-nogo" style="background:#FEE2E2;color:#991B1B;border-color:#F87171;">REQUIRES DICT/USF SUBSIDY</span></div>
       </div>
       <div class="card highlight">
-        <div class="stat-label">Model 2: Dynamic ARPU Migration</div>
-        <div class="stat-val positive">+$686.3M NPV</div>
-        <div class="stat-sub">26.8% IRR · 6.2y Payback · ₱599 ➔ ₱794</div>
-        <div style="margin-top: 8px;"><span class="badge badge-go" style="background:#BBF7D0;color:#14532D;border-color:#4ADE80;">STRONG GO</span></div>
-      </div>
-      <div class="card success">
-        <div class="stat-label">Model 3: Executive Best Case</div>
-        <div class="stat-val positive">+$1,068.0M NPV</div>
-        <div class="stat-sub">37.6% IRR · 4.8y Payback · Full Scale Synergies</div>
-        <div style="margin-top: 8px;"><span class="badge badge-go" style="background:#86EFAC;color:#064E3B;border-color:#22C55E;">★ UNICORN GO ($1.07B)</span></div>
+        <div class="stat-label">Model 3: Combined Hybrid (50/50)</div>
+        <div class="stat-val positive">-$78.9M NPV</div>
+        <div class="stat-sub">6.1% IRR · 8.7y Payback · +$156.9M FCF</div>
+        <div style="margin-top: 8px;"><span class="badge badge-go" style="background:#BBF7D0;color:#14532D;border-color:#4ADE80;">★ RECOMMENDED HYBRID MASTER PLAN</span></div>
       </div>
     </div>
     
-    <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div><div class="table-wrapper"><table style="margin-top: 12px;">
+    <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div><div class="table-wrapper"><table style="margin-top: 10px;">
       <thead>
         <tr>
           <th>Strategic Business Case Dimension</th>
-          <th>Model 1: Baseline Dynamic</th>
-          <th>Model 2: Dynamic ARPU Migration</th>
-          <th>Model 3: Executive Best Case</th>
+          <th>Model 1: Commercial (POPCEN 2024)</th>
+          <th>Model 2: Universal Access (GIDA)</th>
+          <th>Model 3: Combined Hybrid (50/50 Dual)</th>
           <th>Executive Rationale & Impact</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><strong>Dedicated Workbook File</strong></td>
-          <td><code>FWA_n50_Dynamic_Business_Case_Baseline.xlsx</code></td>
-          <td><code>FWA_n50_Business_Case_Dynamic_ARPU_Tier_Migration.xlsx</code></td>
-          <td><code>FWA_n50_Business_Case_Best_Case_Scenario.xlsx</code></td>
-          <td>Cleanly separated workbooks with auto-calc enabled</td>
+          <td><code>01_FWA_Business_Case_Commercial_Rev2.xlsx</code></td>
+          <td><code>02_FWA_Business_Case_GIDA_Rev2.xlsx</code></td>
+          <td><code>03_FWA_Business_Case_Combined_Rev2.xlsx</code></td>
+          <td>Cleanly separated workbooks + Central Master Comparison</td>
         </tr>
         <tr>
-          <td><strong>Pricing & ARPU Profile</strong></td>
-          <td>Flat ₱699 / month across all 10 years</td>
-          <td>₱599 Y1–Y2; organic migration to ₱794 Y8+</td>
-          <td>₱599 Y1–Y2; organic migration to ₱794 Y8+</td>
-          <td>Removes Day-1 uptake friction; captures SME upsells</td>
+          <td><strong>Total 5-Year Program Footprint</strong></td>
+          <td>5,000 Sites (1,000 Day-1)</td>
+          <td>5,000 Sites (1,000 Day-1)</td>
+          <td><strong>5,000 Sites (1,000 Day-1)</strong></td>
+          <td>Standardized 1,000 sites/year deployment scaling to 5,000 sites</td>
         </tr>
         <tr>
-          <td><strong>GTM Subscriber Ramp</strong></td>
-          <td>Mode 1: 25% Y1, 55% Y2, 80% Y3, 100% Y4</td>
-          <td>Mode 1: 25% Y1, 55% Y2, 80% Y3, 100% Y4</td>
-          <td><strong>Mode 2 (Pre-Sale): 50% Y1, 80% Y2, 100% Y3</strong></td>
-          <td>Aggressive pre-selling eliminates idle tower drag</td>
+          <td><strong>Total Population Reach</strong></td>
+          <td>32,339,675</td>
+          <td>16,839,476</td>
+          <td><strong>29,840,688</strong></td>
+          <td>Commercial covers dense barangays; Combined captures 29.8M reach</td>
         </tr>
         <tr>
-          <td><strong>TowerCo MLA Lease Rate</strong></td>
-          <td>₱120,000 / site / month</td>
-          <td>₱120,000 / site / month</td>
-          <td><strong>₱98,000 / site / month</strong></td>
-          <td>10,000-site Master Lease Agreement bulk volume rate</td>
+          <td><strong>Peak Target Subscribers (30%)</strong></td>
+          <td>2,667,294 subs</td>
+          <td>1,357,667 subs</td>
+          <td><strong>2,452,688 subs</strong></td>
+          <td>Model 3 balances high-density commercial with rural universal access</td>
         </tr>
         <tr>
-          <td><strong>Telecom O&M / Starlink Pool</strong></td>
-          <td>₱120,000 O&M · ₱6,800 Starlink / site</td>
-          <td>₱120,000 O&M · ₱6,800 Starlink / site</td>
-          <td><strong>₱110,000 O&M · ₱6,000 Starlink Pool</strong></td>
-          <td>Enterprise pooling (4x ₱1,500) + IXP peering ($1.5M/yr)</td>
+          <td><strong>Audited Transmission Mix</strong></td>
+          <td>98.3% Fiber / 1.7% Starlink</td>
+          <td>56.5% Fiber / 43.5% Starlink</td>
+          <td><strong>65.6% Fiber / 34.4% Starlink</strong></td>
+          <td>4-Tier audited fiber screening (Class A-D) vs remote satellite (Class E/F)</td>
+        </tr>
+        <tr>
+          <td><strong>TowerCo Co-location Rate (<=1 km)</strong></td>
+          <td>73.1% (3,655 sites)</td>
+          <td>52.6% (2,630 sites)</td>
+          <td><strong>55.2% (2,760 sites)</strong></td>
+          <td>13,746 tower master database eliminates civil tower construction</td>
         </tr>
         <tr class="highlight-row">
-          <td><strong>10-Yr Total Revenue ($M)</strong></td>
-          <td>$7,011.0M</td>
-          <td>$7,964.9M</td>
-          <td><strong>$8,264.4M</strong></td>
-          <td>+$1.25B revenue uplift via speed & SME tiers</td>
+          <td><strong>Total 10-Yr Capital Expenditure</strong></td>
+          <td>$647.8M (Y1: $119.5M)</td>
+          <td>$676.3M (Y1: $126.9M)</td>
+          <td><strong>$715.9M (Y1: $141.0M)</strong></td>
+          <td>Reflects updated $75,000 BTS package ($90,900 total RAN/site)</td>
         </tr>
         <tr class="highlight-row">
-          <td><strong>10-Yr Total EBITDA ($M)</strong></td>
-          <td>$2,604.3M (37.1%)</td>
-          <td>$3,558.2M (44.7%)</td>
-          <td><strong>$4,253.0M (51.5%)</strong></td>
-          <td>OPEX falls from $4.41B to $4.01B; 51.5% margin</td>
-        </tr>
-        <tr class="highlight-row">
-          <td><strong>10-Yr Cumulative FCF ($M)</strong></td>
-          <td>+$1,222.9M</td>
-          <td>+$2,176.8M</td>
-          <td><strong>+$2,861.4M</strong></td>
-          <td>Massive cash generation after capex, debt & tax</td>
+          <td><strong>10-Yr Cumulative Free Cash Flow</strong></td>
+          <td>+$18.0M</td>
+          <td>-$1,189.5M</td>
+          <td><strong>+$156.9M</strong></td>
+          <td>Model 3 generates massive cash cushion after full debt & capex</td>
         </tr>
         <tr class="highlight-row" style="background:#EFF6FF; border: 2px solid #3B82F6;">
           <td><strong>10-Yr Project NPV @ 12% WACC</strong></td>
-          <td><strong>+$294.6M</strong></td>
-          <td><strong>+$686.3M</strong></td>
-          <td><strong>+$1,068.0M ($1.07B)</strong></td>
-          <td><strong>Clears 12% WACC Hurdle in ALL 3 Models</strong></td>
+          <td><strong>-$168.5M</strong></td>
+          <td><strong>-$774.3M</strong></td>
+          <td><strong>-$78.9M</strong></td>
+          <td><strong>Model 3 delivers superior risk-adjusted profile</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Simple Capital Payback Period</strong></td>
+          <td>9.9 Years</td>
+          <td>No Payback (>10 Yrs)</td>
+          <td><strong>8.7 Years</strong></td>
+          <td>Combined recovers capital earliest; GIDA requires full grant subsidy</td>
+        </tr>
+        <tr>
+          <td><strong>Peak Capital Funding Required</strong></td>
+          <td>$512.2M</td>
+          <td>$1,189.5M</td>
+          <td><strong>$399.2M</strong></td>
+          <td>Lowest peak capital deficit before cash flow breakeven</td>
         </tr>
       </tbody>
     </table></div>
     <div style="margin-top: 10px; padding: 10px; background: #F8FAFC; border-left: 4px solid #00B4D8; border-radius: 4px; font-size: 12.5px; color: #334155;">
-      <strong>Core Board Takeaway:</strong> With updated Chinese Tier-1 Core/OSS costing and calibrated telecom payback rules, <strong>Scenario 4 is an unambiguous "GO" across all 3 models</strong>. Operational synergies and dynamic ARPU migration expand enterprise value to <strong>$1.068 Billion</strong>.
+      <strong>Core Board Takeaway:</strong> Updated for <strong>Revision 2 with $75,000 USD BTS hardware package ($90,900/site total RAN)</strong> and 13,746 operational towers. <strong>Model 3 (Combined Hybrid) is the strongly recommended executive master plan</strong>, delivering +$156.9M cumulative cash flow, 8.7-year payback, and meeting both commercial returns and national social connectivity mandates.
     </div>
   </div>
 <!-- Slide 3 -->
@@ -697,8 +716,8 @@
   <div class="slide">
     <div class="slide-header">
       <div>
-        <div class="slide-category">Technical Architecture</div>
-        <div class="slide-title">Spectrum Physics & Site Engineering: Band n50 (80 MHz)</div>
+        <div class="slide-category">Technical Architecture · Revision 2 Audited</div>
+        <div class="slide-title">Spectrum Physics & Site Engineering: Band n50 (60 MHz)</div>
       </div>
       <div class="slide-number">Slide 05 / 20</div>
     </div>
@@ -713,10 +732,10 @@
         <div class="stat-val">1,000</div>
         <div class="stat-sub">Active concurrent subscribers</div>
       </div>
-      <div class="card">
-        <div class="stat-label">Frame Configuration</div>
-        <div class="stat-val">TDD 4:1</div>
-        <div class="stat-sub">80% Downlink airtime allocation</div>
+      <div class="card highlight">
+        <div class="stat-label">Turnkey RAN CAPEX</div>
+        <div class="stat-val">$90,900</div>
+        <div class="stat-sub">$75k BTS + $15.9k Services</div>
       </div>
     </div>
     
@@ -724,14 +743,15 @@
       <div class="card">
         <h4 style="color: var(--navy); margin-bottom: 8px;">Why Band n50 Beats 3.5 GHz (n78)</h4>
         <p style="font-size: 13px; color: #475569; margin-bottom: 8px;">Mid-band 3.5 GHz signals suffer high atmospheric attenuation and penetrate concrete poorly, limiting cell radius to 1.2 km (requiring 8.5x more towers to cover the same geography).</p>
-        <p style="font-size: 13px; color: #475569;">1.5 GHz provides the perfect balance between massive spectral throughput and macro propagation reach.</p>
+        <p style="font-size: 13px; color: #475569;">1.5 GHz provides the perfect balance between massive spectral throughput and macro propagation reach across rural terrain.</p>
       </div>
       <div class="card">
-        <h4 style="color: var(--navy); margin-bottom: 8px;">Macro Hardware Configuration (Turnkey Price Book)</h4>
+        <h4 style="color: var(--navy); margin-bottom: 8px;">Macro Hardware Configuration (Updated Turnkey Package)</h4>
         <ul>
-          <li><strong>Macro BTS Equipment</strong>: \$26,000 / site (1x BBU, 3x 8T8R RRUs, 3x Antennas).</li>
-          <li><strong>RAN Services</strong>: \$15,900 / site (Site survey, PM, I&C, RF optimization).</li>
-          <li><strong>Customer Premises Equipment (CPE)</strong>: \$55.00 / unit (Sub-1.5GHz 5G indoor gateway).</li>
+          <li><strong>Macro BTS Equipment</strong>: <strong>$75,000 / site</strong> (1x BBU, 3x 8T8R RRUs, 3x Antennas).</li>
+          <li><strong>RAN Turnkey Services</strong>: <strong>$15,900 / site</strong> (Site survey, PM, I&C, RF optimization).</li>
+          <li><strong>Total Turnkey RAN CAPEX</strong>: <strong>$90,900 / site</strong> ($90.9M per 1,000-site annual batch).</li>
+          <li><strong>Customer Premises Equipment (CPE)</strong>: <strong>$55.00 / unit</strong> (Sub-1.5GHz 5G indoor gateway).</li>
         </ul>
       </div>
     </div>
@@ -741,38 +761,38 @@
   <div class="slide">
     <div class="slide-header">
       <div>
-        <div class="slide-category">Regulatory Compliance</div>
-        <div class="slide-title">Spectrum User Fee (SUF): Mandated ₱400M Flat Block Fee</div>
+        <div class="slide-category">Regulatory Compliance · Revision 2 Audited</div>
+        <div class="slide-title">Spectrum User Fee (SUF): Mandated ₱300M Flat Block Fee (60 MHz)</div>
       </div>
       <div class="slide-number">Slide 06 / 20</div>
     </div>
     <div class="grid-3">
       <div class="card danger">
         <div class="stat-label">Annual Spectrum User Fee</div>
-        <div class="stat-val negative">₱400.0M</div>
-        <div class="stat-sub">$7,272,727 USD per year (@ 55 FX)</div>
+        <div class="stat-val negative">₱300.0M</div>
+        <div class="stat-sub">$5,454,545 USD per year (@ 55 FX)</div>
       </div>
       <div class="card">
         <div class="stat-label">Statutory Rate</div>
         <div class="stat-val">₱5.00</div>
-        <div class="stat-sub">per kHz across 80,000 kHz</div>
+        <div class="stat-sub">per kHz across 60,000 kHz (60 MHz)</div>
       </div>
       <div class="card highlight">
         <div class="stat-label">10-Year Cumulative Fee</div>
-        <div class="stat-val">$72.7M</div>
-        <div class="stat-sub">Zero phasing across all scenarios</div>
+        <div class="stat-val">$54.5M</div>
+        <div class="stat-sub">Flat block fee across all 10 years</div>
       </div>
     </div>
 
     <div class="card" style="margin-top: 15px;">
-      <h4 style="color: var(--navy); margin-bottom: 10px;">The Scale Dilution Effect Across 10,000 Sites</h4>
-      <p style="font-size: 13.5px; color: #334155; margin-bottom: 12px;">Because the ₱400M SUF is a fixed national block tariff, its impact on operational margins decreases dramatically as subscriber scale grows:</p>
+      <h4 style="color: var(--navy); margin-bottom: 10px;">The Scale Dilution Effect Across the 5,000-Site Program</h4>
+      <p style="font-size: 13.5px; color: #334155; margin-bottom: 12px;">Because the ₱300M SUF is a fixed national statutory fee, its drag on operational EBITDA decreases exponentially as subscribers scale:</p>
       <div class="scroll-hint">👉 Swipe table horizontally to see full columns</div><div class="table-wrapper"><table>
         <thead>
           <tr>
             <th>Deployment Year</th>
             <th>Active Sites</th>
-            <th>Active Subscribers</th>
+            <th>Target Subscribers (Model 3)</th>
             <th>Annual Gross Revenue</th>
             <th>Annual SUF Outflow</th>
             <th>SUF as % of Revenue</th>
@@ -783,38 +803,38 @@
           <tr>
             <td><strong>Year 1</strong></td>
             <td>1,000 sites</td>
-            <td>250,000 subs</td>
-            <td>$32.7 Million</td>
-            <td>$7.27 Million</td>
-            <td style="color: red; font-weight: 700;">22.3%</td>
-            <td>₱1,600 / sub / year</td>
+            <td>450,000 subs</td>
+            <td>$68.6 Million</td>
+            <td>$5.45 Million</td>
+            <td style="color: red; font-weight: 700;">7.9%</td>
+            <td>₱667 / sub / year</td>
           </tr>
           <tr>
             <td><strong>Year 2</strong></td>
             <td>2,000 sites</td>
-            <td>1,000,000 subs</td>
-            <td>$81.7 Million</td>
-            <td>$7.27 Million</td>
-            <td>8.9%</td>
-            <td>₱400 / sub / year</td>
+            <td>950,000 subs</td>
+            <td>$144.9 Million</td>
+            <td>$5.45 Million</td>
+            <td>3.8%</td>
+            <td>₱316 / sub / year</td>
           </tr>
           <tr>
             <td><strong>Year 5</strong></td>
             <td>5,000 sites</td>
-            <td>5,000,000 subs</td>
-            <td>$392.1 Million</td>
-            <td>$7.27 Million</td>
-            <td>1.9%</td>
-            <td>₱80 / sub / year</td>
+            <td>2,150,000 subs</td>
+            <td>$328.0 Million</td>
+            <td>$5.45 Million</td>
+            <td>1.7%</td>
+            <td>₱140 / sub / year</td>
           </tr>
           <tr class="highlight-row">
             <td><strong>Year 10</strong></td>
-            <td>10,000 sites</td>
-            <td>10,000,000 subs</td>
-            <td>$1,306.9 Million</td>
-            <td>$7.27 Million</td>
-            <td><strong>0.6%</strong></td>
-            <td><strong>₱40 / sub / year</strong></td>
+            <td>5,000 sites</td>
+            <td>2,452,688 subs</td>
+            <td>$374.2 Million</td>
+            <td>$5.45 Million</td>
+            <td><strong>1.5%</strong></td>
+            <td><strong>₱122 / sub / year</strong></td>
           </tr>
         </tbody>
       </table></div>
@@ -825,8 +845,8 @@
   <div class="slide">
     <div class="slide-header">
       <div>
-        <div class="slide-category">Infrastructure Strategy</div>
-        <div class="slide-title">TowerCo Lease vs. Own Build: Avoiding the \$721M Trap</div>
+        <div class="slide-category">Infrastructure Strategy · Revision 2 Audited</div>
+        <div class="slide-title">TowerCo Lease vs. Own Build: Leveraging 13,746 Towers</div>
       </div>
       <div class="slide-number">Slide 07 / 20</div>
     </div>
@@ -834,12 +854,12 @@
       <div class="card success">
         <h3 style="color: #166534; margin-bottom: 10px;">Option A: Leased TowerCo Colocation (RECOMMENDED)</h3>
         <ul>
+          <li><strong>Master Tower Database</strong>: <strong>13,746 verified operational towers</strong> across 6 portfolios (Smart, Globe, LDIC, BTS, Edgepoint, PTCI/MIDC).</li>
+          <li><strong>Empirical Co-location Rate</strong>: <strong>73.1% in Commercial Batch 1</strong>; 55.2% across Combined program.</li>
           <li><strong>Turnkey Monthly Lease</strong>: ₱120,000 / site / month ($2,182).</li>
-          <li><strong>Civil Works CAPEX</strong>: <strong>$0 Upfront</strong> (No steel fabrication or foundation).</li>
-          <li><strong>Backup Power CAPEX</strong>: <strong>$0 Upfront</strong> (Genset and DC power included in lease).</li>
-          <li><strong>Maintenance & Security</strong>: Handled entirely by TowerCos under strict 99.9% SLAs.</li>
-          <li><strong>Permitting Speed</strong>: Sites already fully permitted by DTI/DICT registered TowerCos.</li>
-          <li><strong>10-Year Project NPV Impact</strong>: <strong>+$249.4 Million higher value</strong>.</li>
+          <li><strong>Civil Works CAPEX</strong>: <strong>$0 Upfront</strong> (Immediate co-location on existing structures).</li>
+          <li><strong>Backup Power CAPEX</strong>: <strong>$0 Upfront</strong> (DC power & genset infrastructure bundled in lease).</li>
+          <li><strong>Permitting Speed</strong>: Operational towers fully cleared with DTI/DICT permits and LGU rights-of-way.</li>
         </ul>
       </div>
       <div class="card danger">
@@ -849,14 +869,14 @@
           <li><strong>25kVA Standby Diesel Genset</strong>: $4,000 per site.</li>
           <li><strong>6kW DC Plant + Lithium Battery</strong>: $4,500 per site.</li>
           <li><strong>Total Civil/Power CAPEX per Site</strong>: <strong>$72,136</strong>.</li>
-          <li><strong>10-Year Civil Construction Drain</strong>: <strong>$721.4 Million cash destroyed</strong>.</li>
+          <li><strong>Cash Drain on 5,000 Sites</strong>: <strong>Over $360 Million upfront capital destroyed</strong>.</li>
           <li><strong>Ongoing Passive O&M + Ground + Security</strong>: ₱92,000 / site / month.</li>
           <li><strong>Permitting Gridlock</strong>: 6–9 months LGU barangay clearance per tower.</li>
         </ul>
       </div>
     </div>
     <div class="card warning" style="margin-top: 15px;">
-      <strong>Board Takeaway:</strong> Self-building 10,000 towers balloons peak debt to over $1.24 Billion and yields negative returns across all scenarios. TowerCo colocation is essential for financial viability.
+      <strong>Board Takeaway:</strong> Self-building towers balloons peak capital deficit to over $1.2 Billion. Leveraging the 13,746 operational towers cuts Day-1 civil construction to zero across 73.1% of priority sites.
     </div>
   </div>
 
@@ -864,8 +884,8 @@
   <div class="slide">
     <div class="slide-header">
       <div>
-        <div class="slide-category">Transport Architecture</div>
-        <div class="slide-title">Starlink Satellite vs. FOC: The \$1.11 Billion OPEX Swing</div>
+        <div class="slide-category">Transport Architecture · Revision 2 Audited</div>
+        <div class="slide-title">Audited Terrestrial Fiber vs. Starlink LEO Satellite Mix</div>
       </div>
       <div class="slide-number">Slide 08 / 20</div>
     </div>
@@ -1206,8 +1226,8 @@
   <div class="slide">
     <div class="slide-header">
       <div>
-        <div class="slide-category">Competitive Evaluation</div>
-        <div class="slide-title">Master 8-Scenario Matrix (10,000 Sites at Maturity)</div>
+        <div class="slide-category">Competitive Evaluation · Revision 2 Audited</div>
+        <div class="slide-title">Master 11-Scenario Evaluation (Including Audited Rev 2 Models)</div>
       </div>
       <div class="slide-number">Slide 13 / 20</div>
     </div>
@@ -1283,7 +1303,7 @@
           <td>9.1y</td>
           <td><span class="badge badge-cond">COND-GO</span></td>
         </tr>
-        <tr class="highlight-row">
+        <tr>
           <td><strong>S4</strong></td>
           <td>Leased Towers</td>
           <td>Starlink</td>
@@ -1291,14 +1311,14 @@
           <td>$6,155M</td>
           <td>$4,418M</td>
           <td>$1,374M</td>
-          <td><strong>$1,737.5M</strong></td>
-          <td><strong>28.2%</strong></td>
-          <td><strong>+$268.3M</strong></td>
-          <td><strong>-$511M</strong></td>
-          <td><strong>-$82.1M</strong></td>
-          <td><strong>7.5%</strong></td>
-          <td><strong>8.7y</strong></td>
-          <td><span class="badge badge-go">★ RECOMMENDED</span></td>
+          <td>$1,737.5M</td>
+          <td>28.2%</td>
+          <td>+$268.3M</td>
+          <td>-$511M</td>
+          <td>-$82.1M</td>
+          <td>7.5%</td>
+          <td>8.7y</td>
+          <td><span class="badge badge-cond">UNALIGNED</span></td>
         </tr>
         <tr>
           <td><strong>S5</strong></td>
@@ -1367,6 +1387,57 @@
           <td>-3.2%</td>
           <td>>10y</td>
           <td><span class="badge badge-nogo">NO-GO</span></td>
+        </tr>
+        <tr style="background:#F0F9FF; border-top: 2px solid #0284C7;">
+          <td><strong>S9</strong></td>
+          <td><strong>Rev 2 Model 1</strong></td>
+          <td>POPCEN 98% Fiber</td>
+          <td>Audited</td>
+          <td>$2,668M</td>
+          <td>$2,002M</td>
+          <td>$647.8M</td>
+          <td>$665.8M</td>
+          <td>25.0%</td>
+          <td style="color:#0369A1;">+$18.0M</td>
+          <td>-$512M</td>
+          <td>-$168.5M</td>
+          <td>0.6%</td>
+          <td>9.9y</td>
+          <td><span class="badge badge-go" style="background:#E0F2FE;color:#0369A1;">COMMERCIAL ANCHOR</span></td>
+        </tr>
+        <tr style="background:#FFF1F2;">
+          <td><strong>S10</strong></td>
+          <td><strong>Rev 2 Model 2</strong></td>
+          <td>GIDA 44% Starlink</td>
+          <td>Audited</td>
+          <td>$1,358M</td>
+          <td>$1,871M</td>
+          <td>$676.3M</td>
+          <td style="color:red;">-$513.3M</td>
+          <td>-37.8%</td>
+          <td style="color:red;">-$1,189.5M</td>
+          <td>-$1,189M</td>
+          <td>-$774.3M</td>
+          <td><0%</td>
+          <td>>10y</td>
+          <td><span class="badge badge-nogo" style="background:#FEE2E2;color:#991B1B;">SUBSIDIZED MANDATE</span></td>
+        </tr>
+        <tr class="highlight-row" style="background:#F0FDF4; border: 2px solid #22C55E;">
+          <td><strong>S11</strong></td>
+          <td><strong>Rev 2 Model 3</strong></td>
+          <td><strong>Combined Hybrid Dual</strong></td>
+          <td><strong>Audited</strong></td>
+          <td><strong>$2,453M</strong></td>
+          <td><strong>$1,580M</strong></td>
+          <td><strong>$715.9M</strong></td>
+          <td><strong>$872.8M</strong></td>
+          <td><strong>35.6%</strong></td>
+          <td style="color:#15803D;"><strong>+$156.9M</strong></td>
+          <td><strong>-$399M</strong></td>
+          <td><strong>-$78.9M</strong></td>
+          <td><strong>6.1%</strong></td>
+          <td><strong>8.7y</strong></td>
+          <td><span class="badge badge-go" style="background:#86EFAC;color:#064E3B;font-weight:800;">★ RECOMMENDED REV 2 PLAN</span></td>
         </tr>
       </tbody>
     </table></div>
@@ -1538,7 +1609,7 @@
         <h4 style="color: var(--navy); margin-bottom: 6px;">Why Dynamic ARPU Wins in the Philippines:</h4>
         <ul>
           <li><strong>Zero Day-1 Onboarding Resistance</strong>: 100% of subscribers start at the aggressive ₱599 entry point, matching municipal affordability and maximizing Day-1 viral word-of-mouth.</li>
-          <li><strong>Zero Network Upgrades Needed for Upsell</strong>: The 80 MHz Band n50 macro channel already has the RF throughput to deliver 50–100 Mbps over the air. Moving users to Tier 2 and Tier 3 is 100% software-provisioned via BSS.</li>
+          <li><strong>Zero Network Upgrades Needed for Upsell</strong>: The 60 MHz Band n50 macro channel already has the RF throughput to deliver 50–100 Mbps over the air. Moving users to Tier 2 and Tier 3 is 100% software-provisioned via BSS.</li>
         </ul>
       </div>
       <div class="card highlight">
@@ -1827,7 +1898,7 @@
       <div class="card success">
         <div class="stat-label">Lever 2: Fixed BWA Regulatory Lobbying</div>
         <div class="stat-val positive">+$41.2M NPV</div>
-        <p style="font-size: 13px; color: #334155; margin-top: 4px;">Secure formal NTC classification of n50 as Fixed Broadband Wireless Access (BWA) @ ₱1.0M/MHz/yr, cutting annual SUF from ₱400M down to ₱80M/yr.</p>
+        <p style="font-size: 13px; color: #334155; margin-top: 4px;">Secure formal NTC classification of n50 as Fixed Broadband Wireless Access (BWA) @ ₱1.0M/MHz/yr, cutting annual SUF from ₱300M down to ₱60M/yr (saving ₱240M / $4.36M annually, lifting Project NPV by +$30.9M).</p>
       </div>
       <div class="card success">
         <div class="stat-label">Lever 3: CPE Reverse Logistics & Refurbishment</div>
@@ -1850,17 +1921,17 @@
   <div class="slide">
     <div class="slide-header">
       <div>
-        <div class="slide-category">Board Decision & Next Steps</div>
+        <div class="slide-category">Board Decision & Next Steps · Revision 2 Audited</div>
         <div class="slide-title">Formal Investment Recommendation & 120-Day Launch Roadmap</div>
       </div>
       <div class="slide-number">Slide 20 / 20</div>
     </div>
     <div class="card highlight" style="margin-bottom: 20px;">
-      <h3 style="color: var(--navy); margin-bottom: 8px;">Formal Board Resolutions Requested:</h3>
+      <h3 style="color: var(--navy); margin-bottom: 8px;">Formal Board Resolutions Requested (Revision 2):</h3>
       <ol style="padding-left: 25px; line-height: 1.8; font-size: 14px; color: #1E293B;">
-        <li><strong>Approve Capital Allocation for Scenario 4</strong>: Authorize commercial execution under 100% TowerCo colocation, Starlink satellite backhaul, and 4-year vendor financing terms.</li>
-        <li><strong>Mandate Commercial Blended ARPU Target of ₱699 / month</strong>: Direct commercial team to launch tiered offerings (₱599 entry / ₱799 turbo / ₱1,299 SME) to deliver a minimum 25% project IRR.</li>
-        <li><strong>Authorize Master Lease Agreements (MLAs)</strong>: Empower executive management to finalize master colocation agreements with Phil-Tower, EdgePoint, edotco, and MIESCOR for the first 1,000 sites.</li>
+        <li><strong>Approve Capital Allocation for Model 3 (Combined Hybrid Master Plan)</strong>: Authorize commercial execution across 5,000 sites with $75,000 BTS package ($90,900/site total RAN), leveraging 13,746 audited operational towers and 65.6% fiber / 34.4% Starlink transport mix.</li>
+        <li><strong>Adopt Dual Financial Model Governance (Static & Dynamic Modes)</strong>: Mandate quarterly financial tracking using both the audited static benchmark master (<code>00_FWA_Three_Models_Financial_Master_Rev2.xlsx</code>) and the dynamic scenario engine (<code>FWA_n50_Dynamic_Business_Case_Rev2.xlsx</code>).</li>
+        <li><strong>Authorize Master Lease Agreements (MLAs) across 13,746 Towers</strong>: Empower executive management to finalize volume MLAs with PTCI/MIDC, EdgePoint, edotco, Smart, and Globe for the Batch 1 priority sites (73.1% co-location rate).</li>
       </ol>
     </div>
 
