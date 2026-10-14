@@ -93,7 +93,24 @@
 
 ---
 
-### TABLE 6: LOT 6 — MANAGED SERVICES & 24/7 NETWORK OPERATIONS (ANNUAL OPEX)
+### TABLE 6: LOT 5 — SITE ACQUISITION, DETAILED SITE SURVEY (TSSR), RF DESIGN & CIVIL WORKS
+
+| Item Ref | Service / Works Description | Detailed Technical Scope & Deliverables | Application | Unit Price (USD) [Bidder Quote] | Unit Price (PHP @ 55 FX) | Remarks / Methodology |
+| :--- | :--- | :--- | :--- | :---: | :---: | :--- |
+| **CIV-SVC-01** | **Detailed Site Survey Report (TSSR)** | Structural load audit, 360° drone sweep, power/grounding audit, civil sketch, PE sign-off | All Sites (Co-loc & Green) | `[Bidder Quote]` | `[Formula = USD * 55]` | Comprehensive TSSR |
+| **CIV-SVC-02** | **Site Acquisition & Permitting Support** | LGU building permits, Barangay clearances, CAAP height clearance, environmental docs | Greenfield Sites | `[Bidder Quote]` | `[Formula = USD * 55]` | Full permit clearance |
+| **CIV-SVC-03** | **Equipment Pad Foundation & Cable Gantry**| Concrete plinth for DC power/battery cabinet, elevated cable ladder, AC interconnect tap | Leased TowerCo Sites | `[Bidder Quote]` | `[Formula = USD * 55]` | Co-location upgrade |
+| **CIV-SVC-04** | **Greenfield Compound Works & Pad** | 8m x 8m compound grading, chain-link security fence, crushed gravel, equipment pad | Greenfield (Class T4) | `[Bidder Quote]` | `[Formula = USD * 55]` | Civil compound construction |
+| **CIV-SVC-05** | **Grounding Grid & Lightning Protection** | Exothermic Cadweld copper ring, ground rods, busbar, air terminal (<= 5.0 Ohms) | All Sites (Co-loc & Green) | `[Bidder Quote]` | `[Formula = USD * 55]` | Electrical grounding |
+| **CIV-SVC-06** | **30m Monopole Tower Supply & Erection** | ASTM A572 steel monopole, 250 km/h wind survival, fall arrest ladder, PE certification | Greenfield (Class T4) | `[Bidder Quote]` | `[Formula = USD * 55]` | Tower supply & erection |
+| **CIV-SVC-07** | **40m Monopole Tower Supply & Erection** | ASTM A572 steel monopole, 250 km/h wind survival, climbing ladder, structural sign-off | Greenfield (Terrain Opt) | `[Bidder Quote]` | `[Formula = USD * 55]` | High-clearance monopole |
+| **CIV-SVC-08** | **RF Propagation Modeling & Siting** | 3D ray-tracing simulation, clutter calibration, search ring generation, nominal plan | Macro Footprint | `[Bidder Quote]` | `[Formula = USD * 55]` | RF engineering model |
+| **CIV-SVC-09** | **Cluster RF Optimization & Drive Test** | Multi-site cluster drive testing, antenna tilt/azimuth optimization, neighbor tuning | Per Site Share | `[Bidder Quote]` | `[Formula = USD * 55]` | Cluster optimization |
+| **TOTAL** | **Lot 5 Civil & Siting Scope per Site** | *Full Turnkey Site Acquisition, Survey, Design & Civil Construction* | **Per Site Evaluated** | **`[Sum of Items SVC-01 to SVC-09]`** | **`[Formula = USD * 55]`** | *Total Lot 5 Turnkey Scope* |
+
+---
+
+### TABLE 7: LOT 6 — MANAGED SERVICES & 24/7 NETWORK OPERATIONS (ANNUAL OPEX)
 
 | Item Ref | Managed Operations Domain | Scope of Services | Pricing Basis | Monthly Rate (PHP) [Bidder Quote] | Monthly Rate (USD @ 55 FX) | Annual Cost / Site (USD) |
 | :--- | :--- | :--- | :---: | :---: | :---: | :---: |
@@ -106,7 +123,7 @@
 
 ---
 
-### TABLE 7: LOT 7 — 5G CUSTOMER PREMISES EQUIPMENT (CPE)
+### TABLE 8: LOT 7 — 5G CUSTOMER PREMISES EQUIPMENT (CPE)
 
 | Item Ref | Device Description | Minimum Technical Specifications | Target Qty (Phase 1) | Unit Price (USD) [Bidder to Quote] | Total Phase 1 Cost (USD) |
 | :--- | :--- | :--- | :---: | :---: | :---: |
@@ -116,7 +133,7 @@
 
 ---
 
-### TABLE 8: MANDATORY VENDOR FINANCING FACILITY (FORM D)
+### TABLE 9: MANDATORY VENDOR FINANCING FACILITY (FORM D)
 
 The Bidder must submit a formal, legally binding financing term sheet with the following parameters:
 
