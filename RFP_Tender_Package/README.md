@@ -33,18 +33,17 @@ RFP_Tender_Package/
 
 ## 2. Summary of Tender Scope by Lot
 
-| Lot Ref | Subsystem Domain | Baseline Benchmark / Technical Sizing | Primary Reference / Strategy |
+| Lot Ref | Subsystem Domain | Technical Sizing & Scope Description | Primary Engineering Architecture |
 | :--- | :--- | :--- | :--- |
-| **LOT 1** | **Radio Access Network (RAN)** | **75,000 USD** BTS hardware (12k BBU, 48k RRUs,10.5k Antennas, accessories) + **15,900 USD** Turnkey Rollout Services = **90,900 USD / site** | 3-sector 8T8R MIMO, 60 MHz Band n50 (1432–1517 MHz), 320W RF power/sector. |
-| **LOT 2** | **Power & Passive Infrastructure** | **4,500 USD** 6.0 kW DC Rectifier + **3,500 USD** 150 Ah LiFePO4 battery (>= 4h autonomy). Greenfield sites add **4,000 USD** 15 kVA genset + **₱3.5M PHP** 30m monopole. | Leased TowerCo co-location (73.1%Phase 1) vs. Greenfield monopole (9.3%$ nationwide). |
-| **LOT 3** | **Cloud-Native 5G Core (5GC SA)** | **9.72M USD** Year 1 turnkey package (4.38M HW + 5.34M for 1M subscriber perpetual capacity). Incremental capacity @<= $4.00 / sub. | Dual Active-Active Datacenters (NCR Primary + Clark DR), 80 Gbps DPDK UPF nodes, inline CG-NAT & DPI. |
-| **LOT 4** | **Converged Digital OSS/BSS** | **13.91M USD** Year 1 turnkey stack (4.2M SI, 2.6M CRM/Catalog,1.1M CHF real-time charging, 1.5M Fault/Perf OSS,700k FMS). | Prepaid-first, direct Nchf rating, GCash/Maya/7-Eleven API integration, automated dispatch for 3,500 daily work orders. |
-| **LOT 5** | **RF Planning & Optimization** | High-precision propagation modeling, candidate search rings, drone TSSR, SSV acceptance, cluster drive tests. | Target RSRP >= -95 dBm across >= 90% settlement area, 3.5 km nominal cell radius. |
-| **LOT 6** | **Managed Services & 24/7 NOC** | **₱120,000 PHP / site / month** (2,182 USD/mo;26,182 USD/site/yr) full active telecom operations. | 24/7 Tier-2/Tier-3 NOC, First Line Maintenance (FLM), MTTR <= 2h Urban / <= 4h Rural, NBD spares delivery. |
-| **LOT 7** | **5G FWA High-Gain CPE** | Target cap **<= $55.00 USD / unit** for indoor Wi-Fi 6 AX1800 terminals with high-gain (8–10 dBi) Band n50 antennas. | 350,000 units in Phase 1; TR-069 / TR-369 USP remote management, PLMN SIM lock. |
-| **FORM D** | **Mandatory Vendor Financing** | **80% of Capex financed**, 20% downpayment, 4-to-5 year tenor, 12-to-18 month grace period, <= 6.50% interest. | Conserves over **$52.4M USD** in Day-1 cash outflows, shrinking peak funding deficit to self-sustainability. |
+| **LOT 1** | **Radio Access Network (RAN)** | 3-sector 8T8R Massive MIMO, 60 MHz Band n50 (1432–1517 MHz TDD), 320W total RF power/sector, high-gain antennas, BBU subracks, and full turnkey site deployment services. | Turnkey supply, delivery, rigging, installation, commissioning, and single site verification (SSV). |
+| **LOT 2** | **Power & Passive Infrastructure** | Modular 6.0 kW switchmode DC rectifier plant (N+1 redundancy), Lithium Iron Phosphate (LFP / LiFePO4) energy storage (>= 4h autonomy @ 3 kW load), and hybrid backup. | TowerCo co-location tap-off & metering (Phase 1 priority) and Greenfield off-grid power solutions (15 kVA genset, ATS, 30m monopole). |
+| **LOT 3** | **Cloud-Native 5G Core (5GC SA)** | Cloud-native 3GPP R16/17 Standalone 5G Core, distributed DPDK UPF nodes (80 Gbps throughput per node), high-capacity inline CG-NAT, DPI, and subscriber management. | Dual Geo-Redundant Active-Active Datacenters (NCR Primary + Clark DR) supporting 1.0M initial registered subscribers with seamless expansion. |
+| **LOT 4** | **Converged Digital OSS/BSS** | Converged digital CRM, product catalog, real-time Converged Charging Function (CHF), prepaid rating engine, omnichannel payment gateway integration, and field force automation. | Cloud-native microservices architecture, automated work-order dispatch (3,500 daily tasks), real-time GCash/Maya top-up processing. |
+| **LOT 5** | **RF Planning & Optimization** | High-precision propagation modeling, candidate search rings, drone TSSR, SSV acceptance, cluster drive tests, and continuous interference mitigation. | Target RSRP >= -95 dBm across >= 90% settlement area, nominal 3.5 km coverage radius per macro site. |
+| **LOT 6** | **Managed Services & 24/7 NOC** | End-to-end 24/7 Tier-2/Tier-3 Network Operations Center (NOC) monitoring, First Line Maintenance (FLM), Field Force Dispatch, and nationwide corrective repair. | Strict SLA benchmarks: Severity 1 MTTR <= 2h Urban / <= 4h Rural, 99.70% radio network availability, Next-Business-Day (NBD) depot spares turnaround. |
+| **LOT 7** | **5G FWA High-Gain CPE** | High-performance indoor and outdoor 5G FWA terminals, Band n50 native support, integrated directional antennas (8–10 dBi), Wi-Fi 6 AX1800, 2.5GE LAN. | 350,000 units in Phase 1 deployment; TR-069 / TR-369 USP remote management, Operator PLMN SIM lock, and OTA firmware upgrade capability. |
+| **FORM D** | **Mandatory Vendor Financing** | Comprehensive OEM vendor financing facility covering at least 80% of Capex, 4-to-5 year tenor, and a minimum 12-month grace period on principal repayment. | Capital structure optimization to conserve working capital during initial rollout and align debt service with commercial broadband revenue generation. |
 
----
 
 ## 3. Best-Practice Service Level Agreements (SLAs) & Network KPIs
 
