@@ -17,7 +17,8 @@ This official distribution archive contains the complete, binding procurement an
 | :--- | :---: | :--- |
 | **`00_RFP_5G_FWA_Tender_Invitation_and_Transmittal_Letter.pdf`** | Transmittal Letter | Official executive invitation to bid, high-level scope, program scale, and formal bidding timeline. |
 | **`01_RFP_5G_FWA_Master_Tender_Document.pdf`** | Master RFP Specification | Comprehensive tender rules, scope of work across all 7 lots, evaluation criteria (QCBS), governance, and instructions to bidders. |
-| **`02_Appendix_A_Technical_Specifications_Compliance_Matrix.pdf`** | Appendix A (Technical) | Line-by-line mandatory compliance matrices covering RAN, Power, 5GC Core, OSS/BSS, RF Planning, Managed Services, and CPE. |
+| **`02_Appendix_A_Technical_Specifications_Compliance_Matrix.pdf`** | Appendix A (Interactive PDF Form) | Line-by-line mandatory compliance matrix (80 items) with interactive fillable dropdowns (C/M/NC) and technical specification text entry fields. |
+| **`02_Appendix_A_Technical_Specifications_Compliance_Matrix.xlsx`** | Appendix A (Excel Technical Matrix) | Official editable technical matrix with Excel Data Validation dropdowns (C, M, NC), input formatting, and automated compliance scorecard. |
 | **`03_Appendix_B_Commercial_Proposal_BoQ_Templates.pdf`** | Appendix B (Commercial) | Standardized Bill of Quantities (BoQ) tables for all lots, 10-year TCO parameters, and Vendor Financing Form D terms. |
 | **`04_Appendix_C_SLAs_KPIs_Liquidated_Damages.pdf`** | Appendix C (SLAs & KPIs) | Contractual service level agreements, network performance KPIs, incident severity classification, MTTR thresholds, and liquidated damages. |
 | **`05_Appendix_D_Site_Survey_RF_Planning_Civil_Power_Guidelines.pdf`** | Appendix D (Engineering) | Siting guidelines, TSSR templates, Band n50 link budget calculations, civil/tower foundations, and Single Site Verification (SSV) acceptance criteria. |

@@ -42,7 +42,7 @@ TelTech is actively seeking **creative, forward-looking proposals—both technic
 The official bidding package consists of the following operative documents:
 1. **Document 00:** Invitation to Bid & Tender Transmittal Letter (`00_RFP_5G_FWA_Tender_Invitation_and_Transmittal_Letter.pdf`)
 2. **Document 01:** Master RFP Specification Document (`01_RFP_5G_FWA_Master_Tender_Document.pdf`)
-3. **Document 02 (Appendix A):** Technical Specifications & Compliance Matrix (`02_Appendix_A_Technical_Specifications_Compliance_Matrix.pdf`)
+3. **Document 02 (Appendix A):** Technical Specifications & Compliance Matrix — Interactive Fillable Form & Excel (`02_Appendix_A_Technical_Specifications_Compliance_Matrix.pdf` & `02_Appendix_A_Technical_Specifications_Compliance_Matrix.xlsx`)
 4. **Document 03 (Appendix B):** Commercial Proposal & BoQ Templates (`03_Appendix_B_Commercial_Proposal_BoQ_Templates.pdf`)
 5. **Document 04 (Appendix C):** Service Level Agreements, Network KPIs & Liquidated Damages (`04_Appendix_C_SLAs_KPIs_Liquidated_Damages.pdf`)
 6. **Document 05 (Appendix D):** Site Survey, RF Planning & Civil/Power Guidelines (`05_Appendix_D_Site_Survey_RF_Planning_Civil_Power_Guidelines.pdf`)
