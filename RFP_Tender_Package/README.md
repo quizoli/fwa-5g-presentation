@@ -22,7 +22,7 @@ This official distribution archive contains the complete, binding procurement an
 | **`04_Appendix_C_SLAs_KPIs_Liquidated_Damages.pdf`** | Appendix C (SLAs & KPIs) | Contractual service level agreements, network performance KPIs, incident severity classification, MTTR thresholds, and liquidated damages. |
 | **`05_Appendix_D_Site_Survey_RF_Planning_Civil_Power_Guidelines.pdf`** | Appendix D (Engineering) | Siting guidelines, TSSR templates, Band n50 link budget calculations, civil/tower foundations, and Single Site Verification (SSV) acceptance criteria. |
 | **`06_RFP_Commercial_Price_Book_and_BoQ_Template.xlsx`** | Commercial Price Book | Official 10-tab dynamic spreadsheet containing pre-formatted bidding BoQ schedules with automated currency conversion and subtotal formulas. |
-| **`FWA_Barangay_Rollout_Plan_2024_1000s_tender.xlsx`** | Site Rollout Schedule | Full spatial inventory of 5,000 candidate barangays, demographic sizing, batch phasing (Batch 1 First 1,000 Sites), and provincial summaries. |
+| **`07_RFP_5G_FWA_Candidate_Site_List_and_Rollout_Schedule.xlsx`** | Candidate Site List & Rollout Schedule | Full spatial inventory of 5,000 candidate barangays, demographic sizing, batch phasing (Batch 1 First 1,000 Sites), tower co-location IDs, distances to fiber/nodes, and transmission/power classifications. |
 
 ---
 

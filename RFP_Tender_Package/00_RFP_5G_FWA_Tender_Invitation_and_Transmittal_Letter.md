@@ -47,7 +47,7 @@ The official bidding package consists of the following operative documents:
 5. **Document 04 (Appendix C):** Service Level Agreements, Network KPIs & Liquidated Damages (`04_Appendix_C_SLAs_KPIs_Liquidated_Damages.pdf`)
 6. **Document 05 (Appendix D):** Site Survey, RF Planning & Civil/Power Guidelines (`05_Appendix_D_Site_Survey_RF_Planning_Civil_Power_Guidelines.pdf`)
 7. **Document 06 (Price Book):** Official 10-Tab Commercial Price Book & Blank BoQ Template (`06_RFP_Commercial_Price_Book_and_BoQ_Template.xlsx`)
-8. **Site Schedule:** Candidate Siting & Rollout Plan for 5,000 Barangays (`FWA_Barangay_Rollout_Plan_2024_1000s_tender.xlsx`)
+8. **Document 07 (Site Schedule):** Candidate Siting & Rollout Schedule (`07_RFP_5G_FWA_Candidate_Site_List_and_Rollout_Schedule.xlsx`)
 
 ### 4. Bidding Schedule
 * **Official RFP Issuance:** October 14, 2026
