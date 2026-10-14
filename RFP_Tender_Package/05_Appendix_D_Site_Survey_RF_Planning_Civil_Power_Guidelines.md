@@ -104,11 +104,11 @@ Before any site is granted Commercial On-Air Acceptance, the Contractor must com
    * Sector Verification: Physical azimuth and tilt match TSSR approval within +/- 2°.
    * RF Transmit Power: Conducted power on all 8 transmit paths within +/- 0.5 dB of nominal.
    * VSWR / Return Loss: Return loss >= 15 dB across all antenna feeder lines.
-   * Max Throughput Test: Single CPE situated in line-of-sight achieving >= 450 Mbps DL and >= 60 Mbps UL.
+   * Max Throughput Test: Single CPE in line-of-sight achieving >= 300 Mbps DL and >= 50 Mbps UL (aggregate sector peak >= 450 Mbps DL / >= 60 Mbps UL verified under multi-CPE or loaded test).
 2. **Short Drive Test & Static Multi-Point Test:**
    * 5 stationary measurement points per sector (Near: 500m, Mid: 1.5 km, Far/Edge: 3.0 km).
    * RSRP >= -95 dBm across >= 90% of surveyed barangay inhabited zone.
-   * Ping RTT <= 20 ms to local UPF IP address; zero packet loss over 1,000 continuous pings.
+   * Ping RTT <= 18 ms target (<= 30 ms maximum contractual limit) to local UPF IP address over fiber backhaul; packet loss <= 0.10% over 1,000 continuous pings.
    * Inter-sector handover execution without drop during transition.
 
 ---

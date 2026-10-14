@@ -4,7 +4,7 @@
 **Document Control Code:** RFP-TELTECH-FWA-2026-001  
 **Project Owner:** Telecommunications Technology Solutions Incorporated (TelTech)  
 **Author:** OLIVER TUNGOL
-**Date of Release:** October 6, 2026  
+**Date of Release:** October 14, 2026  
 **Document Status:** Complete Single Source of Truth (SSOT) Tender Issue  
 
 ---
@@ -15,10 +15,12 @@ All official tender artifacts have been compiled, standardized, and saved direct
 
 ```
 RFP_Tender_Package/
+├── 00_RFP_5G_FWA_Tender_Invitation_and_Transmittal_Letter.md
+│   └── Commercial transmittal letter and invitation to bid with high-impact scope and timeline
 ├── 01_RFP_5G_FWA_Master_Tender_Document.md
 │   └── Complete Request for Proposal specification (Scope, Rules, Phasing, Governance, Evaluation)
 ├── 02_Appendix_A_Technical_Specifications_Compliance_Matrix.md
-│   └── Line-by-line compliance matrices for RAN, Power, 5GC Core, OSS/BSS, RF Planning, MS
+│   └── Line-by-line compliance matrices for RAN, Power, 5GC Core, OSS/BSS, RF Planning, MS, CPE
 ├── 03_Appendix_B_Commercial_Proposal_BoQ_Templates.md
 │   └── Turnkey Bill of Quantities (BoQ) templates, pricing caps, and Vendor Financing Form D
 ├── 04_Appendix_C_SLAs_KPIs_Liquidated_Damages.md
@@ -57,7 +59,7 @@ The tender document enforces carrier-grade SLAs benchmarked against 3GPP and ITU
 |                          | Call/Session Setup Success (CSSR)| >= 99.00%         | >= 99.60%         |
 |                          | Call/Session Drop Rate (CDDR)    | <= 0.50%          | <= 0.15%          |
 |                          | Single-Sector Peak DL Throughput | >= 380 Mbps       | >= 450 Mbps       |
-|                          | Cell-Edge User DL Speed (95th %) | >= 25 Mbps        | >= 50 Mbps        |
+|                          | Cell-Edge User DL Speed (5th %) | >= 25 Mbps        | >= 50 Mbps        |
 |                          | End-to-End Latency (RTT)         | <= 30 ms          | <= 18 ms          |
 +----------------------------------------------------------------------------------------------------+
 | Power & Site Resilience  | Site Power Continuous Uptime     | >= 99.85% (Green) | >= 99.95% (Leased)|

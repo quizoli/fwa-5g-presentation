@@ -66,6 +66,7 @@ The operator has completed a nationwide spatial overlay matching the 5,000 candi
 Transmission connectivity has been audited via the Converge fiber network audit (1,296 confirmed optical nodes and 4,401 fiber segments; subject to verification on the ground):
 * **Terrestrial Fiber Optic Cable (FOC):** 98.3% of Phase 1 sites connect via terrestrial fiber drops (Class A: Node <= 0.5 km; Class B: Node <= 1.0 km; Class C: Line-tap splice closure <= 0.5 km; Class D: Lateral/Microwave <= 3.0 km).
 * **Satellite LEO Backhaul (Starlink Business):** 1.7% of Commercial Phase 1 sites (and up to 34.4%–43.5% in remote universal access/GIDA sites) utilize 4-terminal Starlink Business arrays (delivering aggregated 400–800 Mbps burst with SD-WAN bonding and traffic shaping).
+* **Fiber Baseline Reconciliation Note:** The preliminary raw GIS planning dataset identified 2,405 spatial markers; following ground-truth fiber audit filtering against operational distribution plant, 1,296 confirmed optical nodes and 4,401 fiber segments were verified as immediate interconnect targets (subject to joint site survey verification on the ground).
 
 ---
 
@@ -97,7 +98,7 @@ The Bidder shall provide unified site power solutions engineered for high availa
    * Rectifier efficiency: >= 96.0% (80 PLUS Titanium / high-efficiency class).
    * Advanced SMPS controller with SNMPv3, HTTPS, Modbus, dry contacts, and remote cloud telemetry.
 2. **Battery Energy Storage System (BESS):**
-   * Lithium Iron Phosphate (LiFePO4 / LFP) battery modules: Minimum **1 x 48V / 150 Ah (or 2 x 100 Ah)** providing >= 4hours backup autonomy at standard 2.5–3.0 kW BTS operational load.
+   * Lithium Iron Phosphate (LiFePO4 / LFP) battery energy storage system (BESS): Guaranteed minimum **4.0 hours continuous usable backup autonomy** under 3.0 kW BTS operational load at 80% usable Depth of Discharge (DoD) and end-of-life derating (minimum **300 Ah / 15.0 kWh nominal @ 48V**, e.g., 3 x 48V 100 Ah modules; Bidder shall submit formal load-autonomy calculation sheet and demonstrate 4.0-hour autonomy during site acceptance).
    * Cycle life: >= 4,000 cycles at 80% Depth of Discharge (DoD) @ 25°C.
    * Built-in intelligent BMS with cell-level balancing, over-charge, over-discharge, short-circuit, and high-temperature thermal runaway cutoffs.
 3. **Standby Generator Sets (Greenfield Class T4 Sites):**
@@ -162,7 +163,7 @@ The Bidder shall provide fully managed, SLA-governed network operations, field m
    * Incident management, event correlation, dispatching field maintenance teams, and managing customer trouble ticket escalations.
 2. **Nationwide First-Line Maintenance (FLM) Field Operations:**
    * Regional field maintenance hubs across Greater Luzon, Northern Luzon, Southern Luzon, Visayas, and Mindanao.
-   * Mean Time to Respond (MTTR) <= 2hours in urban/suburban and <= 4hours in rural clusters for Critical/Severity-1 incidents.
+   * Mean Time to Restore (MTTR) <= 2hours in urban/suburban and <= 4hours in rural clusters for Critical/Severity-1 incidents (with Initial Incident Acknowledgement <= 15 minutes).
    * Preventive maintenance: Quarterly inspection of RF antenna brackets, coax/optical jumpers, rectifier modules, battery conductance testing, and generator load testing.
 3. **Comprehensive Spare Parts Management (SPMS):**
    * Advanced replacement logistics: Central warehouse and regional staging depots maintaining an audited safety float of BBUs, RRUs, rectifiers, lithium batteries, and SFPs.
@@ -196,8 +197,8 @@ The Bidder must guarantee compliance with the following international telecom be
 | **5G Session Drop Rate (CDDR)** | Abnormal Release Rate per 100 established sessions | <= 0.50% | <= 0.15% | Busy Hour |
 | **Single Sector User Capacity** | Active concurrent connected CPE sessions per sector | >= 350 CPEs | >= 450 CPEs | Peak Busy Hour |
 | **Peak Cell DL Throughput (60 MHz)** | 8T8R 60 MHz TDD peak aggregated sector throughput | >= 450 Mbps | >= 520 Mbps | Lab & Single Cell Test |
-| **Cell Edge DL User Throughput** | 95th percentile cell-edge subscriber download rate | >= 25 Mbps | >= 50 Mbps | Busy Hour |
-| **Cell Edge UL User Throughput** | 95th percentile cell-edge subscriber upload rate | >= 5 Mbps | >= 15 Mbps | Busy Hour |
+| **Cell Edge DL User Throughput** | 5th percentile user speed / 95% coverage threshold (>= 95% of stationary test points) | >= 25 Mbps | >= 50 Mbps | Busy Hour |
+| **Cell Edge UL User Throughput** | 5th percentile user speed / 95% coverage threshold (>= 95% of stationary test points) | >= 5 Mbps | >= 15 Mbps | Busy Hour |
 | **End-to-End User Latency (RTT)** | CPE to UPF packet round-trip time | <= 30 ms | <= 18 ms | Continuous Ping |
 | **DL Packet Loss Rate (PLR)** | User Plane packet discard rate | <= 0.10% | <= 0.01% | Monthly Average |
 
@@ -219,7 +220,7 @@ The Bidder must guarantee compliance with the following international telecom be
 | **Session Setup Delay** | End-to-end signaling time to establish 5G session | <= 80 ms (95th percentile) |
 | **UPF Packet Forwarding Latency** | Processing delay through UPF hardware | <= 1.0 ms |
 | **CG-NAT Port Allocation Success** | Real-time port assignment for new outbound sessions | >= 99.99% |
-| **Core Failover Recovery Time (DR)** | Automatic cutover from NCR DC to Clark DR DC | <= 30seconds (Zero session loss) |
+| **Core Failover Recovery Time (DR)** | Automatic cutover from NCR DC to Clark DR DC | <= 30 seconds (Zero session loss across UDM/SMF; user traffic restored <= 30s) |
 
 ### 4.4 OSS/BSS, Field Operations & Managed Services SLAs
 | Operational Service Domain | Metric Description | Mandatory SLA Benchmark |
@@ -231,7 +232,7 @@ The Bidder must guarantee compliance with the following international telecom be
 | **Customer Churn CPE Recovery Rate** | Successful physical recovery of CPE on churned accounts | >= 70.0% |
 | **Severity 1 Incident MTTR (Critical Outage)** | Time to restore full service on macro BTS outage | <= 2 Hours (Urban) / <= 4 Hours (Rural) |
 | **Severity 2 Incident MTTR (Major Degraded)** | Time to restore single sector failure or degraded backhaul | <= 6 Hours |
-| **Hardware Replacement Turnaround** | Depot dispatch of spare BBU/RRU/Rectifier to site | <= 24 Hours (Nationwide NBD) |
+| **Hardware Replacement Turnaround** | Depot dispatch of spare BBU/RRU/Rectifier to site | Next Business Day (NBD) nationwide (<= 24h for Metro Manila/regional hubs) |
 
 ---
 
@@ -292,17 +293,17 @@ Total Evaluation Score = (Technical Score × 60%) + (Commercial & Financing Scor
 
 | Milestone Event | Scheduled Date | Responsibility |
 | :--- | :--- | :--- |
-| **Official RFP Tender Issuance** | October 6, 2026 | Operator Tender Committee |
-| **Bidder Registration & NDA Signing** | October 16, 2026 | Prospective Bidders |
-| **Pre-Bid Clarification Meeting (Hybrid)** | October 23, 2026 | Operator & Bidders |
-| **Deadline for Written Inquiries / RFIs** | October 30, 2026 | Prospective Bidders |
-| **Operator Formal Addendum & Clarifications** | November 6, 2026 | Operator Tender Committee |
-| **Tender Submission Deadline (Sealed Bids)** | November 27, 2026 (17:00 PHT) | Bidders |
-| **Opening of Technical Envelopes** | November 30, 2026 | Operator Technical Board |
-| **Technical Clarifications & Vendor Presentations** | December 1 – 11, 2026 | Shortlisted Bidders |
-| **Opening of Commercial & Financing Envelopes** | December 15, 2026 | Operator Commercial Board |
-| **Final Contract Negotiation & Award** | January 15, 2027 | Operator & Winning Bidder(s) |
-| **Phase 1 Contract Execution & Kickoff** | February 1, 2027 | Operator & Appointed Contractor |
+| **Official RFP Tender Issuance** | October 14, 2026 | Operator Tender Committee |
+| **Bidder Registration & NDA Signing** | October 21, 2026 | Prospective Bidders |
+| **Pre-Bid Clarification Meeting (Hybrid)** | October 28, 2026 | Operator & Bidders |
+| **Deadline for Written Inquiries / RFIs** | November 4, 2026 | Prospective Bidders |
+| **Operator Formal Addendum & Clarifications** | November 11, 2026 | Operator Tender Committee |
+| **Tender Submission Deadline (Sealed Bids)** | December 2, 2026 (17:00 PHT) | Bidders |
+| **Opening of Technical Envelopes** | December 4, 2026 | Operator Technical Board |
+| **Technical Clarifications & Vendor Presentations** | December 7 – 14, 2026 | Shortlisted Bidders |
+| **Opening of Commercial & Financing Envelopes** | December 16, 2026 | Operator Commercial Board |
+| **Final Contract Negotiation & Award** | December 22, 2026 | Operator & Winning Bidder(s) |
+| **Phase 1 Contract Execution & Kickoff** | January 15, 2027 | Operator & Appointed Contractor |
 | **Phase 1 Target Commercial Launch (1,000 Sites)** | Q4 2027 (Within 12 Months) | Joint Deployment Team |
 
 ---

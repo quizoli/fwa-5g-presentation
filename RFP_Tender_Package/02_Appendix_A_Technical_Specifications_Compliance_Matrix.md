@@ -44,8 +44,8 @@
 | **PWR-01** | **DC Power Plant** | 19" 3U/4U modular high-efficiency switchmode rectifier system; continuous rating >= 6.0 kW @ -48V DC. | | |
 | **PWR-02** | **Rectifier Modules** | Hot-swappable 2.0 kW or 3.0 kW modules in N+1 redundant configuration. Operating efficiency >= 96.0%. | | |
 | **PWR-03** | **Input Voltage Range** | Wide AC input operating range: 85V AC to 300V AC nominal single phase (230V, 60 Hz), withstanding rural grid fluctuations. | | |
-| **PWR-04** | **Lithium Battery (BESS)**| Lithium Iron Phosphate (LiFePO4 / LFP) battery bank: minimum 48V / 150 Ah capacity (>= 7.2 kWh energy storage). | | |
-| **PWR-05** | **Battery Autonomy** | Guaranteed >= 4.0hours continuous operation at 2.5–3.0 kW continuous BTS load without AC utility input. | | |
+| **PWR-04** | **Lithium Battery (BESS)**| Lithium Iron Phosphate (LiFePO4 / LFP) battery energy storage system: dimensioned to provide guaranteed >= 4.0 hours continuous backup autonomy at 3.0 kW BTS load (minimum >= 300 Ah / 15.0 kWh nominal @ 48V based on 80% usable DoD and end-of-life aging; bidder shall submit dimensioning calculation and guarantee 4.0h autonomy at SAT). | | |
+| **PWR-05** | **Battery Autonomy** | Guaranteed >= 4.0 hours continuous operation at 3.0 kW continuous BTS load without AC utility input, verified by full discharge test at site acceptance. | | |
 | **PWR-06** | **Battery Cycle Life** | >= 4,000 cycles at 80% Depth of Discharge (DoD) at +25°C; built-in intelligent Battery Management System (BMS). | | |
 | **PWR-07** | **Standby Genset** | For Greenfield (Class T4) sites: 15 kVA / 12 kW prime, 230V, 60 Hz diesel generator in sound-attenuated weatherproof canopy (<68dBA @ 7m). | | |
 | **PWR-08** | **Fuel Autonomy** | Integrated sub-base fuel tank with minimum 500L–1,000L capacity providing >= 72hours continuous runtime under full load. | | |
@@ -64,7 +64,7 @@
 | **5GC-02** | **Network Functions** | Full NF suite: AMF, SMF, UPF, PCF, UDM, UDR, AUSF, NRF, NSSF, NEF, CHF, and SEPP. | | |
 | **5GC-03** | **Subscriber Sizing** | Day-1 licensed capacity: 1,000,000 registered FWA subscribers. Scalable in 500k increments up to 3,000,000 subscribers. | | |
 | **5GC-04** | **Geo-Redundancy** | Active-Active geo-redundant dual-datacenter deployment (Metro Manila Primary DC and Clark Pampanga DR DC). | | |
-| **5GC-05** | **Hitless Failover** | Automatic session continuity and zero data plane loss during DC failover; state replication across UDR/UDM and SMF clusters. | | |
+| **5GC-05** | **Hitless Failover** | Automatic session continuity (zero subscriber session loss across UDR/UDM and SMF clusters) and automated user-plane traffic restoration <= 30 seconds during datacenter failure/cutover. | | |
 | **5GC-06** | **UPF Throughput** | UPF dimensioned for >= 80 Gbps usable wire-speed throughput per 2U dual-socket compute node with DPDK and SR-IOV acceleration. | | |
 | **5GC-07** | **Carrier-Grade NAT** | Integrated or inline CG-NAT supporting deterministic port allocation, logging per NTC legal intercept mandate, and 10:1 to 16:1 subscriber ratio. | | |
 | **5GC-08** | **Deep Packet Inspection** | Embedded DPI capable of Layer-7 application recognition, speed throttling per subscriber tariff tier, and fair-use policy enforcement. | | |
@@ -119,4 +119,24 @@
 | **MS-06** | **Spare Parts Logistics** | Automated SPMS maintaining regional buffer stock; guaranteed Next Business Day (NBD) hardware replacement delivery nationwide. | | |
 
 ---
+
+### SECTION 7: 5G CUSTOMER PREMISES EQUIPMENT (CPE - LOT 7)
+
+| Item ID | Sub-System / Feature | Detailed Specification Requirement | Compliance (C / M / NC) | Bidder Proposed Specification & Reference |
+| :--- | :--- | :--- | :---: | :--- |
+| **CPE-01** | **3GPP Standards & Modes** | 3GPP Release 16 compliant 5G NR Standalone (SA) and Non-Standalone (NSA) operation. | | |
+| **CPE-02** | **Frequency Bands** | Native Band n50 (1432 – 1517 MHz, 60 MHz channel bandwidth) plus fallback sub-6 GHz bands (n1, n3, n7, n28, n41, n77, n78). | | |
+| **CPE-03** | **Indoor CPE Antenna & MIMO** | High-gain omnidirectional multi-element internal antenna array (>= 4.0–6.0 dBi gain); 4x4 MIMO DL, 2x2 MIMO UL. | | |
+| **CPE-04** | **Outdoor CPE Antenna & MIMO** | High-gain directional integrated antenna (>= 9.0–11.0 dBi gain across Band n50); 4x4 MIMO DL, 2x2 MIMO UL; adjustable pole/wall mounting bracket. | | |
+| **CPE-05** | **Wi-Fi Subsystem** | Dual-band Wi-Fi 6 (802.11ax) 2.4 GHz (2x2) and 5 GHz (2x2) concurrent, OFDMA, MU-MIMO, WPA3-Personal encryption. | | |
+| **CPE-06** | **Ethernet Interfaces** | Indoor CPE: Minimum 2x Gigabit Ethernet (10/100/1000Base-T) RJ-45 LAN ports. Outdoor CPE: 1x Gigabit PoE input port plus companion indoor Wi-Fi gateway/PoE injector. | | |
+| **CPE-07** | **Environmental Rating** | Outdoor CPE: IP67 dust/water ingress protection, operating temperature -10°C to +55°C, 200 km/h wind survivability. Indoor CPE: IP20, 0°C to +40°C. | | |
+| **CPE-08** | **Remote Device Management** | Broadband Forum TR-069 and TR-369 (USP) support with complete TR-181 data model, SNMPv2/v3, and secure ACS provisioning. | | |
+| **CPE-09** | **Firmware & Security** | Secure Boot with cryptographic signature verification, automated FOTA (Firmware-Over-The-Air) batch upgrades, and operator lock capability. | | |
+| **CPE-10** | **SIM / eSIM Support** | Standard Nano-SIM (4FF) slot with anti-theft locking cover and optional GSMA-compliant eSIM MFF2 footprint. | | |
+| **CPE-11** | **Power Supply** | Indoor CPE: 230V AC / 12V DC external adapter (Philippine standard Type A/B plug). Outdoor CPE: 802.3at/af Power over Ethernet (PoE) injector included. | | |
+| **CPE-12** | **Certification & Warranty** | NTC Type Approval compliance, CE/FCC certification, and minimum 24-month hardware replacement warranty (RMA <= 5 business days). | | |
+
+---
+
 *(End of Appendix A — Technical Specifications & Compliance Matrix)*

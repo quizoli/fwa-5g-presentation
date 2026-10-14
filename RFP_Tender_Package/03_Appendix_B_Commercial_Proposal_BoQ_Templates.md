@@ -46,7 +46,7 @@
 | Item Ref | System Description | Technical Sizing | Application | Unit Price (USD) [Bidder Quote] | Unit Price (PHP @ 55 FX) |
 | :--- | :--- | :--- | :--- | :---: | :---: |
 | **PWR-EQ-01** | **6.0 kW Modular DC Rectifier Plant** | 19" 3U subrack, 3 x 3.0 kW modules (N+1), SMPS controller | Co-loc / Greenfield | `[Bidder Quote]` | `[Formula = USD * 55]` |
-| **PWR-EQ-02** | **48V / 150 Ah LiFePO4 Battery Bank** | High-cycle Lithium Iron Phosphate with smart BMS (>= 4 hrs backup) | Co-loc / Greenfield | `[Bidder Quote]` | `[Formula = USD * 55]` |
+| **PWR-EQ-02** | **48V LiFePO4 Battery Bank** | High-cycle LFP with smart BMS (>= 4.0h backup @ 3.0 kW load, min 300 Ah / 15 kWh nominal) | Co-loc / Greenfield | `[Bidder Quote]` | `[Formula = USD * 55]` |
 | **PWR-EQ-03** | **TowerCo DC Tap-Off & Metering Kit**| DC tap enclosure, revenue Class 1.0 kWh meter, SPD Type 2 | Leased TowerCo | `[Bidder Quote]` | `[Formula = USD * 55]` |
 | **PWR-EQ-04** | **15 kVA Diesel Generator Set** | Soundproof canopy, 500L–1000L tank, ATS, auto-start | Greenfield (Class T4) | `[Bidder Quote]` | `[Formula = USD * 55]` |
 | **CIV-EQ-01** | **30m Monopole Tower & Foundation** | Galvanized steel monopole, pile/pad foundation, compound fence | Greenfield (Class T4) | `[Bidder Quote]` | `[Formula = USD * 55]` |

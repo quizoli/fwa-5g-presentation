@@ -295,13 +295,13 @@
     <div class="doc-meta-card">
       <div class="doc-code">RFP-TELTECH-FWA-2026-001 / APPENDIX A</div>
       <div><strong>Author:</strong> OLIVER TUNGOL</div>
-      <div><strong>Date:</strong> October 6, 2026</div>
+      <div><strong>Date:</strong> October 14, 2026</div>
     </div>
   </div>
 
   <div class="doc-title-block">
     <div class="doc-main-title">Technical Specifications & Compliance Matrix</div>
-    <div class="doc-sub-title">Mandatory Technical Requirements for RAN, Power, 5GC, OSS/BSS, RF & Managed Services</div>
+    <div class="doc-sub-title">Mandatory Technical Requirements for RAN, Power, 5GC, OSS/BSS, RF, Managed Services & CPE</div>
     <div class="doc-metadata-grid">
       <div class="meta-item">
         <span class="meta-label">Document Number</span>
@@ -515,14 +515,14 @@
 <tr>
 <td style="text-align: left;"><strong>PWR-04</strong></td>
 <td style="text-align: left;"><strong>Lithium Battery (BESS)</strong></td>
-<td style="text-align: left;">Lithium Iron Phosphate (LiFePO4 / LFP) battery bank: minimum 48V / 150 Ah capacity (&gt;= 7.2 kWh energy storage).</td>
+<td style="text-align: left;">Lithium Iron Phosphate (LiFePO4 / LFP) battery energy storage system: dimensioned to provide guaranteed &gt;= 4.0 hours continuous backup autonomy at 3.0 kW BTS load (minimum &gt;= 300 Ah / 15.0 kWh nominal @ 48V based on 80% usable DoD and end-of-life aging; bidder shall submit dimensioning calculation and guarantee 4.0h autonomy at SAT).</td>
 <td style="text-align: center;"></td>
 <td style="text-align: left;"></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>PWR-05</strong></td>
 <td style="text-align: left;"><strong>Battery Autonomy</strong></td>
-<td style="text-align: left;">Guaranteed &gt;= 4.0hours continuous operation at 2.5–3.0 kW continuous BTS load without AC utility input.</td>
+<td style="text-align: left;">Guaranteed &gt;= 4.0 hours continuous operation at 3.0 kW continuous BTS load without AC utility input, verified by full discharge test at site acceptance.</td>
 <td style="text-align: center;"></td>
 <td style="text-align: left;"></td>
 </tr>
@@ -621,7 +621,7 @@
 <tr>
 <td style="text-align: left;"><strong>5GC-05</strong></td>
 <td style="text-align: left;"><strong>Hitless Failover</strong></td>
-<td style="text-align: left;">Automatic session continuity and zero data plane loss during DC failover; state replication across UDR/UDM and SMF clusters.</td>
+<td style="text-align: left;">Automatic session continuity (zero subscriber session loss across UDR/UDM and SMF clusters) and automated user-plane traffic restoration &lt;= 30 seconds during datacenter failure/cutover.</td>
 <td style="text-align: center;"></td>
 <td style="text-align: left;"></td>
 </tr>
@@ -884,6 +884,105 @@
 <td style="text-align: left;"><strong>MS-06</strong></td>
 <td style="text-align: left;"><strong>Spare Parts Logistics</strong></td>
 <td style="text-align: left;">Automated SPMS maintaining regional buffer stock; guaranteed Next Business Day (NBD) hardware replacement delivery nationwide.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>SECTION 7: 5G CUSTOMER PREMISES EQUIPMENT (CPE - LOT 7)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Item ID</th>
+<th style="text-align: left;">Sub-System / Feature</th>
+<th style="text-align: left;">Detailed Specification Requirement</th>
+<th style="text-align: center;">Compliance (C / M / NC)</th>
+<th style="text-align: left;">Bidder Proposed Specification &amp; Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>CPE-01</strong></td>
+<td style="text-align: left;"><strong>3GPP Standards &amp; Modes</strong></td>
+<td style="text-align: left;">3GPP Release 16 compliant 5G NR Standalone (SA) and Non-Standalone (NSA) operation.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CPE-02</strong></td>
+<td style="text-align: left;"><strong>Frequency Bands</strong></td>
+<td style="text-align: left;">Native Band n50 (1432 – 1517 MHz, 60 MHz channel bandwidth) plus fallback sub-6 GHz bands (n1, n3, n7, n28, n41, n77, n78).</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CPE-03</strong></td>
+<td style="text-align: left;"><strong>Indoor CPE Antenna &amp; MIMO</strong></td>
+<td style="text-align: left;">High-gain omnidirectional multi-element internal antenna array (&gt;= 4.0–6.0 dBi gain); 4x4 MIMO DL, 2x2 MIMO UL.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CPE-04</strong></td>
+<td style="text-align: left;"><strong>Outdoor CPE Antenna &amp; MIMO</strong></td>
+<td style="text-align: left;">High-gain directional integrated antenna (&gt;= 9.0–11.0 dBi gain across Band n50); 4x4 MIMO DL, 2x2 MIMO UL; adjustable pole/wall mounting bracket.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CPE-05</strong></td>
+<td style="text-align: left;"><strong>Wi-Fi Subsystem</strong></td>
+<td style="text-align: left;">Dual-band Wi-Fi 6 (802.11ax) 2.4 GHz (2x2) and 5 GHz (2x2) concurrent, OFDMA, MU-MIMO, WPA3-Personal encryption.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CPE-06</strong></td>
+<td style="text-align: left;"><strong>Ethernet Interfaces</strong></td>
+<td style="text-align: left;">Indoor CPE: Minimum 2x Gigabit Ethernet (10/100/1000Base-T) RJ-45 LAN ports. Outdoor CPE: 1x Gigabit PoE input port plus companion indoor Wi-Fi gateway/PoE injector.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CPE-07</strong></td>
+<td style="text-align: left;"><strong>Environmental Rating</strong></td>
+<td style="text-align: left;">Outdoor CPE: IP67 dust/water ingress protection, operating temperature -10°C to +55°C, 200 km/h wind survivability. Indoor CPE: IP20, 0°C to +40°C.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CPE-08</strong></td>
+<td style="text-align: left;"><strong>Remote Device Management</strong></td>
+<td style="text-align: left;">Broadband Forum TR-069 and TR-369 (USP) support with complete TR-181 data model, SNMPv2/v3, and secure ACS provisioning.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CPE-09</strong></td>
+<td style="text-align: left;"><strong>Firmware &amp; Security</strong></td>
+<td style="text-align: left;">Secure Boot with cryptographic signature verification, automated FOTA (Firmware-Over-The-Air) batch upgrades, and operator lock capability.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CPE-10</strong></td>
+<td style="text-align: left;"><strong>SIM / eSIM Support</strong></td>
+<td style="text-align: left;">Standard Nano-SIM (4FF) slot with anti-theft locking cover and optional GSMA-compliant eSIM MFF2 footprint.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CPE-11</strong></td>
+<td style="text-align: left;"><strong>Power Supply</strong></td>
+<td style="text-align: left;">Indoor CPE: 230V AC / 12V DC external adapter (Philippine standard Type A/B plug). Outdoor CPE: 802.3at/af Power over Ethernet (PoE) injector included.</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CPE-12</strong></td>
+<td style="text-align: left;"><strong>Certification &amp; Warranty</strong></td>
+<td style="text-align: left;">NTC Type Approval compliance, CE/FCC certification, and minimum 24-month hardware replacement warranty (RMA &lt;= 5 business days).</td>
 <td style="text-align: center;"></td>
 <td style="text-align: left;"></td>
 </tr>

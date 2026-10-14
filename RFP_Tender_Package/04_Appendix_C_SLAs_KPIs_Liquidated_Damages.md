@@ -47,9 +47,9 @@ Radio Availability (%) = [(Total Operating Cell Hours - Total Unplanned Outage C
 | **KPI-RAN-01** | **Radio Network Availability** | Monthly aggregate across all active cells | **>= 99.95%** | **99.70%** | 1.0% of monthly O&M fee per 0.1% shortfall |
 | **KPI-RAN-02** | **5G Session Setup Success (CSSR)**| Initial RRC connection + 5G QoS flow setup | **>= 99.60%** | **99.00%** | 0.5% of monthly O&M fee per 0.2% shortfall |
 | **KPI-RAN-03** | **5G Session Drop Rate (CDDR)** | Abnormal session drops during active data sessions | **<= 0.15%** | **0.50%** | 0.5% of monthly O&M fee per 0.1% excess |
-| **KPI-RAN-04** | **Peak Sector DL Throughput** | Busy hour average across cell cluster | **>= 450 Mbps** | **380 Mbps** | Mandatory RF re-tuning within 5 days |
-| **KPI-RAN-05** | **Cell-Edge DL User Speed** | 95th percentile stationary CPE speed | **>= 50 Mbps** | **25 Mbps** | Mandatory antenna tilt optimization |
-| **KPI-RAN-06** | **Cell-Edge UL User Speed** | 95th percentile stationary CPE upload | **>= 15 Mbps** | **5 Mbps** | Uplink power control re-configuration |
+| **KPI-RAN-04** | **Loaded Cluster Sector DL Throughput** | Busy hour average sector throughput across cluster | **>= 450 Mbps** | **380 Mbps** | Mandatory RF re-tuning within 5 days |
+| **KPI-RAN-05** | **Cell-Edge DL User Speed** | 5th percentile user speed (>= 95% of test points) | **>= 50 Mbps** | **25 Mbps** | Mandatory antenna tilt optimization |
+| **KPI-RAN-06** | **Cell-Edge UL User Speed** | 5th percentile user speed (>= 95% of test points) | **>= 15 Mbps** | **5 Mbps** | Uplink power control re-configuration |
 | **KPI-RAN-07** | **Radio Round-Trip Latency (RTT)**| CPE to local gNodeB/UPF edge | **<= 18 ms** | **30 ms** | Audit packet buffering & backhaul |
 | **KPI-RAN-08** | **Packet Loss Rate (PLR)** | User plane packet discard rate | **<= 0.01%** | **0.10%** | Transport & radio QoS re-profiling |
 

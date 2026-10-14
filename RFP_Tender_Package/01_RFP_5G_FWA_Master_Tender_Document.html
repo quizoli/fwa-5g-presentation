@@ -295,7 +295,7 @@
     <div class="doc-meta-card">
       <div class="doc-code">RFP-TELTECH-FWA-2026-001 / MASTER</div>
       <div><strong>Author:</strong> OLIVER TUNGOL</div>
-      <div><strong>Date:</strong> October 6, 2026</div>
+      <div><strong>Date:</strong> October 14, 2026</div>
     </div>
   </div>
 
@@ -367,7 +367,8 @@
 <h3>2.3 Transmission &amp; Backhaul Topology</h3>
 <p>Transmission connectivity has been audited via the Converge fiber network audit (1,296 confirmed optical nodes and 4,401 fiber segments; subject to verification on the ground):<br />
 * <strong>Terrestrial Fiber Optic Cable (FOC):</strong> 98.3% of Phase 1 sites connect via terrestrial fiber drops (Class A: Node &lt;= 0.5 km; Class B: Node &lt;= 1.0 km; Class C: Line-tap splice closure &lt;= 0.5 km; Class D: Lateral/Microwave &lt;= 3.0 km).<br />
-* <strong>Satellite LEO Backhaul (Starlink Business):</strong> 1.7% of Commercial Phase 1 sites (and up to 34.4%–43.5% in remote universal access/GIDA sites) utilize 4-terminal Starlink Business arrays (delivering aggregated 400–800 Mbps burst with SD-WAN bonding and traffic shaping).</p>
+* <strong>Satellite LEO Backhaul (Starlink Business):</strong> 1.7% of Commercial Phase 1 sites (and up to 34.4%–43.5% in remote universal access/GIDA sites) utilize 4-terminal Starlink Business arrays (delivering aggregated 400–800 Mbps burst with SD-WAN bonding and traffic shaping).<br />
+* <strong>Fiber Baseline Reconciliation Note:</strong> The preliminary raw GIS planning dataset identified 2,405 spatial markers; following ground-truth fiber audit filtering against operational distribution plant, 1,296 confirmed optical nodes and 4,401 fiber segments were verified as immediate interconnect targets (subject to joint site survey verification on the ground).</p>
 <hr />
 <h2>3. SCOPE OF WORK BY TENDER LOT</h2>
 <h3>LOT 1: 5G RAN EQUIPMENT &amp; ACCESS HARDWARE</h3>
@@ -395,7 +396,7 @@
    * Rectifier efficiency: &gt;= 96.0% (80 PLUS Titanium / high-efficiency class).<br />
    * Advanced SMPS controller with SNMPv3, HTTPS, Modbus, dry contacts, and remote cloud telemetry.<br />
 2. <strong>Battery Energy Storage System (BESS):</strong><br />
-   * Lithium Iron Phosphate (LiFePO4 / LFP) battery modules: Minimum <strong>1 x 48V / 150 Ah (or 2 x 100 Ah)</strong> providing &gt;= 4hours backup autonomy at standard 2.5–3.0 kW BTS operational load.<br />
+   * Lithium Iron Phosphate (LiFePO4 / LFP) battery energy storage system (BESS): Guaranteed minimum <strong>4.0 hours continuous usable backup autonomy</strong> under 3.0 kW BTS operational load at 80% usable Depth of Discharge (DoD) and end-of-life derating (minimum <strong>300 Ah / 15.0 kWh nominal @ 48V</strong>, e.g., 3 x 48V 100 Ah modules; Bidder shall submit formal load-autonomy calculation sheet and demonstrate 4.0-hour autonomy during site acceptance).<br />
    * Cycle life: &gt;= 4,000 cycles at 80% Depth of Discharge (DoD) @ 25°C.<br />
    * Built-in intelligent BMS with cell-level balancing, over-charge, over-discharge, short-circuit, and high-temperature thermal runaway cutoffs.<br />
 3. <strong>Standby Generator Sets (Greenfield Class T4 Sites):</strong><br />
@@ -456,7 +457,7 @@
    * Incident management, event correlation, dispatching field maintenance teams, and managing customer trouble ticket escalations.<br />
 2. <strong>Nationwide First-Line Maintenance (FLM) Field Operations:</strong><br />
    * Regional field maintenance hubs across Greater Luzon, Northern Luzon, Southern Luzon, Visayas, and Mindanao.<br />
-   * Mean Time to Respond (MTTR) &lt;= 2hours in urban/suburban and &lt;= 4hours in rural clusters for Critical/Severity-1 incidents.<br />
+   * Mean Time to Restore (MTTR) &lt;= 2hours in urban/suburban and &lt;= 4hours in rural clusters for Critical/Severity-1 incidents (with Initial Incident Acknowledgement &lt;= 15 minutes).<br />
    * Preventive maintenance: Quarterly inspection of RF antenna brackets, coax/optical jumpers, rectifier modules, battery conductance testing, and generator load testing.<br />
 3. <strong>Comprehensive Spare Parts Management (SPMS):</strong><br />
    * Advanced replacement logistics: Central warehouse and regional staging depots maintaining an audited safety float of BBUs, RRUs, rectifiers, lithium batteries, and SFPs.<br />
@@ -526,14 +527,14 @@
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Cell Edge DL User Throughput</strong></td>
-<td style="text-align: left;">95th percentile cell-edge subscriber download rate</td>
+<td style="text-align: left;">5th percentile user speed / 95% coverage threshold (&gt;= 95% of stationary test points)</td>
 <td style="text-align: center;">&gt;= 25 Mbps</td>
 <td style="text-align: center;">&gt;= 50 Mbps</td>
 <td style="text-align: center;">Busy Hour</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Cell Edge UL User Throughput</strong></td>
-<td style="text-align: left;">95th percentile cell-edge subscriber upload rate</td>
+<td style="text-align: left;">5th percentile user speed / 95% coverage threshold (&gt;= 95% of stationary test points)</td>
 <td style="text-align: center;">&gt;= 5 Mbps</td>
 <td style="text-align: center;">&gt;= 15 Mbps</td>
 <td style="text-align: center;">Busy Hour</td>
@@ -640,7 +641,7 @@
 <tr>
 <td style="text-align: left;"><strong>Core Failover Recovery Time (DR)</strong></td>
 <td style="text-align: left;">Automatic cutover from NCR DC to Clark DR DC</td>
-<td style="text-align: center;">&lt;= 30seconds (Zero session loss)</td>
+<td style="text-align: center;">&lt;= 30 seconds (Zero session loss across UDM/SMF; user traffic restored &lt;= 30s)</td>
 </tr>
 </tbody>
 </table>
@@ -692,7 +693,7 @@
 <tr>
 <td style="text-align: left;"><strong>Hardware Replacement Turnaround</strong></td>
 <td style="text-align: left;">Depot dispatch of spare BBU/RRU/Rectifier to site</td>
-<td style="text-align: center;">&lt;= 24 Hours (Nationwide NBD)</td>
+<td style="text-align: center;">Next Business Day (NBD) nationwide (&lt;= 24h for Metro Manila/regional hubs)</td>
 </tr>
 </tbody>
 </table>
@@ -759,57 +760,57 @@
 <tbody>
 <tr>
 <td style="text-align: left;"><strong>Official RFP Tender Issuance</strong></td>
-<td style="text-align: left;">October 6, 2026</td>
+<td style="text-align: left;">October 14, 2026</td>
 <td style="text-align: left;">Operator Tender Committee</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Bidder Registration &amp; NDA Signing</strong></td>
-<td style="text-align: left;">October 16, 2026</td>
+<td style="text-align: left;">October 21, 2026</td>
 <td style="text-align: left;">Prospective Bidders</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Pre-Bid Clarification Meeting (Hybrid)</strong></td>
-<td style="text-align: left;">October 23, 2026</td>
+<td style="text-align: left;">October 28, 2026</td>
 <td style="text-align: left;">Operator &amp; Bidders</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Deadline for Written Inquiries / RFIs</strong></td>
-<td style="text-align: left;">October 30, 2026</td>
+<td style="text-align: left;">November 4, 2026</td>
 <td style="text-align: left;">Prospective Bidders</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Operator Formal Addendum &amp; Clarifications</strong></td>
-<td style="text-align: left;">November 6, 2026</td>
+<td style="text-align: left;">November 11, 2026</td>
 <td style="text-align: left;">Operator Tender Committee</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Tender Submission Deadline (Sealed Bids)</strong></td>
-<td style="text-align: left;">November 27, 2026 (17:00 PHT)</td>
+<td style="text-align: left;">December 2, 2026 (17:00 PHT)</td>
 <td style="text-align: left;">Bidders</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Opening of Technical Envelopes</strong></td>
-<td style="text-align: left;">November 30, 2026</td>
+<td style="text-align: left;">December 4, 2026</td>
 <td style="text-align: left;">Operator Technical Board</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Technical Clarifications &amp; Vendor Presentations</strong></td>
-<td style="text-align: left;">December 1 – 11, 2026</td>
+<td style="text-align: left;">December 7 – 14, 2026</td>
 <td style="text-align: left;">Shortlisted Bidders</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Opening of Commercial &amp; Financing Envelopes</strong></td>
-<td style="text-align: left;">December 15, 2026</td>
+<td style="text-align: left;">December 16, 2026</td>
 <td style="text-align: left;">Operator Commercial Board</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Final Contract Negotiation &amp; Award</strong></td>
-<td style="text-align: left;">January 15, 2027</td>
+<td style="text-align: left;">December 22, 2026</td>
 <td style="text-align: left;">Operator &amp; Winning Bidder(s)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Phase 1 Contract Execution &amp; Kickoff</strong></td>
-<td style="text-align: left;">February 1, 2027</td>
+<td style="text-align: left;">January 15, 2027</td>
 <td style="text-align: left;">Operator &amp; Appointed Contractor</td>
 </tr>
 <tr>
