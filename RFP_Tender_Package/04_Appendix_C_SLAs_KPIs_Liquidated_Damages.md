@@ -91,23 +91,12 @@ Radio Availability (%) = [(Total Operating Cell Hours - Total Unplanned Outage C
 
 Incidents logged by the 24/7 NOC are classified into four severity tiers:
 
-```
-+---------------------------------------------------------------------------------------------------+
-| Severity Level | Definition / Operational Impact                | Response SLA | MTTR SLA (Urban) | MTTR SLA (Rural) |
-+---------------------------------------------------------------------------------------------------+
-| Severity 1     | Complete macro site outage; Core NF failure;   | <= 15 Mins   | <= 2.0 Hours     | <= 4.0 Hours     |
-| (Critical)     | >500 subscribers out of service; major backhaul|              |                  |                  |
-+---------------------------------------------------------------------------------------------------+
-| Severity 2     | Single sector down; degraded throughput;       | <= 30 Mins   | <= 4.0 Hours     | <= 6.0 Hours     |
-| (Major)        | loss of DC battery backup; generator fault      |              |                  |                  |
-+---------------------------------------------------------------------------------------------------+
-| Severity 3     | Non-service affecting hardware fault; loss of  | <= 1 Hour    | <= 12.0 Hours    | <= 24.0 Hours    |
-| (Minor)        | redundancy (single PSU failed, SFP degraded)   |              |                  |                  |
-+---------------------------------------------------------------------------------------------------+
-| Severity 4     | Configuration inquiry, routine audit, planned  | <= 4 Hours   | <= 48.0 Hours    | <= 72.0 Hours    |
-| (Warning/Info) | preventative maintenance scheduling            |              |                  |                  |
-+---------------------------------------------------------------------------------------------------+
-```
+| Severity Level | Definition & Operational Impact | Response SLA | MTTR SLA (Urban) | MTTR SLA (Rural) |
+| :--- | :--- | :---: | :---: | :---: |
+| **Severity 1 (Critical)** | Complete macro site outage; Core NF failure; >500 subscribers affected; major backhaul failure. | <= 15 Mins | <= 2.0 Hours | <= 4.0 Hours |
+| **Severity 2 (Major)** | Single sector down; degraded throughput; loss of DC battery backup; generator fault. | <= 30 Mins | <= 4.0 Hours | <= 6.0 Hours |
+| **Severity 3 (Minor)** | Non-service affecting hardware fault; loss of redundancy (single PSU failed, SFP degraded). | <= 1 Hour | <= 12.0 Hours | <= 24.0 Hours |
+| **Severity 4 (Warning/Info)** | Configuration inquiry, routine audit, planned preventative maintenance scheduling. | <= 4 Hours | <= 48.0 Hours | <= 72.0 Hours |
 
 ### 6.2 Service Credits for MTTR Breaches
 For every hour (or fraction thereof) that a Severity 1 incident exceeds the mandated MTTR threshold, the Operator shall deduct:

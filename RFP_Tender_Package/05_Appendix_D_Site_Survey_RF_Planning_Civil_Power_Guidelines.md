@@ -55,7 +55,7 @@ For every nominal site candidate, the Contractor shall complete and submit a com
 
 | Parameter | Unit | Value (Downlink) | Value (Uplink) | Technical Notes |
 | :--- | :---: | :---: | :---: | :--- |
-| **Operating Frequency** | MHz | 1475.0 (Center) | 1475.0 (Center) | Band n50 TDD |
+| **Operating Frequency** | MHz | 1487.0 (Center) | 1487.0 (Center) | Band n50 TDD (1457.0 – 1517.0 MHz Channel Range) |
 | **Channel Bandwidth** | MHz | 60.0 | 60.0 | 162 Resource Blocks (SCS 30 kHz) |
 | **BTS Maximum Conducted Power** | dBm / W | 55.0 dBm (320 W) | N/A | 8 x 40W RRU configuration |
 | **BTS Power per Resource Block**| dBm | 32.9 dBm | N/A | Uniform power distribution |
