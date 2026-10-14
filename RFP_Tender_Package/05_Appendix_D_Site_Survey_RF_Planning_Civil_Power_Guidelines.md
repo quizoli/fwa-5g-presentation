@@ -45,7 +45,7 @@ For every nominal site candidate, the Contractor shall complete and submit a com
 ### 2.4 Backhaul Transmission Path Survey
 * Audited Converge Fiber Network Match (subject to verification on the ground): Distance to nearest confirmed node candidate (Class A <= 0.5 km, Class B <= 1.0 km) or line-tap closure (Class C <= 0.5 km).
 * Cable Entry Facility: Manhole, handhole, or aerial pole lead-in routing into tower shelter/compound.
-* For Remote Class E/F Sites: Satellite antenna mounting location (unobstructed sky view with 0° to 80° northern elevation arc for Starlink constellation tracking).
+* For Remote Satellite Sited Candidates (Starlink Business): Satellite antenna mounting location (unobstructed sky view with 0° to 80° northern elevation arc for Starlink constellation tracking).
 
 ---
 
@@ -62,19 +62,19 @@ For every nominal site candidate, the Contractor shall complete and submit a com
 | **BTS Antenna Gain** | dBi | 17.5 dBi | 17.5 dBi | 8-port cross-pol macro antenna |
 | **BTS Cable / Jumper Loss** | dB | 1.0 dB | 1.0 dB | Short optical/RF jumper interface |
 | **CPE Maximum Transmit Power** | dBm / W | N/A | 23.0 dBm (200 mW) | Power Class 3 UE (or Class 2 26 dBm) |
-| **CPE Antenna Gain** | dBi | 9.0 dBi | 9.0 dBi | High-gain directional indoor/outdoor |
+| **CPE Antenna Gain** | dBi | 9.0 dBi | 9.0 dBi | Baseline model (8 dBi indoor / 12 dBi outdoor) |
 | **CPE Body / Indoor Penetration Loss** | dB | 8.0 dB | 8.0 dB | Concrete hollow block & glass attenuation |
 | **Foliage / Clutter Margin** | dB | 6.0 dB | 6.0 dB | Typical rural tropical tree canopy |
 | **Shadowing Margin (Log-Normal)**| dB | 7.0 dB | 7.0 dB | 90% edge cell coverage reliability |
 | **Thermal Noise Density** | dBm/Hz | -174.0 | -174.0 | kT @ 290K |
 | **Receiver Noise Figure** | dB | 6.0 dB (CPE) | 3.5 dB (gNodeB) | Active RF front-end |
-| **Target SINR for Min Service** | dB | -1.0 dB | -2.0 dB | QPSK rate 1/3 (Cell Edge 25 Mbps DL) |
+| **Target SINR for Min Service** | dB | -1.0 dB | -2.0 dB | Minimum modulation threshold (QPSK 1/3 cell-edge; +10 dB target for residential 64QAM) |
 | **Maximum Allowable Path Loss (MAPL)**| **dB** | **144.5 dB** | **139.8 dB** | **Uplink is coverage limiting** |
-| **Calculated Reliable Cell Radius**| **km** | **{3.5 km}** | **{3.2 km}** | **Standard suburban/rural clutter** |
+| **Calculated Reliable Cell Radius**| **km** | **3.5 km** | **3.2 km** | **Planning model assumption in suburban/rural clutter** |
 
 ### 3.2 Nominal Sector Azimuth & Tilt Strategy
 * **Sector Count:** 3 sectors per macro site with 120° nominal separation (0°, 120°, 240°). Azimuths must be tailored during TSSR to track actual barangay population concentrations along transport corridors and coastal plains.
-* **Electrical Remote Downtilt (eRET):** Antennas must feature AISG 2.0 remote tilt adjustable between 2° and 10° from the central OSS. Mechanical tilt shall only be applied when required to clear close-in obstructions (>15°).
+* **Electrical Remote Downtilt (eRET):** Antennas must feature AISG 2.0 remote tilt adjustable between 2° and 12° from the central OSS. Mechanical tilt shall only be applied when required to clear close-in obstructions (>15°).
 
 ---
 

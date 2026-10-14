@@ -358,7 +358,7 @@
 <ul>
 <li>Audited Converge Fiber Network Match (subject to verification on the ground): Distance to nearest confirmed node candidate (Class A &lt;= 0.5 km, Class B &lt;= 1.0 km) or line-tap closure (Class C &lt;= 0.5 km).</li>
 <li>Cable Entry Facility: Manhole, handhole, or aerial pole lead-in routing into tower shelter/compound.</li>
-<li>For Remote Class E/F Sites: Satellite antenna mounting location (unobstructed sky view with 0° to 80° northern elevation arc for Starlink constellation tracking).</li>
+<li>For Remote Satellite Sited Candidates (Starlink Business): Satellite antenna mounting location (unobstructed sky view with 0° to 80° northern elevation arc for Starlink constellation tracking).</li>
 </ul>
 <hr />
 <h2>3. RF PROPAGATION &amp; CELL DIMENSIONING GUIDELINES</h2>
@@ -428,7 +428,7 @@
 <td style="text-align: center;">dBi</td>
 <td style="text-align: center;">9.0 dBi</td>
 <td style="text-align: center;">9.0 dBi</td>
-<td style="text-align: left;">High-gain directional indoor/outdoor</td>
+<td style="text-align: left;">Baseline model (8 dBi indoor / 12 dBi outdoor)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>CPE Body / Indoor Penetration Loss</strong></td>
@@ -470,7 +470,7 @@
 <td style="text-align: center;">dB</td>
 <td style="text-align: center;">-1.0 dB</td>
 <td style="text-align: center;">-2.0 dB</td>
-<td style="text-align: left;">QPSK rate 1/3 (Cell Edge 25 Mbps DL)</td>
+<td style="text-align: left;">Minimum modulation threshold (QPSK 1/3 cell-edge; +10 dB target for residential 64QAM)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Maximum Allowable Path Loss (MAPL)</strong></td>
@@ -482,16 +482,16 @@
 <tr>
 <td style="text-align: left;"><strong>Calculated Reliable Cell Radius</strong></td>
 <td style="text-align: center;"><strong>km</strong></td>
-<td style="text-align: center;"><strong>{3.5 km}</strong></td>
-<td style="text-align: center;"><strong>{3.2 km}</strong></td>
-<td style="text-align: left;"><strong>Standard suburban/rural clutter</strong></td>
+<td style="text-align: center;"><strong>3.5 km</strong></td>
+<td style="text-align: center;"><strong>3.2 km</strong></td>
+<td style="text-align: left;"><strong>Planning model assumption in suburban/rural clutter</strong></td>
 </tr>
 </tbody>
 </table>
 <h3>3.2 Nominal Sector Azimuth &amp; Tilt Strategy</h3>
 <ul>
 <li><strong>Sector Count:</strong> 3 sectors per macro site with 120° nominal separation (0°, 120°, 240°). Azimuths must be tailored during TSSR to track actual barangay population concentrations along transport corridors and coastal plains.</li>
-<li><strong>Electrical Remote Downtilt (eRET):</strong> Antennas must feature AISG 2.0 remote tilt adjustable between 2° and 10° from the central OSS. Mechanical tilt shall only be applied when required to clear close-in obstructions (&gt;15°).</li>
+<li><strong>Electrical Remote Downtilt (eRET):</strong> Antennas must feature AISG 2.0 remote tilt adjustable between 2° and 12° from the central OSS. Mechanical tilt shall only be applied when required to clear close-in obstructions (&gt;15°).</li>
 </ul>
 <hr />
 <h2>4. CIVIL WORKS &amp; STRUCTURAL ENGINEERING (CLASS T4 GREENFIELD SITES)</h2>

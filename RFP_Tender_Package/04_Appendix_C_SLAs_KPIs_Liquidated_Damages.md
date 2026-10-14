@@ -64,8 +64,8 @@ Radio Availability (%) = [(Total Operating Cell Hours - Total Unplanned Outage C
 | **KPI-5GC-01** | **Control Plane NF Availability (AMF/SMF/UDM)** | **>= 99.999%** ("Five Nines") | Monthly | $10,000 USD per hour outage exceeding threshold |
 | **KPI-5GC-02** | **User Plane (UPF) Packet Availability** | **>= 99.999%** | Monthly | $10,000 USD per hour outage exceeding threshold |
 | **KPI-5GC-03** | **PDU Session Establishment Success Rate** | **>= 99.80%** | 24-hr Rolling | Root-cause analysis within 12 hours |
-| **KPI-5GC-04** | **CG-NAT Port Allocation Success Rate** | **>= 99.99%** | Monthly | $5,000 USD penalty for subscriber drop |
-| **KPI-5GC-05** | **Active-Active Datacenter Failover Time** | **<= 30 Seconds** | Semi-annual Drill | Penalty of 5% annual core AMC if drill fails |
+| **KPI-5GC-04** | **CG-NAT Port Allocation Success Rate** | **>= 99.99%** | Monthly | $5,000 USD penalty per incident causing unallocated subscriber sessions exceeding 10 minutes |
+| **KPI-5GC-05** | **Session-Preserving Active-Active Failover Time** | **<= 30 Seconds** (Zero session state loss; user traffic restored <= 30s) | Semi-annual Drill | Penalty of 5% annual core AMC if drill fails |
 | **KPI-5GC-06** | **UPF Internal Packet Latency** | **<= 1.0 ms** | Continuous | Hardware NIC DPDK tuning |
 
 ---

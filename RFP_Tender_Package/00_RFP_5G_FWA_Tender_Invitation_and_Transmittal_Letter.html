@@ -6,7 +6,7 @@
 <style>
   @page {
     size: A4 portrait;
-    margin: 18mm 16mm 18mm 16mm;
+    margin: 16mm 14mm 16mm 14mm;
     @bottom-center {
       content: "Page " counter(page) " of " counter(pages);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
@@ -14,251 +14,63 @@
       color: #94a3b8;
     }
   }
-
-  *, *:before, *:after { box-sizing: border-box; }
-
   body {
-    margin: 0;
-    padding: 0;
+    margin: 0; padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    color: #1e293b;
-    background-color: #ffffff;
-    font-size: 9.5pt;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
+    color: #1e293b; background-color: #ffffff;
+    font-size: 9pt; line-height: 1.5;
   }
-
-  .letter-container {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 15px 15px;
-  }
-
-  /* Header banner */
+  .letter-container { max-width: 100%; margin: 0 auto; padding: 5px; }
   .doc-header-banner {
-    border-bottom: 2px solid #0f3460;
-    padding-bottom: 12px;
-    margin-bottom: 18px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    border-bottom: 2px solid #0f3460; padding-bottom: 10px; margin-bottom: 16px;
+    display: flex; justify-content: space-between; align-items: flex-end;
   }
   .corp-badge {
-    display: inline-block;
-    background: #0f3460;
-    color: #ffffff;
-    font-size: 7.5pt;
-    font-weight: 700;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    padding: 2px 7px;
-    border-radius: 2px;
-    margin-bottom: 4px;
+    display: inline-block; background: #0f3460; color: #ffffff;
+    font-size: 7pt; font-weight: 700; padding: 2px 7px; border-radius: 2px; margin-bottom: 4px;
   }
-  .corp-name {
-    font-size: 13.5pt;
-    font-weight: 800;
-    color: #0f172a;
-    line-height: 1.2;
-    margin: 0;
-  }
-  .corp-sub {
-    font-size: 8pt;
-    color: #64748b;
-    font-weight: 500;
-    margin-top: 2px;
-  }
-  .doc-meta-card {
-    text-align: right;
-    font-size: 8pt;
-    color: #334155;
-    line-height: 1.45;
-  }
-  .doc-meta-card .doc-code {
-    font-weight: 700;
-    color: #0f3460;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 8pt;
-  }
-
-  /* Title Box */
-  .doc-title-block {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-left: 4px solid #0f3460;
-    border-radius: 4px;
-    padding: 12px 16px;
-    margin-bottom: 18px;
-  }
-  .doc-main-title {
-    font-size: 13pt;
-    font-weight: 800;
-    color: #0f172a;
-    line-height: 1.3;
-    margin: 0 0 4px 0;
-  }
-  .doc-sub-title {
-    font-size: 9pt;
-    font-weight: 600;
-    color: #334155;
-    margin: 0 0 10px 0;
-  }
-  .doc-metadata-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    padding-top: 8px;
-    border-top: 1px solid #e2e8f0;
-    font-size: 8pt;
-  }
-  .meta-item { display: flex; flex-direction: column; }
-  .meta-label {
-    font-size: 6.5pt;
-    text-transform: uppercase;
-    font-weight: 700;
-    color: #64748b;
-    letter-spacing: 0.5px;
-  }
-  .meta-value { font-weight: 600; color: #0f172a; }
-
+  .corp-name { font-size: 13pt; font-weight: 800; color: #0f172a; margin: 0; }
+  .corp-sub { font-size: 8pt; color: #64748b; margin-top: 2px; }
+  .doc-meta-card { text-align: right; font-size: 8pt; color: #334155; line-height: 1.4; }
   h1 { display: none; }
-  h2 {
-    color: #0f3460;
-    font-size: 11pt;
-    font-weight: 700;
-    margin-top: 18px;
-    margin-bottom: 8px;
-    padding-bottom: 3px;
-    border-bottom: 1px solid #cbd5e1;
-    page-break-after: avoid;
-  }
-  h3 {
-    color: #1e293b;
-    font-size: 9.5pt;
-    font-weight: 700;
-    margin-top: 14px;
-    margin-bottom: 6px;
-    page-break-after: avoid;
-  }
-
-  p {
-    margin-top: 0;
-    margin-bottom: 9px;
-    text-align: justify;
-  }
-  ul, ol {
-    margin-top: 0;
-    margin-bottom: 10px;
-    padding-left: 18px;
-  }
-  li { margin-bottom: 4px; }
+  h2 { color: #0f3460; font-size: 11pt; font-weight: 700; margin-top: 14px; margin-bottom: 6px; border-bottom: 1px solid #cbd5e1; padding-bottom: 3px; }
+  h3 { color: #1e293b; font-size: 9.5pt; font-weight: 700; margin-top: 12px; margin-bottom: 5px; }
+  p { margin-top: 0; margin-bottom: 6px; text-align: justify; }
+  ul, ol { margin-top: 0; margin-bottom: 8px; padding-left: 18px; }
+  li { margin-bottom: 3px; }
   strong { color: #0f172a; font-weight: 600; }
-
-  /* Tables */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 10px 0 14px 0;
-    font-size: 7.5pt;
-    line-height: 1.35;
-    border: 1px solid #cbd5e1;
-  }
-  th {
-    background-color: #f1f5f9;
-    color: #0f172a;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 7pt;
-    padding: 6px 8px;
-    border: 1px solid #cbd5e1;
-    text-align: left;
-  }
-  td {
-    padding: 5px 8px;
-    border: 1px solid #e2e8f0;
-    background-color: #ffffff;
-    color: #1e293b;
-  }
+  table { width: 100%; border-collapse: collapse; margin-top: 8px; margin-bottom: 12px; font-size: 7.5pt; border: 1px solid #cbd5e1; }
+  th { background-color: #f1f5f9; color: #0f172a; font-weight: 700; padding: 5px 7px; border: 1px solid #cbd5e1; text-align: left; }
+  td { padding: 4px 7px; border: 1px solid #e2e8f0; vertical-align: top; }
   tbody tr:nth-child(even) td { background-color: #f8fafc; }
-
-  code {
-    background-color: #f1f5f9;
-    color: #0f172a;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 7.5pt;
-    padding: 1px 4px;
-    border-radius: 2px;
-    border: 1px solid #e2e8f0;
-  }
-
-  hr {
-    border: none;
-    border-top: 1px solid #e2e8f0;
-    margin: 16px 0;
-  }
-
-  .sign-off-block {
-    margin-top: 20px;
-    page-break-inside: avoid;
-  }
-
-  .doc-footer-note {
-    margin-top: 22px;
-    padding-top: 10px;
-    border-top: 1px solid #e2e8f0;
-    font-size: 7pt;
-    color: #64748b;
-    text-align: center;
-  }
-
-  @media print {
-    body { padding: 0; }
-  }
+  code { background-color: #f1f5f9; color: #0f172a; font-size: 7.5pt; padding: 1px 3px; border-radius: 2px; }
+  hr { border: none; border-top: 1px solid #e2e8f0; margin: 12px 0; }
+  .sign-off-block { margin-top: 16px; padding: 12px; background: #f8fafc; border-left: 3px solid #0f3460; font-size: 8.5pt; page-break-inside: avoid; }
 </style>
 </head>
 <body>
 <div class="letter-container">
-
-  <!-- Header Banner -->
   <div class="doc-header-banner">
     <div>
-      <div class="corp-badge">Commercial Tender Invitation</div>
+      <div class="corp-badge">Official Invitation to Bid</div>
       <div class="corp-name">Telecommunications Technology Solutions Inc. (TelTech)</div>
-      <div class="corp-sub">Procurement & Network Engineering Division</div>
+      <div class="corp-sub">Corporate Tender Secretariat · Procurement & Commercial Engineering Division</div>
     </div>
     <div class="doc-meta-card">
-      <div class="doc-code">RFP-TELTECH-FWA-2026-001 / TRANSMITTAL</div>
+      <div><strong>Ref:</strong> RFP-TELTECH-FWA-2026-001</div>
       <div><strong>Author:</strong> OLIVER TUNGOL</div>
       <div><strong>Date:</strong> October 14, 2026</div>
     </div>
   </div>
 
-  <!-- Document Title & Metadata Block -->
-  <div class="doc-title-block">
-    <div class="doc-main-title">Invitation to Bid: 5G Fixed Wireless Access (FWA) Turnkey Tender</div>
-    <div class="doc-sub-title">Commercial Deployment Program across 5,000 Sites (Band n50, 60 MHz TDD)</div>
-    <div class="doc-metadata-grid">
-      <div class="meta-item">
-        <span class="meta-label">Document Number</span>
-        <span class="meta-value">RFP-TELTECH-FWA-2026-001-LTR</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Author</span>
-        <span class="meta-value">OLIVER TUNGOL</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Target Spectrum</span>
-        <span class="meta-value">Band n50 (1.5 GHz, 60 MHz TDD)</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Deployment Type</span>
-        <span class="meta-value">Commercial Turnkey Rollout</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Content -->
-  <p><strong>Dear Prospective Partner,</strong></p>
+  <h1>INVITATION TO BID &amp; TENDER TRANSMITTAL LETTER</h1>
+<p><strong>Tender Reference:</strong> RFP-TELTECH-FWA-2026-001<br />
+<strong>Project Identifier:</strong> Nationwide 5G Fixed Wireless Access (FWA) Infrastructure Program (Band n50, 60 MHz TDD)<br />
+<strong>Issuing Authority:</strong> Telecommunications Technology Solutions Incorporated (TelTech)<br />
+<strong>Author:</strong> OLIVER TUNGOL<br />
+<strong>Date of Issuance:</strong> October 14, 2026  </p>
+<hr />
+<p><strong>Dear Prospective Partner,</strong></p>
 <p><strong>Subject: Request for Proposal (RFP) — Turnkey Supply, Commercial Deployment, Financing, and Managed Operations of a Nationwide 5G Fixed Wireless Access (FWA) Network</strong></p>
 <p>Telecommunications Technology Solutions Incorporated (TelTech) (the <strong>"Operator"</strong> or <strong>"Company"</strong>) is pleased to officially invite your organization to submit binding technical and commercial proposals for the turnkey commercial rollout, infrastructure supply, financing, and end-to-end managed operations of our nationwide <strong>5G Fixed Wireless Access (FWA) Network</strong>.</p>
 <p>This initiative targets the commercial deployment of <strong>Band n50 (1432 – 1517 MHz, 1.5 GHz L-Band TDD)</strong> with a <strong>60 MHz contiguous carrier block</strong>, engineered to provide high-speed, reliable, carrier-grade broadband across prioritized urban, suburban, and rural population centers in the Philippines.</p>
@@ -271,10 +83,10 @@
   * <strong>LOT 2:</strong> Power Systems &amp; Passive Site Infrastructure (Co-location Interconnect &amp; Hybrid DC Power)<br />
   * <strong>LOT 3:</strong> Cloud-Native 5G Core Network (5GC SA) &amp; Datacenter Infrastructure<br />
   * <strong>LOT 4:</strong> Converged Digital OSS/BSS, Field Force Automation &amp; Real-Time Charging Engine<br />
-  * <strong>LOT 5:</strong> RF Planning, Greenfield Site Survey, Civil Works &amp; Cluster Optimization Services<br />
+  * <strong>LOT 5:</strong> Site Acquisition, Detailed Site Survey (TSSR), RF Design &amp; Civil Works<br />
   * <strong>LOT 6:</strong> Nationwide Managed Services, 24/7 Tier-2/Tier-3 NOC &amp; Field Network Operations (MS)<br />
-  * <strong>LOT 7:</strong> 5G High-Gain Customer Premises Equipment (CPE) Terminals (Wi-Fi 6 AX1800)<br />
-  * <strong>FORM D:</strong> Vendor Financing Facility (covering &gt;= 80% of Capex with milestone-based repayment terms)</p>
+  * <strong>LOT 7:</strong> 5G High-Gain Customer Premises Equipment (CPE) Terminals (350,000 Indoor + 15,000 Outdoor Units)<br />
+  * <strong>FORM D:</strong> Mandatory Vendor Financing Facility (covering &gt;= 80% of Capex with milestone-based repayment terms)</p>
 <h3>2. Seeking Creative &amp; High-Impact Proposals</h3>
 <p>TelTech is actively seeking <strong>creative, forward-looking proposals—both technical and commercial</strong>—that deliver competitive market advantages:<br />
 * <strong>Spectral Efficiency &amp; Performance:</strong> Advanced Massive MIMO / beamforming algorithms tailored for Band n50 propagation to achieve maximum cell capacity and superior indoor penetration.<br />
@@ -282,13 +94,15 @@
 * <strong>Rapid Turnkey Rollout Velocity:</strong> Streamlined site acquisition, rapid co-location installation on operational TowerCo structures, and aggressive scheduling to achieve 1,000 on-air sites within 12 months.<br />
 * <strong>Long-Term TCO Optimization:</strong> Energy-efficient power and radio equipment, automated self-healing network operations, and highly competitive multi-year support agreements.</p>
 <h3>3. Tender Documentation Package</h3>
-<p>The complete bidding package is attached and structured into the following volumes:<br />
-1. <strong>Volume I:</strong> Master RFP Specification Document (<code>01_RFP_5G_FWA_Master_Tender_Document.pdf</code>)<br />
-2. <strong>Volume II (Appendix A):</strong> Technical Specifications &amp; Compliance Matrix (<code>02_Appendix_A_Technical_Specifications_Compliance_Matrix.pdf</code>)<br />
-3. <strong>Volume III (Appendix B):</strong> Commercial Proposal &amp; BoQ Templates (<code>03_Appendix_B_Commercial_Proposal_BoQ_Templates.pdf</code>)<br />
-4. <strong>Volume IV (Appendix C):</strong> Service Level Agreements, Network KPIs &amp; Liquidated Damages (<code>04_Appendix_C_SLAs_KPIs_Liquidated_Damages.pdf</code>)<br />
-5. <strong>Volume V (Appendix D):</strong> Site Survey, RF Planning &amp; Civil/Power Guidelines (<code>05_Appendix_D_Site_Survey_RF_Planning_Civil_Power_Guidelines.pdf</code>)<br />
-6. <strong>Volume VI (Price Book):</strong> Commercial Price Book &amp; Blank BoQ Template (<code>06_RFP_Commercial_Price_Book_and_BoQ_Template.xlsx</code>)</p>
+<p>The official bidding package consists of the following operative documents:<br />
+1. <strong>Document 00:</strong> Invitation to Bid &amp; Tender Transmittal Letter (<code>00_RFP_5G_FWA_Tender_Invitation_and_Transmittal_Letter.pdf</code>)<br />
+2. <strong>Document 01:</strong> Master RFP Specification Document (<code>01_RFP_5G_FWA_Master_Tender_Document.pdf</code>)<br />
+3. <strong>Document 02 (Appendix A):</strong> Technical Specifications &amp; Compliance Matrix (<code>02_Appendix_A_Technical_Specifications_Compliance_Matrix.pdf</code>)<br />
+4. <strong>Document 03 (Appendix B):</strong> Commercial Proposal &amp; BoQ Templates (<code>03_Appendix_B_Commercial_Proposal_BoQ_Templates.pdf</code>)<br />
+5. <strong>Document 04 (Appendix C):</strong> Service Level Agreements, Network KPIs &amp; Liquidated Damages (<code>04_Appendix_C_SLAs_KPIs_Liquidated_Damages.pdf</code>)<br />
+6. <strong>Document 05 (Appendix D):</strong> Site Survey, RF Planning &amp; Civil/Power Guidelines (<code>05_Appendix_D_Site_Survey_RF_Planning_Civil_Power_Guidelines.pdf</code>)<br />
+7. <strong>Document 06 (Price Book):</strong> Official 10-Tab Commercial Price Book &amp; Blank BoQ Template (<code>06_RFP_Commercial_Price_Book_and_BoQ_Template.xlsx</code>)<br />
+8. <strong>Site Schedule:</strong> Candidate Siting &amp; Rollout Plan for 5,000 Barangays (<code>FWA_Barangay_Rollout_Plan_2024_1000s_tender.xlsx</code>)</p>
 <h3>4. Bidding Schedule</h3>
 <ul>
 <li><strong>Official RFP Issuance:</strong> October 14, 2026</li>
@@ -296,15 +110,21 @@
 <li><strong>Deadline for Written Clarifications:</strong> November 4, 2026</li>
 <li><strong>Operator Consolidated Response / Addendum:</strong> November 11, 2026</li>
 <li><strong>Final Bid Submission Deadline:</strong> <strong>December 2, 2026 (17:00 PHT)</strong></li>
-<li><strong>Technical &amp; Commercial Evaluation:</strong> December 4 – 14, 2026</li>
-<li><strong>Notice of Award (NOA) &amp; Contract Sign-Off:</strong> December 22, 2026</li>
+<li><strong>Technical Evaluation &amp; Presentations:</strong> December 4 – 15, 2026</li>
+<li><strong>Opening of Commercial &amp; Financing Envelopes:</strong> December 16, 2026</li>
+<li><strong>Notice of Award (NOA):</strong> December 22, 2026</li>
+<li><strong>Contract Execution &amp; Notice to Proceed (NTP):</strong> January 15, 2027</li>
+<li><strong>Phase 1 Commercial Launch (1,000 Sites):</strong> Q4 2027 (Within 12 Months from NTP)</li>
 </ul>
 <h3>5. Inquiries &amp; Submission Channel</h3>
 <p>All formal communications, technical queries, and tender submissions should be directed to:</p>
 <ul>
-<li><strong>Email:</strong> <code>oliver.tungol@comclark.com.ph</code></li>
+<li><strong>Official Tender Email:</strong> <code>oliver.tungol@comclark.com.ph</code></li>
 <li><strong>Attention:</strong> Technical Evaluation Board / <strong>OLIVER TUNGOL</strong> (Author)</li>
-<li><strong>Subject Line:</strong> <code>[RFP-TELTECH-FWA-2026-001] FWA Tender Query - &lt;Bidder Name&gt;</code></li>
+<li><strong>Subject Line:</strong> <code>[RFP-TELTECH-FWA-2026-001] FWA Tender Submission - &lt;Bidder Name&gt;</code></li>
+<li><strong>Physical Receiving Address (Hard Copies / USB):</strong></li>
+<li><em>Tender Committee, Telecommunications Technology Solutions Incorporated (TelTech)</em><br />
+<em>Reliance IT Center, #99 E. Rodriguez Jr. Avenue, Brgy. Ugong, Pasig City, Metro Manila 1604, Philippines.</em></li>
 </ul>
 <p>We look forward to reviewing your innovative proposal and exploring a long-term commercial partnership.</p>
 <div class="sign-off-block">
@@ -315,10 +135,6 @@
   Reliance IT Center, #99 E. Rodriguez Jr. Avenue, Brgy. Ugong, Pasig City, Philippines<br>
   Email: <code>oliver.tungol@comclark.com.ph</code></p>
 </div>
-
-  <div class="doc-footer-note">
-    Telecommunications Technology Solutions Incorporated (TelTech) · Reliance IT Center, #99 E. Rodriguez Jr. Ave., Pasig City · Author: OLIVER TUNGOL
-  </div>
 
 </div>
 </body>

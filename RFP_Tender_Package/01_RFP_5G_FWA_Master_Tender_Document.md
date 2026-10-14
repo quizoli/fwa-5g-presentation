@@ -98,7 +98,9 @@ The Bidder shall provide unified site power solutions engineered for high availa
    * Rectifier efficiency: >= 96.0% (80 PLUS Titanium / high-efficiency class).
    * Advanced SMPS controller with SNMPv3, HTTPS, Modbus, dry contacts, and remote cloud telemetry.
 2. **Battery Energy Storage System (BESS):**
-   * Lithium Iron Phosphate (LiFePO4 / LFP) battery energy storage system (BESS): Guaranteed minimum **4.0 hours continuous usable backup autonomy** under 3.0 kW BTS operational load at 80% usable Depth of Discharge (DoD) and end-of-life derating (minimum **300 Ah / 15.0 kWh nominal @ 48V**, e.g., 3 x 48V 100 Ah modules; Bidder shall submit formal load-autonomy calculation sheet and demonstrate 4.0-hour autonomy during site acceptance).
+   * Lithium Iron Phosphate (LiFePO4 / LFP) battery energy storage system: Sized to deliver at least **12.0 kWh of usable energy** to the specified 3.0 kW continuous DC site load over **4.0 continuous hours** without AC utility power.
+   * Installed capacity dimensioning must account for maximum 80% usable Depth of Discharge (DoD), conversion/distribution losses, and 80% end-of-life State of Health (SoH) retained capacity (minimum **>= 19.0 to 20.0 kWh nominal installed bank capacity**, e.g., 4 x 48V 100 Ah modules or equivalent).
+   * Bidder shall submit the engineering load calculation, manufacturer discharge curves, and acceptance-test procedure, and demonstrate 4.0-hour autonomy during site acceptance (SAT).
    * Cycle life: >= 4,000 cycles at 80% Depth of Discharge (DoD) @ 25°C.
    * Built-in intelligent BMS with cell-level balancing, over-charge, over-discharge, short-circuit, and high-temperature thermal runaway cutoffs.
 3. **Standby Generator Sets (Greenfield Class T4 Sites):**
@@ -171,17 +173,20 @@ The Bidder shall provide fully managed, SLA-governed network operations, field m
 
 ### LOT 7: 5G HIGH-GAIN CUSTOMER PREMISES EQUIPMENT (CPE)
 The Bidder shall supply outdoor and high-gain indoor 5G FWA CPE devices:
-1. **RF & Modem Specifications:**
-   * Chipset: 3GPP Release 16 compliant 5G NR sub-3 GHz processor.
-   * Frequency Bands: Native Band n50 support (1432 – 1517 MHz, 60 MHz channel bandwidth) plus fallback sub-6 GHz bands (n1, n3, n7, n28, n41, n77, n78).
-   * Antenna: Internal high-gain directional/omnidirectional antenna array (>= 8to 10 dBi antenna gain in Band n50); optional external TS-9/SMA antenna ports.
-   * MIMO: 4R MIMO receiver architecture in Band n50 downlink.
-2. **LAN & Local Wi-Fi Specifications:**
-   * Wi-Fi 6 (802.11ax), dual-band 2.4 GHz + 5.0 GHz, 2 x 2 MU-MIMO, aggregate speed >= 1800 Mbps (AX1800).
+1. **Indoor 5G High-Gain FWA Router (CPE-01 — 350,000 Units):**
+   * 3GPP Release 16/17 compliant 5G NR sub-6 GHz processor.
+   * Frequency Bands: Native Band n50 (1432 – 1517 MHz, 60 MHz channel bandwidth) plus fallback sub-6 GHz bands (n1, n3, n7, n28, n41, n77, n78).
+   * Antenna: High-gain internal omnidirectional multi-element antenna array (minimum >= 8.0 dBi gain across Band n50); 4x4 MIMO DL, 2x2 MIMO UL.
+   * LAN & Local Wi-Fi: Dual-band concurrent Wi-Fi 6 (802.11ax) AX1800/AX3000, 2.4 GHz (2x2) + 5.0 GHz (2x2) concurrent, OFDMA, MU-MIMO, WPA3-Personal.
    * Ethernet: Minimum 1 x 2.5GE + 2 x 1GE RJ-45 LAN ports.
-   * Voice: 1 x FXS RJ-11 VoIP port (optional).
-3. **Device Management & TR-069 / USP (TR-369):**
-   * Full remote provisioning via TR-069 / TR-181 or TR-369 USP; remote firmware OTA (FOTA) upgrades; SIM-lock and network-lock enforcement tied to Operator PLMN (515-XX).
+   * Remote Management: TR-069 and TR-369 (USP) support with complete TR-181 data model, secure FOTA firmware updates, and Operator PLMN lock (515-XX).
+2. **Outdoor 5G High-Gain FWA Terminal Package (CPE-02 — 15,000 Units):**
+   * High-gain directional integrated antenna array (minimum >= 12.0 dBi gain across Band n50); 4x4 MIMO DL, 2x2 MIMO UL.
+   * Ethernet: 1 x 2.5GE Power over Ethernet (PoE) input port.
+   * Enclosure & Durability: IP67 dust and water ingress protection, operating temperature -10°C to +55°C, 200 km/h wind survivability, pole/wall mounting bracket.
+   * Packaged Companion Bundle: Each outdoor terminal kit includes an indoor Wi-Fi 6 Router/Gateway and Gigabit 802.3at PoE power injector.
+3. **Staging, Pre-Configuration & SIM Locking (CPE-SVC):**
+   * Staging, APN configuration, custom operator firmware flashing, PLMN locking, and retail customer kitting covering all 365,000 Phase 1 units.
 
 ---
 
@@ -231,7 +236,7 @@ The Bidder must guarantee compliance with the following international telecom be
 | **First-Time Right (FTR) Installs** | Installations operating without trouble call within 14 days | >= 96.0% |
 | **Customer Churn CPE Recovery Rate** | Successful physical recovery of CPE on churned accounts | >= 70.0% |
 | **Severity 1 Incident MTTR (Critical Outage)** | Time to restore full service on macro BTS outage | <= 2 Hours (Urban) / <= 4 Hours (Rural) |
-| **Severity 2 Incident MTTR (Major Degraded)** | Time to restore single sector failure or degraded backhaul | <= 6 Hours |
+| **Severity 2 Incident MTTR (Major Degraded)** | Time to restore single sector failure or degraded backhaul | <= 4 Hours (Urban) / <= 6 Hours (Rural) |
 | **Hardware Replacement Turnaround** | Depot dispatch of spare BBU/RRU/Rectifier to site | Next Business Day (NBD) nationwide (<= 24h for Metro Manila/regional hubs) |
 
 ---
@@ -246,9 +251,9 @@ Bidders must submit their proposals divided strictly into three (3) separate vol
 3. **Form C — Total Cost of Ownership (TCO) Breakdown (10-Year Horizon):** Itemized Day-1 CAPEX, expansion CAPEX, and 10-year OPEX schedules.
 4. **Form D — Vendor Financing Proposal (Mandatory Requirement):**
    * The Bidder **must** provide a detailed vendor financing facility covering at least **80% of Capex** (BTS hardware, core, and turnkey rollout).
-   * Tenor: Minimum 4-year to 5-year repayment facility.
-   * Interest Rate: Fixed commercial rate benchmarked to SOFR + spread.
-   * Grace Period: Minimum 12-month grace period on principal repayment during Phase 1 deployment.
+   * Tenor: Minimum 4 Years total facility duration (5 Years Preferred).
+   * Interest Rate: Fixed commercial rate (preferred <= 6.50% p.a.) or competitive benchmark to SOFR + spread.
+   * Grace Period: Minimum 12-month grace period on principal repayment during Phase 1 deployment (18 Months Preferred).
 
 ### Volume II: Technical Architecture & Compliance Matrix (Technical Envelope)
 1. **Section A — RAN Technical Design:** 3GPP R16/17 compliance, Band n50 8T8R AAU/RRU datasheets, BBU subrack capacity, antenna radiation patterns, and link budget calculations.
@@ -316,10 +321,12 @@ All formal communications, requests for interpretation, and tender queries must 
 * **Attention:** Technical Evaluation Board / OLIVER TUNGOL (Author)
 * **Subject Line:** `[RFP-TELTECH-FWA-2026-001] Technical Clarification Request - <Bidder Name>`
 
-### 8.2 Submission Format
-* **Electronic Submission:** One (1) encrypted USB storage device containing PDF and editable Excel files of all volumes, plus cloud upload to the secure Operator Tender Portal.
-* **Physical Submission:** Two (2) complete hard-copy sets (One Original, One Duplicate) of Volume I, Volume II, and Volume III, sealed in wax-stamped envelopes delivered to:
-  * *Tender Committee, Telecommunications Technology Solutions Incorporated (TelTech) Corporate Headquarters, Metro Manila, Philippines.*
+### 8.2 Submission Format & Channels
+* **Electronic Submission (Primary):** Bidders must submit password-protected PDF and editable Excel files of all response volumes via secure email transmission to `oliver.tungol@comclark.com.ph` and/or upload to the secure TelTech Tender Cloud Portal (access credentials issued upon formal registration and NDA execution). Passwords for commercial envelopes must be withheld until the formal commercial opening date.
+* **Physical & USB Submission (Backup):** Two (2) complete hard-copy sets (One Original, One Duplicate) plus one (1) encrypted USB flash drive containing all submitted files, sealed in tamper-evident envelopes delivered to:
+  * *Tender Committee, Telecommunications Technology Solutions Incorporated (TelTech)*  
+    *Reliance IT Center, #99 E. Rodriguez Jr. Avenue, Brgy. Ugong, Pasig City, Metro Manila 1604, Philippines.*  
+    *Attention: OLIVER TUNGOL, Head of Technical Evaluation Board.*
 
 ---
 *(End of Request for Proposal Specification — Tender Appendices Follow)*

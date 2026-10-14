@@ -46,7 +46,7 @@
 | Item Ref | System Description | Technical Sizing | Application | Unit Price (USD) [Bidder Quote] | Unit Price (PHP @ 55 FX) |
 | :--- | :--- | :--- | :--- | :---: | :---: |
 | **PWR-EQ-01** | **6.0 kW Modular DC Rectifier Plant** | 19" 3U subrack, 3 x 3.0 kW modules (N+1), SMPS controller | Co-loc / Greenfield | `[Bidder Quote]` | `[Formula = USD * 55]` |
-| **PWR-EQ-02** | **48V LiFePO4 Battery Bank** | High-cycle LFP with smart BMS (>= 4.0h backup @ 3.0 kW load, min 300 Ah / 15 kWh nominal) | Co-loc / Greenfield | `[Bidder Quote]` | `[Formula = USD * 55]` |
+| **PWR-EQ-02** | **48V LiFePO4 Battery Bank** | High-cycle LFP with smart BMS, sized for >= 12.0 kWh usable energy over 4.0h @ 3.0 kW load, <= 80% DoD, 80% SoH (min >= 19.0 to 20.0 kWh nominal installed bank capacity) | Co-loc / Greenfield | `[Bidder Quote]` | `[Formula = USD * 55]` |
 | **PWR-EQ-03** | **TowerCo DC Tap-Off & Metering Kit**| DC tap enclosure, revenue Class 1.0 kWh meter, SPD Type 2 | Leased TowerCo | `[Bidder Quote]` | `[Formula = USD * 55]` |
 | **PWR-EQ-04** | **15 kVA Diesel Generator Set** | Soundproof canopy, 500L–1000L tank, ATS, auto-start | Greenfield (Class T4) | `[Bidder Quote]` | `[Formula = USD * 55]` |
 | **CIV-EQ-01** | **30m Monopole Tower & Foundation** | Galvanized steel monopole, pile/pad foundation, compound fence | Greenfield (Class T4) | `[Bidder Quote]` | `[Formula = USD * 55]` |
@@ -127,9 +127,10 @@
 
 | Item Ref | Device Description | Minimum Technical Specifications | Target Qty (Phase 1) | Unit Price (USD) [Bidder to Quote] | Total Phase 1 Cost (USD) |
 | :--- | :--- | :--- | :---: | :---: | :---: |
-| **CPE-01** | **Indoor 5G High-Gain FWA Router** | Band n50 native, 8-10 dBi internal antenna, Wi-Fi 6 AX1800, 2.5GE port, TR-069 | 350,000 units | `[Bidder Quote]` | `[Formula = Qty * Rate]` |
-| **CPE-02** | **Outdoor 5G High-Gain FWA Unit** | Band n50, IP67 enclosure, 12 dBi directional antenna, PoE injector, 2.5GE LAN | 15,000 units | `[Bidder Quote]` | `[Formula = Qty * Rate]` |
-| **CPE-SVC** | **Staging, Pre-Config & SIM-Locking**| APN, firmware customization, PLMN locking, customer packaging | 350,000 units | `[Bidder Quote]` | `[Formula = Qty * Rate]` |
+| **CPE-01** | **Indoor 5G High-Gain FWA Router** | Band n50 native, >= 8.0 dBi internal antenna, Wi-Fi 6 AX1800/AX3000, 1x 2.5GE + 2x 1GE ports, TR-069/TR-369 | 350,000 units | `[Bidder Quote]` | `[Formula = Qty * Rate]` |
+| **CPE-02** | **Outdoor 5G High-Gain FWA Package**| Band n50, IP67 enclosure, >= 12.0 dBi directional antenna, 1x 2.5GE PoE, bundled indoor Wi-Fi 6 router & PoE injector | 15,000 units | `[Bidder Quote]` | `[Formula = Qty * Rate]` |
+| **CPE-SVC** | **Staging, Pre-Config & SIM-Locking**| Custom firmware flashing, operator APN & PLMN lock, retail packaging for all Phase 1 terminals | 365,000 units | `[Bidder Quote]` | `[Formula = Qty * Rate]` |
+| **TOTAL** | **Lot 7 5G CPE Terminals Package** | *Total Initial Terminal Supply & Staging (365,000 Total Devices)* | **365,000 Units** | — | **`[Sum of Items CPE-01 to CPE-SVC]`** |
 
 ---
 
@@ -142,9 +143,9 @@ The Bidder must submit a formal, legally binding financing term sheet with the f
 | **Financing Structure** | OEM-backed Buyer's Credit or Export Credit Agency (ECA) facility | `[Bidder to Specify Facility Structure]` |
 | **Financing Quantum** | Minimum **80% of Eligible Capital Expenditure** (Lots 1, 3, Turnkey Services) | `[Bidder to State % Financed]` |
 | **Equity Downpayment** | Maximum **20% Downpayment** upon contract signing | `[Bidder to State Downpayment %]` |
-| **Facility Tenor** | **4 to 5 Years** total facility duration | `[Bidder to State Tenor in Months]` |
-| **Principal Grace Period** | **12 to 18 Months** grace period from first disbursement | `[Bidder to State Grace Period]` |
-| **Indicative Interest Rate** | Fixed commercial rate (or SOFR + competitive margin) | `[Bidder to State Fixed Rate or Spread]` |
+| **Facility Tenor** | Minimum **4 Years** total facility duration (**5 Years Preferred**) | `[Bidder to State Tenor in Months]` |
+| **Principal Grace Period** | Minimum **12 Months** grace period from first disbursement (**18 Months Preferred**) | `[Bidder to State Grace Period]` |
+| **Indicative Interest Rate** | Fixed commercial rate (preferred <= 6.50% p.a.) or competitive benchmark to SOFR + spread | `[Bidder to State Fixed Rate or Spread]` |
 | **Security / Collateral** | Pledge on network equipment assets without restrictive operational covenants | `[Bidder to Specify Security Terms]` |
 | **Repayment Frequency** | Semi-annual or quarterly principal and interest amortizations | `[Bidder to Specify Payment Cadence]` |
 

@@ -26,10 +26,10 @@ The commercial rollout encompasses an aggregate footprint of **5,000 macro BTS s
   * **LOT 2:** Power Systems & Passive Site Infrastructure (Co-location Interconnect & Hybrid DC Power)
   * **LOT 3:** Cloud-Native 5G Core Network (5GC SA) & Datacenter Infrastructure
   * **LOT 4:** Converged Digital OSS/BSS, Field Force Automation & Real-Time Charging Engine
-  * **LOT 5:** RF Planning, Greenfield Site Survey, Civil Works & Cluster Optimization Services
+  * **LOT 5:** Site Acquisition, Detailed Site Survey (TSSR), RF Design & Civil Works
   * **LOT 6:** Nationwide Managed Services, 24/7 Tier-2/Tier-3 NOC & Field Network Operations (MS)
-  * **LOT 7:** 5G High-Gain Customer Premises Equipment (CPE) Terminals (Wi-Fi 6 AX1800)
-  * **FORM D:** Vendor Financing Facility (covering >= 80% of Capex with milestone-based repayment terms)
+  * **LOT 7:** 5G High-Gain Customer Premises Equipment (CPE) Terminals (350,000 Indoor + 15,000 Outdoor Units)
+  * **FORM D:** Mandatory Vendor Financing Facility (covering >= 80% of Capex with milestone-based repayment terms)
 
 ### 2. Seeking Creative & High-Impact Proposals
 TelTech is actively seeking **creative, forward-looking proposals—both technical and commercial**—that deliver competitive market advantages:
@@ -39,13 +39,15 @@ TelTech is actively seeking **creative, forward-looking proposals—both technic
 * **Long-Term TCO Optimization:** Energy-efficient power and radio equipment, automated self-healing network operations, and highly competitive multi-year support agreements.
 
 ### 3. Tender Documentation Package
-The complete bidding package is attached and structured into the following volumes:
-1. **Volume I:** Master RFP Specification Document (`01_RFP_5G_FWA_Master_Tender_Document.pdf`)
-2. **Volume II (Appendix A):** Technical Specifications & Compliance Matrix (`02_Appendix_A_Technical_Specifications_Compliance_Matrix.pdf`)
-3. **Volume III (Appendix B):** Commercial Proposal & BoQ Templates (`03_Appendix_B_Commercial_Proposal_BoQ_Templates.pdf`)
-4. **Volume IV (Appendix C):** Service Level Agreements, Network KPIs & Liquidated Damages (`04_Appendix_C_SLAs_KPIs_Liquidated_Damages.pdf`)
-5. **Volume V (Appendix D):** Site Survey, RF Planning & Civil/Power Guidelines (`05_Appendix_D_Site_Survey_RF_Planning_Civil_Power_Guidelines.pdf`)
-6. **Volume VI (Price Book):** Commercial Price Book & Blank BoQ Template (`06_RFP_Commercial_Price_Book_and_BoQ_Template.xlsx`)
+The official bidding package consists of the following operative documents:
+1. **Document 00:** Invitation to Bid & Tender Transmittal Letter (`00_RFP_5G_FWA_Tender_Invitation_and_Transmittal_Letter.pdf`)
+2. **Document 01:** Master RFP Specification Document (`01_RFP_5G_FWA_Master_Tender_Document.pdf`)
+3. **Document 02 (Appendix A):** Technical Specifications & Compliance Matrix (`02_Appendix_A_Technical_Specifications_Compliance_Matrix.pdf`)
+4. **Document 03 (Appendix B):** Commercial Proposal & BoQ Templates (`03_Appendix_B_Commercial_Proposal_BoQ_Templates.pdf`)
+5. **Document 04 (Appendix C):** Service Level Agreements, Network KPIs & Liquidated Damages (`04_Appendix_C_SLAs_KPIs_Liquidated_Damages.pdf`)
+6. **Document 05 (Appendix D):** Site Survey, RF Planning & Civil/Power Guidelines (`05_Appendix_D_Site_Survey_RF_Planning_Civil_Power_Guidelines.pdf`)
+7. **Document 06 (Price Book):** Official 10-Tab Commercial Price Book & Blank BoQ Template (`06_RFP_Commercial_Price_Book_and_BoQ_Template.xlsx`)
+8. **Site Schedule:** Candidate Siting & Rollout Plan for 5,000 Barangays (`FWA_Barangay_Rollout_Plan_2024_1000s_tender.xlsx`)
 
 ### 4. Bidding Schedule
 * **Official RFP Issuance:** October 14, 2026
@@ -53,15 +55,21 @@ The complete bidding package is attached and structured into the following volum
 * **Deadline for Written Clarifications:** November 4, 2026
 * **Operator Consolidated Response / Addendum:** November 11, 2026
 * **Final Bid Submission Deadline:** **December 2, 2026 (17:00 PHT)**
-* **Technical & Commercial Evaluation:** December 4 – 14, 2026
-* **Notice of Award (NOA) & Contract Sign-Off:** December 22, 2026
+* **Technical Evaluation & Presentations:** December 4 – 15, 2026
+* **Opening of Commercial & Financing Envelopes:** December 16, 2026
+* **Notice of Award (NOA):** December 22, 2026
+* **Contract Execution & Notice to Proceed (NTP):** January 15, 2027
+* **Phase 1 Commercial Launch (1,000 Sites):** Q4 2027 (Within 12 Months from NTP)
 
 ### 5. Inquiries & Submission Channel
 All formal communications, technical queries, and tender submissions should be directed to:
 
-* **Email:** `oliver.tungol@comclark.com.ph`
+* **Official Tender Email:** `oliver.tungol@comclark.com.ph`
 * **Attention:** Technical Evaluation Board / **OLIVER TUNGOL** (Author)
-* **Subject Line:** `[RFP-TELTECH-FWA-2026-001] FWA Tender Query - <Bidder Name>`
+* **Subject Line:** `[RFP-TELTECH-FWA-2026-001] FWA Tender Submission - <Bidder Name>`
+* **Physical Receiving Address (Hard Copies / USB):**
+  * *Tender Committee, Telecommunications Technology Solutions Incorporated (TelTech)*  
+    *Reliance IT Center, #99 E. Rodriguez Jr. Avenue, Brgy. Ugong, Pasig City, Metro Manila 1604, Philippines.*
 
 We look forward to reviewing your innovative proposal and exploring a long-term commercial partnership.
 
