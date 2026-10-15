@@ -54,6 +54,7 @@ rules_version = '2';
  *      - status: string (required, strictly 'submitted') - Sealed submission status
  *      - techCompliance: map (required) - Technical specifications matrix
  *      - commercialPricing: map (required) - Commercial pricing & BoQ (sealed until Dec 16, 2026)
+ *      - vendorFinancing: map (optional) - Vendor financing structure & terms
  *
  * 5. Collection: /audit_logs/{logId}
  *    Document ID: {logId} (Unique log entry ID)
@@ -202,7 +203,7 @@ service cloud.firestore {
         data.keys().hasOnly([
           'submissionId', 'bidderId', 'companyName', 'signatoryName',
           'signatoryEmail', 'submissionTimestamp', 'sha256Seal',
-          'status', 'techCompliance', 'commercialPricing'
+          'status', 'techCompliance', 'commercialPricing', 'vendorFinancing'
         ]) &&
         data.submissionId is string && data.submissionId.size() >= 3 && data.submissionId.size() <= 100 &&
         data.bidderId is string && data.bidderId == request.auth.uid &&
@@ -213,7 +214,8 @@ service cloud.firestore {
         isValidSha256(data.sha256Seal) &&
         data.status == 'submitted' &&
         data.techCompliance is map &&
-        data.commercialPricing is map;
+        data.commercialPricing is map &&
+        (!('vendorFinancing' in data) || data.vendorFinancing is map);
     }
 
     // Validate append-only audit log entries
@@ -250,8 +252,9 @@ service cloud.firestore {
      */
     match /users/{uid} {
       allow read: if isOwner(uid) || isAdmin();
-      allow create: if isAdmin() && request.resource.data.uid == uid && isValidUser(request.resource.data);
-      allow update: if isAdmin() && request.resource.data.uid == uid && isValidUser(request.resource.data) && areImmutableFieldsUnchanged(['uid', 'createdAt']);
+      allow create: if ((isAdmin() || (isOwner(uid) && request.resource.data.role == 'bidder')) && request.resource.data.uid == uid && isValidUser(request.resource.data));
+      allow update: if (isAdmin() && request.resource.data.uid == uid && isValidUser(request.resource.data) && areImmutableFieldsUnchanged(['uid', 'createdAt'])) ||
+        (isOwner(uid) && request.resource.data.uid == uid && isValidUser(request.resource.data) && areImmutableFieldsUnchanged(['uid', 'role', 'status', 'createdAt']));
       allow delete: if isAdmin();
     }
 

@@ -1835,13 +1835,16 @@ let cloudSyncTimeout = null;
 function syncDraftToFirestore() {
   if (typeof firebase === 'undefined' || !firebase.firestore) return;
   const user = FWAPortalAuth.getCurrentUser();
-  if (!user || !user.uid) return;
+  const activeUid = (typeof firebase !== 'undefined' && firebase.auth && firebase.auth().currentUser)
+    ? firebase.auth().currentUser.uid
+    : user?.uid;
+  if (!activeUid) return;
 
   clearTimeout(cloudSyncTimeout);
   cloudSyncTimeout = setTimeout(async () => {
     try {
-      await firebase.firestore().collection('bidders').doc(user.uid).collection('drafts').doc('current').set({
-        bidderId: user.uid,
+      await firebase.firestore().collection('bidders').doc(activeUid).collection('drafts').doc('current').set({
+        bidderId: activeUid,
         technical: currentDraft.technical || {},
         commercial: currentDraft.commercial || {},
         financing: currentDraft.financing || {},
@@ -1883,9 +1886,12 @@ async function loadBidDraft() {
   // Also pull latest from Cloud Firestore
   if (typeof firebase !== 'undefined' && firebase.firestore) {
     const user = FWAPortalAuth.getCurrentUser();
-    if (user && user.uid) {
+    const activeUid = (typeof firebase !== 'undefined' && firebase.auth && firebase.auth().currentUser)
+      ? firebase.auth().currentUser.uid
+      : user?.uid;
+    if (activeUid) {
       try {
-        const snap = await firebase.firestore().collection('bidders').doc(user.uid).collection('drafts').doc('current').get();
+        const snap = await firebase.firestore().collection('bidders').doc(activeUid).collection('drafts').doc('current').get();
         if (snap.exists) {
           const cloudData = snap.data();
           if (cloudData.technical) currentDraft.technical = { ...currentDraft.technical, ...cloudData.technical };
@@ -2013,9 +2019,13 @@ async function executeBidSubmission() {
   const receiptCode = `TELTECH-RFP-SUB-${now.getFullYear()}${(now.getMonth()+1).toString().padStart(2,'0')}${now.getDate().toString().padStart(2,'0')}-${randomHex}`;
   
   // Package data payload
+  const activeAuthUid = (typeof firebase !== 'undefined' && firebase.auth && firebase.auth().currentUser)
+    ? firebase.auth().currentUser.uid
+    : (currentUser?.uid || ('bidder_' + Date.now()));
+
   const submissionPayload = {
     submissionId: receiptCode,
-    bidderId: currentUser?.uid || ('bidder_' + Date.now()),
+    bidderId: activeAuthUid,
     companyName: corpName,
     signatoryName: repName,
     signatoryEmail: repEmail,
@@ -2046,7 +2056,7 @@ async function executeBidSubmission() {
       // 2. Write immutable audit log
       try {
         await firebase.firestore().collection('audit_logs').add({
-          uid: currentUser?.uid || 'anon_bidder',
+          uid: activeAuthUid,
           action: 'SEALED_BID_SUBMITTED',
           logId: receiptCode,
           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
