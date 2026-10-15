@@ -355,7 +355,7 @@
 
     <!-- TAB 1: SIGN IN -->
     <div class="tab-pane active" id="tabSignIn">
-      <form onsubmit="handleSignIn(event)">
+      <form id="signInForm" onsubmit="handleSignIn(event); return false;">
         <div class="form-group">
           <label class="form-label" for="loginIdentity">Corporate Email or Username</label>
           <div class="input-wrapper">
@@ -393,7 +393,7 @@
 
     <!-- TAB 2: REQUEST ACCESS -->
     <div class="tab-pane" id="tabRequest">
-      <form onsubmit="handleRequestAccess(event)">
+      <form id="requestForm" onsubmit="handleRequestAccess(event); return false;">
         <div class="form-group">
           <label class="form-label" for="reqName">Representative Full Name</label>
           <div class="input-wrapper">
@@ -527,92 +527,104 @@
     spinner.style.display = 'inline-block';
     text.textContent = 'Verifying Clearance...';
 
-    await new Promise(r => setTimeout(r, 200));
+    try {
+      await new Promise(r => setTimeout(r, 200));
 
-    // Resolve username to corporate email
-    let loginEmail = identity;
-    if (!loginEmail.includes('@')) {
-      const regUser = (window.FWAPortalAuth?.USER_REGISTRY || []).find(u => u.username.toLowerCase() === identity.toLowerCase());
-      if (regUser && regUser.email) {
-        loginEmail = regUser.email;
-      } else if (identity.toLowerCase() === 'jdelacruz') {
-        loginEmail = 'otungol@yahoo.com';
-      } else if (identity.toLowerCase() === 'oliver.tungol') {
-        loginEmail = 'oliver.tungol@comclark.com.ph';
-      }
-    }
-
-    let authUser = null;
-    let authError = "";
-
-    // 1. Try Firebase Authentication
-    if (typeof firebase !== 'undefined' && firebase.auth) {
-      try {
-        const cred = await firebase.auth().signInWithEmailAndPassword(loginEmail, pass);
-        authUser = cred.user;
-      } catch (err) {
-        console.warn("Firebase Auth attempt note:", err.code, err.message);
-        authError = err.message;
-      }
-    }
-
-    // 2. Process Firebase Authenticated User
-    if (authUser) {
-      try {
-        let profile = {};
-        try {
-          const userDoc = await firebase.firestore().collection('users').doc(authUser.uid).get();
-          if (userDoc.exists) profile = userDoc.data();
-        } catch(docErr) {}
-
-        if (profile.status === 'suspended') {
-          btn.disabled = false;
-          spinner.style.display = 'none';
-          text.textContent = 'Access E-Tender Portal ➔';
-          document.getElementById('errorMessage').textContent = "Your portal clearance has been suspended. Please contact oliver.tungol@comclark.com.ph.";
-          document.getElementById('errorBox').classList.add('show');
-          return;
+      // Resolve username to corporate email
+      let loginEmail = identity;
+      if (!loginEmail.includes('@')) {
+        const regUser = (window.FWAPortalAuth?.USER_REGISTRY || []).find(u => u.username.toLowerCase() === identity.toLowerCase());
+        if (regUser && regUser.email) {
+          loginEmail = regUser.email;
+        } else if (identity.toLowerCase() === 'jdelacruz') {
+          loginEmail = 'otungol@yahoo.com';
+        } else if (identity.toLowerCase() === 'oliver.tungol') {
+          loginEmail = 'oliver.tungol@comclark.com.ph';
         }
+      }
 
-        const userObj = {
-          uid: authUser.uid,
-          username: profile.username || (identity.includes('@') ? identity.split('@')[0] : identity),
-          name: profile.name || authUser.displayName || 'Authorized Bidder',
-          email: authUser.email,
-          organization: profile.organization || 'Bidder Entity',
-          role: profile.role || (authUser.email === 'oliver.tungol@comclark.com.ph' ? 'admin' : 'bidder'),
-          isAdmin: profile.role === 'admin' || authUser.email === 'oliver.tungol@comclark.com.ph',
-          isBidder: profile.role !== 'admin',
-          firebaseAuth: true
-        };
+      let authUser = null;
+      let authError = "";
 
-        window.FWAPortalAuth.saveSession(userObj, rememberMe);
+      // 1. Try Firebase Authentication
+      if (typeof firebase !== 'undefined' && firebase.auth) {
+        try {
+          const cred = await firebase.auth().signInWithEmailAndPassword(loginEmail, pass);
+          authUser = cred.user;
+        } catch (err) {
+          console.warn("Firebase Auth attempt note:", err.code, err.message);
+          authError = err.message;
+        }
+      }
+
+      // 2. Process Firebase Authenticated User
+      if (authUser) {
+        try {
+          let profile = {};
+          try {
+            const userDoc = await firebase.firestore().collection('users').doc(authUser.uid).get();
+            if (userDoc.exists) profile = userDoc.data();
+          } catch(docErr) {}
+
+          if (profile.status === 'suspended') {
+            btn.disabled = false;
+            spinner.style.display = 'none';
+            text.textContent = 'Access E-Tender Portal ➔';
+            document.getElementById('errorMessage').textContent = "Your portal clearance has been suspended. Please contact oliver.tungol@comclark.com.ph.";
+            document.getElementById('errorBox').classList.add('show');
+            return false;
+          }
+
+          const userObj = {
+            uid: authUser.uid,
+            username: profile.username || (identity.includes('@') ? identity.split('@')[0] : identity),
+            name: profile.name || authUser.displayName || 'Authorized Bidder',
+            email: authUser.email,
+            organization: profile.organization || 'Bidder Entity',
+            role: profile.role || (authUser.email === 'oliver.tungol@comclark.com.ph' ? 'admin' : 'bidder'),
+            isAdmin: profile.role === 'admin' || authUser.email === 'oliver.tungol@comclark.com.ph',
+            isBidder: profile.role !== 'admin',
+            firebaseAuth: true
+          };
+
+          window.FWAPortalAuth.saveSession(userObj, rememberMe);
+          text.textContent = 'Clearance Verified! Entering Portal...';
+          btn.style.background = 'var(--green)';
+          setTimeout(() => {
+            window.location.replace('rfp_portal.html');
+          }, 300);
+          return false;
+        } catch(err) {
+          console.warn("Firestore profile fetch note:", err);
+        }
+      }
+
+      // 3. Fallback: Authenticate against local registry
+      const result = await window.FWAPortalAuth.authenticateUser(identity, pass);
+      if (result.success) {
+        window.FWAPortalAuth.saveSession(result.user, rememberMe);
         text.textContent = 'Clearance Verified! Entering Portal...';
         btn.style.background = 'var(--green)';
         setTimeout(() => {
           window.location.replace('rfp_portal.html');
         }, 300);
-        return;
-      } catch(err) {
-        console.warn("Firestore profile fetch note:", err);
+        return false;
+      } else {
+        btn.disabled = false;
+        spinner.style.display = 'none';
+        text.textContent = 'Access E-Tender Portal ➔';
+        document.getElementById('errorMessage').textContent = result.message || authError || 'Authentication failed. Please verify your credentials or request access.';
+        document.getElementById('errorBox').classList.add('show');
+        return false;
       }
-    }
-
-    // 3. Fallback: Authenticate against local registry
-    const result = await window.FWAPortalAuth.authenticateUser(identity, pass);
-    if (result.success) {
-      window.FWAPortalAuth.saveSession(result.user, rememberMe);
-      text.textContent = 'Clearance Verified! Entering Portal...';
-      btn.style.background = 'var(--green)';
-      setTimeout(() => {
-        window.location.replace('rfp_portal.html');
-      }, 300);
-    } else {
+    } catch(globalErr) {
+      console.error("Global sign-in error:", globalErr);
       btn.disabled = false;
       spinner.style.display = 'none';
       text.textContent = 'Access E-Tender Portal ➔';
-      document.getElementById('errorMessage').textContent = result.message || authError || 'Authentication failed. Please verify your credentials or request access.';
+      document.getElementById('errorMessage').textContent = globalErr.message || String(globalErr);
       document.getElementById('errorBox').classList.add('show');
+      return false;
     }
   }
 
@@ -760,15 +772,6 @@ System: TelTech 5G FWA E-Tender Portal Clearance Gate`);
       </div>
       <div style="font-size: 11px; color: #94A3B8; margin-top: 10px; text-align: center;">
         Once authorized, you will receive an official activation email confirming full tender access.
-      </div>
-    `;
-    document.getElementById('successBox').classList.add('show');
-    document.getElementById('successBox').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-        </a>
-      </div>
-      <div style="font-size: 11px; color: #94A3B8; margin-top: 10px; text-align: center;">
-        Once approved by the Secretariat, you will receive an activation email with sign-in confirmation.
       </div>
     `;
     document.getElementById('successBox').classList.add('show');
