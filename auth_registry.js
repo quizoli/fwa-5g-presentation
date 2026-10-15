@@ -20,7 +20,6 @@
       role: "Lead Architect & Administrator",
       isAdmin: true,
       status: "active",
-      // Hash of "OliverTungol2026!"
       passwordHash: "3c1bd18d033a77346541b3eb647174d1f96d89860c3f77338c12b623f4495c74",
       registeredAt: "2026-09-25"
     },
@@ -32,7 +31,6 @@
       role: "Executive Reviewer",
       isAdmin: false,
       status: "active",
-      // Hash of "teltech2026"
       passwordHash: "ddef79b965dc9a8045528aeede3133fc77a7b1cf2d1def50070c83fd61fefef1",
       registeredAt: "2026-09-25"
     },
@@ -44,11 +42,9 @@
       role: "System Administrator",
       isAdmin: true,
       status: "active",
-      // Hash of "fwa2026"
       passwordHash: "ef03da33db83125ac00fe6dbb96f6475117d1d640f76cd2344168efa1181bba8",
       registeredAt: "2026-09-25"
     },
-    // Authorized Tier-1 OEM Bidders for RFP-TELTECH-FWA-2026-001
     {
       username: "bidder.huawei",
       name: "Huawei Bid Team",
@@ -58,7 +54,6 @@
       isAdmin: false,
       isBidder: true,
       status: "active",
-      // Hash of "HuaweiFWA2026!"
       passwordHash: "277b76c7347887d03b4b2ca1f7a5d563666d23dff41f8d7d1e6dd7c9893d3b1c",
       registeredAt: "2026-10-14"
     },
@@ -71,7 +66,6 @@
       isAdmin: false,
       isBidder: true,
       status: "active",
-      // Hash of "NokiaFWA2026!"
       passwordHash: "a5099394c79345a9aa9364ac66690c014a914c98580da8b889a9597ec795b4fb",
       registeredAt: "2026-10-14"
     },
@@ -84,7 +78,6 @@
       isAdmin: false,
       isBidder: true,
       status: "active",
-      // Hash of "EricssonFWA2026!"
       passwordHash: "95b975d7801999a2f45c53ed819d1ca6c87171948d857d9a92e2588f250d05bf",
       registeredAt: "2026-10-14"
     },
@@ -97,7 +90,6 @@
       isAdmin: false,
       isBidder: true,
       status: "active",
-      // Hash of "ZTEFWA2026!"
       passwordHash: "73738bdefed15ec916f522b5c70e18482fd6bcd46c9b386a656cc6976d0f7327",
       registeredAt: "2026-10-14"
     },
@@ -110,9 +102,20 @@
       isAdmin: false,
       isBidder: true,
       status: "active",
-      // Hash of "Bidder2026!"
       passwordHash: "19c24bb3b51d5e50d33e953bdf9f47cf61f5337d09c2f6f2c47ab788df4f9e12",
       registeredAt: "2026-10-14"
+    },
+    {
+      username: "jdelacruz",
+      name: "Juan dela Cruz",
+      email: "otungol@yahoo.com",
+      organization: "Bidder Partner",
+      role: "Bidder",
+      isAdmin: false,
+      isBidder: true,
+      status: "active",
+      passwordHash: "1f4b19af08eaf919b66e6e4c3a505db243656ca1938fc8906678294f89cd9001",
+      registeredAt: "2026-10-15"
     }
   ];
 
