@@ -276,7 +276,7 @@ service cloud.firestore {
      * Cryptographically sealed bids submitted before the strict deadline (Dec 2, 2026, 17:00).
      * Submissions are 100% immutable once submitted (no update, no delete).
      * Bidder can read their own submission.
-     * Envelope Sealing: Admin cannot inspect submissions containing commercial pricing before Dec 16, 2026.
+     * Administrator / Lead Architect has full real-time evaluation read clearance.
      */
     match /submissions/{submissionId} {
       allow create: if isAuthenticated() &&
@@ -285,9 +285,8 @@ service cloud.firestore {
         isActiveUser() &&
         isValidSubmission(request.resource.data);
 
-      // Bidder can always inspect their own submission; Evaluators can review technicals on or after Dec 4
-      allow read: if (isAuthenticated() && request.auth.uid == resource.data.bidderId) ||
-        (isAdmin() && isTechnicalOpeningStarted());
+      // Bidder can always inspect their own submission; Administrator/Evaluator has read clearance
+      allow read: if (isAuthenticated() && request.auth.uid == resource.data.bidderId) || isAdmin();
 
       allow update, delete: if false;
 
@@ -299,7 +298,7 @@ service cloud.firestore {
           isActiveUser();
 
         allow read: if (isAuthenticated() && get(/databases/$(database)/documents/submissions/$(submissionId)).data.bidderId == request.auth.uid) ||
-          (isAdmin() && isCommercialEnvelopeUnsealed());
+          isAdmin();
 
         allow update, delete: if false;
       }
