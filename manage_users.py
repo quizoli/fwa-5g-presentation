@@ -70,6 +70,8 @@ def write_registry(users, original_content):
         formatted_users += f'      organization: "{u.get("organization", "TelTech / Comclark")}",\n'
         formatted_users += f'      role: "{u.get("role", "Presentation Viewer")}",\n'
         formatted_users += f'      isAdmin: {"true" if u.get("isAdmin") else "false"},\n'
+        if u.get("isBidder"):
+            formatted_users += f'      isBidder: true,\n'
         formatted_users += f'      status: "{u.get("status", "active")}",\n'
         formatted_users += f'      passwordHash: "{u.get("passwordHash", "")}",\n'
         formatted_users += f'      registeredAt: "{u.get("registeredAt", datetime.now().strftime("%Y-%m-%d"))}"\n'
@@ -80,17 +82,87 @@ def write_registry(users, original_content):
     with open(REGISTRY_PATH, 'w', encoding='utf-8') as f:
         f.write(new_content)
     print(f"✓ Registry successfully updated: {REGISTRY_PATH}")
+    
+    # Also sync to 03_Online_Portal if running from fwa_online_portal
+    alt_path = os.path.abspath(os.path.join(os.path.dirname(REGISTRY_PATH), '../../../03_Online_Portal/auth_registry.js'))
+    if os.path.exists(os.path.dirname(alt_path)):
+        with open(alt_path, 'w', encoding='utf-8') as f:
+            f.write(new_content)
+        print(f"✓ Synced to: {alt_path}")
 
-def git_commit_and_push(commit_msg):
-    portal_dir = os.path.dirname(REGISTRY_PATH) or '.'
+def send_approval_email(name, email, username, password, role="Bidder"):
+    if not email:
+        return
+    
+    # Check if password is raw or a 64-char hash
+    is_hash = bool(re.match(r'^[a-fA-F0-9]{64}$', password.strip()))
+    pw_instruction = f"• Initial Security Passcode: {password}" if not is_hash else "• Password / Security Passcode: The security passcode you created during your access request."
+    
+    subject = "[CLEARANCE APPROVED] TelTech 5G FWA E-Tender Portal Access Granted (RFP-TELTECH-FWA-2026-001)"
+    body = f"""Dear {name or username.title()},
+
+Your clearance request for the TelTech Nationwide 5G Standalone Fixed Wireless Access (FWA) E-Tender Portal has been formally approved by the Tender Secretariat.
+
+Your credentials have been activated with full access to read tender specifications, fill out the interactive Technical Compliance Matrix, complete the commercial BoQ price book, and submit sealed bids.
+
+PORTAL ACCESS CREDENTIALS:
+--------------------------------------------------
+• Portal Sign-In URL: https://quizoli.github.io/fwa-5g-presentation/login.html
+• Direct E-Tender Suite: https://quizoli.github.io/fwa-5g-presentation/rfp_portal.html
+• Username: {username}
+• Assigned Role: {role}
+• Authorized Email: {email}
+{pw_instruction}
+--------------------------------------------------
+
+OPERATIVE TENDER DELIVERABLES:
+1. 00 RFP Tender Invitation & Transmittal Letter (PDF)
+2. 01 Master Tender Document & Instructions to Bidders (PDF)
+3. 02 Appendix A: Technical Specifications & Compliance Matrix (Interactive Form & Excel)
+4. 03 Appendix B: Commercial Proposal BoQ Templates (PDF)
+5. 04 Appendix C: SLAs, Network KPIs & Liquidated Damages (PDF)
+6. 05 Appendix D: Siting, RF Planning, Civil & Power Engineering Guidelines (PDF)
+7. 06 RFP Commercial Price Book & BoQ Template (10-Sheet Excel)
+8. 07 Candidate Siting Schedule & Locations (5,000 Target Barangays Excel)
+
+KEY BIDDING MILESTONES:
+• Official RFP Issuance: October 14, 2026
+• Bidder Confirmation & NDA Submission: October 21, 2026
+• Deadline for Written Clarifications: November 4, 2026
+• Consolidated Clarifications Response: November 11, 2026
+• Final Bid Submission Deadline: December 2, 2026 (17:00 PHT)
+
+Should you require any technical assistance with portal navigation or tender clarifications, please contact the undersigned.
+
+Sincerely,
+
+OLIVER TUNGOL
+Corporate Tender Secretariat
+Telecommunications Technology Solutions Incorporated (TelTech)
+Email: oliver.tungol@comclark.com.ph"""
+
+    # Escape quotes for AppleScript
+    clean_body = body.replace('\\', '\\\\').replace('"', '\\"')
+    clean_subj = subject.replace('"', '\\"')
+    recipient_name = (name or username).replace('"', '\\"')
+    
+    applescript = f'''tell application "Mail"
+        set msg to make new outgoing message with properties {{subject:"{clean_subj}", content:"{clean_body}", visible:false}}
+        tell msg
+            set sender to "Oliver Tungol <oliver.tungol@comclark.com.ph>"
+            make new to recipient at end of to recipients with properties {{address:"{email}", name:"{recipient_name}"}}
+        end tell
+        send msg
+    end tell'''
+    
     try:
-        print("  ➔ Staging and pushing update to GitHub...")
-        subprocess.run(['git', 'add', os.path.basename(REGISTRY_PATH)], cwd=portal_dir, check=True)
-        subprocess.run(['git', 'commit', '-m', commit_msg], cwd=portal_dir, check=True)
-        res = subprocess.run(['git', 'push', 'origin', 'main'], cwd=portal_dir, check=True)
-        print("✓ Successfully pushed to remote repository. User changes are now live on GitHub Pages!")
+        res = subprocess.run(['osascript', '-e', applescript], capture_output=True, text=True)
+        if res.returncode == 0:
+            print(f"✓ Official access approval email dispatched to: {email}")
+        else:
+            print(f"Notice: Mail.app notification: {res.stderr.strip()}")
     except Exception as e:
-        print(f"Notice: Git push failed or skipped ({e}). Run git push manually when connected.")
+        print(f"Notice: Could not send automated email via Mail.app ({e})")
 
 def main():
     parser = argparse.ArgumentParser(description="TelTech & Comclark 5G FWA Portal User Management")
@@ -108,6 +180,7 @@ def main():
     parser_add.add_argument("--org", default="TelTech / Comclark Partner", help="Organization / Department")
     parser_add.add_argument("--role", default="Presentation Reviewer", help="Assigned role")
     parser_add.add_argument("--admin", action="store_true", help="Grant administrator privileges")
+    parser_add.add_argument("--bidder", action="store_true", help="Grant bidder portal access privileges")
     parser_add.add_argument("--no-push", action="store_true", help="Do not git push automatically")
 
     # Revoke / Suspend
@@ -148,6 +221,7 @@ def main():
             if args.email: existing['email'] = args.email
             if args.org: existing['organization'] = args.org
             if args.role: existing['role'] = args.role
+            if args.bidder: existing['isBidder'] = True
             existing['status'] = 'active'
             print(f"Updated existing user: {username}")
         else:
@@ -158,6 +232,7 @@ def main():
                 "organization": args.org,
                 "role": args.role,
                 "isAdmin": args.admin,
+                "isBidder": args.bidder or ("bidder" in username or "Bidder" in args.role),
                 "status": "active",
                 "passwordHash": pw_hash,
                 "registeredAt": datetime.now().strftime("%Y-%m-%d")
@@ -168,6 +243,12 @@ def main():
         write_registry(users, content)
         if not args.no_push:
             git_commit_and_push(f"Approve and activate user '{username}' in portal registry")
+
+        # Dispatch official clearance approval email
+        target_email = args.email or (existing.get('email') if existing else '')
+        target_name = args.name or (existing.get('name') if existing else username.title())
+        target_role = args.role or (existing.get('role') if existing else 'Bidder')
+        send_approval_email(target_name, target_email, username, args.password, target_role)
 
     elif args.command == "revoke":
         username = args.username.strip().lower()
