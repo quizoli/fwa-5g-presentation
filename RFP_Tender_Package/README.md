@@ -34,7 +34,7 @@ Bidders may submit proposals for **Turnkey (All Lots)** or for individual standa
 * **LOT 1 — 5G Radio Access Network (RAN) Hardware & Telecom Implementation:**  
   Supply, installation, commissioning, and single site verification (SSV) of carrier-grade 3-sector 8T8R Massive MIMO gNodeB equipment operating across Band n50 (1432–1517 MHz, 60 MHz channel bandwidth) with 320W total RF output per sector.
 * **LOT 2 — Power Systems & Passive Site Infrastructure:**  
-  Modular 6.0 kW switchmode DC power plants (N+1), Lithium Iron Phosphate (LiFePO4) battery energy storage systems delivering $\ge 12.0\text{ kWh}$ usable energy over 4.0 hours @ 3.0 kW load ($\ge 19.0$–$20.0\text{ kWh}$ installed nominal bank capacity), TowerCo tap-off boxes, and 15 kVA diesel standby generators.
+  Modular 12.0 kW switchmode DC power plants (4x 3.0 kW, N+1) (N+1), Lithium Iron Phosphate (LiFePO4) battery energy storage systems delivering $\ge 12.0\text{ kWh}$ usable energy over 4.0 hours @ 3.0 kW load ($\ge 19.0$–$20.0\text{ kWh}$ installed nominal bank capacity), TowerCo tap-off boxes, and 15 kVA diesel standby generators.
 * **LOT 3 — Cloud-Native 5G Core Network (5GC SA) & Datacenter Infrastructure:**  
   Active-Active dual-datacenter cloud-native 5G Standalone core network (Metro Manila Primary DC and Clark DR DC) dimensioned for 1.0M initial registered subscribers with wire-speed DPDK UPF nodes and carrier-grade CG-NAT.
 * **LOT 4 — Converged Digital OSS/BSS & Field Force Automation:**  

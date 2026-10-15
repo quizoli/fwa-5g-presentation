@@ -41,7 +41,7 @@
 
 | Item ID | Sub-System / Feature | Detailed Specification Requirement | Compliance (C / M / NC) | Bidder Proposed Specification & Reference |
 | :--- | :--- | :--- | :---: | :--- |
-| **PWR-01** | **DC Power Plant** | 19" 3U/4U modular high-efficiency switchmode rectifier system; continuous rating >= 6.0 kW @ -48V DC. | | |
+| **PWR-01** | **DC Power Plant** | 19" 3U/4U modular high-efficiency switchmode rectifier system; continuous rating >= 12.0 kW @ -48V DC (4 x 3.0 kW modules in N+1 redundancy). | | |
 | **PWR-02** | **Rectifier Modules** | Hot-swappable 2.0 kW or 3.0 kW modules in N+1 redundant configuration. Operating efficiency >= 96.0%. | | |
 | **PWR-03** | **Input Voltage Range** | Wide AC input operating range: 85V AC to 300V AC nominal single phase (230V, 60 Hz), withstanding rural grid fluctuations. | | |
 | **PWR-04** | **Lithium Battery (BESS)**| Lithium Iron Phosphate (LiFePO4 / LFP) battery energy storage system: Sized to deliver at least 12.0 kWh usable energy to 3.0 kW DC continuous BTS load over 4.0 continuous hours without AC power, dimensioned for max 80% usable DoD and 80% end-of-life SoH retained capacity (minimum >= 20.0 kWh nominal installed capacity, minimum 400 Ah to 450 Ah @ 48V, dimensioned via mandatory loss-based engineering calculation delivering 12.0 kWh net usable energy at 80% DoD and 80% EOL SoH). Bidder shall submit formal load-autonomy calculation sheet, manufacturer discharge curves, and guarantee 4.0h autonomy at SAT. | | |

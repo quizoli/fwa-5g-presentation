@@ -94,7 +94,7 @@ The Bidder shall supply, deliver, install, test, and commission carrier-grade 3G
 ### LOT 2: POWER SYSTEMS & PASSIVE INFRASTRUCTURE
 The Bidder shall provide unified site power solutions engineered for high availability across both leased TowerCo sites and greenfield sites:
 1. **DC Power Rectifier Plant:**
-   * Modular 19" 3U/4U switchmode DC power system dimensioned for **6.0 kW** continuous capacity (4 x 2.0 kW or 3 x 3.0 kW hot-swappable rectifier modules in N+1 redundancy).
+   * Modular 19" 3U/4U switchmode DC power system dimensioned for **12.0 kW** continuous capacity (4 x 3.0 kW hot-swappable rectifier modules in N+1 redundancy).
    * Rectifier efficiency: >= 96.0% (80 PLUS Titanium / high-efficiency class).
    * Advanced SMPS controller with SNMPv3, HTTPS, Modbus, dry contacts, and remote cloud telemetry.
 2. **Battery Energy Storage System (BESS):**

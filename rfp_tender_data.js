@@ -220,7 +220,7 @@ window.RFPTenderData = {
       {
         "id": "PWR-01",
         "feature": "DC Power Plant",
-        "requirement": "19\" 3U/4U modular high-efficiency switchmode rectifier system; continuous rating >= 6.0 kW @ -48V DC."
+        "requirement": "19\" 3U/4U modular high-efficiency switchmode rectifier system; continuous rating >= 12.0 kW @ -48V DC (4 x 3.0 kW modules in N+1 redundancy)."
       },
       {
         "id": "PWR-02",
@@ -665,8 +665,8 @@ window.RFPTenderData = {
     "items": [
       {
         "id": "PWR-01",
-        "description": "6.0 kW Modular DC Rectifier Plant",
-        "scope": "19\" 3U subrack, 3x 3.0 kW modules (N+1), SMPS controller, 96% eff",
+        "description": "12.0 kW Modular DC Rectifier Plant",
+        "scope": "19\" 3U subrack, 4x 3.0 kW modules (N+1), SMPS controller, 96% eff",
         "qty": 1000,
         "unit": "sets"
       },
