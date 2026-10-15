@@ -4,7 +4,7 @@
 **Tender Reference:** RFP-TELTECH-FWA-2026-001  
 **Project:** Nationwide 5G FWA Project (Band n50, 60 MHz TDD)  
 **Operator:** Telecommunications Technology Solutions Incorporated (TelTech)  
-**Author:** OLIVER TUNGOL  
+**Issuing Body:** Technical Evaluation Board  
 
 *Instructions to Bidders: Complete all unit rates in USD ($) and Philippine Pesos (PHP ₱ at baseline FX 55.00) using the official Excel BoQ file (`06_RFP_Commercial_Price_Book_and_BoQ_Template.xlsx`). All prices must be firm, fixed, and valid for 180 days.*
 
@@ -49,8 +49,9 @@
 | **PWR-EQ-02** | **48V LiFePO4 Battery Bank** | High-cycle LFP with smart BMS, sized for >= 12.0 kWh usable energy over 4.0h @ 3.0 kW load, <= 80% DoD, 80% SoH (min >= 20.0 kWh nominal installed bank capacity, min 400 Ah @ 48V, loss-based calculation) | Co-loc / Greenfield | `[Bidder Quote]` | `[Formula = USD * 55]` |
 | **PWR-EQ-03** | **TowerCo DC Tap-Off & Metering Kit**| DC tap enclosure, revenue Class 1.0 kWh meter, SPD Type 2 | Leased TowerCo | `[Bidder Quote]` | `[Formula = USD * 55]` |
 | **PWR-EQ-04** | **15 kVA Diesel Generator Set** | Soundproof canopy, 500L–1000L tank, ATS, auto-start | Greenfield (Class T4) | `[Bidder Quote]` | `[Formula = USD * 55]` |
-| **CIV-EQ-01** | **30m Monopole Tower & Foundation** | Galvanized steel monopole, pile/pad foundation, compound fence | Greenfield (Class T4) | `[Bidder Quote]` | `[Formula = USD * 55]` |
-| **CIV-EQ-02** | **Grounding Grid & Lightning System** | Copper earth ring, Cadweld, ground rods, air terminal (<= 5 Ohms) | Greenfield (Class T4) | `[Bidder Quote]` | `[Formula = USD * 55]` |
+| **SUBTOTAL** | **Lot 2 Power Systems Turnkey Total** | *Total Phase 1 Capital Expenditure for Lot 2 Power Systems* | **1,000 Sites Footprint** | **`[Sum of Items PWR-01 to PWR-04]`** | **`[Formula = USD * 55]`** |
+
+*(Note: Steel tower structures, foundations, compound civil construction, and site earth grounding grids are priced and evaluated under Table 6: Lot 5 Site Acquisition, Civils & Infrastructure Works)*
 
 ---
 
@@ -95,18 +96,18 @@
 
 ### TABLE 6: LOT 5 — SITE ACQUISITION, DETAILED SITE SURVEY (TSSR), RF DESIGN & CIVIL WORKS
 
-| Item Ref | Service / Works Description | Detailed Technical Scope & Deliverables | Application | Unit Price (USD) [Bidder Quote] | Unit Price (PHP @ 55 FX) | Remarks / Methodology |
-| :--- | :--- | :--- | :--- | :---: | :---: | :--- |
-| **CIV-SVC-01** | **Detailed Site Survey Report (TSSR)** | Structural load audit, 360° drone sweep, power/grounding audit, civil sketch, PE sign-off | All Sites (Co-loc & Green) | `[Bidder Quote]` | `[Formula = USD * 55]` | Comprehensive TSSR |
-| **CIV-SVC-02** | **Site Acquisition & Permitting Support** | LGU building permits, Barangay clearances, CAAP height clearance, environmental docs | Greenfield Sites | `[Bidder Quote]` | `[Formula = USD * 55]` | Full permit clearance |
-| **CIV-SVC-03** | **Equipment Pad Foundation & Cable Gantry**| Concrete plinth for DC power/battery cabinet, elevated cable ladder, AC interconnect tap | Leased TowerCo Sites | `[Bidder Quote]` | `[Formula = USD * 55]` | Co-location upgrade |
-| **CIV-SVC-04** | **Greenfield Compound Works & Pad** | 8m x 8m compound grading, chain-link security fence, crushed gravel, equipment pad | Greenfield (Class T4) | `[Bidder Quote]` | `[Formula = USD * 55]` | Civil compound construction |
-| **CIV-SVC-05** | **Grounding Grid & Lightning Protection** | Exothermic Cadweld copper ring, ground rods, busbar, air terminal (<= 5.0 Ohms) | All Sites (Co-loc & Green) | `[Bidder Quote]` | `[Formula = USD * 55]` | Electrical grounding |
-| **CIV-SVC-06** | **30m Monopole Tower Supply & Erection** | ASTM A572 steel monopole, 250 km/h wind survival, fall arrest ladder, PE certification | Greenfield (Class T4) | `[Bidder Quote]` | `[Formula = USD * 55]` | Tower supply & erection |
-| **CIV-SVC-07** | **40m Monopole Tower Supply & Erection** | ASTM A572 steel monopole, 250 km/h wind survival, climbing ladder, structural sign-off | Greenfield (Terrain Opt) | `[Bidder Quote]` | `[Formula = USD * 55]` | High-clearance monopole |
-| **CIV-SVC-08** | **RF Propagation Modeling & Siting** | 3D ray-tracing simulation, clutter calibration, search ring generation, nominal plan | Macro Footprint | `[Bidder Quote]` | `[Formula = USD * 55]` | RF engineering model |
-| **CIV-SVC-09** | **Cluster RF Optimization & Drive Test** | Multi-site cluster drive testing, antenna tilt/azimuth optimization, neighbor tuning | Per Site Share | `[Bidder Quote]` | `[Formula = USD * 55]` | Cluster optimization |
-| **TOTAL** | **Lot 5 Civil & Siting Scope per Site** | *Full Turnkey Site Acquisition, Survey, Design & Civil Construction* | **Per Site Evaluated** | **`[Sum of Items SVC-01 to SVC-09]`** | **`[Formula = USD * 55]`** | *Total Lot 5 Turnkey Scope* |
+| Item Ref | Service / Works Description | Detailed Technical Scope & Deliverables | Application | Phase 1 Qty | Unit Price (USD) [Bidder Quote] | Unit Price (PHP @ 55 FX) | Phase 1 Total (USD) | Remarks / Methodology |
+| :--- | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :--- |
+| **CIV-SVC-01** | **Detailed Site Survey Report (TSSR)** | Structural load audit, 360° drone sweep, power/grounding audit, civil sketch, PE sign-off | All Sites (Co-loc & Green) | 1,000 sites | `[Bidder Quote]` | `[Formula = USD * 55]` | `[Qty * Rate]` | Mandatory TSSR |
+| **CIV-SVC-02** | **Site Acquisition & Permitting Support** | LGU building permits, Barangay clearances, CAAP height clearance, environmental docs | Greenfield Sites | 103 sites | `[Bidder Quote]` | `[Formula = USD * 55]` | `[Qty * Rate]` | Full permit clearance |
+| **CIV-SVC-03** | **Equipment Pad Foundation & Cable Gantry**| Concrete plinth for DC power/battery cabinet, elevated cable ladder, AC interconnect tap | Leased TowerCo Sites | 897 sites | `[Bidder Quote]` | `[Formula = USD * 55]` | `[Qty * Rate]` | Co-location upgrade |
+| **CIV-SVC-04** | **Greenfield Compound Works & Pad** | 8m x 8m compound grading, chain-link security fence, crushed gravel, equipment pad | Greenfield (Class T4) | 103 sites | `[Bidder Quote]` | `[Formula = USD * 55]` | `[Qty * Rate]` | Civil compound construction |
+| **CIV-SVC-05** | **Grounding Grid & Lightning Protection** | Exothermic Cadweld copper ring, ground rods, busbar, air terminal (<= 5.0 Ohms) | Greenfield (Class T4) | 103 sites | `[Bidder Quote]` | `[Formula = USD * 55]` | `[Qty * Rate]` | Dedicated ground ring |
+| **CIV-SVC-06** | **30m Monopole Tower Supply & Erection** | ASTM A572 steel monopole, 250 km/h wind survival, fall arrest ladder, PE certification | Greenfield Standard (Alt A) | 80 sites | `[Bidder Quote]` | `[Formula = USD * 55]` | `[Qty * Rate]` | 80 sites standard (mutually exclusive with 40m) |
+| **CIV-SVC-07** | **40m Monopole Tower Supply & Erection** | ASTM A572 steel monopole, 250 km/h wind survival, climbing ladder, structural sign-off | Greenfield High-Clearance (Alt B) | 23 sites | `[Bidder Quote]` | `[Formula = USD * 55]` | `[Qty * Rate]` | 23 sites terrain/canopy (mutually exclusive with 30m) |
+| **CIV-SVC-08** | **RF Propagation Modeling & Siting** | 3D ray-tracing simulation, clutter calibration, search ring generation, nominal plan | Macro Footprint | 1,000 sites | `[Bidder Quote]` | `[Formula = USD * 55]` | `[Qty * Rate]` | RF engineering model |
+| **CIV-SVC-09** | **Cluster RF Optimization & Drive Test** | Multi-site cluster drive testing, antenna tilt/azimuth optimization, neighbor tuning | Per Site Share | 1,000 sites | `[Bidder Quote]` | `[Formula = USD * 55]` | `[Qty * Rate]` | Cluster optimization |
+| **TOTAL** | **Lot 5 Civil & Siting Scope (Phase 1 Total)** | *Full Turnkey Site Acquisition, Survey, Design, Towers & Civil Construction* | **1,000 Sites Footprint** | **1,000 sites** | — | — | **`[Sum of Items CIV-SVC-01 to CIV-SVC-09]`** | *Evaluated Phase 1 Lot 5 Total* |
 
 ---
 
@@ -134,7 +135,24 @@
 
 ---
 
-### TABLE 9: MANDATORY VENDOR FINANCING FACILITY (FORM D)
+### TABLE 9: FORM C — 10-YEAR TOTAL COST OF OWNERSHIP (TCO) & LIFECYCLE SCHEDULE
+
+*Evaluation Baseline: Committed Phase 1 Network (1,000 Macro Sites Footprint 10-Year Lifecycle Cost). Expansion Capex for Years 2 to 5 (Phases 2 to 5, 1,000 sites/year up to 5,000 sites total) is governed by firm unit rates under contractual call-off options.*
+
+| Line | Cost Category / Lifecycle Element | Phase 1 Capex (Yr 1) | Yr 2 | Yr 3 | Yr 4 | Yr 5 | Yrs 6-10 Cumulative | 10-Year Total TCO (USD) | Evaluation Basis & Assumptions |
+| :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| **1** | **5G RAN & Site Infrastructure (Lots 1, 2, 5)** | `[Lots 1+2+5 Total]` | $0 | $0 | $0 | $0 | $0 | `[Sum Yrs 1-10]` | **[Evaluated Tender Input]** Initial 1,000 sites turnkey rollout (Lots 1, 2, 5 Phase 1 Totals). Expansion Yrs 2-5 Capex evaluated via call-off rate card. |
+| **2** | **5G Core Network & Cloud DC (Lot 3)** | `[Lot 3 Total]` | $0 | $0 | $0 | $0 | $0 | `[Sum Yrs 1-10]` | **[Evaluated Tender Input]** Day-1 Core & DC infrastructure dimensioned for 1.0M subscribers (perpetual license + compute fabric). |
+| **3** | **Digital OSS/BSS & Automation (Lot 4)** | `[Lot 4 Total]` | $0 | $0 | $0 | $0 | $0 | `[Sum Yrs 1-10]` | **[Evaluated Tender Input]** Turnkey BSS/OSS stack, CRM, prepaid billing, and FMS dispatch engine. |
+| **4** | **5G CPE Terminals Supply (Lot 7)** | `[Lot 7 Total]` | $0 | $0 | $0 | $0 | $0 | `[Sum Yrs 1-10]` | **[Evaluated Tender Input]** Phase 1 initial supply of 365,000 subscriber terminals (350k indoor + 15k outdoor). |
+| **5** | **Software Support & AMC (5GC + OSS/BSS)** | $0 | `[10% SW]` | `[10% SW]` | `[10% SW]` | `[10% SW]` | `[50% SW]` | `[Sum Yrs 1-10]` | **[Prescribed Evaluated Parameter]** 10.0% p.a. of Core (Lot 3) + OSS/BSS (Lot 4) software Capex starting Yr 2 following 12-month Day-1 warranty. |
+| **6** | **Managed Services & Field O&M (Lot 6)** | `[MS * 1,000]` | `[MS * 1,000]` | `[MS * 1,000]` | `[MS * 1,000]` | `[MS * 1,000]` | `[MS * 5,000]` | `[Sum Yrs 1-10]` | **[Prescribed Evaluated Parameter]** Evaluated on Phase 1 network baseline (1,000 sites footprint @ Lot 6 quoted annual rate). Scales upon expansion call-off. |
+| **7** | **Spare Parts Float & RMA Replenishment** | `[2% RAN]` | `[1% RAN]` | `[1% RAN]` | `[1% RAN]` | `[1% RAN]` | `[5% RAN]` | `[Sum Yrs 1-10]` | **[Prescribed Evaluated Parameter]** 2.0% initial spares float in Yr 1, 1.0% annual replenishment in Yrs 2-5, and 5.0% cumulative in Yrs 6-10. |
+| **TOTAL** | **10-Year Evaluated Lifecycle TCO (USD)** | `[Sum B1-B7]` | `[Sum C1-C7]` | `[Sum D1-D7]` | `[Sum E1-E7]` | `[Sum F1-F7]` | `[Sum G1-G7]` | **`[10-Year Grand Total]`** | **Evaluated Total Lifecycle Cost of Ownership for Phase 1 Network Baseline** |
+
+---
+
+### TABLE 10: MANDATORY VENDOR FINANCING FACILITY (FORM D)
 
 The Bidder must submit a formal, legally binding financing term sheet with the following parameters:
 
@@ -143,8 +161,8 @@ The Bidder must submit a formal, legally binding financing term sheet with the f
 | **Financing Structure** | OEM-backed Buyer's Credit or Export Credit Agency (ECA) facility | `[Bidder to Specify Facility Structure]` |
 | **Financing Quantum** | Minimum **80% of Eligible Capital Expenditure** (Lots 1, 3, Turnkey Services) | `[Bidder to State % Financed]` |
 | **Equity Downpayment** | Maximum **20% Downpayment** upon contract signing | `[Bidder to State Downpayment %]` |
-| **Facility Tenor** | Minimum **4 Years** total facility duration (**5 Years Preferred**) | `[Bidder to State Tenor in Months]` |
-| **Principal Grace Period** | Minimum **12 Months** grace period from first disbursement (**18 Months Preferred**) | `[Bidder to State Grace Period]` |
+| **Facility Tenor** | Flexible facility tenor **up to 20 Years** (minimum 4 years, 5+ years preferred) | `[Bidder to State Tenor in Months]` |
+| **Principal Grace Period** | Deferred principal repayment / grace period **up to 10 Years** (minimum 12 months, 18+ months preferred) | `[Bidder to State Grace Period]` |
 | **Indicative Interest Rate** | Fixed commercial rate (preferred <= 6.50% p.a.) or competitive benchmark to SOFR + spread | `[Bidder to State Fixed Rate or Spread]` |
 | **Security / Collateral** | Pledge on network equipment assets without restrictive operational covenants | `[Bidder to Specify Security Terms]` |
 | **Repayment Frequency** | Semi-annual or quarterly principal and interest amortizations | `[Bidder to Specify Payment Cadence]` |

@@ -4,7 +4,7 @@
 **Tender Document No:** RFP-TELTECH-FWA-2026-001  
 **Project Identifier:** Nationwide 5G FWA Project (Band n50, 60 MHz TDD)  
 **Issuing Authority:** Telecommunications Technology Solutions Incorporated (TelTech)  
-**Author:** OLIVER TUNGOL  
+**Issuing Body:** Technical Evaluation Board  
 **Issue Date:** October 6, 2026  
 **Document Revision:** Revision 2.0 (Official Bidding Version — Blank BoQ)  
 **Confidentiality:** Strictly Confidential — Competitive Commercial Tender  
@@ -309,7 +309,7 @@ Total Evaluation Score = (Technical Score × 60%) + (Commercial & Financing Scor
 | **Opening of Commercial & Financing Envelopes** | December 16, 2026 | Operator Commercial Board |
 | **Final Contract Negotiation & Award** | December 22, 2026 | Operator & Winning Bidder(s) |
 | **Phase 1 Contract Execution & Kickoff** | January 15, 2027 | Operator & Appointed Contractor |
-| **Phase 1 Target Commercial Launch (1,000 Sites)** | Q4 2027 (Within 12 Months) | Joint Deployment Team |
+| **Phase 1 Target Commercial Launch (1,000 Sites)** | Target Q4 2027 (Contractual completion within 365 calendar days from NTP / 15 January 2028) | Joint Deployment Team |
 
 ---
 
@@ -318,7 +318,7 @@ Total Evaluation Score = (Technical Score × 60%) + (Commercial & Financing Scor
 ### 8.1 Clarifications and Communications
 All formal communications, requests for interpretation, and tender queries must be submitted in writing via official email to:
 * **Tender Secretariat:** `oliver.tungol@comclark.com.ph`
-* **Attention:** Technical Evaluation Board / OLIVER TUNGOL (Author)
+* **Attention:** Technical Evaluation Board
 * **Subject Line:** `[RFP-TELTECH-FWA-2026-001] Technical Clarification Request - <Bidder Name>`
 
 ### 8.2 Submission Format & Channels

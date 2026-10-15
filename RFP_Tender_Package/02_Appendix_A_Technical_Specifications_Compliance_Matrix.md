@@ -4,7 +4,7 @@
 **Tender Reference:** RFP-TELTECH-FWA-2026-001  
 **Project:** Nationwide 5G FWA Project (Band n50, 60 MHz TDD)  
 **Operator:** Telecommunications Technology Solutions Incorporated (TelTech)  
-**Author:** OLIVER TUNGOL
+**Issuing Body:** Technical Evaluation Board
 
 *Instructions to Bidders: Complete Column D with "C" (Full Compliance), "M" (Minor Deviation - explain in remarks), or "NC" (Non-Compliant). Bidders must provide specific technical values and document references.*
 

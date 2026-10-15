@@ -1,7 +1,6 @@
 /**
  * TelTech 5G FWA E-Tender Portal Data Registry
  * RFP Ref: RFP-TELTECH-FWA-2026-001
- * Author: OLIVER TUNGOL (oliver.tungol@comclark.com.ph)
  * Generated: October 2026
  */
 
@@ -10,7 +9,6 @@ window.RFPTenderData = {
     tenderRef: "RFP-TELTECH-FWA-2026-001",
     projectName: "Nationwide 5G Standalone (SA) Fixed Wireless Access (FWA) Turnkey Deployment",
     operator: "Telecommunications Technology Solutions Incorporated (TelTech)",
-    author: "OLIVER TUNGOL",
     officialEmail: "oliver.tungol@comclark.com.ph",
     issueDate: "October 14, 2026",
     submissionDeadline: "December 2, 2026 17:00:00 GMT+0800",
@@ -235,7 +233,7 @@ window.RFPTenderData = {
       {
         "id": "PWR-04",
         "feature": "Lithium Battery (BESS)",
-        "requirement": "Lithium Iron Phosphate (LiFePO4 / LFP) battery energy storage system: Sized to deliver at least 12.0 kWh usable energy to 3.0 kW DC continuous BTS load over 4.0 continuous hours without AC power, dimensioned for max 80% usable DoD and 80% end-of-life SoH retained capacity (min >= 19.0 to 20.0 kWh nominal installed bank capacity, e.g., 4 x 48V 100 Ah modules or equivalent). Bidder shall submit formal load-autonomy calculation sheet, manufacturer discharge curves, and guarantee 4.0h autonomy at SAT."
+        "requirement": "Lithium Iron Phosphate (LiFePO4 / LFP) battery energy storage system: Sized to deliver at least 12.0 kWh usable energy to 3.0 kW DC continuous BTS load over 4.0 continuous hours without AC power, dimensioned for max 80% usable DoD and 80% end-of-life SoH retained capacity (minimum >= 20.0 kWh nominal installed capacity, minimum 400 Ah to 450 Ah @ 48V, dimensioned via mandatory loss-based engineering calculation delivering 12.0 kWh net usable energy at 80% DoD and 80% EOL SoH). Bidder shall submit formal load-autonomy calculation sheet, manufacturer discharge curves, and guarantee 4.0h autonomy at SAT."
       },
       {
         "id": "PWR-05",
@@ -535,7 +533,7 @@ window.RFPTenderData = {
       {
         "id": "CPE-11",
         "feature": "Power Supply",
-        "requirement": "Indoor CPE: 230V AC / 12V DC external adapter (Philippine standard Type A/B plug). Outdoor CPE: 802.3at/af Power over Ethernet (PoE) injector included."
+        "requirement": "Indoor CPE: 230V AC / 12V DC external adapter (Philippine standard Type A/B plug). Outdoor CPE: 2.5GE-capable 802.3at/bt PoE power injector and 2.5GE WAN indoor gateway companion included."
       },
       {
         "id": "CPE-12",
@@ -690,20 +688,6 @@ window.RFPTenderData = {
         "scope": "Diesel, 230V 60Hz, 500-1000L tank, ATS auto-transfer, <68dBA @ 7m",
         "qty": 103,
         "unit": "sets"
-      },
-      {
-        "id": "CIV-01",
-        "description": "30m Monopole Tower & Foundation",
-        "scope": "ASTM A572 steel, 250 km/h wind rating, 8x8m compound, pad foundation",
-        "qty": 103,
-        "unit": "sites"
-      },
-      {
-        "id": "CIV-02",
-        "description": "Grounding Grid & Lightning Protection",
-        "scope": "Copper earth ring, Cadweld, ground rods, air terminal (<=5 Ohms)",
-        "qty": 103,
-        "unit": "sites"
       },
       {
         "id": "TOTAL-LOT2",
@@ -871,7 +855,7 @@ window.RFPTenderData = {
   },
   {
     "tableId": "lot5_civ",
-    "title": "TABLE 6: LOT 5 \u2014 SITE ACQUISITION, TSSR & CIVIL WORKS (PHASE 1)",
+    "title": "TABLE 6: LOT 5 — SITE ACQUISITION, TSSR & CIVIL WORKS (PHASE 1)",
     "items": [
       {
         "id": "CIV-SVC-01",
@@ -904,15 +888,22 @@ window.RFPTenderData = {
       {
         "id": "CIV-SVC-05",
         "description": "Grounding Grid & Lightning Protection",
-        "scope": "Cadweld copper ground ring, ground rods, air terminal (<= 5.0 Ohms)",
-        "qty": 1000,
+        "scope": "Dedicated Cadweld copper ring, ground rods, air terminal (<= 5.0 Ohms)",
+        "qty": 103,
         "unit": "sites"
       },
       {
         "id": "CIV-SVC-06",
         "description": "30m Galvanized Steel Monopole Tower",
-        "scope": "ASTM A572 steel monopole, 250 km/h wind rating, climbing ladder, fall arrest",
-        "qty": 103,
+        "scope": "ASTM A572 steel monopole, 250 km/h wind rating, climbing ladder, fall arrest (Alt A)",
+        "qty": 80,
+        "unit": "sites"
+      },
+      {
+        "id": "CIV-SVC-07",
+        "description": "40m Galvanized Steel Monopole Tower",
+        "scope": "ASTM A572 steel monopole, 250 km/h wind rating, high clearance (Alt B)",
+        "qty": 23,
         "unit": "sites"
       },
       {
@@ -931,8 +922,8 @@ window.RFPTenderData = {
       },
       {
         "id": "TOTAL-LOT5",
-        "description": "TOTAL LOT 5 \u2014 SITE ACQUISITION & CIVILS",
-        "scope": "Phase 1 Footprint Turnkey Scope",
+        "description": "TOTAL LOT 5 — SITE ACQUISITION, TOWERS & CIVILS",
+        "scope": "Phase 1 Footprint Turnkey Scope (897 Co-loc + 103 Greenfield)",
         "qty": 0,
         "unit": "lot",
         "isTotal": true

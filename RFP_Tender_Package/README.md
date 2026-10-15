@@ -84,11 +84,11 @@ Bidders must organize their formal response strictly into three (3) separately b
 | **Commercial & Financing Envelope Opening** | December 16, 2026 | Opening of financial envelopes for technically qualified bidders. |
 | **Notice of Award (NOA)** | December 22, 2026 | Formal notification to winning bidder(s). |
 | **Contract Execution & Notice to Proceed (NTP)**| January 15, 2027 | Contract signing and project mobilization. |
-| **Phase 1 Commercial Launch (1,000 Sites)** | Q4 2027 | Full commercial on-air launch within 12 months (365 calendar days) from Notice to Proceed (NTP). |
+| **Phase 1 Commercial Launch (1,000 Sites)** | Target Q4 2027 | Target commercial on-air in December 2027; contractual long-stop completion date within 365 calendar days from Notice to Proceed (NTP) / 15 January 2028. |
 
 ### Official Receiving Location & Contacts:
 * **Tender Email:** `oliver.tungol@comclark.com.ph`
-* **Attention:** Technical Evaluation Board / **OLIVER TUNGOL** (Author)
+* **Attention:** Technical Evaluation Board
 * **Physical Delivery Address:**  
   *Telecommunications Technology Solutions Incorporated (TelTech)*  
   *Reliance IT Center, #99 E. Rodriguez Jr. Avenue, Brgy. Ugong, Pasig City, Metro Manila 1604, Philippines.*

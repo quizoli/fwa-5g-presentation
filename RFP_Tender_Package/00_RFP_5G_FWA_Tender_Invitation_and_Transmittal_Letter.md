@@ -4,7 +4,6 @@
 **Tender Reference:** RFP-TELTECH-FWA-2026-001  
 **Project Identifier:** Nationwide 5G Fixed Wireless Access (FWA) Infrastructure Program (Band n50, 60 MHz TDD)  
 **Issuing Authority:** Telecommunications Technology Solutions Incorporated (TelTech)  
-**Author:** OLIVER TUNGOL  
 **Date of Issuance:** October 14, 2026  
 
 ---
@@ -59,7 +58,7 @@ The official bidding package consists of the following operative documents:
 * **Opening of Commercial & Financing Envelopes:** December 16, 2026
 * **Notice of Award (NOA):** December 22, 2026
 * **Contract Execution & Notice to Proceed (NTP):** January 15, 2027
-* **Phase 1 Commercial Launch (1,000 Sites):** Q4 2027 (Within 12 Months from NTP)
+* **Phase 1 Commercial Launch (1,000 Sites):** Target Q4 2027 (Contractual long-stop completion date within 365 calendar days from Notice to Proceed / January 15, 2028)
 
 ### 5. Inquiries & Submission Channel
 All formal communications, technical queries, and tender submissions should be directed to:
