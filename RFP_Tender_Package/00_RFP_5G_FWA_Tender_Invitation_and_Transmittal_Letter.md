@@ -65,7 +65,7 @@ The official bidding package consists of the following operative documents:
 All formal communications, technical queries, and tender submissions should be directed to:
 
 * **Official Tender Email:** `oliver.tungol@comclark.com.ph`
-* **Attention:** Technical Evaluation Board / **OLIVER TUNGOL** (Author)
+* **Attention:** Technical Evaluation Board / **OLIVER TUNGOL**
 * **Subject Line:** `[RFP-TELTECH-FWA-2026-001] FWA Tender Submission - <Bidder Name>`
 * **Physical Receiving Address (Hard Copies / USB):**
   * *Tender Committee, Telecommunications Technology Solutions Incorporated (TelTech)*  
@@ -76,7 +76,6 @@ We look forward to reviewing your innovative proposal and exploring a long-term 
 <div class="sign-off-block">
   <p>Warm regards,</p>
   <p><strong>OLIVER TUNGOL</strong><br>
-  Author & Head of Technical Evaluation Board<br>
   <strong>Telecommunications Technology Solutions Inc. (TelTech)</strong><br>
   Reliance IT Center, #99 E. Rodriguez Jr. Avenue, Brgy. Ugong, Pasig City, Philippines<br>
   Email: <code>oliver.tungol@comclark.com.ph</code></p>
