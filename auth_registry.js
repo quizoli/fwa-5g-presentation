@@ -129,6 +129,18 @@
       status: "active",
       passwordHash: "af78623a535884fb37aaa3b6a756031ab12d4ad9422e081fc62a2e39e7cb1a6c",
       registeredAt: "2026-10-15"
+    },
+    {
+      username: "nokia_airfiber",
+      name: "Triton Santos",
+      email: "triton.santos@nokia.com",
+      organization: "NOKIA SOLUTIONS AND NETWORKS PHILIPPINES, INC.",
+      role: "Bidder",
+      isAdmin: false,
+      isBidder: true,
+      status: "active",
+      passwordHash: "c814a124082a915d90a0f529773d5525afa4cc64b342e15c97cbf5de0393ddc3",
+      registeredAt: "2026-10-15"
     }
   ];
 
