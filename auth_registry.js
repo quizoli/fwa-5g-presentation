@@ -153,6 +153,18 @@
       status: "active",
       passwordHash: "08cf69ab9c8c3fe70e6ab4e90dcea5fcaff2746e6018dccad5b1b2dadff7c0b2",
       registeredAt: "2026-10-15"
+    },
+    {
+      username: "sam",
+      name: "Sam Lau",
+      email: "sam@all6.io",
+      organization: "OREX SAI",
+      role: "Bidder",
+      isAdmin: false,
+      isBidder: true,
+      status: "active",
+      passwordHash: "82c20bfe9aaba01cdc56a1f1c366af63a30d55d3f75ca2e8986641f55c7e73ae",
+      registeredAt: "2026-10-15"
     }
   ];
 
