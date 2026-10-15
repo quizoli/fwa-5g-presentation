@@ -27,12 +27,13 @@
       username: "executive",
       name: "Executive Leadership",
       email: "executive@comclark.com.ph",
-      organization: "TelTech / Comclark Executive Office",
+      organization: "Executive Management",
       role: "Executive Reviewer",
-      isAdmin: false,
+      isAdmin: true,
       status: "active",
-      passwordHash: "ddef79b965dc9a8045528aeede3133fc77a7b1cf2d1def50070c83fd61fefef1",
-      registeredAt: "2026-09-25"
+      // Hash of "Executive2026!"
+      passwordHash: "fae342bee3b047fd6aeaf7021e3a1e3618319744da0740c79f56e90c46a546c1",
+      registeredAt: "2026-10-15"
     },
     {
       username: "admin",
@@ -115,6 +116,18 @@
       isBidder: true,
       status: "active",
       passwordHash: "1f4b19af08eaf919b66e6e4c3a505db243656ca1938fc8906678294f89cd9001",
+      registeredAt: "2026-10-15"
+    },
+    {
+      username: "danny",
+      name: "Jianhui Hu",
+      email: "hujianhui1@huawei.com",
+      organization: "Huawei",
+      role: "Bidder",
+      isAdmin: false,
+      isBidder: true,
+      status: "active",
+      passwordHash: "af78623a535884fb37aaa3b6a756031ab12d4ad9422e081fc62a2e39e7cb1a6c",
       registeredAt: "2026-10-15"
     }
   ];

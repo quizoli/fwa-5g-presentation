@@ -95,7 +95,7 @@ service cloud.firestore {
     // Check administrator clearance via verified bootstrap email or custom token claims
     function isAdmin() {
       return isAuthenticated() && (
-        (request.auth.token.email != null && request.auth.token.email in ['oliver.tungol@comclark.com.ph']) ||
+        (request.auth.token.email != null && request.auth.token.email in ['oliver.tungol@comclark.com.ph', 'executive@comclark.com.ph']) ||
         request.auth.token.get('role', '') == 'admin' ||
         request.auth.token.get('isAdmin', false) == true
       );

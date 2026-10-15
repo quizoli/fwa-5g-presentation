@@ -540,6 +540,8 @@
           loginEmail = 'otungol@yahoo.com';
         } else if (identity.toLowerCase() === 'oliver.tungol') {
           loginEmail = 'oliver.tungol@comclark.com.ph';
+        } else if (identity.toLowerCase() === 'executive') {
+          loginEmail = 'executive@comclark.com.ph';
         }
       }
 
@@ -575,15 +577,16 @@
             return false;
           }
 
+          const isSystemAdmin = profile.role === 'admin' || ['oliver.tungol@comclark.com.ph', 'executive@comclark.com.ph'].includes(authUser.email);
           const userObj = {
             uid: authUser.uid,
             username: profile.username || (identity.includes('@') ? identity.split('@')[0] : identity),
-            name: profile.name || authUser.displayName || 'Authorized Bidder',
+            name: profile.name || authUser.displayName || (isSystemAdmin ? 'Executive Leadership' : 'Authorized Bidder'),
             email: authUser.email,
-            organization: profile.organization || 'Bidder Entity',
-            role: profile.role || (authUser.email === 'oliver.tungol@comclark.com.ph' ? 'admin' : 'bidder'),
-            isAdmin: profile.role === 'admin' || authUser.email === 'oliver.tungol@comclark.com.ph',
-            isBidder: profile.role !== 'admin',
+            organization: profile.organization || (isSystemAdmin ? 'Executive Management Office' : 'Bidder Entity'),
+            role: profile.role || (isSystemAdmin ? 'Executive Reviewer' : 'bidder'),
+            isAdmin: isSystemAdmin,
+            isBidder: !isSystemAdmin,
             firebaseAuth: true
           };
 
