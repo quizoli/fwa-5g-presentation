@@ -205,6 +205,10 @@
     font-family: inherit;
     transition: all 0.2s;
   }
+  .form-control::placeholder {
+    color: #64748B !important;
+    opacity: 0.65;
+  }
   .form-control:focus {
     outline: none;
     border-color: var(--teal);
@@ -358,7 +362,7 @@
             <span class="input-icon">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
             </span>
-            <input type="text" id="loginIdentity" class="form-control" placeholder="name@vendor.com" required autocomplete="username" autofocus>
+            <input type="text" id="loginIdentity" class="form-control" placeholder="Enter corporate email or username" required autocomplete="username" autofocus>
           </div>
         </div>
 
@@ -493,12 +497,27 @@
 
   // Handle Sign In Authentication
   async function handleSignIn(e) {
-    e.preventDefault();
+    if (e) e.preventDefault();
     hideAlerts();
 
-    const identity = document.getElementById('loginIdentity').value.trim();
-    const pass = document.getElementById('loginPassword').value.trim();
+    const identityInput = document.getElementById('loginIdentity');
+    const passInput = document.getElementById('loginPassword');
+    const identity = identityInput.value.trim();
+    const pass = passInput.value.trim();
     const rememberMe = document.getElementById('rememberMe').checked;
+
+    if (!identity) {
+      identityInput.focus();
+      document.getElementById('errorMessage').textContent = "Please enter your corporate email or username.";
+      document.getElementById('errorBox').classList.add('show');
+      return;
+    }
+    if (!pass) {
+      passInput.focus();
+      document.getElementById('errorMessage').textContent = "Please enter your security passcode / password.";
+      document.getElementById('errorBox').classList.add('show');
+      return;
+    }
 
     const btn = document.getElementById('btnSignInSubmit');
     const spinner = document.getElementById('spinnerSignIn');
@@ -510,25 +529,29 @@
 
     await new Promise(r => setTimeout(r, 200));
 
+    // Resolve username to corporate email
+    let loginEmail = identity;
+    if (!loginEmail.includes('@')) {
+      const regUser = (window.FWAPortalAuth?.USER_REGISTRY || []).find(u => u.username.toLowerCase() === identity.toLowerCase());
+      if (regUser && regUser.email) {
+        loginEmail = regUser.email;
+      } else if (identity.toLowerCase() === 'jdelacruz') {
+        loginEmail = 'otungol@yahoo.com';
+      } else if (identity.toLowerCase() === 'oliver.tungol') {
+        loginEmail = 'oliver.tungol@comclark.com.ph';
+      }
+    }
+
     let authUser = null;
     let authError = "";
 
-    // 1. Try Firebase Authentication if initialized
+    // 1. Try Firebase Authentication
     if (typeof firebase !== 'undefined' && firebase.auth) {
       try {
-        let loginEmail = identity;
-        // If username entered without @, lookup corporate email from users or access_requests
-        if (!identity.includes('@')) {
-          try {
-            const userSnap = await firebase.firestore().collection('users').where('username', '==', identity.toLowerCase()).limit(1).get();
-            if (!userSnap.empty) {
-              loginEmail = userSnap.docs[0].data().email;
-            }
-          } catch(e) {}
-        }
         const cred = await firebase.auth().signInWithEmailAndPassword(loginEmail, pass);
         authUser = cred.user;
       } catch (err) {
+        console.warn("Firebase Auth attempt note:", err.code, err.message);
         authError = err.message;
       }
     }
@@ -536,9 +559,12 @@
     // 2. Process Firebase Authenticated User
     if (authUser) {
       try {
-        const userDoc = await firebase.firestore().collection('users').doc(authUser.uid).get();
-        const profile = userDoc.exists ? userDoc.data() : {};
-        
+        let profile = {};
+        try {
+          const userDoc = await firebase.firestore().collection('users').doc(authUser.uid).get();
+          if (userDoc.exists) profile = userDoc.data();
+        } catch(docErr) {}
+
         if (profile.status === 'suspended') {
           btn.disabled = false;
           spinner.style.display = 'none';
@@ -550,7 +576,7 @@
 
         const userObj = {
           uid: authUser.uid,
-          username: profile.username || authUser.email.split('@')[0],
+          username: profile.username || (identity.includes('@') ? identity.split('@')[0] : identity),
           name: profile.name || authUser.displayName || 'Authorized Bidder',
           email: authUser.email,
           organization: profile.organization || 'Bidder Entity',
@@ -572,7 +598,7 @@
       }
     }
 
-    // 3. Fallback: Authenticate against cryptographic clearance registry
+    // 3. Fallback: Authenticate against local registry
     const result = await window.FWAPortalAuth.authenticateUser(identity, pass);
     if (result.success) {
       window.FWAPortalAuth.saveSession(result.user, rememberMe);
@@ -585,7 +611,7 @@
       btn.disabled = false;
       spinner.style.display = 'none';
       text.textContent = 'Access E-Tender Portal ➔';
-      document.getElementById('errorMessage').textContent = authError || result.message || 'Authentication failed. Please verify your credentials or request access.';
+      document.getElementById('errorMessage').textContent = result.message || authError || 'Authentication failed. Please verify your credentials or request access.';
       document.getElementById('errorBox').classList.add('show');
     }
   }
