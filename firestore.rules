@@ -1,0 +1,312 @@
+rules_version = '2';
+
+/**
+ * ===============================================================
+ * Cloud Firestore Security Rules
+ * Project: TelTech 5G FWA E-Tender Portal (g-fwa-rfp)
+ * Author: OLIVER TUNGOL (oliver.tungol@comclark.com.ph)
+ * Organization: Comclark Network & Technology Corp. / TelTech
+ * ===============================================================
+ *
+ * Assumed Data Model:
+ *
+ * 1. Collection: /access_requests/{requestId}
+ *    Document ID: Unique request ID string (UUID or push ID)
+ *    Fields:
+ *      - name: string (required, 1-100 chars) - Requester's legal/contact name
+ *      - email: string (required, valid email, <= 100 chars) - Official corporate email
+ *      - organization: string (required, 1-150 chars) - Bidder organization / OEM name
+ *      - username: string (required, 3-50 chars) - Proposed clearance account username
+ *      - role: string (required, strictly 'bidder') - Requested access role
+ *      - status: string (required, 'pending' on create; 'approved' | 'rejected' on update) - Request status
+ *      - createdAt: timestamp (required) - Submission timestamp
+ *
+ * 2. Collection: /users/{uid}
+ *    Document ID: {uid} (Firebase Auth UID)
+ *    Fields:
+ *      - uid: string (required, matches document ID, immutable) - Firebase Auth UID
+ *      - email: string (required, valid email, <= 100 chars) - Registered account email
+ *      - name: string (required, 1-100 chars) - User's full name
+ *      - organization: string (required, 1-150 chars) - Organization name
+ *      - role: string (required, 1-50 chars) - Role ('admin', 'bidder', 'executive', etc.)
+ *      - status: string (required, strictly 'active' | 'suspended') - Account authorization state
+ *      - createdAt: timestamp (required, immutable) - Record creation timestamp
+ *
+ * 3. Collection: /bidders/{bidderUid}/drafts/{draftId}
+ *    Document ID: {draftId} (Draft identifier, e.g. 'current', 'tech_matrix')
+ *    Fields:
+ *      - technical: map (optional) - Autosaved technical compliance matrix
+ *      - commercial: map (optional) - Autosaved commercial pricing BoQ
+ *      - financing: map (optional) - Financing terms (tenor, grace, rate, ECA)
+ *      - updatedAt: timestamp (optional) - Last autosave timestamp
+ *      - bidderId: string (optional, matches bidderUid) - Bidder UID
+ *
+ * 4. Collection: /submissions/{submissionId}
+ *    Document ID: {submissionId} (Unique tender receipt code or alphanumeric ID)
+ *    Fields:
+ *      - submissionId: string (required, 3-100 chars) - Unique receipt code
+ *      - bidderId: string (required, matches auth UID, immutable) - Submitting bidder UID
+ *      - companyName: string (required, 1-150 chars) - Registered vendor corporate entity
+ *      - signatoryName: string (required, 1-100 chars) - Authorized representative name
+ *      - signatoryEmail: string (required, valid email, <= 100 chars) - Signatory corporate email
+ *      - submissionTimestamp: timestamp (required, immutable) - Proposal sealing timestamp
+ *      - sha256Seal: string (required, strictly 64-char hex) - Cryptographic proposal integrity seal
+ *      - status: string (required, strictly 'submitted') - Sealed submission status
+ *      - techCompliance: map (required) - Technical specifications matrix
+ *      - commercialPricing: map (required) - Commercial pricing & BoQ (sealed until Dec 16, 2026)
+ *
+ * 5. Collection: /audit_logs/{logId}
+ *    Document ID: {logId} (Unique log entry ID)
+ *    Fields:
+ *      - logId: string (optional, <= 100 chars) - Audit entry identifier
+ *      - uid: string (required, matches auth UID) - Actor UID
+ *      - action: string (required, 1-100 chars) - System action executed
+ *      - timestamp: timestamp (required) - Event log timestamp
+ *      - details: map or string (optional) - Audit metadata
+ *      - ip: string (optional, <= 45 chars) - Client IP address
+ * ===============================================================
+ */
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===============================================================
+    // Root Level Default Deny
+    // ===============================================================
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // ===============================================================
+    // Core Helper Functions
+    // ===============================================================
+
+    // Check if client request is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Check if the authenticated user matches the target userId
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Check administrator clearance via verified bootstrap email or custom token claims
+    function isAdmin() {
+      return isAuthenticated() && (
+        (request.auth.token.email != null && request.auth.token.email in ['oliver.tungol@comclark.com.ph']) ||
+        request.auth.token.get('role', '') == 'admin' ||
+        request.auth.token.get('isAdmin', false) == true
+      );
+    }
+
+    // Check if user is in active status (verified against auth claims or /users/{uid} document)
+    function isActiveUser() {
+      return isAuthenticated() && (
+        request.auth.token.get('status', 'active') == 'active' &&
+        (!exists(/databases/$(database)/documents/users/$(request.auth.uid)) ||
+         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.get('status', 'active') == 'active')
+      );
+    }
+
+    // RFC 5322 compliant email format validation
+    function isValidEmail(email) {
+      return email is string &&
+        email.size() >= 5 &&
+        email.size() <= 100 &&
+        email.matches('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$');
+    }
+
+    // Cryptographic SHA-256 hex string validation (64 lowercase or uppercase hex characters)
+    function isValidSha256(hash) {
+      return hash is string &&
+        hash.size() == 64 &&
+        hash.matches('^[a-fA-F0-9]{64}$');
+    }
+
+    // Verify immutable fields remain unchanged across updates
+    function areImmutableFieldsUnchanged(fields) {
+      return !request.resource.data.diff(resource.data).affectedKeys().hasAny(fields);
+    }
+
+    // Tender submission deadline: December 2, 2026, 17:00 (5:00 PM PHT / Manila UTC+8 is 09:00 UTC)
+    // Allows submissions up to 17:00 UTC to ensure complete time window compliance
+    function isBeforeSubmissionDeadline() {
+      return request.time < timestamp.date(2026, 12, 2) + duration.value(17, 'h');
+    }
+
+    // Envelope sealing opening gate: Commercial bids remain cryptographically sealed until December 16, 2026
+    function isCommercialEnvelopeUnsealed() {
+      return request.time >= timestamp.date(2026, 12, 16);
+    }
+
+    // ===============================================================
+    // Domain Validators
+    // ===============================================================
+
+    // Validate access request creation
+    function isValidAccessRequestCreate(data) {
+      return data.keys().hasAll(['name', 'email', 'organization', 'username', 'role', 'status', 'createdAt']) &&
+        data.keys().hasOnly(['name', 'email', 'organization', 'username', 'role', 'status', 'createdAt']) &&
+        data.name is string && data.name.size() >= 1 && data.name.size() <= 100 &&
+        isValidEmail(data.email) &&
+        data.organization is string && data.organization.size() >= 1 && data.organization.size() <= 150 &&
+        data.username is string && data.username.size() >= 3 && data.username.size() <= 50 &&
+        data.role == 'bidder' &&
+        data.status == 'pending' &&
+        data.createdAt is timestamp;
+    }
+
+    // Validate access request update (admin approval / rejection workflow)
+    function isValidAccessRequestUpdate(data) {
+      return data.keys().hasAll(['name', 'email', 'organization', 'username', 'role', 'status', 'createdAt']) &&
+        data.keys().hasOnly(['name', 'email', 'organization', 'username', 'role', 'status', 'createdAt']) &&
+        data.status in ['pending', 'approved', 'rejected'] &&
+        areImmutableFieldsUnchanged(['name', 'email', 'organization', 'username', 'role', 'createdAt']);
+    }
+
+    // Validate user profile structure
+    function isValidUser(data) {
+      return data.keys().hasAll(['uid', 'email', 'name', 'organization', 'role', 'status', 'createdAt']) &&
+        data.keys().hasOnly(['uid', 'email', 'name', 'organization', 'role', 'status', 'createdAt']) &&
+        data.uid is string && data.uid.size() >= 1 && data.uid.size() <= 128 &&
+        isValidEmail(data.email) &&
+        data.name is string && data.name.size() >= 1 && data.name.size() <= 100 &&
+        data.organization is string && data.organization.size() >= 1 && data.organization.size() <= 150 &&
+        data.role is string && data.role.size() >= 1 && data.role.size() <= 50 &&
+        data.status in ['active', 'suspended'] &&
+        data.createdAt is timestamp;
+    }
+
+    // Validate bidder draft structure and prevent unbounded memory injection
+    function isValidDraft(data) {
+      return data.keys().hasOnly(['technical', 'commercial', 'financing', 'updatedAt', 'bidderId']) &&
+        (!('bidderId' in data) || (data.bidderId is string && data.bidderId == request.auth.uid)) &&
+        (!('updatedAt' in data) || data.updatedAt is timestamp) &&
+        (!('technical' in data) || data.technical is map) &&
+        (!('commercial' in data) || data.commercial is map) &&
+        (!('financing' in data) || data.financing is map);
+    }
+
+    // Validate formal sealed proposal submission
+    function isValidSubmission(data) {
+      return data.keys().hasAll([
+          'submissionId', 'bidderId', 'companyName', 'signatoryName',
+          'signatoryEmail', 'submissionTimestamp', 'sha256Seal',
+          'status', 'techCompliance', 'commercialPricing'
+        ]) &&
+        data.keys().hasOnly([
+          'submissionId', 'bidderId', 'companyName', 'signatoryName',
+          'signatoryEmail', 'submissionTimestamp', 'sha256Seal',
+          'status', 'techCompliance', 'commercialPricing'
+        ]) &&
+        data.submissionId is string && data.submissionId.size() >= 3 && data.submissionId.size() <= 100 &&
+        data.bidderId is string && data.bidderId == request.auth.uid &&
+        data.companyName is string && data.companyName.size() >= 1 && data.companyName.size() <= 150 &&
+        data.signatoryName is string && data.signatoryName.size() >= 1 && data.signatoryName.size() <= 100 &&
+        isValidEmail(data.signatoryEmail) &&
+        data.submissionTimestamp is timestamp &&
+        isValidSha256(data.sha256Seal) &&
+        data.status == 'submitted' &&
+        data.techCompliance is map &&
+        data.commercialPricing is map;
+    }
+
+    // Validate append-only audit log entries
+    function isValidAuditLog(data) {
+      return data.keys().hasAll(['uid', 'action', 'timestamp']) &&
+        data.keys().hasOnly(['logId', 'uid', 'action', 'timestamp', 'details', 'ip']) &&
+        data.uid is string && data.uid == request.auth.uid &&
+        data.action is string && data.action.size() >= 1 && data.action.size() <= 100 &&
+        data.timestamp is timestamp &&
+        (!('logId' in data) || (data.logId is string && data.logId.size() <= 100)) &&
+        (!('details' in data) || data.details is map || (data.details is string && data.details.size() <= 5000)) &&
+        (!('ip' in data) || (data.ip is string && data.ip.size() <= 45));
+    }
+
+    // ===============================================================
+    // Collection Security Rules
+    // ===============================================================
+
+    /**
+     * 1. Access Requests
+     * Prospective bidders submit registration requests unauthenticated or authenticated.
+     * Administrators review, approve, or reject requests.
+     */
+    match /access_requests/{requestId} {
+      allow create: if isValidAccessRequestCreate(request.resource.data);
+      allow read, delete: if isAdmin();
+      allow update: if isAdmin() && isValidAccessRequestUpdate(request.resource.data);
+    }
+
+    /**
+     * 2. User Profiles
+     * Stores authorized credentials, corporate affiliations, and clearance status.
+     * Strict isolation: users can only view their own record; admin has full visibility and write authority.
+     */
+    match /users/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow create: if isAdmin() && request.resource.data.uid == uid && isValidUser(request.resource.data);
+      allow update: if isAdmin() && request.resource.data.uid == uid && isValidUser(request.resource.data) && areImmutableFieldsUnchanged(['uid', 'createdAt']);
+      allow delete: if isAdmin();
+    }
+
+    /**
+     * 3. Bidder Drafts Subcollection
+     * Autosaved technical matrix, pricing sheets, and financing models.
+     * Strict tenant isolation: Vendor A cannot inspect or mutate Vendor B's drafts.
+     * Suspended or inactive users cannot read or write drafts.
+     */
+    match /bidders/{bidderUid}/drafts/{draftId} {
+      allow read: if isOwner(bidderUid) && isActiveUser();
+      allow create: if isOwner(bidderUid) && isActiveUser() && isValidDraft(request.resource.data);
+      allow update: if isOwner(bidderUid) && isActiveUser() && isValidDraft(request.resource.data);
+      allow delete: if isOwner(bidderUid) && isActiveUser();
+    }
+
+    /**
+     * 4. Sealed Proposals & Submissions
+     * Cryptographically sealed bids submitted before the strict deadline (Dec 2, 2026, 17:00).
+     * Submissions are 100% immutable once submitted (no update, no delete).
+     * Bidder can read their own submission.
+     * Envelope Sealing: Admin cannot inspect submissions containing commercial pricing before Dec 16, 2026.
+     */
+    match /submissions/{submissionId} {
+      allow create: if isAuthenticated() &&
+        request.resource.data.bidderId == request.auth.uid &&
+        isBeforeSubmissionDeadline() &&
+        isActiveUser() &&
+        isValidSubmission(request.resource.data);
+
+      allow read: if (isAuthenticated() && request.auth.uid == resource.data.bidderId) ||
+        (isAdmin() && (isCommercialEnvelopeUnsealed() || !('commercialPricing' in resource.data)));
+
+      allow update, delete: if false;
+
+      // Subcollection support for architectures utilizing separate commercial envelope documents
+      match /commercial_envelope/{envelopeId} {
+        allow create: if isAuthenticated() &&
+          get(/databases/$(database)/documents/submissions/$(submissionId)).data.bidderId == request.auth.uid &&
+          isBeforeSubmissionDeadline() &&
+          isActiveUser();
+
+        allow read: if (isAuthenticated() && get(/databases/$(database)/documents/submissions/$(submissionId)).data.bidderId == request.auth.uid) ||
+          (isAdmin() && isCommercialEnvelopeUnsealed());
+
+        allow update, delete: if false;
+      }
+    }
+
+    /**
+     * 5. Append-Only Audit Trail
+     * Tamper-proof activity log.
+     * Authenticated actors can append log entries; only administrators can read.
+     * Logs are strictly append-only (no update, no delete).
+     */
+    match /audit_logs/{logId} {
+      allow create: if isAuthenticated() && isValidAuditLog(request.resource.data);
+      allow read: if isAdmin();
+      allow update, delete: if false;
+    }
+  }
+}

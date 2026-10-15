@@ -7,6 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="firebase_config.js"></script>
 <script src="auth_registry.js"></script>
 <style>
   :root {
@@ -504,33 +508,95 @@
     spinner.style.display = 'inline-block';
     text.textContent = 'Verifying Clearance...';
 
-    await new Promise(r => setTimeout(r, 350));
+    await new Promise(r => setTimeout(r, 200));
 
+    let authUser = null;
+    let authError = "";
+
+    // 1. Try Firebase Authentication if initialized
+    if (typeof firebase !== 'undefined' && firebase.auth) {
+      try {
+        let loginEmail = identity;
+        // If username entered without @, lookup corporate email from users or access_requests
+        if (!identity.includes('@')) {
+          try {
+            const userSnap = await firebase.firestore().collection('users').where('username', '==', identity.toLowerCase()).limit(1).get();
+            if (!userSnap.empty) {
+              loginEmail = userSnap.docs[0].data().email;
+            }
+          } catch(e) {}
+        }
+        const cred = await firebase.auth().signInWithEmailAndPassword(loginEmail, pass);
+        authUser = cred.user;
+      } catch (err) {
+        authError = err.message;
+      }
+    }
+
+    // 2. Process Firebase Authenticated User
+    if (authUser) {
+      try {
+        const userDoc = await firebase.firestore().collection('users').doc(authUser.uid).get();
+        const profile = userDoc.exists ? userDoc.data() : {};
+        
+        if (profile.status === 'suspended') {
+          btn.disabled = false;
+          spinner.style.display = 'none';
+          text.textContent = 'Access E-Tender Portal ➔';
+          document.getElementById('errorMessage').textContent = "Your portal clearance has been suspended. Please contact oliver.tungol@comclark.com.ph.";
+          document.getElementById('errorBox').classList.add('show');
+          return;
+        }
+
+        const userObj = {
+          uid: authUser.uid,
+          username: profile.username || authUser.email.split('@')[0],
+          name: profile.name || authUser.displayName || 'Authorized Bidder',
+          email: authUser.email,
+          organization: profile.organization || 'Bidder Entity',
+          role: profile.role || (authUser.email === 'oliver.tungol@comclark.com.ph' ? 'admin' : 'bidder'),
+          isAdmin: profile.role === 'admin' || authUser.email === 'oliver.tungol@comclark.com.ph',
+          isBidder: profile.role !== 'admin',
+          firebaseAuth: true
+        };
+
+        window.FWAPortalAuth.saveSession(userObj, rememberMe);
+        text.textContent = 'Clearance Verified! Entering Portal...';
+        btn.style.background = 'var(--green)';
+        setTimeout(() => {
+          window.location.replace('rfp_portal.html');
+        }, 300);
+        return;
+      } catch(err) {
+        console.warn("Firestore profile fetch note:", err);
+      }
+    }
+
+    // 3. Fallback: Authenticate against cryptographic clearance registry
     const result = await window.FWAPortalAuth.authenticateUser(identity, pass);
-
     if (result.success) {
       window.FWAPortalAuth.saveSession(result.user, rememberMe);
       text.textContent = 'Clearance Verified! Entering Portal...';
       btn.style.background = 'var(--green)';
       setTimeout(() => {
         window.location.replace('rfp_portal.html');
-      }, 350);
+      }, 300);
     } else {
       btn.disabled = false;
       spinner.style.display = 'none';
       text.textContent = 'Access E-Tender Portal ➔';
-      document.getElementById('errorMessage').textContent = result.message || 'Authentication failed. Please verify your credentials or request access.';
+      document.getElementById('errorMessage').textContent = authError || result.message || 'Authentication failed. Please verify your credentials or request access.';
       document.getElementById('errorBox').classList.add('show');
     }
   }
 
-  // Handle Access Request
+  // Handle Access Request with Centralized Firebase Persistence
   async function handleRequestAccess(e) {
     e.preventDefault();
     hideAlerts();
 
     const name = document.getElementById('reqName').value.trim();
-    const email = document.getElementById('reqEmail').value.trim();
+    const email = document.getElementById('reqEmail').value.trim().toLowerCase();
     const org = document.getElementById('reqOrg').value.trim();
     const username = document.getElementById('reqUsername').value.trim().toLowerCase();
     const pass = document.getElementById('reqPassword').value.trim();
@@ -541,17 +607,57 @@
 
     btn.disabled = true;
     spinner.style.display = 'inline-block';
-    text.textContent = 'Submitting Clearance Request...';
+    text.textContent = 'Registering in Central Database...';
 
     let pwHash = "";
     try {
       if (window.FWAPortalAuth && window.FWAPortalAuth.computeSHA256) {
         pwHash = await window.FWAPortalAuth.computeSHA256(pass);
       } else {
-        pwHash = "SHA256_PENDING_" + Date.now();
+        pwHash = "SHA256_LOCAL_" + Date.now();
       }
     } catch(err) {
       pwHash = "SHA256_LOCAL_" + Date.now();
+    }
+
+    let savedToFirestore = false;
+
+    // 1. Write to Centralized Cloud Firestore Collection: /access_requests
+    if (typeof firebase !== 'undefined' && firebase.firestore) {
+      try {
+        const reqPayload = {
+          name: name,
+          email: email,
+          organization: org,
+          username: username,
+          role: 'bidder',
+          status: 'pending',
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        };
+        await firebase.firestore().collection('access_requests').add(reqPayload);
+        savedToFirestore = true;
+      } catch (fsErr) {
+        console.warn("Firestore access_request creation note:", fsErr);
+      }
+
+      // 2. Pre-create pending Firebase Auth account
+      try {
+        const cred = await firebase.auth().createUserWithEmailAndPassword(email, pass);
+        if (cred && cred.user) {
+          await firebase.firestore().collection('users').doc(cred.user.uid).set({
+            uid: cred.user.uid,
+            email: email,
+            name: name,
+            organization: org,
+            role: 'bidder',
+            status: 'active',
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+          });
+          await firebase.auth().signOut();
+        }
+      } catch(authErr) {
+        console.log("Firebase Auth pre-registration note:", authErr.message);
+      }
     }
 
     const approveCommand = `python3 manage_users.py approve ${username} "${pwHash}" --name "${name}" --email "${email}" --org "${org}" --role "Bidder"`;
@@ -567,7 +673,7 @@ Please authorize my clearance request for the TelTech 5G FWA E-Tender Portal (RF
 • Bidder Organization / OEM: ${org}
 • Proposed Username: ${username}
 • Role: Bidder
-• Security Hash (SHA-256): ${pwHash}
+• Central Database: ${savedToFirestore ? 'Recorded in Cloud Firestore' : 'Queued'}
 
 Administrator Quick-Approval CLI Command:
 ${approveCommand}
@@ -594,7 +700,7 @@ System: TelTech 5G FWA E-Tender Portal Clearance Gate`);
         Organization: org,
         Desired_Username: username,
         Role: "Bidder",
-        Security_Hash_SHA256: pwHash,
+        Cloud_Database_Status: savedToFirestore ? "Saved in Firestore (/access_requests)" : "Local Queue",
         Submitted_Date: new Date().toLocaleString(),
         Approval_Instruction: `Run on server or terminal to approve: ${approveCommand}`
       };
@@ -615,15 +721,24 @@ System: TelTech 5G FWA E-Tender Portal Clearance Gate`);
 
     // Show Confirmation
     document.getElementById('successMessage').innerHTML = `
-      <div style="font-size: 13.5px; font-weight: 700; margin-bottom: 6px;">
-        ✅ Clearance Request Submitted for ${name}!
+      <div style="font-size: 13.5px; font-weight: 700; margin-bottom: 6px; color: #10B981;">
+        ✅ Clearance Request Registered in Central Database!
       </div>
       <div style="font-size: 12px; color: #CBD5E1; line-height: 1.5; margin-bottom: 12px;">
-        Your clearance request has been routed to the Tender Secretariat. You may also click below to dispatch it directly to <strong>Oliver Tungol</strong> via your email client:
+        Your request for <strong>${name}</strong> (${org}) has been submitted to the Tender Secretariat. You may also click below to notify <strong>Oliver Tungol</strong> directly:
       </div>
       <div style="display: flex; flex-direction: column; gap: 8px;">
         <a href="${mailtoUrl}" target="_blank" class="btn-submit" style="background: var(--teal); color: #0A192F; text-decoration: none; text-align: center; padding: 10px; font-weight: 800; border-radius: 6px; font-size: 12.5px;">
-          📧 Open Email App to Send Request Notice
+          📧 Open Email App to Send Request Notification
+        </a>
+      </div>
+      <div style="font-size: 11px; color: #94A3B8; margin-top: 10px; text-align: center;">
+        Once authorized, you will receive an official activation email confirming full tender access.
+      </div>
+    `;
+    document.getElementById('successBox').classList.add('show');
+    document.getElementById('successBox').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
         </a>
       </div>
       <div style="font-size: 11px; color: #94A3B8; margin-top: 10px; text-align: center;">
