@@ -17,7 +17,7 @@
       name: "Oliver Tungol",
       email: "oliver.tungol@comclark.com.ph",
       organization: "Comclark Network & Technology Corp.",
-      role: "Author & Administrator",
+      role: "Lead Architect & Administrator",
       isAdmin: true,
       status: "active",
       // Hash of "OliverTungol2026!"
@@ -47,6 +47,72 @@
       // Hash of "fwa2026"
       passwordHash: "ef03da33db83125ac00fe6dbb96f6475117d1d640f76cd2344168efa1181bba8",
       registeredAt: "2026-09-25"
+    },
+    // Authorized Tier-1 OEM Bidders for RFP-TELTECH-FWA-2026-001
+    {
+      username: "bidder.huawei",
+      name: "Huawei Bid Team",
+      email: "bidder.huawei@teltech-rfp.com",
+      organization: "Huawei Technologies Philippines Inc.",
+      role: "Tier-1 OEM Bidder",
+      isAdmin: false,
+      isBidder: true,
+      status: "active",
+      // Hash of "HuaweiFWA2026!"
+      passwordHash: "277b76c7347887d03b4b2ca1f7a5d563666d23dff41f8d7d1e6dd7c9893d3b1c",
+      registeredAt: "2026-10-14"
+    },
+    {
+      username: "bidder.nokia",
+      name: "Nokia Bid Team",
+      email: "bidder.nokia@teltech-rfp.com",
+      organization: "Nokia Solutions and Networks Philippines",
+      role: "Tier-1 OEM Bidder",
+      isAdmin: false,
+      isBidder: true,
+      status: "active",
+      // Hash of "NokiaFWA2026!"
+      passwordHash: "a5099394c79345a9aa9364ac66690c014a914c98580da8b889a9597ec795b4fb",
+      registeredAt: "2026-10-14"
+    },
+    {
+      username: "bidder.ericsson",
+      name: "Ericsson Bid Team",
+      email: "bidder.ericsson@teltech-rfp.com",
+      organization: "Ericsson Telecommunications Inc.",
+      role: "Tier-1 OEM Bidder",
+      isAdmin: false,
+      isBidder: true,
+      status: "active",
+      // Hash of "EricssonFWA2026!"
+      passwordHash: "95b975d7801999a2f45c53ed819d1ca6c87171948d857d9a92e2588f250d05bf",
+      registeredAt: "2026-10-14"
+    },
+    {
+      username: "bidder.zte",
+      name: "ZTE Bid Team",
+      email: "bidder.zte@teltech-rfp.com",
+      organization: "ZTE Corporation Philippines",
+      role: "Tier-1 OEM Bidder",
+      isAdmin: false,
+      isBidder: true,
+      status: "active",
+      // Hash of "ZTEFWA2026!"
+      passwordHash: "73738bdefed15ec916f522b5c70e18482fd6bcd46c9b386a656cc6976d0f7327",
+      registeredAt: "2026-10-14"
+    },
+    {
+      username: "bidder.generic",
+      name: "Authorized OEM Bidder",
+      email: "bidder@teltech-rfp.com",
+      organization: "Shortlisted Tier-1 Equipment Manufacturer",
+      role: "Qualified RFP Bidder",
+      isAdmin: false,
+      isBidder: true,
+      status: "active",
+      // Hash of "Bidder2026!"
+      passwordHash: "19c24bb3b51d5e50d33e953bdf9f47cf61f5337d09c2f6f2c47ab788df4f9e12",
+      registeredAt: "2026-10-14"
     }
   ];
 
@@ -90,7 +156,8 @@
         email: user.email,
         organization: user.organization,
         role: user.role,
-        isAdmin: !!user.isAdmin
+        isAdmin: !!user.isAdmin,
+        isBidder: !!user.isBidder
       }
     };
   }

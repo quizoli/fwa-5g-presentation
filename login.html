@@ -428,7 +428,7 @@
 
 <footer>
   Telecommunications Technology Solutions Inc. (TelTech) & Comclark Network and Technology Corp.<br/>
-  Author: <strong>Oliver Tungol</strong> · Strict Confidentiality Enforced
+  Lead Architect: <strong>Oliver Tungol</strong> · Strict Confidentiality Enforced
 </footer>
 
 <script>
@@ -443,8 +443,11 @@
   function redirectAuthorized() {
     const urlParams = new URLSearchParams(window.location.search);
     const redirectUrl = urlParams.get('redirect');
+    const user = window.FWAPortalAuth ? window.FWAPortalAuth.getCurrentUser() : null;
     if (redirectUrl && !redirectUrl.includes('login.html') && !redirectUrl.includes('index.html')) {
       window.location.replace(decodeURIComponent(redirectUrl));
+    } else if (user && user.isBidder) {
+      window.location.replace('rfp_portal.html');
     } else {
       window.location.replace('portal.html');
     }

@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TelTech — 5G FWA E-Tender & Bid Submission Portal</title>
+<script src="auth_registry.js"></script>
+<script src="rfp_tender_data.js"></script>
+<script>
+  // Immediate Confidentiality & Authentication Guard
+  (function() {
+    var auth = sessionStorage.getItem('fwa_portal_auth') || localStorage.getItem('fwa_portal_auth');
+    if (!auth) {
+      var returnPath = encodeURIComponent(window.location.pathname + window.location.search);
+      window.location.replace('login.html?redirect=' + returnPath);
+    }
+  })();
+</script>
+<style>
+  :root {
+    --navy: #0A192F;
+    --navy-light: #112240;
+    --navy-card: #0F233D;
+    --navy-border: #1E3A5F;
+    --blue-accent: #0077CC;
+    --blue-light: #2563EB;
+    --teal: #00B4D8;
+    --teal-glow: rgba(0, 180, 216, 0.35);
+    --gold: #FFB703;
+    --green: #10B981;
+    --red: #EF4444;
+    --text-light: #F1F5F9;
+    --text-muted: #94A3B8;
+    --input-bg: rgba(10, 25, 47, 0.85);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+
+  body {
+    background: #0A192F;
+    color: var(--text-light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* TOP HEADER */
+  header {
+    background: rgba(10, 25, 47, 0.96);
+    border-bottom: 1px solid rgba(0, 180, 216, 0.25);
+    padding: 12px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(12px);
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .brand-badge {
+    background: linear-gradient(135deg, #0077CC, #00B4D8);
+    color: #FFFFFF;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+
+  .header-titles h1 {
+    font-size: 17px;
+    font-weight: 800;
+    color: #FFFFFF;
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .header-titles .sub {
+    font-size: 11.5px;
+    color: var(--teal);
+    font-weight: 600;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .countdown-box {
+    background: rgba(255, 183, 3, 0.12);
+    border: 1px solid rgba(255, 183, 3, 0.35);
+    border-radius: 8px;
+    padding: 5px 12px;
+    text-align: right;
+  }
+
+  .countdown-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
+
+  .countdown-value {
+    font-size: 12.5px;
+    font-weight: 800;
+    color: #FFFFFF;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  .user-badge {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(0, 180, 216, 0.3);
+    padding: 5px 12px;
+    border-radius: 20px;
+  }
+
+  .user-badge .role-pill {
+    background: var(--teal);
+    color: #0A192F;
+    font-size: 9.5px;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 10px;
+    text-transform: uppercase;
+  }
+
+  .btn-logout {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    color: #FCA5A5;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-logout:hover {
+    background: rgba(239, 68, 68, 0.35);
+    color: #FFFFFF;
+  }
+
+  /* NAVIGATION RIBBON */
+  .nav-ribbon {
+    background: #0D1F38;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    padding: 0 30px;
+    overflow-x: auto;
+    position: sticky;
+    top: 57px;
+    z-index: 900;
+  }
+
+  .nav-tab {
+    padding: 14px 18px;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-tab:hover {
+    color: var(--teal);
+    background: rgba(0, 180, 216, 0.05);
+  }
+
+  .nav-tab.active {
+    color: #FFFFFF;
+    border-bottom-color: var(--teal);
+    background: rgba(0, 180, 216, 0.1);
+  }
+
+  .nav-tab .badge {
+    background: rgba(255, 255, 255, 0.12);
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    color: #FFFFFF;
+  }
+
+  /* MAIN CONTENT AREA */
+  main {
+    flex: 1;
+    padding: 24px 30px 60px 30px;
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .tab-pane {
+    display: none;
+    animation: fadeIn 0.25s ease-in-out;
+  }
+  .tab-pane.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* CARDS & PANELS */
+  .portal-card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .card-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* BUTTONS */
+  .btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background: #0077CC;
+    color: #FFFFFF;
+  }
+  .btn-primary:hover {
+    background: #0099FF;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 119, 204, 0.4);
+  }
+
+  .btn-success {
+    background: #10B981;
+    color: #FFFFFF;
+  }
+  .btn-success:hover {
+    background: #059669;
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-light);
+  }
+  .btn-outline:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--teal);
+    color: #FFFFFF;
+  }
+
+  .btn-gold {
+    background: #FFB703;
+    color: #0A192F;
+    font-weight: 800;
+  }
+  .btn-gold:hover {
+    background: #FFCA3A;
+  }
+
+  /* DOCUMENT LIBRARY STYLES */
+  .doc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .doc-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.2s;
+  }
+  .doc-card:hover {
+    border-color: var(--teal);
+    background: rgba(0, 180, 216, 0.04);
+    transform: translateY(-2px);
+  }
+
+  .doc-card-badge {
+    align-self: flex-start;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+
+  .badge-pdf { background: rgba(239, 68, 68, 0.2); color: #FCA5A5; border: 1px solid rgba(239, 68, 68, 0.4); }
+  .badge-xlsx { background: rgba(16, 185, 129, 0.2); color: #6EE7B7; border: 1px solid rgba(16, 185, 129, 0.4); }
+
+  .doc-card-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin-bottom: 6px;
+  }
+
+  .doc-card-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    line-height: 1.45;
+  }
+
+  .doc-card-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: auto;
+  }
+
+  /* TECHNICAL MATRIX STYLES */
+  .scorecard-banner {
+    background: linear-gradient(135deg, rgba(15, 35, 61, 0.95), rgba(13, 31, 56, 0.95));
+    border: 1px solid rgba(0, 180, 216, 0.35);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .stat-group {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .stat-box {
+    text-align: center;
+    min-width: 90px;
+  }
+  .stat-val {
+    font-size: 22px;
+    font-weight: 900;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+  .stat-lbl {
+    font-size: 10.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .val-c { color: var(--green); }
+  .val-m { color: var(--gold); }
+  .val-nc { color: var(--red); }
+  .val-tot { color: var(--teal); }
+
+  .filter-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .filter-pill {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--text-muted);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .filter-pill:hover, .filter-pill.active {
+    background: var(--blue-accent);
+    color: #FFFFFF;
+    border-color: var(--blue-accent);
+  }
+
+  .matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    border: 1px solid var(--navy-border);
+  }
+
+  .matrix-table th {
+    background: #0B2545;
+    color: #FFFFFF;
+    padding: 10px 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    border: 1px solid var(--navy-border);
+    position: sticky;
+    top: 106px;
+    z-index: 800;
+  }
+
+  .matrix-table td {
+    padding: 10px 12px;
+    border: 1px solid var(--navy-border);
+    vertical-align: top;
+  }
+
+  .matrix-table tr:nth-child(even) td {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .matrix-table tr:hover td {
+    background: rgba(0, 180, 216, 0.04);
+  }
+
+  .matrix-section-row td {
+    background: #172A45 !important;
+    color: var(--teal) !important;
+    font-weight: 800;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 8px 12px;
+  }
+
+  .select-compliance {
+    background: #0A192F;
+    border: 1px solid rgba(0, 180, 216, 0.4);
+    color: #FFFFFF;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 800;
+    width: 100%;
+    cursor: pointer;
+  }
+  .select-compliance:focus {
+    outline: none;
+    border-color: var(--teal);
+    box-shadow: 0 0 8px var(--teal-glow);
+  }
+
+  .input-proposed {
+    width: 100%;
+    background: #0A192F;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #F1F5F9;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 11.5px;
+    resize: vertical;
+    min-height: 48px;
+  }
+  .input-proposed:focus {
+    outline: none;
+    border-color: var(--teal);
+  }
+
+  /* COMMERCIAL BOQ STYLES */
+  .boq-input {
+    width: 110px;
+    background: #0A192F;
+    border: 1px solid #10B981;
+    color: #6EE7B7;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: right;
+    font-family: ui-monospace, SFMono-Regular, monospace;
+  }
+  .boq-input:focus {
+    outline: none;
+    border-color: #34D399;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+  }
+
+  /* SUBMISSION CERTIFICATE MODAL / VIEW */
+  .cert-container {
+    background: #FFFFFF;
+    color: #0F172A;
+    border: 6px double #0A192F;
+    border-radius: 12px;
+    padding: 36px 40px;
+    max-width: 760px;
+    margin: 20px auto;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
+  }
+
+  .cert-header {
+    text-align: center;
+    border-bottom: 2px solid #0A192F;
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+  }
+
+  .cert-code {
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    font-weight: 800;
+    color: #0077CC;
+    font-size: 13px;
+    background: #F1F5F9;
+    padding: 3px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 6px;
+  }
+
+  /* TOAST ALERT */
+  #toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #10B981;
+    color: #FFFFFF;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 13px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: none;
+    animation: slideUp 0.3s ease;
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP HEADER -->
+<header>
+  <div class="header-left">
+    <span class="brand-badge">Official E-Tender Portal</span>
+    <div class="header-titles">
+      <h1>TelTech 5G Fixed Wireless Access (FWA)</h1>
+      <div class="sub">Nationwide Standalone Turnkey Deployment (RFP Ref: RFP-TELTECH-FWA-2026-001)</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="countdown-box">
+      <div class="countdown-label">Submission Deadline (Dec 2, 2026 17:00 PHT)</div>
+      <div class="countdown-value" id="countdown-timer">Calculating...</div>
+    </div>
+    <div class="user-badge">
+      <span id="user-display-name">Guest</span>
+      <span class="role-pill" id="user-role-pill">Bidder</span>
+    </div>
+    <button class="btn-logout" onclick="FWAPortalAuth.terminateSession()">Sign Out</button>
+  </div>
+</header>
+
+<!-- NAVIGATION RIBBON -->
+<nav class="nav-ribbon">
+  <div class="nav-tab active" data-tab="tab-library" onclick="switchTab('tab-library')">
+    <span>📚 1. Document Library</span>
+    <span class="badge">8 Docs</span>
+  </div>
+  <div class="nav-tab" data-tab="tab-technical" onclick="switchTab('tab-technical')">
+    <span>📋 2. Technical Compliance (App A)</span>
+    <span class="badge" id="tab-compliance-count">0 / 80</span>
+  </div>
+  <div class="nav-tab" data-tab="tab-commercial" onclick="switchTab('tab-commercial')">
+    <span>💰 3. Commercial BoQ & Financing</span>
+    <span class="badge">Lots 1–7</span>
+  </div>
+  <div class="nav-tab" data-tab="tab-siting" onclick="switchTab('tab-siting')">
+    <span>🗺️ 4. Candidate Site Schedule</span>
+    <span class="badge">1,000 Phase 1</span>
+  </div>
+  <div class="nav-tab" data-tab="tab-submission" onclick="switchTab('tab-submission')">
+    <span>🚀 5. 3-Envelope Sealed Bid</span>
+    <span class="badge" style="background: var(--gold); color: #0A192F;">Submission</span>
+  </div>
+  <div class="nav-tab" id="admin-nav-tab" data-tab="tab-admin" onclick="switchTab('tab-admin')" style="display: none;">
+    <span>👑 6. Tender Committee Console</span>
+    <span class="badge" style="background: var(--teal); color: #0A192F;">Admin</span>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT WRAPPER -->
+<main>
+
+  <!-- TAB 1: DOCUMENT LIBRARY -->
+  <section id="tab-library" class="tab-pane active">
+    <div class="portal-card">
+      <div class="card-header">
+        <div class="card-title">📖 Official RFP Bidding Package Register</div>
+        <div>
+          <a href="RFP_5G_FWA_Bidder_Package_2026-10-14.zip" download class="btn btn-primary">
+            📦 Download Complete Tender Package (.ZIP)
+          </a>
+        </div>
+      </div>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5;">
+        Qualified bidders may inspect and download all operative tender specifications, engineering guidelines, compliance matrices, commercial BoQ price books, and siting schedules below. Complete the submission electronically via Tabs 2, 3, and 5.
+      </p>
+      <div class="doc-grid" id="document-library-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 2: TECHNICAL COMPLIANCE MATRIX (APPENDIX A) -->
+  <section id="tab-technical" class="tab-pane">
+    <!-- Sticky Scorecard -->
+    <div class="scorecard-banner">
+      <div>
+        <div style="font-size: 15px; font-weight: 800; color: #FFFFFF; margin-bottom: 2px;">
+          Appendix A: Mandatory Technical Compliance Matrix
+        </div>
+        <div style="font-size: 12px; color: var(--text-muted);">
+          Complete Column D (C / M / NC) and propose exact specifications in Column E for all 80 items.
+        </div>
+      </div>
+      <div class="stat-group">
+        <div class="stat-box">
+          <div class="stat-val val-tot" id="stat-total">80</div>
+          <div class="stat-lbl">Requirements</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val val-c" id="stat-c">0</div>
+          <div class="stat-lbl">Compliant (C)</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val val-m" id="stat-m">0</div>
+          <div class="stat-lbl">Minor Dev (M)</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val val-nc" id="stat-nc">0</div>
+          <div class="stat-lbl">Non-Compliant</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val" id="stat-score" style="color: #6EE7B7;">0.0%</div>
+          <div class="stat-lbl">Tech Score</div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 8px;">
+        <button class="btn btn-success" onclick="saveTechnicalDraft(true)">💾 Save Draft</button>
+        <button class="btn btn-outline" onclick="exportTechnicalJSON()">📥 Export JSON</button>
+      </div>
+    </div>
+
+    <!-- Section Filter Bar -->
+    <div class="filter-bar" id="section-filter-bar">
+      <div class="filter-pill active" onclick="filterSection('ALL')">All Requirements (80)</div>
+      <div class="filter-pill" onclick="filterSection('SECTION 1')">1. RAN (20)</div>
+      <div class="filter-pill" onclick="filterSection('SECTION 2')">2. Power (12)</div>
+      <div class="filter-pill" onclick="filterSection('SECTION 3')">3. 5GC Core (12)</div>
+      <div class="filter-pill" onclick="filterSection('SECTION 4')">4. OSS/BSS (11)</div>
+      <div class="filter-pill" onclick="filterSection('SECTION 5')">5. RF & Civil (7)</div>
+      <div class="filter-pill" onclick="filterSection('SECTION 6')">6. Managed Services (6)</div>
+      <div class="filter-pill" onclick="filterSection('SECTION 7')">7. CPE (12)</div>
+      <div class="filter-pill" onclick="filterSection('PENDING')">⚠️ Pending (Unanswered)</div>
+    </div>
+
+    <!-- Table Container -->
+    <div style="overflow-x: auto; background: var(--navy-card); border-radius: 10px; border: 1px solid var(--navy-border);">
+      <table class="matrix-table" id="technical-matrix-table">
+        <thead>
+          <tr>
+            <th style="width: 75px; text-align: center;">Item ID</th>
+            <th style="width: 140px;">Sub-System / Feature</th>
+            <th>Detailed Specification Requirement</th>
+            <th style="width: 130px; text-align: center;">Compliance (C / M / NC)</th>
+            <th style="width: 320px;">Bidder Proposed Specification & Datasheet Ref</th>
+          </tr>
+        </thead>
+        <tbody id="technical-matrix-body">
+          <!-- Rendered by JS -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- TAB 3: COMMERCIAL BOQ & FINANCING (APPENDIX B) -->
+  <section id="tab-commercial" class="tab-pane">
+    <div class="portal-card">
+      <div class="card-header">
+        <div class="card-title">💵 Turnkey Bill of Quantities (BoQ) & Commercial Price Book</div>
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <span style="font-size: 12px; color: var(--text-muted);">Baseline FX: ₱55.00 / USD</span>
+          <button class="btn btn-success" onclick="saveCommercialDraft(true)">💾 Save BoQ Draft</button>
+        </div>
+      </div>
+      
+      <!-- Rollup Grand Total Banner -->
+      <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 10px; padding: 18px 24px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+        <div>
+          <div style="font-size: 11px; text-transform: uppercase; color: #6EE7B7; font-weight: 800; letter-spacing: 0.5px;">Turnkey Grand CAPEX Offer (Phase 1 — 1,000 Sites Footprint)</div>
+          <div style="font-size: 26px; font-weight: 900; color: #FFFFFF; font-family: ui-monospace, monospace;" id="grand-total-usd">$0.00 USD</div>
+        </div>
+        <div>
+          <div style="font-size: 11px; text-transform: uppercase; color: #6EE7B7; font-weight: 800; letter-spacing: 0.5px;">Philippine Peso Equivalent (@ ₱55.00)</div>
+          <div style="font-size: 24px; font-weight: 900; color: #A7F3D0; font-family: ui-monospace, monospace;" id="grand-total-php">₱0.00 PHP</div>
+        </div>
+      </div>
+
+      <!-- BoQ Tables Container -->
+      <div id="boq-tables-container">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Form D Vendor Financing Section -->
+      <div style="margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px;">
+        <h3 style="color: var(--teal); font-size: 15px; margin-bottom: 12px;">Mandatory Vendor Financing Facility (Form D)</h3>
+        <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 16px;">
+          Bidders must specify binding financing terms for at least 85% of Turnkey Capex with tenor minimum 4 years (5 years preferred) and grace period minimum 12 months.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; background: rgba(0,0,0,0.25); padding: 18px; border-radius: 8px;">
+          <div>
+            <label style="font-size: 11px; font-weight: 800; color: #CBD5E1; text-transform: uppercase;">Financing Tenor (Years)</label>
+            <select id="fin-tenor" class="select-compliance" style="margin-top: 4px;">
+              <option value="5 Years (Preferred)">5 Years (Preferred)</option>
+              <option value="4 Years (Minimum)">4 Years (Minimum)</option>
+              <option value="6 Years">6 Years</option>
+              <option value="7+ Years">7+ Years</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size: 11px; font-weight: 800; color: #CBD5E1; text-transform: uppercase;">Principal Grace Period</label>
+            <select id="fin-grace" class="select-compliance" style="margin-top: 4px;">
+              <option value="18 Months (Preferred)">18 Months (Preferred)</option>
+              <option value="12 Months (Minimum)">12 Months (Minimum)</option>
+              <option value="24 Months">24 Months</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size: 11px; font-weight: 800; color: #CBD5E1; text-transform: uppercase;">Indicative Interest Rate / Margin</label>
+            <input type="text" id="fin-rate" class="input-proposed" style="min-height: 34px; margin-top: 4px;" value="SOFR + 2.50% (or fixed <= 6.50% p.a.)">
+          </div>
+          <div>
+            <label style="font-size: 11px; font-weight: 800; color: #CBD5E1; text-transform: uppercase;">Export Credit Agency (ECA) / Funding Institution</label>
+            <input type="text" id="fin-eca" class="input-proposed" style="min-height: 34px; margin-top: 4px;" placeholder="e.g., Sinosure, EKN, Finnvera, JBIC">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TAB 4: CANDIDATE SITE SCHEDULE (DOCUMENT 07) -->
+  <section id="tab-siting" class="tab-pane">
+    <div class="portal-card">
+      <div class="card-header">
+        <div class="card-title">🗺️ Candidate Site List & Siting Schedule (Document 07)</div>
+        <a href="RFP_Tender_Package/07_RFP_5G_FWA_Candidate_Site_List_and_Rollout_Schedule.xlsx" download class="btn btn-outline">
+          📊 Download Complete Site List (.xlsx)
+        </a>
+      </div>
+      
+      <!-- Siting Architecture Snapshot -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 20px;">
+        <div style="background: rgba(0, 119, 204, 0.1); border: 1px solid rgba(0, 119, 204, 0.35); padding: 14px; border-radius: 8px;">
+          <div style="font-size: 11px; color: var(--teal); font-weight: 800; text-transform: uppercase;">Phase 1 Target Sites</div>
+          <div style="font-size: 22px; font-weight: 900; color: #FFFFFF;">1,000 Sites</div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Band n50 SA Macro BTS</div>
+        </div>
+        <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.35); padding: 14px; border-radius: 8px;">
+          <div style="font-size: 11px; color: #6EE7B7; font-weight: 800; text-transform: uppercase;">TowerCo Co-Location</div>
+          <div style="font-size: 22px; font-weight: 900; color: #FFFFFF;">897 Sites (89.7%)</div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Class T1: 548 | T2: 269 | T3: 80</div>
+        </div>
+        <div style="background: rgba(255, 183, 3, 0.1); border: 1px solid rgba(255, 183, 3, 0.35); padding: 14px; border-radius: 8px;">
+          <div style="font-size: 11px; color: var(--gold); font-weight: 800; text-transform: uppercase;">Greenfield Monopoles</div>
+          <div style="font-size: 22px; font-weight: 900; color: #FFFFFF;">103 Sites (10.3%)</div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Class T4 (>2.0 km from tower)</div>
+        </div>
+        <div style="background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.35); padding: 14px; border-radius: 8px;">
+          <div style="font-size: 11px; color: #C4B5FD; font-weight: 800; text-transform: uppercase;">Backhaul Connectivity</div>
+          <div style="font-size: 22px; font-weight: 900; color: #FFFFFF;">983 Fiber / 17 Sat</div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">98.3% FOC / 1.7% Starlink Array</div>
+        </div>
+      </div>
+
+      <div style="font-size: 12.5px; color: var(--text-muted); line-height: 1.5; background: rgba(255,255,255,0.03); padding: 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);">
+        💡 <strong>Engineering Note for Bidders:</strong> The candidate schedule contains audited coordinates, nearest tower asset IDs (FTAP Globe, FTAP Smart, PTCI/MIDC, Edgepoint), distances to optical distribution nodes, and standardized 4-hour LiFePO4 battery energy storage specifications. Siting data is provided in Document 07 for direct import into planning and civil survey tools.
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 5: 3-ENVELOPE SEALED BID SUBMISSION -->
+  <section id="tab-submission" class="tab-pane">
+    <div class="portal-card" id="submission-form-card">
+      <div class="card-header">
+        <div class="card-title">🚀 3-Envelope Sealed Bid Electronic Submission Workflow</div>
+        <span class="badge" style="background: #2563EB; font-size: 12px; padding: 4px 10px;">RFP-TELTECH-FWA-2026-001</span>
+      </div>
+
+      <!-- Pre-flight checklist -->
+      <div style="background: rgba(255, 183, 3, 0.08); border: 1px solid rgba(255, 183, 3, 0.35); border-radius: 10px; padding: 18px 22px; margin-bottom: 24px;">
+        <h4 style="color: var(--gold); font-size: 14px; margin-bottom: 8px;">Pre-Submission Verification Checklist</h4>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px; font-size: 12.5px;">
+          <div id="check-tech" style="display: flex; align-items: center; gap: 8px;">
+            <span>⏳</span> <span>Technical Matrix: <strong id="check-tech-val">0 / 80 completed</strong></span>
+          </div>
+          <div id="check-comm" style="display: flex; align-items: center; gap: 8px;">
+            <span>⏳</span> <span>Commercial BoQ: <strong id="check-comm-val">Pending pricing</strong></span>
+          </div>
+          <div id="check-fin" style="display: flex; align-items: center; gap: 8px;">
+            <span>✅</span> <span>Form D Financing: <strong>Configured</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3-Envelope Accordion / Sections -->
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        
+        <!-- ENVELOPE 1 -->
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 18px;">
+          <h3 style="color: #60A5FA; font-size: 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+            <span>📁 Envelope 1: Eligibility & Administrative Requirements</span>
+          </h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px;">
+            <div>
+              <label style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Bidder Legal Corporate Name</label>
+              <input type="text" id="sub-corp-name" class="input-proposed" style="min-height: 34px; margin-top: 4px;" placeholder="Full Registered Corporate Entity">
+            </div>
+            <div>
+              <label style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Authorized Representative & Title</label>
+              <input type="text" id="sub-rep-name" class="input-proposed" style="min-height: 34px; margin-top: 4px;" placeholder="Name, Designation">
+            </div>
+            <div>
+              <label style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Official Corporate Email</label>
+              <input type="email" id="sub-rep-email" class="input-proposed" style="min-height: 34px; margin-top: 4px;" placeholder="tender.contact@domain.com">
+            </div>
+            <div>
+              <label style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Consortium / Subcontractor Partners</label>
+              <input type="text" id="sub-partners" class="input-proposed" style="min-height: 34px; margin-top: 4px;" placeholder="Civil contractors, SI partners (if any)">
+            </div>
+          </div>
+          <div style="margin-top: 12px; display: flex; align-items: center; gap: 8px;">
+            <input type="checkbox" id="sub-nda-check" checked style="width: 16px; height: 16px;">
+            <label for="sub-nda-check" style="font-size: 12px; color: #CBD5E1;">
+              I certify that our organization has executed the mandatory Non-Disclosure Agreement (NDA) and holds valid legal/tax eligibility.
+            </label>
+          </div>
+        </div>
+
+        <!-- ENVELOPE 2 -->
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 18px;">
+          <h3 style="color: #60A5FA; font-size: 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+            <span>📁 Envelope 2: Technical Proposal Package</span>
+          </h3>
+          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">
+            Your responses from <strong>Tab 2 (Appendix A: Technical Compliance Matrix)</strong> are automatically encrypted and attached to Envelope 2.
+          </p>
+          <div style="background: rgba(0,0,0,0.25); padding: 12px; border-radius: 6px; font-size: 12px; font-family: ui-monospace, monospace;">
+            Payload Status: <span id="env2-summary" style="color: var(--teal);">80 items ready</span>
+          </div>
+        </div>
+
+        <!-- ENVELOPE 3 -->
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 18px;">
+          <h3 style="color: #60A5FA; font-size: 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+            <span>📁 Envelope 3: Commercial Proposal & Vendor Financing Offer</span>
+          </h3>
+          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">
+            Your unit rates and extended subtotals from <strong>Tab 3 (Appendix B: Commercial BoQ & Form D)</strong> are automatically bundled.
+          </p>
+          <div style="background: rgba(0,0,0,0.25); padding: 12px; border-radius: 6px; font-size: 12px; font-family: ui-monospace, monospace;">
+            Quoted Phase 1 Total: <span id="env3-summary" style="color: #6EE7B7;">$0.00 USD (₱0.00 PHP)</span>
+          </div>
+        </div>
+
+        <!-- FINAL SUBMISSION & SEALING -->
+        <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 10px; padding: 20px; text-align: center;">
+          <h3 style="color: #6EE7B7; font-size: 16px; margin-bottom: 8px;">Final Cryptographic Submission & Digital Sealing</h3>
+          <p style="font-size: 12.5px; color: #CBD5E1; max-width: 650px; margin: 0 auto 16px auto; line-height: 1.5;">
+            By clicking below, your proposal will be compiled, sealed with a unique SHA-256 cryptographic checksum, and formally logged with the TelTech Tender Secretariat. An official Submission Certificate will be issued immediately.
+          </p>
+          <button class="btn btn-success" style="padding: 12px 28px; font-size: 14px;" onclick="executeBidSubmission()">
+            🔒 Sign & Submit Sealed Bid to TelTech
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CERTIFICATE CONTAINER (Revealed on Submission) -->
+    <div id="submission-cert-view" style="display: none;">
+      <div class="cert-container" id="printable-certificate">
+        <div class="cert-header">
+          <div style="font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #64748B; font-weight: 800;">Official Bidding Document · Republic of the Philippines</div>
+          <h2 style="font-size: 20px; font-weight: 900; color: #0A192F; margin: 6px 0;">Telecommunications Technology Solutions Inc. (TelTech)</h2>
+          <div style="font-size: 13px; font-weight: 700; color: #0077CC;">CERTIFICATE OF FORMAL SEALED BID SUBMISSION</div>
+          <div class="cert-code" id="cert-ref-code">TELTECH-RFP-SUB-2026-0000</div>
+        </div>
+
+        <div style="font-size: 12px; line-height: 1.6; margin-bottom: 20px;">
+          <p style="margin-bottom: 10px;">
+            This certifies that the prospective bidder specified below has formally submitted its sealed electronic proposal in response to <strong>RFP Ref: RFP-TELTECH-FWA-2026-001</strong> for the Turnkey Engineering, Supply, Installation, and Commissioning of the Nationwide 5G Standalone Fixed Wireless Access (FWA) Network.
+          </p>
+          <div style="background: #F8FAFC; border: 1px solid #CBD5E1; border-radius: 6px; padding: 14px; margin-bottom: 16px;">
+            <div style="display: grid; grid-template-columns: 140px 1fr; gap: 6px;">
+              <div style="font-weight: 700; color: #475569;">Bidder Entity:</div>
+              <div id="cert-bidder-name" style="font-weight: 800; color: #0F172A;">-</div>
+              
+              <div style="font-weight: 700; color: #475569;">Submission Date:</div>
+              <div id="cert-timestamp" style="font-weight: 700;">-</div>
+
+              <div style="font-weight: 700; color: #475569;">Technical Scope:</div>
+              <div id="cert-tech-scope">80 of 80 Specifications Addressed</div>
+
+              <div style="font-weight: 700; color: #475569;">Quoted Turnkey Offer:</div>
+              <div id="cert-comm-offer" style="font-weight: 800; color: #059669;">-</div>
+
+              <div style="font-weight: 700; color: #475569;">Digital SHA-256 Seal:</div>
+              <div id="cert-sha256" style="font-family: ui-monospace, monospace; font-size: 10px; word-break: break-all; color: #0284C7;">-</div>
+            </div>
+          </div>
+          <p style="font-size: 11px; color: #64748B; text-align: justify;">
+            This electronic certificate constitutes conclusive proof of timely submission prior to the official bid closing deadline (December 2, 2026, 17:00 PHT). Formal opening of Envelope 1 & 2 (Technical) will occur on December 4, 2026. Commercial envelopes will remain cryptographically sealed until December 16, 2026.
+          </p>
+        </div>
+
+        <div style="border-top: 1px dashed #CBD5E1; padding-top: 16px; display: flex; justify-content: space-between; align-items: flex-end;">
+          <div>
+            <div style="font-size: 9px; text-transform: uppercase; color: #94A3B8; font-weight: 700;">Issuing Authority</div>
+            <div style="font-size: 11px; font-weight: 800; color: #0F172A;">OLIVER TUNGOL</div>
+            <div style="font-size: 9.5px; color: #64748B;">TelTech Corporate Tender Secretariat</div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 9px; text-transform: uppercase; color: #94A3B8; font-weight: 700;">Status</div>
+            <div style="font-size: 11px; font-weight: 800; color: #10B981;">✓ SEALED & ARCHIVED</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 20px; display: flex; justify-content: center; gap: 12px;">
+        <button class="btn btn-primary" onclick="window.print()">🖨️ Print Certificate</button>
+        <button class="btn btn-outline" onclick="downloadSubmissionPackage()">📥 Download Sealed Proposal Package (.JSON)</button>
+        <button class="btn btn-gold" onclick="switchTab('tab-library')">Back to Library</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 6: TENDER COMMITTEE CONSOLE (ADMIN ONLY) -->
+  <section id="tab-admin" class="tab-pane">
+    <div class="portal-card">
+      <div class="card-header">
+        <div class="card-title">👑 TelTech Tender Evaluation Console (Oliver Tungol / Secretariat)</div>
+        <div style="display: flex; gap: 10px;">
+          <button class="btn btn-outline" onclick="loadAdminSubmissions()">🔄 Refresh Submissions</button>
+          <button class="btn btn-primary" onclick="exportEvaluationReport()">📊 Export QCBS Scorecard</button>
+        </div>
+      </div>
+      <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 20px;">
+        Evaluation committee console for reviewing, comparing, and scoring bidder proposals against Quality and Cost Based Selection (QCBS: 80% Technical / 20% Commercial).
+      </p>
+
+      <div style="overflow-x: auto;">
+        <table class="matrix-table" id="admin-submissions-table">
+          <thead>
+            <tr>
+              <th>Receipt Ref</th>
+              <th>Bidder Organization</th>
+              <th>Submitted At</th>
+              <th style="text-align: center;">Compliant (C)</th>
+              <th style="text-align: center;">Minor (M)</th>
+              <th style="text-align: center;">Technical Score</th>
+              <th style="text-align: right;">Quoted CAPEX (USD)</th>
+              <th style="text-align: center;">Financing Tenor</th>
+              <th style="text-align: center;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="admin-submissions-body">
+            <tr>
+              <td colspan="9" style="text-align: center; color: var(--text-muted); padding: 30px;">
+                No bids submitted yet. Submissions will appear dynamically upon bidder filing.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="toast">Draft saved successfully!</div>
+
+<script>
+// INITIALIZATION & STATE
+let currentUser = null;
+let currentDraft = {
+  technical: {},
+  commercial: {},
+  meta: {}
+};
+let submittedBids = [];
+
+document.addEventListener('DOMContentLoaded', function() {
+  initUser();
+  initCountdown();
+  renderDocumentLibrary();
+  renderTechnicalMatrix();
+  renderBoQTables();
+  loadBidDraft();
+  initAdminView();
+});
+
+// AUTH & USER
+function initUser() {
+  currentUser = FWAPortalAuth.getCurrentUser();
+  if (currentUser) {
+    document.getElementById('user-display-name').textContent = currentUser.name || currentUser.username;
+    const pill = document.getElementById('user-role-pill');
+    pill.textContent = currentUser.isAdmin ? "Admin / Evaluator" : (currentUser.role || "Bidder");
+    if (currentUser.isAdmin) {
+      pill.style.background = "#FFB703";
+      document.getElementById('admin-nav-tab').style.display = "flex";
+    }
+  }
+}
+
+// COUNTDOWN TIMER
+function initCountdown() {
+  const deadline = new Date("December 2, 2026 17:00:00 GMT+0800").getTime();
+  function update() {
+    const now = new Date().getTime();
+    const diff = deadline - now;
+    if (diff <= 0) {
+      document.getElementById('countdown-timer').textContent = "BID CLOSED";
+      return;
+    }
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((diff % (1000 * 60)) / 1000);
+    document.getElementById('countdown-timer').textContent = `${days}d ${hours}h ${mins}m ${secs}s`;
+  }
+  update();
+  setInterval(update, 1000);
+}
+
+// TAB SWITCHER
+function switchTab(tabId) {
+  document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
+  
+  const target = document.getElementById(tabId);
+  if (target) target.classList.add('active');
+  
+  const nav = document.querySelector(`.nav-tab[data-tab="${tabId}"]`);
+  if (nav) nav.classList.add('active');
+
+  if (tabId === 'tab-submission') {
+    updatePreflight();
+  }
+  if (tabId === 'tab-admin') {
+    loadAdminSubmissions();
+  }
+}
+
+// RENDER DOCUMENT LIBRARY (TAB 1)
+function renderDocumentLibrary() {
+  const container = document.getElementById('document-library-grid');
+  if (!container || !window.RFPTenderData) return;
+  
+  container.innerHTML = window.RFPTenderData.documents.map(doc => `
+    <div class="doc-card">
+      <div>
+        <span class="doc-card-badge ${doc.type.includes('XLSX') ? 'badge-xlsx' : 'badge-pdf'}">${doc.badge}</span>
+        <div class="doc-card-title">${doc.id}. ${doc.title}</div>
+        <div class="doc-card-sub">${doc.subtitle}</div>
+      </div>
+      <div class="doc-card-actions">
+        ${doc.html ? `<a href="${doc.html}" target="_blank" class="btn btn-primary" style="font-size: 11px; padding: 5px 10px;">Web View ➔</a>` : ''}
+        ${doc.pdf ? `<a href="${doc.pdf}" download class="btn btn-outline" style="font-size: 11px; padding: 5px 10px;">📕 PDF</a>` : ''}
+        ${doc.xlsx ? `<a href="${doc.xlsx}" download class="btn btn-outline" style="font-size: 11px; padding: 5px 10px; border-color: #10B981; color: #A7F3D0;">📊 Excel</a>` : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+// RENDER TECHNICAL COMPLIANCE MATRIX (TAB 2)
+function renderTechnicalMatrix() {
+  const tbody = document.getElementById('technical-matrix-body');
+  if (!tbody || !window.RFPTenderData) return;
+  
+  let html = '';
+  window.RFPTenderData.appendixA.forEach(sec => {
+    html += `
+      <tr class="matrix-section-row" data-section="${sec.section}">
+        <td colspan="5">📂 ${sec.section.toUpperCase()}</td>
+      </tr>
+    `;
+    sec.items.forEach(item => {
+      html += `
+        <tr class="matrix-item-row" data-id="${item.id}" data-section="${sec.section}">
+          <td style="text-align: center; font-weight: 800; color: #60A5FA;">${item.id}</td>
+          <td style="font-weight: 700; color: #FFFFFF;">${item.feature}</td>
+          <td style="color: #CBD5E1; line-height: 1.45;">${item.requirement.replace(/\n/g, '<br>')}</td>
+          <td style="text-align: center;">
+            <select class="select-compliance" id="comp_${item.id}" onchange="onComplianceChange('${item.id}')">
+              <option value="">Select...</option>
+              <option value="C" style="color: #10B981; font-weight: 800;">C (Compliant)</option>
+              <option value="M" style="color: #FFB703; font-weight: 800;">M (Minor Dev)</option>
+              <option value="NC" style="color: #EF4444; font-weight: 800;">NC (Non-Comp)</option>
+            </select>
+          </td>
+          <td>
+            <textarea class="input-proposed" id="spec_${item.id}" placeholder="Specify offered parameters, product model, and datasheet page reference..." oninput="onSpecChange('${item.id}')"></textarea>
+          </td>
+        </tr>
+      `;
+    });
+  });
+  tbody.innerHTML = html;
+}
+
+// COMPLIANCE SCORECARD LOGIC
+function onComplianceChange(itemId) {
+  const val = document.getElementById(`comp_${itemId}`).value;
+  currentDraft.technical[itemId] = currentDraft.technical[itemId] || {};
+  currentDraft.technical[itemId].compliance = val;
+  updateComplianceScorecard();
+  saveTechnicalDraft(false);
+}
+
+function onSpecChange(itemId) {
+  const val = document.getElementById(`spec_${itemId}`).value;
+  currentDraft.technical[itemId] = currentDraft.technical[itemId] || {};
+  currentDraft.technical[itemId].spec = val;
+  saveTechnicalDraft(false);
+}
+
+function updateComplianceScorecard() {
+  let countC = 0, countM = 0, countNC = 0, countAnswered = 0;
+  const total = 80;
+
+  for (let k in currentDraft.technical) {
+    const c = currentDraft.technical[k].compliance;
+    if (c === 'C') countC++;
+    else if (c === 'M') countM++;
+    else if (c === 'NC') countNC++;
+    if (c) countAnswered++;
+  }
+
+  document.getElementById('stat-c').textContent = countC;
+  document.getElementById('stat-m').textContent = countM;
+  document.getElementById('stat-nc').textContent = countNC;
+  document.getElementById('tab-compliance-count').textContent = `${countAnswered} / ${total}`;
+
+  // Tech Score: C = 100%, M = 50%
+  const score = total > 0 ? (((countC * 1.0) + (countM * 0.5)) / total * 100).toFixed(1) : "0.0";
+  document.getElementById('stat-score').textContent = `${score}%`;
+}
+
+// SECTION FILTER
+function filterSection(secPrefix) {
+  document.querySelectorAll('#section-filter-bar .filter-pill').forEach(el => el.classList.remove('active'));
+  event.target.classList.add('active');
+
+  const rows = document.querySelectorAll('.matrix-item-row');
+  const secHeaders = document.querySelectorAll('.matrix-section-row');
+
+  if (secPrefix === 'ALL') {
+    rows.forEach(r => r.style.display = '');
+    secHeaders.forEach(h => h.style.display = '');
+  } else if (secPrefix === 'PENDING') {
+    secHeaders.forEach(h => h.style.display = 'none');
+    rows.forEach(r => {
+      const id = r.getAttribute('data-id');
+      const val = currentDraft.technical[id]?.compliance;
+      r.style.display = (!val) ? '' : 'none';
+    });
+  } else {
+    secHeaders.forEach(h => {
+      h.style.display = h.getAttribute('data-section').includes(secPrefix) ? '' : 'none';
+    });
+    rows.forEach(r => {
+      r.style.display = r.getAttribute('data-section').includes(secPrefix) ? '' : 'none';
+    });
+  }
+}
+
+// RENDER COMMERCIAL BOQ TABLES (TAB 3)
+function renderBoQTables() {
+  const container = document.getElementById('boq-tables-container');
+  if (!container || !window.RFPTenderData) return;
+
+  container.innerHTML = window.RFPTenderData.boqTables.map((tbl, tIdx) => `
+    <div style="margin-bottom: 24px; background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid var(--navy-border); overflow: hidden;">
+      <div style="background: #172A45; padding: 10px 16px; font-weight: 800; font-size: 13px; color: var(--teal);">
+        ${tbl.title}
+      </div>
+      <div style="overflow-x: auto;">
+        <table class="matrix-table" style="border: none;">
+          <thead>
+            <tr>
+              <th style="width: 100px;">Item Code</th>
+              <th>Description / Scope Item</th>
+              <th style="width: 100px; text-align: center;">Phase 1 Qty</th>
+              <th style="width: 80px; text-align: center;">Unit</th>
+              <th style="width: 130px; text-align: right;">Unit Rate ($ USD)</th>
+              <th style="width: 130px; text-align: right;">Unit Rate (₱ PHP)</th>
+              <th style="width: 140px; text-align: right;">Extended Total ($)</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${tbl.items.map(item => `
+              <tr>
+                <td style="font-weight: 800; color: #60A5FA;">${item.id}</td>
+                <td>${item.description}</td>
+                <td style="text-align: center; font-weight: 700;">${item.raw_qty}</td>
+                <td style="text-align: center; color: var(--text-muted);">${item.unit}</td>
+                <td style="text-align: right;">
+                  <input type="number" step="0.01" min="0" class="boq-input" id="boq_rate_${item.id}" placeholder="0.00" oninput="calculateBoQ('${item.id}', ${item.qty})">
+                </td>
+                <td style="text-align: right; font-family: monospace; color: #CBD5E1;" id="boq_php_${item.id}">₱0.00</td>
+                <td style="text-align: right; font-family: monospace; font-weight: 800; color: #6EE7B7;" id="boq_ext_${item.id}">$0.00</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `).join('');
+}
+
+function calculateBoQ(itemId, qty) {
+  const rateInput = document.getElementById(`boq_rate_${itemId}`);
+  const rateUsd = parseFloat(rateInput.value) || 0;
+  const ratePhp = rateUsd * 55.0;
+  const extUsd = rateUsd * qty;
+
+  document.getElementById(`boq_php_${itemId}`).textContent = `₱${ratePhp.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+  document.getElementById(`boq_ext_${itemId}`).textContent = `$${extUsd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+
+  currentDraft.commercial[itemId] = { rateUsd, qty, extUsd };
+  recalcGrandTotals();
+  saveCommercialDraft(false);
+}
+
+function recalcGrandTotals() {
+  let grandTotalUsd = 0;
+  for (let k in currentDraft.commercial) {
+    grandTotalUsd += currentDraft.commercial[k].extUsd || 0;
+  }
+  const grandTotalPhp = grandTotalUsd * 55.0;
+
+  document.getElementById('grand-total-usd').textContent = `$${grandTotalUsd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} USD`;
+  document.getElementById('grand-total-php').textContent = `₱${grandTotalPhp.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} PHP`;
+}
+
+// STORAGE & DRAFTS
+function getStorageKey() {
+  const user = currentUser?.username || 'anonymous';
+  return `fwa_rfp_draft_${user}`;
+}
+
+function saveTechnicalDraft(showToastNotice) {
+  const key = getStorageKey();
+  localStorage.setItem(key, JSON.stringify(currentDraft));
+  if (showToastNotice) showToast("Technical compliance draft saved successfully!");
+}
+
+function saveCommercialDraft(showToastNotice) {
+  const key = getStorageKey();
+  localStorage.setItem(key, JSON.stringify(currentDraft));
+  if (showToastNotice) showToast("Commercial BoQ draft saved successfully!");
+}
+
+function loadBidDraft() {
+  const key = getStorageKey();
+  const raw = localStorage.getItem(key);
+  if (!raw) return;
+
+  try {
+    const data = JSON.parse(raw);
+    currentDraft = data;
+
+    // Restore Technical
+    if (data.technical) {
+      for (let id in data.technical) {
+        const item = data.technical[id];
+        const sel = document.getElementById(`comp_${id}`);
+        const txt = document.getElementById(`spec_${id}`);
+        if (sel && item.compliance) sel.value = item.compliance;
+        if (txt && item.spec) txt.value = item.spec;
+      }
+      updateComplianceScorecard();
+    }
+
+    // Restore Commercial
+    if (data.commercial) {
+      for (let id in data.commercial) {
+        const item = data.commercial[id];
+        const inp = document.getElementById(`boq_rate_${id}`);
+        if (inp && item.rateUsd) {
+          inp.value = item.rateUsd;
+          calculateBoQ(id, item.qty);
+        }
+      }
+    }
+  } catch (e) {
+    console.error("Failed to load draft:", e);
+  }
+}
+
+// PRE-FLIGHT CHECKLIST (TAB 5)
+function updatePreflight() {
+  let answered = 0;
+  for (let k in currentDraft.technical) {
+    if (currentDraft.technical[k].compliance) answered++;
+  }
+  const techEl = document.getElementById('check-tech-val');
+  techEl.textContent = `${answered} / 80 completed`;
+  techEl.style.color = (answered >= 80) ? "var(--green)" : "var(--gold)";
+
+  let commTotal = 0;
+  for (let k in currentDraft.commercial) {
+    commTotal += currentDraft.commercial[k].extUsd || 0;
+  }
+  const commEl = document.getElementById('check-comm-val');
+  commEl.textContent = commTotal > 0 ? `$${commTotal.toLocaleString('en-US', {maximumFractionDigits: 0})} USD quoted` : "Pending input";
+  commEl.style.color = (commTotal > 0) ? "var(--green)" : "var(--gold)";
+
+  document.getElementById('env2-summary').textContent = `${answered} of 80 items configured`;
+  document.getElementById('env3-summary').textContent = `$${commTotal.toLocaleString('en-US', {minimumFractionDigits: 2})} USD (₱${(commTotal*55).toLocaleString('en-US', {minimumFractionDigits: 2})} PHP)`;
+
+  // Autofill bidder entity if available
+  if (currentUser) {
+    document.getElementById('sub-corp-name').value = currentUser.organization || '';
+    document.getElementById('sub-rep-name').value = currentUser.name || '';
+    document.getElementById('sub-rep-email').value = currentUser.email || '';
+  }
+}
+
+// SUBMISSION LOGIC
+async function executeBidSubmission() {
+  const corpName = document.getElementById('sub-corp-name').value.trim();
+  const repName = document.getElementById('sub-rep-name').value.trim();
+  const repEmail = document.getElementById('sub-rep-email').value.trim();
+
+  if (!corpName || !repName || !repEmail) {
+    alert("Please complete the Authorized Representative & Entity details in Envelope 1 before submitting.");
+    return;
+  }
+
+  if (!document.getElementById('sub-nda-check').checked) {
+    alert("Please accept the NDA and legal eligibility certification checkbox.");
+    return;
+  }
+
+  // Generate Submission ID & Timestamp
+  const now = new Date();
+  const randomHex = Math.random().toString(16).substring(2, 6).toUpperCase();
+  const receiptCode = `TELTECH-RFP-SUB-${now.getFullYear()}${(now.getMonth()+1).toString().padStart(2,'0')}${now.getDate().toString().padStart(2,'0')}-${randomHex}`;
+  
+  // Package data payload
+  const submissionPayload = {
+    receiptCode,
+    submittedAt: now.toISOString(),
+    bidder: {
+      corporateName: corpName,
+      representative: repName,
+      email: repEmail,
+      username: currentUser?.username || 'bidder'
+    },
+    technicalDraft: currentDraft.technical,
+    commercialDraft: currentDraft.commercial,
+    financing: {
+      tenor: document.getElementById('fin-tenor').value,
+      grace: document.getElementById('fin-grace').value,
+      rate: document.getElementById('fin-rate').value,
+      eca: document.getElementById('fin-eca').value
+    }
+  };
+
+  // Compute SHA-256 seal
+  const jsonStr = JSON.stringify(submissionPayload);
+  const seal = await FWAPortalAuth.computeSHA256(jsonStr);
+  submissionPayload.sha256Seal = seal;
+
+  // Save to stored submissions registry (localStorage)
+  const allSubmissions = JSON.parse(localStorage.getItem('fwa_rfp_submissions') || '[]');
+  allSubmissions.push(submissionPayload);
+  localStorage.setItem('fwa_rfp_submissions', JSON.stringify(allSubmissions));
+  window.lastSubmission = submissionPayload;
+
+  // Reveal certificate
+  document.getElementById('submission-form-card').style.display = 'none';
+  document.getElementById('submission-cert-view').style.display = 'block';
+
+  document.getElementById('cert-ref-code').textContent = receiptCode;
+  document.getElementById('cert-bidder-name').textContent = `${corpName} (${repName})`;
+  document.getElementById('cert-timestamp').textContent = now.toLocaleString('en-US', { timeZone: 'Asia/Manila' }) + " (PHT)";
+  
+  let totalUsd = 0;
+  for (let k in currentDraft.commercial) totalUsd += currentDraft.commercial[k].extUsd || 0;
+  document.getElementById('cert-comm-offer').textContent = `$${totalUsd.toLocaleString('en-US', {minimumFractionDigits: 2})} USD (₱${(totalUsd*55).toLocaleString('en-US', {minimumFractionDigits: 2})} PHP)`;
+  document.getElementById('cert-sha256').textContent = seal;
+
+  showToast("Bid successfully signed and sealed!");
+}
+
+function downloadSubmissionPackage() {
+  if (!window.lastSubmission) return;
+  const str = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(window.lastSubmission, null, 2));
+  const a = document.createElement('a');
+  a.setAttribute('href', str);
+  a.setAttribute('download', `${window.lastSubmission.receiptCode}_SEALED_BID.json`);
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+
+// ADMIN VIEW
+function initAdminView() {
+  if (currentUser && currentUser.isAdmin) {
+    loadAdminSubmissions();
+  }
+}
+
+function loadAdminSubmissions() {
+  const tbody = document.getElementById('admin-submissions-body');
+  if (!tbody) return;
+
+  const raw = localStorage.getItem('fwa_rfp_submissions');
+  const subs = raw ? JSON.parse(raw) : [];
+
+  if (subs.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="9" style="text-align: center; color: var(--text-muted); padding: 30px;">
+          No sealed bids received yet. Bids submitted by bidders will automatically register here.
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  tbody.innerHTML = subs.map(s => {
+    let cCount = 0, mCount = 0;
+    for (let k in s.technicalDraft) {
+      if (s.technicalDraft[k].compliance === 'C') cCount++;
+      if (s.technicalDraft[k].compliance === 'M') mCount++;
+    }
+    const techScore = (((cCount * 1.0) + (mCount * 0.5)) / 80 * 100).toFixed(1);
+    
+    let commUsd = 0;
+    for (let k in s.commercialDraft) {
+      commUsd += s.commercialDraft[k].extUsd || 0;
+    }
+
+    return `
+      <tr>
+        <td style="font-family: monospace; font-weight: 800; color: #60A5FA;">${s.receiptCode}</td>
+        <td style="font-weight: 700; color: #FFFFFF;">${s.bidder.corporateName}</td>
+        <td style="font-size: 11px; color: var(--text-muted);">${new Date(s.submittedAt).toLocaleDateString()}</td>
+        <td style="text-align: center; color: #10B981; font-weight: 800;">${cCount}</td>
+        <td style="text-align: center; color: #FFB703; font-weight: 800;">${mCount}</td>
+        <td style="text-align: center; font-weight: 800; color: #6EE7B7;">${techScore}%</td>
+        <td style="text-align: right; font-family: monospace; font-weight: 800;">$${commUsd.toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
+        <td style="text-align: center;">${s.financing?.tenor || '5 Years'}</td>
+        <td style="text-align: center;">
+          <button class="btn btn-outline" style="font-size: 10px; padding: 3px 8px;" onclick="viewSubmissionDetail('${s.receiptCode}')">Inspect</button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function viewSubmissionDetail(code) {
+  const raw = localStorage.getItem('fwa_rfp_submissions');
+  const subs = raw ? JSON.parse(raw) : [];
+  const found = subs.find(s => s.receiptCode === code);
+  if (found) {
+    alert(`Inspecting ${found.bidder.corporateName}\nRef: ${found.receiptCode}\nSHA-256: ${found.sha256Seal}`);
+  }
+}
+
+function exportEvaluationReport() {
+  const raw = localStorage.getItem('fwa_rfp_submissions');
+  const subs = raw ? JSON.parse(raw) : [];
+  if (subs.length === 0) {
+    alert("No bids available to export.");
+    return;
+  }
+  const str = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(subs, null, 2));
+  const a = document.createElement('a');
+  a.setAttribute('href', str);
+  a.setAttribute('download', "TELTECH_RFP_QCBS_EVALUATION_REPORT.json");
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+
+function exportTechnicalJSON() {
+  const str = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(currentDraft.technical, null, 2));
+  const a = document.createElement('a');
+  a.setAttribute('href', str);
+  a.setAttribute('download', "APPENDIX_A_TECHNICAL_COMPLIANCE_DRAFT.json");
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.display = 'block';
+  setTimeout(() => { t.style.display = 'none'; }, 2500);
+}
+</script>
+</body>
+</html>
