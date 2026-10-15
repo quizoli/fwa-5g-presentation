@@ -10,6 +10,7 @@
 <script src="firebase_config.js"></script>
 <script src="auth_registry.js"></script>
 <script src="rfp_tender_data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script>
   // Immediate Confidentiality & Authentication Guard
   (function() {
@@ -453,9 +454,7 @@
     font-size: 11px;
     letter-spacing: 0.5px;
     border: 1px solid var(--navy-border);
-    position: sticky;
-    top: 106px;
-    z-index: 800;
+    position: static;
   }
 
   .matrix-table td {
@@ -716,6 +715,13 @@
       <div class="filter-pill" onclick="filterSection('PENDING')">⚠️ Pending (Unanswered)</div>
     </div>
 
+    <!-- Section Pagination Controls (Top) -->
+    <div id="tech-pagination-bar-top" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; background: rgba(15, 35, 61, 0.6); padding: 8px 14px; border-radius: 6px; border: 1px solid var(--navy-border);">
+      <button class="btn btn-outline" id="tech-prev-btn" style="font-size: 11.5px; padding: 4px 12px;" onclick="prevTechSection()">◀ Previous Section</button>
+      <span id="tech-page-indicator" style="font-size: 12px; font-weight: 800; color: var(--teal);">Showing All Requirements (80 Items)</span>
+      <button class="btn btn-outline" id="tech-next-btn" style="font-size: 11.5px; padding: 4px 12px;" onclick="nextTechSection()">Next Section ▶</button>
+    </div>
+
     <!-- Table Container -->
     <div style="overflow-x: auto; background: var(--navy-card); border-radius: 10px; border: 1px solid var(--navy-border);">
       <table class="matrix-table" id="technical-matrix-table">
@@ -733,6 +739,13 @@
         </tbody>
       </table>
     </div>
+
+    <!-- Section Pagination Controls (Bottom) -->
+    <div id="tech-pagination-bar-bottom" style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; background: rgba(15, 35, 61, 0.6); padding: 8px 14px; border-radius: 6px; border: 1px solid var(--navy-border);">
+      <button class="btn btn-outline" id="tech-prev-btn-bot" style="font-size: 11.5px; padding: 4px 12px;" onclick="prevTechSection()">◀ Previous Section</button>
+      <span id="tech-page-indicator-bot" style="font-size: 12px; font-weight: 800; color: var(--teal);">Showing All Requirements (80 Items)</span>
+      <button class="btn btn-outline" id="tech-next-btn-bot" style="font-size: 11.5px; padding: 4px 12px;" onclick="nextTechSection()">Next Section ▶</button>
+    </div>
   </section>
 
   <!-- TAB 3: COMMERCIAL BOQ & FINANCING (APPENDIX B) -->
@@ -740,14 +753,17 @@
     <div class="portal-card">
       <div class="card-header">
         <div class="card-title">💵 Turnkey Bill of Quantities (BoQ) & Commercial Price Book</div>
-        <div style="display: flex; gap: 10px; align-items: center;">
-          <span style="font-size: 12px; color: var(--text-muted);">Baseline FX: ₱55.00 / USD</span>
-          <button class="btn btn-success" onclick="saveCommercialDraft(true)">💾 Save BoQ Draft</button>
+        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+          <span style="font-size: 12px; color: var(--text-muted); margin-right: 4px;">Baseline FX: ₱55.00 / USD</span>
+          <button class="btn btn-outline" style="border-color: #00B4D8; color: #67E8F9; font-size: 11.5px; padding: 6px 12px;" onclick="triggerBoQImport()">📥 Import Rates (Excel / CSV)</button>
+          <button class="btn btn-outline" style="border-color: #10B981; color: #A7F3D0; font-size: 11.5px; padding: 6px 12px;" onclick="exportBoQTemplateCsv()">📤 Export BoQ Template (CSV)</button>
+          <input type="file" id="boq-file-input" accept=".xlsx, .xls, .csv" onchange="handleBoQFileImport(event)" style="display: none;">
+          <button class="btn btn-success" style="font-size: 11.5px; padding: 6px 14px;" onclick="saveCommercialDraft(true)">💾 Save BoQ Draft</button>
         </div>
       </div>
       
       <!-- Rollup Grand Total Banner -->
-      <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 10px; padding: 18px 24px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+      <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 10px; padding: 18px 24px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
         <div>
           <div style="font-size: 11px; text-transform: uppercase; color: #6EE7B7; font-weight: 800; letter-spacing: 0.5px;">Turnkey Grand CAPEX Offer (Phase 1 — 1,000 Sites Footprint)</div>
           <div style="font-size: 26px; font-weight: 900; color: #FFFFFF; font-family: ui-monospace, monospace;" id="grand-total-usd">$0.00 USD</div>
@@ -758,44 +774,88 @@
         </div>
       </div>
 
+      <!-- LOT PAGINATION RIBBON -->
+      <div class="filter-bar boq-lot-nav" id="boq-lot-nav-bar" style="margin-bottom: 14px; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px;">
+        <div class="filter-pill active" data-boq-lot="lot1" onclick="switchBoQLot('lot1')">Lot 1: RAN (1,000 Sites)</div>
+        <div class="filter-pill" data-boq-lot="lot2" onclick="switchBoQLot('lot2')">Lot 2: Power & Passive</div>
+        <div class="filter-pill" data-boq-lot="lot3" onclick="switchBoQLot('lot3')">Lot 3: 5G Core Network</div>
+        <div class="filter-pill" data-boq-lot="lot4" onclick="switchBoQLot('lot4')">Lot 4: Digital OSS/BSS</div>
+        <div class="filter-pill" data-boq-lot="lot5" onclick="switchBoQLot('lot5')">Lot 5: Site Acq & Civils</div>
+        <div class="filter-pill" data-boq-lot="lot6" onclick="switchBoQLot('lot6')">Lot 6: Managed Services</div>
+        <div class="filter-pill" data-boq-lot="lot7" onclick="switchBoQLot('lot7')">Lot 7: 5G CPE Terminals</div>
+        <div class="filter-pill" data-boq-lot="formd" onclick="switchBoQLot('formd')">Form D: Vendor Financing</div>
+        <div class="filter-pill" data-boq-lot="all" onclick="switchBoQLot('all')">📋 View All Lots</div>
+      </div>
+
+      <!-- PAGINATION CONTROLS HEADER (TOP) -->
+      <div id="boq-pagination-bar-top" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; background: rgba(15, 35, 61, 0.6); padding: 8px 14px; border-radius: 6px; border: 1px solid var(--navy-border);">
+        <button class="btn btn-outline" id="boq-prev-btn" style="font-size: 11.5px; padding: 4px 12px;" onclick="prevBoQLot()">◀ Previous Lot</button>
+        <span id="boq-lot-page-indicator" style="font-size: 12px; font-weight: 800; color: var(--teal); letter-spacing: 0.3px;">Page 1 of 8: Lot 1 — 5G RAN Hardware & Turnkey Services</span>
+        <button class="btn btn-outline" id="boq-next-btn" style="font-size: 11.5px; padding: 4px 12px;" onclick="nextBoQLot()">Next Lot ▶</button>
+      </div>
+
       <!-- BoQ Tables Container -->
       <div id="boq-tables-container">
         <!-- Rendered by JS -->
       </div>
 
-      <!-- Form D Vendor Financing Section -->
-      <div style="margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px;">
-        <h3 style="color: var(--teal); font-size: 15px; margin-bottom: 12px;">Mandatory Vendor Financing Facility (Form D)</h3>
-        <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 16px;">
-          Bidders must specify binding financing terms for at least 80% of Turnkey Capex with tenor minimum 4 years (5 years preferred) and grace period minimum 12 months.
+      <!-- Form D Vendor Financing Section (Lot 8 / Form D page) -->
+      <div id="form-d-container" style="background: rgba(0,0,0,0.25); border: 1px solid var(--navy-border); border-radius: 8px; padding: 22px; margin-bottom: 24px; display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
+          <h3 style="color: var(--teal); font-size: 15px; font-weight: 800;">Mandatory Vendor Financing Facility (Form D)</h3>
+          <span class="badge" style="background: #2563EB; font-size: 11px;">Tenor up to 20 Years • Deferred up to 10 Years</span>
+        </div>
+        <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 18px; line-height: 1.5;">
+          Bidders must specify binding vendor financing terms covering at least <strong>80% of Turnkey Capex</strong>. Terms are flexible with financing tenor <strong>up to 20 years</strong> (minimum 4 years, 5+ years preferred) and deferred principal repayment / grace period <strong>up to 10 years</strong> (minimum 12 months).
         </p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; background: rgba(0,0,0,0.25); padding: 18px; border-radius: 8px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px;">
           <div>
             <label style="font-size: 11px; font-weight: 800; color: #CBD5E1; text-transform: uppercase;">Financing Tenor (Years)</label>
-            <select id="fin-tenor" class="select-compliance" style="margin-top: 4px;">
+            <select id="fin-tenor" class="select-compliance" style="margin-top: 6px;" onchange="onFinTenorChange()">
               <option value="5 Years (Preferred)">5 Years (Preferred)</option>
               <option value="4 Years (Minimum)">4 Years (Minimum)</option>
               <option value="6 Years">6 Years</option>
-              <option value="7+ Years">7+ Years</option>
+              <option value="7 Years">7 Years</option>
+              <option value="8 Years">8 Years</option>
+              <option value="10 Years">10 Years</option>
+              <option value="12 Years">12 Years</option>
+              <option value="15 Years">15 Years</option>
+              <option value="20 Years">20 Years</option>
+              <option value="Custom">Custom Tenor...</option>
             </select>
+            <input type="text" id="fin-tenor-custom" class="input-proposed" style="min-height: 34px; margin-top: 6px; display: none;" placeholder="Enter custom tenor (e.g., 18 Years)..." oninput="saveFinancingDraft()">
           </div>
           <div>
-            <label style="font-size: 11px; font-weight: 800; color: #CBD5E1; text-transform: uppercase;">Principal Grace Period</label>
-            <select id="fin-grace" class="select-compliance" style="margin-top: 4px;">
-              <option value="18 Months (Preferred)">18 Months (Preferred)</option>
-              <option value="12 Months (Minimum)">12 Months (Minimum)</option>
-              <option value="24 Months">24 Months</option>
+            <label style="font-size: 11px; font-weight: 800; color: #CBD5E1; text-transform: uppercase;">Deferred Payment / Principal Grace Period</label>
+            <select id="fin-grace" class="select-compliance" style="margin-top: 6px;" onchange="onFinGraceChange()">
+              <option value="18 Months (1.5 Yrs Preferred)">18 Months (1.5 Yrs Preferred)</option>
+              <option value="12 Months (1 Yr Minimum)">12 Months (1 Yr Minimum)</option>
+              <option value="24 Months (2 Years)">24 Months (2 Years)</option>
+              <option value="36 Months (3 Years)">36 Months (3 Years)</option>
+              <option value="4 Years (48 Months)">4 Years (48 Months)</option>
+              <option value="5 Years (60 Months)">5 Years (60 Months)</option>
+              <option value="7 Years (84 Months)">7 Years (84 Months)</option>
+              <option value="10 Years (120 Months)">10 Years (120 Months)</option>
+              <option value="Custom">Custom Deferred Period...</option>
             </select>
+            <input type="text" id="fin-grace-custom" class="input-proposed" style="min-height: 34px; margin-top: 6px; display: none;" placeholder="Enter custom deferred period (e.g., 6 Years)..." oninput="saveFinancingDraft()">
           </div>
           <div>
             <label style="font-size: 11px; font-weight: 800; color: #CBD5E1; text-transform: uppercase;">Indicative Interest Rate / Margin</label>
-            <input type="text" id="fin-rate" class="input-proposed" style="min-height: 34px; margin-top: 4px;" value="SOFR + 2.50% (or fixed <= 6.50% p.a.)">
+            <input type="text" id="fin-rate" class="input-proposed" style="min-height: 34px; margin-top: 6px;" value="SOFR + 2.50% (or fixed <= 6.50% p.a.)" oninput="saveFinancingDraft()">
           </div>
           <div>
             <label style="font-size: 11px; font-weight: 800; color: #CBD5E1; text-transform: uppercase;">Export Credit Agency (ECA) / Funding Institution</label>
-            <input type="text" id="fin-eca" class="input-proposed" style="min-height: 34px; margin-top: 4px;" placeholder="e.g., Sinosure, EKN, Finnvera, JBIC">
+            <input type="text" id="fin-eca" class="input-proposed" style="min-height: 34px; margin-top: 6px;" placeholder="e.g., Sinosure, EKN, Finnvera, JBIC, Euler Hermes" oninput="saveFinancingDraft()">
           </div>
         </div>
+      </div>
+
+      <!-- PAGINATION CONTROLS FOOTER (BOTTOM) -->
+      <div id="boq-pagination-bar-bottom" style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; background: rgba(15, 35, 61, 0.6); padding: 10px 16px; border-radius: 6px; border: 1px solid var(--navy-border);">
+        <button class="btn btn-outline" id="boq-prev-btn-bot" style="font-size: 11.5px; padding: 5px 14px;" onclick="prevBoQLot()">◀ Previous Lot</button>
+        <span id="boq-lot-page-indicator-bot" style="font-size: 12px; font-weight: 800; color: var(--teal);">Page 1 of 8: Lot 1 — 5G RAN Hardware & Turnkey Services</span>
+        <button class="btn btn-outline" id="boq-next-btn-bot" style="font-size: 11.5px; padding: 5px 14px;" onclick="nextBoQLot()">Next Lot ▶</button>
       </div>
 
     </div>
@@ -1048,6 +1108,14 @@ let currentUser = null;
 let currentDraft = {
   technical: {},
   commercial: {},
+  financing: {
+    tenor: "5 Years (Preferred)",
+    tenorCustom: "",
+    grace: "18 Months (1.5 Yrs Preferred)",
+    graceCustom: "",
+    rate: "SOFR + 2.50% (or fixed <= 6.50% p.a.)",
+    eca: ""
+  },
   meta: {}
 };
 let submittedBids = [];
@@ -1210,10 +1278,25 @@ function updateComplianceScorecard() {
   document.getElementById('stat-score').textContent = `${score}%`;
 }
 
-// SECTION FILTER
-function filterSection(secPrefix) {
-  document.querySelectorAll('#section-filter-bar .filter-pill').forEach(el => el.classList.remove('active'));
-  event.target.classList.add('active');
+// TAB 2: TECHNICAL COMPLIANCE SECTION PAGINATION
+const TECH_SECTIONS = [
+  { key: 'SECTION 1', label: '1. 5G RAN & Antenna Systems (20 Requirements)', filter: 'SECTION 1' },
+  { key: 'SECTION 2', label: '2. Power & Backup Infrastructure (12 Requirements)', filter: 'SECTION 2' },
+  { key: 'SECTION 3', label: '3. Cloud-Native 5G Core Network (12 Requirements)', filter: 'SECTION 3' },
+  { key: 'SECTION 4', label: '4. Digital OSS/BSS & IT Platform (11 Requirements)', filter: 'SECTION 4' },
+  { key: 'SECTION 5', label: '5. Siting, Civil Engineering & RF (7 Requirements)', filter: 'SECTION 5' },
+  { key: 'SECTION 6', label: '6. Managed Services & Operations (6 Requirements)', filter: 'SECTION 6' },
+  { key: 'SECTION 7', label: '7. 5G Customer Premises Equipment (12 Requirements)', filter: 'SECTION 7' }
+];
+
+let currentTechSectionKey = 'ALL';
+
+function filterSection(secPrefix, shouldScroll = false) {
+  currentTechSectionKey = secPrefix;
+  document.querySelectorAll('#section-filter-bar .filter-pill').forEach(el => {
+    const fnStr = el.getAttribute('onclick') || '';
+    el.classList.toggle('active', fnStr.includes(`'${secPrefix}'`));
+  });
 
   const rows = document.querySelectorAll('.matrix-item-row');
   const secHeaders = document.querySelectorAll('.matrix-section-row');
@@ -1236,15 +1319,110 @@ function filterSection(secPrefix) {
       r.style.display = r.getAttribute('data-section').includes(secPrefix) ? '' : 'none';
     });
   }
+
+  updateTechPaginationUI();
+
+  if (shouldScroll) {
+    const target = document.getElementById('section-filter-bar');
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
+
+function updateTechPaginationUI() {
+  const indTop = document.getElementById('tech-page-indicator');
+  const indBot = document.getElementById('tech-page-indicator-bot');
+  const prevTop = document.getElementById('tech-prev-btn');
+  const nextTop = document.getElementById('tech-next-btn');
+  const prevBot = document.getElementById('tech-prev-btn-bot');
+  const nextBot = document.getElementById('tech-next-btn-bot');
+
+  const idx = TECH_SECTIONS.findIndex(s => s.key === currentTechSectionKey);
+
+  if (currentTechSectionKey === 'ALL') {
+    const txt = 'Showing All Requirements (80 Items across 7 Sections)';
+    if (indTop) indTop.textContent = txt;
+    if (indBot) indBot.textContent = txt;
+    if (prevTop) prevTop.disabled = false;
+    if (nextTop) nextTop.disabled = false;
+    if (prevBot) prevBot.disabled = false;
+    if (nextBot) nextBot.disabled = false;
+  } else if (currentTechSectionKey === 'PENDING') {
+    const txt = 'Showing Pending / Unanswered Requirements';
+    if (indTop) indTop.textContent = txt;
+    if (indBot) indBot.textContent = txt;
+    if (prevTop) prevTop.disabled = false;
+    if (nextTop) nextTop.disabled = false;
+    if (prevBot) prevBot.disabled = false;
+    if (nextBot) nextBot.disabled = false;
+  } else if (idx !== -1) {
+    const s = TECH_SECTIONS[idx];
+    const txt = `Section ${idx + 1} of 7: ${s.label}`;
+    if (indTop) indTop.textContent = txt;
+    if (indBot) indBot.textContent = txt;
+    if (prevTop) prevTop.disabled = (idx === 0);
+    if (nextTop) nextTop.disabled = (idx === TECH_SECTIONS.length - 1);
+    if (prevBot) prevBot.disabled = (idx === 0);
+    if (nextBot) nextBot.disabled = (idx === TECH_SECTIONS.length - 1);
+  }
+}
+
+function prevTechSection() {
+  if (currentTechSectionKey === 'ALL' || currentTechSectionKey === 'PENDING') {
+    filterSection(TECH_SECTIONS[0].key, true);
+    return;
+  }
+  const idx = TECH_SECTIONS.findIndex(s => s.key === currentTechSectionKey);
+  if (idx > 0) {
+    filterSection(TECH_SECTIONS[idx - 1].key, true);
+  } else {
+    filterSection('ALL', true);
+  }
+}
+
+function nextTechSection() {
+  if (currentTechSectionKey === 'ALL' || currentTechSectionKey === 'PENDING') {
+    filterSection(TECH_SECTIONS[0].key, true);
+    return;
+  }
+  const idx = TECH_SECTIONS.findIndex(s => s.key === currentTechSectionKey);
+  if (idx < TECH_SECTIONS.length - 1) {
+    filterSection(TECH_SECTIONS[idx + 1].key, true);
+  } else {
+    filterSection('ALL', true);
+  }
+}
+
+// TAB 3: COMMERCIAL BOQ LOT PAGINATION & RENDERING
+const BOQ_LOT_PAGES = [
+  { key: 'lot1', label: 'Lot 1: RAN (1,000 Sites)', title: 'Lot 1 — 5G RAN Hardware & Turnkey Rollout Services' },
+  { key: 'lot2', label: 'Lot 2: Power & Passive', title: 'Lot 2 — Power Systems & Passive Infrastructure' },
+  { key: 'lot3', label: 'Lot 3: 5G Core Network', title: 'Lot 3 — Cloud-Native 5G Core Network (5GC SA)' },
+  { key: 'lot4', label: 'Lot 4: Digital OSS/BSS', title: 'Lot 4 — Converged Digital OSS/BSS & Field Automation' },
+  { key: 'lot5', label: 'Lot 5: Site Acq & Civils', title: 'Lot 5 — Site Acquisition, TSSR & Civil Infrastructure' },
+  { key: 'lot6', label: 'Lot 6: Managed Services', title: 'Lot 6 — Managed Services & 24/7 FLM (Year 1 O&M)' },
+  { key: 'lot7', label: 'Lot 7: 5G CPE Terminals', title: 'Lot 7 — 5G High-Gain CPE Terminals & Staging' },
+  { key: 'formd', label: 'Form D: Vendor Financing', title: 'Form D — Mandatory Vendor Financing Facility' }
+];
+
+let currentBoQLot = 'lot1';
 
 // RENDER COMMERCIAL BOQ TABLES (TAB 3)
 function renderBoQTables() {
   const container = document.getElementById('boq-tables-container');
   if (!container || !window.RFPTenderData) return;
 
-  container.innerHTML = window.RFPTenderData.boqTables.map((tbl) => `
-    <div style="margin-bottom: 24px; background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid var(--navy-border); overflow: hidden;">
+  container.innerHTML = window.RFPTenderData.boqTables.map((tbl) => {
+    let lotKey = 'lot1';
+    if (tbl.tableId.startsWith('lot1')) lotKey = 'lot1';
+    else if (tbl.tableId.startsWith('lot2')) lotKey = 'lot2';
+    else if (tbl.tableId.startsWith('lot3')) lotKey = 'lot3';
+    else if (tbl.tableId.startsWith('lot4')) lotKey = 'lot4';
+    else if (tbl.tableId.startsWith('lot5')) lotKey = 'lot5';
+    else if (tbl.tableId.startsWith('lot6')) lotKey = 'lot6';
+    else if (tbl.tableId.startsWith('lot7')) lotKey = 'lot7';
+
+    return `
+    <div class="boq-table-card" data-lot="${lotKey}" style="margin-bottom: 24px; background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid var(--navy-border); overflow: hidden;">
       <div style="background: #172A45; padding: 10px 16px; font-weight: 800; font-size: 13px; color: var(--teal); display: flex; justify-content: space-between; align-items: center;">
         <span>${tbl.title}</span>
         <span style="font-size: 11px; color: #94A3B8; font-weight: 600;">Phase 1 Evaluated Scope</span>
@@ -1298,10 +1476,303 @@ function renderBoQTables() {
         </table>
       </div>
     </div>
-  `).join('');
+  `}).join('');
 
   updateTableSubtotals();
   recalcGrandTotals();
+  switchBoQLot(currentBoQLot, false);
+}
+
+function switchBoQLot(lotKey, shouldScroll = true) {
+  currentBoQLot = lotKey;
+
+  // Update lot pills
+  document.querySelectorAll('#boq-lot-nav-bar .filter-pill').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-boq-lot') === lotKey);
+  });
+
+  // Toggle BoQ tables
+  const tableCards = document.querySelectorAll('.boq-table-card');
+  tableCards.forEach(card => {
+    const cardLot = card.getAttribute('data-lot');
+    if (lotKey === 'all') {
+      card.style.display = '';
+    } else if (lotKey === 'formd') {
+      card.style.display = 'none';
+    } else {
+      card.style.display = (cardLot === lotKey) ? '' : 'none';
+    }
+  });
+
+  // Toggle Form D container
+  const formD = document.getElementById('form-d-container');
+  if (formD) {
+    if (lotKey === 'all' || lotKey === 'formd') {
+      formD.style.display = '';
+    } else {
+      formD.style.display = 'none';
+    }
+  }
+
+  // Update Page Indicator and Prev/Next buttons
+  updateBoQPaginationUI();
+
+  // Scroll smoothly so table header starts right at the top of the page
+  if (shouldScroll) {
+    const topAnchor = document.getElementById('boq-lot-nav-bar');
+    if (topAnchor) {
+      topAnchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+}
+
+function updateBoQPaginationUI() {
+  const pageIdx = BOQ_LOT_PAGES.findIndex(p => p.key === currentBoQLot);
+  const indTop = document.getElementById('boq-lot-page-indicator');
+  const indBot = document.getElementById('boq-lot-page-indicator-bot');
+  const prevTop = document.getElementById('boq-prev-btn');
+  const nextTop = document.getElementById('boq-next-btn');
+  const prevBot = document.getElementById('boq-prev-btn-bot');
+  const nextBot = document.getElementById('boq-next-btn-bot');
+
+  if (currentBoQLot === 'all') {
+    const txt = 'Showing All Lots 1–7 & Form D (Consolidated BoQ)';
+    if (indTop) indTop.textContent = txt;
+    if (indBot) indBot.textContent = txt;
+    if (prevTop) prevTop.disabled = false;
+    if (nextTop) nextTop.disabled = true;
+    if (prevBot) prevBot.disabled = false;
+    if (nextBot) nextBot.disabled = true;
+  } else if (pageIdx !== -1) {
+    const p = BOQ_LOT_PAGES[pageIdx];
+    const txt = `Page ${pageIdx + 1} of ${BOQ_LOT_PAGES.length}: ${p.title}`;
+    if (indTop) indTop.textContent = txt;
+    if (indBot) indBot.textContent = txt;
+    if (prevTop) prevTop.disabled = (pageIdx === 0);
+    if (nextTop) nextTop.disabled = false;
+    if (prevBot) prevBot.disabled = (pageIdx === 0);
+    if (nextBot) nextBot.disabled = false;
+  }
+}
+
+function prevBoQLot() {
+  if (currentBoQLot === 'all') {
+    switchBoQLot(BOQ_LOT_PAGES[BOQ_LOT_PAGES.length - 1].key, true);
+    return;
+  }
+  const idx = BOQ_LOT_PAGES.findIndex(p => p.key === currentBoQLot);
+  if (idx > 0) {
+    switchBoQLot(BOQ_LOT_PAGES[idx - 1].key, true);
+  }
+}
+
+function nextBoQLot() {
+  if (currentBoQLot === 'all') return;
+  const idx = BOQ_LOT_PAGES.findIndex(p => p.key === currentBoQLot);
+  if (idx < BOQ_LOT_PAGES.length - 1) {
+    switchBoQLot(BOQ_LOT_PAGES[idx + 1].key, true);
+  } else if (idx === BOQ_LOT_PAGES.length - 1) {
+    switchBoQLot('all', true);
+  }
+}
+
+// MASS BOQ EXCEL / CSV IMPORT AND TEMPLATE EXPORT
+function triggerBoQImport() {
+  const fileInput = document.getElementById('boq-file-input');
+  if (fileInput) {
+    fileInput.value = '';
+    fileInput.click();
+  }
+}
+
+async function handleBoQFileImport(event) {
+  const file = event.target.files && event.target.files[0];
+  if (!file) return;
+
+  const itemMap = {};
+  if (window.RFPTenderData && window.RFPTenderData.boqTables) {
+    window.RFPTenderData.boqTables.forEach(tbl => {
+      tbl.items.forEach(it => {
+        if (!it.isSubtotal && !it.isTotal) {
+          itemMap[it.id.trim().toUpperCase()] = it.qty;
+        }
+      });
+    });
+  }
+
+  try {
+    const data = await file.arrayBuffer();
+    const workbook = XLSX.read(data, { type: 'array' });
+    let importedCount = 0;
+
+    workbook.SheetNames.forEach(sName => {
+      const sheet = workbook.Sheets[sName];
+      if (!sheet) return;
+
+      const rows = XLSX.utils.sheet_to_json(sheet, { header: 1, raw: true });
+      if (!rows || rows.length === 0) return;
+
+      let codeCol = -1;
+      let rateCol = -1;
+      let isPhpRate = false;
+
+      for (let r = 0; r < rows.length; r++) {
+        const row = rows[r];
+        if (!Array.isArray(row)) continue;
+
+        for (let c = 0; c < row.length; c++) {
+          const valStr = String(row[c] || '').trim().toLowerCase();
+          if (valStr.includes('item code') || valStr === 'item ref' || valStr === 'item id') {
+            codeCol = c;
+            for (let c2 = 0; c2 < row.length; c2++) {
+              const hStr = String(row[c2] || '').trim().toLowerCase();
+              if (hStr.includes('unit rate (usd)') || hStr.includes('year 1 price (usd)') || hStr.includes('rate (usd)') || hStr.includes('price (usd)')) {
+                rateCol = c2;
+                isPhpRate = false;
+                break;
+              } else if (hStr.includes('rate / site (php)') || hStr.includes('rate (php)')) {
+                rateCol = c2;
+                isPhpRate = true;
+              }
+            }
+            break;
+          }
+        }
+
+        let matchedId = null;
+        let matchedCol = -1;
+        for (let c = 0; c < row.length; c++) {
+          const cellStr = String(row[c] || '').trim().toUpperCase();
+          if (itemMap[cellStr] !== undefined) {
+            matchedId = cellStr;
+            matchedCol = c;
+            break;
+          }
+        }
+
+        if (matchedId) {
+          let extractedRate = null;
+          if (rateCol !== -1 && row[rateCol] !== undefined && row[rateCol] !== null && row[rateCol] !== '') {
+            let num = typeof row[rateCol] === 'number' ? row[rateCol] : parseFloat(String(row[rateCol]).replace(/[^0-9.-]/g, ''));
+            if (!isNaN(num) && num > 0) {
+              extractedRate = isPhpRate ? (num / 55.0) : num;
+            }
+          }
+
+          if (extractedRate === null) {
+            for (let c = matchedCol + 1; c < row.length; c++) {
+              const val = row[c];
+              if (val !== undefined && val !== null && val !== '') {
+                let num = typeof val === 'number' ? val : parseFloat(String(val).replace(/[^0-9.-]/g, ''));
+                if (!isNaN(num) && num > 0 && num !== itemMap[matchedId]) {
+                  extractedRate = num;
+                  break;
+                }
+              }
+            }
+          }
+
+          if (extractedRate !== null) {
+            const qty = itemMap[matchedId];
+            const inp = document.getElementById(`boq_rate_${matchedId}`);
+            if (inp) inp.value = extractedRate.toFixed(2);
+            calculateBoQ(matchedId, qty);
+            importedCount++;
+          }
+        }
+      }
+    });
+
+    if (importedCount > 0) {
+      updateTableSubtotals();
+      recalcGrandTotals();
+      saveCommercialDraft(false);
+      showToast(`✓ Successfully imported ${importedCount} BoQ rates!`);
+      alert(`✓ BoQ Import Successful!\n\nImported ${importedCount} item rates from "${file.name}".\nAll unit rates, extended totals, and PHP equivalents have been automatically updated and saved to your draft.`);
+    } else {
+      alert(`⚠️ No matching BoQ items found in "${file.name}".\nPlease ensure the uploaded file contains official item codes (e.g., RAN-HW-01, PWR-01, 5GC-HW-01) and valid unit rates.`);
+    }
+  } catch (err) {
+    console.error("BoQ Import Error:", err);
+    alert(`❌ Failed to parse file "${file.name}".\nError: ${err.message || err}`);
+  }
+}
+
+function exportBoQTemplateCsv() {
+  if (!window.RFPTenderData || !window.RFPTenderData.boqTables) return;
+  
+  const headers = ["Item Code", "Category / Lot", "Description", "Technical Scope", "Phase 1 Qty", "Unit", "Unit Rate (USD)", "Unit Rate (PHP @ 55.00)", "Extended Total (USD)"];
+  const rows = [headers];
+
+  window.RFPTenderData.boqTables.forEach(tbl => {
+    tbl.items.forEach(it => {
+      if (it.isSubtotal || it.isTotal) return;
+      const rateUsd = currentDraft.commercial[it.id]?.rateUsd !== undefined ? currentDraft.commercial[it.id].rateUsd : "";
+      const ratePhp = rateUsd !== "" ? (rateUsd * 55.0).toFixed(2) : "";
+      const extUsd = rateUsd !== "" ? (rateUsd * it.qty).toFixed(2) : "";
+      
+      rows.push([
+        `"${it.id}"`,
+        `"${tbl.title.replace(/"/g, '""')}"`,
+        `"${(it.description || '').replace(/"/g, '""')}"`,
+        `"${(it.scope || '').replace(/"/g, '""')}"`,
+        it.qty,
+        `"${it.unit || ''}"`,
+        rateUsd !== "" ? rateUsd : "",
+        ratePhp !== "" ? ratePhp : "",
+        extUsd !== "" ? extUsd : ""
+      ]);
+    });
+  });
+
+  const csvContent = "\uFEFF" + rows.map(e => e.join(",")).join("\r\n");
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.setAttribute("href", url);
+  link.setAttribute("download", "06_TELTECH_5G_FWA_BoQ_Price_Book_Rates.csv");
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
+// FORM D: VENDOR FINANCING EVENT HANDLERS
+function onFinTenorChange() {
+  const sel = document.getElementById('fin-tenor');
+  const cust = document.getElementById('fin-tenor-custom');
+  if (sel && cust) {
+    cust.style.display = (sel.value === 'Custom') ? 'block' : 'none';
+  }
+  saveFinancingDraft();
+}
+
+function onFinGraceChange() {
+  const sel = document.getElementById('fin-grace');
+  const cust = document.getElementById('fin-grace-custom');
+  if (sel && cust) {
+    cust.style.display = (sel.value === 'Custom') ? 'block' : 'none';
+  }
+  saveFinancingDraft();
+}
+
+function saveFinancingDraft() {
+  const tenorSel = document.getElementById('fin-tenor');
+  const tenorCust = document.getElementById('fin-tenor-custom');
+  const graceSel = document.getElementById('fin-grace');
+  const graceCust = document.getElementById('fin-grace-custom');
+  const rateInp = document.getElementById('fin-rate');
+  const ecaInp = document.getElementById('fin-eca');
+  
+  currentDraft.financing = currentDraft.financing || {};
+  if (tenorSel) currentDraft.financing.tenor = tenorSel.value;
+  if (tenorCust) currentDraft.financing.tenorCustom = tenorCust.value;
+  if (graceSel) currentDraft.financing.grace = graceSel.value;
+  if (graceCust) currentDraft.financing.graceCustom = graceCust.value;
+  if (rateInp) currentDraft.financing.rate = rateInp.value;
+  if (ecaInp) currentDraft.financing.eca = ecaInp.value;
+
+  saveCommercialDraft(false);
 }
 
 function calculateBoQ(itemId, qty) {
@@ -1373,6 +1844,7 @@ function syncDraftToFirestore() {
         bidderId: user.uid,
         technical: currentDraft.technical || {},
         commercial: currentDraft.commercial || {},
+        financing: currentDraft.financing || {},
         updatedAt: firebase.firestore.FieldValue.serverTimestamp()
       }, { merge: true });
       const ind = document.getElementById('cloud-save-status');
@@ -1418,6 +1890,7 @@ async function loadBidDraft() {
           const cloudData = snap.data();
           if (cloudData.technical) currentDraft.technical = { ...currentDraft.technical, ...cloudData.technical };
           if (cloudData.commercial) currentDraft.commercial = { ...currentDraft.commercial, ...cloudData.commercial };
+          if (cloudData.financing) currentDraft.financing = { ...currentDraft.financing, ...cloudData.financing };
           restoreDraftUI(currentDraft);
           const ind = document.getElementById('cloud-save-status');
           if (ind) ind.textContent = "☁️ Cloud Synced";
@@ -1451,6 +1924,33 @@ function restoreDraftUI(data) {
       }
     }
   }
+
+  if (data.financing) {
+    const f = data.financing;
+    const tenorSel = document.getElementById('fin-tenor');
+    const tenorCust = document.getElementById('fin-tenor-custom');
+    const graceSel = document.getElementById('fin-grace');
+    const graceCust = document.getElementById('fin-grace-custom');
+    const rateInp = document.getElementById('fin-rate');
+    const ecaInp = document.getElementById('fin-eca');
+
+    if (tenorSel && f.tenor) {
+      tenorSel.value = f.tenor;
+      if (tenorCust) {
+        tenorCust.style.display = (f.tenor === 'Custom') ? 'block' : 'none';
+        if (f.tenorCustom) tenorCust.value = f.tenorCustom;
+      }
+    }
+    if (graceSel && f.grace) {
+      graceSel.value = f.grace;
+      if (graceCust) {
+        graceCust.style.display = (f.grace === 'Custom') ? 'block' : 'none';
+        if (f.graceCustom) graceCust.value = f.graceCustom;
+      }
+    }
+    if (rateInp && f.rate !== undefined) rateInp.value = f.rate;
+    if (ecaInp && f.eca !== undefined) ecaInp.value = f.eca;
+  }
 }
 
 // PRE-FLIGHT CHECKLIST (TAB 5)
@@ -1471,8 +1971,11 @@ function updatePreflight() {
   commEl.textContent = commTotal > 0 ? `$${commTotal.toLocaleString('en-US', {maximumFractionDigits: 0})} USD quoted` : "Pending input";
   commEl.style.color = (commTotal > 0) ? "var(--green)" : "var(--gold)";
 
+  let tenorText = currentDraft.financing?.tenor === 'Custom' ? (currentDraft.financing?.tenorCustom || 'Custom') : (currentDraft.financing?.tenor || '5 Years (Preferred)');
+  let graceText = currentDraft.financing?.grace === 'Custom' ? (currentDraft.financing?.graceCustom || 'Custom') : (currentDraft.financing?.grace || '18 Months');
+
   document.getElementById('env2-summary').textContent = `${answered} of 80 items configured`;
-  document.getElementById('env3-summary').textContent = `$${commTotal.toLocaleString('en-US', {minimumFractionDigits: 2})} USD (₱${(commTotal*55).toLocaleString('en-US', {minimumFractionDigits: 2})} PHP)`;
+  document.getElementById('env3-summary').innerHTML = `$${commTotal.toLocaleString('en-US', {minimumFractionDigits: 2})} USD (₱${(commTotal*55).toLocaleString('en-US', {minimumFractionDigits: 2})} PHP)<br><span style="font-size: 11px; color: var(--teal);">Form D: ${tenorText} Tenor • ${graceText} Grace</span>`;
 
   // Autofill bidder entity if available
   if (currentUser) {
@@ -1519,7 +2022,8 @@ async function executeBidSubmission() {
     submissionTimestamp: now.toISOString(),
     status: 'submitted',
     techCompliance: currentDraft.technical || {},
-    commercialPricing: currentDraft.commercial || {}
+    commercialPricing: currentDraft.commercial || {},
+    vendorFinancing: currentDraft.financing || {}
   };
 
   // Compute SHA-256 seal
