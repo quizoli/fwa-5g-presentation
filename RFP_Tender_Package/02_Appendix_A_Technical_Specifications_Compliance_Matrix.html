@@ -281,9 +281,128 @@
   @media print {
     body { padding: 0; }
   }
+
+  /* Sticky Top Return to Portal Bar */
+  .portal-return-bar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+    background: #0A192F;
+    color: #F8FAFC;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #00D2D3;
+    box-shadow: 0 4px 16px rgba(10, 25, 47, 0.5);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  .portal-return-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .portal-return-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #0284C7, #00D2D3);
+    color: #0A192F !important;
+    font-size: 12.5px;
+    font-weight: 800;
+    padding: 7px 14px;
+    border-radius: 6px;
+    text-decoration: none !important;
+    box-shadow: 0 2px 6px rgba(0, 210, 211, 0.35);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer;
+  }
+  .portal-return-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 210, 211, 0.55);
+  }
+  .portal-return-badge {
+    background: rgba(255, 255, 255, 0.1);
+    color: #00D2D3;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .portal-doc-label {
+    font-size: 12px;
+    color: #E2E8F0;
+    font-weight: 600;
+  }
+  .portal-return-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .portal-action-btn {
+    background: #112240;
+    color: #F8FAFC !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .portal-action-btn:hover {
+    background: #1E3A5F;
+    border-color: #00D2D3;
+  }
+  @media print {
+    .portal-return-bar {
+      display: none !important;
+    }
+  }
+
 </style>
 </head>
 <body>
+
+<!-- TOP NAVIGATION: RETURN TO PORTAL -->
+<div class="portal-return-bar">
+  <div class="portal-return-left">
+    <a href="../rfp_portal.html" onclick="returnToPortal(event)" class="portal-return-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      Return to E-Tender Portal
+    </a>
+    <span class="portal-return-badge">Official Tender Document Web View</span>
+    <span class="portal-doc-label">Appendix A: Technical Specifications & Compliance Matrix</span>
+  </div>
+  <div class="portal-return-right">
+    <a href="02_Appendix_A_Technical_Specifications_Compliance_Matrix.pdf" download class="portal-action-btn">📥 PDF</a>
+    <a href="02_Appendix_A_Technical_Specifications_Compliance_Matrix.xlsx" download class="portal-action-btn" style="border-color: #10B981; color: #A7F3D0 !important;">📊 Excel</a>
+    <button onclick="window.print()" class="portal-action-btn portal-print-btn">🖨️ Print</button>
+  </div>
+</div>
+<script>
+  function returnToPortal(e) {
+    if (window.opener && !window.opener.closed) {
+      if (e) e.preventDefault();
+      window.close();
+      return false;
+    }
+    if (document.referrer && (document.referrer.includes('rfp_portal.html') || document.referrer.includes('portal.html'))) {
+      if (e) e.preventDefault();
+      window.location.href = document.referrer;
+      return false;
+    }
+  }
+</script>
+
 <div class="document-container">
 
   <div class="doc-header-banner">
