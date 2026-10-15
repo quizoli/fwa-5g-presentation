@@ -141,6 +141,18 @@
       status: "active",
       passwordHash: "c814a124082a915d90a0f529773d5525afa4cc64b342e15c97cbf5de0393ddc3",
       registeredAt: "2026-10-15"
+    },
+    {
+      username: "john_li",
+      name: "John",
+      email: "li.zhang1@zte.com.cn",
+      organization: "ZTE",
+      role: "Bidder",
+      isAdmin: false,
+      isBidder: true,
+      status: "active",
+      passwordHash: "08cf69ab9c8c3fe70e6ab4e90dcea5fcaff2746e6018dccad5b1b2dadff7c0b2",
+      registeredAt: "2026-10-15"
     }
   ];
 
