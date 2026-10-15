@@ -79,12 +79,12 @@ Bidders must organize their formal response strictly into three (3) separately b
 | **Pre-Bid Clarification Meeting (Hybrid)** | October 28, 2026 | Virtual / TelTech HQ Conference Facility. |
 | **Deadline for Written Clarification Inquiries** | November 4, 2026 | Submit RFIs via email to Tender Secretariat. |
 | **TelTech Formal Response & Addendum Issue** | November 11, 2026 | Consolidated formal answers issued to all registered bidders. |
-| **Final Sealed Bid Submission Deadline** | **December 2, 2026 (17:00 PHT)** | Electronic email / portal upload and physical delivery to TelTech HQ. |
+| **Final Sealed Bid Submission Deadline** | **December 2, 2026 (17:00 PHT)** | 100% Digital Submission via TelTech E-Tender Portal (https://quizoli.github.io/fwa-5g-presentation/rfp_login.html); no physical paper delivery required. |
 | **Technical Envelope Opening & Presentations** | December 4 – 15, 2026 | Evaluation Board review and bidder presentation sessions. |
 | **Commercial & Financing Envelope Opening** | December 16, 2026 | Opening of financial envelopes for technically qualified bidders. |
 | **Notice of Award (NOA)** | December 22, 2026 | Formal notification to winning bidder(s). |
 | **Contract Execution & Notice to Proceed (NTP)**| January 15, 2027 | Contract signing and project mobilization. |
-| **Phase 1 Commercial Launch (1,000 Sites)** | Q4 2027 | Full commercial on-air launch within 12 months from NTP. |
+| **Phase 1 Commercial Launch (1,000 Sites)** | Q4 2027 | Full commercial on-air launch within 12 months (365 calendar days) from Notice to Proceed (NTP). |
 
 ### Official Receiving Location & Contacts:
 * **Tender Email:** `oliver.tungol@comclark.com.ph`

@@ -44,7 +44,7 @@
 | **PWR-01** | **DC Power Plant** | 19" 3U/4U modular high-efficiency switchmode rectifier system; continuous rating >= 6.0 kW @ -48V DC. | | |
 | **PWR-02** | **Rectifier Modules** | Hot-swappable 2.0 kW or 3.0 kW modules in N+1 redundant configuration. Operating efficiency >= 96.0%. | | |
 | **PWR-03** | **Input Voltage Range** | Wide AC input operating range: 85V AC to 300V AC nominal single phase (230V, 60 Hz), withstanding rural grid fluctuations. | | |
-| **PWR-04** | **Lithium Battery (BESS)**| Lithium Iron Phosphate (LiFePO4 / LFP) battery energy storage system: Sized to deliver at least 12.0 kWh usable energy to 3.0 kW DC continuous BTS load over 4.0 continuous hours without AC power, dimensioned for max 80% usable DoD and 80% end-of-life SoH retained capacity (min >= 19.0 to 20.0 kWh nominal installed bank capacity, e.g., 4 x 48V 100 Ah modules or equivalent). Bidder shall submit formal load-autonomy calculation sheet, manufacturer discharge curves, and guarantee 4.0h autonomy at SAT. | | |
+| **PWR-04** | **Lithium Battery (BESS)**| Lithium Iron Phosphate (LiFePO4 / LFP) battery energy storage system: Sized to deliver at least 12.0 kWh usable energy to 3.0 kW DC continuous BTS load over 4.0 continuous hours without AC power, dimensioned for max 80% usable DoD and 80% end-of-life SoH retained capacity (minimum >= 20.0 kWh nominal installed capacity, minimum 400 Ah to 450 Ah @ 48V, dimensioned via mandatory loss-based engineering calculation delivering 12.0 kWh net usable energy at 80% DoD and 80% EOL SoH). Bidder shall submit formal load-autonomy calculation sheet, manufacturer discharge curves, and guarantee 4.0h autonomy at SAT. | | |
 | **PWR-05** | **Battery Autonomy** | Guaranteed >= 4.0 hours continuous operation at 3.0 kW continuous BTS load without AC utility input, verified by full discharge test at site acceptance. | | |
 | **PWR-06** | **Battery Cycle Life** | >= 4,000 cycles at 80% Depth of Discharge (DoD) at +25°C; built-in intelligent Battery Management System (BMS). | | |
 | **PWR-07** | **Standby Genset** | For Greenfield (Class T4) sites: 15 kVA / 12 kW prime, 230V, 60 Hz diesel generator in sound-attenuated weatherproof canopy (<68dBA @ 7m). | | |
@@ -134,7 +134,7 @@
 | **CPE-08** | **Remote Device Management** | Broadband Forum TR-069 and TR-369 (USP) support with complete TR-181 data model, SNMPv2/v3, and secure ACS provisioning. | | |
 | **CPE-09** | **Firmware & Security** | Secure Boot with cryptographic signature verification, automated FOTA (Firmware-Over-The-Air) batch upgrades, and operator lock capability. | | |
 | **CPE-10** | **SIM / eSIM Support** | Standard Nano-SIM (4FF) slot with anti-theft locking cover and optional GSMA-compliant eSIM MFF2 footprint. | | |
-| **CPE-11** | **Power Supply** | Indoor CPE: 230V AC / 12V DC external adapter (Philippine standard Type A/B plug). Outdoor CPE: 802.3at/af Power over Ethernet (PoE) injector included. | | |
+| **CPE-11** | **Power Supply** | Indoor CPE: 230V AC / 12V DC external adapter (Philippine standard Type A/B plug). Outdoor CPE: 2.5GE-capable 802.3at/bt PoE power injector and 2.5GE WAN indoor gateway companion included. | | |
 | **CPE-12** | **Certification & Warranty** | NTC Type Approval compliance, CE/FCC certification, and minimum 24-month hardware replacement warranty (RMA <= 5 business days). | | |
 
 ---

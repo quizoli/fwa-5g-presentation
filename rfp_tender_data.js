@@ -547,462 +547,479 @@ window.RFPTenderData = {
 ],
   boqTables: [
   {
-    "title": "TABLE 1: LOT 1 \u2014 RAN HARDWARE & ACCESS EQUIPMENT (PER SITE BASIS)",
+    "tableId": "lot1_hw",
+    "title": "TABLE 1: LOT 1 \u2014 5G RAN HARDWARE & ACCESS EQUIPMENT (PHASE 1: 1,000 SITES)",
     "items": [
       {
         "id": "RAN-HW-01",
         "description": "5G Baseband Unit (BBU)",
-        "qty": 1,
-        "unit": "1 set",
-        "raw_qty": "19\" subrack, dual -48V DC PSU, 4x 25G backhaul, 6x 25G eCPRI"
+        "scope": "19\" subrack, dual -48V DC PSU, 4x 25G backhaul, 6x 25G eCPRI",
+        "qty": 1000,
+        "unit": "sets"
       },
       {
         "id": "RAN-HW-02",
         "description": "8T8R Remote Radio Unit (RRU)",
-        "qty": 1,
-        "unit": "3 sets",
-        "raw_qty": "Band n50 (1.5 GHz), 60 MHz IBW, 8x40W (320W total RF power)"
+        "scope": "Band n50 (1.5 GHz), 60 MHz IBW, 8x40W (320W total RF power), 3/site",
+        "qty": 3000,
+        "unit": "sets"
       },
       {
         "id": "RAN-HW-03",
         "description": "Macro High-Gain Antennas",
-        "qty": 1,
-        "unit": "3 sets",
-        "raw_qty": "8-port cross-pol, 17.5 dBi gain, AISG 2.0 internal eRET"
+        "scope": "8-port cross-pol, 17.5 dBi gain, AISG 2.0 internal eRET, 3/site",
+        "qty": 3000,
+        "unit": "sets"
       },
       {
         "id": "RAN-HW-04",
         "description": "RF Jumpers & Optical Patchcords",
-        "qty": 1,
-        "unit": "1 lot",
-        "raw_qty": "High-grade armored optical fiber, weatherproof boots, grounding kits"
+        "scope": "Armored fiber, weatherproof boots, grounding kits, 1 lot/site",
+        "qty": 1000,
+        "unit": "lots"
       },
       {
         "id": "RAN-HW-05",
         "description": "BBU Base Software & 5G Features",
-        "qty": 1,
-        "unit": "1 lot",
-        "raw_qty": "Band n50 carrier license, MU-MIMO, beamforming, sleep-mode energy saving"
+        "scope": "Band n50 carrier license, MU-MIMO, beamforming, energy saving",
+        "qty": 1000,
+        "unit": "lots"
       },
       {
-        "id": "SUBTOTAL",
-        "description": "BTS Equipment Package per Site",
-        "qty": 1,
-        "unit": "1 Site",
-        "raw_qty": "(BBU x1, 8T8R RRU x3, Antennas x3, SW)"
+        "id": "SUBTOTAL-RAN-HW",
+        "description": "Subtotal RAN Hardware (1,000 Sites)",
+        "scope": "Calculated Total Hardware Capex",
+        "qty": 0,
+        "unit": "lot",
+        "isSubtotal": true
       }
     ]
   },
   {
-    "title": "TABLE 2: LOT 1 \u2014 RAN TURNKEY ROLLOUT SERVICES (PER SITE BASIS)",
+    "tableId": "lot1_svc",
+    "title": "TABLE 2: LOT 1 \u2014 RAN TURNKEY ROLLOUT SERVICES (PHASE 1: 1,000 SITES)",
     "items": [
       {
         "id": "RAN-SVC-01",
         "description": "Site Survey, Engineering & TSSR",
-        "qty": 1,
-        "unit": "1 site",
-        "raw_qty": "Tower audit, structural verification, drone LOS photo sweep, civil sketch"
+        "scope": "Tower audit, structural verification, drone LOS sweep, civil sketch",
+        "qty": 1000,
+        "unit": "sites"
       },
       {
         "id": "RAN-SVC-02",
         "description": "Project Management & Mobilization",
-        "qty": 1,
-        "unit": "1 site",
-        "raw_qty": "Dedicated rollout PMO, site acquisition coordination, milestone tracking"
+        "scope": "Dedicated rollout PMO, site acquisition coordination, milestone tracking",
+        "qty": 1000,
+        "unit": "sites"
       },
       {
         "id": "RAN-SVC-03",
         "description": "Installation & Commissioning (I&C)",
-        "qty": 1,
-        "unit": "1 site",
-        "raw_qty": "Rigging, antenna mounting, cable routing, BBU wiring, initial power-up"
+        "scope": "Rigging, antenna mounting, cable routing, BBU wiring, initial power-up",
+        "qty": 1000,
+        "unit": "sites"
       },
       {
         "id": "RAN-SVC-04",
-        "description": "Single Site Optimization (SSO/SSV)",
-        "qty": 1,
-        "unit": "1 site",
-        "raw_qty": "Station testing, sector drive test, throughput call, ping, handover test"
+        "description": "Transmission & Backhaul Integration",
+        "scope": "Fiber drop termination, SFP28 optics, PTP IEEE 1588v2 sync, Starlink LEO",
+        "qty": 1000,
+        "unit": "sites"
       },
       {
         "id": "RAN-SVC-05",
-        "description": "Cluster Optimization Services",
-        "qty": 1,
-        "unit": "1 site",
-        "raw_qty": "Cluster tuning, inter-site interference, tilt adjustments (per site share)"
+        "description": "Single Site Verification (SSV)",
+        "scope": "Stationary & drive test verification, throughput (DL 150M/UL 30M), latency",
+        "qty": 1000,
+        "unit": "sites"
       },
       {
         "id": "RAN-SVC-06",
-        "description": "Central Warehousing & Logistics",
-        "qty": 1,
-        "unit": "1 site",
-        "raw_qty": "Staging, asset tagging, kitting, indoor climate storage"
+        "description": "As-Built Documentation & Acceptance",
+        "scope": "Comprehensive civil/electrical as-built drawings, PAC signed dossiers",
+        "qty": 1000,
+        "unit": "sites"
       },
       {
-        "id": "RAN-SVC-07",
-        "description": "Delivery & Basic Hauling to Site",
-        "qty": 1,
-        "unit": "1 site",
-        "raw_qty": "Regional hauling, rough-road 4x4 transport to rural barangay location"
+        "id": "SUBTOTAL-RAN-SVC",
+        "description": "Subtotal RAN Services (1,000 Sites)",
+        "scope": "Calculated Total Implementation Services",
+        "qty": 0,
+        "unit": "lot",
+        "isSubtotal": true
       },
       {
-        "id": "SUBTOTAL",
-        "description": "RAN Turnkey Services per Site",
-        "qty": 1,
-        "unit": "1 Site",
-        "raw_qty": "Full Turnkey Rollout & Commissioning Services"
+        "id": "TOTAL-LOT1",
+        "description": "TOTAL LOT 1 \u2014 RAN HARDWARE & SERVICES",
+        "scope": "Turnkey 1,000-Site Footprint",
+        "qty": 0,
+        "unit": "lot",
+        "isTotal": true
       }
     ]
   },
   {
-    "title": "TABLE 3: LOT 2 \u2014 POWER SYSTEMS & PASSIVE INFRASTRUCTURE",
+    "tableId": "lot2_pwr",
+    "title": "TABLE 3: LOT 2 \u2014 POWER SYSTEMS & PASSIVE SITE INFRASTRUCTURE (PHASE 1)",
     "items": [
       {
-        "id": "PWR-EQ-01",
+        "id": "PWR-01",
         "description": "6.0 kW Modular DC Rectifier Plant",
-        "qty": 1,
-        "unit": "Co-loc / Greenfield",
-        "raw_qty": "19\" 3U subrack, 3 x 3.0 kW modules (N+1), SMPS controller"
+        "scope": "19\" 3U subrack, 3x 3.0 kW modules (N+1), SMPS controller, 96% eff",
+        "qty": 1000,
+        "unit": "sets"
       },
       {
-        "id": "PWR-EQ-02",
-        "description": "48V LiFePO4 Battery Bank",
-        "qty": 1,
-        "unit": "Co-loc / Greenfield",
-        "raw_qty": "High-cycle LFP with smart BMS, sized for >= 12.0 kWh usable energy over 4.0h @ 3.0 kW load, <= 80% DoD, 80% SoH (min >= 19.0 to 20.0 kWh nominal installed bank capacity)"
+        "id": "PWR-02",
+        "description": "48V LiFePO4 Battery Bank (>=20 kWh nom)",
+        "scope": "Sized for >=12.0 kWh usable over 4.0h @ 3.0kW, <=80% DoD, 80% SoH retention",
+        "qty": 1000,
+        "unit": "sets"
       },
       {
-        "id": "PWR-EQ-03",
-        "description": "TowerCo DC Tap-Off & Metering Kit",
-        "qty": 1,
-        "unit": "Leased TowerCo",
-        "raw_qty": "DC tap enclosure, revenue Class 1.0 kWh meter, SPD Type 2"
+        "id": "PWR-03",
+        "description": "TowerCo DC Tap-Off Box & Submeter",
+        "scope": "Enclosure, Class 1.0 revenue kWh meter, RS485 telemetry, SPD Type 2",
+        "qty": 897,
+        "unit": "sets"
       },
       {
-        "id": "PWR-EQ-04",
-        "description": "15 kVA Diesel Generator Set",
-        "qty": 1,
-        "unit": "Greenfield (Class T4)",
-        "raw_qty": "Soundproof canopy, 500L\u20131000L tank, ATS, auto-start"
+        "id": "PWR-04",
+        "description": "15 kVA Soundproof Standby Genset",
+        "scope": "Diesel, 230V 60Hz, 500-1000L tank, ATS auto-transfer, <68dBA @ 7m",
+        "qty": 103,
+        "unit": "sets"
       },
       {
-        "id": "CIV-EQ-01",
+        "id": "CIV-01",
         "description": "30m Monopole Tower & Foundation",
-        "qty": 1,
-        "unit": "Greenfield (Class T4)",
-        "raw_qty": "Galvanized steel monopole, pile/pad foundation, compound fence"
+        "scope": "ASTM A572 steel, 250 km/h wind rating, 8x8m compound, pad foundation",
+        "qty": 103,
+        "unit": "sites"
       },
       {
-        "id": "CIV-EQ-02",
-        "description": "Grounding Grid & Lightning System",
-        "qty": 1,
-        "unit": "Greenfield (Class T4)",
-        "raw_qty": "Copper earth ring, Cadweld, ground rods, air terminal (<= 5 Ohms)"
+        "id": "CIV-02",
+        "description": "Grounding Grid & Lightning Protection",
+        "scope": "Copper earth ring, Cadweld, ground rods, air terminal (<=5 Ohms)",
+        "qty": 103,
+        "unit": "sites"
+      },
+      {
+        "id": "TOTAL-LOT2",
+        "description": "TOTAL LOT 2 \u2014 POWER & PASSIVE INFRASTRUCTURE",
+        "scope": "Phase 1 Footprint (897 Co-loc + 103 Greenfield)",
+        "qty": 0,
+        "unit": "lot",
+        "isTotal": true
       }
     ]
   },
   {
-    "title": "TABLE 4: LOT 3 \u2014 5G CORE NETWORK (5GC SA) & DATACENTER",
+    "tableId": "lot3_5gc",
+    "title": "TABLE 4: LOT 3 \u2014 CLOUD-NATIVE 5G CORE NETWORK (5GC SA)",
     "items": [
       {
         "id": "5GC-HW-01",
-        "description": "Compute Server Nodes (2U)",
+        "description": "Primary DC COTS Compute (Metro Manila)",
+        "scope": "Redundant dual-socket servers, NVMe storage, 25G dual NICs",
         "qty": 1,
-        "unit": "Hardware Purchase",
-        "raw_qty": "Dual Xeon Gold / EPYC, 512GB RAM, NVMe (Dual Sites, N+1)"
+        "unit": "lot"
       },
       {
         "id": "5GC-HW-02",
-        "description": "High-Throughput UPF Nodes",
+        "description": "Secondary DR DC COTS Compute (Clark)",
+        "scope": "Geographically redundant Active-Active mirror infrastructure",
         "qty": 1,
-        "unit": "Hardware Purchase",
-        "raw_qty": "80 Gbps line-rate forwarding per node with DPDK (N+1 per DC)"
+        "unit": "lot"
       },
       {
         "id": "5GC-HW-03",
-        "description": "Datacenter Network Fabric",
+        "description": "Spine-Leaf Data Center Fabric",
+        "scope": "Dual 100G spine, 25G leaf switches with EVPN-VXLAN fabric",
         "qty": 1,
-        "unit": "Hardware Purchase",
-        "raw_qty": "Spine/leaf switches (100GE / 25GE), perimeter firewalls, anti-DDoS"
+        "unit": "lot"
       },
       {
         "id": "5GC-HW-04",
-        "description": "Storage Array & Backup System",
+        "description": "Next-Gen Border Security Firewalls",
+        "scope": "Carrier-grade N-pair firewalls with DDoS mitigation & CG-NAT",
         "qty": 1,
-        "unit": "Hardware Purchase",
-        "raw_qty": "High-IOPS redundant enterprise NVMe storage arrays"
+        "unit": "lot"
       },
       {
         "id": "5GC-SW-01",
-        "description": "5GC Control Plane Software (1M)",
+        "description": "Control Plane Core VNFs/CNFs",
+        "scope": "AMF, SMF, NRF, NSSF, PCF, UDM, AUSF for 1.0M subscribers",
         "qty": 1,
-        "unit": "Perpetual License",
-        "raw_qty": "AMF, SMF, PCF, UDM, UDR, AUSF, NRF, NSSF, CHF (1,000,000 Subs)"
+        "unit": "lot"
       },
       {
         "id": "5GC-SW-02",
-        "description": "Carrier-Grade NAT & DPI Software",
+        "description": "Distributed User Plane Function (UPF)",
+        "scope": "Wire-speed DPDK UPF nodes dimensioned for 200 Gbps total throughput",
         "qty": 1,
-        "unit": "Perpetual License",
-        "raw_qty": "CG-NAT deterministic port license + Layer-7 DPI bandwidth policing"
+        "unit": "lot"
       },
       {
         "id": "5GC-SW-03",
-        "description": "CaaS / Kubernetes Orchestration",
+        "description": "Voice over NR (VoNR) / IMS Subsystem",
+        "scope": "Carrier VoNR/IMS architecture supporting voice, SMS, emergency calls",
         "qty": 1,
-        "unit": "Perpetual / Annual",
-        "raw_qty": "Enterprise Kubernetes platform & container management"
+        "unit": "lot"
       },
       {
         "id": "5GC-SVC-01",
-        "description": "Integration, IOT with RAN & UAT",
+        "description": "Turnkey Core Deployment & Migration",
+        "scope": "NFV orchestration, NFVI deployment, inter-PLMN roaming, acceptance",
         "qty": 1,
-        "unit": "Professional Services",
-        "raw_qty": "End-to-end design, commissioning, RAN interoperability testing"
+        "unit": "lot"
       },
       {
-        "id": "SUBTOTAL",
-        "description": "5G Core Year 1 Turnkey Package",
-        "qty": 1,
-        "unit": "Turnkey Initial",
-        "raw_qty": "Dual Datacenter Active-Active Setup (1M Subs)"
+        "id": "TOTAL-LOT3",
+        "description": "TOTAL LOT 3 \u2014 5G CORE NETWORK (DAY-1 CAPEX)",
+        "scope": "1.0M Initial Registered Subscribers Capacity",
+        "qty": 0,
+        "unit": "lot",
+        "isTotal": true
       }
     ]
   },
   {
-    "title": "TABLE 5: LOT 4 \u2014 DIGITAL OSS/BSS & FIELD FORCE AUTOMATION",
+    "tableId": "lot4_bss",
+    "title": "TABLE 5: LOT 4 \u2014 DIGITAL OSS/BSS & FIELD DISPATCH AUTOMATION",
     "items": [
       {
         "id": "BSS-01",
-        "description": "Converged CRM & Product Catalog",
+        "description": "Converged Charging System (CHF/CCS)",
+        "scope": "3GPP 32.290 real-time rating engine, prepaid/postpaid, quota management",
         "qty": 1,
-        "unit": "Perpetual / Enterprise",
-        "raw_qty": "Omnichannel customer onboarding, product catalog (4 FWA tariffs)"
+        "unit": "lot"
       },
       {
         "id": "BSS-02",
-        "description": "Real-Time Balance & Rating Engine",
+        "description": "Omnichannel CRM & Customer Portal",
+        "scope": "Self-service web/mobile portal, subscriber onboarding, eSIM support",
         "qty": 1,
-        "unit": "Perpetual License",
-        "raw_qty": "CHF adapter, real-time prepaid quota metering, zero-balance redirect"
+        "unit": "lot"
       },
       {
         "id": "BSS-03",
-        "description": "Payment Channel Integration",
+        "description": "Digital Payment Gateways Integration",
+        "scope": "Turnkey API integration with GCash, Maya, BancNet, and credit cards",
         "qty": 1,
-        "unit": "Integration Module",
-        "raw_qty": "Native API integrations: GCash, Maya, 7-Eleven CLiQQ, Bayad Center"
+        "unit": "lot"
       },
       {
         "id": "BSS-04",
-        "description": "Billing & Invoicing Engine",
+        "description": "Product Catalog & Policy Engine",
+        "scope": "Rapid plan creation, FWA speed tiers, data cap enforcement, zero-rating",
         "qty": 1,
-        "unit": "Perpetual License",
-        "raw_qty": "Postpaid billing engine for SME and enterprise anchor tenants"
+        "unit": "lot"
       },
       {
         "id": "OSS-01",
-        "description": "Field Force Management (FMS)",
+        "description": "Unified Network Management (EMS/NMS)",
+        "scope": "Fault, configuration, accounting, performance, security (FCAPS)",
         "qty": 1,
-        "unit": "Enterprise License",
-        "raw_qty": "Algorithmic automated dispatch handling 3,500 daily work orders"
+        "unit": "lot"
       },
       {
         "id": "OSS-02",
-        "description": "Mobile Technician Android App",
+        "description": "Mobile Field Force Automation App",
+        "scope": "Android/iOS app for 3,500 daily work orders, GPS, photo proof, e-sign",
         "qty": 1,
-        "unit": "Unlimited Users",
-        "raw_qty": "Barcode scan, GPS dispatch, live RF RSRP/SINR validation tool"
+        "unit": "lot"
       },
       {
         "id": "OSS-03",
-        "description": "CPE Warehouse Logistics & Reverse WMS",
+        "description": "Auto-Provisioning & ACS (TR-069/369)",
+        "scope": "Zero-touch CPE provisioning, FOTA mass upgrade, TR-181 diagnostics",
         "qty": 1,
-        "unit": "Enterprise License",
-        "raw_qty": "Serialized asset lifecycle tracking, repossession & refurbishment module"
+        "unit": "lot"
       },
       {
         "id": "OSS-04",
-        "description": "Network Performance & Fault OSS",
+        "description": "Warehouse Logistics & Asset Tracking",
+        "scope": "Serial-level barcode/RFID tracking of BBUs, RRUs, rectifiers, CPEs",
         "qty": 1,
-        "unit": "Enterprise License",
-        "raw_qty": "Multi-vendor RAN/Core EMS integration, alarm correlation, RCA"
+        "unit": "lot"
       },
       {
         "id": "OSS-05",
-        "description": "Regulatory BI & NTC Dashboard",
+        "description": "Service Orchestration & Inventory",
+        "scope": "End-to-end network service topology and resource state management",
         "qty": 1,
-        "unit": "Included",
-        "raw_qty": "Automated QoS speed compliance reporting to NTC"
+        "unit": "lot"
       },
       {
         "id": "OSS-SVC",
-        "description": "Systems Integration & UAT Launch",
+        "description": "Turnkey OSS/BSS Integration Services",
+        "scope": "Integration, API test, payment certification, UAT, and 60-day hypercare",
         "qty": 1,
-        "unit": "Professional Services",
-        "raw_qty": "End-to-end configuration, test scripts, launch support"
+        "unit": "lot"
       },
       {
-        "id": "SUBTOTAL",
-        "description": "OSS/BSS Turnkey Year 1 Package",
-        "qty": 1,
-        "unit": "Turnkey Initial",
-        "raw_qty": "Full Stack Suite Dimensioned for 1M Subscribers"
+        "id": "TOTAL-LOT4",
+        "description": "TOTAL LOT 4 \u2014 CONVERGED DIGITAL OSS/BSS",
+        "scope": "Complete Core & Business Automation Suite",
+        "qty": 0,
+        "unit": "lot",
+        "isTotal": true
       }
     ]
   },
   {
-    "title": "TABLE 6: LOT 5 \u2014 SITE ACQUISITION, DETAILED SITE SURVEY (TSSR), RF DESIGN & CIVIL WORKS",
+    "tableId": "lot5_civ",
+    "title": "TABLE 6: LOT 5 \u2014 SITE ACQUISITION, TSSR & CIVIL WORKS (PHASE 1)",
     "items": [
       {
         "id": "CIV-SVC-01",
         "description": "Detailed Site Survey Report (TSSR)",
-        "qty": 1,
-        "unit": "All Sites (Co-loc & Green)",
-        "raw_qty": "Structural load audit, 360\u00b0 drone sweep, power/grounding audit, civil sketch, PE sign-off"
+        "scope": "Tower structural audit, 360-degree drone photo sweep, PE endorsement",
+        "qty": 1000,
+        "unit": "sites"
       },
       {
         "id": "CIV-SVC-02",
         "description": "Site Acquisition & Permitting Support",
-        "qty": 1,
-        "unit": "Greenfield Sites",
-        "raw_qty": "LGU building permits, Barangay clearances, CAAP height clearance, environmental docs"
+        "scope": "LGU building permit, Barangay clearance, CAAP height clearance",
+        "qty": 103,
+        "unit": "sites"
       },
       {
         "id": "CIV-SVC-03",
         "description": "Equipment Pad Foundation & Cable Gantry",
-        "qty": 1,
-        "unit": "Leased TowerCo Sites",
-        "raw_qty": "Concrete plinth for DC power/battery cabinet, elevated cable ladder, AC interconnect tap"
+        "scope": "Concrete plinth for power cabinet, elevated cable tray, interconnect",
+        "qty": 897,
+        "unit": "sites"
       },
       {
         "id": "CIV-SVC-04",
-        "description": "Greenfield Compound Works & Pad",
-        "qty": 1,
-        "unit": "Greenfield (Class T4)",
-        "raw_qty": "8m x 8m compound grading, chain-link security fence, crushed gravel, equipment pad"
+        "description": "Greenfield Compound Civil Works",
+        "scope": "8m x 8m compound grading, perimeter chain-link fence, gravel bedding",
+        "qty": 103,
+        "unit": "sites"
       },
       {
         "id": "CIV-SVC-05",
         "description": "Grounding Grid & Lightning Protection",
-        "qty": 1,
-        "unit": "All Sites (Co-loc & Green)",
-        "raw_qty": "Exothermic Cadweld copper ring, ground rods, busbar, air terminal (<= 5.0 Ohms)"
+        "scope": "Cadweld copper ground ring, ground rods, air terminal (<= 5.0 Ohms)",
+        "qty": 1000,
+        "unit": "sites"
       },
       {
         "id": "CIV-SVC-06",
-        "description": "30m Monopole Tower Supply & Erection",
-        "qty": 1,
-        "unit": "Greenfield (Class T4)",
-        "raw_qty": "ASTM A572 steel monopole, 250 km/h wind survival, fall arrest ladder, PE certification"
-      },
-      {
-        "id": "CIV-SVC-07",
-        "description": "40m Monopole Tower Supply & Erection",
-        "qty": 1,
-        "unit": "Greenfield (Terrain Opt)",
-        "raw_qty": "ASTM A572 steel monopole, 250 km/h wind survival, climbing ladder, structural sign-off"
+        "description": "30m Galvanized Steel Monopole Tower",
+        "scope": "ASTM A572 steel monopole, 250 km/h wind rating, climbing ladder, fall arrest",
+        "qty": 103,
+        "unit": "sites"
       },
       {
         "id": "CIV-SVC-08",
-        "description": "RF Propagation Modeling & Siting",
-        "qty": 1,
-        "unit": "Macro Footprint",
-        "raw_qty": "3D ray-tracing simulation, clutter calibration, search ring generation, nominal plan"
+        "description": "RF Propagation 3D Ray-Tracing Design",
+        "scope": "High-res 3D ray-tracing simulation, clutter calibration, search rings",
+        "qty": 1000,
+        "unit": "sites"
       },
       {
         "id": "CIV-SVC-09",
-        "description": "Cluster RF Optimization & Drive Test",
-        "qty": 1,
-        "unit": "Per Site Share",
-        "raw_qty": "Multi-site cluster drive testing, antenna tilt/azimuth optimization, neighbor tuning"
+        "description": "Cluster RF Optimization & Drive Testing",
+        "scope": "Multi-site cluster drive testing, antenna tilt/azimuth physical optimization",
+        "qty": 1000,
+        "unit": "sites"
       },
       {
-        "id": "TOTAL",
-        "description": "Lot 5 Civil & Siting Scope per Site",
-        "qty": 1,
-        "unit": "Per Site Evaluated",
-        "raw_qty": "Full Turnkey Site Acquisition, Survey, Design & Civil Construction"
+        "id": "TOTAL-LOT5",
+        "description": "TOTAL LOT 5 \u2014 SITE ACQUISITION & CIVILS",
+        "scope": "Phase 1 Footprint Turnkey Scope",
+        "qty": 0,
+        "unit": "lot",
+        "isTotal": true
       }
     ]
   },
   {
-    "title": "TABLE 7: LOT 6 \u2014 MANAGED SERVICES & 24/7 NETWORK OPERATIONS (ANNUAL OPEX)",
+    "tableId": "lot6_ms",
+    "title": "TABLE 7: LOT 6 \u2014 MANAGED SERVICES & 24/7 FLM (YEAR 1 O&M)",
     "items": [
       {
-        "id": "MS-OP-01",
-        "description": "24/7 Tier-2/Tier-3 Central NOC",
-        "qty": 1,
-        "unit": "Per Site / Month",
-        "raw_qty": "Active surveillance, incident triage, vendor escalation"
+        "id": "MS-01",
+        "description": "24/7 First Line Maintenance (FLM)",
+        "scope": "Emergency on-site response, MTTR <= 4.0h, field technicians & vehicles",
+        "qty": 12000,
+        "unit": "site-mos"
       },
       {
-        "id": "MS-OP-02",
-        "description": "Field First Line Maintenance (FLM)",
-        "qty": 1,
-        "unit": "Per Site / Month",
-        "raw_qty": "24/7 nationwide emergency restoration, MTTR <= 2-4 hrs"
+        "id": "MS-02",
+        "description": "NOC Tier-2 Surveillance & Escalation",
+        "scope": "24/7/365 active fault monitoring, performance trending, SLA tracking",
+        "qty": 12,
+        "unit": "months"
       },
       {
-        "id": "MS-OP-03",
-        "description": "Scheduled Preventive Maintenance",
-        "qty": 1,
-        "unit": "Per Site / Month",
-        "raw_qty": "Quarterly site inspection, power, battery, grounding"
+        "id": "MS-03",
+        "description": "Preventive Maintenance & Site Inspections",
+        "scope": "Quarterly PM routine: torque checks, battery conductance, filter clean",
+        "qty": 12000,
+        "unit": "site-mos"
       },
       {
-        "id": "MS-OP-04",
-        "description": "Spare Parts Logistics & Warehousing",
-        "qty": 1,
-        "unit": "Per Site / Month",
-        "raw_qty": "Regional buffer stock, NBD replacement delivery"
+        "id": "MS-04",
+        "description": "Central Spares & RMA Management",
+        "scope": "Buffer inventory warehouse management, reverse logistics, manufacturer RMA",
+        "qty": 12,
+        "unit": "months"
       },
       {
-        "id": "MS-OP-05",
-        "description": "Continuous Network RF Optimization",
-        "qty": 1,
-        "unit": "Per Site / Month",
-        "raw_qty": "Routine KPI monitoring, neighbor tuning, interference mgmt"
+        "id": "MS-05",
+        "description": "Genset Refueling & Maintenance",
+        "scope": "Scheduled diesel refueling, oil/filter changes, bi-weekly test runs",
+        "qty": 1236,
+        "unit": "site-mos"
       },
       {
-        "id": "TOTAL",
-        "description": "Active Network O&M Fee",
-        "qty": 1,
-        "unit": "Per Site / Month",
-        "raw_qty": "All inclusive active telecom managed operations"
+        "id": "TOTAL-LOT6",
+        "description": "TOTAL LOT 6 \u2014 MANAGED SERVICES (YEAR 1)",
+        "scope": "Annual Network Operations & Maintenance",
+        "qty": 0,
+        "unit": "lot",
+        "isTotal": true
       }
     ]
   },
   {
-    "title": "TABLE 8: LOT 7 \u2014 5G CUSTOMER PREMISES EQUIPMENT (CPE)",
+    "tableId": "lot7_cpe",
+    "title": "TABLE 8: LOT 7 \u2014 5G HIGH-GAIN CUSTOMER PREMISES EQUIPMENT (CPE)",
     "items": [
       {
         "id": "CPE-01",
         "description": "Indoor 5G High-Gain FWA Router",
-        "qty": 1,
-        "unit": "350,000 units",
-        "raw_qty": "Band n50 native, >= 8.0 dBi internal antenna, Wi-Fi 6 AX1800/AX3000, 1x 2.5GE + 2x 1GE ports, TR-069/TR-369"
+        "scope": "Band n50 native, >= 8.0 dBi antenna, Wi-Fi 6 AX1800/3000, 2.5GE port, TR-069",
+        "qty": 350000,
+        "unit": "units"
       },
       {
         "id": "CPE-02",
         "description": "Outdoor 5G High-Gain FWA Package",
-        "qty": 1,
-        "unit": "15,000 units",
-        "raw_qty": "Band n50, IP67 enclosure, >= 12.0 dBi directional antenna, 1x 2.5GE PoE, bundled indoor Wi-Fi 6 router & PoE injector"
+        "scope": "Band n50, IP67, >= 12.0 dBi antenna, 2.5GE PoE, bundled Wi-Fi 6 router",
+        "qty": 15000,
+        "unit": "units"
       },
       {
         "id": "CPE-SVC",
         "description": "Staging, Pre-Config & SIM-Locking",
-        "qty": 1,
-        "unit": "365,000 units",
-        "raw_qty": "Custom firmware flashing, operator APN & PLMN lock, retail packaging for all Phase 1 terminals"
+        "scope": "Custom firmware flashing, operator APN & PLMN lock, retail packaging",
+        "qty": 365000,
+        "unit": "units"
       },
       {
-        "id": "TOTAL",
-        "description": "Lot 7 5G CPE Terminals Package",
-        "qty": 1,
-        "unit": "365,000 Units",
-        "raw_qty": "Total Initial Terminal Supply & Staging (365,000 Total Devices)"
+        "id": "TOTAL-LOT7",
+        "description": "TOTAL LOT 7 \u2014 5G CPE TERMINALS & STAGING",
+        "scope": "365,000 Phase 1 Customer Terminal Devices",
+        "qty": 0,
+        "unit": "lot",
+        "isTotal": true
       }
     ]
   }

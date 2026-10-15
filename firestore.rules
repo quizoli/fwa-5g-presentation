@@ -129,10 +129,14 @@ service cloud.firestore {
       return !request.resource.data.diff(resource.data).affectedKeys().hasAny(fields);
     }
 
-    // Tender submission deadline: December 2, 2026, 17:00 (5:00 PM PHT / Manila UTC+8 is 09:00 UTC)
-    // Allows submissions up to 17:00 UTC to ensure complete time window compliance
+    // Tender submission deadline: December 2, 2026, 17:00 PHT (09:00 UTC)
     function isBeforeSubmissionDeadline() {
-      return request.time < timestamp.date(2026, 12, 2) + duration.value(17, 'h');
+      return request.time < timestamp.date(2026, 12, 2) + duration.value(9, 'h');
+    }
+
+    // Technical Opening date: December 4, 2026 (evaluators can review technical submissions)
+    function isTechnicalOpeningStarted() {
+      return request.time >= timestamp.date(2026, 12, 4);
     }
 
     // Envelope sealing opening gate: Commercial bids remain cryptographically sealed until December 16, 2026
@@ -278,8 +282,9 @@ service cloud.firestore {
         isActiveUser() &&
         isValidSubmission(request.resource.data);
 
+      // Bidder can always inspect their own submission; Evaluators can review technicals on or after Dec 4
       allow read: if (isAuthenticated() && request.auth.uid == resource.data.bidderId) ||
-        (isAdmin() && (isCommercialEnvelopeUnsealed() || !('commercialPricing' in resource.data)));
+        (isAdmin() && isTechnicalOpeningStarted());
 
       allow update, delete: if false;
 

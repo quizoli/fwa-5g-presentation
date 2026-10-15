@@ -767,7 +767,7 @@
       <div style="margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px;">
         <h3 style="color: var(--teal); font-size: 15px; margin-bottom: 12px;">Mandatory Vendor Financing Facility (Form D)</h3>
         <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 16px;">
-          Bidders must specify binding financing terms for at least 85% of Turnkey Capex with tenor minimum 4 years (5 years preferred) and grace period minimum 12 months.
+          Bidders must specify binding financing terms for at least 80% of Turnkey Capex with tenor minimum 4 years (5 years preferred) and grace period minimum 12 months.
         </p>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; background: rgba(0,0,0,0.25); padding: 18px; border-radius: 8px;">
           <div>
@@ -1008,7 +1008,7 @@
         </div>
       </div>
       <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 20px;">
-        Evaluation committee console for reviewing, comparing, and scoring bidder proposals against Quality and Cost Based Selection (QCBS: 80% Technical / 20% Commercial).
+        Evaluation committee console for reviewing, comparing, and scoring bidder proposals against Quality and Cost Based Selection (QCBS: 60% Technical / 40% Commercial).
       </p>
 
       <div style="overflow-x: auto;">
@@ -1243,43 +1243,65 @@ function renderBoQTables() {
   const container = document.getElementById('boq-tables-container');
   if (!container || !window.RFPTenderData) return;
 
-  container.innerHTML = window.RFPTenderData.boqTables.map((tbl, tIdx) => `
+  container.innerHTML = window.RFPTenderData.boqTables.map((tbl) => `
     <div style="margin-bottom: 24px; background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid var(--navy-border); overflow: hidden;">
-      <div style="background: #172A45; padding: 10px 16px; font-weight: 800; font-size: 13px; color: var(--teal);">
-        ${tbl.title}
+      <div style="background: #172A45; padding: 10px 16px; font-weight: 800; font-size: 13px; color: var(--teal); display: flex; justify-content: space-between; align-items: center;">
+        <span>${tbl.title}</span>
+        <span style="font-size: 11px; color: #94A3B8; font-weight: 600;">Phase 1 Evaluated Scope</span>
       </div>
       <div style="overflow-x: auto;">
         <table class="matrix-table" style="border: none;">
           <thead>
             <tr>
-              <th style="width: 100px;">Item Code</th>
-              <th>Description / Scope Item</th>
-              <th style="width: 100px; text-align: center;">Phase 1 Qty</th>
+              <th style="width: 120px;">Item Code</th>
+              <th>Description / Technical Scope</th>
+              <th style="width: 110px; text-align: center;">Phase 1 Qty</th>
               <th style="width: 80px; text-align: center;">Unit</th>
-              <th style="width: 130px; text-align: right;">Unit Rate ($ USD)</th>
+              <th style="width: 140px; text-align: right;">Unit Rate ($ USD)</th>
               <th style="width: 130px; text-align: right;">Unit Rate (₱ PHP)</th>
-              <th style="width: 140px; text-align: right;">Extended Total ($)</th>
+              <th style="width: 150px; text-align: right;">Extended Total ($ USD)</th>
             </tr>
           </thead>
           <tbody>
-            ${tbl.items.map(item => `
-              <tr>
-                <td style="font-weight: 800; color: #60A5FA;">${item.id}</td>
-                <td>${item.description}</td>
-                <td style="text-align: center; font-weight: 700;">${item.raw_qty}</td>
-                <td style="text-align: center; color: var(--text-muted);">${item.unit}</td>
-                <td style="text-align: right;">
-                  <input type="number" step="0.01" min="0" class="boq-input" id="boq_rate_${item.id}" placeholder="0.00" oninput="calculateBoQ('${item.id}', ${item.qty})">
-                </td>
-                <td style="text-align: right; font-family: monospace; color: #CBD5E1;" id="boq_php_${item.id}">₱0.00</td>
-                <td style="text-align: right; font-family: monospace; font-weight: 800; color: #6EE7B7;" id="boq_ext_${item.id}">$0.00</td>
-              </tr>
-            `).join('')}
+            ${tbl.items.map(item => {
+              if (item.isSubtotal || item.isTotal) {
+                return `
+                  <tr style="background: rgba(30, 58, 95, 0.45); font-weight: 800; border-top: 1px solid var(--teal);">
+                    <td style="color: var(--teal);">${item.id}</td>
+                    <td colspan="3" style="color: #FFFFFF;">${item.description}</td>
+                    <td colspan="2" style="text-align: right; color: #94A3B8; font-size: 11px; text-transform: uppercase;">Calculated Total</td>
+                    <td style="text-align: right; font-family: monospace; font-size: 13px; font-weight: 900; color: #6EE7B7;" id="boq_ext_${item.id}">$0.00</td>
+                  </tr>
+                `;
+              }
+              const savedRate = currentDraft.commercial[item.id]?.rateUsd !== undefined ? currentDraft.commercial[item.id].rateUsd : '';
+              const savedPhp = savedRate !== '' ? (savedRate * 55.0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00';
+              const savedExt = savedRate !== '' ? (savedRate * item.qty).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00';
+              return `
+                <tr>
+                  <td style="font-weight: 800; color: #60A5FA;">${item.id}</td>
+                  <td>
+                    <div style="font-weight: 700; color: #F1F5F9;">${item.description}</div>
+                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">${item.scope}</div>
+                  </td>
+                  <td style="text-align: center; font-weight: 800; color: #FFFFFF;">${item.qty.toLocaleString()}</td>
+                  <td style="text-align: center; color: var(--text-muted); font-size: 12px;">${item.unit}</td>
+                  <td style="text-align: right;">
+                    <input type="number" step="0.01" min="0" class="boq-input" id="boq_rate_${item.id}" placeholder="0.00" value="${savedRate}" oninput="calculateBoQ('${item.id}', ${item.qty})">
+                  </td>
+                  <td style="text-align: right; font-family: monospace; color: #CBD5E1;" id="boq_php_${item.id}">₱${savedPhp}</td>
+                  <td style="text-align: right; font-family: monospace; font-weight: 800; color: #6EE7B7;" id="boq_ext_${item.id}">$${savedExt}</td>
+                </tr>
+              `;
+            }).join('')}
           </tbody>
         </table>
       </div>
     </div>
   `).join('');
+
+  updateTableSubtotals();
+  recalcGrandTotals();
 }
 
 function calculateBoQ(itemId, qty) {
@@ -1288,23 +1310,46 @@ function calculateBoQ(itemId, qty) {
   const ratePhp = rateUsd * 55.0;
   const extUsd = rateUsd * qty;
 
-  document.getElementById(`boq_php_${itemId}`).textContent = `₱${ratePhp.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-  document.getElementById(`boq_ext_${itemId}`).textContent = `$${extUsd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+  const phpEl = document.getElementById(`boq_php_${itemId}`);
+  const extEl = document.getElementById(`boq_ext_${itemId}`);
+  if (phpEl) phpEl.textContent = `₱${ratePhp.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+  if (extEl) extEl.textContent = `$${extUsd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
 
   currentDraft.commercial[itemId] = { rateUsd, qty, extUsd };
+  updateTableSubtotals();
   recalcGrandTotals();
   saveCommercialDraft(false);
+}
+
+function updateTableSubtotals() {
+  if (!window.RFPTenderData || !window.RFPTenderData.boqTables) return;
+  window.RFPTenderData.boqTables.forEach(tbl => {
+    let tblSum = 0;
+    tbl.items.forEach(it => {
+      if (!it.isSubtotal && !it.isTotal) {
+        tblSum += currentDraft.commercial[it.id]?.extUsd || 0;
+      } else {
+        const subEl = document.getElementById(`boq_ext_${it.id}`);
+        if (subEl) {
+          subEl.textContent = `$${tblSum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+        }
+      }
+    });
+  });
 }
 
 function recalcGrandTotals() {
   let grandTotalUsd = 0;
   for (let k in currentDraft.commercial) {
+    if (k.startsWith('SUBTOTAL') || k.startsWith('TOTAL')) continue;
     grandTotalUsd += currentDraft.commercial[k].extUsd || 0;
   }
   const grandTotalPhp = grandTotalUsd * 55.0;
 
-  document.getElementById('grand-total-usd').textContent = `$${grandTotalUsd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} USD`;
-  document.getElementById('grand-total-php').textContent = `₱${grandTotalPhp.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} PHP`;
+  const usdEl = document.getElementById('grand-total-usd');
+  const phpEl = document.getElementById('grand-total-php');
+  if (usdEl) usdEl.textContent = `$${grandTotalUsd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} USD`;
+  if (phpEl) phpEl.textContent = `₱${grandTotalPhp.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} PHP`;
 }
 
 // STORAGE & DRAFTS
@@ -1507,6 +1552,16 @@ async function executeBidSubmission() {
     } catch(fsErr) {
       console.error("Central Firestore submission error:", fsErr);
     }
+  }
+
+  // IF CENTRAL VAULT FAILED: STOP! DO NOT ISSUE SUCCESS CERTIFICATE!
+  if (!centralVaultConfirmed) {
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = "Submit Final Cryptographically Sealed Bid ➔";
+    }
+    alert(`❌ SUBMISSION REJECTED / NOT CONFIRMED BY SERVER:\n\nCould not confirm recording in the central tender registry. Your bid proposal remains safely preserved as a local draft. The Secretariat cannot accept bids without confirmed server registration. Please verify your connection and try again, or contact oliver.tungol@comclark.com.ph.`);
+    return;
   }
 
   // Backup to stored submissions registry (localStorage)

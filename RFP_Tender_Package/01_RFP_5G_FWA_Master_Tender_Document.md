@@ -99,7 +99,7 @@ The Bidder shall provide unified site power solutions engineered for high availa
    * Advanced SMPS controller with SNMPv3, HTTPS, Modbus, dry contacts, and remote cloud telemetry.
 2. **Battery Energy Storage System (BESS):**
    * Lithium Iron Phosphate (LiFePO4 / LFP) battery energy storage system: Sized to deliver at least **12.0 kWh of usable energy** to the specified 3.0 kW continuous DC site load over **4.0 continuous hours** without AC utility power.
-   * Installed capacity dimensioning must account for maximum 80% usable Depth of Discharge (DoD), conversion/distribution losses, and 80% end-of-life State of Health (SoH) retained capacity (minimum **>= 19.0 to 20.0 kWh nominal installed bank capacity**, e.g., 4 x 48V 100 Ah modules or equivalent).
+   * Installed capacity dimensioning must account for maximum 80% usable Depth of Discharge (DoD), conversion/distribution losses, and 80% end-of-life State of Health (SoH) retained capacity (minimum **>= 20.0 kWh nominal installed bank capacity**, minimum 400 Ah to 450 Ah @ 48V, supported by a mandatory loss-based engineering calculation delivering 12.0 kWh net usable energy at 80% DoD, 80% EOL SoH, and DC system losses).
    * Bidder shall submit the engineering load calculation, manufacturer discharge curves, and acceptance-test procedure, and demonstrate 4.0-hour autonomy during site acceptance (SAT).
    * Cycle life: >= 4,000 cycles at 80% Depth of Discharge (DoD) @ 25°C.
    * Built-in intelligent BMS with cell-level balancing, over-charge, over-discharge, short-circuit, and high-temperature thermal runaway cutoffs.
@@ -184,7 +184,7 @@ The Bidder shall supply outdoor and high-gain indoor 5G FWA CPE devices:
    * High-gain directional integrated antenna array (minimum >= 12.0 dBi gain across Band n50); 4x4 MIMO DL, 2x2 MIMO UL.
    * Ethernet: 1 x 2.5GE Power over Ethernet (PoE) input port.
    * Enclosure & Durability: IP67 dust and water ingress protection, operating temperature -10°C to +55°C, 200 km/h wind survivability, pole/wall mounting bracket.
-   * Packaged Companion Bundle: Each outdoor terminal kit includes an indoor Wi-Fi 6 Router/Gateway and Gigabit 802.3at PoE power injector.
+   * Packaged Companion Bundle: Each outdoor terminal kit includes an indoor Wi-Fi 6 Router/Gateway and 2.5GE-capable 802.3at/bt PoE power injector and indoor router with 2.5GE WAN port.
 3. **Staging, Pre-Configuration & SIM Locking (CPE-SVC):**
    * Staging, APN configuration, custom operator firmware flashing, PLMN locking, and retail customer kitting covering all 365,000 Phase 1 units.
 
@@ -322,11 +322,7 @@ All formal communications, requests for interpretation, and tender queries must 
 * **Subject Line:** `[RFP-TELTECH-FWA-2026-001] Technical Clarification Request - <Bidder Name>`
 
 ### 8.2 Submission Format & Channels
-* **Electronic Submission (Primary):** Bidders must submit password-protected PDF and editable Excel files of all response volumes via secure email transmission to `oliver.tungol@comclark.com.ph` and/or upload to the secure TelTech Tender Cloud Portal (access credentials issued upon formal registration and NDA execution). Passwords for commercial envelopes must be withheld until the formal commercial opening date.
-* **Physical & USB Submission (Backup):** Two (2) complete hard-copy sets (One Original, One Duplicate) plus one (1) encrypted USB flash drive containing all submitted files, sealed in tamper-evident envelopes delivered to:
-  * *Tender Committee, Telecommunications Technology Solutions Incorporated (TelTech)*  
-    *Reliance IT Center, #99 E. Rodriguez Jr. Avenue, Brgy. Ugong, Pasig City, Metro Manila 1604, Philippines.*  
-    *Attention: OLIVER TUNGOL, Head of Technical Evaluation Board.*
 
----
-*(End of Request for Proposal Specification — Tender Appendices Follow)*
+* **Definitive Electronic Submission (Primary Channel):** Bidders must submit all technical compliance matrices, commercial BoQ schedules, financing term sheets, and required credential attachments 100% digitally through the dedicated **TelTech 5G FWA E-Tender Portal** (https://quizoli.github.io/fwa-5g-presentation/rfp_login.html) on or before **December 2, 2026, at 17:00 PHT (09:00 UTC)**. Upon successful submission, the portal records an authoritative cryptographic server receipt with SHA-256 seal.
+* **Contingency Encrypted Backup:** In the event of an extraordinary telecommunication failure or portal network interruption, bidders may transmit an AES-256 encrypted archive to the Tender Secretariat (`oliver.tungol@comclark.com.ph`) prior to the submission deadline. Encryption keys for commercial files must be withheld until the formal commercial opening date.
+* **Elimination of Paper Submissions:** To streamline evaluation, eliminate administrative friction, and maintain verified digital provenance, **no physical paper hardcopy or USB flash drive delivery is required** for initial proposal submission. Hardcopy execution copies will be required solely from the awarded contractor(s) upon Notice of Award.

@@ -1,0 +1,13 @@
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Office Lock & Temp Files
+~$*.xlsx
+~$*.docx
+~$*.pptx
+*.tmp
+
+# Confidential Internal Materials
+*CONFIDENTIAL*
+*INTERNAL_EVALUATION*
