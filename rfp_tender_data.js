@@ -595,61 +595,54 @@ window.RFPTenderData = {
   },
   {
     "tableId": "lot1_svc",
-    "title": "TABLE 2: LOT 1 \u2014 RAN TURNKEY ROLLOUT SERVICES (PHASE 1: 1,000 SITES)",
+    "title": "TABLE 2: LOT 1 — RAN TURNKEY ROLLOUT SERVICES (PHASE 1: 1,000 SITES)",
     "items": [
       {
         "id": "RAN-SVC-01",
-        "description": "Site Survey, Engineering & TSSR",
-        "scope": "Tower audit, structural verification, drone LOS sweep, civil sketch",
+        "description": "Project Management & Rollout Mobilization",
+        "scope": "Dedicated rollout PMO, milestone scheduling, vendor coordination, QA & safety",
         "qty": 1000,
         "unit": "sites"
       },
       {
         "id": "RAN-SVC-02",
-        "description": "Project Management & Mobilization",
-        "scope": "Dedicated rollout PMO, site acquisition coordination, milestone tracking",
+        "description": "Installation & Commissioning (I&C)",
+        "scope": "Rigging, antenna/RRU mount, optical cabling, BBU wiring, DC power-up",
         "qty": 1000,
         "unit": "sites"
       },
       {
         "id": "RAN-SVC-03",
-        "description": "Installation & Commissioning (I&C)",
-        "scope": "Rigging, antenna mounting, cable routing, BBU wiring, initial power-up",
+        "description": "Single Site Verification & Acceptance (SSV)",
+        "scope": "Station testing, sector drive test, throughput call, ping, eRET tilt validation",
         "qty": 1000,
         "unit": "sites"
       },
       {
         "id": "RAN-SVC-04",
-        "description": "Transmission & Backhaul Integration",
-        "scope": "Fiber drop termination, SFP28 optics, PTP IEEE 1588v2 sync, Starlink LEO",
+        "description": "Central Warehousing & Buffer Staging",
+        "scope": "Serial-level barcode asset tagging, climate-controlled storage, kitting",
         "qty": 1000,
         "unit": "sites"
       },
       {
         "id": "RAN-SVC-05",
-        "description": "Single Site Verification (SSV)",
-        "scope": "Stationary & drive test verification, throughput (DL 150M/UL 30M), latency",
-        "qty": 1000,
-        "unit": "sites"
-      },
-      {
-        "id": "RAN-SVC-06",
-        "description": "As-Built Documentation & Acceptance",
-        "scope": "Comprehensive civil/electrical as-built drawings, PAC signed dossiers",
+        "description": "Regional Transport & Site Hauling",
+        "scope": "Regional transport, 4x4 rough-road delivery to remote barangay location",
         "qty": 1000,
         "unit": "sites"
       },
       {
         "id": "SUBTOTAL-RAN-SVC",
         "description": "Subtotal RAN Services (1,000 Sites)",
-        "scope": "Calculated Total Implementation Services",
+        "scope": "Dedicated RAN Hardware Deployment & Commissioning Services",
         "qty": 0,
         "unit": "lot",
         "isSubtotal": true
       },
       {
         "id": "TOTAL-LOT1",
-        "description": "TOTAL LOT 1 \u2014 RAN HARDWARE & SERVICES",
+        "description": "TOTAL LOT 1 — RAN HARDWARE & SERVICES",
         "scope": "Turnkey 1,000-Site Footprint",
         "qty": 0,
         "unit": "lot",
@@ -663,15 +656,15 @@ window.RFPTenderData = {
     "items": [
       {
         "id": "PWR-01",
-        "description": "12.0 kW Modular DC Rectifier Plant",
-        "scope": "19\" 3U subrack, 4x 3.0 kW modules (N+1), SMPS controller, 96% eff",
+        "description": "12.0 kW Total Installed / 9.0 kW Firm N+1 DC Rectifier Plant",
+        "scope": "19\" 3U subrack, 4x 3.0 kW modules (3 active + 1 standby N+1), SMPS controller, 96% eff",
         "qty": 1000,
         "unit": "sets"
       },
       {
         "id": "PWR-02",
         "description": "48V LiFePO4 Battery Bank (>=20 kWh nom)",
-        "scope": "Sized for >=12.0 kWh usable over 4.0h @ 3.0kW, <=80% DoD, 80% SoH retention",
+        "scope": "Sized for >=12.0 kWh usable over 4.0h @ 3.0kW, <=80% DoD, 80% SoH (min >=20.0 kWh nominal is controlling; 400-450 Ah indicative)",
         "qty": 1000,
         "unit": "sets"
       },

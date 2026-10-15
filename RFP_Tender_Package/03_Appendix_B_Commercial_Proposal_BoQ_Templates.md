@@ -27,14 +27,14 @@
 
 | Item Ref | Service Description | Scope of Work | Qty per Site | Unit Price (USD) [Bidder to Quote] | Remarks / Methodology |
 | :--- | :--- | :--- | :---: | :---: | :--- |
-| **RAN-SVC-01** | **Site Survey, Engineering & TSSR** | Tower audit, structural verification, drone LOS photo sweep, civil sketch | 1 site | `[Bidder Quote]` | Field survey report delivery |
-| **RAN-SVC-02** | **Project Management & Mobilization** | Dedicated rollout PMO, site acquisition coordination, milestone tracking | 1 site | `[Bidder Quote]` | Dedicated PM team |
-| **RAN-SVC-03** | **Installation & Commissioning (I&C)** | Rigging, antenna mounting, cable routing, BBU wiring, initial power-up | 1 site | `[Bidder Quote]` | Civil and telecom I&C |
-| **RAN-SVC-04** | **Single Site Optimization (SSO/SSV)** | Station testing, sector drive test, throughput call, ping, handover test | 1 site | `[Bidder Quote]` | SSV acceptance sign-off |
-| **RAN-SVC-05** | **Cluster Optimization Services** | Cluster tuning, inter-site interference, tilt adjustments (per site share) | 1 site | `[Bidder Quote]` | Cluster drive testing |
-| **RAN-SVC-06** | **Central Warehousing & Logistics** | Staging, asset tagging, kitting, indoor climate storage | 1 site | `[Bidder Quote]` | Inventory management |
-| **RAN-SVC-07** | **Delivery & Basic Hauling to Site** | Regional hauling, rough-road 4x4 transport to rural barangay location | 1 site | `[Bidder Quote]` | Complete site delivery |
-| **SUBTOTAL** | **RAN Turnkey Services per Site** | *Full Turnkey Rollout & Commissioning Services* | **1 Site** | **`[Sum of Items SVC-01 to SVC-07]`** | *Total Turnkey Services* |
+| **RAN-SVC-01** | **Project Management & Mobilization** | Dedicated rollout PMO, milestone scheduling, vendor coordination, QA & safety | 1 site | `[Bidder Quote]` | Dedicated PM team |
+| **RAN-SVC-02** | **Installation & Commissioning (I&C)** | Rigging, antenna mounting, cable routing, BBU wiring, DC power-up | 1 site | `[Bidder Quote]` | Telecom rigging & I&C |
+| **RAN-SVC-03** | **Single Site Verification & Acceptance (SSV)**| Station testing, sector drive test, throughput call, ping, eRET tilt validation | 1 site | `[Bidder Quote]` | SSV acceptance sign-off |
+| **RAN-SVC-04** | **Central Warehousing & Buffer Staging** | Serial-level barcode asset tagging, climate-controlled storage, kitting | 1 site | `[Bidder Quote]` | Inventory staging |
+| **RAN-SVC-05** | **Regional Transport & Site Hauling** | Regional transport, 4x4 rough-road delivery to remote barangay location | 1 site | `[Bidder Quote]` | Site hauling & logistics |
+| **SUBTOTAL** | **RAN Turnkey Services per Site** | *Dedicated RAN Hardware Deployment & Commissioning Services* | **1 Site** | **`[Sum of Items SVC-01 to SVC-05]`** | *Total Turnkey Services* |
+
+*(Note: Detailed Site Surveys (TSSR), Greenfield Tower Permitting, RF Propagation Modeling, and Multi-Site Cluster RF Optimization are consolidated and evaluated under Table 6: Lot 5 Site Acquisition, Civils & Infrastructure Works. Table 2 Turnkey Services cover dedicated RAN hardware deployment, I&C, SSV, warehousing, and hauling)*
 
 > **Total Day-1 RAN Capex per Site (Equipment + Turnkey Services):** `[Sum of Hardware + Turnkey Services]`  
 > **Phase 1 Program Total (1,000 Sites):** `[Total per Site * 1,000]`
@@ -45,8 +45,8 @@
 
 | Item Ref | System Description | Technical Sizing | Application | Unit Price (USD) [Bidder Quote] | Unit Price (PHP @ 55 FX) |
 | :--- | :--- | :--- | :--- | :---: | :---: |
-| **PWR-EQ-01** | **12.0 kW Modular DC Rectifier Plant** | 19" 3U subrack, 4 x 3.0 kW modules (N+1), SMPS controller | Co-loc / Greenfield | `[Bidder Quote]` | `[Formula = USD * 55]` |
-| **PWR-EQ-02** | **48V LiFePO4 Battery Bank** | High-cycle LFP with smart BMS, sized for >= 12.0 kWh usable energy over 4.0h @ 3.0 kW load, <= 80% DoD, 80% SoH (min >= 20.0 kWh nominal installed bank capacity, min 400 Ah @ 48V, loss-based calculation) | Co-loc / Greenfield | `[Bidder Quote]` | `[Formula = USD * 55]` |
+| **PWR-EQ-01** | **12.0 kW Total Installed / 9.0 kW Firm N+1 DC Rectifier Plant** | 19" 3U subrack, 4 x 3.0 kW modules (3 active + 1 standby N+1), SMPS controller, >= 96% eff | Co-loc / Greenfield | `[Bidder Quote]` | `[Formula = USD * 55]` |
+| **PWR-EQ-02** | **48V LiFePO4 Battery Bank** | High-cycle LFP with smart BMS, sized for >= 12.0 kWh usable energy over 4.0h @ 3.0 kW load, <= 80% DoD, 80% SoH (minimum >= 20.0 kWh nominal installed bank capacity is controlling; 400 Ah to 450 Ah is indicative, loss-based calculation) | Co-loc / Greenfield | `[Bidder Quote]` | `[Formula = USD * 55]` |
 | **PWR-EQ-03** | **TowerCo DC Tap-Off & Metering Kit**| DC tap enclosure, revenue Class 1.0 kWh meter, SPD Type 2 | Leased TowerCo | `[Bidder Quote]` | `[Formula = USD * 55]` |
 | **PWR-EQ-04** | **15 kVA Diesel Generator Set** | Soundproof canopy, 500L–1000L tank, ATS, auto-start | Greenfield (Class T4) | `[Bidder Quote]` | `[Formula = USD * 55]` |
 | **SUBTOTAL** | **Lot 2 Power Systems Turnkey Total** | *Total Phase 1 Capital Expenditure for Lot 2 Power Systems* | **1,000 Sites Footprint** | **`[Sum of Items PWR-01 to PWR-04]`** | **`[Formula = USD * 55]`** |
@@ -145,7 +145,7 @@
 | **2** | **5G Core Network & Cloud DC (Lot 3)** | `[Lot 3 Total]` | $0 | $0 | $0 | $0 | $0 | `[Sum Yrs 1-10]` | **[Evaluated Tender Input]** Day-1 Core & DC infrastructure dimensioned for 1.0M subscribers (perpetual license + compute fabric). |
 | **3** | **Digital OSS/BSS & Automation (Lot 4)** | `[Lot 4 Total]` | $0 | $0 | $0 | $0 | $0 | `[Sum Yrs 1-10]` | **[Evaluated Tender Input]** Turnkey BSS/OSS stack, CRM, prepaid billing, and FMS dispatch engine. |
 | **4** | **5G CPE Terminals Supply (Lot 7)** | `[Lot 7 Total]` | $0 | $0 | $0 | $0 | $0 | `[Sum Yrs 1-10]` | **[Evaluated Tender Input]** Phase 1 initial supply of 365,000 subscriber terminals (350k indoor + 15k outdoor). |
-| **5** | **Software Support & AMC (5GC + OSS/BSS)** | $0 | `[10% SW]` | `[10% SW]` | `[10% SW]` | `[10% SW]` | `[50% SW]` | `[Sum Yrs 1-10]` | **[Prescribed Evaluated Parameter]** 10.0% p.a. of Core (Lot 3) + OSS/BSS (Lot 4) software Capex starting Yr 2 following 12-month Day-1 warranty. |
+| **5** | **Annual Maintenance Contract (AMC) & Support (Lots 3 + 4)** | $0 | `[10% SW]` | `[10% SW]` | `[10% SW]` | `[10% SW]` | `[50% SW]` | `[Sum Yrs 1-10]` | **[Prescribed Evaluated Parameter]** Standard 10.0% p.a. Annual Maintenance Contract (AMC) & Technical Support based on combined Total Year 1 Turnkey Capex of Lot 3 (5G Core) and Lot 4 (OSS/BSS), commencing in Year 2 post-warranty. |
 | **6** | **Managed Services & Field O&M (Lot 6)** | `[MS * 1,000]` | `[MS * 1,000]` | `[MS * 1,000]` | `[MS * 1,000]` | `[MS * 1,000]` | `[MS * 5,000]` | `[Sum Yrs 1-10]` | **[Prescribed Evaluated Parameter]** Evaluated on Phase 1 network baseline (1,000 sites footprint @ Lot 6 quoted annual rate). Scales upon expansion call-off. |
 | **7** | **Spare Parts Float & RMA Replenishment** | `[2% RAN]` | `[1% RAN]` | `[1% RAN]` | `[1% RAN]` | `[1% RAN]` | `[5% RAN]` | `[Sum Yrs 1-10]` | **[Prescribed Evaluated Parameter]** 2.0% initial spares float in Yr 1, 1.0% annual replenishment in Yrs 2-5, and 5.0% cumulative in Yrs 6-10. |
 | **TOTAL** | **10-Year Evaluated Lifecycle TCO (USD)** | `[Sum B1-B7]` | `[Sum C1-C7]` | `[Sum D1-D7]` | `[Sum E1-E7]` | `[Sum F1-F7]` | `[Sum G1-G7]` | **`[10-Year Grand Total]`** | **Evaluated Total Lifecycle Cost of Ownership for Phase 1 Network Baseline** |
