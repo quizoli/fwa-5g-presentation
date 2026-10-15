@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TelTech 5G FWA E-Tender Portal</title>
+<script>
+  (function() {
+    try {
+      var auth = sessionStorage.getItem('fwa_portal_auth') || localStorage.getItem('fwa_portal_auth');
+      if (auth) {
+        var u = JSON.parse(auth);
+        if (u && (u.isBidder || u.isAdmin)) {
+          window.location.replace('rfp_portal.html');
+          return;
+        }
+      }
+    } catch(e) {}
+    window.location.replace('rfp_login.html');
+  })();
+</script>
+</head>
+<body style="background: #0A192F; color: #94A3B8; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;">
+  <p>Connecting to TelTech 5G FWA E-Tender Portal...</p>
+</body>
+</html>

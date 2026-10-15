@@ -107,7 +107,7 @@ Your credentials have been activated with full access to read tender specificati
 
 PORTAL ACCESS CREDENTIALS:
 --------------------------------------------------
-• Portal Sign-In URL: https://quizoli.github.io/fwa-5g-presentation/login.html
+• Dedicated E-Tender Sign-In: https://quizoli.github.io/fwa-5g-presentation/rfp_login.html
 • Direct E-Tender Suite: https://quizoli.github.io/fwa-5g-presentation/rfp_portal.html
 • Username: {username}
 • Assigned Role: {role}

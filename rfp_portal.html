@@ -12,7 +12,7 @@
     var auth = sessionStorage.getItem('fwa_portal_auth') || localStorage.getItem('fwa_portal_auth');
     if (!auth) {
       var returnPath = encodeURIComponent(window.location.pathname + window.location.search);
-      window.location.replace('login.html?redirect=' + returnPath);
+      window.location.replace('rfp_login.html?redirect=' + returnPath);
     }
   })();
 </script>
@@ -604,7 +604,7 @@
       <span id="user-display-name">Guest</span>
       <span class="role-pill" id="user-role-pill">Bidder</span>
     </div>
-    <button class="btn-logout" onclick="FWAPortalAuth.terminateSession()">Sign Out</button>
+    <button class="btn-logout" onclick="sessionStorage.removeItem('fwa_portal_auth'); localStorage.removeItem('fwa_portal_auth'); window.location.replace('rfp_login.html');">Sign Out</button>
   </div>
 </header>
 
