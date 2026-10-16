@@ -165,6 +165,30 @@
       status: "active",
       passwordHash: "82c20bfe9aaba01cdc56a1f1c366af63a30d55d3f75ca2e8986641f55c7e73ae",
       registeredAt: "2026-10-15"
+    },
+    {
+      username: "xiao.yamin@huawei.com",
+      name: "Kevin Xiao",
+      email: "xiao.yamin@huawei.com",
+      organization: "Huawei",
+      role: "Bidder",
+      isAdmin: false,
+      isBidder: true,
+      status: "active",
+      passwordHash: "36135da9586652aa0bdefee628001c4c4eb6901e278a44233a23cd2811eadc19",
+      registeredAt: "2026-10-16"
+    },
+    {
+      username: "kevin.xiao",
+      name: "Kevin Xiao",
+      email: "xiao.yamin@huawei.com",
+      organization: "Huawei",
+      role: "Bidder",
+      isAdmin: false,
+      isBidder: true,
+      status: "active",
+      passwordHash: "36135da9586652aa0bdefee628001c4c4eb6901e278a44233a23cd2811eadc19",
+      registeredAt: "2026-10-16"
     }
   ];
 
