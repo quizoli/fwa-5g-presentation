@@ -201,6 +201,18 @@
       status: "active",
       passwordHash: "69be98964113451b7ea954f79e74be4b928e5ee7291db897e485eb5df4d9161b",
       registeredAt: "2026-10-16"
+    },
+    {
+      username: "jayjiangzilong",
+      name: "Jay_jiangzilong",
+      email: "jiangzilong@huawei.com",
+      organization: "Huawei",
+      role: "Bidder",
+      isAdmin: false,
+      isBidder: true,
+      status: "active",
+      passwordHash: "fb326a1db5e0d5cefee3476f6b73a540b09680fce89928a6a8d9f09007a47f1e",
+      registeredAt: "2026-10-17"
     }
   ];
 
