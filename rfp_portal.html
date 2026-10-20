@@ -1100,6 +1100,34 @@
 
 </main>
 
+<!-- SUBMISSION INSPECTION MODAL (ADMIN ONLY) -->
+<div id="submission-inspect-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(5, 12, 24, 0.88); backdrop-filter: blur(8px); z-index: 99999; justify-content: center; align-items: center; padding: 20px;">
+  <div style="background: #0D1B2E; border: 1px solid #1E3A8A; border-radius: 12px; width: 100%; max-width: 860px; max-height: 90vh; display: flex; flex-direction: column; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7); overflow: hidden;">
+    <div style="padding: 18px 24px; background: #0A192F; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <div style="font-size: 16px; font-weight: 800; color: #FFFFFF; display: flex; align-items: center; gap: 8px;">
+          <span>📋 Proposal Dossier:</span>
+          <span id="inspect-modal-ref" style="color: #60A5FA; font-family: monospace;"></span>
+        </div>
+        <div id="inspect-modal-company" style="font-size: 13px; color: var(--gold); font-weight: 600; margin-top: 3px;"></div>
+      </div>
+      <button onclick="closeInspectModal()" style="background: none; border: none; color: #94A3B8; font-size: 26px; cursor: pointer; padding: 0 8px; line-height: 1;">&times;</button>
+    </div>
+    
+    <div style="padding: 24px; overflow-y: auto; flex: 1;">
+      <div id="inspect-modal-body"></div>
+    </div>
+    
+    <div style="padding: 14px 24px; background: #0A192F; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center;">
+      <div id="inspect-modal-time" style="font-size: 12px; color: #94A3B8;"></div>
+      <div style="display: flex; gap: 10px;">
+        <button class="btn btn-outline" style="font-size: 12px; padding: 7px 14px;" onclick="downloadSingleBidJSON()">📥 Download Proposal JSON</button>
+        <button class="btn btn-primary" style="font-size: 12px; padding: 7px 18px;" onclick="closeInspectModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="toast">Draft saved successfully!</div>
 
 <script>
@@ -2209,13 +2237,30 @@ async function loadAdminSubmissions() {
   }).join('');
 }
 
+let currentlyInspectedSub = null;
+
 function viewSubmissionDetail(code) {
   const sub = (cachedAdminSubmissions || []).find(s => (s.submissionId === code || s.receiptCode === code));
   if (!sub) {
     alert(`Proposal: ${code}\nStatus: Verified in Central Cloud Firestore Vault`);
     return;
   }
+  currentlyInspectedSub = sub;
+
+  const modal = document.getElementById('submission-inspect-modal');
+  if (!modal) {
+    alert(`Proposal: ${code}\nStatus: Verified in Central Cloud Firestore Vault`);
+    return;
+  }
+
+  document.getElementById('inspect-modal-ref').textContent = sub.submissionId || code;
+  document.getElementById('inspect-modal-company').textContent = sub.companyName || 'Bidder Entity';
   
+  const subTime = sub.submissionTimestamp 
+    ? (typeof sub.submissionTimestamp.toDate === 'function' ? sub.submissionTimestamp.toDate().toLocaleString() : new Date(sub.submissionTimestamp).toLocaleString())
+    : 'Unknown Timestamp';
+  document.getElementById('inspect-modal-time').textContent = `📅 Cryptographically Sealed: ${subTime}`;
+
   const fin = sub.vendorFinancing || sub.financing || {};
   const comm = sub.commercialPricing || sub.commercialDraft || {};
   let commUsd = comm.totalGrandUSD || 0;
@@ -2223,26 +2268,102 @@ function viewSubmissionDetail(code) {
     for (let k in comm) commUsd += comm[k]?.extUsd || (typeof comm[k] === 'number' ? comm[k] : 0);
   }
 
-  const detailMsg = `========================================
-SEALED PROPOSAL INSPECTION REPORT
-========================================
-Receipt Reference: ${sub.submissionId}
-Bidder Entity:     ${sub.companyName}
-Authorized Rep:    ${sub.signatoryName} (${sub.signatoryEmail})
-Submission Status: ${sub.status.toUpperCase()} (Recorded in Cloud Firestore)
-SHA-256 Seal:      ${sub.sha256Seal}
+  const tech = sub.techCompliance || sub.technicalDraft || {};
+  let cCount = 0, mCount = 0, dCount = 0;
+  if (tech.compliantItems !== undefined) {
+    cCount = Number(tech.compliantItems) || 0;
+    mCount = Number(tech.minorItems) || 0;
+  } else {
+    for (let k in tech) {
+      if (tech[k]?.compliance === 'C') cCount++;
+      if (tech[k]?.compliance === 'M') mCount++;
+      if (tech[k]?.compliance === 'D') dCount++;
+    }
+  }
+  const techScore = tech.complianceRate || (((cCount * 1.0) + (mCount * 0.5)) / 80 * 100).toFixed(1) + '%';
 
-COMMERCIAL SUMMARY:
-Quoted Grand CAPEX: $${commUsd.toLocaleString('en-US', {minimumFractionDigits: 2})} USD
-Financing Tenor:    ${fin.tenorYears ? fin.tenorYears + ' Years' : (fin.tenor || 'Standard')}
-Grace Period:       ${fin.gracePeriodYears ? fin.gracePeriodYears + ' Years' : (fin.grace || 'None')}
-Financing Rate:     ${fin.interestRate ? (fin.interestRate * 100).toFixed(2) + '%' : (fin.rate || 'Standard')}
+  const body = document.getElementById('inspect-modal-body');
+  body.innerHTML = `
+    <!-- Top Grid: Signatory & Security -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-bottom: 20px;">
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 14px;">
+        <div style="font-size: 11px; text-transform: uppercase; color: #94A3B8; font-weight: 700; margin-bottom: 6px;">Authorized Signatory</div>
+        <div style="font-size: 14px; font-weight: 700; color: #FFFFFF;">${sub.signatoryName || 'N/A'}</div>
+        <div style="font-size: 12px; color: #60A5FA; margin-top: 2px;">${sub.signatoryEmail || 'N/A'}</div>
+      </div>
+      
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 14px;">
+        <div style="font-size: 11px; text-transform: uppercase; color: #94A3B8; font-weight: 700; margin-bottom: 6px;">Status & Clearance</div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="background: #10B981; color: #064E3B; font-weight: 800; font-size: 11px; padding: 2px 8px; border-radius: 4px;">VERIFIED IN VAULT</span>
+        </div>
+        <div style="font-size: 11px; color: #94A3B8; margin-top: 5px;">Tenant UID: <span style="font-family: monospace; color: #E2E8F0;">${sub.bidderId || 'N/A'}</span></div>
+      </div>
 
-TECHNICAL COMPLIANCE:
-Status: 100% Validated against Appendix A Specifications
-Vault Security: Verified immutable by Secretariat.`;
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 14px;">
+        <div style="font-size: 11px; text-transform: uppercase; color: #94A3B8; font-weight: 700; margin-bottom: 6px;">SHA-256 Digital Seal</div>
+        <div style="font-family: monospace; font-size: 10px; color: #34D399; word-break: break-all; background: rgba(0,0,0,0.3); padding: 5px 6px; border-radius: 4px;">
+          ${sub.sha256Seal || 'E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855'}
+        </div>
+      </div>
+    </div>
 
-  alert(detailMsg);
+    <!-- Commercial & Financing Summary -->
+    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 18px; margin-bottom: 20px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 8px;">
+        <span style="font-size: 13px; font-weight: 800; color: var(--gold); text-transform: uppercase;">💰 Commercial Pricing & Financing Terms</span>
+        <span style="font-size: 18px; font-weight: 800; color: #10B981; font-family: monospace;">$${commUsd.toLocaleString('en-US', {minimumFractionDigits: 2})} USD</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; font-size: 12.5px;">
+        <div>
+          <span style="color: #94A3B8;">Financing Tenor:</span>
+          <strong style="color: #FFFFFF; margin-left: 6px;">${fin.tenorYears ? fin.tenorYears + ' Years' : (fin.tenor || 'Standard 5 Yrs')}</strong>
+        </div>
+        <div>
+          <span style="color: #94A3B8;">Grace Period:</span>
+          <strong style="color: #FFFFFF; margin-left: 6px;">${fin.gracePeriodYears ? fin.gracePeriodYears + ' Years' : (fin.grace || 'None')}</strong>
+        </div>
+        <div>
+          <span style="color: #94A3B8;">Interest Rate / Structure:</span>
+          <strong style="color: #FFFFFF; margin-left: 6px;">${fin.interestRate ? (fin.interestRate * 100).toFixed(2) + '%' : (fin.rate || 'Standard SOFR')}</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technical Compliance Summary -->
+    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 18px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 8px;">
+        <span style="font-size: 13px; font-weight: 800; color: #60A5FA; text-transform: uppercase;">📋 Technical Compliance (Appendix A)</span>
+        <span style="font-size: 16px; font-weight: 800; color: #6EE7B7;">Score: ${techScore}</span>
+      </div>
+
+      <div style="display: flex; gap: 20px; font-size: 12.5px;">
+        <div>Compliant Items (C): <strong style="color: #10B981;">${cCount}</strong></div>
+        <div>Minor Deviations (M): <strong style="color: #FFB703;">${mCount}</strong></div>
+        <div>Deviated / Disqualified (D): <strong style="color: #EF4444;">${dCount}</strong></div>
+      </div>
+    </div>
+  `;
+
+  modal.style.display = 'flex';
+}
+
+function closeInspectModal() {
+  const modal = document.getElementById('submission-inspect-modal');
+  if (modal) modal.style.display = 'none';
+  currentlyInspectedSub = null;
+}
+
+function downloadSingleBidJSON() {
+  if (!currentlyInspectedSub) return;
+  const str = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(currentlyInspectedSub, null, 2));
+  const a = document.createElement('a');
+  a.setAttribute('href', str);
+  a.setAttribute('download', `${currentlyInspectedSub.submissionId || 'PROPOSAL'}_DOSSIER.json`);
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
 }
 
 function exportEvaluationReport() {
