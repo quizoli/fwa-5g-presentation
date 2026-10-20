@@ -1062,9 +1062,10 @@
     <div class="portal-card">
       <div class="card-header">
         <div class="card-title">👑 TelTech Tender Evaluation Console (Oliver Tungol / Secretariat)</div>
-        <div style="display: flex; gap: 10px;">
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
           <button class="btn btn-outline" onclick="loadAdminSubmissions()">🔄 Refresh Submissions</button>
-          <button class="btn btn-primary" onclick="exportEvaluationReport()">📊 Export QCBS Scorecard</button>
+          <button class="btn btn-primary" onclick="exportEvaluationCSV()">📊 Export CSV (Excel)</button>
+          <button class="btn btn-outline" onclick="exportEvaluationReport()">📥 Export JSON</button>
         </div>
       </div>
       <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 20px;">
@@ -2229,8 +2230,9 @@ async function loadAdminSubmissions() {
         <td style="text-align: center; font-weight: 800; color: #6EE7B7;">${techScore}</td>
         <td style="text-align: right; font-family: monospace; font-weight: 800;">$${commUsd.toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
         <td style="text-align: center; font-size: 11px;">${tenorText}</td>
-        <td style="text-align: center;">
-          <button class="btn btn-outline" style="font-size: 10px; padding: 3px 8px;" onclick="viewSubmissionDetail('${ref}')">Inspect</button>
+        <td style="text-align: center; white-space: nowrap;">
+          <button class="btn btn-primary" style="font-size: 10px; padding: 3px 8px; margin-right: 4px;" onclick="loadBidIntoEvaluatorView('${ref}')">📂 Open Bid</button>
+          <button class="btn btn-outline" style="font-size: 10px; padding: 3px 6px;" onclick="viewSubmissionDetail('${ref}')">🔍 Summary</button>
         </td>
       </tr>
     `;
@@ -2361,6 +2363,106 @@ function downloadSingleBidJSON() {
   const a = document.createElement('a');
   a.setAttribute('href', str);
   a.setAttribute('download', `${currentlyInspectedSub.submissionId || 'PROPOSAL'}_DOSSIER.json`);
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+
+function loadBidIntoEvaluatorView(code) {
+  const sub = (cachedAdminSubmissions || []).find(s => (s.submissionId === code || s.receiptCode === code));
+  if (!sub) {
+    alert("Could not locate bid record in vault.");
+    return;
+  }
+
+  // Populate active draft with submitted data
+  currentDraft.technical = sub.techCompliance || {};
+  currentDraft.commercial = sub.commercialPricing || {};
+  currentDraft.financing = sub.vendorFinancing || sub.financing || {};
+  restoreDraftUI(currentDraft);
+  recalcBoQ();
+
+  // Create or show sticky top evaluator banner
+  let banner = document.getElementById('evaluator-active-banner');
+  if (!banner) {
+    banner = document.createElement('div');
+    banner.id = 'evaluator-active-banner';
+    document.body.prepend(banner);
+  }
+  banner.style.cssText = "display: flex; flex-wrap: wrap; gap: 12px; background: linear-gradient(90deg, #1E3A8A, #0F172A); color: white; padding: 12px 24px; border-bottom: 2px solid #FFB703; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 99999; box-shadow: 0 4px 15px rgba(0,0,0,0.5);";
+  banner.innerHTML = `
+    <div style="font-size: 13px; display: flex; align-items: center; gap: 8px;">
+      <span style="background: #FFB703; color: #0A192F; font-weight: 800; padding: 2px 8px; border-radius: 4px; font-size: 11px;">👑 EVALUATOR VIEW</span>
+      <span>Viewing: <strong style="color: #60A5FA;">${sub.companyName}</strong></span>
+      <span style="font-family: monospace; color: #FCD34D;">(${sub.submissionId})</span>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: center;">
+      <button class="btn btn-outline" style="font-size: 11px; padding: 5px 12px;" onclick="switchTab('tab-technical')">📋 View Technical Matrix</button>
+      <button class="btn btn-outline" style="font-size: 11px; padding: 5px 12px;" onclick="switchTab('tab-commercial')">💰 View Commercial BoQ</button>
+      <button class="btn btn-primary" style="font-size: 11px; padding: 5px 14px;" onclick="exitEvaluatorView()">Exit to Console ➔</button>
+    </div>
+  `;
+
+  // Switch to Tab 2 (Technical Compliance)
+  switchTab('tab-technical');
+  showToast(`Loaded ${sub.companyName} proposal into Evaluator View!`);
+}
+
+function exitEvaluatorView() {
+  const banner = document.getElementById('evaluator-active-banner');
+  if (banner) banner.style.display = 'none';
+  loadBidDraft();
+  switchTab('tab-admin');
+}
+
+function exportEvaluationCSV() {
+  const subs = (cachedAdminSubmissions && cachedAdminSubmissions.length > 0)
+    ? cachedAdminSubmissions
+    : JSON.parse(localStorage.getItem('fwa_rfp_submissions') || '[]');
+
+  if (subs.length === 0) {
+    alert("No bids available to export.");
+    return;
+  }
+
+  const headers = ["Receipt Ref", "Bidder Company", "Signatory Name", "Signatory Email", "Submitted Timestamp", "Compliant Items (C)", "Minor Items (M)", "Technical Score", "Quoted Grand CAPEX (USD)", "Financing Tenor", "Grace Period", "Interest Rate", "SHA-256 Seal"];
+  
+  const rows = subs.map(s => {
+    const tech = s.techCompliance || {};
+    let cCount = tech.compliantItems !== undefined ? tech.compliantItems : 0;
+    let mCount = tech.minorItems !== undefined ? tech.minorItems : 0;
+    let score = tech.complianceRate || "0.0%";
+
+    const comm = s.commercialPricing || {};
+    let cap = comm.totalGrandUSD || 0;
+    if (!cap) {
+      for (let k in comm) cap += comm[k]?.extUsd || 0;
+    }
+
+    const fin = s.vendorFinancing || s.financing || {};
+    const subTime = s.submissionTimestamp ? (typeof s.submissionTimestamp.toDate === 'function' ? s.submissionTimestamp.toDate().toISOString() : s.submissionTimestamp) : '';
+
+    return [
+      `"${s.submissionId || ''}"`,
+      `"${s.companyName || ''}"`,
+      `"${s.signatoryName || ''}"`,
+      `"${s.signatoryEmail || ''}"`,
+      `"${subTime}"`,
+      cCount,
+      mCount,
+      `"${score}"`,
+      cap,
+      `"${fin.tenorYears ? fin.tenorYears + ' Years' : (fin.tenor || '')}"`,
+      `"${fin.gracePeriodYears ? fin.gracePeriodYears + ' Years' : (fin.grace || '')}"`,
+      `"${fin.interestRate ? (fin.interestRate * 100) + '%' : (fin.rate || '')}"`,
+      `"${s.sha256Seal || ''}"`
+    ].join(',');
+  });
+
+  const csvContent = "data:text/csv;charset=utf-8," + encodeURIComponent([headers.join(','), ...rows].join('\n'));
+  const a = document.createElement('a');
+  a.setAttribute('href', csvContent);
+  a.setAttribute('download', "TELTECH_RFP_SUBMISSIONS_EVALUATION_REPORT.csv");
   document.body.appendChild(a);
   a.click();
   a.remove();
