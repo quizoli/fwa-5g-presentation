@@ -9,7 +9,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <script src="firebase_config.js"></script>
 <script src="auth_registry.js"></script>
-<script src="rfp_tender_data.js"></script>
+<script src="rfp_tender_data.js?v=20261021_bulletin1"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script>
   // Immediate Confidentiality & Authentication Guard
@@ -611,11 +611,32 @@
   </div>
 </header>
 
+<!-- GLOBAL BID BULLETIN ANNOUNCEMENT BANNER -->
+<div class="bulletin-top-announcement" style="background: linear-gradient(90deg, #1E293B, #0F172A); border-bottom: 1.5px solid rgba(255, 183, 3, 0.5); padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 13px;">
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <span style="background: #FFB703; color: #0A192F; font-size: 10px; font-weight: 900; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">📢 Official Addendum</span>
+    <span style="color: #F8FAFC; font-weight: 600;">Bid Bulletin No. 1 Issued: Official clarifications on Band n50 Spectrum, Siting, Power (12kW), Starlink Backhaul, BSS &amp; Form A</span>
+  </div>
+  <div style="display: flex; gap: 12px; align-items: center;">
+    <a href="RFP_Tender_Package/08_RFP_5G_FWA_Bid_Bulletin_01_Official_Clarifications.html" target="_blank" style="color: #FFB703; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">
+      <span>🌐</span> Open Online ➔
+    </a>
+    <span style="color: #475569;">|</span>
+    <a href="RFP_Tender_Package/08_RFP_5G_FWA_Bid_Bulletin_01_Official_Clarifications.pdf" download style="color: #60A5FA; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
+      <span>📕</span> Download PDF (12p)
+    </a>
+    <span style="color: #475569;">|</span>
+    <a href="RFP_Tender_Package/Converge N50 FWA Clarification Table-Huawei-20261021.xlsx" download style="color: #34D399; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
+      <span>📊</span> Q&amp;A Excel
+    </a>
+  </div>
+</div>
+
 <!-- NAVIGATION RIBBON -->
 <nav class="nav-ribbon">
   <div class="nav-tab active" data-tab="tab-library" onclick="switchTab('tab-library')">
     <span>📚 1. Document Library</span>
-    <span class="badge">8 Docs</span>
+    <span class="badge" style="background: var(--gold); color: #0A192F; font-weight: 800;">9 Docs + Bulletin</span>
   </div>
   <div class="nav-tab" data-tab="tab-technical" onclick="switchTab('tab-technical')">
     <span>📋 2. Technical Compliance (App A)</span>
@@ -653,6 +674,37 @@
           </a>
         </div>
       </div>
+
+      <!-- FEATURED BID BULLETIN HERO CARD -->
+      <div id="bulletin-featured-card" style="background: linear-gradient(135deg, rgba(255, 183, 3, 0.12), rgba(14, 165, 233, 0.08)); border: 1.5px solid #FFB703; border-radius: 12px; padding: 20px; margin-bottom: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+          <div style="display: flex; gap: 16px; align-items: flex-start;">
+            <div style="font-size: 36px; line-height: 1; padding: 4px;">📢</div>
+            <div>
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px; flex-wrap: wrap;">
+                <span style="background: #FFB703; color: #0A192F; font-size: 11px; font-weight: 900; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Latest Official Addendum</span>
+                <span style="font-size: 16px; font-weight: 800; color: #FFFFFF;">Bid Bulletin No. 1: Official Tender Clarifications &amp; Responses</span>
+                <span style="color: #94A3B8; font-size: 12px;">(Published: Oct 21, 2026)</span>
+              </div>
+              <p style="font-size: 13px; color: #CBD5E1; margin: 0 0 14px 0; max-width: 880px; line-height: 1.55;">
+                Formally responds to all <strong>55 bidder inquiries</strong> across Band n50 Spectrum (60 MHz TDD NCR vs up to 80 MHz Provincial), 12.0 kW N+1 Power Plant Sizing, Starlink Satellite Latency SLA relaxation (&le;60ms target), TowerCo structural responsibility under Operator MLA, Turnkey Civil works, Prepaid BSS integration, and issues the official <strong>Form A (Bid Submission Letter)</strong> template.
+              </p>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                <a href="RFP_Tender_Package/08_RFP_5G_FWA_Bid_Bulletin_01_Official_Clarifications.html" target="_blank" class="btn btn-primary" style="font-size: 12px; padding: 8px 18px; background: #FFB703; color: #0A192F; border: none; font-weight: 800; display: inline-flex; align-items: center; gap: 6px;">
+                  <span>🌐</span> Read Bulletin Online
+                </a>
+                <a href="RFP_Tender_Package/08_RFP_5G_FWA_Bid_Bulletin_01_Official_Clarifications.pdf" download class="btn btn-outline" style="font-size: 12px; padding: 8px 18px; border-color: #FFB703; color: #FFB703; display: inline-flex; align-items: center; gap: 6px;">
+                  <span>📕</span> Download Formal PDF (12 Pages)
+                </a>
+                <a href="RFP_Tender_Package/Converge N50 FWA Clarification Table-Huawei-20261021.xlsx" download class="btn btn-outline" style="font-size: 12px; padding: 8px 18px; border-color: #10B981; color: #A7F3D0; display: inline-flex; align-items: center; gap: 6px;">
+                  <span>📊</span> Download Q&amp;A Responses (Excel)
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5;">
         Qualified bidders may inspect and download all operative tender specifications, engineering guidelines, compliance matrices, commercial BoQ price books, and siting schedules below. Complete the submission electronically via Tabs 2, 3, and 5.
       </p>
@@ -1220,20 +1272,24 @@ function renderDocumentLibrary() {
   const container = document.getElementById('document-library-grid');
   if (!container || !window.RFPTenderData) return;
   
-  container.innerHTML = window.RFPTenderData.documents.map(doc => `
-    <div class="doc-card">
-      <div>
-        <span class="doc-card-badge ${doc.type.includes('XLSX') ? 'badge-xlsx' : 'badge-pdf'}">${doc.badge}</span>
-        <div class="doc-card-title">${doc.id}. ${doc.title}</div>
-        <div class="doc-card-sub">${doc.subtitle}</div>
+  container.innerHTML = window.RFPTenderData.documents.map(doc => {
+    const isAddendum = (doc.id === '08' || doc.id === '09');
+    const borderStyle = isAddendum ? 'border: 1.5px solid rgba(255, 183, 3, 0.6); background: linear-gradient(145deg, rgba(255, 183, 3, 0.08), rgba(15, 23, 42, 0.85));' : '';
+    return `
+      <div class="doc-card" style="${borderStyle}">
+        <div>
+          <span class="doc-card-badge ${doc.type.includes('XLSX') ? 'badge-xlsx' : 'badge-pdf'}" style="${isAddendum ? 'background: #FFB703; color: #0A192F; font-weight: 800;' : ''}">${doc.badge}</span>
+          <div class="doc-card-title" style="${isAddendum ? 'color: #FFB703;' : ''}">${doc.id}. ${doc.title}</div>
+          <div class="doc-card-sub">${doc.subtitle}</div>
+        </div>
+        <div class="doc-card-actions">
+          ${doc.html ? `<a href="${doc.html}" target="_blank" class="btn btn-primary" style="font-size: 11px; padding: 5px 10px; background: ${isAddendum ? '#FFB703; color: #0A192F; font-weight: 700;' : ''}">Web View ➔</a>` : ''}
+          ${doc.pdf ? `<a href="${doc.pdf}" download class="btn btn-outline" style="font-size: 11px; padding: 5px 10px; ${isAddendum ? 'border-color: #FFB703; color: #FFB703;' : ''}">📕 PDF</a>` : ''}
+          ${doc.xlsx ? `<a href="${doc.xlsx}" download class="btn btn-outline" style="font-size: 11px; padding: 5px 10px; border-color: #10B981; color: #A7F3D0;">📊 Excel</a>` : ''}
+        </div>
       </div>
-      <div class="doc-card-actions">
-        ${doc.html ? `<a href="${doc.html}" target="_blank" class="btn btn-primary" style="font-size: 11px; padding: 5px 10px;">Web View ➔</a>` : ''}
-        ${doc.pdf ? `<a href="${doc.pdf}" download class="btn btn-outline" style="font-size: 11px; padding: 5px 10px;">📕 PDF</a>` : ''}
-        ${doc.xlsx ? `<a href="${doc.xlsx}" download class="btn btn-outline" style="font-size: 11px; padding: 5px 10px; border-color: #10B981; color: #A7F3D0;">📊 Excel</a>` : ''}
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 // RENDER TECHNICAL COMPLIANCE MATRIX (TAB 2)
