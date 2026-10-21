@@ -1064,8 +1064,8 @@
         <div class="card-title">👑 TelTech Tender Evaluation Console (Oliver Tungol / Secretariat)</div>
         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
           <button class="btn btn-outline" onclick="loadAdminSubmissions()">🔄 Refresh Submissions</button>
-          <button class="btn btn-primary" onclick="exportEvaluationCSV()">📊 Export CSV (Excel)</button>
-          <button class="btn btn-outline" onclick="exportEvaluationReport()">📥 Export JSON</button>
+          <button class="btn btn-primary" onclick="exportMasterEvaluationCSV()">📊 Export Master Evaluation CSV (Excel)</button>
+          <button class="btn btn-outline" onclick="exportEvaluationReport()">📥 Export Raw JSON</button>
         </div>
       </div>
       <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 20px;">
@@ -1123,6 +1123,7 @@
       <div id="inspect-modal-time" style="font-size: 12px; color: #94A3B8;"></div>
       <div style="display: flex; gap: 10px; flex-wrap: wrap;">
         <button class="btn btn-primary" style="font-size: 12px; padding: 7px 16px; background: #FFB703; color: #0A192F; font-weight: 800; border: none; cursor: pointer;" onclick="closeInspectModal(); if(currentlyInspectedSub) loadBidIntoEvaluatorView(currentlyInspectedSub.submissionId || currentlyInspectedSub.receiptCode);">📂 Open Full Proposal in Evaluator</button>
+        <button class="btn btn-outline" style="font-size: 12px; padding: 7px 14px; border-color: #60A5FA; color: #60A5FA; cursor: pointer;" onclick="if(currentlyInspectedSub) exportSingleBidCSV(currentlyInspectedSub.submissionId || currentlyInspectedSub.receiptCode)">📥 Export Bid Dossier (CSV)</button>
         <button class="btn btn-outline" style="font-size: 12px; padding: 7px 14px;" onclick="downloadSingleBidJSON()">📥 Download Proposal JSON</button>
         <button class="btn btn-outline" style="font-size: 12px; padding: 7px 14px; border-color: rgba(239, 68, 68, 0.5); color: #EF4444; cursor: pointer;" onclick="if(currentlyInspectedSub) deleteSubmissionPrompt(currentlyInspectedSub.submissionId || currentlyInspectedSub.receiptCode, currentlyInspectedSub.companyName)">🗑️ Delete Submission</button>
         <button class="btn btn-primary" style="font-size: 12px; padding: 7px 18px;" onclick="closeInspectModal()">Close</button>
@@ -2263,9 +2264,10 @@ async function loadAdminSubmissions() {
         <td style="text-align: right; font-family: monospace; font-weight: 800;">$${commUsd.toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
         <td style="text-align: center; font-size: 11px;">${tenorText}</td>
         <td style="text-align: center; white-space: nowrap;">
-          <button class="btn btn-primary" style="font-size: 10px; padding: 3px 8px; margin-right: 4px;" onclick="loadBidIntoEvaluatorView('${ref}')">📂 Open Bid</button>
-          <button class="btn btn-outline" style="font-size: 10px; padding: 3px 6px;" onclick="viewSubmissionDetail('${ref}')">🔍 Summary</button>
-          <button class="btn btn-outline" style="font-size: 10px; padding: 3px 6px; margin-left: 4px; border-color: rgba(239, 68, 68, 0.4); color: #EF4444;" onclick="deleteSubmissionPrompt('${ref}', '${comp.replace(/'/g, "\\'")}')">🗑️ Delete</button>
+          <button class="btn btn-primary" style="font-size: 10px; padding: 3px 7px; margin-right: 3px;" onclick="loadBidIntoEvaluatorView('${ref}')">📂 Open</button>
+          <button class="btn btn-outline" style="font-size: 10px; padding: 3px 6px; margin-right: 3px;" onclick="viewSubmissionDetail('${ref}')">🔍 Summary</button>
+          <button class="btn btn-outline" style="font-size: 10px; padding: 3px 6px; margin-right: 3px; border-color: rgba(96,165,250,0.5); color: #60A5FA;" onclick="exportSingleBidCSV('${ref}')">📥 Bid CSV</button>
+          <button class="btn btn-outline" style="font-size: 10px; padding: 3px 6px; border-color: rgba(239, 68, 68, 0.4); color: #EF4444;" onclick="deleteSubmissionPrompt('${ref}', '${comp.replace(/'/g, "\\'")}')">🗑️ Delete</button>
         </td>
       </tr>
     `;
@@ -2599,57 +2601,339 @@ function exitEvaluatorView() {
   }
 }
 
-function exportEvaluationCSV() {
+function csvEscape(val) {
+  if (val === null || val === undefined) return '""';
+  let str = String(val).replace(/"/g, '""');
+  return `"${str}"`;
+}
+
+function exportMasterEvaluationCSV() {
   const subs = (cachedAdminSubmissions && cachedAdminSubmissions.length > 0)
     ? cachedAdminSubmissions
     : JSON.parse(localStorage.getItem('fwa_rfp_submissions') || '[]');
 
   if (subs.length === 0) {
-    alert("No bids available to export.");
+    alert("No bids available in the vault to export.");
     return;
   }
 
-  const headers = ["Receipt Ref", "Bidder Company", "Signatory Name", "Signatory Email", "Submitted Timestamp", "Compliant Items (C)", "Minor Items (M)", "Technical Score", "Quoted Grand CAPEX (USD)", "Financing Tenor", "Grace Period", "Interest Rate", "SHA-256 Seal"];
+  const lines = [];
+
+  // ==========================================
+  // SECTION 1: EXECUTIVE TENDER SUMMARY & SCORING
+  // ==========================================
+  lines.push("TELTECH 5G FWA E-TENDER PORTAL - MASTER QCBS EVALUATION & PROPOSAL AUDIT REPORT");
+  lines.push(`RFP Reference: RFP-TELTECH-FWA-2026-001 | 1,000 Macro Sites Phase 1 | Band n50 (1.5 GHz L-Band, 60 MHz TDD)`);
+  lines.push(`Report Generated: ${new Date().toLocaleString()}`);
+  lines.push("");
+  lines.push("SECTION 1: BIDDER CLEARANCE & EXECUTIVE TENDER SUMMARY");
   
-  const rows = subs.map(s => {
+  const sec1Headers = [
+    "Receipt Reference",
+    "Bidder Corporate Entity",
+    "Authorized Signatory",
+    "Corporate Email",
+    "Submission Timestamp",
+    "Compliant Items (C)",
+    "Minor Deviations (M)",
+    "Deviated / Disqualified (D)",
+    "Technical Compliance Rate (%)",
+    "Total Quoted CAPEX (USD)",
+    "Total Quoted CAPEX (PHP @ 55.0)",
+    "Financing Tenor",
+    "Grace Period",
+    "Interest Rate / Spread",
+    "ECA / Financial Structure",
+    "SHA-256 Cryptographic Seal"
+  ];
+  lines.push(sec1Headers.map(csvEscape).join(','));
+
+  subs.forEach(s => {
     const tech = s.techCompliance || {};
-    let cCount = tech.compliantItems !== undefined ? tech.compliantItems : 0;
-    let mCount = tech.minorItems !== undefined ? tech.minorItems : 0;
-    let score = tech.complianceRate || "0.0%";
+    let cCount = 0, mCount = 0, dCount = 0;
+    if (tech.compliantItems !== undefined) {
+      cCount = Number(tech.compliantItems) || 0;
+      mCount = Number(tech.minorItems) || 0;
+      dCount = Number(tech.deviatedItems) || 0;
+    } else {
+      for (let k in tech) {
+        if (tech[k]?.compliance === 'C') cCount++;
+        if (tech[k]?.compliance === 'M') mCount++;
+        if (tech[k]?.compliance === 'D') dCount++;
+      }
+    }
+    const score = tech.complianceRate || (((cCount * 1.0) + (mCount * 0.5)) / 80 * 100).toFixed(1) + '%';
 
     const comm = s.commercialPricing || {};
-    let cap = comm.totalGrandUSD || 0;
-    if (!cap) {
-      for (let k in comm) cap += comm[k]?.extUsd || 0;
+    let capUsd = comm.totalGrandUSD || 0;
+    if (!capUsd) {
+      for (let k in comm) capUsd += comm[k]?.extUsd || 0;
     }
+    const capPhp = capUsd * 55.0;
 
     const fin = s.vendorFinancing || s.financing || {};
-    const subTime = s.submissionTimestamp ? (typeof s.submissionTimestamp.toDate === 'function' ? s.submissionTimestamp.toDate().toISOString() : s.submissionTimestamp) : '';
+    const subTime = s.submissionTimestamp
+      ? (typeof s.submissionTimestamp.toDate === 'function' ? s.submissionTimestamp.toDate().toLocaleString() : new Date(s.submissionTimestamp).toLocaleString())
+      : '';
 
-    return [
-      `"${s.submissionId || ''}"`,
-      `"${s.companyName || ''}"`,
-      `"${s.signatoryName || ''}"`,
-      `"${s.signatoryEmail || ''}"`,
-      `"${subTime}"`,
+    lines.push([
+      s.submissionId || s.receiptCode || '',
+      s.companyName || '',
+      s.signatoryName || '',
+      s.signatoryEmail || '',
+      subTime,
       cCount,
       mCount,
-      `"${score}"`,
-      cap,
-      `"${fin.tenorYears ? fin.tenorYears + ' Years' : (fin.tenor || '')}"`,
-      `"${fin.gracePeriodYears ? fin.gracePeriodYears + ' Years' : (fin.grace || '')}"`,
-      `"${fin.interestRate ? (fin.interestRate * 100) + '%' : (fin.rate || '')}"`,
-      `"${s.sha256Seal || ''}"`
-    ].join(',');
+      dCount,
+      score,
+      capUsd.toFixed(2),
+      capPhp.toFixed(2),
+      fin.tenorYears ? fin.tenorYears + ' Years' : (fin.tenor || ''),
+      fin.gracePeriodYears ? fin.gracePeriodYears + ' Years' : (fin.grace || ''),
+      fin.interestRate ? (fin.interestRate * 100).toFixed(2) + '%' : (fin.rate || ''),
+      fin.eca || '',
+      s.sha256Seal || ''
+    ].map(csvEscape).join(','));
   });
 
-  const csvContent = "data:text/csv;charset=utf-8," + encodeURIComponent([headers.join(','), ...rows].join('\n'));
+  lines.push("");
+  lines.push("");
+
+  // ==========================================
+  // SECTION 2: COMMERCIAL BoQ LINE-ITEM COMPARISON ACROSS ALL BIDDERS
+  // ==========================================
+  lines.push("SECTION 2: COMMERCIAL BoQ LINE-ITEM PRICING COMPARISON ACROSS ALL BIDDERS (LOTS 1 - 7)");
+  
+  const boqHeaders = [
+    "Table Category",
+    "Item Code",
+    "Description & Scope of Work",
+    "Tender Qty",
+    "Unit"
+  ];
+  subs.forEach(s => {
+    const comp = s.companyName || s.submissionId || 'Bidder';
+    boqHeaders.push(`${comp} - Unit Rate (USD)`);
+    boqHeaders.push(`${comp} - Extended Total (USD)`);
+    boqHeaders.push(`${comp} - Extended Total (PHP)`);
+  });
+  lines.push(boqHeaders.map(csvEscape).join(','));
+
+  if (window.RFPTenderData && window.RFPTenderData.boqTables) {
+    window.RFPTenderData.boqTables.forEach(tbl => {
+      lines.push([tbl.title, "", "", "", "", ...subs.flatMap(() => ["", "", ""])].map(csvEscape).join(','));
+
+      tbl.items.forEach(it => {
+        if (it.isSubtotal || it.isTotal) {
+          const subRow = [
+            tbl.title,
+            it.id,
+            it.description,
+            "",
+            ""
+          ];
+          subs.forEach(s => {
+            const comm = s.commercialPricing || {};
+            let vendorTotal = 0;
+            if (it.isTotal) {
+              vendorTotal = comm.totalGrandUSD || 0;
+              if (!vendorTotal) {
+                for (let k in comm) vendorTotal += comm[k]?.extUsd || 0;
+              }
+            } else {
+              tbl.items.forEach(subIt => {
+                if (!subIt.isSubtotal && !subIt.isTotal) {
+                  vendorTotal += comm[subIt.id]?.extUsd || 0;
+                }
+              });
+            }
+            subRow.push("");
+            subRow.push(vendorTotal.toFixed(2));
+            subRow.push((vendorTotal * 55.0).toFixed(2));
+          });
+          lines.push(subRow.map(csvEscape).join(','));
+        } else {
+          const row = [
+            tbl.title,
+            it.id,
+            `${it.description} — ${it.scope || ''}`,
+            it.qty,
+            it.unit
+          ];
+          subs.forEach(s => {
+            const comm = s.commercialPricing || {};
+            const pricing = comm[it.id] || {};
+            const rate = pricing.rateUsd !== undefined ? Number(pricing.rateUsd) : 0;
+            const ext = pricing.extUsd !== undefined ? Number(pricing.extUsd) : (rate * it.qty);
+            row.push(rate.toFixed(2));
+            row.push(ext.toFixed(2));
+            row.push((ext * 55.0).toFixed(2));
+          });
+          lines.push(row.map(csvEscape).join(','));
+        }
+      });
+    });
+  }
+
+  lines.push("");
+  lines.push("");
+
+  // ==========================================
+  // SECTION 3: TECHNICAL SPECIFICATIONS & COMPLIANCE MATRIX COMPARISON
+  // ==========================================
+  lines.push("SECTION 3: TECHNICAL SPECIFICATIONS COMPLIANCE MATRIX COMPARISON (APPENDIX A - 80 MANDATORY REQUIREMENTS)");
+  
+  const techHeaders = [
+    "Section",
+    "Requirement ID",
+    "Feature / Parameter",
+    "Mandatory TelTech Specification"
+  ];
+  subs.forEach(s => {
+    const comp = s.companyName || s.submissionId || 'Bidder';
+    techHeaders.push(`${comp} - Compliance (C/M/D)`);
+    techHeaders.push(`${comp} - Bidder Proposed Model / Remarks`);
+  });
+  lines.push(techHeaders.map(csvEscape).join(','));
+
+  if (window.RFPTenderData && window.RFPTenderData.appendixA) {
+    window.RFPTenderData.appendixA.forEach(sec => {
+      sec.items.forEach(it => {
+        const row = [
+          sec.section,
+          it.id,
+          it.feature,
+          it.requirement
+        ];
+        subs.forEach(s => {
+          const tech = s.techCompliance || {};
+          const itemResp = tech[it.id] || {};
+          row.push(itemResp.compliance || 'Not Answered');
+          row.push(itemResp.spec || '');
+        });
+        lines.push(row.map(csvEscape).join(','));
+      });
+    });
+  }
+
+  const csvBlob = "\uFEFF" + lines.join('\r\n');
+  const blob = new Blob([csvBlob], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.setAttribute('href', csvContent);
-  a.setAttribute('download', "TELTECH_RFP_SUBMISSIONS_EVALUATION_REPORT.csv");
+  a.setAttribute('href', url);
+  a.setAttribute('download', `TELTECH_RFP_MASTER_EVALUATION_REPORT_${new Date().toISOString().slice(0,10)}.csv`);
   document.body.appendChild(a);
   a.click();
   a.remove();
+  URL.revokeObjectURL(url);
+  showToast("Master Comparative Evaluation CSV (Full BoQ & Technical Matrix) downloaded!");
+}
+
+function exportSingleBidCSV(code) {
+  const sub = (cachedAdminSubmissions || []).find(s => (s.submissionId === code || s.receiptCode === code));
+  if (!sub) {
+    alert("Could not locate proposal in vault.");
+    return;
+  }
+
+  const lines = [];
+  const comp = sub.companyName || 'Bidder';
+  const ref = sub.submissionId || sub.receiptCode || code;
+
+  // Header & Metadata
+  lines.push("TELTECH 5G FWA E-TENDER PORTAL - INDIVIDUAL PROPOSAL DOSSIER AUDIT EXPORT");
+  lines.push(`RFP Reference: RFP-TELTECH-FWA-2026-001 | 1,000 Macro Sites Phase 1 | Band n50 (1.5 GHz L-Band, 60 MHz TDD)`);
+  lines.push(`Bidder Entity: ${comp}`);
+  lines.push(`Proposal Reference ID: ${ref}`);
+  lines.push(`Authorized Representative: ${sub.signatoryName || 'N/A'} <${sub.signatoryEmail || 'N/A'}>`);
+  const subTime = sub.submissionTimestamp
+    ? (typeof sub.submissionTimestamp.toDate === 'function' ? sub.submissionTimestamp.toDate().toLocaleString() : new Date(sub.submissionTimestamp).toLocaleString())
+    : 'N/A';
+  lines.push(`Sealing Timestamp: ${subTime}`);
+  lines.push(`SHA-256 Cryptographic Seal: ${sub.sha256Seal || 'N/A'}`);
+  lines.push("");
+
+  // Section 1: Financing Structure
+  lines.push("SECTION 1: VENDOR FINANCING PROPOSAL");
+  const fin = sub.vendorFinancing || sub.financing || {};
+  lines.push(["Financing Parameter", "Bidder Proposed Value"].map(csvEscape).join(','));
+  lines.push(["Financing Tenor", fin.tenorYears ? fin.tenorYears + ' Years' : (fin.tenor || 'Standard')].map(csvEscape).join(','));
+  lines.push(["Grace Period", fin.gracePeriodYears ? fin.gracePeriodYears + ' Years' : (fin.grace || 'None')].map(csvEscape).join(','));
+  lines.push(["Interest Rate / Structure", fin.interestRate ? (fin.interestRate * 100).toFixed(2) + '%' : (fin.rate || 'Standard SOFR')].map(csvEscape).join(','));
+  lines.push(["ECA Backing & Financing Arrangement", fin.eca || 'None'].map(csvEscape).join(','));
+  lines.push("");
+
+  // Section 2: Commercial BoQ Schedule
+  lines.push("SECTION 2: COMMERCIAL PROPOSAL - ITEMIZED BILL OF QUANTITIES (BoQ)");
+  lines.push(["BoQ Table", "Item Code", "Description & Scope of Work", "Tender Qty", "Unit", "Quoted Unit Rate (USD)", "Extended Amount (USD)", "Extended Amount (PHP @ 55.0)"].map(csvEscape).join(','));
+
+  const comm = sub.commercialPricing || {};
+  let grandTotalUsd = 0;
+
+  if (window.RFPTenderData && window.RFPTenderData.boqTables) {
+    window.RFPTenderData.boqTables.forEach(tbl => {
+      let tblSum = 0;
+      tbl.items.forEach(it => {
+        if (!it.isSubtotal && !it.isTotal) {
+          const pricing = comm[it.id] || {};
+          const rate = pricing.rateUsd !== undefined ? Number(pricing.rateUsd) : 0;
+          const ext = pricing.extUsd !== undefined ? Number(pricing.extUsd) : (rate * it.qty);
+          tblSum += ext;
+          lines.push([
+            tbl.title,
+            it.id,
+            `${it.description} — ${it.scope || ''}`,
+            it.qty,
+            it.unit,
+            rate.toFixed(2),
+            ext.toFixed(2),
+            (ext * 55.0).toFixed(2)
+          ].map(csvEscape).join(','));
+        }
+      });
+      grandTotalUsd += tblSum;
+      lines.push([tbl.title, "SUBTOTAL", `SUBTOTAL FOR ${tbl.title}`, "", "", "", tblSum.toFixed(2), (tblSum * 55.0).toFixed(2)].map(csvEscape).join(','));
+    });
+  }
+  lines.push(["SUMMARY", "GRAND TOTAL", "GRAND TOTAL TURNKEY CAPEX (LOTS 1-7)", "", "", "", grandTotalUsd.toFixed(2), (grandTotalUsd * 55.0).toFixed(2)].map(csvEscape).join(','));
+  lines.push("");
+
+  // Section 3: Technical Compliance Matrix
+  lines.push("SECTION 3: APPENDIX A - TECHNICAL SPECIFICATIONS & COMPLIANCE MATRIX (80 MANDATORY REQUIREMENTS)");
+  lines.push(["Section Category", "Requirement ID", "Feature / Specification", "Mandatory TelTech Requirement", "Bidder Compliance (C/M/D)", "Bidder Proposed Model / Technical Remarks"].map(csvEscape).join(','));
+
+  const tech = sub.techCompliance || {};
+  if (window.RFPTenderData && window.RFPTenderData.appendixA) {
+    window.RFPTenderData.appendixA.forEach(sec => {
+      sec.items.forEach(it => {
+        const itemResp = tech[it.id] || {};
+        lines.push([
+          sec.section,
+          it.id,
+          it.feature,
+          it.requirement,
+          itemResp.compliance || 'Not Answered',
+          itemResp.spec || ''
+        ].map(csvEscape).join(','));
+      });
+    });
+  }
+
+  const csvBlob = "\uFEFF" + lines.join('\r\n');
+  const blob = new Blob([csvBlob], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.setAttribute('href', url);
+  a.setAttribute('download', `${ref}_${comp.replace(/[^a-zA-Z0-9_-]/g, '_')}_FULL_DOSSIER.csv`);
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  showToast(`Full Proposal Dossier CSV for ${comp} downloaded!`);
+}
+
+function exportEvaluationCSV() {
+  exportMasterEvaluationCSV();
 }
 
 function exportEvaluationReport() {
