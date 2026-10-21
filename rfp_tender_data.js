@@ -104,6 +104,27 @@ window.RFPTenderData = {
     "xlsx": "RFP_Tender_Package/07_RFP_5G_FWA_Candidate_Site_List_and_Rollout_Schedule.xlsx",
     "pages": "6 Sheets (5,000 Sites)",
     "type": "XLSX"
+  },
+  {
+    "id": "08",
+    "code": "08_RFP_5G_FWA_Bid_Bulletin_01_Official_Clarifications",
+    "title": "Bid Bulletin No. 1: Official Tender Clarifications & Responses",
+    "subtitle": "Binding Technical Amendments & Clarifications on Band n50 Spectrum, Siting, Power (12kW), OSS/BSS & Backhaul",
+    "badge": "Official Addendum",
+    "pdf": "RFP_Tender_Package/08_RFP_5G_FWA_Bid_Bulletin_01_Official_Clarifications.pdf",
+    "html": "RFP_Tender_Package/08_RFP_5G_FWA_Bid_Bulletin_01_Official_Clarifications.html",
+    "pages": "12 Pages (PDF & HTML)",
+    "type": "PDF / HTML"
+  },
+  {
+    "id": "09",
+    "code": "09_RFP_5G_FWA_Bidder_Clarifications_Master_Tables",
+    "title": "Official Clarification Response Workbook (All Vendor Queries)",
+    "subtitle": "Fully populated 55-item Q&A matrix answering all Huawei, Nokia, and ZTE queries across RAN, Civil, Power & Core",
+    "badge": "Clarification Matrix",
+    "xlsx": "RFP_Tender_Package/Converge N50 FWA Clarification Table-Huawei-20261021.xlsx",
+    "pages": "Excel Q&A Workbook",
+    "type": "XLSX"
   }
 ],
   appendixA: [
