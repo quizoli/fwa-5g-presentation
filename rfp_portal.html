@@ -1124,6 +1124,7 @@
       <div style="display: flex; gap: 10px; flex-wrap: wrap;">
         <button class="btn btn-primary" style="font-size: 12px; padding: 7px 16px; background: #FFB703; color: #0A192F; font-weight: 800; border: none; cursor: pointer;" onclick="closeInspectModal(); if(currentlyInspectedSub) loadBidIntoEvaluatorView(currentlyInspectedSub.submissionId || currentlyInspectedSub.receiptCode);">📂 Open Full Proposal in Evaluator</button>
         <button class="btn btn-outline" style="font-size: 12px; padding: 7px 14px;" onclick="downloadSingleBidJSON()">📥 Download Proposal JSON</button>
+        <button class="btn btn-outline" style="font-size: 12px; padding: 7px 14px; border-color: rgba(239, 68, 68, 0.5); color: #EF4444; cursor: pointer;" onclick="if(currentlyInspectedSub) deleteSubmissionPrompt(currentlyInspectedSub.submissionId || currentlyInspectedSub.receiptCode, currentlyInspectedSub.companyName)">🗑️ Delete Submission</button>
         <button class="btn btn-primary" style="font-size: 12px; padding: 7px 18px;" onclick="closeInspectModal()">Close</button>
       </div>
     </div>
@@ -2191,7 +2192,9 @@ async function loadAdminSubmissions() {
     try {
       const snap = await firebase.firestore().collection('submissions').get();
       snap.forEach(doc => {
-        subs.push(doc.data());
+        const d = doc.data();
+        d._docId = doc.id;
+        subs.push(d);
       });
     } catch(err) {
       console.warn("Firestore submissions query note:", err);
@@ -2262,6 +2265,7 @@ async function loadAdminSubmissions() {
         <td style="text-align: center; white-space: nowrap;">
           <button class="btn btn-primary" style="font-size: 10px; padding: 3px 8px; margin-right: 4px;" onclick="loadBidIntoEvaluatorView('${ref}')">📂 Open Bid</button>
           <button class="btn btn-outline" style="font-size: 10px; padding: 3px 6px;" onclick="viewSubmissionDetail('${ref}')">🔍 Summary</button>
+          <button class="btn btn-outline" style="font-size: 10px; padding: 3px 6px; margin-left: 4px; border-color: rgba(239, 68, 68, 0.4); color: #EF4444;" onclick="deleteSubmissionPrompt('${ref}', '${comp.replace(/'/g, "\\'")}')">🗑️ Delete</button>
         </td>
       </tr>
     `;
@@ -2395,6 +2399,118 @@ function downloadSingleBidJSON() {
   document.body.appendChild(a);
   a.click();
   a.remove();
+}
+
+async function deleteSubmissionPrompt(code, compName) {
+  const user = FWAPortalAuth.getCurrentUser();
+  const isAdmin = FWAPortalAuth.isAdmin();
+  if (!isAdmin) {
+    alert("Unauthorized: Administrator clearance required to delete proposals.");
+    return;
+  }
+
+  const promptMsg = `⚠️ PERMANENT PROPOSAL DELETION\n\n` +
+    `Vendor: ${compName || 'Bidder Entity'}\n` +
+    `Proposal ID: ${code}\n\n` +
+    `Are you sure you want to permanently delete this bid from the Central Cloud Vault?\n` +
+    `This will purge the technical matrix, commercial envelope, and cryptographic seal from Cloud Firestore.\n\n` +
+    `Type "DELETE" to confirm:`;
+
+  const input = prompt(promptMsg);
+  if (input !== 'DELETE') {
+    if (input !== null) {
+      alert("Deletion cancelled. Confirmation keyword did not match 'DELETE'.");
+    }
+    return;
+  }
+
+  showToast(`Deleting proposal ${code}...`);
+
+  try {
+    if (typeof firebase !== 'undefined' && firebase.firestore) {
+      const db = firebase.firestore();
+
+      // Find target document in /submissions
+      let targetDocRef = null;
+      const targetSub = (cachedAdminSubmissions || []).find(s => (s.submissionId === code || s.receiptCode === code));
+      if (targetSub && targetSub._docId) {
+        targetDocRef = db.collection('submissions').doc(targetSub._docId);
+      } else {
+        const directRef = db.collection('submissions').doc(code);
+        const directSnap = await directRef.get();
+        if (directSnap.exists) {
+          targetDocRef = directRef;
+        } else {
+          const q1 = await db.collection('submissions').where('submissionId', '==', code).get();
+          if (!q1.empty) {
+            targetDocRef = q1.docs[0].ref;
+          } else {
+            const q2 = await db.collection('submissions').where('receiptCode', '==', code).get();
+            if (!q2.empty) targetDocRef = q2.docs[0].ref;
+          }
+        }
+      }
+
+      if (targetDocRef) {
+        // Delete subcollections (commercial_envelope) if present
+        try {
+          const envSnap = await targetDocRef.collection('commercial_envelope').get();
+          if (!envSnap.empty) {
+            const batch = db.batch();
+            envSnap.forEach(d => batch.delete(d.ref));
+            await batch.commit();
+          }
+        } catch (subErr) {
+          console.warn("Subcollection cleanup note:", subErr);
+        }
+
+        // Delete the main submission document
+        await targetDocRef.delete();
+
+        // Write audit log entry
+        try {
+          await db.collection('audit_logs').add({
+            action: 'SUBMISSION_DELETED',
+            submissionId: code,
+            companyName: compName || 'Unknown',
+            deletedByUid: firebase.auth().currentUser?.uid || user?.uid || 'admin',
+            deletedByEmail: firebase.auth().currentUser?.email || user?.email || 'admin@teltech.com',
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+          });
+        } catch (auditErr) {
+          console.warn("Audit log note:", auditErr);
+        }
+      } else {
+        console.warn(`Proposal ${code} not found in Firestore.`);
+      }
+    }
+
+    // Clean up local storage if saved there
+    try {
+      const raw = localStorage.getItem('fwa_rfp_submissions');
+      if (raw) {
+        const localSubs = JSON.parse(raw);
+        const filtered = localSubs.filter(s => s.submissionId !== code && s.receiptCode !== code);
+        localStorage.setItem('fwa_rfp_submissions', JSON.stringify(filtered));
+      }
+    } catch(e) {}
+
+    // Update in-memory cached submissions
+    cachedAdminSubmissions = (cachedAdminSubmissions || []).filter(s => (s.submissionId !== code && s.receiptCode !== code));
+    renderAdminSubmissionsTable(cachedAdminSubmissions);
+
+    // If currently inspecting or in evaluator view for this submission, exit
+    if (isEvaluatorMode) {
+      exitEvaluatorView();
+    }
+    closeInspectModal();
+
+    showToast(`Proposal ${code} permanently deleted.`);
+
+  } catch (err) {
+    console.error("Failed to delete submission:", err);
+    alert(`Failed to delete proposal: ${err.message || err}`);
+  }
 }
 
 let isEvaluatorMode = false;
