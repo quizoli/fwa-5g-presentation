@@ -9,7 +9,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <script src="firebase_config.js"></script>
 <script src="auth_registry.js"></script>
-<script src="rfp_tender_data.js?v=20261021_bulletin_v2"></script>
+<script src="rfp_tender_data.js?v=20261021_bulletin_v3"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script>
   // Immediate Confidentiality & Authentication Guard
@@ -625,10 +625,6 @@
     <a href="RFP_Tender_Package/08_RFP_5G_FWA_Bid_Bulletin_01_Official_Clarifications.pdf" download style="color: #60A5FA; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
       <span>📕</span> Download PDF (12p)
     </a>
-    <span style="color: #475569;">|</span>
-    <a href="RFP_Tender_Package/09_RFP_5G_FWA_Official_Clarifications_Responses_Master.xlsx" download style="color: #34D399; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
-      <span>📊</span> Q&amp;A Excel
-    </a>
   </div>
 </div>
 
@@ -636,7 +632,7 @@
 <nav class="nav-ribbon">
   <div class="nav-tab active" data-tab="tab-library" onclick="switchTab('tab-library')">
     <span>📚 1. Document Library</span>
-    <span class="badge" style="background: var(--gold); color: #0A192F; font-weight: 800;">9 Docs + Bulletin</span>
+    <span class="badge" style="background: var(--gold); color: #0A192F; font-weight: 800;">8 Docs + Bulletin</span>
   </div>
   <div class="nav-tab" data-tab="tab-technical" onclick="switchTab('tab-technical')">
     <span>📋 2. Technical Compliance (App A)</span>
@@ -695,9 +691,6 @@
                 </a>
                 <a href="RFP_Tender_Package/08_RFP_5G_FWA_Bid_Bulletin_01_Official_Clarifications.pdf" download class="btn btn-outline" style="font-size: 12px; padding: 8px 18px; border-color: #FFB703; color: #FFB703; display: inline-flex; align-items: center; gap: 6px;">
                   <span>📕</span> Download Formal PDF (12 Pages)
-                </a>
-                <a href="RFP_Tender_Package/09_RFP_5G_FWA_Official_Clarifications_Responses_Master.xlsx" download class="btn btn-outline" style="font-size: 12px; padding: 8px 18px; border-color: #10B981; color: #A7F3D0; display: inline-flex; align-items: center; gap: 6px;">
-                  <span>📊</span> Download Q&amp;A Responses (Excel)
                 </a>
               </div>
             </div>
@@ -1115,6 +1108,7 @@
       <div class="card-header">
         <div class="card-title">👑 TelTech Tender Evaluation Console (Oliver Tungol / Secretariat)</div>
         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <a href="RFP_Tender_Package/09_RFP_5G_FWA_Official_Clarifications_Responses_Master.xlsx" download class="btn btn-outline" style="border-color: #10B981; color: #A7F3D0; font-size: 11.5px;">📊 Internal Clarification Matrix (.XLSX)</a>
           <button class="btn btn-outline" onclick="loadAdminSubmissions()">🔄 Refresh Submissions</button>
           <button class="btn btn-primary" onclick="exportMasterEvaluationCSV()">📊 Export Master Evaluation CSV (Excel)</button>
           <button class="btn btn-outline" onclick="exportEvaluationReport()">📥 Export Raw JSON</button>

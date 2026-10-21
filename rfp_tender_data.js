@@ -115,16 +115,6 @@ window.RFPTenderData = {
     "html": "RFP_Tender_Package/08_RFP_5G_FWA_Bid_Bulletin_01_Official_Clarifications.html",
     "pages": "12 Pages (PDF & HTML)",
     "type": "PDF / HTML"
-  },
-  {
-    "id": "09",
-    "code": "09_RFP_5G_FWA_Bidder_Clarifications_Master_Tables",
-    "title": "Official Clarification Response Workbook (All Vendor Queries)",
-    "subtitle": "Consolidated 55-item official Q&A matrix addressing all bidder inquiries across RAN, Civil, Power, Core & Commercial",
-    "badge": "Clarification Matrix",
-    "xlsx": "RFP_Tender_Package/09_RFP_5G_FWA_Official_Clarifications_Responses_Master.xlsx",
-    "pages": "Excel Q&A Workbook (55 Items)",
-    "type": "XLSX"
   }
 ],
   appendixA: [
