@@ -2067,6 +2067,21 @@ async function executeBidSubmission() {
     return;
   }
 
+  // Validate that the bidder has populated proposal content
+  let answeredTech = 0;
+  for (let k in currentDraft.technical) {
+    if (currentDraft.technical[k] && currentDraft.technical[k].compliance) answeredTech++;
+  }
+  let totalComm = 0;
+  for (let k in currentDraft.commercial) {
+    totalComm += currentDraft.commercial[k]?.extUsd || 0;
+  }
+
+  if (answeredTech === 0 && totalComm === 0) {
+    alert("Incomplete Submission:\n\nYour proposal currently contains 0 technical compliance answers and $0.00 commercial BoQ pricing.\n\nPlease complete Appendix A (Technical Matrix) and Appendix B (Commercial BoQ) before submitting your sealed proposal.");
+    return;
+  }
+
   const btn = document.getElementById('btn-submit-sealed');
   if (btn) {
     btn.disabled = true;
@@ -2553,6 +2568,8 @@ function loadBidIntoEvaluatorView(code) {
     console.warn("recalc totals error:", err);
   }
 
+  const hasLineItems = Object.keys(currentDraft.technical || {}).some(k => !['compliantItems','totalItems','complianceRate','minorItems','deviatedItems'].includes(k));
+
   // Create or show sticky top evaluator banner
   let banner = document.getElementById('evaluator-active-banner');
   if (!banner) {
@@ -2563,10 +2580,11 @@ function loadBidIntoEvaluatorView(code) {
   banner.style.display = 'flex';
   banner.style.cssText = "display: flex; flex-wrap: wrap; gap: 12px; background: linear-gradient(90deg, #1E3A8A, #0F172A); color: white; padding: 12px 24px; border-bottom: 2px solid #FFB703; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 99999; box-shadow: 0 4px 15px rgba(0,0,0,0.5);";
   banner.innerHTML = `
-    <div style="font-size: 13px; display: flex; align-items: center; gap: 8px;">
+    <div style="font-size: 13px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
       <span style="background: #FFB703; color: #0A192F; font-weight: 800; padding: 2px 8px; border-radius: 4px; font-size: 11px;">👑 EVALUATOR VIEW</span>
       <span>Viewing Proposal: <strong style="color: #60A5FA;">${sub.companyName || 'Bidder Entity'}</strong></span>
       <span style="font-family: monospace; color: #FCD34D;">(${sub.submissionId || code})</span>
+      ${!hasLineItems ? '<span style="background: rgba(239,68,68,0.25); color: #FCA5A5; border: 1px solid rgba(239,68,68,0.4); font-size: 11px; padding: 2px 8px; border-radius: 4px;">⚠️ Empty / Test Filing (No Line Items)</span>' : ''}
     </div>
     <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
       <button class="btn btn-outline" style="font-size: 11px; padding: 5px 12px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.3); cursor: pointer;" onclick="switchTab('tab-technical')">📋 View Technical Matrix</button>
@@ -2579,7 +2597,11 @@ function loadBidIntoEvaluatorView(code) {
   // Switch to Tab 2 (Technical Compliance)
   switchTab('tab-technical');
   if (typeof showToast === 'function') {
-    showToast(`Loaded ${sub.companyName || 'Bidder'} proposal into Evaluator View!`);
+    if (!hasLineItems) {
+      showToast(`Notice: Proposal was submitted without line-item technical/commercial entries.`);
+    } else {
+      showToast(`Loaded ${sub.companyName || 'Bidder'} proposal into Evaluator View!`);
+    }
   }
 }
 
