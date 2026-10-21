@@ -439,7 +439,7 @@ window.RFPTenderData = {
       {
         "id": "RFP-03",
         "feature": "Nominal Siting & Audit",
-        "requirement": "Siting validation against 13,746 tower inventory and Converge fiber network backbone routes (subject to verification on the ground); production of candidate search rings."
+        "requirement": "Siting validation against 13,746 tower inventory and Comclark/TelTech fiber network backbone routes (subject to verification on the ground); production of candidate search rings."
       },
       {
         "id": "RFP-04",
