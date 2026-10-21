@@ -1121,7 +1121,8 @@
     
     <div style="padding: 14px 24px; background: #0A192F; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center;">
       <div id="inspect-modal-time" style="font-size: 12px; color: #94A3B8;"></div>
-      <div style="display: flex; gap: 10px;">
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <button class="btn btn-primary" style="font-size: 12px; padding: 7px 16px; background: #FFB703; color: #0A192F; font-weight: 800; border: none; cursor: pointer;" onclick="closeInspectModal(); if(currentlyInspectedSub) loadBidIntoEvaluatorView(currentlyInspectedSub.submissionId || currentlyInspectedSub.receiptCode);">📂 Open Full Proposal in Evaluator</button>
         <button class="btn btn-outline" style="font-size: 12px; padding: 7px 14px;" onclick="downloadSingleBidJSON()">📥 Download Proposal JSON</button>
         <button class="btn btn-primary" style="font-size: 12px; padding: 7px 18px;" onclick="closeInspectModal()">Close</button>
       </div>
@@ -1804,21 +1805,36 @@ function saveFinancingDraft() {
   saveCommercialDraft(false);
 }
 
+function getBoQQty(itemId) {
+  if (window.RFPTenderData && window.RFPTenderData.boqTables) {
+    for (const tbl of window.RFPTenderData.boqTables) {
+      if (!tbl.items) continue;
+      const it = tbl.items.find(x => x.id === itemId);
+      if (it && it.qty !== undefined) return it.qty;
+    }
+  }
+  return 1;
+}
+
 function calculateBoQ(itemId, qty) {
   const rateInput = document.getElementById(`boq_rate_${itemId}`);
+  if (!rateInput) return;
   const rateUsd = parseFloat(rateInput.value) || 0;
+  const actualQty = qty !== undefined ? qty : getBoQQty(itemId);
   const ratePhp = rateUsd * 55.0;
-  const extUsd = rateUsd * qty;
+  const extUsd = rateUsd * actualQty;
 
   const phpEl = document.getElementById(`boq_php_${itemId}`);
   const extEl = document.getElementById(`boq_ext_${itemId}`);
   if (phpEl) phpEl.textContent = `₱${ratePhp.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
   if (extEl) extEl.textContent = `$${extUsd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
 
-  currentDraft.commercial[itemId] = { rateUsd, qty, extUsd };
+  currentDraft.commercial[itemId] = { rateUsd, qty: actualQty, extUsd };
   updateTableSubtotals();
   recalcGrandTotals();
-  saveCommercialDraft(false);
+  if (!isEvaluatorMode) {
+    saveCommercialDraft(false);
+  }
 }
 
 function updateTableSubtotals() {
@@ -1862,6 +1878,7 @@ function getStorageKey() {
 let cloudSyncTimeout = null;
 
 function syncDraftToFirestore() {
+  if (isEvaluatorMode) return;
   if (typeof firebase === 'undefined' || !firebase.firestore) return;
   const user = FWAPortalAuth.getCurrentUser();
   const activeUid = (typeof firebase !== 'undefined' && firebase.auth && firebase.auth().currentUser)
@@ -1888,6 +1905,7 @@ function syncDraftToFirestore() {
 }
 
 function saveTechnicalDraft(showToastNotice) {
+  if (isEvaluatorMode) return;
   const key = getStorageKey();
   localStorage.setItem(key, JSON.stringify(currentDraft));
   syncDraftToFirestore();
@@ -1895,6 +1913,7 @@ function saveTechnicalDraft(showToastNotice) {
 }
 
 function saveCommercialDraft(showToastNotice) {
+  if (isEvaluatorMode) return;
   const key = getStorageKey();
   localStorage.setItem(key, JSON.stringify(currentDraft));
   syncDraftToFirestore();
@@ -1938,25 +1957,35 @@ async function loadBidDraft() {
 }
 
 function restoreDraftUI(data) {
+  if (!data) return;
   if (data.technical) {
     for (let id in data.technical) {
       const item = data.technical[id];
       const sel = document.getElementById(`comp_${id}`);
       const txt = document.getElementById(`spec_${id}`);
-      if (sel && item.compliance) sel.value = item.compliance;
-      if (txt && item.spec) txt.value = item.spec;
+      if (sel && item && item.compliance) sel.value = item.compliance;
+      if (txt && item && item.spec) txt.value = item.spec;
     }
-    updateComplianceScorecard();
+    if (typeof updateComplianceScorecard === 'function') {
+      try { updateComplianceScorecard(); } catch(e) {}
+    }
   }
 
   if (data.commercial) {
     for (let id in data.commercial) {
       const item = data.commercial[id];
       const inp = document.getElementById(`boq_rate_${id}`);
-      if (inp && item.rateUsd) {
+      if (inp && item && (item.rateUsd !== undefined && item.rateUsd !== null)) {
         inp.value = item.rateUsd;
-        calculateBoQ(id, item.qty);
+        const qty = item.qty !== undefined ? item.qty : getBoQQty(id);
+        calculateBoQ(id, qty);
       }
+    }
+    if (typeof updateTableSubtotals === 'function') {
+      try { updateTableSubtotals(); } catch(e) {}
+    }
+    if (typeof recalcGrandTotals === 'function') {
+      try { recalcGrandTotals(); } catch(e) {}
     }
   }
 
@@ -2368,6 +2397,9 @@ function downloadSingleBidJSON() {
   a.remove();
 }
 
+let isEvaluatorMode = false;
+let backupEvaluatorDraft = null;
+
 function loadBidIntoEvaluatorView(code) {
   const sub = (cachedAdminSubmissions || []).find(s => (s.submissionId === code || s.receiptCode === code));
   if (!sub) {
@@ -2375,12 +2407,33 @@ function loadBidIntoEvaluatorView(code) {
     return;
   }
 
+  // Backup evaluator's current draft if not already in evaluator mode
+  if (!isEvaluatorMode) {
+    try {
+      backupEvaluatorDraft = JSON.parse(JSON.stringify(currentDraft));
+    } catch(e) {
+      backupEvaluatorDraft = null;
+    }
+  }
+  isEvaluatorMode = true;
+
   // Populate active draft with submitted data
-  currentDraft.technical = sub.techCompliance || {};
-  currentDraft.commercial = sub.commercialPricing || {};
-  currentDraft.financing = sub.vendorFinancing || sub.financing || {};
-  restoreDraftUI(currentDraft);
-  recalcBoQ();
+  currentDraft.technical = JSON.parse(JSON.stringify(sub.techCompliance || {}));
+  currentDraft.commercial = JSON.parse(JSON.stringify(sub.commercialPricing || {}));
+  currentDraft.financing = JSON.parse(JSON.stringify(sub.vendorFinancing || sub.financing || {}));
+
+  try {
+    restoreDraftUI(currentDraft);
+  } catch (err) {
+    console.warn("restoreDraftUI error:", err);
+  }
+
+  try {
+    if (typeof updateTableSubtotals === 'function') updateTableSubtotals();
+    if (typeof recalcGrandTotals === 'function') recalcGrandTotals();
+  } catch (err) {
+    console.warn("recalc totals error:", err);
+  }
 
   // Create or show sticky top evaluator banner
   let banner = document.getElementById('evaluator-active-banner');
@@ -2389,30 +2442,45 @@ function loadBidIntoEvaluatorView(code) {
     banner.id = 'evaluator-active-banner';
     document.body.prepend(banner);
   }
+  banner.style.display = 'flex';
   banner.style.cssText = "display: flex; flex-wrap: wrap; gap: 12px; background: linear-gradient(90deg, #1E3A8A, #0F172A); color: white; padding: 12px 24px; border-bottom: 2px solid #FFB703; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 99999; box-shadow: 0 4px 15px rgba(0,0,0,0.5);";
   banner.innerHTML = `
     <div style="font-size: 13px; display: flex; align-items: center; gap: 8px;">
       <span style="background: #FFB703; color: #0A192F; font-weight: 800; padding: 2px 8px; border-radius: 4px; font-size: 11px;">👑 EVALUATOR VIEW</span>
-      <span>Viewing: <strong style="color: #60A5FA;">${sub.companyName}</strong></span>
-      <span style="font-family: monospace; color: #FCD34D;">(${sub.submissionId})</span>
+      <span>Viewing Proposal: <strong style="color: #60A5FA;">${sub.companyName || 'Bidder Entity'}</strong></span>
+      <span style="font-family: monospace; color: #FCD34D;">(${sub.submissionId || code})</span>
     </div>
-    <div style="display: flex; gap: 10px; align-items: center;">
-      <button class="btn btn-outline" style="font-size: 11px; padding: 5px 12px;" onclick="switchTab('tab-technical')">📋 View Technical Matrix</button>
-      <button class="btn btn-outline" style="font-size: 11px; padding: 5px 12px;" onclick="switchTab('tab-commercial')">💰 View Commercial BoQ</button>
-      <button class="btn btn-primary" style="font-size: 11px; padding: 5px 14px;" onclick="exitEvaluatorView()">Exit to Console ➔</button>
+    <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+      <button class="btn btn-outline" style="font-size: 11px; padding: 5px 12px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.3); cursor: pointer;" onclick="switchTab('tab-technical')">📋 View Technical Matrix</button>
+      <button class="btn btn-outline" style="font-size: 11px; padding: 5px 12px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.3); cursor: pointer;" onclick="switchTab('tab-commercial')">💰 View Commercial BoQ</button>
+      <button class="btn btn-outline" style="font-size: 11px; padding: 5px 12px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.3); cursor: pointer;" onclick="viewSubmissionDetail('${sub.submissionId || code}')">🔍 Summary Dossier</button>
+      <button class="btn btn-primary" style="font-size: 11px; padding: 5px 14px; background: #FFB703; color: #0A192F; font-weight: 800; border: none; cursor: pointer;" onclick="exitEvaluatorView()">Exit to Console ➔</button>
     </div>
   `;
 
   // Switch to Tab 2 (Technical Compliance)
   switchTab('tab-technical');
-  showToast(`Loaded ${sub.companyName} proposal into Evaluator View!`);
+  if (typeof showToast === 'function') {
+    showToast(`Loaded ${sub.companyName || 'Bidder'} proposal into Evaluator View!`);
+  }
 }
 
 function exitEvaluatorView() {
   const banner = document.getElementById('evaluator-active-banner');
   if (banner) banner.style.display = 'none';
-  loadBidDraft();
+  isEvaluatorMode = false;
+  if (backupEvaluatorDraft) {
+    currentDraft = backupEvaluatorDraft;
+    try {
+      restoreDraftUI(currentDraft);
+    } catch(e) {}
+  } else {
+    loadBidDraft();
+  }
   switchTab('tab-admin');
+  if (typeof showToast === 'function') {
+    showToast("Exited Evaluator View back to Committee Console.");
+  }
 }
 
 function exportEvaluationCSV() {
