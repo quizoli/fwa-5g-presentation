@@ -782,6 +782,190 @@
     border-color: var(--teal);
     box-shadow: 0 0 10px rgba(0, 180, 216, 0.4);
   }
+
+  /* Revision History Ledger & Live Chat Styles */
+  .rev-history-details {
+    margin-top: 14px;
+    background: rgba(10, 25, 47, 0.65);
+    border: 1px solid rgba(0, 180, 216, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .rev-history-details summary {
+    padding: 12px 16px;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 13px;
+    color: #F8FAFC;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(20, 40, 71, 0.65);
+    list-style: none;
+  }
+  .rev-history-details summary::-webkit-details-marker { display: none; }
+  .rev-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .rev-table {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  .rev-table th, .rev-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.45;
+  }
+  .rev-table th {
+    background: #10233E;
+    color: var(--teal);
+    font-size: 10.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .rev-table th:first-child,
+  .rev-table td:first-child {
+    position: sticky;
+    left: 0;
+    background: #0D1F38;
+    z-index: 1;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+  .rev-num {
+    font-variant-numeric: tabular-nums;
+    font-family: ui-monospace, SFMono-Regular, monospace;
+  }
+
+  /* Live Chat Widget */
+  .chat-launcher-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9990;
+    background: linear-gradient(135deg, #0077CC 0%, #00B4D8 100%);
+    color: #FFFFFF;
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    padding: 12px 20px;
+    font-size: 13px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 180, 216, 0.45);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .chat-launcher-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 36px rgba(0, 180, 216, 0.65);
+  }
+  .chat-panel {
+    position: fixed;
+    bottom: 84px;
+    right: 24px;
+    width: 390px;
+    max-width: calc(100vw - 32px);
+    height: 520px;
+    max-height: calc(100vh - 120px);
+    background: #0D1F38;
+    border: 1.5px solid rgba(0, 180, 216, 0.45);
+    border-radius: 14px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
+    z-index: 9995;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .chat-panel.open { display: flex; }
+  .chat-header {
+    background: linear-gradient(90deg, #0A192F, #142847);
+    padding: 13px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .chat-channel-bar {
+    background: #0A192F;
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .chat-channel-btn {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #94A3B8;
+    padding: 5px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+  }
+  .chat-channel-btn.active {
+    background: rgba(0, 180, 216, 0.18);
+    border-color: var(--teal);
+    color: #FFFFFF;
+  }
+  .chat-messages-box {
+    flex: 1;
+    padding: 14px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: rgba(6, 15, 30, 0.55);
+  }
+  .chat-msg {
+    max-width: 86%;
+    padding: 9px 12px;
+    border-radius: 10px;
+    font-size: 12.5px;
+    line-height: 1.45;
+    word-break: break-word;
+  }
+  .chat-msg.mine {
+    align-self: flex-end;
+    background: linear-gradient(135deg, #0284C7, #0369A1);
+    color: #FFFFFF;
+    border-bottom-right-radius: 2px;
+  }
+  .chat-msg.other {
+    align-self: flex-start;
+    background: #172A45;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #F1F5F9;
+    border-bottom-left-radius: 2px;
+  }
+  .chat-msg.broadcast {
+    align-self: stretch;
+    max-width: 100%;
+    background: rgba(255, 183, 3, 0.12);
+    border: 1px solid rgba(255, 183, 3, 0.45);
+    color: #F8FAFC;
+  }
+  .chat-input-bar {
+    padding: 10px 12px;
+    background: #0A192F;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
 </style>
 </head>
 <body>
@@ -801,6 +985,9 @@
     <a href="#tender-package-section" onclick="filterCatalog('tender'); document.getElementById('tender-package-section').scrollIntoView({behavior: 'smooth'});" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; font-size: 12px; text-decoration: none; color: #FFFFFF; background: #2563EB; border: 1px solid #3B82F6; border-radius: 20px; font-weight: 700; box-shadow: 0 0 10px rgba(37,99,235,0.4); transition: all 0.2s;" title="Jump to 5G FWA Master Tender & RFP Package">
       📑 5G FWA Tender (RFP)
     </a>
+    <button onclick="toggleExecPortalChat()" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; font-size: 12px; color: var(--teal); background: rgba(0, 180, 216, 0.12); border: 1px solid var(--teal); border-radius: 20px; font-weight: 700; cursor: pointer;" title="Open Live Portal & Secretariat Chat">
+      💬 Live Chat
+    </button>
     <div class="user-session-bar">
       <span class="user-status-dot"></span>
       <span class="user-name" id="portalUserDisplay">EXECUTIVE</span>
@@ -859,6 +1046,68 @@
     <div class="rev-description" id="revDescriptionText">
       <!-- Injected dynamically by JS -->
     </div>
+
+    <!-- Expandable Master Revision History Log -->
+    <details class="rev-history-details" open>
+      <summary>
+        <span>📜 Master Project &amp; RFP Revision History Ledger (Rev 1.0 → Rev 2.2 Active)</span>
+        <span style="color: var(--teal); font-size: 11px;">Click to Collapse / Expand ▾</span>
+      </summary>
+      <div class="rev-table-wrapper">
+        <table class="rev-table">
+          <thead>
+            <tr>
+              <th>Version</th>
+              <th>Date</th>
+              <th>Scope / Package</th>
+              <th>Detailed Engineering, Siting &amp; Commercial Changelog</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background: rgba(16, 185, 129, 0.08);">
+              <td class="rev-num" style="color: #6EE7B7;">Rev 2.2 <span style="background: #10B981; color: #064E3B; padding: 1px 5px; border-radius: 3px; font-size: 9.5px;">ACTIVE</span></td>
+              <td class="rev-num">2026-10-22</td>
+              <td><strong>Doc 07 &amp; POPCEN Suite</strong><br><span style="color: #94A3B8; font-size: 11px;">5,000-Site Schedule</span></td>
+              <td>
+                <strong>DepEd "Validated" School Coordinate Audit (Zero GIDA Usage):</strong> All <span class="rev-num">5,000</span> target barangays (<code>FWA-SITE-0001</code> to <code>FWA-SITE-5000</code>), PSGC codes, Batch 1–5 assignments, and POPCEN 2024 subscriber figures remain <strong>100% locked</strong>. Preserved <span class="rev-num">4,123</span> already-validated school sites; updated <span class="rev-num">877</span> sites strictly to <code>Map Status = "Validated"</code> DepEd schools (fixing cross-province homonym collisions like <code>FWA-SITE-0313</code> Bulacan vs. Iloilo, unvalidated rows, and spiral fallbacks); recomputed TowerCo and Converge fiber distances; standardized <span class="rev-num">70</span> NCR district labels to <code>Metro Manila (NCR)</code>.
+              </td>
+            </tr>
+            <tr>
+              <td class="rev-num" style="color: var(--gold);">Rev 2.1</td>
+              <td class="rev-num">2026-10-21</td>
+              <td><strong>Docs 08 &amp; 09</strong><br><span style="color: #94A3B8; font-size: 11px;">Bid Bulletin No. 1</span></td>
+              <td>
+                <strong>Official Clarifications on 55 Bidder Inquiries:</strong> Band n50 (60 MHz TDD NCR vs. up to 80 MHz Provincial), 12.0 kW N+1 DC power plant sizing, Starlink LEO satellite latency relaxation (&le;60 ms), TowerCo MLA structural scope, and official <strong>Form A</strong> template.
+              </td>
+            </tr>
+            <tr>
+              <td class="rev-num" style="color: #60A5FA;">RFP 1.0</td>
+              <td class="rev-num">2026-10-14</td>
+              <td><strong>Docs 01 – 07</strong><br><span style="color: #94A3B8; font-size: 11px;">Turnkey RFP Package</span></td>
+              <td>
+                <strong>Official Release of RFP-TELTECH-FWA-2026-001:</strong> Master RFP, Appendix A (80-item Technical Matrix), Appendix B &amp; Price Book BoQ (Lots 1–7 &amp; Form D), Appendix C (SLAs), Appendix D (RF/Civil Guidelines), and Candidate Site Schedule.
+              </td>
+            </tr>
+            <tr>
+              <td class="rev-num" style="color: #38BDF8;">Rev 2.0</td>
+              <td class="rev-num">2026-09-28</td>
+              <td><strong>35-Col Audited Suite</strong><br><span style="color: #94A3B8; font-size: 11px;">Models 1, 2 &amp; 3</span></td>
+              <td>
+                <strong>Codex Independent Optical Backbone &amp; TowerCo Audit:</strong> Integrated 1,296 screened Converge optical nodes, 250,616 fiber route segments (Classes A–F), and 13,746 operational cell towers (Classes T1–T4).
+              </td>
+            </tr>
+            <tr>
+              <td class="rev-num" style="color: #94A3B8;">Rev 1.0</td>
+              <td class="rev-num">2026-09-25</td>
+              <td><strong>25-Col Siting Baseline</strong><br><span style="color: #94A3B8; font-size: 11px;">POPCEN 2024 Suite</span></td>
+              <td>
+                <strong>Initial Nationwide 5,000-Site Selection:</strong> 5,000 target barangays across 5 deployment batches sized using official 2024 PSA Census (Proclamation No. 973) and 2023 FIES purchasing power.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
   </div>
 
   <!-- Model Visibility & Filtering Toolbar -->
@@ -1653,6 +1902,36 @@
   Telecommunications Technology Solutions Inc. (TelTech) & TelTech Network and Technology Corp. · Strict Confidentiality
 </footer>
 
+<!-- LIVE PORTAL & SECRETARIAT CHAT WIDGET -->
+<button class="chat-launcher-btn" id="exec-chat-launcher" onclick="toggleExecPortalChat()" title="Open Live Portal & Secretariat Chat">
+  <span>💬 Portal Live Chat</span>
+</button>
+
+<div class="chat-panel" id="exec-chat-panel" role="dialog" aria-label="Portal Live Chat">
+  <div class="chat-header">
+    <div>
+      <div style="font-size: 13.5px; font-weight: 800; color: #FFFFFF; display: flex; align-items: center; gap: 6px;">
+        <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #10B981;"></span>
+        <span>TelTech Executive &amp; Secretariat Chat</span>
+      </div>
+      <div style="font-size: 11px; color: #94A3B8; margin-top: 2px;">Synchronized with RFP Bidder Portal Desk</div>
+    </div>
+    <button onclick="toggleExecPortalChat()" style="background: none; border: none; color: #94A3B8; font-size: 20px; cursor: pointer; line-height: 1; padding: 0 4px;">&times;</button>
+  </div>
+
+  <div class="chat-channel-bar">
+    <button class="chat-channel-btn active" id="exec-chat-tab-direct" onclick="switchExecChatChannel('direct')">🔒 Direct Secretariat Q&amp;A</button>
+    <button class="chat-channel-btn" id="exec-chat-tab-broadcast" onclick="switchExecChatChannel('BROADCAST')">📢 Official Broadcasts</button>
+  </div>
+
+  <div class="chat-messages-box" id="exec-chat-messages-box"></div>
+
+  <form class="chat-input-bar" onsubmit="sendExecChatMessage(event); return false;">
+    <input type="text" id="exec-chat-input" style="flex: 1; background: #0D1F38; border: 1px solid rgba(255,255,255,0.2); color: #FFFFFF; padding: 8px 10px; border-radius: 6px; font-size: 12.5px;" placeholder="Type message or broadcast..." maxlength="2000" required />
+    <button type="submit" style="background: #0077CC; color: #FFFFFF; border: none; border-radius: 6px; padding: 8px 14px; font-size: 12px; font-weight: 800; cursor: pointer;">Send ➔</button>
+  </form>
+</div>
+
 <script>
   const ALL_MODELS = ['demo', 'gida-deck', 'strategy', 'model1', 'model2', 'model3'];
   const STORAGE_KEY = 'fwa_portal_hidden_models';
@@ -1916,7 +2195,109 @@
     switchRevision(getActiveRevision());
     renderVisibility();
     detectActivePreset();
+    renderExecChatMessages();
   });
+
+  // Live Portal Chat (Shared storage with rfp_portal.html)
+  const EXEC_CHAT_KEY = 'fwa_portal_chat_messages_v1';
+  let execChatChannel = 'direct';
+
+  function getExecChatMessages() {
+    const seed = [{
+      id: 'seed-broadcast-1',
+      threadId: 'BROADCAST',
+      senderName: 'Oliver Tungol (Tender Secretariat)',
+      senderEmail: 'oliver.tungol@comclark.com.ph',
+      senderOrg: 'TelTech / Comclark Secretariat',
+      senderRole: 'admin',
+      message: '📢 Welcome to the TelTech 5G FWA Live Secretariat Desk. Bid Bulletin No. 1 (55 Official Clarifications) and Revision 2.2 of Document 07 (Validated DepEd School Coordinates across all 5,000 sites) are now live.',
+      createdAtMs: new Date('2026-10-22T08:30:00+08:00').getTime()
+    }];
+    try {
+      const raw = localStorage.getItem(EXEC_CHAT_KEY);
+      const parsed = raw ? JSON.parse(raw) : [];
+      const map = new Map();
+      seed.forEach(m => map.set(m.id, m));
+      parsed.forEach(m => map.set(m.id, m));
+      return Array.from(map.values()).sort((a, b) => (a.createdAtMs || 0) - (b.createdAtMs || 0));
+    } catch (e) {
+      return seed;
+    }
+  }
+
+  function toggleExecPortalChat() {
+    const panel = document.getElementById('exec-chat-panel');
+    if (!panel) return;
+    panel.classList.toggle('open');
+    if (panel.classList.contains('open')) {
+      renderExecChatMessages();
+      const inp = document.getElementById('exec-chat-input');
+      if (inp) inp.focus();
+    }
+  }
+
+  function switchExecChatChannel(ch) {
+    execChatChannel = ch;
+    document.getElementById('exec-chat-tab-direct').classList.toggle('active', ch === 'direct');
+    document.getElementById('exec-chat-tab-broadcast').classList.toggle('active', ch === 'BROADCAST');
+    renderExecChatMessages();
+  }
+
+  function renderExecChatMessages() {
+    const box = document.getElementById('exec-chat-messages-box');
+    if (!box) return;
+    const u = (window.FWAPortalAuth && window.FWAPortalAuth.getCurrentUser()) || { name: 'Executive User', username: 'executive', isAdmin: true };
+    const all = getExecChatMessages();
+    const visible = all.filter(m => execChatChannel === 'BROADCAST' ? m.threadId === 'BROADCAST' : true);
+
+    box.innerHTML = visible.map(m => {
+      const isBroadcast = m.threadId === 'BROADCAST';
+      const isMine = m.senderName === u.name || (m.senderEmail && u.email && m.senderEmail === u.email);
+      const cls = isBroadcast ? 'broadcast' : (isMine ? 'mine' : 'other');
+      const timeStr = new Date(m.createdAtMs || Date.now()).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+      const safeSender = String(m.senderName || 'User').replace(/</g, '&lt;');
+      const safeMsg = String(m.message || '').replace(/</g, '&lt;').replace(/\n/g, '<br>');
+      return `
+        <div class="chat-msg ${cls}">
+          <div style="display: flex; justify-content: space-between; gap: 8px; font-size: 10.5px; color: ${isBroadcast ? '#FDE047' : '#93C5FD'}; font-weight: 800; margin-bottom: 3px;">
+            <span>${isBroadcast ? '📢 BROADCAST · ' : ''}${safeSender}</span>
+            <span style="color: #94A3B8; font-weight: 500;">${timeStr}</span>
+          </div>
+          <div>${safeMsg}</div>
+        </div>
+      `;
+    }).join('');
+    box.scrollTop = box.scrollHeight;
+  }
+
+  function sendExecChatMessage(e) {
+    if (e) e.preventDefault();
+    const inp = document.getElementById('exec-chat-input');
+    if (!inp || !inp.value.trim()) return;
+    const u = (window.FWAPortalAuth && window.FWAPortalAuth.getCurrentUser()) || {
+      name: 'Oliver Tungol',
+      username: 'oliver.tungol',
+      email: 'oliver.tungol@comclark.com.ph',
+      organization: 'TelTech / Comclark',
+      isAdmin: true
+    };
+    const list = getExecChatMessages();
+    list.push({
+      id: 'msg-' + Date.now(),
+      threadId: execChatChannel === 'BROADCAST' ? 'BROADCAST' : (u.username || 'direct'),
+      senderName: u.name || u.username,
+      senderEmail: u.email || '',
+      senderOrg: u.organization || '',
+      senderRole: u.isAdmin ? 'admin' : 'bidder',
+      message: inp.value.trim(),
+      createdAtMs: Date.now()
+    });
+    try {
+      localStorage.setItem(EXEC_CHAT_KEY, JSON.stringify(list));
+    } catch (err) {}
+    inp.value = '';
+    renderExecChatMessages();
+  }
 
   function filterCatalog(category) {
     document.querySelectorAll('.catalog-filter-btn').forEach(btn => {

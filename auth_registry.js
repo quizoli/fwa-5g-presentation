@@ -225,6 +225,51 @@
     return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
   }
 
+  // Helper: Get local password hash overrides (from self-service verified password reset)
+  function getPasswordOverrides() {
+    try {
+      const raw = localStorage.getItem("fwa_portal_pw_overrides");
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  // Find user by username or corporate email
+  function findUser(usernameOrEmail) {
+    if (!usernameOrEmail) return null;
+    const query = usernameOrEmail.trim().toLowerCase();
+    return USER_REGISTRY.find(u =>
+      u.username.toLowerCase() === query || u.email.toLowerCase() === query
+    ) || null;
+  }
+
+  // Verified Password Reset for Registry Users
+  async function resetUserPassword(usernameOrEmail, confirmCorporateEmail, newPassword) {
+    const user = findUser(usernameOrEmail);
+    if (!user) {
+      return { success: false, message: "No registered account found for that username or email." };
+    }
+    if (confirmCorporateEmail && user.email.toLowerCase() !== confirmCorporateEmail.trim().toLowerCase()) {
+      return { success: false, message: "Corporate email verification does not match the registered account." };
+    }
+    if (!newPassword || newPassword.trim().length < 6) {
+      return { success: false, message: "New password must be at least 6 characters." };
+    }
+    const newHash = await computeSHA256(newPassword.trim());
+    try {
+      const overrides = getPasswordOverrides();
+      overrides[user.username.toLowerCase()] = newHash;
+      localStorage.setItem("fwa_portal_pw_overrides", JSON.stringify(overrides));
+    } catch (e) {}
+    return {
+      success: true,
+      user,
+      newPasswordHash: newHash,
+      message: "Password reset verified and activated."
+    };
+  }
+
   // Validate Credentials against Registry
   async function authenticateUser(usernameOrEmail, password) {
     if (!usernameOrEmail || !password) return { success: false, message: "Missing credentials" };
@@ -244,7 +289,10 @@
       return { success: false, message: "Access suspended. Please contact oliver.tungol@comclark.com.ph." };
     }
 
-    if (user.passwordHash !== pwHash) {
+    const overrides = getPasswordOverrides();
+    const activeHash = overrides[user.username.toLowerCase()] || user.passwordHash;
+
+    if (activeHash !== pwHash && user.passwordHash !== pwHash) {
       return { success: false, message: "Invalid security passcode or password." };
     }
 
@@ -270,6 +318,11 @@
     } catch (e) {
       return null;
     }
+  }
+
+  function isAdmin() {
+    const u = getCurrentUser();
+    return !!(u && u.isAdmin);
   }
 
   // Sign In & Store Session
@@ -298,8 +351,11 @@
     ADMIN_EMAIL,
     USER_REGISTRY,
     computeSHA256,
+    findUser,
+    resetUserPassword,
     authenticateUser,
     getCurrentUser,
+    isAdmin,
     saveSession,
     terminateSession
   };

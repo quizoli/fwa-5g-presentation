@@ -29,7 +29,7 @@ rules_version = '2';
  *      - name: string (required, 1-100 chars) - User's full name
  *      - organization: string (required, 1-150 chars) - Organization name
  *      - role: string (required, 1-50 chars) - Role ('admin', 'bidder', 'executive', etc.)
- *      - status: string (required, strictly 'active' | 'suspended') - Account authorization state
+ *      - status: string (required, strictly 'active' | 'suspended' | 'approved') - Account authorization state
  *      - createdAt: timestamp (required, immutable) - Record creation timestamp
  *
  * 3. Collection: /bidders/{bidderUid}/drafts/{draftId}
@@ -56,11 +56,48 @@ rules_version = '2';
  *      - commercialPricing: map (required) - Commercial pricing & BoQ (sealed until Dec 16, 2026)
  *      - vendorFinancing: map (optional) - Vendor financing structure & terms
  *
- * 5. Collection: /audit_logs/{logId}
+ * 5. Collection: /inquiries/{inquiryId}
+ *    Document ID: {inquiryId} (Unique clarification inquiry ID)
+ *    Fields:
+ *      - uid: string (optional, <= 128 chars) - Submitting bidder UID
+ *      - senderName: string (optional, <= 150 chars) - Sender name
+ *      - senderEmail: string (optional, <= 150 chars) - Sender corporate email
+ *      - organization: string (optional, <= 150 chars) - Bidder organization
+ *      - category: string (optional, <= 100 chars) - Inquiry topic/category
+ *      - question: string (required, 1-4000 chars) - Bidder clarification question
+ *      - response: string (optional, <= 8000 chars) - Official Secretariat response
+ *      - status: string (optional, <= 50 chars) - Inquiry status ('OPEN', 'ANSWERED', 'PUBLISHED')
+ *      - createdAt: timestamp or string (required) - Submission timestamp
+ *
+ * 6. Collection: /chat_messages/{messageId}
+ *    Document ID: {messageId} (Unique chat message ID)
+ *    Fields:
+ *      - threadId: string (required, 1-200 chars) - Bidder UID, email, or 'BROADCAST'
+ *      - senderName: string (required, 1-200 chars) - Display name of sender
+ *      - senderRole: string (required, 1-100 chars) - Role of sender ('admin', 'bidder', etc.)
+ *      - message: string (required, 1-4000 chars) - Chat message body
+ *      - createdAt: timestamp or string (required) - Message creation timestamp
+ *      - senderUid: string (optional, <= 128 chars) - Sender Firebase Auth UID
+ *      - senderEmail: string (optional, <= 200 chars) - Sender email address
+ *      - recipientEmail: string (optional, <= 200 chars) - Target recipient email address
+ *      - organization: string (optional, <= 200 chars) - Sender organization name
+ *      - portal: string (optional, <= 100 chars) - Originating portal ('rfp_portal', 'portal')
+ *
+ * 7. Collection: /password_reset_requests/{requestId}
+ *    Document ID: {requestId} (Unique password recovery request ID)
+ *    Fields:
+ *      - identifier: string (required, 1-200 chars) - Username or corporate email submitted
+ *      - email: string (required, 0-200 chars) - Contact/recovery email address
+ *      - requestedAt: timestamp or string (required) - Request timestamp
+ *      - status: string (required, 'PENDING' on create) - Recovery workflow status
+ *      - portal: string (optional, <= 100 chars) - Originating login page ('rfp_login', 'login')
+ *      - notes: string (optional, <= 1000 chars) - Optional recovery context
+ *
+ * 8. Collection: /audit_logs/{logId}
  *    Document ID: {logId} (Unique log entry ID)
  *    Fields:
  *      - logId: string (optional, <= 100 chars) - Audit entry identifier
- *      - uid: string (required, matches auth UID) - Actor UID
+ *      - uid: string (optional, matches auth UID) - Actor UID
  *      - action: string (required, 1-100 chars) - System action executed
  *      - timestamp: timestamp (required) - Event log timestamp
  *      - details: map or string (optional) - Audit metadata
@@ -95,7 +132,11 @@ service cloud.firestore {
     // Check administrator clearance via verified bootstrap email or custom token claims
     function isAdmin() {
       return isAuthenticated() && (
-        (request.auth.token.email != null && request.auth.token.email in ['oliver.tungol@comclark.com.ph', 'executive@comclark.com.ph']) ||
+        (request.auth.token.email != null && request.auth.token.email in [
+          'oliver.tungol@comclark.com.ph',
+          'executive@comclark.com.ph',
+          'admin@comclark.com.ph'
+        ]) ||
         request.auth.token.get('role', '') == 'admin' ||
         request.auth.token.get('isAdmin', false) == true
       );
@@ -104,10 +145,16 @@ service cloud.firestore {
     // Check if user is in active status (verified against auth claims or /users/{uid} document)
     function isActiveUser() {
       return isAuthenticated() && (
-        request.auth.token.get('status', 'active') == 'active' &&
-        (!exists(/databases/$(database)/documents/users/$(request.auth.uid)) ||
-         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.get('status', 'active') == 'active')
+        isAdmin() ||
+        (request.auth.token.get('status', 'active') in ['active', 'approved', 'ACTIVE', 'APPROVED'] &&
+         (!exists(/databases/$(database)/documents/users/$(request.auth.uid)) ||
+          get(/databases/$(database)/documents/users/$(request.auth.uid)).data.get('status', 'active') in ['active', 'approved', 'ACTIVE', 'APPROVED']))
       );
+    }
+
+    // Alias for approved/active portal users (used by live chat & inquiry rules)
+    function isApprovedUser() {
+      return isActiveUser();
     }
 
     // RFC 5322 compliant email format validation
@@ -145,6 +192,11 @@ service cloud.firestore {
       return request.time >= timestamp.date(2026, 12, 16);
     }
 
+    // Validate optional string field length
+    function isValidOptionalString(data, field, maxLen) {
+      return !(field in data) || data[field] == null || (data[field] is string && data[field].size() <= maxLen);
+    }
+
     // ===============================================================
     // Domain Validators
     // ===============================================================
@@ -173,14 +225,15 @@ service cloud.firestore {
     // Validate user profile structure
     function isValidUser(data) {
       return data.keys().hasAll(['uid', 'email', 'name', 'organization', 'role', 'status', 'createdAt']) &&
-        data.keys().hasOnly(['uid', 'email', 'name', 'organization', 'role', 'status', 'createdAt']) &&
+        data.keys().hasOnly(['uid', 'email', 'name', 'organization', 'role', 'status', 'createdAt', 'username', 'updatedAt']) &&
         data.uid is string && data.uid.size() >= 1 && data.uid.size() <= 128 &&
         isValidEmail(data.email) &&
         data.name is string && data.name.size() >= 1 && data.name.size() <= 100 &&
         data.organization is string && data.organization.size() >= 1 && data.organization.size() <= 150 &&
         data.role is string && data.role.size() >= 1 && data.role.size() <= 50 &&
-        data.status in ['active', 'suspended'] &&
-        data.createdAt is timestamp;
+        data.status in ['active', 'suspended', 'approved', 'ACTIVE', 'APPROVED'] &&
+        (data.createdAt is timestamp || (data.createdAt is string && data.createdAt.size() <= 100)) &&
+        isValidOptionalString(data, 'username', 100);
     }
 
     // Validate bidder draft structure and prevent unbounded memory injection
@@ -218,16 +271,78 @@ service cloud.firestore {
         (!('vendorFinancing' in data) || data.vendorFinancing is map);
     }
 
+    // Validate bidder clarification inquiry documents
+    function isValidInquiry(data) {
+      return data.keys().hasAll(['question', 'createdAt']) &&
+        data.question is string && data.question.size() >= 1 && data.question.size() <= 4000 &&
+        (data.createdAt is timestamp || (data.createdAt is string && data.createdAt.size() <= 100)) &&
+        isValidOptionalString(data, 'uid', 128) &&
+        isValidOptionalString(data, 'senderName', 150) &&
+        isValidOptionalString(data, 'senderEmail', 150) &&
+        isValidOptionalString(data, 'organization', 150) &&
+        isValidOptionalString(data, 'category', 100) &&
+        isValidOptionalString(data, 'response', 8000) &&
+        isValidOptionalString(data, 'status', 50);
+    }
+
+    // Validate Live Tender Secretariat & Bidder Support Chat messages
+    function isValidChatMessage(data) {
+      return data.keys().hasAll(['threadId', 'senderName', 'senderRole', 'message', 'createdAt']) &&
+        data.threadId is string && data.threadId.size() > 0 && data.threadId.size() <= 200 &&
+        data.senderName is string && data.senderName.size() > 0 && data.senderName.size() <= 200 &&
+        data.senderRole is string && data.senderRole.size() > 0 && data.senderRole.size() <= 100 &&
+        data.message is string && data.message.size() > 0 && data.message.size() <= 4000 &&
+        (data.createdAt is timestamp || (data.createdAt is string && data.createdAt.size() <= 100)) &&
+        isValidOptionalString(data, 'senderUid', 128) &&
+        isValidOptionalString(data, 'uid', 128) &&
+        isValidOptionalString(data, 'senderEmail', 200) &&
+        isValidOptionalString(data, 'recipientEmail', 200) &&
+        isValidOptionalString(data, 'recipientName', 200) &&
+        isValidOptionalString(data, 'organization', 200) &&
+        isValidOptionalString(data, 'senderOrg', 200) &&
+        isValidOptionalString(data, 'threadName', 200) &&
+        isValidOptionalString(data, 'portal', 100) &&
+        isValidOptionalString(data, 'status', 50);
+    }
+
+    // Validate password reset / recovery request creation
+    function isValidPasswordResetRequestCreate(data) {
+      return data.keys().hasAll(['identifier', 'email', 'requestedAt', 'status']) &&
+        data.identifier is string && data.identifier.size() > 0 && data.identifier.size() <= 200 &&
+        data.email is string && data.email.size() <= 200 &&
+        data.status == 'PENDING' &&
+        (data.requestedAt is timestamp || (data.requestedAt is string && data.requestedAt.size() <= 100)) &&
+        isValidOptionalString(data, 'username', 100) &&
+        isValidOptionalString(data, 'name', 150) &&
+        isValidOptionalString(data, 'organization', 150) &&
+        isValidOptionalString(data, 'portal', 100) &&
+        isValidOptionalString(data, 'notes', 1000);
+    }
+
+    // Validate password reset / recovery request update by administrator
+    function isValidPasswordResetRequestUpdate(data) {
+      return data.keys().hasAll(['identifier', 'email', 'requestedAt', 'status']) &&
+        data.identifier is string && data.identifier.size() > 0 && data.identifier.size() <= 200 &&
+        data.email is string && data.email.size() <= 200 &&
+        data.status in ['PENDING', 'RESOLVED', 'COMPLETED', 'REJECTED', 'APPROVED', 'pending', 'resolved', 'rejected'] &&
+        (data.requestedAt is timestamp || (data.requestedAt is string && data.requestedAt.size() <= 100)) &&
+        isValidOptionalString(data, 'resolvedBy', 200) &&
+        isValidOptionalString(data, 'notes', 1000);
+    }
+
     // Validate append-only audit log entries
     function isValidAuditLog(data) {
-      return data.keys().hasAll(['uid', 'action', 'timestamp']) &&
-        data.keys().hasOnly(['logId', 'uid', 'action', 'timestamp', 'details', 'ip']) &&
-        data.uid is string && data.uid == request.auth.uid &&
+      return data.keys().hasAll(['action', 'timestamp']) &&
         data.action is string && data.action.size() >= 1 && data.action.size() <= 100 &&
-        data.timestamp is timestamp &&
-        (!('logId' in data) || (data.logId is string && data.logId.size() <= 100)) &&
+        (data.timestamp is timestamp || (data.timestamp is string && data.timestamp.size() <= 100)) &&
+        (!('uid' in data) || (data.uid is string && data.uid == request.auth.uid)) &&
+        isValidOptionalString(data, 'logId', 100) &&
+        isValidOptionalString(data, 'submissionId', 100) &&
+        isValidOptionalString(data, 'companyName', 200) &&
+        isValidOptionalString(data, 'deletedByUid', 128) &&
+        isValidOptionalString(data, 'deletedByEmail', 200) &&
         (!('details' in data) || data.details is map || (data.details is string && data.details.size() <= 5000)) &&
-        (!('ip' in data) || (data.ip is string && data.ip.size() <= 45));
+        isValidOptionalString(data, 'ip', 45);
     }
 
     // ===============================================================
@@ -274,7 +389,7 @@ service cloud.firestore {
     /**
      * 4. Sealed Proposals & Submissions
      * Cryptographically sealed bids submitted before the strict deadline (Dec 2, 2026, 17:00).
-     * Submissions are 100% immutable once submitted (no update, no delete).
+     * Submissions are 100% immutable once submitted (no update, no delete by bidders).
      * Bidder can read their own submission.
      * Administrator / Lead Architect has full real-time evaluation read clearance.
      */
@@ -307,7 +422,58 @@ service cloud.firestore {
     }
 
     /**
-     * 5. Append-Only Audit Trail
+     * 5. Bidder Clarification Inquiries
+     * Approved portal users can read and submit technical/commercial inquiries;
+     * Administrators manage responses and publication status.
+     */
+    match /inquiries/{inquiryId} {
+      allow read: if isApprovedUser();
+      allow create: if isApprovedUser() && isValidInquiry(request.resource.data);
+      allow update: if isAdmin() && isValidInquiry(request.resource.data);
+      allow delete: if isAdmin();
+    }
+
+    /**
+     * 6. Live Tender Secretariat & Bidder Support Chat
+     * Used in rfp_portal.html and portal.html for private bidder-to-secretariat threads and official broadcasts.
+     */
+    match /chat_messages/{messageId} {
+      allow read: if isApprovedUser() && (
+        isAdmin() ||
+        resource.data.get('threadId', '') == request.auth.uid ||
+        resource.data.get('threadId', '') == 'BROADCAST' ||
+        (request.auth.token.email != null && (
+          resource.data.get('threadId', '') == request.auth.token.email ||
+          resource.data.get('senderEmail', '') == request.auth.token.email ||
+          resource.data.get('recipientEmail', '') == request.auth.token.email
+        ))
+      );
+
+      allow create: if isApprovedUser() &&
+        isValidChatMessage(request.resource.data) &&
+        (
+          isAdmin() ||
+          request.resource.data.threadId == request.auth.uid ||
+          (request.auth.token.email != null && request.resource.data.threadId == request.auth.token.email)
+        );
+
+      allow update: if isAdmin() && isValidChatMessage(request.resource.data);
+      allow delete: if isAdmin();
+    }
+
+    /**
+     * 7. Password Reset & Account Recovery Requests
+     * Submitted from rfp_login.html or login.html (while unauthenticated or authenticated).
+     * Only administrators can read, update, or delete recovery requests.
+     */
+    match /password_reset_requests/{requestId} {
+      allow create: if isValidPasswordResetRequestCreate(request.resource.data);
+      allow read, delete: if isAdmin();
+      allow update: if isAdmin() && isValidPasswordResetRequestUpdate(request.resource.data);
+    }
+
+    /**
+     * 8. Append-Only Audit Trail
      * Tamper-proof activity log.
      * Authenticated actors can append log entries; only administrators can read.
      * Logs are strictly append-only (no update, no delete).

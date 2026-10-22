@@ -343,6 +343,7 @@
     <div class="auth-tabs">
       <button class="tab-btn active" id="tabSignInBtn" onclick="switchAuthTab('signin')">🔑 Bidder Sign In</button>
       <button class="tab-btn" id="tabRequestBtn" onclick="switchAuthTab('request')">📝 Request Clearance</button>
+      <button class="tab-btn" id="tabForgotBtn" onclick="switchAuthTab('forgot')">🔄 Forgot Password</button>
     </div>
 
     <!-- Alerts -->
@@ -382,6 +383,7 @@
             <input type="checkbox" id="rememberMe" checked>
             <span>Stay signed in on this workstation</span>
           </label>
+          <a href="javascript:void(0)" onclick="switchAuthTab('forgot')" style="color: var(--teal); text-decoration: none; font-size: 12px; font-weight: 700;">Forgot Password?</a>
         </div>
 
         <button type="submit" class="btn-submit" id="btnSignInSubmit">
@@ -451,6 +453,59 @@
         </button>
       </form>
     </div>
+
+    <!-- TAB 3: FORGOT PASSWORD / RECOVERY -->
+    <div class="tab-pane" id="tabForgot">
+      <form id="forgotForm" onsubmit="handleForgotPassword(event); return false;">
+        <div style="background: rgba(0, 180, 216, 0.08); border: 1px solid rgba(0, 180, 216, 0.25); border-radius: 8px; padding: 12px 14px; font-size: 12px; color: #CBD5E1; margin-bottom: 16px; line-height: 1.5;">
+          <strong style="color: var(--teal);">🔐 Password Recovery &amp; Self-Service Reset:</strong><br>
+          Enter your username or corporate email to dispatch a Firebase password reset link, or verify your registered corporate email below to set a new passcode immediately.
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="forgotIdentity">Username or Corporate Email</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </span>
+            <input type="text" id="forgotIdentity" class="form-control" placeholder="e.g. bidder.nokia or email@vendor.com" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="forgotVerifyEmail">Verify Registered Corporate Email</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </span>
+            <input type="email" id="forgotVerifyEmail" class="form-control" placeholder="Confirm your registered corporate email" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="forgotNewPassword">
+            <span>New Security Passcode</span>
+            <span style="font-size: 10px; color: #94A3B8; font-weight: 500;">(Optional for Email Link Only)</span>
+          </label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            </span>
+            <input type="password" id="forgotNewPassword" class="form-control" placeholder="Enter new passcode (min. 6 chars)" minlength="6">
+            <button type="button" class="toggle-pwd" onclick="togglePasswordVisibility('forgotNewPassword', this)">👁️</button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="btnForgotSubmit" style="background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);">
+          <div class="spinner" id="spinnerForgot"></div>
+          <span id="textForgot">Send Reset Link / Update Passcode ➔</span>
+        </button>
+
+        <div style="text-align: center; margin-top: 14px;">
+          <a href="javascript:void(0)" onclick="switchAuthTab('signin')" style="color: #94A3B8; font-size: 12px; text-decoration: none;">← Back to Bidder Sign In</a>
+        </div>
+      </form>
+    </div>
   </div>
 
   <footer>
@@ -464,18 +519,125 @@
   // Tab Switching
   function switchAuthTab(tab) {
     hideAlerts();
-    if (tab === 'signin') {
-      document.getElementById('tabSignInBtn').classList.add('active');
-      document.getElementById('tabRequestBtn').classList.remove('active');
-      document.getElementById('tabSignIn').classList.add('active');
-      document.getElementById('tabRequest').classList.remove('active');
-      document.getElementById('loginIdentity').focus();
-    } else {
-      document.getElementById('tabRequestBtn').classList.add('active');
-      document.getElementById('tabSignInBtn').classList.remove('active');
-      document.getElementById('tabRequest').classList.add('active');
-      document.getElementById('tabSignIn').classList.remove('active');
-      document.getElementById('reqName').focus();
+    const tabs = {
+      signin: { btn: 'tabSignInBtn', pane: 'tabSignIn', focus: 'loginIdentity' },
+      request: { btn: 'tabRequestBtn', pane: 'tabRequest', focus: 'reqName' },
+      forgot: { btn: 'tabForgotBtn', pane: 'tabForgot', focus: 'forgotIdentity' }
+    };
+    Object.keys(tabs).forEach(k => {
+      const b = document.getElementById(tabs[k].btn);
+      const p = document.getElementById(tabs[k].pane);
+      if (b) b.classList.toggle('active', k === tab);
+      if (p) p.classList.toggle('active', k === tab);
+    });
+    if (tabs[tab] && document.getElementById(tabs[tab].focus)) {
+      document.getElementById(tabs[tab].focus).focus();
+    }
+  }
+
+  // Handle Forgot Password & Self-Service Recovery
+  async function handleForgotPassword(e) {
+    if (e) e.preventDefault();
+    hideAlerts();
+
+    const identity = document.getElementById('forgotIdentity').value.trim();
+    const verifyEmail = document.getElementById('forgotVerifyEmail').value.trim().toLowerCase();
+    const newPass = document.getElementById('forgotNewPassword').value.trim();
+
+    const btn = document.getElementById('btnForgotSubmit');
+    const spinner = document.getElementById('spinnerForgot');
+    const text = document.getElementById('textForgot');
+
+    btn.disabled = true;
+    spinner.style.display = 'inline-block';
+    text.textContent = 'Processing Password Recovery...';
+
+    try {
+      await new Promise(r => setTimeout(r, 300));
+      const matchedUser = window.FWAPortalAuth?.findUser ? window.FWAPortalAuth.findUser(identity) : null;
+      const resolvedEmail = matchedUser ? matchedUser.email : (identity.includes('@') ? identity : verifyEmail);
+
+      let firebaseEmailSent = false;
+      if (typeof firebase !== 'undefined' && firebase.auth && resolvedEmail && resolvedEmail.includes('@')) {
+        try {
+          await firebase.auth().sendPasswordResetEmail(resolvedEmail);
+          firebaseEmailSent = true;
+        } catch (fbErr) {
+          console.warn("Firebase password reset email note:", fbErr.code, fbErr.message);
+        }
+      }
+
+      let localResetDone = false;
+      let newHash = '';
+      if (newPass) {
+        if (window.FWAPortalAuth?.resetUserPassword) {
+          const res = await window.FWAPortalAuth.resetUserPassword(identity, verifyEmail, newPass);
+          if (res.success) {
+            localResetDone = true;
+            newHash = res.newPasswordHash;
+          } else if (!firebaseEmailSent) {
+            throw new Error(res.message);
+          }
+        }
+      }
+
+      // Log password reset request to Firestore if available
+      if (typeof firebase !== 'undefined' && firebase.firestore) {
+        try {
+          await firebase.firestore().collection('password_reset_requests').add({
+            identifier: identity,
+            email: verifyEmail || resolvedEmail,
+            newPasswordHash: newHash || null,
+            requestedAt: firebase.firestore.FieldValue.serverTimestamp(),
+            status: 'PENDING'
+          });
+        } catch (fsErr) {
+          console.warn("Firestore reset log note:", fsErr);
+        }
+      }
+
+      // Notify Admin via FormSubmit
+      try {
+        fetch("https://formsubmit.co/ajax/oliver.tungol@comclark.com.ph", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({
+            _subject: `[FWA PORTAL PASSWORD RESET] ${identity} (${verifyEmail})`,
+            Account_Identifier: identity,
+            Verified_Corporate_Email: verifyEmail,
+            New_SHA256_Hash: newHash || "Email reset link requested",
+            Timestamp: new Date().toISOString()
+          })
+        }).catch(() => {});
+      } catch (e) {}
+
+      btn.disabled = false;
+      spinner.style.display = 'none';
+      text.textContent = 'Send Reset Link / Update Passcode ➔';
+
+      let msg = '';
+      if (localResetDone && firebaseEmailSent) {
+        msg = `✓ Password reset email sent to ${resolvedEmail} AND your new passcode is now active! You may sign in immediately.`;
+      } else if (localResetDone) {
+        msg = `✓ Verified! Your new passcode for "${matchedUser.username}" has been activated. You may now sign in on the Bidder Sign In tab.`;
+      } else if (firebaseEmailSent) {
+        msg = `✓ Password reset link dispatched to ${resolvedEmail}. Please check your corporate inbox (and spam folder).`;
+      } else {
+        msg = `✓ Password recovery request logged for ${verifyEmail}. The Tender Secretariat (oliver.tungol@comclark.com.ph) has been notified.`;
+      }
+
+      document.getElementById('successMessage').textContent = msg;
+      document.getElementById('successBox').classList.add('show');
+      if (localResetDone) {
+        document.getElementById('loginIdentity').value = matchedUser ? matchedUser.username : identity;
+        document.getElementById('loginPassword').value = '';
+      }
+    } catch (err) {
+      btn.disabled = false;
+      spinner.style.display = 'none';
+      text.textContent = 'Send Reset Link / Update Passcode ➔';
+      document.getElementById('errorMessage').textContent = err.message || 'Unable to process password reset.';
+      document.getElementById('errorBox').classList.add('show');
     }
   }
 

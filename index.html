@@ -322,6 +322,7 @@
     <div class="auth-tabs">
       <button class="tab-btn active" id="tabSignInBtn" onclick="switchAuthTab('signin')">🔑 Sign In</button>
       <button class="tab-btn" id="tabRequestBtn" onclick="switchAuthTab('request')">📝 Request Access</button>
+      <button class="tab-btn" id="tabForgotBtn" onclick="switchAuthTab('forgot')">🔄 Forgot Password</button>
     </div>
 
     <!-- Alerts -->
@@ -359,7 +360,7 @@
             <input type="checkbox" id="rememberMe" checked style="accent-color: var(--teal);" />
             <span>Remember session</span>
           </label>
-          <span style="color: var(--teal); font-weight: 600;">Band n50 Secure</span>
+          <a href="javascript:void(0)" onclick="switchAuthTab('forgot')" style="color: var(--teal); font-weight: 700; text-decoration: none;">Forgot Password?</a>
         </div>
 
         <button type="submit" class="btn-submit" id="btnSignInSubmit">
@@ -423,6 +424,52 @@
       </div>
     </div>
 
+    <!-- TAB 3: FORGOT PASSWORD / RECOVERY -->
+    <div class="tab-pane" id="tabForgot">
+      <form onsubmit="handleForgotPassword(event)">
+        <div class="credentials-hint" style="margin-top: 0; margin-bottom: 16px; border-color: rgba(0, 180, 216, 0.35);">
+          <strong style="color: var(--teal);">🔐 Password Recovery &amp; Self-Service Reset:</strong><br/>
+          Verify your registered username and corporate email below to activate a new security passcode or notify the Administrator.
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="forgotIdentity">Username or Corporate Email</label>
+          <div class="input-wrapper">
+            <span class="input-icon">👤</span>
+            <input type="text" id="forgotIdentity" class="form-control" placeholder="e.g. oliver.tungol or bidder.nokia" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="forgotVerifyEmail">Verify Registered Corporate Email</label>
+          <div class="input-wrapper">
+            <span class="input-icon">✉️</span>
+            <input type="email" id="forgotVerifyEmail" class="form-control" placeholder="Confirm registered corporate email" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="forgotNewPassword">New Security Passcode / Password</label>
+          <div class="input-wrapper">
+            <span class="input-icon">🔑</span>
+            <input type="password" id="forgotNewPassword" class="form-control" placeholder="Enter new passcode (min. 6 chars)" minlength="6" required />
+            <button type="button" class="btn-toggle-pw" onclick="togglePasswordVisibility('forgotNewPassword', 'eyeIcon3')">
+              <span id="eyeIcon3">👁️</span>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="btnForgotSubmit" style="background: linear-gradient(135deg, #F59E0B, #D97706);">
+          <span class="spinner" id="spinnerForgot"></span>
+          <span id="textForgot">Verify &amp; Reset Password ➔</span>
+        </button>
+
+        <div style="text-align: center; margin-top: 14px;">
+          <a href="javascript:void(0)" onclick="switchAuthTab('signin')" style="color: var(--text-muted); font-size: 12px; text-decoration: none;">← Back to Sign In</a>
+        </div>
+      </form>
+    </div>
+
   </div>
 </div>
 
@@ -458,12 +505,75 @@
   window.switchTab = switchAuthTab;
 
   function switchAuthTab(tab) {
-    const isSignIn = tab === 'signin';
-    document.getElementById('tabSignInBtn').classList.toggle('active', isSignIn);
-    document.getElementById('tabRequestBtn').classList.toggle('active', !isSignIn);
-    document.getElementById('tabSignIn').classList.toggle('active', isSignIn);
-    document.getElementById('tabRequest').classList.toggle('active', !isSignIn);
+    const tabs = ['signin', 'request', 'forgot'];
+    const map = {
+      signin: { btn: 'tabSignInBtn', pane: 'tabSignIn' },
+      request: { btn: 'tabRequestBtn', pane: 'tabRequest' },
+      forgot: { btn: 'tabForgotBtn', pane: 'tabForgot' }
+    };
+    tabs.forEach(t => {
+      const b = document.getElementById(map[t].btn);
+      const p = document.getElementById(map[t].pane);
+      if (b) b.classList.toggle('active', t === tab);
+      if (p) p.classList.toggle('active', t === tab);
+    });
     hideAlerts();
+  }
+
+  async function handleForgotPassword(e) {
+    e.preventDefault();
+    hideAlerts();
+
+    const identity = document.getElementById('forgotIdentity').value.trim();
+    const verifyEmail = document.getElementById('forgotVerifyEmail').value.trim().toLowerCase();
+    const newPass = document.getElementById('forgotNewPassword').value.trim();
+
+    const btn = document.getElementById('btnForgotSubmit');
+    const spinner = document.getElementById('spinnerForgot');
+    const text = document.getElementById('textForgot');
+
+    btn.disabled = true;
+    spinner.style.display = 'inline-block';
+    text.textContent = 'Verifying Account...';
+
+    await new Promise(r => setTimeout(r, 300));
+
+    try {
+      const res = await window.FWAPortalAuth.resetUserPassword(identity, verifyEmail, newPass);
+      if (!res.success) {
+        throw new Error(res.message);
+      }
+
+      // Notify Administrator via FormSubmit
+      try {
+        fetch("https://formsubmit.co/ajax/oliver.tungol@comclark.com.ph", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({
+            _subject: `[FWA PORTAL PASSWORD RESET] ${res.user.username} (${verifyEmail})`,
+            Username: res.user.username,
+            Email: verifyEmail,
+            New_SHA256_Hash: res.newPasswordHash,
+            Timestamp: new Date().toISOString()
+          })
+        }).catch(() => {});
+      } catch (err) {}
+
+      btn.disabled = false;
+      spinner.style.display = 'none';
+      text.textContent = 'Verify & Reset Password ➔';
+
+      document.getElementById('successMessage').textContent = `✓ Verified! New password activated for "${res.user.username}". You may now sign in.`;
+      document.getElementById('successBox').classList.add('show');
+      document.getElementById('loginIdentity').value = res.user.username;
+      document.getElementById('loginPassword').value = '';
+    } catch (err) {
+      btn.disabled = false;
+      spinner.style.display = 'none';
+      text.textContent = 'Verify & Reset Password ➔';
+      document.getElementById('errorMessage').textContent = err.message || 'Password reset failed.';
+      document.getElementById('errorBox').classList.add('show');
+    }
   }
 
   function hideAlerts() {
