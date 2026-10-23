@@ -9,7 +9,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <script src="firebase_config.js"></script>
 <script src="auth_registry.js"></script>
-<script src="rfp_tender_data.js?v=20261021_bulletin_v3"></script>
+<script src="rfp_tender_data.js?v=20261024_rev2.3"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script>
   // Immediate Confidentiality & Authentication Guard
@@ -1134,10 +1134,15 @@
   <section id="tab-siting" class="tab-pane">
     <div class="portal-card">
       <div class="card-header">
-        <div class="card-title">🗺️ Candidate Site List & Siting Schedule (Document 07)</div>
-        <a href="RFP_Tender_Package/07_RFP_5G_FWA_Candidate_Site_List_and_Rollout_Schedule.xlsx?v=20261022_rev2.2" download class="btn btn-outline">
-          📊 Download Complete Site List (.xlsx)
-        </a>
+        <div class="card-title">🗺️ Candidate Site List &amp; Siting Schedule (Document 07)</div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <a href="RFP_Tender_Package/07_RFP_5G_FWA_Candidate_Site_List_and_Rollout_Schedule.xlsx?v=20261022_rev2.2" download class="btn btn-outline">
+            📊 Download Site List (.xlsx)
+          </a>
+          <button type="button" class="btn btn-secondary" onclick="alert('CONFIDENTIAL NOTICE: The Master TowerCo Co-Location Asset Inventory contains proprietary commercial infrastructure data and is restricted under Non-Disclosure Agreement (NDA). Accredited bidders may request access via the RFP Secretariat (rfp-5g@teltech.ph).')" style="background: rgba(255, 183, 3, 0.15); border: 1px solid var(--gold); color: var(--gold); font-weight: 700;">
+            🔒 TowerCo Asset Inventory (Restricted / NDA Required)
+          </button>
+        </div>
       </div>
       
       <!-- Siting Architecture Snapshot -->
@@ -1365,18 +1370,21 @@
           <tbody>
             <tr style="background: rgba(56, 189, 248, 0.1); border-left: 3px solid #38BDF8;">
               <td class="rev-num" style="color: #38BDF8;">Rev 2.3<br><span style="font-size: 10px; background: #38BDF8; color: #0A192F; font-weight: 900; padding: 1px 5px; border-radius: 3px;">ACTIVE</span></td>
-              <td class="rev-num" style="white-space: nowrap;">2026-10-23</td>
+              <td class="rev-num" style="white-space: nowrap;">2026-10-24</td>
               <td>
                 <strong>Document 05</strong> (Appendix D Guidelines)<br>
                 <strong>Document 08</strong> (Bid Bulletin No. 1 Addendum)<br>
-                <span style="font-size: 11px; color: #94A3B8;">TSSR Siting Protocols &amp; Structural Standards</span>
+                <strong>Document 09</strong> (TowerCo Master Inventory)<br>
+                <span style="font-size: 11px; color: #94A3B8;">Engineering Harmonization &amp; TowerCo Inventory Release</span>
               </td>
               <td>
-                <strong>TowerCo Co-Location First Mandate, 3-Candidate Rule &amp; NSCP 2015 Structural Wind Standards:</strong><br>
-                • <strong>Mandatory 3-Tier Infrastructure Sourcing Hierarchy:</strong> Codified Tier 1 (Existing TowerCo Co-Location across 13,746 audited towers) as the baseline. Greenfield own-build is strictly restricted and requires structural denial letters from &ge; 2 TowerCos.<br>
-                • <strong>Search Ring Sizing:</strong> Defined standard search rings of <strong>500 meters</strong> (Urban/Suburban) and <strong>1,000 meters</strong> (Rural/Remote) centered on nominal demand centroids.<br>
-                • <strong>Mandatory 3-Candidate Rule (A, B, C):</strong> Vendors must propose Candidate A (Best), Candidate B (Better), Candidate C (Good) with a binding <strong>14-Day SAA Escalation Protocol</strong>.<br>
-                • <strong>NSCP 2015 &amp; TIA-222-H Structural Wind Standards:</strong> Codified Philippine Wind Zones (Zone 1: 315 km/h, Zone 2: 270 km/h, Zone 3: 200 km/h), survivable wind speed (270–315 km/h), operational wind speed (140–160 km/h), allowable twist (&le; &plusmn;0.5&deg; MW, &le; &plusmn;1.0&deg; Sector), sway (&le; &plusmn;1.0&deg;), and tower verticality (&le; 1:500 / 60mm for 30m tower).
+                <strong>Full Technical Harmonization, Site Sourcing Protocols &amp; Master TowerCo Asset Schedule Release:</strong><br>
+                • <strong>Dual-Tier Spectrum Architecture Harmonization:</strong> Synchronized Chapter 3 across tender documents to enforce Metro Manila (NCR / Meralco footprint) = <strong>60 MHz TDD (1457–1517 MHz, 162 RBs)</strong> and Provincial/Regional = <strong>80 MHz TDD (1437–1517 MHz, 217 RBs, +34% capacity)</strong>.<br>
+                • <strong>Quantity Reconciliation:</strong> Reconciled contractual evaluated commercial baseline at <strong>897 Co-Location / 103 Greenfield Monopole</strong> (BoQ Table 6) while classifying Document 07's 885 / 115 split as initial spatial proximity screening subject to joint TSSR.<br>
+                • <strong>Search Rings vs. Cell Coverage Radii:</strong> Siting search rings defined strictly as <strong>500 meters</strong> (Urban/Suburban) and <strong>1,000 meters</strong> (Rural) centered on nominal demand centroids, fully distinguished from physical RF cell coverage radii (2.5–3.2 km rural, 1.0–1.5 km urban).<br>
+                • <strong>TowerCo Master Inventory Release (Document 09):</strong> Released comprehensive audited master asset database of <strong>13,810 operational towers</strong> with precise WGS84 coordinates, heights (m AGL), and structure types across PTCI/MIDC, EdgePoint, LDIC, FTAP Globe, and FTAP Smart as <code>09_Towerco_Master_Asset_Inventory.xlsx</code>.<br>
+                • <strong>Commercial Authority &amp; Escalation:</strong> Confirmed Operator exclusively negotiates and executes TowerCo MLA Service Orders; Contractor scopes technical survey, structural loading, and 3-candidate ranking (A/B/C) with 14-day technical escalation.<br>
+                • <strong>Wind &amp; Power Standards:</strong> Codified <strong>250 km/h nominal design wind speed</strong> (NSCP 2015 Category IV ASD) and 270–315 km/h ultimate survivability; codified 63A radio DC breaker tap vs 12.0 kW N+1 total site power plant sizing; tiered SSV RTT acceptance (&le;30 ms fiber, &le;80 ms Starlink).
               </td>
               <td><span style="color: #38BDF8; font-weight: 800;">✓ Adopted &amp; Operative</span></td>
             </tr>
@@ -1392,7 +1400,7 @@
                 • Locked all <span class="rev-num">5,000</span> target barangays (<span class="rev-num">FWA-SITE-0001</span> to <span class="rev-num">FWA-SITE-5000</span>), PSGC codes, Batch 1–5 assignments, and POPCEN 2024 subscriber figures.<br>
                 • Preserved <span class="rev-num">4,123</span> sites already anchored to validated DepEd schools in their exact barangay.<br>
                 • Corrected <span class="rev-num">877</span> site coordinates strictly to rows marked <code>Map Status = "Validated"</code> in the official DepEd Masterfile (resolving cross-province homonym collisions such as <code>FWA-SITE-0313</code> Bulacan vs. Iloilo, unvalidated rows, and spiral fallbacks).<br>
-                • Recomputed nearest TowerCo asset distances (<span class="rev-num">13,746</span> towers) and Converge fiber distances (<span class="rev-num">1,296</span> nodes / <span class="rev-num">250,616</span> segments) for the <span class="rev-num">877</span> updated sites; cleaned <span class="rev-num">70</span> NCR district labels to <code>Metro Manila (NCR)</code>.
+                • Recomputed nearest TowerCo asset distances (<span class="rev-num">13,810</span> towers) and Converge fiber distances (<span class="rev-num">1,296</span> nodes / <span class="rev-num">250,616</span> segments) for the <span class="rev-num">877</span> updated sites; cleaned <span class="rev-num">70</span> NCR district labels to <code>Metro Manila (NCR)</code>.
               </td>
               <td><span style="color: #10B981; font-weight: 800;">✓ 100% Verified</span></td>
             </tr>
@@ -1434,7 +1442,7 @@
               </td>
               <td>
                 <strong>Codex Independent Spatial Optical Backbone &amp; TowerCo Co-Location Audit:</strong><br>
-                • Integrated 1,296 screened Converge optical nodes and 250,616 fiber route segments (Classes A–F) plus 13,746 operational cell towers (FTAP Globe, FTAP Smart, PTCI/MIDC, Edgepoint).
+                • Integrated 1,296 screened Converge optical nodes and 250,616 fiber route segments (Classes A–F) plus 13,810 operational cell towers (FTAP Globe, FTAP Smart, PTCI/MIDC, Edgepoint).
               </td>
               <td><span style="color: #94A3B8; font-weight: 700;">Superseded by 2.2</span></td>
             </tr>

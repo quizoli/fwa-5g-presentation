@@ -115,6 +115,16 @@ window.RFPTenderData = {
     "html": "RFP_Tender_Package/08_RFP_5G_FWA_Bid_Bulletin_01_Official_Clarifications.html",
     "pages": "12 Pages (PDF & HTML)",
     "type": "PDF / HTML"
+  },
+  {
+    "id": "09",
+    "code": "09_Towerco_Master_Asset_Inventory",
+    "title": "Document 09: Master TowerCo Co-Location Asset Inventory (Restricted)",
+    "subtitle": "Audited Master Inventory of 13,810 Operational Towers across PTCI/MIDC, EdgePoint, LDIC, FTAP Globe, FTAP Smart & FTAP BTS with Precise WGS84 Coordinates & Tower Heights (m AGL)",
+    "badge": "Confidential / NDA Required",
+    "xlsx": null,
+    "pages": "7 Sheets (13,810 Towers Normalized)",
+    "type": "XLSX"
   }
 ],
   appendixA: [
@@ -429,7 +439,7 @@ window.RFPTenderData = {
       {
         "id": "RFP-03",
         "feature": "Nominal Siting & Audit",
-        "requirement": "Siting validation against 13,746 tower inventory and Comclark/TelTech fiber network backbone routes (subject to verification on the ground); production of candidate search rings."
+        "requirement": "Siting validation against 13,810 tower inventory and Comclark/TelTech fiber network backbone routes (subject to verification on the ground); production of candidate search rings."
       },
       {
         "id": "RFP-04",

@@ -447,24 +447,30 @@
   <ol>
     <li><strong>Tier 1 (Mandatory Baseline — Existing TowerCo Co-Location):</strong> Field teams must prioritize co-location on existing operational towers (PTCI/MIDC, EdgePoint, FTAP Globe, FTAP Smart, LDIC, Phil-Tower) located within the designated search ring. The Operator leverages an audited master database of <strong>13,746 operational towers</strong>. Co-location reduces Ready-for-Installation (RFI) lead times from 120–180 days down to 15–30 days while eliminating private land titling and environmental permitting complexities.</li>
     <li><strong>Tier 2 (Secondary — TowerCo Build-to-Suit / B2S):</strong> If all existing towers within the search ring exceed structural loading thresholds (EPA limits) or fail RF line-of-sight requirements, the vendor shall engage a licensed Independent TowerCo to execute a Build-to-Suit (B2S) under TelTech's Master Lease Agreement (MLA).</li>
-    <li><strong>Tier 3 (Restricted Exception — Operator Greenfield Own-Build):</strong> Direct operator-constructed greenfield monopoles are strictly limited to remote isolated barangays located &gt; 2.0 km from any operational tower structure (~9.3% of sites nationwide; 103 sites in Phase 1). Proposing an own-build greenfield site requires formal written submission of <strong>Structural Denial / Space Unavailability Letters</strong> from at least two (2) licensed TowerCos and written sign-off from the TelTech Project Steering Committee.</li>
+    <li><strong>Tier 3 (Restricted Exception — Operator Greenfield Own-Build):</strong> Direct operator-constructed greenfield monopoles are strictly limited to search rings where (a) no operational tower exists within the designated search ring (500m urban / 1,000m rural), AND (b) no operational tower exists within 2.0 km that can provide line-of-sight coverage over the target settlement cluster. Proposing an own-build greenfield site requires substantiated justification: where an existing tower exists within the search ring but cannot support the load, the Contractor must submit formal written <strong>Structural Denial / Space Unavailability Letters</strong> from all operational TowerCos present (or from at least two (2) TowerCos if multiple exist; if only one (1) TowerCo operates within the ring, a single denial letter suffices). Where the audited database and field survey confirm zero existing towers within the search ring, the certified absence of infrastructure in the approved TSSR serves as primary substantiation.</li>
+    <li><strong>Phase 1 Quantity Reconciliation &amp; Siting Allocations:</strong> The evaluated commercial baseline across all RFP documents (Master Tender Section 2.1, BoQ Table 6, and Bulletin 01) is formally established at <strong>897 Co-Location Sites (89.7%) and 103 Greenfield Sites (10.3%)</strong>. In Document 07, the preliminary spatial proximity screening against the 13,746 tower inventory classifies 885 sites within &le; 2.0 km and 115 sites beyond 2.0 km (and 4,517 co-location / 483 greenfield across all 5,000 sites). This initial geometric classification is subject to joint on-ground TSSR verification: if a screened greenfield site identifies an unmapped operational tower, it shall convert to Tier 1 co-location; conversely, if an audited tower fails structural load verification, it shall convert to Tier 2 B2S or Tier 3 greenfield substitution.</li>
+    <li><strong>Commercial Valuation &amp; Siting True-Up Mechanism:</strong> While tender evaluation and contract award are governed by the lump-sum pricing of the 897 Co-Location / 103 Greenfield evaluated baseline (BoQ Table 6), actual contractor compensation will be trued up at Milestone 1 (TSSR Approval). If an evaluated co-location site converts to Tier 2 B2S or Tier 3 Greenfield (or vice-versa), contract adjustments shall be calculated strictly using the pre-agreed Lot 5 unit rates (Table 6: Item LOT5-COLO for Co-Location, LOT5-B2S for Build-to-Suit, and LOT5-GF30/GF40 for Greenfield Monopoles) via an administrative contract variation order, ensuring cost certainty and fair valuation without altering the bidder's evaluated pricing competitiveness.</li>
   </ol>
 
   <h3>1.2 Search Ring Specification &amp; Demand Centroid</h3>
   <p>For each nominal site location assigned in Document 07 (Candidate Site List):</p>
   <ul>
-    <li><strong>Urban &amp; Suburban Search Ring:</strong> Defined as a circle with a radius of <strong>500 meters</strong> centered on the official nominal barangay demand centroid.</li>
-    <li><strong>Rural &amp; Remote Search Ring:</strong> Defined as a circle with a radius of <strong>1,000 meters</strong> (expandable up to 1,500 meters upon TelTech RF approval only if prominent terrain ridges or hills provide superior line-of-sight).</li>
-    <li><strong>Target Coverage Guarantee:</strong> Sited candidate coordinates must achieve unobstructed Line-of-Sight (LOS) and target RSRP coverage (&ge; -95 dBm) across &ge; 90% of the inhabited settlement zone.</li>
+    <li><strong>Urban &amp; Suburban Search Ring:</strong> Defined strictly as a circle with a radius of <strong>500 meters</strong> centered on the official nominal barangay demand centroid.</li>
+    <li><strong>Rural &amp; Remote Search Ring:</strong> Defined strictly as a circle with a radius of <strong>1,000 meters</strong> centered on the official nominal barangay demand centroid.</li>
+    <li><strong>Search Ring vs. RF Coverage Radius Distinction:</strong> The search ring defines the geographic hunting boundary for candidate site sourcing and infrastructure identification. It is completely distinct from the physical RF cell coverage radius (nominally 2.5–3.2 km in rural terrain and 1.0–1.5 km in urban clutter per Section 3.2).</li>
+    <li><strong>Target Coverage Guarantee:</strong> Sited candidate coordinates within the search ring must achieve unobstructed Line-of-Sight (LOS) and target RSRP coverage (&ge; -95 dBm) across &ge; 90% of the inhabited settlement zone.</li>
   </ul>
 
-  <h3>1.3 Mandatory Three-Candidate Rule (Candidates A, B, C)</h3>
-  <p>For every search ring, the Turnkey Contractor / Site Acquisition Vendor must survey, evaluate, and submit <strong>exactly three (3) distinct candidates</strong> in the Technical Site Survey Report (TSSR):</p>
+  <h3>1.3 Mandatory Three-Candidate Rule (Candidates A, B, C) &amp; Commercial Authority</h3>
+  <p>For every search ring, the Turnkey Contractor / Site Acquisition Vendor must survey, evaluate, and submit <strong>three (3) ranked candidates</strong> in the Technical Site Survey Report (TSSR):</p>
   <ul>
-    <li><strong>Candidate A (BEST — Primary Recommended):</strong> Optimal TowerCo co-location asset with immediate structural capacity at &ge; 30m AGL, available -48V DC busbar or commercial AC transformer headroom, nearest fiber node, and fastest projected RFI (&le; 21 calendar days).</li>
-    <li><strong>Candidate B (BETTER — Secondary Target / Backup 1):</strong> Fully compliant alternative TowerCo structure within the search ring requiring minor solvable modifications (e.g., dedicated AC sub-meter installation, mount bracket extensions, or secondary fiber lead-in route).</li>
+    <li><strong>Candidate A (BEST — Primary Recommended):</strong> Optimal TowerCo co-location asset (or prime site) with immediate structural capacity at &ge; 30m AGL, available -48V DC busbar or commercial AC transformer headroom, nearest fiber node, and fastest projected RFI (&le; 21 calendar days).</li>
+    <li><strong>Candidate B (BETTER — Secondary Target / Backup 1):</strong> Fully compliant alternative TowerCo structure or site within the search ring requiring minor solvable modifications (e.g., dedicated AC sub-meter installation, mount bracket extensions, or secondary fiber lead-in route).</li>
     <li><strong>Candidate C (GOOD — Contingency / Fallback):</strong> Third viable TowerCo asset or TowerCo Build-to-Suit option, ensuring the search ring is not stalled if Candidates A and B encounter unforeseen structural or commercial deadlocks.</li>
-    <li><strong>14-Day Lease / SAA Escalation Protocol:</strong> If the Site Application &amp; Allocation (SAA) or Service Order (SO) negotiation for Candidate A stalls or exceeds <strong>14 calendar days</strong>, the vendor is contractually mandated to immediately activate and lock <strong>Candidate B</strong> to prevent project schedule slippage.</li>
+    <li><strong>Exception for Rural Sites:</strong> Where fewer than three viable structures or constructible parcels exist within a rural 1,000m search ring, the Contractor must submit formal documented justification in the TSSR.</li>
+    <li><strong>Commercial Negotiation &amp; Lease Execution Authority:</strong> In accordance with Bid Bulletin No. 1 (Item 17), all commercial lease negotiations, space reservations, and Master Lease Agreement (MLA) Service Orders with TowerCos are <strong>strictly the exclusive responsibility of the Operator (TelTech/Comclark)</strong>.</li>
+    <li><strong>Contractor Structural Audit vs. TowerCo Analysis:</strong> The Contractor's scope is strictly technical on-site auditing (recording physical dimensions, mounting heights, existing antennas, and compiling the proposed equipment loading profile). Formal structural engineering analysis, wind stress modeling, foundation capacity verification, and PE sign-off are executed by the TowerCo under the Operator's Master Lease Agreement (MLA).</li>
+    <li><strong>14-Day Technical Escalation Protocol:</strong> If Candidate A fails structural loading verification or if Operator-TowerCo commercial SAA processing encounters an impasse exceeding <strong>14 calendar days</strong>, the Operator shall instruct the Contractor to immediately activate field engineering and TSSR finalization for <strong>Candidate B</strong> to prevent project schedule slippage.</li>
   </ul>
 
   <h3>1.4 Co-Location Candidate Evaluation Criteria Matrix (100-Point Scoring)</h3>
@@ -473,8 +479,8 @@
     <li><strong>Access Road &amp; Compound Security (15%):</strong> All-weather paved/concrete road access, established TowerCo security fencing/guarding, and 24/7 unobstructed Operations &amp; Maintenance (O&amp;M) ingress/egress.</li>
     <li><strong>RF Line-of-Sight &amp; Propagation (25%):</strong> Dominant ground elevation AMSL, clear first Fresnel zone into residential settlement, zero close-in clutter shielding within 200m of sector azimuths (0&deg;, 120&deg;, 240&deg;).</li>
     <li><strong>Backhaul Transport Proximity (15%):</strong> Proximity to Converge/TelTech fiber distribution closure (Class A &le; 0.5km, Class B &le; 1.0km), existing TowerCo cable ladder/conduit entry, or unobstructed northern sky view (0&deg; &ndash; 80&deg; elevation arc) for Starlink satellite backhaul.</li>
-    <li><strong>Power Availability &amp; Utility Infrastructure (15%):</strong> Commercial utility grid transformer capacity, available -48V DC busbar tap (&ge; 63A) or space for dedicated AC service entrance sub-meter, and shared backup genset/battery support.</li>
-    <li><strong>Lease &amp; Commercial Terms (10%):</strong> Fast-track Service Order execution under existing TowerCo Master Lease Agreement (MLA), monthly recurring fee within budget, and guaranteed RFI timeline &le; 30 calendar days.</li>
+    <li><strong>Power Availability &amp; Utility Infrastructure (15%):</strong> Commercial utility grid transformer capacity, available -48V DC busbar tap (&ge; 63A branch breaker dedicated for radio equipment) or space for dedicated AC service entrance sub-meter, and shared backup genset/battery support. Total site power plant sizing (12.0 kW N+1) is governed by Lot 2.</li>
+    <li><strong>Lease &amp; Commercial Feasibility (10%):</strong> Feasibility of fast-track Service Order execution under existing TowerCo Master Lease Agreement (MLA), monthly recurring fee within Operator baseline budget, and projected RFI timeline &le; 30 calendar days.</li>
   </ul>
 <hr />
 <h2>2. DETAILED TECHNICAL SITE SURVEY REPORT (TSSR) REQUIREMENTS</h2>
@@ -492,14 +498,14 @@
 <li>Tower Type (Self-Supporting 3-Leg/4-Leg Tower, Monopole, Guyed Mast, Rooftop Tower).</li>
 <li>Tower Height Above Ground Level (AGL in meters).</li>
 <li>Structural Space Audit: Proposed mounting height for 3x Band n50 antennas (recommended centerline: 30m to 45m AGL).</li>
-<li>Structural Loading Verification: Confirmation that existing tower members and foundation can accommodate additional 3x 8T8R RRUs/AAUs (&lt; 45 kg each) and wind load profile of 250 km/h.</li>
-<li>Panoramic Drone Photographic Survey: High-resolution 360° continuous panoramic video and 12-cardinal-point still photos at proposed antenna centerline height to verify optical line-of-sight across populated settlements.</li>
+<li>Structural Loading Verification: Confirmation that existing tower members and foundation can accommodate additional 3x 8T8R RRUs/AAUs (&lt; 45 kg each), antenna mounts, and nominal design wind speed of 250 km/h (plus applicable NSCP 2015 ultimate wind zone rating up to 315 km/h).</li>
+<li>Panoramic Drone Photographic Survey: High-resolution 360° continuous panoramic video and 12-cardinal-point still photos at proposed antenna centerline height to verify optical line-of-sight across populated settlements. <em>Conditional Permitting Waiver:</em> Where drone flight is legally prohibited or restricted by CAAP regulations or military airfields, OR where local municipal/flight permits cannot be secured within fourteen (14) calendar days, high-magnification telephoto mast photography from multiple accessible ground vantage points combined with verified TowerCo structural drawings is accepted subject to Operator approval per Bid Bulletin No. 1.</li>
 </ul>
 <h3>2.3 Power Infrastructure &amp; Utility Audit</h3>
 <ul>
 <li>Existing Commercial AC Utility Power: Electric Cooperative / Distribution Utility name (e.g., MERALCO, PELCO, BENECO, CAPELCO, ILPI).</li>
 <li>Service Entrance Capacity: Transformer rating (kVA), service voltage (230V / 400V, 60 Hz), breaker rating, and phase balance.</li>
-<li>TowerCo DC Power Availability: Sourcing from TowerCo DC busbar (-48V DC) vs. installing Operator-dedicated rectifier subrack.</li>
+<li>TowerCo DC Power Availability: Sourcing from TowerCo DC busbar (-48V DC, &ge; 63A dedicated branch circuit breaker for radio equipment ~3.0 kW) vs. installing Operator-dedicated rectifier subrack within the compound (total site power plant sized for 12.0 kW N+1 per Lot 2).</li>
 <li>Sub-metering feasibility and cable tray routing for power cables.</li>
 <li>Grounding System Audit: Measurement of existing earth ground resistance using a 3-point fall-of-potential earth tester. Earth resistance must be &lt;= 5.0 Ohms.</li>
 </ul>
@@ -515,12 +521,12 @@
 <h3>3.1 Dual-Tier Spectrum Architecture &amp; Operating Bandwidth (Band n50)</h3>
 <p>In strict alignment with <strong>Bid Bulletin No. 1 (Section 2.1)</strong> and NTC frequency authorizations, the 5G FWA network operates on a dual-tier spectrum deployment model governed by regional utility franchise boundaries:</p>
 <ol>
-  <li><strong>Metro Manila (NCR / Meralco Franchise Footprint):</strong>
+  <li><strong>Metro Manila (NCR) &amp; Meralco Franchise Footprint:</strong>
     <ul>
       <li><strong>Operating Frequency Range:</strong> <strong>1457.0 &ndash; 1517.0 MHz (60.0 MHz continuous TDD carrier)</strong>.</li>
       <li><strong>Center Frequency:</strong> <strong>1487.0 MHz</strong>.</li>
       <li><strong>Transmission Bandwidth:</strong> <strong>162 Resource Blocks (RBs)</strong> at 30 kHz Subcarrier Spacing (SCS).</li>
-      <li><em>Spectrum Boundary Condition:</em> The 1437.0 &ndash; 1457.0 MHz sub-band is assigned to Meralco within its power distribution franchise area and is strictly excluded from Operator transmission in NCR. Digital filtering within the RRU transceiver enforces sharp attenuation at 1457.0 MHz.</li>
+      <li><em>Spectrum Boundary Condition:</em> In Metro Manila (NCR) and non-NCR municipalities within the Meralco electric distribution franchise (parts of Bulacan, Cavite, Rizal, Laguna, Batangas, Quezon, and Pampanga) where the 1437.0 &ndash; 1457.0 MHz sub-band is assigned to the utility corporation, the 1437.0 &ndash; 1457.0 MHz block is excluded from Operator transmissions. Digital filtering within the RRU transceiver enforces sharp attenuation at 1457.0 MHz.</li>
     </ul>
   </li>
   <li><strong>Rest of the Country (Provincial / Regional / Non-Meralco Areas):</strong>
@@ -669,9 +675,9 @@
 <tr>
 <td style="text-align: left;"><strong>Calculated Reliable Cell Radius</strong></td>
 <td style="text-align: center;"><strong>km</strong></td>
-<td style="text-align: center;"><strong>3.2 km (Suburban)</strong></td>
-<td style="text-align: center;"><strong>3.0 km (Rural)</strong></td>
-<td style="text-align: left;"><strong>Planning assumption in Philippine clutter</strong></td>
+<td style="text-align: center;"><strong>1.0 – 1.5 km (Urban/Suburban Clutter — 3GPP UMa)</strong></td>
+<td style="text-align: center;"><strong>2.5 – 3.2 km (Rural Baseline / 1.5 – 2.0 km Vendor Benchmark)</strong></td>
+<td style="text-align: left;"><strong>Distinct from search ring (500m Urban / 1,000m Rural)</strong></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Peak Aggregate Sector DL Throughput</strong></td>
@@ -693,16 +699,16 @@
 <p>For sites requiring self-constructed greenfield towers or TowerCo Build-to-Suit (B2S) structures, the Contractor shall adhere to the following civil and structural standards conforming to the <strong>National Structural Code of the Philippines (NSCP 2015 7th Edition, Section 207 Wind Loads)</strong> and <strong>TIA-222-G/H</strong>:</p>
 
 <h3>4.1 Philippine Basic Wind Speed Regimes &amp; Wind Zone Mapping</h3>
-<p>Structural calculations and wind force determinations must strictly comply with NSCP 2015 basic wind speed maps:</p>
+<p>Structural design calculations and wind force determinations must strictly comply with the <strong>National Structural Code of the Philippines (NSCP 2015 7th Edition, Section 207)</strong> and <strong>TIA-222-G/H</strong>. Structure classification: Essential Communications Facility / Risk Category IV (Importance Factor I<sub>w</sub> = 1.15). The nominal basic design wind speed for structural strength and foundation stability calculations is <strong>250 km/h (Nominal / ASD basic wind speed per NSCP 2015 Category IV)</strong>. Ultimate / Survivable wind speeds conform strictly to NSCP 2015 Wind Zones:</p>
 <ul>
-  <li><strong>Wind Zone 1 (Ultimate Wind Speed V = 315 km/h / 87.5 m/s):</strong> Covers the high-typhoon corridor along the eastern seaboard (Batanes, Cagayan, Isabela, Aurora, Quezon/Polillo, Bicol Region, Samar, Leyte, Dinagat Islands, Surigao del Norte/Sur, Davao Oriental).</li>
-  <li><strong>Wind Zone 2 (Ultimate Wind Speed V = 270 km/h / 75.0 m/s):</strong> Covers Central and Western Luzon, National Capital Region (NCR), Central Luzon (Pampanga, Bulacan, Tarlac, Bataan, Zambales, Nueva Ecija), CALABARZON, MIMAROPA, and Western/Central Visayas (Iloilo, Cebu, Bohol, Negros).</li>
-  <li><strong>Wind Zone 3 (Ultimate Wind Speed V = 200 km/h / 55.6 m/s):</strong> Covers low-risk regions including Palawan, Zamboanga Peninsula, and southern inland Mindanao.</li>
+  <li><strong>Wind Zone 1 (Ultimate Wind Speed V = 315 km/h / 87.5 m/s):</strong> Covers the high-typhoon corridor along the eastern seaboard (Batanes, Cagayan, Isabela, Aurora, eastern Quezon coast and Polillo Islands, Bicol Region, Samar, Leyte, Dinagat Islands, Surigao del Norte/Sur, Davao Oriental).</li>
+  <li><strong>Wind Zone 2 (Ultimate Wind Speed V = 270 km/h / 75.0 m/s):</strong> Covers Central and Western Luzon, National Capital Region (NCR), Central Luzon (Pampanga, Bulacan, Tarlac, Bataan, Zambales, Nueva Ecija), CALABARZON (western Quezon, Laguna, Batangas, Cavite, Rizal), MIMAROPA (Occidental/Oriental Mindoro, Marinduque, Romblon), and Western/Central Visayas (Iloilo, Cebu, Bohol, Negros).</li>
+  <li><strong>Wind Zone 3 (Ultimate Wind Speed V = 250 km/h / 69.4 m/s Minimum Project Floor):</strong> Covers low-risk regions including Palawan, Zamboanga Peninsula, and southern inland Mindanao. While NSCP Section 207 maps Zone 3 basic wind speed at 200 km/h, the Project enforces 250 km/h minimum ultimate survivability nationwide as a mandatory contractual quality floor.</li>
 </ul>
 
 <h3>4.2 Structural Limit States &amp; Deflection Criteria</h3>
 <ul>
-  <li><strong>Survivable Wind Speed (V<sub>survival</sub> &mdash; Ultimate Limit State / LRFD):</strong> Designed for <strong>270 km/h to 315 km/h</strong> 3-second gust wind speed under Ultimate Limit State with full equipment loading (3x n50 antennas, 3x RRUs, satellite dish, and mounting steelwork). Zero plastic collapse or structural overturning.</li>
+  <li><strong>Survivable Wind Speed (V<sub>survival</sub> &mdash; Ultimate Limit State / LRFD):</strong> Designed for <strong>250 km/h to 315 km/h</strong> (250 km/h national project floor; 270 km/h in Zone 2; 315 km/h in Zone 1) 3-second gust wind speed under Ultimate Limit State with full equipment loading (3x n50 antennas, 3x RRUs, satellite dish, and mounting steelwork). Zero plastic collapse or structural overturning.</li>
   <li><strong>Operational Wind Speed (V<sub>operational</sub> &mdash; Serviceability Limit State / SLS):</strong> Designed for <strong>140 km/h to 160 km/h (40.0 m/s to 44.4 m/s)</strong> continuous operational wind speed (1.0 load factor per TIA-222). Structure maintains rigid RF alignment, ensuring uninterrupted 5G beamforming, MIMO rank-4 transmission, and backhaul link availability (&ge; 99.995%).</li>
   <li><strong>Allowable Twist (&theta;<sub>twist</sub> / Torsional Rotation):</strong> &le; &plusmn;0.5&deg; (30 arcmin) at 30m AGL for narrow-beam / microwave dish antennas; &le; &plusmn;1.0&deg; (60 arcmin) at 30m AGL for 5G Band n50 macro sectors.</li>
   <li><strong>Allowable Sway / Tilt (&theta;<sub>sway</sub> / Angular Deflection):</strong> &le; &plusmn;1.0&deg; (60 arcmin) at top antenna mounting centerline (30.0m AGL).</li>
@@ -743,7 +749,7 @@
 2. <strong>Short Drive Test &amp; Static Multi-Point Test:</strong><br />
    * 5 stationary measurement points per sector (Near: 500m, Mid: 1.5 km, Far/Edge: 3.0 km).<br />
    * RSRP &gt;= -95 dBm across &gt;= 90% of surveyed barangay inhabited zone.<br />
-   * Ping RTT &lt;= 18 ms target (&lt;= 30 ms maximum contractual limit) to local UPF IP address over fiber backhaul; packet loss &lt;= 0.10% over 1,000 continuous pings.<br />
+   * Ping RTT Acceptance: For terrestrial fiber-fed sites, Ping RTT &le; 18 ms target (&le; 30 ms maximum contractual limit) to local UPF IP address; for Starlink satellite-fed remote sites, Ping RTT &le; 60 ms target (&le; 80 ms maximum contractual limit) reflecting LEO satellite propagation latency per Bid Bulletin No. 1; packet loss &le; 0.10% over 1,000 continuous pings.<br />
    * Inter-sector handover execution without drop during transition.</p>
 <hr />
 <p><em>(End of Appendix D — Site Survey, RF Planning &amp; Civil Engineering Guidelines)</em></p>
