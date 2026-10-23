@@ -74,28 +74,55 @@ For every nominal site candidate, the Contractor shall complete and submit a com
 
 ## 3. RF PROPAGATION & CELL DIMENSIONING GUIDELINES
 
-### 3.1 Link Budget Parameters (Band n50, 1.5 GHz)
+### 3.1 Dual-Tier Spectrum Architecture & Operating Bandwidth (Band n50)
 
-| Parameter | Unit | Value (Downlink) | Value (Uplink) | Technical Notes |
+In strict alignment with **Bid Bulletin No. 1 (Section 2.1)** and NTC frequency authorizations, the 5G FWA network operates on a dual-tier spectrum deployment model governed by regional utility franchise boundaries:
+
+1. **Metro Manila (NCR / Meralco Franchise Footprint):**
+   * **Operating Frequency Range:** **1457.0 – 1517.0 MHz (60.0 MHz continuous TDD carrier)**.
+   * **Center Frequency:** **1487.0 MHz**.
+   * **Transmission Bandwidth:** **162 Resource Blocks (RBs)** at $30\text{ kHz}$ Subcarrier Spacing (SCS).
+   * *Spectrum Boundary Condition:* The $1437.0 – 1457.0\text{ MHz}$ sub-band is assigned to Meralco within its power distribution franchise area and is strictly excluded from Operator transmission in NCR. Digital filtering within the RRU transceiver enforces sharp attenuation at $1457.0\text{ MHz}$.
+
+2. **Rest of the Country (Provincial / Regional / Non-Meralco Areas):**
+   * **Operating Frequency Range:** **1437.0 – 1517.0 MHz (80.0 MHz continuous TDD carrier — Desired Baseline)**.
+   * **Center Frequency:** **1477.0 MHz**.
+   * **Transmission Bandwidth:** **217 Resource Blocks (RBs)** at $30\text{ kHz}$ SCS.
+   * *Capacity & Throughput Advantage:* In all provincial municipalities and rural barangays outside the Meralco territory, the full $80\text{ MHz}$ channel is activated, unlocking $+34\%$ additional physical resource blocks and driving aggregate sector downlink capacity to $650\text{ – }720\text{ Mbps}$ per site.
+
+3. **Mandatory Hardware Tuning & Filtering Specifications:**
+   * **Native Hardware IBW:** All proposed 5G NR Baseband Units (BBU) and Remote Radio Units (RRU) / Active Antenna Units (AAU) must natively support the full 3GPP Band n50 tuning range (**1432.0 – 1517.0 MHz**) in hardware.
+   * **Software-Defined Bandwidth:** Transceivers must support dynamic software reconfiguration across $40\text{ MHz}, 50\text{ MHz}, 60\text{ MHz}$, and $80\text{ MHz}$ without physical component replacement or tower climbs.
+   * **Adjacent Satellite Protection:** Transceivers must comply with **ITU-R M.2159-0 / WRC-15 Resolution 223** to protect adjacent Maritime Mobile Satellite Service (MSS, $1518.0 – 1525.0\text{ MHz}$). Unwanted out-of-band emissions at $1517.0\text{ MHz}$ must not exceed $-30\text{ dBm/MHz}$ at the antenna port (3GPP TS 38.104 Category B).
+
+---
+
+### 3.2 Link Budget Parameters (Band n50, 1.5 GHz)
+
+| Parameter | Unit | 60 MHz Mode (NCR / Meralco) | 80 MHz Mode (Provincial / Rural) | Technical Notes & Modeling Basis |
 | :--- | :---: | :---: | :---: | :--- |
-| **Operating Frequency** | MHz | 1487.0 (Center) | 1487.0 (Center) | Band n50 TDD (1457.0 – 1517.0 MHz Channel Range) |
-| **Channel Bandwidth** | MHz | 60.0 | 60.0 | 162 Resource Blocks (SCS 30 kHz) |
-| **BTS Maximum Conducted Power** | dBm / W | 55.0 dBm (320 W) | N/A | 8 x 40W RRU configuration |
-| **BTS Power per Resource Block**| dBm | 32.9 dBm | N/A | Uniform power distribution |
+| **Operating Frequency** | MHz | 1487.0 (Center) | 1477.0 (Center) | Band n50 TDD |
+| **Channel Bandwidth** | MHz | 60.0 MHz | **80.0 MHz** | 162 RBs (60 MHz) vs. **217 RBs (80 MHz)** |
+| **Subcarrier Spacing (SCS)**| kHz | 30.0 | 30.0 | 5G NR Numerology $\mu=1$ |
+| **BTS Maximum Conducted Power** | dBm / W | 55.0 dBm (320 W) | 55.0 dBm (320 W) | 8 x 40W RRU configuration |
+| **BTS Power per Resource Block**| dBm | 32.9 dBm | **31.6 dBm** | Uniform power allocation across active RBs |
 | **BTS Antenna Gain** | dBi | 17.5 dBi | 17.5 dBi | 8-port cross-pol macro antenna |
-| **BTS Cable / Jumper Loss** | dB | 1.0 dB | 1.0 dB | Short optical/RF jumper interface |
-| **CPE Maximum Transmit Power** | dBm / W | N/A | 23.0 dBm (200 mW) | Power Class 3 UE (or Class 2 26 dBm) |
-| **CPE Antenna Gain** | dBi | 9.0 dBi | 9.0 dBi | Baseline model (8 dBi indoor / 12 dBi outdoor) |
+| **BTS Cable / Jumper Loss** | dB | 1.0 dB | 1.0 dB | Low-loss jumper interface |
+| **CPE Maximum Transmit Power** | dBm / W | 23.0 dBm (200 mW) | 23.0 dBm (200 mW) | Power Class 3 UE (or Class 2 26 dBm) |
+| **CPE Antenna Gain** | dBi | 9.0 dBi | 9.0 dBi | Baseline model (6 dBi indoor / 12 dBi outdoor) |
 | **CPE Body / Indoor Penetration Loss** | dB | 8.0 dB | 8.0 dB | Concrete hollow block & glass attenuation |
 | **Foliage / Clutter Margin** | dB | 6.0 dB | 6.0 dB | Typical rural tropical tree canopy |
 | **Shadowing Margin (Log-Normal)**| dB | 7.0 dB | 7.0 dB | 90% edge cell coverage reliability |
 | **Thermal Noise Density** | dBm/Hz | -174.0 | -174.0 | kT @ 290K |
-| **Receiver Noise Figure** | dB | 6.0 dB (CPE) | 3.5 dB (gNodeB) | Active RF front-end |
-| **Target SINR for Min Service** | dB | -1.0 dB | -2.0 dB | Minimum modulation threshold (QPSK 1/3 cell-edge; +10 dB target for residential 64QAM) |
-| **Maximum Allowable Path Loss (MAPL)**| **dB** | **144.5 dB** | **139.8 dB** | **Uplink is coverage limiting** |
-| **Calculated Reliable Cell Radius**| **km** | **3.5 km** | **3.2 km** | **Planning model assumption in suburban/rural clutter** |
+| **Receiver Noise Figure** | dB | 6.0 dB (CPE) / 3.5 dB (gNB) | 6.0 dB (CPE) / 3.5 dB (gNB) | Active RF front-end |
+| **Target SINR for Min Service** | dB | -1.0 dB (QPSK 1/3) | -1.0 dB (QPSK 1/3) | Cell-edge SLA threshold (+10 dB for 64QAM) |
+| **Maximum Allowable Path Loss (MAPL)**| **dB** | **139.8 dB** | **138.5 dB** | Uplink coverage limiting ($\Delta \approx 1.3\text{ dB}$ for 80 MHz) |
+| **Calculated Reliable Cell Radius**| **km** | **3.2 km (Suburban)** | **3.0 km (Rural)** | Planning assumption in Philippine clutter |
+| **Peak Aggregate Sector DL Throughput**| **Mbps** | **~480 – 520 Mbps** | **~650 – 720 Mbps** | Multi-user MIMO, 256QAM downlink |
 
-### 3.2 Nominal Sector Azimuth & Tilt Strategy
+---
+
+### 3.3 Nominal Sector Azimuth & Tilt Strategy
 * **Sector Count:** 3 sectors per macro site with 120° nominal separation (0°, 120°, 240°). Azimuths must be tailored during TSSR to track actual barangay population concentrations along transport corridors and coastal plains.
 * **Electrical Remote Downtilt (eRET):** Antennas must feature AISG 2.0 remote tilt adjustable between 2° and 12° from the central OSS. Mechanical tilt shall only be applied when required to clear close-in obstructions (>15°).
 
