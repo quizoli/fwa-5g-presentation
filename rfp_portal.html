@@ -965,9 +965,18 @@
           <div class="stat-lbl">Tech Score</div>
         </div>
       </div>
-      <div style="display: flex; gap: 8px;">
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
         <button class="btn btn-success" onclick="saveTechnicalDraft(true)">💾 Save Draft</button>
-        <button class="btn btn-outline" onclick="exportTechnicalJSON()">📥 Export JSON</button>
+        <button class="btn btn-outline" style="border-color: #00B4D8; color: #67E8F9; font-weight: 700; font-size: 12px; padding: 6px 14px;" onclick="exportTechnicalCSV()">
+          📥 Export CSV
+        </button>
+        <button class="btn btn-outline" style="border-color: #10B981; color: #A7F3D0; font-weight: 700; font-size: 12px; padding: 6px 14px;" onclick="document.getElementById('tech-csv-upload-input').click()">
+          📤 Upload CSV
+        </button>
+        <button class="btn btn-outline" style="opacity: 0.75; font-size: 11.5px; padding: 6px 10px;" onclick="exportTechnicalJSON()">
+          Export JSON
+        </button>
+        <input type="file" id="tech-csv-upload-input" accept=".csv,text/csv" style="display: none;" onchange="importTechnicalCSV(event)">
       </div>
     </div>
 
@@ -3455,6 +3464,213 @@ function exportEvaluationReport() {
   document.body.appendChild(a);
   a.click();
   a.remove();
+}
+
+// ==========================================
+// APPENDIX A: CSV EXPORT & UPLOAD FUNCTIONS
+// ==========================================
+
+function exportTechnicalCSV() {
+  if (!window.RFPTenderData || !window.RFPTenderData.appendixA) {
+    alert("Technical compliance matrix data is not loaded.");
+    return;
+  }
+
+  function escapeCsv(val) {
+    if (val === null || val === undefined) return '""';
+    const s = String(val).replace(/"/g, '""');
+    return `"${s}"`;
+  }
+
+  const headers = [
+    "Item ID",
+    "Section",
+    "Sub-System / Feature",
+    "Detailed Specification Requirement",
+    "Compliance (C / M / NC)",
+    "Bidder Proposed Specification & Datasheet Ref"
+  ];
+
+  const lines = [headers.map(escapeCsv).join(",")];
+
+  window.RFPTenderData.appendixA.forEach(sec => {
+    sec.items.forEach(item => {
+      const compVal = (currentDraft.technical[item.id] && currentDraft.technical[item.id].compliance) || "";
+      const specVal = (currentDraft.technical[item.id] && currentDraft.technical[item.id].spec) || "";
+
+      const row = [
+        item.id,
+        sec.section,
+        item.feature,
+        item.requirement,
+        compVal,
+        specVal
+      ];
+      lines.push(row.map(escapeCsv).join(","));
+    });
+  });
+
+  const csvContent = "\uFEFF" + lines.join("\r\n");
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.setAttribute("href", url);
+  a.setAttribute("download", "02_Appendix_A_Technical_Compliance_Matrix_Bidder_Form.csv");
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  if (typeof showToast === "function") {
+    showToast("📥 Appendix A Technical CSV Exported!");
+  }
+}
+
+function importTechnicalCSV(event) {
+  const file = event.target.files && event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      let text = e.target.result;
+      if (!text || !text.trim()) {
+        alert("The selected CSV file is empty.");
+        return;
+      }
+
+      // Strip UTF-8 BOM if present
+      if (text.charCodeAt(0) === 0xFEFF) {
+        text = text.slice(1);
+      }
+
+      // RFC 4180 compliant CSV line and field parser
+      function parseCSV(csvText) {
+        let p = '', row = [''], ret = [row], i = 0, r = 0, inQuote = false;
+        for (let idx = 0; idx < csvText.length; idx++) {
+          const l = csvText[idx];
+          if (l === '"') {
+            if (inQuote && csvText[idx + 1] === '"') {
+              row[i] += '"';
+              idx++; // skip escaped quote
+            } else {
+              inQuote = !inQuote;
+            }
+          } else if (l === ',' && !inQuote) {
+            row[++i] = '';
+          } else if ((l === '\n' || l === '\r') && !inQuote) {
+            if (l === '\r' && csvText[idx + 1] === '\n') {
+              idx++; // handle CRLF
+            }
+            row = [''];
+            i = 0;
+            ret[++r] = row;
+          } else {
+            row[i] += l;
+          }
+        }
+        if (ret.length && ret[ret.length - 1].length <= 1 && ret[ret.length - 1][0] === '') {
+          ret.pop();
+        }
+        return ret;
+      }
+
+      const rows = parseCSV(text);
+      if (rows.length < 2) {
+        alert("CSV file must contain a header row and at least one data row.");
+        return;
+      }
+
+      // Map headers to find column indices
+      const headerRow = rows[0].map(h => (h || '').trim().toLowerCase());
+      let idIdx = headerRow.findIndex(h => h.includes("item") || h.includes("id"));
+      let compIdx = headerRow.findIndex(h => h.includes("compliance") || h.includes("c / m / nc") || h.includes("c/m/nc") || h.includes("column d"));
+      let specIdx = headerRow.findIndex(h => h.includes("proposed") || h.includes("specification") || h.includes("datasheet") || h.includes("column e"));
+
+      // Reliable fallbacks based on official template column order
+      if (idIdx === -1) idIdx = 0;
+      if (compIdx === -1) compIdx = 4;
+      if (specIdx === -1) specIdx = 5;
+
+      let matchedCount = 0;
+      let countC = 0, countM = 0, countNC = 0;
+
+      for (let r = 1; r < rows.length; r++) {
+        const row = rows[r];
+        if (!row || row.length <= idIdx) continue;
+
+        let rawId = (row[idIdx] || '').trim().toUpperCase();
+        const idMatch = rawId.match(/(RAN|PWR|5GC|OSS|CIV|MGD|CPE)-\d+/i);
+        if (!idMatch) continue;
+        const itemId = idMatch[0].toUpperCase();
+
+        const compElem = document.getElementById(`comp_${itemId}`);
+        const specElem = document.getElementById(`spec_${itemId}`);
+
+        matchedCount++;
+        currentDraft.technical[itemId] = currentDraft.technical[itemId] || {};
+
+        // Parse & normalize compliance value
+        if (row.length > compIdx) {
+          const rawComp = (row[compIdx] || '').trim().toUpperCase();
+          let compVal = "";
+          if (rawComp === "C" || rawComp.startsWith("COMPL") || rawComp.startsWith("YES")) {
+            compVal = "C";
+            countC++;
+          } else if (rawComp === "M" || rawComp.startsWith("MINOR") || rawComp.startsWith("DEV")) {
+            compVal = "M";
+            countM++;
+          } else if (rawComp === "NC" || rawComp.startsWith("NON") || rawComp.startsWith("NOT")) {
+            compVal = "NC";
+            countNC++;
+          }
+
+          if (compVal) {
+            currentDraft.technical[itemId].compliance = compVal;
+            if (compElem) compElem.value = compVal;
+          }
+        }
+
+        // Parse proposed specification and datasheet reference
+        if (row.length > specIdx) {
+          const specVal = (row[specIdx] || '').trim();
+          if (specVal) {
+            currentDraft.technical[itemId].spec = specVal;
+            if (specElem) specElem.value = specVal;
+          }
+        }
+      }
+
+      updateComplianceScorecard();
+      saveTechnicalDraft(false);
+
+      if (matchedCount > 0) {
+        alert(`✅ Successfully imported ${matchedCount} technical compliance items from CSV!\n\n` +
+              `• Compliant (C): ${countC}\n` +
+              `• Minor Deviation (M): ${countM}\n` +
+              `• Non-Compliant (NC): ${countNC}\n\n` +
+              `All matching rows in the web form and your Technical Scorecard have been updated and saved.`);
+        if (typeof showToast === "function") {
+          showToast(`✅ Imported ${matchedCount} items from CSV!`);
+        }
+      } else {
+        alert("⚠️ No matching item IDs (e.g. RAN-01, PWR-01, CPE-01) were found in the uploaded file. Please make sure you are using the CSV exported from 'Export CSV'.");
+      }
+
+    } catch (err) {
+      console.error("CSV Import Error:", err);
+      alert("Error parsing CSV file: " + err.message);
+    } finally {
+      event.target.value = ''; // Reset input to allow re-selection of the same file
+    }
+  };
+
+  reader.onerror = function() {
+    alert("Failed to read the selected CSV file.");
+    event.target.value = '';
+  };
+
+  reader.readAsText(file);
 }
 
 function exportTechnicalJSON() {
