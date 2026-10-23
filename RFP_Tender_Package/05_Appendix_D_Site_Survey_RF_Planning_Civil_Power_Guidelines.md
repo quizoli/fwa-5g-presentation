@@ -10,10 +10,33 @@
 
 ## 1. ENGINEERING PRINCIPLES & SITING ARCHITECTURE
 
-### 1.1 Siting Philosophy
-The primary engineering objective of the 5G FWA rollout is to maximize household population coverage within high-density suburban and rural barangay settlement clusters while minimizing civil capital expenditures and permitting lead times.
-* **TowerCo Co-Location First (Option A — Baseline):** The Operator leverages an audited master database of **13,746 operational towers**. For every candidate barangay, field teams must prioritize existing towers within <= 2.0 km (Classes T1, T2, and T3).
-* **Greenfield Monopole (Class T4):** Restricted strictly to candidate barangays located > 2.0 km from any verified operational tower structure (~9.3% of sites nationwide; 103 sites in Phase 1).
+### 1.1 Siting Philosophy & Mandatory 3-Tier Sourcing Hierarchy
+The primary engineering objective of the 5G FWA rollout is to maximize household population coverage within high-density suburban and rural barangay settlement clusters while minimizing civil capital expenditures and permitting lead times. To achieve rapid 1,000-site Phase 1 execution within 12 months, the Contractor shall execute site delivery strictly following the **Mandatory 3-Tier Infrastructure Sourcing Hierarchy**:
+1. **Tier 1 (Mandatory Baseline — Existing TowerCo Co-Location):** Field teams must prioritize co-location on existing operational towers (PTCI/MIDC, EdgePoint, FTAP Globe, FTAP Smart, LDIC, Phil-Tower) located within the designated search ring. The Operator leverages an audited master database of **13,746 operational towers**. Co-location reduces Ready-for-Installation (RFI) lead times from 120–180 days down to 15–30 days while eliminating private land titling and environmental permitting complexities.
+2. **Tier 2 (Secondary — TowerCo Build-to-Suit / B2S):** If all existing towers within the search ring exceed structural loading thresholds (EPA limits) or fail RF line-of-sight requirements, the vendor shall engage a licensed Independent TowerCo to execute a Build-to-Suit (B2S) under TelTech's Master Lease Agreement (MLA).
+3. **Tier 3 (Restricted Exception — Operator Greenfield Own-Build):** Direct operator-constructed greenfield monopoles are strictly limited to remote isolated barangays located > 2.0 km from any operational tower structure (~9.3% of sites nationwide; 103 sites in Phase 1). Proposing an own-build greenfield site requires formal written submission of **Structural Denial / Space Unavailability Letters** from at least two (2) licensed TowerCos and written sign-off from the TelTech Project Steering Committee.
+
+### 1.2 Search Ring Specification & Demand Centroid
+For each nominal site location assigned in Document 07 (Candidate Site List):
+* **Urban & Suburban Search Ring:** Defined as a circle with a radius of **500 meters** centered on the official nominal barangay demand centroid.
+* **Rural & Remote Search Ring:** Defined as a circle with a radius of **1,000 meters** (expandable up to 1,500 meters upon TelTech RF approval only if prominent terrain ridges or hills provide superior line-of-sight).
+* **Target Coverage Guarantee:** Sited candidate coordinates must achieve unobstructed Line-of-Sight (LOS) and target RSRP coverage ($\ge -95\text{ dBm}$) across $\ge 90\%$ of the inhabited settlement zone.
+
+### 1.3 Mandatory Three-Candidate Rule (Candidates A, B, C)
+For every search ring, the Turnkey Contractor / Site Acquisition Vendor must survey, evaluate, and submit **exactly three (3) distinct candidates** in the Technical Site Survey Report (TSSR):
+* **Candidate A (BEST — Primary Recommended):** Optimal TowerCo co-location asset (or prime site) with immediate structural capacity at $\ge 30\text{m}$ AGL, available $-48\text{V}$ DC busbar or commercial AC transformer headroom, nearest fiber node, and fastest projected RFI ($\le 21\text{ calendar days}$).
+* **Candidate B (BETTER — Secondary Target / Backup 1):** Fully compliant alternative TowerCo structure or site within the search ring requiring minor solvable modifications (e.g., dedicated AC sub-meter installation, mount bracket extensions, or secondary fiber lead-in route).
+* **Candidate C (GOOD — Contingency / Fallback):** Third viable TowerCo asset or TowerCo Build-to-Suit option, ensuring the search ring is not stalled if Candidates A and B encounter unforeseen structural or commercial deadlocks.
+* **14-Day Lease / SAA Escalation Protocol:** If the Site Application & Allocation (SAA) or Service Order (SO) negotiation for Candidate A stalls or exceeds **14 calendar days**, the vendor is contractually mandated to immediately activate and lock **Candidate B** to prevent project schedule slippage.
+
+### 1.4 Co-Location Candidate Evaluation Criteria Matrix (100-Point Scoring)
+Field teams and SAQ specialists shall evaluate all candidates using the standardized scoring rubric:
+* **Space & Structural Capacity (20%):** Antenna mounting space at $\ge 30\text{m}$ to $45\text{m}$ AGL, wind load headroom for 3x n50 antennas + 3x 8T8R RRUs ($\le 45\text{ kg}$ each), and $\ge 2.0\text{m} \times 2.0\text{m}$ compound ground space for outdoor rectifier/battery cabinets.
+* **Access Road & Compound Security (15%):** All-weather paved/concrete road access, established TowerCo security fencing/guarding, and 24/7 unobstructed Operations & Maintenance (O&M) ingress/egress.
+* **RF Line-of-Sight & Propagation (25%):** Dominant ground elevation AMSL, clear first Fresnel zone into residential settlement, zero close-in clutter shielding within $200\text{m}$ of sector azimuths ($0^\circ, 120^\circ, 240^\circ$).
+* **Backhaul Transport Proximity (15%):** Proximity to Converge/TelTech fiber distribution closure (Class A $\le 0.5\text{km}$, Class B $\le 1.0\text{km}$), existing TowerCo cable ladder/conduit entry, or unobstructed northern sky view ($0^\circ - 80^\circ$ elevation arc) for Starlink satellite backhaul.
+* **Power Availability & Utility Infrastructure (15%):** Commercial utility grid transformer capacity, available $-48\text{V}$ DC busbar tap ($\ge 63\text{A}$) or space for dedicated AC service entrance sub-meter, and shared backup genset/battery support.
+* **Lease & Commercial Terms (10%):** Fast-track Service Order execution under existing TowerCo Master Lease Agreement (MLA), monthly recurring fee within budget, and guaranteed RFI timeline $\le 30\text{ calendar days}$.
 
 ---
 
@@ -78,22 +101,50 @@ For every nominal site candidate, the Contractor shall complete and submit a com
 
 ---
 
-## 4. CIVIL WORKS & STRUCTURAL ENGINEERING (CLASS T4 GREENFIELD SITES)
+## 4. CIVIL WORKS & STRUCTURAL ENGINEERING (CLASS T4 GREENFIELD & TOWERCO BTS SITES)
 
-For the ~10% of sites requiring self-constructed greenfield towers, the Contractor shall adhere to the following civil standards:
-1. **Monopole Tower Specification:**
-   * 30-meter or 40-meter polygonal tubular steel monopole constructed in 3 to 4 slip-joint sections.
-   * Structural steel: ASTM A572 Grade 50 (or equivalent high-strength structural grade) hot-dip galvanized per ASTM A123 (>= 85microns zinc coating).
-   * Design Wind Speed: Minimum **250 km/h 3-second gust** in accordance with the National Structural Code of the Philippines (NSCP 2015 / TIA-222-G/H).
-   * Top antenna mounting platform capable of supporting 6x antennas/RRUs and microwave dish mountings.
-2. **Compound Civil Works:**
-   * Compound Footprint: Standard 8.0m x 8.0m (64 m²) gravel-topped compound.
-   * Perimeter Fencing: 2.4-meter high cyclone wire mesh fence topped with 3 strands of galvanized concertina razor wire.
-   * Equipment Pad: Reinforced concrete equipment plinth (Class A concrete, 28-day compressive strength >= 21MPa / 3,000psi) for outdoor cabinets and generator set.
-3. **Lightning Protection & Grounding Grid:**
-   * Air terminal (lightning rod) installed at monopole top extending >= 2.0m above uppermost antenna.
-   * Down-conductor: 70mm² bare stranded copper cable routed externally and clamped every 1.0m to tower shaft.
-   * Earth ground ring: Continuous buried bare copper loop around tower base and compound with copper-clad steel ground rods (19mm dia x 3.0m length) exothermically welded (Cadweld) at all junctions, achieving <= 5.0 Ohms.
+For sites requiring self-constructed greenfield towers or TowerCo Build-to-Suit (B2S) structures, the Contractor shall adhere to the following civil and structural standards conforming to the **National Structural Code of the Philippines (NSCP 2015 7th Edition, Section 207 Wind Loads)** and **TIA-222-G/H**:
+
+### 4.1 Philippine Basic Wind Speed Regimes & Wind Zone Mapping
+Structural design calculations and wind force determinations must strictly comply with NSCP 2015 basic wind speed maps:
+* **Wind Zone 1 (Ultimate Wind Speed $V = 315\text{ km/h}$ / $87.5\text{ m/s}$):** Covers the high-typhoon corridor along the eastern seaboard (Batanes, Cagayan, Isabela, Aurora, Quezon/Polillo, Bicol Region, Samar, Leyte, Dinagat Islands, Surigao del Norte/Sur, Davao Oriental).
+* **Wind Zone 2 (Ultimate Wind Speed $V = 270\text{ km/h}$ / $75.0\text{ m/s}$):** Covers Central and Western Luzon, National Capital Region (NCR), Central Luzon (Pampanga, Bulacan, Tarlac, Bataan, Zambales, Nueva Ecija), CALABARZON, MIMAROPA, and Western/Central Visayas (Iloilo, Cebu, Bohol, Negros).
+* **Wind Zone 3 (Ultimate Wind Speed $V = 200\text{ km/h}$ / $55.6\text{ m/s}$):** Covers low-risk regions including Palawan, Zamboanga Peninsula, and southern inland Mindanao.
+
+### 4.2 Structural Limit States & Deflection Criteria
+* **Survivable Wind Speed ($V_{\text{survival}}$ — Ultimate Limit State / LRFD):**
+  * Designed for **$270\text{ km/h}$ to $315\text{ km/h}$** 3-second gust wind speed under Ultimate Limit State with full equipment loading (3x n50 antennas, 3x RRUs, satellite dish, and mounting steelwork). Zero plastic collapse or structural overturning.
+* **Operational Wind Speed ($V_{\text{operational}}$ — Serviceability Limit State / SLS):**
+  * Designed for **$140\text{ km/h}$ to $160\text{ km/h}$ ($40.0\text{ m/s}$ to $44.4\text{ m/s}$)** continuous operational wind speed (1.0 load factor per TIA-222).
+  * Structure maintains rigid RF alignment, ensuring uninterrupted 5G beamforming, MIMO rank-4 transmission, and backhaul link availability ($\ge 99.995\%$).
+* **Allowable Twist ($\theta_{\text{twist}}$ / Torsional Rotation):**
+  * $\le \pm 0.5^\circ$ ($30\text{ arcmin}$) at $30\text{m}$ AGL for narrow-beam / microwave dish antennas;
+  * $\le \pm 1.0^\circ$ ($60\text{ arcmin}$) at $30\text{m}$ AGL for 5G Band n50 macro sectors.
+* **Allowable Sway / Tilt ($\theta_{\text{sway}}$ / Angular Deflection):**
+  * $\le \pm 1.0^\circ$ ($60\text{ arcmin}$) at top antenna mounting centerline ($30.0\text{m}$ AGL).
+* **Allowable Verticality (Tower Plumbness / Alignment):**
+  * $\le 1 : 500$ ($0.20\%$ of Tower Height $H$) throughout the full mast height under dead load and still air.
+  * For a $30.0\text{m}$ monopole, maximum horizontal deviation $\Delta \le 60\text{ mm}$ (for $40.0\text{m}$ monopole, $\Delta \le 80\text{ mm}$).
+  * Tolerance between consecutive slip-joints: $\le 1 : 1000$ ($0.10\%$).
+* **Horizontal Service Deflection ($\Delta_{\text{top}}$):**
+  * $\le H / 100$ ($300\text{ mm}$ maximum at $30.0\text{m}$ AGL).
+
+### 4.3 Monopole Tower & Material Specification
+* **Tower Structure:** 30-meter or 40-meter polygonal tubular steel monopole constructed in 3 to 4 slip-joint sections with minimum $1.5 \times$ inside diameter overlap.
+* **Structural Steel:** ASTM A572 Grade 50 ($F_y = 345\text{ MPa} / 50\text{ ksi}$, $F_u = 450\text{ MPa}$).
+* **Corrosion Protection:** Hot-dip galvanized per ASTM A123 / ISO 1461 with minimum zinc coating thickness $\ge 85\ \mu\text{m}$ ($610\text{ g/m}^2$).
+* **Fasteners & Anchors:** Anchor bolts ASTM F1554 Grade 55/105 with double heavy-hex nuts; structural bolts ASTM A325 / ISO 898-1 Class 8.8 hot-dip galvanized.
+
+### 4.4 Compound Civil Works & Foundation
+* **Compound Footprint:** Standard $8.0\text{m} \times 8.0\text{m}$ ($64\text{ m}^2$) gravel-topped compound with geotextile weed barrier.
+* **Perimeter Fencing:** 2.4-meter high cyclone wire mesh fence topped with 3 strands of galvanized concertina razor wire.
+* **Equipment Pad:** Reinforced concrete equipment plinth (Class A concrete, 28-day compressive strength $f'_c \ge 28\text{ MPa} / 4,000\text{ psi}$, ASTM A615 Grade 60 rebar) for outdoor power/battery cabinets.
+* **Foundation:** Reinforced concrete pad and chimney mat foundation or bored piles engineered with Safety Factor $\ge 2.0$ against soil bearing failure and $\ge 1.5$ against overturning/sliding.
+
+### 4.5 Lightning Protection & Earthing Grid
+* Top-mounted Franklin lightning air terminal extending $\ge 2.0\text{m}$ above uppermost antenna.
+* Down-conductor: $70\text{ mm}^2$ bare stranded copper cable routed externally and clamped every $1.0\text{m}$ to tower shaft.
+* Ground ring: Continuous buried bare copper loop around tower base and compound with copper-clad steel ground rods ($19\text{mm dia} \times 3.0\text{m}$ length) exothermically welded (Cadweld) at all junctions, achieving earth ground resistance $\le 5.0\ \Omega$.
 
 ---
 

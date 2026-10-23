@@ -57,6 +57,18 @@ All amendments, specifications, and clarifications contained herein are hereby i
 1. **Tower Structural Loading Verification:** For the 897 Co-location sites, structural loading analysis is conducted by the TowerCo under the Operator's Master Lease Agreement (MLA). The supplier provides equipment weights, dimensions, wind load surface area, and cable routing. Any necessary tower retrofits are executed by the TowerCo under the MLA.
 2. **Site Hunting & Excluded Sites:** Delays caused by local government (LGU) moratoria, right-of-way disputes, or utility connection delays exceeding 45 days permit the Operator and supplier to substitute the blocked candidate with a pre-approved site from the 4,000-candidate reserve pool without schedule penalty.
 3. **Variation Orders (VOs):** Abnormal site construction conditions (hard rock excavation requiring pneumatic equipment, manual material hauling > 500 meters across unpaved/mountainous terrain, and engineered retaining walls) are eligible for established unit-rate Variation Orders under Lot 5.
+4. **Mandatory 3-Tier Infrastructure Sourcing Hierarchy (TowerCo-First Mandate):** Siting must strictly follow:
+   * **Tier 1 (Mandatory Baseline):** Co-location on existing operational towers across the Operator's 13,746 tower inventory. Reduces Ready-for-Installation (RFI) to 15–30 days.
+   * **Tier 2 (Secondary):** TowerCo Build-to-Suit (B2S) under TelTech MLA if structural loading exceeds EPA limits on existing towers.
+   * **Tier 3 (Restricted Exception):** Operator own-build greenfield monopoles are restricted to remote areas > 2.0 km from any tower and require formal written structural denial letters from at least two (2) TowerCos.
+5. **Search Ring Sizing & Mandatory 3-Candidate Rule (A, B, C):**
+   * **Search Rings:** 500 meters radius for Urban/Suburban; 1,000 meters radius for Rural/Remote. Must ensure $\ge -95\text{ dBm}$ RSRP over residential demand clusters.
+   * **3-Candidate Presentation:** Field teams must present Candidate A (BEST — Primary Target), Candidate B (BETTER — Secondary Backup), and Candidate C (GOOD — Fallback).
+   * **14-Day SAA Escalation Protocol:** If Candidate A Service Order or Site Application & Allocation (SAA) stalls beyond 14 calendar days, contractor is contractually mandated to activate Candidate B to prevent project delay.
+6. **Structural Wind Load Standards & Deflection Limits (NSCP 2015 7th Ed. / TIA-222-H):**
+   * **Philippine Wind Zones:** Zone 1 = $315\text{ km/h}$ ($87.5\text{ m/s}$); Zone 2 = $270\text{ km/h}$ ($75.0\text{ m/s}$); Zone 3 = $200\text{ km/h}$ ($55.6\text{ m/s}$).
+   * **Survivable Wind Speed:** $270 - 315\text{ km/h}$ (Ultimate Limit State / LRFD); **Operational Wind Speed:** $140 - 160\text{ km/h}$ (Serviceability Limit State).
+   * **Allowable Twist:** $\le \pm 0.5^\circ$ for MW, $\le \pm 1.0^\circ$ for macro sector; **Allowable Sway:** $\le \pm 1.0^\circ$; **Verticality (Plumbness):** $\le 1:500$ ($0.20\%$ of height $H = 60\text{ mm}$ for 30m tower). Details codified in revised Appendix D.
 
 ---
 

@@ -77,12 +77,12 @@ window.RFPTenderData = {
   {
     "id": "05",
     "code": "05_Appendix_D_Site_Survey_RF_Planning_Civil_Power_Guidelines",
-    "title": "Appendix D: Siting, RF Planning, Civil & Power Guidelines",
-    "subtitle": "TSSR Guidelines, Band n50 Link Budget, 250 km/h Monopole Foundations & SSV Acceptance",
-    "badge": "Engineering Standards",
+    "title": "Appendix D: Siting, RF Planning, Civil & Power Guidelines (Rev 2.3)",
+    "subtitle": "Mandatory TowerCo Sourcing Hierarchy, 3-Candidate Rule (A/B/C), 500m/1000m Search Rings & NSCP 2015 Wind Standards (315 km/h)",
+    "badge": "Updated Oct 23",
     "pdf": "RFP_Tender_Package/05_Appendix_D_Site_Survey_RF_Planning_Civil_Power_Guidelines.pdf",
     "html": "RFP_Tender_Package/05_Appendix_D_Site_Survey_RF_Planning_Civil_Power_Guidelines.html",
-    "pages": "5 Pages",
+    "pages": "6 Pages",
     "type": "PDF"
   },
   {
@@ -108,9 +108,9 @@ window.RFPTenderData = {
   {
     "id": "08",
     "code": "08_RFP_5G_FWA_Bid_Bulletin_01_Official_Clarifications",
-    "title": "Bid Bulletin No. 1: Official Tender Clarifications & Responses",
-    "subtitle": "Binding Technical Amendments & Clarifications on Band n50 Spectrum, Siting, Power (12kW), OSS/BSS & Backhaul",
-    "badge": "Official Addendum",
+    "title": "Bid Bulletin No. 1: Official Tender Clarifications & Addendum",
+    "subtitle": "Binding Technical Amendments on TowerCo Co-Location Sourcing, Siting, Wind Limits, 12kW Power & Backhaul",
+    "badge": "Binding Addendum",
     "pdf": "RFP_Tender_Package/08_RFP_5G_FWA_Bid_Bulletin_01_Official_Clarifications.pdf",
     "html": "RFP_Tender_Package/08_RFP_5G_FWA_Bid_Bulletin_01_Official_Clarifications.html",
     "pages": "12 Pages (PDF & HTML)",
