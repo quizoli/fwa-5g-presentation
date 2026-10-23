@@ -118,12 +118,12 @@ window.RFPTenderData = {
   },
   {
     "id": "09",
-    "code": "09_Towerco_Master_Asset_Inventory",
-    "title": "Document 09: Master TowerCo Co-Location Asset Inventory (Restricted)",
-    "subtitle": "Audited Master Inventory of 13,810 Operational Towers across PTCI/MIDC, EdgePoint, LDIC, FTAP Globe, FTAP Smart & FTAP BTS with Precise WGS84 Coordinates & Tower Heights (m AGL)",
-    "badge": "Confidential / NDA Required",
-    "xlsx": null,
-    "pages": "7 Sheets (13,810 Towers Normalized)",
+    "code": "09_RFP_5G_FWA_Official_Clarifications_Responses_Master",
+    "title": "Document 09: Official Clarifications Response Workbook",
+    "subtitle": "Official 55-Item Q&A Response Matrix across RAN, Power, Civil, Transmission & Core (Companion Workbook to Bid Bulletin No. 1)",
+    "badge": "Clarification Matrix",
+    "xlsx": "RFP_Tender_Package/09_RFP_5G_FWA_Official_Clarifications_Responses_Master.xlsx",
+    "pages": "2 Sheets (55 Inquiries)",
     "type": "XLSX"
   }
 ],
