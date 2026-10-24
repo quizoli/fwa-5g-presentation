@@ -305,18 +305,24 @@
 <li><strong>Mounting:</strong> Weather-resistant (IP55) integrated outdoor ground-mounted power/battery cabinets on an elevated concrete pad represent the baseline design. Pole-mounted or wall-mounted power units are approved for rooftop/space-constrained co-location sites.</li>
 </ol>
 <hr />
-<h3>2.3 Transmission, Starlink Satellite Backhaul &amp; KPI Tiering</h3>
+<h3>2.3 Transmission, Backhaul Architecture &amp; KPI Tiering</h3>
 <ol>
-<li><strong>Media-Tiered Latency SLAs (Document 04 / Appendix C Amendment):</strong></li>
-<li><strong>Terrestrial Fiber-Fed Sites (100% of Phase 1):</strong> Ping Round-Trip Time (RTT) &lt;= 18 ms target (&lt;= 30 ms maximum).</li>
-<li><strong>Starlink Satellite-Fed Sites (Reallocated to Phase 2):</strong> Ping RTT threshold is relaxed to <strong>&lt;= 60 ms target (&lt;= 80 ms maximum)</strong> during SSV and cluster acceptance to reflect LEO satellite orbital physics.</li>
-<li><strong>Backhaul Outage Exclusions:</strong></li>
-<li>Downtime, packet loss, or latency degradation caused by third-party fiber cuts, upstream IP transit failures, or satellite constellation outages outside the site compound are strictly excluded from supplier RAN availability SLA penalties.</li>
+<li><strong>Media-Tiered Latency SLAs (Document 04 / Appendix C Amendment):</strong>
+  <ul>
+    <li><strong>Phase 1 Terrestrial Fiber-Connected Sites (100% of Phase 1):</strong> Ping Round-Trip Time (RTT) &le; 18 ms target (&le; 30 ms maximum). Following executive fiber-priority rollout alignment, all 1,000 Phase 1 sites are assigned to terrestrial fiber backhaul (962 sites &le; 1.0 km from existing fiber/nodes, and 38 sites &gt; 1.0 km planned for lateral drops under Comclark optical rollout), eliminating satellite backhaul from Phase 1 scope.</li>
+    <li><strong>Starlink Satellite-Fed Sites (Phase 2 / Expansion Batches):</strong> For remote/island candidates in subsequent rollout batches where terrestrial fiber is unviable, the LEO satellite latency threshold is relaxed to <strong>&le; 60 ms target (&le; 80 ms maximum)</strong> during SSV and cluster acceptance to reflect satellite orbital physics.</li>
+  </ul>
+</li>
+<li><strong>Backhaul Outage Exclusions:</strong>
+  <ul>
+    <li>Downtime, packet loss, or latency degradation caused by third-party fiber cuts, upstream IP transit failures, or satellite constellation outages outside the site compound are strictly excluded from supplier RAN availability SLA penalties.</li>
+  </ul>
+</li>
 </ol>
 <hr />
 <h3>2.4 TowerCo, Civil Works &amp; Site Siting</h3>
 <ol>
-<li><strong>Phase 1 Siting Quantities &amp; Commercial Allocation Baseline:</strong> The contractual commercial evaluated baseline across all RFP documents (Master Tender Section 2.1, BoQ Table 6, and Appendix D) is formally confirmed at <strong>897 Co-location Sites (89.7%) and 103 Greenfield Monopole Sites (10.3%)</strong>. In Document 07, the preliminary spatial proximity screening against the 13,810 tower inventory classifies 885 sites within &le; 2.0 km and 115 sites beyond 2.0 km (4,517 co-location / 483 greenfield nationwide). This initial geometric classification is subject to joint on-ground TSSR verification: if a screened greenfield site identifies an unmapped operational tower, it converts to Tier 1 co-location; conversely, if an audited tower fails structural load verification, it converts to Tier 2 B2S or Tier 3 greenfield substitution.</li>
+<li><strong>Phase 1 Siting Quantities &amp; Commercial Allocation Baseline:</strong> The contractual commercial evaluated baseline across all RFP documents (Master Tender Section 2.1, BoQ Table 6, and Appendix D) is formally confirmed at <strong>897 Co-location Sites (89.7%) and 103 Greenfield Monopole Sites (10.3%)</strong>. In Document 07, the latest spatial proximity screening against the 13,810 tower inventory classifies <strong>893 Co-location Candidates (89.3%)</strong> within &le; 2.0 km (T1 &le; 0.5 km: 551 sites; T2 0.5–1.0 km: 255 sites; T3 1.0–2.0 km: 87 sites) and <strong>107 Greenfield Monopole Candidates (10.7%)</strong> at Class T4 (&gt; 2.0 km) nationwide. While tender evaluation and contract award remain strictly anchored on the 897 / 103 commercial baseline, actual site implementation counts will be determined during Milestone 1 TSSR approvals: if a screened greenfield site identifies an unmapped operational tower within the search ring, it converts to Tier 1 co-location; conversely, if an audited tower fails structural load verification, it converts to Tier 2 B2S or Tier 3 greenfield substitution.</li>
 <li><strong>Commercial Valuation &amp; Siting True-Up Mechanism:</strong> While tender evaluation and contract award are based on the lump-sum pricing of the 897 Co-Location / 103 Greenfield baseline, actual contractor compensation will be trued up at Milestone 1 (TSSR Approval). If an evaluated co-location site converts to Tier 2 B2S or Tier 3 Greenfield (or vice-versa), contract value adjustments shall be calculated strictly using the pre-agreed Lot 5 unit rates (Table 6: Item LOT5-COLO for Co-Location, LOT5-B2S for Build-to-Suit, and LOT5-GF30/GF40 for Greenfield Monopoles) via an administrative contract variation order, ensuring cost certainty and fair valuation without altering the bidder's evaluated pricing competitiveness.</li>
 <li><strong>Division of Structural Responsibilities (Audit vs. Analysis):</strong> 
   <ul>
