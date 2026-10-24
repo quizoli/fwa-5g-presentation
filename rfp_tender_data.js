@@ -99,7 +99,7 @@ window.RFPTenderData = {
     "id": "07",
     "code": "07_RFP_5G_FWA_Candidate_Site_List_and_Rollout_Schedule",
     "title": "Document 07: Candidate Site List & Rollout Schedule (Rev 2.2 Validated)",
-    "subtitle": "Candidate Siting Inventory: 1,000 Phase 1 Sites (897 Co-location, 103 Greenfield, 17 Satellite) & 4,000 Expansion Sites — Audited DepEd Validated Coordinates",
+    "subtitle": "Candidate Siting Inventory: 1,000 Phase 1 Sites (897 Co-location, 103 Greenfield, 100% Terrestrial Fiber-Fed) & 4,000 Expansion Sites — Audited DepEd Validated Coordinates",
     "badge": "Rev 2.2 Siting Schedule",
     "xlsx": "RFP_Tender_Package/07_RFP_5G_FWA_Candidate_Site_List_and_Rollout_Schedule.xlsx?v=20261022_rev2.2",
     "pages": "6 Sheets (5,000 Sites)",

@@ -48,7 +48,7 @@ All amendments, specifications, and clarifications contained herein are hereby i
 
 ### 2.3 Transmission, Starlink Satellite Backhaul & KPI Tiering
 1. **Media-Tiered Latency SLAs (Document 04 / Appendix C Amendment):**
-   - **Terrestrial Fiber-Fed Sites (98.3% of Phase 1):** Ping Round-Trip Time (RTT) <= 18 ms target (<= 30 ms maximum).
+   - **Terrestrial Fiber-Fed Sites (100% of Phase 1):** Ping Round-Trip Time (RTT) <= 18 ms target (<= 30 ms maximum). All 1,000 Phase 1 candidate sites are 100% terrestrial fiber-connected, eliminating satellite backhaul in Phase 1.
    - **Starlink Satellite-Fed Sites (1.7% / 17 island/remote sites):** Ping RTT threshold is relaxed to **<= 60 ms target (<= 80 ms maximum)** during SSV and cluster acceptance to reflect LEO satellite orbital physics.
 2. **Backhaul Outage Exclusions:**
    - Downtime, packet loss, or latency degradation caused by third-party fiber cuts, upstream IP transit failures, or satellite constellation outages outside the site compound are strictly excluded from supplier RAN availability SLA penalties.
