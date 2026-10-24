@@ -144,7 +144,7 @@ window.RFPTenderData = {
       {
         "id": "RAN-03",
         "feature": "Channel Bandwidth",
-        "requirement": "Continuous 60 MHz channel bandwidth on a single carrier; software-configurable to 40 MHz / 50 MHz / 60 MHz."
+        "requirement": "Continuous 60 MHz (NCR / Meralco footprint, 162 RBs) and 80 MHz (Rest of Country / Provincial footprint, 217 RBs) single carrier; software-configurable to 40 MHz / 50 MHz / 60 MHz / 80 MHz."
       },
       {
         "id": "RAN-04",
@@ -189,7 +189,7 @@ window.RFPTenderData = {
       {
         "id": "RAN-12",
         "feature": "Sector Throughput",
-        "requirement": "Aggregated single-sector peak throughput >= 450 Mbps in 60 MHz DL under 4:1 TDD frame configuration."
+        "requirement": "Aggregated single-sector peak throughput >= 450 Mbps in 60 MHz DL (>= 600 Mbps in 80 MHz DL) under 4:1 TDD frame configuration."
       },
       {
         "id": "RAN-13",
@@ -579,7 +579,7 @@ window.RFPTenderData = {
       {
         "id": "RAN-HW-02",
         "description": "8T8R Remote Radio Unit (RRU)",
-        "scope": "Band n50 (1.5 GHz), 60 MHz IBW, 8x40W (320W total RF power), 3/site",
+        "scope": "Band n50 (1.5 GHz), 60/80 MHz IBW (software-configurable), 8x40W (320W total RF power), 3/site",
         "qty": 3000,
         "unit": "sets"
       },

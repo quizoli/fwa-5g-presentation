@@ -16,7 +16,7 @@
 | :--- | :--- | :--- | :---: | :--- |
 | **RAN-01** | **3GPP Standard** | 3GPP Release 16 and Release 17 compliant 5G NR Standalone (SA) architecture. | | |
 | **RAN-02** | **Frequency Band** | Band n50 (1432 – 1517 MHz, 1.5 GHz L-Band TDD). Full RF support for 1432–1517 MHz. | | |
-| **RAN-03** | **Channel Bandwidth** | Continuous 60 MHz channel bandwidth on a single carrier; software-configurable to 40 MHz / 50 MHz / 60 MHz. | | |
+| **RAN-03** | **Channel Bandwidth** | Continuous 60 MHz (NCR / Meralco footprint, 162 RBs) and 80 MHz (Rest of Country / Provincial footprint, 217 RBs) single carrier; software-configurable to 40 MHz / 50 MHz / 60 MHz / 80 MHz. | | |
 | **RAN-04** | **Duplex Mode** | Time Division Duplex (TDD) with flexible frame configuration (e.g., 4:1 DL:UL ratio with special slot 10:2:2). | | |
 | **RAN-05** | **Subcarrier Spacing** | 30 kHz Subcarrier Spacing (SCS) with normal cyclic prefix (CP). | | |
 | **RAN-06** | **Synchronization** | IEEE 1588v2 Precision Time Protocol (PTP G.8275.1 profile), Synchronous Ethernet (SyncE), and GNSS (GPS/BeiDou/GLONASS) receiver onboard BBU. | | |
@@ -25,7 +25,7 @@
 | **RAN-09** | **Beamforming** | Digital + analog beamforming (horizontal and vertical); dynamic Multi-User MIMO (MU-MIMO) pairing in DL and UL. | | |
 | **RAN-10** | **Modulation Schemes** | Downlink: Up to 256-QAM adaptive modulation.<br>Uplink: Up to 64-QAM / 256-QAM adaptive modulation. | | |
 | **RAN-11** | **MIMO Support** | Downlink: Up to 8-layer transmission across multiple users (MU-MIMO); up to 4-layer transmission to single 4R CPE.<br>Uplink: Up to 2-layer single user MIMO; 4-layer MU-MIMO. | | |
-| **RAN-12** | **Sector Throughput** | Aggregated single-sector peak throughput >= 450 Mbps in 60 MHz DL under 4:1 TDD frame configuration. | | |
+| **RAN-12** | **Sector Throughput** | Aggregated single-sector peak throughput >= 450 Mbps in 60 MHz DL (>= 600 Mbps in 80 MHz DL) under 4:1 TDD frame configuration. | | |
 | **RAN-13** | **Subscriber Capacity** | BBU and sector software must support >= 350 active concurrent RRC connected CPEs per sector (>= 1,000 per 3-sector site) without degradation. | | |
 | **RAN-14** | **BBU Architecture** | Modular 19" rack-mountable subrack (<= 3U height). Dual hot-swappable -48V DC power supplies. Redundant main control units. | | |
 | **RAN-15** | **Fronthaul Interfaces** | Minimum 6x 25GE eCPRI optical interfaces per BBU; support for fiber-saving BiDi transceivers. | | |
@@ -125,7 +125,7 @@
 | Item ID | Sub-System / Feature | Detailed Specification Requirement | Compliance (C / M / NC) | Bidder Proposed Specification & Reference |
 | :--- | :--- | :--- | :---: | :--- |
 | **CPE-01** | **3GPP Standards & Modes** | 3GPP Release 16/17 compliant 5G NR sub-6 GHz Standalone (SA) and Non-Standalone (NSA) operation. | | |
-| **CPE-02** | **Frequency Bands** | Native Band n50 (1432 – 1517 MHz, 60 MHz channel bandwidth) plus fallback sub-6 GHz bands (n1, n3, n7, n28, n41, n77, n78). | | |
+| **CPE-02** | **Frequency Bands** | Native Band n50 (1432 – 1517 MHz, supporting 60 MHz and 80 MHz channel bandwidths) plus fallback sub-6 GHz bands (n1, n3, n7, n28, n41, n77, n78). | | |
 | **CPE-03** | **Indoor CPE Antenna & MIMO** | High-gain omnidirectional multi-element internal antenna array (minimum >= 8.0 dBi gain across Band n50); 4x4 MIMO DL, 2x2 MIMO UL. | | |
 | **CPE-04** | **Outdoor CPE Antenna & MIMO** | High-gain directional integrated antenna array (minimum >= 12.0 dBi gain across Band n50); 4x4 MIMO DL, 2x2 MIMO UL; adjustable pole/wall mounting bracket. | | |
 | **CPE-05** | **Wi-Fi Subsystem** | Dual-band Wi-Fi 6 (802.11ax) 2.4 GHz (2x2) and 5 GHz (2x2) concurrent, OFDMA, MU-MIMO, WPA3-Personal encryption. | | |
