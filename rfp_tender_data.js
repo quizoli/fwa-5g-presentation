@@ -15,7 +15,7 @@ window.RFPTenderData = {
     baselineFxRate: 55.00,
     targetSitesPhase1: 1000,
     targetSubscribers: 365000,
-    spectrum: "Band n50 (1432 – 1517 MHz, 60 MHz TDD)"
+    spectrum: "Band n50 (1457–1517 MHz 60 MHz Authorized / 1432–1517 MHz Hardware Tuning)"
   },
   documents: [
   {
@@ -139,12 +139,12 @@ window.RFPTenderData = {
       {
         "id": "RAN-02",
         "feature": "Frequency Band",
-        "requirement": "Band n50 (1432 \u2013 1517 MHz, 1.5 GHz L-Band TDD). Full RF support for 1432\u20131517 MHz."
+        "requirement": "Band n50 (1432–1517 MHz, 1.5 GHz L-Band TDD). Full RF hardware tuning support for 1432–1517 MHz (1457–1517 MHz authorized demonstration baseline)."
       },
       {
         "id": "RAN-03",
         "feature": "Channel Bandwidth",
-        "requirement": "Continuous 60 MHz (NCR / Meralco footprint, 162 RBs) and 80 MHz (Rest of Country / Provincial footprint, 217 RBs) single carrier; software-configurable to 40 MHz / 50 MHz / 60 MHz / 80 MHz."
+        "requirement": "Continuous 60 MHz (1457–1517 MHz authorized baseline, 162 RBs) and up to 80 MHz (1437–1517 MHz provincial capability, 217 RBs) single carrier; software-configurable to 40 MHz / 50 MHz / 60 MHz / 80 MHz."
       },
       {
         "id": "RAN-04",
