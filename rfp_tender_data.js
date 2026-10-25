@@ -11,10 +11,12 @@ window.RFPTenderData = {
     operator: "Telecommunications Technology Solutions Incorporated (TelTech)",
     officialEmail: "oliver.tungol@comclark.com.ph",
     issueDate: "October 14, 2026",
+    activeRevision: "Revision 2.3 (Reconciled Tender Baseline — 25 October 2026)",
     submissionDeadline: "December 2, 2026 17:00:00 GMT+0800",
     baselineFxRate: 55.00,
     targetSitesPhase1: 1000,
     targetSubscribers: 365000,
+    auditedTowers: 13810,
     spectrum: "Band n50 (1432–1517 MHz, 60 MHz NCR / up to 80 MHz Provincial, Software-Configurable 40/50/60/80 MHz TDD)"
   },
   documents: [
@@ -88,11 +90,11 @@ window.RFPTenderData = {
   {
     "id": "06",
     "code": "06_RFP_Commercial_Price_Book_and_BoQ_Template",
-    "title": "Document 06: Official RFP Commercial Price Book",
-    "subtitle": "Dynamic 11-Tab Bidding Spreadsheet with Currency Conversion, Services SOW & Automated Subtotals",
-    "badge": "Updated Oct 25",
-    "xlsx": "RFP_Tender_Package/06_RFP_Commercial_Price_Book_and_BoQ_Template.xlsx",
-    "pages": "11 Sheets (with Services SOW)",
+    "title": "Document 06: Official RFP Commercial Price Book (Rev 2.1 Reconciled)",
+    "subtitle": "Dynamic 11-Tab Bidding Spreadsheet with Currency Conversion, Reconciled Services SOW, Multi-Year O&M & Form C TCO Link",
+    "badge": "Rev 2.1 • Reconciled",
+    "xlsx": "RFP_Tender_Package/06_RFP_Commercial_Price_Book_and_BoQ_Template.xlsx?v=20261025_rev2.3",
+    "pages": "11 Sheets (with Reconciled Services SOW)",
     "type": "XLSX"
   },
   {
@@ -129,13 +131,13 @@ window.RFPTenderData = {
   {
     "id": "10",
     "code": "10_Appendix_E_Services_Statement_of_Work_SOW_and_Pricing_Schedule",
-    "title": "Appendix E: Services SOW & Master Rate Card",
-    "subtitle": "Comprehensive Turnkey Rollout, Site Engineering, Telecom Integration, and 24/7 Managed Operations & Maintenance (O&M) Rate Card (59 Service Items)",
-    "badge": "Services SOW • Oct 25",
-    "pdf": "RFP_Tender_Package/10_Appendix_E_Services_Statement_of_Work_SOW_and_Pricing_Schedule.pdf",
-    "html": "RFP_Tender_Package/10_Appendix_E_Services_Statement_of_Work_SOW_and_Pricing_Schedule.html",
-    "docx": "RFP_Tender_Package/Service SoW.docx",
-    "pages": "10 Pages (PDF, HTML & Word)",
+    "title": "Appendix E: Services SOW & Master Rate Card (Version 2.1)",
+    "subtitle": "Comprehensive Turnkey Rollout, Site Engineering, Telecom Integration, and Reconciled 24/7 Managed Operations & Maintenance (O&M) Rate Card (59 Service Items)",
+    "badge": "Version 2.1 • Reconciled",
+    "pdf": "RFP_Tender_Package/10_Appendix_E_Services_Statement_of_Work_SOW_and_Pricing_Schedule.pdf?v=20261025_rev2.3",
+    "html": "RFP_Tender_Package/10_Appendix_E_Services_Statement_of_Work_SOW_and_Pricing_Schedule.html?v=20261025_rev2.3",
+    "docx": "RFP_Tender_Package/Service SoW.docx?v=20261025_rev2.3",
+    "pages": "26 Pages (PDF, HTML & Word)",
     "type": "PDF / DOCX"
   }
 ],

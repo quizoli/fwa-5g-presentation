@@ -22,8 +22,12 @@ This official distribution archive contains the complete, binding procurement an
 | **`03_Appendix_B_Commercial_Proposal_BoQ_Templates.pdf`** | Appendix B (Commercial) | Standardized Bill of Quantities (BoQ) tables for all lots, 10-year TCO parameters, and Vendor Financing Form D terms. |
 | **`04_Appendix_C_SLAs_KPIs_Liquidated_Damages.pdf`** | Appendix C (SLAs & KPIs) | Contractual service level agreements, network performance KPIs, incident severity classification, MTTR thresholds, and liquidated damages. |
 | **`05_Appendix_D_Site_Survey_RF_Planning_Civil_Power_Guidelines.pdf`** | Appendix D (Engineering) | Siting guidelines, TSSR templates, Band n50 link budget calculations, civil/tower foundations, and Single Site Verification (SSV) acceptance criteria. |
-| **`06_RFP_Commercial_Price_Book_and_BoQ_Template.xlsx`** | Commercial Price Book | Official 10-tab dynamic spreadsheet containing pre-formatted bidding BoQ schedules with automated currency conversion and subtotal formulas. |
-| **`07_RFP_5G_FWA_Candidate_Site_List_and_Rollout_Schedule.xlsx`** | Candidate Site List & Rollout Schedule | Full spatial inventory of 5,000 candidate barangays, demographic sizing, batch phasing (Batch 1 First 1,000 Sites), tower co-location IDs, distances to fiber/nodes, and transmission/power classifications. |
+| **`06_RFP_Commercial_Price_Book_and_BoQ_Template.xlsx`** | Commercial Price Book | Official 11-tab dynamic spreadsheet containing pre-formatted bidding BoQ schedules, Services SOW & Rate Card, automated currency conversion, and TCO reconciliation formulas. |
+| **`07_RFP_5G_FWA_Candidate_Site_List_and_Rollout_Schedule.xlsx`** | Candidate Site List & Rollout Schedule | Full spatial inventory of 5,000 candidate barangays, demographic sizing, batch phasing (Batch 1 First 1,000 Sites), tower co-location IDs across 13,810 audited tower database, distances to fiber/nodes, and transmission/power classifications. |
+| **`08_RFP_5G_FWA_Bid_Bulletin_01_Official_Clarifications.pdf`** | Bid Bulletin No. 1 | Official binding clarifications, amendments, technical harmonizations, and tender baseline updates issued to all registered bidders. |
+| **`09_RFP_5G_FWA_Official_Clarifications_Responses_Master.xlsx`** | Clarifications Matrix Workbook | Official companion Excel workbook containing the complete 55-item Q&A response matrix (RAN, Spectrum, Power, Civil, Transmission & Core). |
+| **`10_Appendix_E_Services_Statement_of_Work_SOW_and_Pricing_Schedule.pdf`** | Appendix E (Services SOW & Rate Card) | Comprehensive Services Statement of Work, execution boundaries, units of measurement (UoM), 59-item commercial rate card, and 24/7 Managed Services (O&M) specifications. |
+| **`Service SoW.docx`** | Official Editable Services SOW | Master Word document containing the expanded turnkey rollout and O&M Services Statement of Work and commercial rate card table. |
 
 ---
 
