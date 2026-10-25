@@ -46,86 +46,126 @@ To balance aggressive time-to-market against capital efficiency, TELTECH enforce
 | **Gate 2** | Technical Site Survey (TSSR) | Vendor & Eng. | Candidate A Selection | Drone 360°, TIA-222-H Structural & Grounding TSSR |
 | **Gate 3** | SAA, Permitting & Lease (NTP) | TowerCo & PMO | Approved TSSR | TowerCo SAA Approval, LGU Permits, Executed Lease, NTP |
 | **Gate 4** | Civil, Tower AMB & Power (RFI) | TowerCo / Civil | Issued NTP | 2x2m Pad, Grounding <= 5Ω, DC Power, RFI Certificate |
-| **Gate 5** | Telecom Installation (TI&C) | I&C Vendor | Signed RFI | 3x 8T8R RRU, Antennas, Sweeps (VSWR <= 1.35:1), TI Checklist |
+| **Gate 5** | Telecom Installation (ITC) | I&C Vendor | Signed RFI | 3x 8T8R RRU, Antennas, Sweeps (VSWR <= 1.35:1), TI Checklist |
 | **Gate 6** | On-Air, SSV & Site Acceptance | QA / Vendor | Commissioned BTS | IP Backhaul Sync, SSV Report (DL >= 450M), ATP-A/B Sign-Off |
 | **Gate 7** | Cluster RNO & Operations Handover| RNO & Ops | Contiguous 10-20 Sites On-Air | 14-Day OSS Stability (Avail >= 99.95%), TOC Handover to NOC |
 
 ---
 
-## 3. DETAILED OPERATIONAL PLAYBOOKS ACROSS THE LIFECYCLE
+## 3. FLOWCHARTS FOR EVERY MAJOR IMPLEMENTATION STEP
 
-### 3.1 Playbook A: Site Acquisition (SAQ) & Statutory Permitting
-1. **Search Ring Issuance:** RAN Planning releases geospatial search polygons with centroid coordinates, search radius (500m urban / 1,000m rural), target antenna centerline (30m to 45m AGL), and azimuth orientations (0°, 120°, 240°).
-2. **Candidate Siting & Ranking:** TowerCo / SAQ surveys three (3) candidates: Candidate A (Primary), Candidate B (Secondary), Candidate C (Contingency). PCER submitted within 10 calendar days.
-3. **TowerCo SAA Application:** Submit equipment loading schedule (3x 8T8R RRU, 3x Antennas, AMB brackets, hybrid DC/fiber cables, 2m x 2m compound footprint).
-4. **Land Due Diligence & Lease:** Verification of Transfer Certificate of Title (TCT) / Original Certificate of Title (OCT) / Certified Tax Declaration. Long-term 10-15 year lease notarization.
-5. **Statutory Permitting Roadmap:**
-   - Barangay Council Resolution & Clearance
-   - Homeowners Association (HOA) / Community No-Objection
-   - CAAP Height Clearance Permit
-   - DENR Certificate of Non-Coverage (CNC) / Environmental Compliance Certificate (ECC)
-   - LGU Building Permits under PD 1096 (Architectural, Structural, Civil, Electrical, Mechanical)
-   - Bureau of Fire Protection (BFP) Fire Safety Inspection Certificate (FSIC)
-   - Certificate of Final Electrical Inspection (CFEI)
-   - Commercial Utility Energization (Meralco / Electric Cooperative)
-   - LGU Certificate of Occupancy & Notice to Proceed (NTP)
+### 3.1 Flowchart 1: Site Acquisition (SAQ) & Statutory Permitting Detailed Workflow
+```mermaid
+flowchart TD
+    A1([Gate 0: Nominal Search Ring Issued]) --> A2[TowerCo Audits 13,746 Tower Inventory]
+    A2 --> A3{Colocation Candidate Viable?}
+    A3 -- Yes: 89.7% --> A4[Identify Candidate A Existing Tower]
+    A3 -- No --> A5{TowerCo Build-to-Suit Feasible?}
+    A5 -- Yes --> A6[TowerCo Hunts B2S Greenfield Candidate]
+    A5 -- No: 10.3% --> A7[TelTech Invokes Vendor SAQ Rate Card SAQ-01]
+    A4 --> A8[Generate PCER Dossier: Candidates A, B, C]
+    A6 --> A8
+    A7 --> A8
+    A8 --> A9[Joint Technical Site Survey TSSR: Drone LOS, Structural EPA, DC Power]
+    A9 --> A10{TSSR Criteria Met?}
+    A10 -- No --> A11[Reject Candidate A ➔ Survey Candidate B] --> A8
+    A10 -- Yes --> A12[Mandatory Joint Approval Gate]
+    A12 --> A13[Turnkey Vendor Issues Formal TSSR Endorsement]
+    A12 --> A14[TelTech Leadership Approves MLA Commercial Terms]
+    A13 & A14 --> A15[TowerCo Executes Space Allocation Application SAA]
+    A15 --> A16[Land Lease Title Due Diligence & 10-15yr Lease Notarized]
+    A16 --> A17[Barangay Resolution & HOA Clearance Secured]
+    A17 --> A18[CAAP Height Clearance & DENR CNC/ECC Secured]
+    A18 --> A19[LGU Building Permits Issued under PD 1096]
+    A19 --> A20[Commercial Utility Power Energization Meralco/Coop]
+    A20 --> A21[LGU Certificate of Occupancy & CFEI Issued]
+    A21 --> A22([Gate 3: Notice to Proceed NTP Issued])
+```
 
-### 3.2 Playbook B: Detailed Engineering & Technical Site Survey (TSSR)
-1. **Drone Panoramic Sweep:** Calibrated high-resolution 360-degree photographic sweep at antenna centerlines (30m, 35m, 40m, 45m AGL). Verification of optical Line-of-Sight (LOS) over target settlement polygons and foliage clearance.
-2. **Structural Loading & Wind Stress Audit:** Calculation of Effective Projected Area (EPA) and operating weight for 3x 8T8R RRUs, antennas, and cabling under ANSI/TIA-222-H for 250 km/h basic wind speed (Category 5 typhoon resilience). Formal review and wet-seal certification by a licensed Professional Structural Engineer (PE).
-3. **Grounding Fall-of-Potential Test:** Precision 3-point fall-of-potential test measuring earth resistance, strictly mandating <= 5.0 Ohms under Philippine Electrical Code (PEC) and TelTech specifications.
-4. **Power & Battery Autonomy Audit:** Verification of AC service entrance, transformer rating (kVA), DC power plant rectifier capacity, and LiFePO4 battery autonomy (>= 4.0 hours @ 3.0 kW load, <= 80% Depth of Discharge).
-5. **Detailed Engineering Design (DED):** Complete set of signed and sealed AutoCAD drawings: General Layout, Tower Elevation, Antenna Mounting Brackets (AMB), Cable Gantry Plan, Single Line Diagram (SLD), Grounding Ring Grid, and Bill of Quantities (BoQ).
+### 3.2 Flowchart 2: Telecom Installation, Testing & Commissioning (ITC) Detailed Workflow
+```mermaid
+flowchart TD
+    B1([Gate 4: Ready for Installation RFI Passed]) --> B2[Central Warehouse: BOM Picking & Barcode Verification]
+    B2 --> B3[Kit 1x BBU, 3x 8T8R RRU, 3x Antennas, Jumpers, SPDs, Grounding]
+    B3 --> B4[Final-Mile Hauling to Site via 4x4 / Barge / Porterage]
+    B4 --> B5[Certified Riggers Hoist & Mount AMB Brackets on Tower]
+    B5 --> B6[Mount 3x Macro Antennas & 3x 8T8R RRUs at Approved Centerline]
+    B6 --> B7[Calibrate Azimuths: 0°, 120°, 240° & Mechanical Downtilt]
+    B7 --> B8[Install & Daisy-Chain eRET AISG 2.0 Control Cables]
+    B8 --> B9[Route Hybrid Optical Trunk & DC Power Cables along Cable Gantry]
+    B9 --> B10[Apply Cold-Shrink Weatherproofing Boots on All RF Connections]
+    B10 --> B11[Bond 3-Point Grounding Kits to Tower & External Ground Busbar]
+    B11 --> B12[Calibrated RF Sweep Testing via SiteMaster Analyzer]
+    B12 --> B13{Sweeps Pass: VSWR <= 1.35 & RL >= 16.5 dB?}
+    B13 -- No --> B14[Inspect Connectors, Re-torque, Replace Faulty Jumpers] --> B12
+    B13 -- Yes --> B15[19-inch Rack Mount BBU in Outdoor Cabinet]
+    B15 --> B16[Terminate DC Power Breakers & Surge Protection Type 2 SPDs]
+    B16 --> B17[Install GPS Antenna & Lock PTP IEEE 1588v2 / SyncE Clock]
+    B17 --> B18[Turn-Up IP/MPLS Backhaul: Fiber / Microwave / Starlink LEO]
+    B18 --> B19[Establish S1-U / N2/N3 Interface to 5G Core AMF/UPF]
+    B19 --> B20[Load Carrier Software Baseline & Configure n50 Radio Parameters]
+    B20 --> B21[Clear All Active Active/Passive Alarms on EMS/OSS]
+    B21 --> B22([Gate 5: Commercial BTS On-Air Broadcast Achieved])
+```
 
-### 3.3 Playbook C: Supply Chain, Logistics & Staging
-1. **Port Receiving & Customs Clearance:** Handling active OEM shipments at Port of Manila and Batangas Container Terminal.
-2. **Central Warehousing & Regional Staging Depots:** Climate-controlled central storage in Mega Manila, with dedicated regional buffer staging depots in North Luzon (Pampanga), South Luzon (Batangas), Visayas (Cebu), and Mindanao (Davao).
-3. **BOM Kitting:** Pre-assembly and kitting of site packages (1x BBU, 3x RRUs, 3x Antennas, optical jumpers, DC power cables, grounding kits, Type 2 DC SPDs). Pre-labeling and pre-configuration.
-4. **Final-Mile Hauling:** Long-haul freight to regional hubs and specialized final-mile delivery to remote barangay sites utilizing 4x4 off-road trucks, motorized bancas, or manual porterage across unpaved mountain trails.
-5. **2.0% Buffer Spares Float:** Continuous maintenance of an audited 2.0% active hardware float for immediate warranty exchange and Advance Hardware Replacement (AHR) with Return Merchandise Authorization (RMA) turnaround <= 30 calendar days.
+### 3.3 Flowchart 3: Radio Network Optimization (SSV & Cluster RNO) Detailed Workflow
+```mermaid
+flowchart TD
+    C1([Site On-Air Status Achieved]) --> C2[Pre-SSV OSS Sanity Audit: 8T8R MIMO Active & Alarms Clear]
+    C2 --> C3[Field Drive & Stationary SSV Testing at Near, Mid, Cell-Edge]
+    C3 --> C4{SSV Benchmark Pass Criteria?}
+    C4 -- Peak DL >= 450M / Edge >= 50M / Latency <= 18ms --> C5[Generate Signed SSV Report]
+    C4 -- Failed --> C6[Physical Feeder Swap / Azimuth Check / Retest] --> C3
+    C5 --> C7[Joint Site Acceptance: ATP-A Civil & ATP-B Telecom]
+    C7 --> C8{Punch-List Defects Identified?}
+    C8 -- Class A Blocker --> C9[Vendor Rectifies within 24 Hours] --> C7
+    C8 -- Class B/C Minor --> C10[Logged in Snagging Register for 7-14 Day Fix] --> C11[ATP Acceptance Signed]
+    C8 -- None --> C11
+    C11 --> C12[Integrate Contiguous Cluster: 10 to 20 Adjacent Macro Sites]
+    C12 --> C13[Cluster Drive Testing: Continuous Scanner RSRP, SINR & Pilot Overlap]
+    C13 --> C14[RF Physical & Soft Tuning: eRET Electrical Tilt & Power Balancing]
+    C14 --> C15[Neighbor List Optimization & PCI Deconfliction Modulo-3/30]
+    C15 --> C16[14-Day Consecutive OSS Statistical KPI Monitoring]
+    C16 --> C17{Cluster Acceptance KPIs Met?}
+    C17 -- Avail >= 99.95% / CSSR >= 99.60% / CDDR <= 0.15% --> C18[Cluster Commercial Acceptance Endorsement]
+    C17 -- Failed --> C19[Interference Hunting & Worst-Performing Cell Remediation] --> C14
+    C18 --> C20[Compile As-Built Dossier, PE Seals & Spare Inventory Records]
+    C20 --> C21[Transfer of Control TOC Handover to 24/7 Central NOC]
+    C21 --> C22([Gate 7: Operational Commercial Handover to Operations & FLM])
+```
 
-### 3.4 Playbook D: Civil, Structural & Power Implementation
-1. **Compound Civil Works:** Construction of reinforced concrete foundation pad (2.0m x 2.0m x 200mm), galvanized steel security fence (2.4m height with 3 strands of barbed wire), anti-vegetation geotextile membrane with gravel bedding, and cable gantry.
-2. **Grounding Ring Installation:** Exothermic Cadweld bonding of 50mm² bare copper conductor ring with 3x copper-clad ground rods (16mm dia x 3.0m length) bonded to the main tower ground ring, achieving <= 5.0 Ohms resistance.
-3. **DC Power & Battery Turn-Up:** Installation of outdoor 6.0 kW DC rectifier cabinet, distribution breakers, Type 1+2 AC/DC surge protection devices (SPDs), and LiFePO4 battery modules (48V 150Ah/200Ah).
-4. **Ready for Installation (RFI) Verification:** Joint inspection verifying civil pad, grounding, and power availability, culminating in the issuance of the RFI Certificate.
-
-### 3.5 Playbook E: Telecom Installation, Commissioning & Integration (TI&C)
-1. **Rigging & Active Mounting:** Certified tower riggers hoist and mount 3x macro high-gain antennas and 3x 8T8R RRUs on tower AMBs at approved AGL centerlines. Azimuth alignment (0°, 120°, 240°) and mechanical downtilts verified using calibrated digital inclinometers and compasses.
-2. **eRET Cabling (AISG 2.0):** Daisy-chaining eRET control cables for remote electrical downtilt management via EMS/OSS.
-3. **Feeder Cabling & Weatherproofing:** Armored hybrid optical and DC trunk cables routed along cable ladders. Cold-shrink weatherproofing boots installed on all RF jumper connections. Tower-top and tower-base grounding kits bonded to external ground busbar.
-4. **Calibrated RF Sweep Testing:** VSWR <= 1.35:1 and Return Loss >= 16.5 dB verified across all antenna ports using a calibrated SiteMaster analyzer.
-5. **BBU Rack Integration & Transmission:** 19-inch rack mounting of BBU, GPS antenna mounting for PTP/SyncE clock synchronization, IP backhaul connection (fiber, microwave, or Starlink LEO satellite), and 5G Core (AMF/UPF) integration. Clearing all active alarms.
-
-### 3.6 Playbook F: Single Site Verification (SSV) & Acceptance (ATP)
-1. **ATP-A (Civil, Mechanical & Electrical):** Joint visual and mechanical audit: bolt torques, cable dressing, weatherproofing seals, earthing resistance (<= 5.0 Ohms), label verification, and compound housekeeping.
-2. **ATP-B (Active Telecom & Functional):** Remote EMS verification: 8T8R MU-MIMO operation, eRET remote tilt range (0° to 10°), battery discharge failover simulation, and remote reboot tests.
-3. **SSV Throughput & Handover Testing:** Test mobile terminal sweeps validating:
-   - Peak DL Throughput >= 450 Mbps (Near site, 64-QAM / 256-QAM)
-   - Cell-Edge DL Throughput >= 50 Mbps (at RSRP >= -95 dBm)
-   - Cell-Edge UL Throughput >= 15 Mbps
-   - Round-Trip Latency <= 18 ms
-   - Intra-site and inter-site handover success rate >= 99.5%
-4. **Snagging List Resolution:** Class A blockers resolved within 24h, Class B minor defects within 7 days, Class C documentation within 14 days.
-
-### 3.7 Playbook G: Cluster Radio Network Optimization (RNO)
-1. **Cluster Drive Testing:** Continuous scanner and test UE drive testing across contiguous clusters of 10 to 20 sites. Mapping coverage overlap, RSRP, SINR, pilot pollution, and handover boundaries.
-2. **Physical & Soft Tuning:** Systematic electrical downtilt (eRET) adjustments, azimuth realignments, neighbor list optimization, and PCI deconfliction adhering to modulo-3 and modulo-30 collision rules.
-3. **14-Day Statistical OSS Acceptance:** Post-launch monitoring over 14 consecutive calendar days validating:
-   - Radio Network Availability >= 99.95%
-   - Call / Session Setup Success Rate (CSSR) >= 99.60%
-   - Call / Session Drop Rate (CDDR) <= 0.15%
-   - Downlink Average PRB Utilization balanced across sectors
-
-### 3.8 Playbook H: 24/7 Managed NOC & Operations Handover
-1. **Transfer of Control (TOC):** Formal handover protocol from Rollout PMO to Network Operations. Delivery of complete as-built documentation, warranty certificates, spare parts inventory, and EMS/OSS credentials.
-2. **Central NOC Surveillance:** 24/7/365 active monitoring, automated alarm deduplication, trouble ticket generation within 5 minutes, and daily 06:00 PHT Operational Flash Reports.
-3. **Field First Line Maintenance (FLM):** Regional 24/7 mobile crews with mandated MTTR SLAs:
-   - Severity 1 (Critical Outage): Response <= 15m | MTTR <= 2.0h (Urban) / <= 4.0h (Rural)
-   - Severity 2 (Major Degradation): Response <= 30m | MTTR <= 4.0h (Urban) / <= 6.0h (Rural)
-   - Severity 3 (Minor Fault): Response <= 1h | MTTR <= 12.0h (Urban) / <= 24.0h (Rural)
-   - Severity 4 (Warning / Routine): Response <= 4h | MTTR <= 48.0h (Urban) / <= 72.0h (Rural)
-4. **Preventive Maintenance (PM):** 100% quarterly completion of Modules A (Telecom), B (Power & LiFePO4), C (Grounding & Lightning), D (Tower Structure & Rigging - Bi-annual), and E (Civil Compound).
+### 3.4 Flowchart 4: Multi-Party End-to-End Governance Swimlane
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Operator as Operator (TelTech PMO/Eng/NOC)
+    actor TowerCo as TowerCo Partner (PTCI/EdgePoint/FTAP)
+    actor Vendor as Turnkey Vendor (TI/I&C/RNO)
+    actor Regulators as LGU & Utilities (LGU/CAAP/Power)
+    Operator->>TowerCo: 1. Issues Nominal Search Ring (500m/1000m)
+    TowerCo->>TowerCo: 2. Siting Survey & Candidate PCER (A/B/C)
+    TowerCo->>Vendor: 3. Submits Candidate A for Technical Vetting
+    Vendor->>Vendor: 4. On-Site TSSR: Drone LOS, Structural EPA, Grounding
+    alt TSSR Fails (EPA Overload or LOS Blocked)
+        Vendor-->>TowerCo: Rejection Notice with Engineering Rationale
+        TowerCo->>Vendor: Resubmits Candidate B
+    else TSSR Passes
+        Vendor->>Operator: 5. Issues Formal Technical Endorsement in TSSR
+    end
+    Operator->>TowerCo: 6. Evaluates MLA Terms & Approves SAA
+    TowerCo->>Regulators: 7. Submits Land Lease, Barangay, CAAP & LGU PD 1096
+    Regulators-->>TowerCo: 8. Issues Building Permits, CFEI & Power Energization
+    TowerCo->>TowerCo: 9. Builds 2x2m Concrete Pad & Earth Ring (<= 5 Ohms)
+    TowerCo->>Operator: 10. Delivers RFI Certificate (Pad, Tower AMB & Power Ready)
+    Operator->>Vendor: 11. Issues Notice to Proceed NTP
+    Vendor->>Vendor: 12. BOM Kitting, Hauling & Telecom Installation (ITC)
+    Vendor->>Vendor: 13. Calibrated Sweeps (VSWR <= 1.35) & On-Air Broadcast
+    Vendor->>Operator: 14. Conducts SSV (DL >= 450M) & Submits SSV Report
+    Operator->>Vendor: 15. Joint ATP-A (Civil/Mech) & ATP-B (Functional) Acceptance
+    Vendor->>Vendor: 16. Cluster Drive Test & eRET / PCI Optimization
+    Vendor->>Operator: 17. 14-Day Post-Launch OSS Stability Audit (Avail >= 99.95%)
+    Operator->>Operator: 18. Formal Handover to 24/7 Central NOC & Regional FLM
+```
 
 ---
 
@@ -317,37 +357,67 @@ Extracted directly from the official **TTSI-ISMS-MNL-001 Manual (Teltech)**, the
 
 ---
 
-## 5. PROGRAM RACI RESPONSIBILITY ASSIGNMENT MATRIX
+## 5. EXPANDED MULTI-PARTY RACI RESPONSIBILITY ASSIGNMENT MATRIX
 
 *Legend: **R** = Responsible for execution | **A** = Accountable (Final Approval) | **C** = Consulted (Technical Input) | **I** = Informed*
 
-| Deployment Activity | TelTech PMO | TelTech Eng | TelTech Ops | TowerCo | Turnkey Vendor | LGU / Regulators |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| 1. Nominal Search Ring Issuance | C | **A / R** | I | I | C | I |
-| 2. Candidate Siting & PCER Survey | I | C | I | **A / R** | C | I |
-| 3. Technical Site Survey (TSSR) | I | **A** | I | C | **R** | I |
-| 4. Mandatory Joint Approval Sign-Off | **A** | C | I | C | C | I |
-| 5. TowerCo Space Application (SAA) | I | C | I | **A / R** | C | I |
-| 6. Landlord Lease Execution | I | I | I | **A / R** | I | I |
-| 7. Barangay & HOA Clearances | I | I | I | **A / R** | I | C |
-| 8. LGU Building Permit (PD 1096) | I | I | I | **A / R** | I | **A** |
-| 9. CAAP Height Clearance | I | I | I | **A / R** | I | **A** |
-| 10. Commercial Power Energization | I | I | I | **A / R** | I | **A** |
-| 11. Notice to Proceed (NTP) Issuance | **A / R** | C | I | C | I | I |
-| 12. Equipment Customs Clearance & Import| I | I | I | I | **A / R** | C |
-| 13. Regional Warehousing & BOM Kitting | I | I | I | I | **A / R** | I |
-| 14. Final-Mile Hauling to Site | I | I | I | I | **A / R** | I |
-| 15. Civil Pad & Earthing Construction | I | C | I | **A / R** | C | I |
-| 16. Ready for Installation (RFI) Gate | **A** | C | I | **R** | C | I |
-| 17. Active Telecom Installation (TI) | I | C | I | I | **A / R** | I |
-| 18. RF Antenna Sweep & VSWR Testing | I | C | I | I | **A / R** | I |
-| 19. IP Backhaul & 5GC Integration | I | **A** | C | I | **R** | I |
-| 20. On-Air Broadcast & Alarm Clearance | I | **A** | C | I | **R** | I |
-| 21. Single Site Verification (SSV) | I | **A** | I | I | **R** | I |
-| 22. ATP-A / ATP-B Acceptance Sign-Off | **A / R** | C | C | C | **R** | I |
-| 23. Cluster RNO Drive Test & Tuning | I | **A** | C | I | **R** | I |
-| 24. 14-Day Post-Launch OSS Stability | I | **A** | C | I | **R** | I |
-| 25. Operational TOC Handover to NOC | **A** | C | **R** | I | C | I |
+| Phase & Operational Activity | Operator (TelTech) | Turnkey Vendor | TowerCo Partner | LGU / Regulators |
+| :--- | :---: | :---: | :---: | :---: |
+| **Phase 1: Siting & Search Ring Issuance** | | | | |
+| 1.1 Demographic demand & polygon modeling | **A / R** | C | I | I |
+| 1.2 Band n50 nominal search ring generation (500m/1000m) | **A / R** | C | I | I |
+| 1.3 TowerCo 13,746 tower inventory database audit | C | I | **A / R** | I |
+| 1.4 Candidate siting & PCER survey (Candidates A, B, C) | C | C | **A / R** | I |
+| **Phase 2: Technical Site Survey & Engineering (TSSR)** | | | | |
+| 2.1 Calibrated drone 360° panoramic sweep (30-45m AGL) | I | **A / R** | C | I |
+| 2.2 TIA-222-H structural wind stress simulation (250 km/h)| C | **A / R** | C | I |
+| 2.3 Grounding 3-point fall-of-potential test (<= 5.0 Ohms) | I | **A / R** | C | I |
+| 2.4 Detailed Engineering Design (DED) CAD blueprints & PE seal| C | **A / R** | C | I |
+| 2.5 Mandatory Joint Approval Gate Sign-Off | **A** | C | C | I |
+| **Phase 3: SAA, Permitting & Statutory Governance** | | | | |
+| 3.1 TowerCo Space Allocation Application (SAA) approval | C | C | **A / R** | I |
+| 3.2 Land title due diligence & long-term lease execution | I | I | **A / R** | I |
+| 3.3 Barangay council resolution & HOA clearance | I | I | **A / R** | C |
+| 3.4 CAAP height clearance permit & DENR CNC/ECC | I | I | **A / R** | **A** |
+| 3.5 LGU building permits (PD 1096: Arch/Struct/Civil/Elec) | I | I | **A / R** | **A** |
+| 3.6 Commercial power utility energization (Meralco/Coop) | I | I | **A / R** | **A** |
+| 3.7 Notice to Proceed (NTP) issuance | **A / R** | I | C | I |
+| **Phase 4: SCM, Telecom Logistics & Buffer Management** | | | | |
+| 4.1 OEM hardware port customs clearance (Manila/Batangas) | I | **A / R** | I | C |
+| 4.2 Central warehousing & regional staging depots | I | **A / R** | I | I |
+| 4.3 BOM kitting (BBU, RRU, Antennas, SPDs, Grounding) | I | **A / R** | I | I |
+| 4.4 Final-mile rough-road hauling (4x4, barge, porterage) | I | **A / R** | I | I |
+| 4.5 2.0% active hardware buffer float & RMA management | C | **A / R** | I | I |
+| **Phase 5: Civil Works, Power & Tower Infrastructure (RFI)**| | | | |
+| 5.1 Reinforced concrete compound pad (2m x 2m x 200mm) | I | C | **A / R** | I |
+| 5.2 Perimeter security fence, barbed wire & gravel bedding | I | I | **A / R** | I |
+| 5.3 50mm² bare copper grounding ring Cadweld bonding (<= 5Ω)| I | C | **A / R** | I |
+| 5.4 Outdoor 6.0 kW DC rectifier & LiFePO4 battery turn-up | I | C | **A / R** | I |
+| 5.5 Ready for Installation (RFI) joint audit & certificate | **A** | C | **R** | I |
+| **Phase 6: Telecom Installation, Testing & Commissioning (ITC)**| | | | |
+| 6.1 Hoisting & mounting 3x macro antennas & 3x 8T8R RRUs | I | **A / R** | C | I |
+| 6.2 Azimuth & mechanical downtilt calibration (0°/120°/240°)| C | **A / R** | I | I |
+| 6.3 eRET AISG 2.0 daisy-chain cabling & remote tilt control| I | **A / R** | I | I |
+| 6.4 Jumper weatherproofing cold-shrink boots & cable dressing| I | **A / R** | I | I |
+| 6.5 Calibrated RF sweep testing (VSWR <= 1.35, RL >= 16.5 dB)| C | **A / R** | I | I |
+| 6.6 BBU cabinet mounting & DC breaker termination | I | **A / R** | I | I |
+| 6.7 GPS antenna mounting & PTP/SyncE clock synchronization | I | **A / R** | I | I |
+| 6.8 IP/MPLS backhaul turn-up & 5G Core (AMF/UPF) integration| **A** | **R** | I | I |
+| 6.9 Active alarm clearance & commercial on-air broadcast | **A** | **R** | I | I |
+| **Phase 7: Single Site Verification (SSV) & Site Acceptance**| | | | |
+| 7.1 Pre-SSV remote sanity check on EMS/OSS | **A** | **R** | I | I |
+| 7.2 Stationary & drive throughput testing (Peak >= 450M) | C | **A / R** | I | I |
+| 7.3 SSV report submission & engineering endorsement | **A** | **R** | I | I |
+| 7.4 ATP-A joint civil, mechanical & earthing inspection | **A / R** | **R** | C | I |
+| 7.5 ATP-B remote active functional & failover simulation | **A / R** | **R** | I | I |
+| 7.6 Snagging punch-list logging & rectification | **A** | **R** | C | I |
+| **Phase 8: Cluster Radio Network Optimization (RNO) & Handover**| | | | |
+| 8.1 Contiguous cluster drive test (10-20 sites) | C | **A / R** | I | I |
+| 8.2 eRET electrical tilt, azimuth & transmit power tuning | C | **A / R** | I | I |
+| 8.3 Neighbor list cleanup & PCI deconfliction (mod 3/30) | C | **A / R** | I | I |
+| 8.4 14-day consecutive OSS statistical KPI monitoring | **A** | **R** | I | I |
+| 8.5 As-built CAD blueprints, PE seals & completion dossier | **A** | **R** | C | I |
+| 8.6 Transfer of Control (TOC) to 24/7 Central NOC & FLM | **A** | C | I | I |
 
 ---
 

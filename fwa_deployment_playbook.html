@@ -373,7 +373,7 @@
     text-align: center;
   }
   .diagram-title {
-    font-size: 13px;
+    font-size: 13.5px;
     font-weight: 800;
     text-transform: uppercase;
     color: var(--teal);
@@ -408,6 +408,15 @@
   }
   tr:nth-child(even) td {
     background: rgba(10, 25, 47, 0.4);
+  }
+  tr.phase-header-row td {
+    background: rgba(0, 180, 216, 0.15) !important;
+    color: var(--cyan) !important;
+    font-weight: 800;
+    font-size: 13px;
+    border-top: 2px solid var(--teal);
+    border-bottom: 2px solid var(--teal);
+    padding: 10px 14px;
   }
   tr:hover td {
     background: rgba(0, 180, 216, 0.08);
@@ -518,12 +527,12 @@
     <ul class="sidebar-menu">
       <li><a href="#sec-overview" class="active">1. Program Mandate & Siting</a></li>
       <li><a href="#sec-pipeline">2. The 8-Gate Pipeline</a></li>
-      <li><a href="#sec-flowcharts">3. Process Flowcharts & Swimlanes</a></li>
+      <li><a href="#sec-flowcharts">3. Major Process Flowcharts</a></li>
       <li><a href="#sec-saq">4. Playbook A: SAQ & Permitting</a></li>
       <li><a href="#sec-engineering">5. Playbook B: Detailed Engineering</a></li>
       <li><a href="#sec-scm">6. Playbook C: SCM & Logistics</a></li>
       <li><a href="#sec-civil">7. Playbook D: Civil & Power</a></li>
-      <li><a href="#sec-telecom">8. Playbook E: Telecom I&C</a></li>
+      <li><a href="#sec-telecom">8. Playbook E: Telecom ITC</a></li>
       <li><a href="#sec-acceptance">9. Playbook F: SSV & Acceptance</a></li>
       <li><a href="#sec-rno">10. Playbook G: Cluster Optimization</a></li>
       <li><a href="#sec-operations">11. Playbook H: 24/7 Managed NOC</a></li>
@@ -651,7 +660,7 @@
         </tr>
         <tr>
           <td><strong style="color: var(--cyan);">Gate 5</strong></td>
-          <td><strong>Telecom Installation (TI&amp;C)</strong></td>
+          <td><strong>Telecom Installation (ITC)</strong></td>
           <td>I&amp;C Vendor</td>
           <td>Signed RFI</td>
           <td>3x 8T8R RRU, Antennas, Sweeps (VSWR &le; 1.35:1), TI Checklist</td>
@@ -673,89 +682,159 @@
       </tbody>
     </table>
 
-    <!-- SECTION 3: PROCESS FLOWCHARTS & SWIMLANES -->
-    <h1 id="sec-flowcharts">3. Process Flowcharts &amp; Swimlanes</h1>
-    <p>Visual representation of key operational decision gates, inter-organizational handshakes, and execution workflows across TelTech, TowerCos, Turnkey Vendors, and Statutory Authorities.</p>
+    <!-- SECTION 3: FLOWCHARTS FOR EVERY MAJOR STEP -->
+    <h1 id="sec-flowcharts">3. Detailed Process Flowcharts for Every Major Step</h1>
+    <p>Granular architectural and decision workflows governing the three critical milestones of deployment: (1) Site Acquisition &amp; Permitting, (2) Telecom Installation, Testing &amp; Commissioning (ITC), and (3) Single-Site Verification &amp; Cluster Optimization (RNO), alongside the Multi-Party Governance Swimlane.</p>
 
-    <!-- Diagram 1: SAQ to NTP Flow -->
+    <!-- Flowchart 1: SAQ to NTP Flow -->
     <div class="diagram-container">
       <div class="diagram-title">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 12h10M12 7v10"/></svg>
-        Diagram 1: End-to-End Site Sourcing &amp; Statutory Permitting Decision Flow
+        Flowchart 1: Site Acquisition (SAQ) &amp; Statutory Permitting Detailed Workflow
       </div>
       <div class="mermaid">
 flowchart TD
-    G0([Gate 0: Search Ring Issued]) --> S1[TowerCo Database Audit: 13,746 Towers]
-    S1 --> D1{Existing TowerCo Tower in Ring?}
-    D1 -- Yes: 89.7% --> TC_CAND[TowerCo Submits Candidate A Co-Location]
-    D1 -- No --> D2{TowerCo Willing to Build B2S?}
-    D2 -- Yes --> B2S_CAND[TowerCo Initiates B2S Candidate Hunting]
-    D2 -- No: 10.3% Exception --> OW_CAND[TelTech Invokes Vendor SAQ Rate Card SAQ-01]
-
-    TC_CAND --> TSSR[Joint TSSR: Drone LOS, Structural EPA, DC Power]
-    B2S_CAND --> TSSR
-    OW_CAND --> TSSR
-
-    TSSR --> D3{TSSR Meets Technical Criteria?}
-    D3 -- No --> SWAP[Swap to Backup Candidate B or C] --> TSSR
-    D3 -- Yes --> APPR[Mandatory Joint Approval Gate: Vendor Endorsement + TelTech Sign-off]
-
-    APPR --> PERMIT[Permitting Pipeline: Barangay, HOA, CAAP, LGU PD 1096, Power Utility]
-    PERMIT --> NTP([Gate 3: Notice to Proceed NTP Issued])
+    A1([Gate 0: Nominal Search Ring Issued]) --> A2[TowerCo Audits 13,746 Tower Inventory]
+    A2 --> A3{Colocation Candidate Viable?}
+    A3 -- Yes: 89.7% --> A4[Identify Candidate A Existing Tower]
+    A3 -- No --> A5{TowerCo Build-to-Suit Feasible?}
+    A5 -- Yes --> A6[TowerCo Hunts B2S Greenfield Candidate]
+    A5 -- No: 10.3% --> A7[TelTech Invokes Vendor SAQ Rate Card SAQ-01]
+    
+    A4 --> A8[Generate PCER Dossier: Candidates A, B, C]
+    A6 --> A8
+    A7 --> A8
+    
+    A8 --> A9[Joint Technical Site Survey TSSR: Drone LOS, Structural EPA, DC Power]
+    A9 --> A10{TSSR Criteria Met?}
+    A10 -- No --> A11[Reject Candidate A ➔ Survey Candidate B] --> A8
+    A10 -- Yes --> A12[Mandatory Joint Approval Gate]
+    
+    A12 --> A13[Turnkey Vendor Issues Formal TSSR Endorsement]
+    A12 --> A14[TelTech Leadership Approves MLA Commercial Terms]
+    
+    A13 & A14 --> A15[TowerCo Executes Space Allocation Application SAA]
+    A15 --> A16[Land Lease Title Due Diligence & 10-15yr Lease Notarized]
+    
+    A16 --> A17[Barangay Resolution & HOA Clearance Secured]
+    A17 --> A18[CAAP Height Clearance & DENR CNC/ECC Secured]
+    A18 --> A19[LGU Building Permits Issued under PD 1096]
+    A19 --> A20[Commercial Utility Power Energization Meralco/Coop]
+    A20 --> A21[LGU Certificate of Occupancy & CFEI Issued]
+    A21 --> A22([Gate 3: Notice to Proceed NTP Issued])
       </div>
     </div>
 
-    <!-- Diagram 2: Joint Approval Gate Swimlane -->
+    <!-- Flowchart 2: Telecom ITC Flow -->
+    <div class="diagram-container">
+      <div class="diagram-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Flowchart 2: Telecom Installation, Testing &amp; Commissioning (ITC) Detailed Workflow
+      </div>
+      <div class="mermaid">
+flowchart TD
+    B1([Gate 4: Ready for Installation RFI Passed]) --> B2[Central Warehouse: BOM Picking & Barcode Verification]
+    B2 --> B3[Kit 1x BBU, 3x 8T8R RRU, 3x Antennas, Jumpers, SPDs, Grounding]
+    B3 --> B4[Final-Mile Hauling to Site via 4x4 / Barge / Porterage]
+    
+    B4 --> B5[Certified Riggers Hoist & Mount AMB Brackets on Tower]
+    B5 --> B6[Mount 3x Macro High-Gain Antennas & 3x 8T8R RRUs at Approved Centerline]
+    B6 --> B7[Calibrate Azimuths: 0°, 120°, 240° & Mechanical Downtilt]
+    B7 --> B8[Install & Daisy-Chain eRET AISG 2.0 Control Cables]
+    
+    B8 --> B9[Route Hybrid Optical Trunk & DC Power Cables along Cable Gantry]
+    B9 --> B10[Apply Cold-Shrink Weatherproofing Boots on All RF Connections]
+    B10 --> B11[Bond 3-Point Grounding Kits to Tower & External Ground Busbar]
+    
+    B11 --> B12[Calibrated RF Sweep Testing via SiteMaster Analyzer]
+    B12 --> B13{Sweeps Pass: VSWR <= 1.35 & RL >= 16.5 dB?}
+    B13 -- No --> B14[Inspect Connectors, Re-torque, Replace Faulty Jumpers] --> B12
+    B13 -- Yes --> B15[19-inch Rack Mount BBU in Outdoor Cabinet]
+    
+    B15 --> B16[Terminate DC Power Breakers & Surge Protection Type 2 SPDs]
+    B16 --> B17[Install GPS Antenna & Lock PTP IEEE 1588v2 / SyncE Clock]
+    B17 --> B18[Turn-Up IP/MPLS Backhaul: Fiber / Microwave / Starlink LEO]
+    B18 --> B19[Establish S1-U / N2/N3 Interface to 5G Core AMF/UPF]
+    B19 --> B20[Load Carrier Software Baseline & Configure n50 Radio Parameters]
+    B20 --> B21[Clear All Active Active/Passive Alarms on EMS/OSS]
+    B21 --> B22([Gate 5: Commercial BTS On-Air Broadcast Achieved])
+      </div>
+    </div>
+
+    <!-- Flowchart 3: Optimization Flow -->
+    <div class="diagram-container">
+      <div class="diagram-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16 12l-4-4-4 4M12 16V8"/></svg>
+        Flowchart 3: Radio Network Optimization (SSV &amp; Cluster RNO) Detailed Workflow
+      </div>
+      <div class="mermaid">
+flowchart TD
+    C1([Site On-Air Status Achieved]) --> C2[Pre-SSV OSS Sanity Audit: 8T8R MIMO Active & Alarms Clear]
+    C2 --> C3[Field Drive & Stationary SSV Testing at Near, Mid, Cell-Edge]
+    
+    C3 --> C4{SSV Benchmark Pass Criteria?}
+    C4 -- "Peak DL >= 450 Mbps<br/>Edge DL >= 50 Mbps<br/>Edge UL >= 15 Mbps<br/>Latency <= 18 ms" --> C5[Generate Signed SSV Report]
+    C4 -- Failed --> C6[Physical Feeder Swap / Azimuth Check / Retest] --> C3
+    
+    C5 --> C7[Joint Site Acceptance: ATP-A Civil & ATP-B Telecom]
+    C7 --> C8{Punch-List Defects Identified?}
+    C8 -- Class A Blocker --> C9[Vendor Rectifies within 24 Hours] --> C7
+    C8 -- Class B/C Minor --> C10[Logged in Snagging Register for 7-14 Day Fix] --> C11[ATP Acceptance Signed]
+    C8 -- None --> C11
+    
+    C11 --> C12[Integrate Contiguous Cluster: 10 to 20 Adjacent Macro Sites]
+    C12 --> C13[Cluster Drive Testing: Continuous Scanner RSRP, SINR & Pilot Overlap]
+    C13 --> C14[RF Physical & Soft Tuning: eRET Electrical Tilt & Power Balancing]
+    C14 --> C15[Neighbor List Optimization & PCI Deconfliction Modulo-3/30]
+    
+    C15 --> C16[14-Day Consecutive OSS Statistical KPI Monitoring]
+    C16 --> C17{Cluster Acceptance KPIs Met?}
+    C17 -- "Availability >= 99.95%<br/>CSSR >= 99.60%<br/>CDDR <= 0.15%<br/>Throughput >= 450 Mbps" --> C18[Cluster Commercial Acceptance Endorsement]
+    C17 -- Failed --> C19[Interference Hunting & Worst-Performing Cell Remediation] --> C14
+    
+    C18 --> C20[Compile As-Built Dossier, PE Seals & Spare Inventory Records]
+    C20 --> C21[Transfer of Control TOC Handover to 24/7 Central NOC]
+    C21 --> C22([Gate 7: Operational Commercial Handover to Operations & FLM])
+      </div>
+    </div>
+
+    <!-- Flowchart 4: Multi-Party Swimlane -->
     <div class="diagram-container">
       <div class="diagram-title">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
-        Diagram 2: Mandatory Joint Candidate Approval Swimlane
+        Flowchart 4: Multi-Party Governance Swimlane (Operator vs Vendor vs TowerCo vs Regulators)
       </div>
       <div class="mermaid">
 sequenceDiagram
     autonumber
-    actor TelTech as TelTech PMO / Eng.
-    actor TowerCo as TowerCo Partner
-    actor Vendor as Turnkey Vendor
-    actor LGU as LGU / Regulators
+    actor Operator as Operator (TelTech PMO/Eng/NOC)
+    actor TowerCo as TowerCo Partner (PTCI/EdgePoint/FTAP)
+    actor Vendor as Turnkey Vendor (TI/I&C/RNO)
+    actor Regulators as LGU & Utilities (LGU/CAAP/Power)
 
-    TelTech->>TowerCo: 1. Issues Nominal Search Ring Dossier
-    TowerCo->>TowerCo: 2. Siting & PCER Survey (Candidate A, B, C)
+    Operator->>TowerCo: 1. Issues Nominal Search Ring (500m/1000m)
+    TowerCo->>TowerCo: 2. Siting Survey & Candidate PCER (A/B/C)
     TowerCo->>Vendor: 3. Submits Candidate A for Technical Vetting
-    Vendor->>Vendor: 4. Drone Sweep, Structural EPA Audit & Power Check
-    alt TSSR Failed
-        Vendor-->>TowerCo: Structural Overload / LOS Blocked (Reject)
-        TowerCo->>Vendor: Submits Candidate B
-    else TSSR Passed
-        Vendor->>TelTech: 5. Issues Formal Technical Endorsement in TSSR
+    Vendor->>Vendor: 4. On-Site TSSR: Drone LOS, Structural EPA, Grounding
+    alt TSSR Fails (EPA Overload or LOS Blocked)
+        Vendor-->>TowerCo: Rejection Notice with Engineering Rationale
+        TowerCo->>Vendor: Resubmits Candidate B
+    else TSSR Passes
+        Vendor->>Operator: 5. Issues Formal Technical Endorsement in TSSR
     end
-    TelTech->>TowerCo: 6. Evaluates MLA Commercial Terms & Approves SAA
-    TowerCo->>LGU: 7. Files Barangay, CAAP & Building Permits (PD 1096)
-    LGU-->>TowerCo: 8. Issues Statutory Permits & Energization
-    TowerCo->>TelTech: 9. Delivers RFI Compound & Executed Lease
-    TelTech->>Vendor: 10. Issues NTP & Releases Site for Active TI&C
-      </div>
-    </div>
-
-    <!-- Diagram 3: Deployment & Rollout Pipeline -->
-    <div class="diagram-container">
-      <div class="diagram-title">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-        Diagram 3: Turnkey Rollout, Integration &amp; Operations Handover Lifecycle
-      </div>
-      <div class="mermaid">
-flowchart LR
-    NTP([NTP Issued]) --> CIVIL[Civil Pad & DC Power]
-    CIVIL --> RFI([Gate 4: RFI Passed])
-    RFI --> LOG[BOM Kitting & Hauling]
-    LOG --> TI[Active Telecom Installation: 3x 8T8R RRU + Antennas]
-    TI --> SWEEP[VSWR & Return Loss Sweeps]
-    SWEEP --> ON_AIR([Gate 5: On-Air & Integrated])
-    ON_AIR --> SSV[Single Site Verification: DL >= 450M]
-    SSV --> ATP[ATP-A Civil + ATP-B Telecom Sign-Off]
-    ATP --> CLUSTER[Contiguous Cluster Optimization: 10-20 Sites]
-    CLUSTER --> STAB[14-Day OSS KPI Stability]
-    STAB --> NOC([Gate 7: Commercial TOC Handover to 24/7 NOC])
+    Operator->>TowerCo: 6. Evaluates MLA Terms & Approves SAA
+    TowerCo->>Regulators: 7. Submits Land Lease, Barangay, CAAP & LGU PD 1096
+    Regulators-->>TowerCo: 8. Issues Building Permits, CFEI & Power Energization
+    TowerCo->>TowerCo: 9. Builds 2x2m Concrete Pad & Earth Ring (<= 5 Ohms)
+    TowerCo->>Operator: 10. Delivers RFI Certificate (Pad, Tower AMB & Power Ready)
+    Operator->>Vendor: 11. Issues Notice to Proceed NTP
+    Vendor->>Vendor: 12. BOM Kitting, Hauling & Telecom Installation (ITC)
+    Vendor->>Vendor: 13. Calibrated Sweeps (VSWR <= 1.35) & On-Air Broadcast
+    Vendor->>Operator: 14. Conducts SSV (DL >= 450M) & Submits SSV Report
+    Operator->>Vendor: 15. Joint ATP-A (Civil/Mech) & ATP-B (Functional) Acceptance
+    Vendor->>Vendor: 16. Cluster Drive Test & eRET / PCI Optimization
+    Vendor->>Operator: 17. 14-Day Post-Launch OSS Stability Audit (Avail >= 99.95%)
+    Operator->>Operator: 18. Formal Handover to 24/7 Central NOC & Regional FLM
       </div>
     </div>
 
@@ -811,7 +890,7 @@ flowchart LR
       <li><strong>Ready for Installation (RFI) Gate:</strong> Formal joint inspection verifying pad, fence, earthing, and power energization, concluding with signed RFI Certificate.</li>
     </ul>
 
-    <h1 id="sec-telecom">8. Playbook E: Telecom Installation, Commissioning &amp; Integration (TI&amp;C)</h1>
+    <h1 id="sec-telecom">8. Playbook E: Telecom Installation, Commissioning &amp; Integration (ITC)</h1>
     <p>Telecom rigging, cabling, RF sweep testing, and network integration executed by certified telecom engineers.</p>
     <ul>
       <li><strong>Tower Rigging:</strong> Hoisting and mounting 3x high-gain macro antennas and 3x 8T8R RRUs on tower AMBs at approved AGL centerlines. Setting azimuths (0°, 120°, 240°) and mechanical downtilts using calibrated digital inclinometers.</li>
@@ -1610,245 +1689,386 @@ flowchart LR
     </div>
 
     <!-- SECTION 13: PROGRAM RACI MATRIX -->
-    <h1 id="sec-raci">13. Program RACI Governance Matrix</h1>
-    <p>Operational assignment matrix delineating Responsible (R), Accountable (A), Consulted (C), and Informed (I) roles across all 25 core delivery activities:</p>
+    <h1 id="sec-raci">13. Program RACI Governance Matrix (Operator, Vendor &amp; TowerCo)</h1>
+    <p>Comprehensive operational responsibility assignment matrix across all 8 project phases. Clearly differentiates duties among the <strong>Operator (TelTech)</strong>, the <strong>Turnkey Telecom Vendor</strong>, the <strong>TowerCo Partner</strong>, and <strong>Statutory Regulators / Utilities</strong>:</p>
 
     <table>
       <thead>
         <tr>
-          <th>Deployment Activity</th>
-          <th style="text-align: center;">TelTech PMO</th>
-          <th style="text-align: center;">TelTech Eng</th>
-          <th style="text-align: center;">TelTech Ops</th>
-          <th style="text-align: center;">TowerCo</th>
-          <th style="text-align: center;">Vendor</th>
-          <th style="text-align: center;">LGU / Reg.</th>
+          <th style="width: 40%;">Project Phase &amp; Operational Activity</th>
+          <th style="width: 15%; text-align: center;">Operator (TelTech)</th>
+          <th style="width: 15%; text-align: center;">Turnkey Vendor</th>
+          <th style="width: 15%; text-align: center;">TowerCo Partner</th>
+          <th style="width: 15%; text-align: center;">LGU / Regulators</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1. Nominal Search Ring Issuance</td>
-          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
-          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        <!-- Phase 1 -->
+        <tr class="phase-header-row">
+          <td colspan="5">PHASE 1: SITING &amp; SEARCH RING ISSUANCE</td>
         </tr>
         <tr>
-          <td>2. Candidate Siting &amp; PCER Survey</td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td>1.1 Demographic demand analysis &amp; clutter polygon modeling</td>
           <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
           <td style="text-align: center;"><span class="badge badge-c">C</span></td>
           <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-        </tr>
-        <tr>
-          <td>3. Technical Site Survey (TSSR)</td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-a">A</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
-          <td style="text-align: center;"><span class="badge badge-r">R</span></td>
           <td style="text-align: center;"><span class="badge badge-i">I</span></td>
         </tr>
         <tr>
-          <td>4. Mandatory Joint Approval Sign-Off</td>
-          <td style="text-align: center;"><span class="badge badge-a">A</span></td>
-          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
-          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-        </tr>
-        <tr>
-          <td>5. TowerCo Space Application (SAA)</td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td>1.2 Band n50 nominal search ring generation (500m urban / 1,000m rural)</td>
           <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
           <td style="text-align: center;"><span class="badge badge-c">C</span></td>
           <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-        </tr>
-        <tr>
-          <td>6. Landlord Lease Execution</td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
           <td style="text-align: center;"><span class="badge badge-i">I</span></td>
         </tr>
         <tr>
-          <td>7. Barangay &amp; HOA Clearances</td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td>1.3 TowerCo 13,746 tower inventory database audit</td>
           <td style="text-align: center;"><span class="badge badge-c">C</span></td>
-        </tr>
-        <tr>
-          <td>8. LGU Building Permit (PD 1096)</td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-a">A</span></td>
-        </tr>
-        <tr>
-          <td>9. CAAP Height Clearance</td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-a">A</span></td>
-        </tr>
-        <tr>
-          <td>10. Commercial Power Energization</td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-a">A</span></td>
-        </tr>
-        <tr>
-          <td>11. Notice to Proceed (NTP) Issuance</td>
-          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
-          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-        </tr>
-        <tr>
-          <td>12. Active Equipment Customs Clearance</td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
-          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
-        </tr>
-        <tr>
-          <td>13. Regional Warehousing &amp; BOM Kitting</td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
           <td style="text-align: center;"><span class="badge badge-i">I</span></td>
           <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
           <td style="text-align: center;"><span class="badge badge-i">I</span></td>
         </tr>
         <tr>
-          <td>14. Final-Mile Hauling to Site</td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td>1.4 Candidate siting &amp; PCER survey (Candidates A, B, C)</td>
+          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
           <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
           <td style="text-align: center;"><span class="badge badge-i">I</span></td>
         </tr>
+
+        <!-- Phase 2 -->
+        <tr class="phase-header-row">
+          <td colspan="5">PHASE 2: TECHNICAL SITE SURVEY &amp; ENGINEERING (TSSR)</td>
+        </tr>
         <tr>
-          <td>15. Civil Pad &amp; Grounding Construction</td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+          <td>2.1 Calibrated drone 360° panoramic sweep (30m to 45m AGL)</td>
           <td style="text-align: center;"><span class="badge badge-i">I</span></td>
           <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
           <td style="text-align: center;"><span class="badge badge-c">C</span></td>
           <td style="text-align: center;"><span class="badge badge-i">I</span></td>
         </tr>
         <tr>
-          <td>16. Ready for Installation (RFI) Gate</td>
+          <td>2.2 TIA-222-H structural wind stress simulation (250 km/h basic wind)</td>
+          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>2.3 Grounding 3-point fall-of-potential test (&le; 5.0 Ohms)</td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>2.4 Detailed Engineering Design (DED) CAD blueprints &amp; PE wet-seal</td>
+          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>2.5 Mandatory Joint Approval Gate Sign-Off</td>
           <td style="text-align: center;"><span class="badge badge-a">A</span></td>
           <td style="text-align: center;"><span class="badge badge-c">C</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-r">R</span></td>
           <td style="text-align: center;"><span class="badge badge-c">C</span></td>
           <td style="text-align: center;"><span class="badge badge-i">I</span></td>
         </tr>
+
+        <!-- Phase 3 -->
+        <tr class="phase-header-row">
+          <td colspan="5">PHASE 3: SAA, PERMITTING &amp; STATUTORY GOVERNANCE</td>
+        </tr>
         <tr>
-          <td>17. Active Telecom Installation (TI)</td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td>3.1 TowerCo Space Allocation Application (SAA) approval</td>
           <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>3.2 Land title due diligence &amp; long-term lease execution</td>
           <td style="text-align: center;"><span class="badge badge-i">I</span></td>
           <td style="text-align: center;"><span class="badge badge-i">I</span></td>
           <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
           <td style="text-align: center;"><span class="badge badge-i">I</span></td>
         </tr>
         <tr>
-          <td>18. RF Antenna Sweep &amp; VSWR Testing</td>
+          <td>3.3 Barangay council resolution &amp; HOA clearance</td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+        </tr>
+        <tr>
+          <td>3.4 CAAP height clearance permit &amp; DENR CNC/ECC</td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A</span></td>
+        </tr>
+        <tr>
+          <td>3.5 LGU building permits (PD 1096: Arch/Struct/Civil/Elec/Mech)</td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A</span></td>
+        </tr>
+        <tr>
+          <td>3.6 Commercial power utility energization (Meralco / Electric Coop)</td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A</span></td>
+        </tr>
+        <tr>
+          <td>3.7 Notice to Proceed (NTP) issuance</td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
           <td style="text-align: center;"><span class="badge badge-i">I</span></td>
           <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+
+        <!-- Phase 4 -->
+        <tr class="phase-header-row">
+          <td colspan="5">PHASE 4: SCM, TELECOM LOGISTICS &amp; BUFFER MANAGEMENT</td>
+        </tr>
+        <tr>
+          <td>4.1 OEM hardware port customs clearance (Manila / Batangas)</td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+        </tr>
+        <tr>
+          <td>4.2 Central warehousing &amp; regional staging depots (Luzon/Vis/Min)</td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>4.3 BOM kitting (BBU, 8T8R RRUs, Antennas, SPDs, Grounding)</td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>4.4 Final-mile rough-road hauling (4x4, motorized banca, porterage)</td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>4.5 2.0% active hardware buffer float &amp; RMA factory warranty repair</td>
+          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+
+        <!-- Phase 5 -->
+        <tr class="phase-header-row">
+          <td colspan="5">PHASE 5: CIVIL WORKS, POWER &amp; TOWER INFRASTRUCTURE (RFI)</td>
+        </tr>
+        <tr>
+          <td>5.1 Reinforced concrete compound pad (2.0m x 2.0m x 200mm)</td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>5.2 Perimeter security fence, barbed wire &amp; anti-weed geotextile</td>
           <td style="text-align: center;"><span class="badge badge-i">I</span></td>
           <td style="text-align: center;"><span class="badge badge-i">I</span></td>
           <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
           <td style="text-align: center;"><span class="badge badge-i">I</span></td>
         </tr>
         <tr>
-          <td>19. IP Backhaul &amp; 5GC Integration</td>
+          <td>5.3 50mm² bare copper grounding ring Cadweld bonding (&le; 5.0 Ohms)</td>
           <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-a">A</span></td>
           <td style="text-align: center;"><span class="badge badge-c">C</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-r">R</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-        </tr>
-        <tr>
-          <td>20. On-Air Broadcast &amp; Alarm Clearance</td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-a">A</span></td>
-          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-r">R</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-        </tr>
-        <tr>
-          <td>21. Single Site Verification (SSV)</td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-a">A</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-r">R</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-        </tr>
-        <tr>
-          <td>22. ATP-A / ATP-B Acceptance Sign-Off</td>
           <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
-          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
-          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
-          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
-          <td style="text-align: center;"><span class="badge badge-r">R</span></td>
           <td style="text-align: center;"><span class="badge badge-i">I</span></td>
         </tr>
         <tr>
-          <td>23. Cluster RNO Drive Test &amp; Tuning</td>
+          <td>5.4 Outdoor 6.0 kW DC rectifier cabinet &amp; LiFePO4 battery turn-up</td>
           <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-a">A</span></td>
           <td style="text-align: center;"><span class="badge badge-c">C</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-r">R</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
           <td style="text-align: center;"><span class="badge badge-i">I</span></td>
         </tr>
         <tr>
-          <td>24. 14-Day Post-Launch OSS Stability</td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-a">A</span></td>
-          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-          <td style="text-align: center;"><span class="badge badge-r">R</span></td>
-          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
-        </tr>
-        <tr>
-          <td>25. Operational TOC Handover to NOC</td>
+          <td>5.5 Ready for Installation (RFI) joint audit &amp; certificate issuance</td>
           <td style="text-align: center;"><span class="badge badge-a">A</span></td>
           <td style="text-align: center;"><span class="badge badge-c">C</span></td>
           <td style="text-align: center;"><span class="badge badge-r">R</span></td>
           <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+
+        <!-- Phase 6 -->
+        <tr class="phase-header-row">
+          <td colspan="5">PHASE 6: TELECOM INSTALLATION, TESTING &amp; COMMISSIONING (ITC)</td>
+        </tr>
+        <tr>
+          <td>6.1 Hoisting &amp; mounting 3x macro antennas &amp; 3x 8T8R RRUs on AMBs</td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
           <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>6.2 Azimuth &amp; mechanical downtilt calibration (0°/120°/240°)</td>
+          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>6.3 eRET AISG 2.0 daisy-chain cabling &amp; remote tilt control</td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>6.4 Jumper weatherproofing cold-shrink boots &amp; cable dressing</td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>6.5 Calibrated RF sweep testing (VSWR &le; 1.35, Return Loss &ge; 16.5 dB)</td>
+          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>6.6 BBU cabinet mounting &amp; DC power breaker wiring</td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>6.7 GPS antenna mounting &amp; PTP IEEE 1588v2 / SyncE clock sync</td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>6.8 IP/MPLS backhaul turn-up &amp; 5G Core (AMF/UPF) integration</td>
+          <td style="text-align: center;"><span class="badge badge-a">A</span></td>
+          <td style="text-align: center;"><span class="badge badge-r">R</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>6.9 Active alarm clearance &amp; commercial on-air broadcast</td>
+          <td style="text-align: center;"><span class="badge badge-a">A</span></td>
+          <td style="text-align: center;"><span class="badge badge-r">R</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+
+        <!-- Phase 7 -->
+        <tr class="phase-header-row">
+          <td colspan="5">PHASE 7: SINGLE SITE VERIFICATION (SSV) &amp; SITE ACCEPTANCE</td>
+        </tr>
+        <tr>
+          <td>7.1 Pre-SSV remote sanity check on EMS/OSS</td>
+          <td style="text-align: center;"><span class="badge badge-a">A</span></td>
+          <td style="text-align: center;"><span class="badge badge-r">R</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>7.2 Stationary &amp; drive throughput testing (Peak DL &ge; 450M)</td>
+          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>7.3 SSV report submission &amp; engineering endorsement</td>
+          <td style="text-align: center;"><span class="badge badge-a">A</span></td>
+          <td style="text-align: center;"><span class="badge badge-r">R</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>7.4 ATP-A joint civil, mechanical &amp; earthing inspection</td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-r">R</span></td>
+          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>7.5 ATP-B remote active functional &amp; failover simulation</td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-r">R</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>7.6 Snagging punch-list logging &amp; rectification (Class A/B/C)</td>
+          <td style="text-align: center;"><span class="badge badge-a">A</span></td>
+          <td style="text-align: center;"><span class="badge badge-r">R</span></td>
+          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+
+        <!-- Phase 8 -->
+        <tr class="phase-header-row">
+          <td colspan="5">PHASE 8: CLUSTER OPTIMIZATION (RNO) &amp; OPERATIONS HANDOVER</td>
+        </tr>
+        <tr>
+          <td>8.1 Contiguous cluster drive test (10 to 20 adjacent sites)</td>
+          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>8.2 eRET electrical tilt, azimuth &amp; transmit power tuning</td>
+          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>8.3 Neighbor list cleanup &amp; PCI deconfliction (modulo-3/30)</td>
+          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+          <td style="text-align: center;"><span class="badge badge-a">A / R</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>8.4 14-day consecutive OSS statistical KPI stability audit</td>
+          <td style="text-align: center;"><span class="badge badge-a">A</span></td>
+          <td style="text-align: center;"><span class="badge badge-r">R</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>8.5 As-built CAD blueprints, PE seals &amp; completion dossier</td>
+          <td style="text-align: center;"><span class="badge badge-a">A</span></td>
+          <td style="text-align: center;"><span class="badge badge-r">R</span></td>
+          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
+        </tr>
+        <tr>
+          <td>8.6 Transfer of Control (TOC) to 24/7 Central NOC &amp; FLM</td>
+          <td style="text-align: center;"><span class="badge badge-a">A</span></td>
+          <td style="text-align: center;"><span class="badge badge-c">C</span></td>
+          <td style="text-align: center;"><span class="badge badge-i">I</span></td>
           <td style="text-align: center;"><span class="badge badge-i">I</span></td>
         </tr>
       </tbody>
