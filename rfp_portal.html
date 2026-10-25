@@ -1041,14 +1041,21 @@
       </div>
       
       <!-- Rollup Grand Total Banner -->
-      <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 10px; padding: 18px 24px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+      <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 10px; padding: 18px 24px; margin-bottom: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; align-items: center;">
         <div>
-          <div style="font-size: 11px; text-transform: uppercase; color: #6EE7B7; font-weight: 800; letter-spacing: 0.5px;">Turnkey Grand CAPEX Offer (Phase 1 — 1,000 Sites Footprint)</div>
+          <div style="font-size: 11px; text-transform: uppercase; color: #6EE7B7; font-weight: 800; letter-spacing: 0.5px;">Turnkey Grand CAPEX Offer (Phase 1 — 1,000 Sites)</div>
           <div style="font-size: 26px; font-weight: 900; color: #FFFFFF; font-family: ui-monospace, monospace;" id="grand-total-usd">$0.00 USD</div>
+          <div style="font-size: 12.5px; font-weight: 700; color: #A7F3D0; font-family: ui-monospace, monospace; margin-top: 2px;" id="grand-total-php">₱0.00 PHP (@ ₱55.00)</div>
         </div>
-        <div>
-          <div style="font-size: 11px; text-transform: uppercase; color: #6EE7B7; font-weight: 800; letter-spacing: 0.5px;">Philippine Peso Equivalent (@ ₱55.00)</div>
-          <div style="font-size: 24px; font-weight: 900; color: #A7F3D0; font-family: ui-monospace, monospace;" id="grand-total-php">₱0.00 PHP</div>
+        <div style="border-left: 1px solid rgba(255,255,255,0.12); padding-left: 18px;">
+          <div style="font-size: 11px; text-transform: uppercase; color: #38BDF8; font-weight: 800; letter-spacing: 0.5px;">3-Year Managed Services O&M (Lot 6 Evaluated)</div>
+          <div style="font-size: 22px; font-weight: 900; color: #E0F2FE; font-family: ui-monospace, monospace;" id="grand-opex-usd">$0.00 USD</div>
+          <div style="font-size: 12px; color: #7DD3FC; margin-top: 2px;">Annualized Year 1: <span id="grand-opex-annual" style="font-family: monospace; font-weight: 700;">$0.00</span> / yr</div>
+        </div>
+        <div style="border-left: 1px solid rgba(255,255,255,0.12); padding-left: 18px; background: rgba(56, 189, 248, 0.07); padding: 12px 18px; border-radius: 8px;">
+          <div style="font-size: 11px; text-transform: uppercase; color: #FBBF24; font-weight: 800; letter-spacing: 0.5px;">Total 3-Year Evaluated TCO (CAPEX + OPEX)</div>
+          <div style="font-size: 26px; font-weight: 900; color: #FDE68A; font-family: ui-monospace, monospace;" id="grand-tco-usd">$0.00 USD</div>
+          <div style="font-size: 12.5px; font-weight: 700; color: #FCD34D; font-family: ui-monospace, monospace; margin-top: 2px;" id="grand-tco-php">₱0.00 PHP</div>
         </div>
       </div>
 
@@ -1061,6 +1068,7 @@
         <div class="filter-pill" data-boq-lot="lot5" onclick="switchBoQLot('lot5')">Lot 5: Site Acq & Civils</div>
         <div class="filter-pill" data-boq-lot="lot6" onclick="switchBoQLot('lot6')">Lot 6: Managed Services</div>
         <div class="filter-pill" data-boq-lot="lot7" onclick="switchBoQLot('lot7')">Lot 7: 5G CPE Terminals</div>
+        <div class="filter-pill" data-boq-lot="services_sow" onclick="switchBoQLot('services_sow')" style="border-color: #38BDF8; color: #38BDF8; font-weight: 800;">⭐ Services SOW (59 Items — App E)</div>
         <div class="filter-pill" data-boq-lot="formd" onclick="switchBoQLot('formd')">Form D: Vendor Financing</div>
         <div class="filter-pill" data-boq-lot="all" onclick="switchBoQLot('all')">📋 View All Lots</div>
       </div>
@@ -2032,13 +2040,14 @@ function nextTechSection() {
 
 // TAB 3: COMMERCIAL BOQ LOT PAGINATION & RENDERING
 const BOQ_LOT_PAGES = [
-  { key: 'lot1', label: 'Lot 1: RAN (1,000 Sites)', title: 'Lot 1 — 5G RAN Hardware & Turnkey Rollout Services' },
+  { key: 'lot1', label: 'Lot 1: RAN (1,000 Sites)', title: 'Lot 1 — 5G RAN Hardware & Turnkey Rollout Services (Expanded 22 Items)' },
   { key: 'lot2', label: 'Lot 2: Power & Passive', title: 'Lot 2 — Power Systems & Passive Infrastructure' },
   { key: 'lot3', label: 'Lot 3: 5G Core Network', title: 'Lot 3 — Cloud-Native 5G Core Network (5GC SA)' },
   { key: 'lot4', label: 'Lot 4: Digital OSS/BSS', title: 'Lot 4 — Converged Digital OSS/BSS & Field Automation' },
-  { key: 'lot5', label: 'Lot 5: Site Acq & Civils', title: 'Lot 5 — Site Acquisition, TSSR & Civil Infrastructure' },
-  { key: 'lot6', label: 'Lot 6: Managed Services', title: 'Lot 6 — Managed Services & 24/7 FLM (Year 1 O&M)' },
+  { key: 'lot5', label: 'Lot 5: Site Acq & Civils', title: 'Lot 5 — Site Acquisition, TSSR & Civil Infrastructure (with Standby SAQ)' },
+  { key: 'lot6', label: 'Lot 6: Managed Services', title: 'Lot 6 — Managed Services & 24/7 FLM (21 SOW Items — 3-Yr O&M)' },
   { key: 'lot7', label: 'Lot 7: 5G CPE Terminals', title: 'Lot 7 — 5G High-Gain CPE Terminals & Staging' },
+  { key: 'services_sow', label: '⭐ Services SOW (59 Items)', title: 'Appendix E: Master Services Statement of Work (SOW) & Commercial Rate Card (59 Items across 9 Domains)' },
   { key: 'formd', label: 'Form D: Vendor Financing', title: 'Form D — Mandatory Vendor Financing Facility' }
 ];
 
@@ -2058,6 +2067,43 @@ function renderBoQTables() {
     else if (tbl.tableId.startsWith('lot5')) lotKey = 'lot5';
     else if (tbl.tableId.startsWith('lot6')) lotKey = 'lot6';
     else if (tbl.tableId.startsWith('lot7')) lotKey = 'lot7';
+    else if (tbl.tableId.startsWith('services_sow')) lotKey = 'services_sow';
+
+    let tableNotice = '';
+    if (tbl.tableId === 'lot1_svc') {
+      tableNotice = `
+        <div style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-left: 4px solid #38BDF8; padding: 12px 16px; margin: 12px 16px 14px 16px; border-radius: 6px; font-size: 12.5px; color: #E2E8F0; line-height: 1.5;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+            <div>
+              <span style="background: #0284C7; color: #FFFFFF; font-weight: 800; font-size: 10px; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; margin-right: 8px; letter-spacing: 0.5px;">Expanded SOW Active</span>
+              <strong>Turnkey Rollout Services (22 Detailed Items):</strong> Reflects full unbundled rollout services per Appendix E (Logistics, Site Engineering & TSSR, RF Planning, Telecom Rigging & Installation, ATP & SSV, Cluster Optimization).
+            </div>
+            <div>
+              <a href="javascript:void(0)" onclick="switchBoQLot('services_sow')" style="color: #38BDF8; font-weight: 800; text-decoration: underline; font-size: 12px;">Open Full 59-Item Rate Card & Domains →</a>
+            </div>
+          </div>
+        </div>
+      `;
+    } else if (tbl.tableId === 'lot5_civ') {
+      tableNotice = `
+        <div style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-left: 4px solid #38BDF8; padding: 10px 16px; margin: 12px 16px 14px 16px; border-radius: 6px; font-size: 12px; color: #E2E8F0; line-height: 1.5;">
+          <strong>Standby Site Acquisition Rate Card (SAQ-01..08) Active:</strong> Baseline deployment utilizes TowerCo colocation/B2S with site hunting performed by TowerCo. Unit rates SAQ-01 to SAQ-08 establish firm contingency rates should TelTech self-acquire or direct vendor acquisition for the 10.3% non-colocated footprint.
+        </div>
+      `;
+    } else if (tbl.tableId === 'lot6_ms') {
+      tableNotice = `
+        <div style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-left: 4px solid #38BDF8; padding: 10px 16px; margin: 12px 16px 14px 16px; border-radius: 6px; font-size: 12px; color: #E2E8F0; line-height: 1.5;">
+          <strong>24/7 Managed Services O&M (21 Unbundled Scope Items):</strong> Standardized SLA tiers across Tier-1/2 NOC, 24/7 FLM emergency dispatch, preventive maintenance (Modules A–E), regional spare parts management, continuous RNO, and software maintenance.
+        </div>
+      `;
+    } else if (tbl.tableId === 'services_sow_saq') {
+      tableNotice = `
+        <div style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-left: 4px solid #38BDF8; padding: 12px 16px; margin: 12px 16px 14px 16px; border-radius: 6px; font-size: 12.5px; color: #E2E8F0; line-height: 1.5;">
+          <div style="font-weight: 800; color: #38BDF8; margin-bottom: 4px;">Appendix E — Master Commercial Services Statement of Work & Rate Card (59 Total Items)</div>
+          <div>This consolidated rate card provides transparent unit pricing across all 9 professional and field service domains. Unit rates entered here automatically synchronize with Lot 1, Lot 5, and Lot 6 tables.</div>
+        </div>
+      `;
+    }
 
     return `
     <div class="boq-table-card" data-lot="${lotKey}" style="margin-bottom: 24px; background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid var(--navy-border); overflow: hidden;">
@@ -2065,6 +2111,7 @@ function renderBoQTables() {
         <span>${tbl.title}</span>
         <span style="font-size: 11px; color: #94A3B8; font-weight: 600;">Phase 1 Evaluated Scope</span>
       </div>
+      ${tableNotice}
       <div style="overflow-x: auto;">
         <table class="matrix-table" style="border: none;">
           <thead>
@@ -2072,48 +2119,78 @@ function renderBoQTables() {
               <th style="width: 120px;">Item Code</th>
               <th>Description / Technical Scope</th>
               <th style="width: 110px; text-align: center;">Phase 1 Qty</th>
-              <th style="width: 80px; text-align: center;">Unit</th>
-              <th style="width: 140px; text-align: right;">Unit Rate ($ USD)</th>
+              <th style="width: 105px; text-align: center;">Unit / Cadence</th>
+              <th style="width: 150px; text-align: right;">Unit Rate ($ USD)</th>
               <th style="width: 130px; text-align: right;">Unit Rate (₱ PHP)</th>
-              <th style="width: 150px; text-align: right;">Extended Total ($ USD)</th>
+              <th style="width: 160px; text-align: right;">Extended Total ($ USD)</th>
             </tr>
           </thead>
           <tbody>
             ${tbl.items.map(item => {
               if (item.isSubtotal || item.isTotal) {
+                const isFinalTotal = item.isTotal;
+                const bgStyle = isFinalTotal ? 'rgba(16, 185, 129, 0.18)' : 'rgba(30, 58, 95, 0.45)';
+                const borderStyle = isFinalTotal ? '2px solid #10B981' : '1px solid var(--teal)';
+                const textColor = isFinalTotal ? '#6EE7B7' : '#FFFFFF';
                 return `
-                  <tr style="background: rgba(30, 58, 95, 0.45); font-weight: 800; border-top: 1px solid var(--teal);">
-                    <td style="color: var(--teal);">${item.id}</td>
-                    <td colspan="3" style="color: #FFFFFF;">${item.description}</td>
+                  <tr style="background: ${bgStyle}; font-weight: 800; border-top: ${borderStyle};">
+                    <td style="color: ${isFinalTotal ? '#10B981' : 'var(--teal)'}; font-weight: 900;">${item.id}</td>
+                    <td colspan="3" style="color: ${textColor};">${item.description}</td>
                     <td colspan="2" style="text-align: right; color: #94A3B8; font-size: 11px; text-transform: uppercase;">Calculated Total</td>
-                    <td style="text-align: right; font-family: monospace; font-size: 13px; font-weight: 900; color: #6EE7B7;" id="boq_ext_${item.id}">$0.00</td>
+                    <td style="text-align: right; font-family: monospace; font-size: ${isFinalTotal ? '15px' : '13px'}; font-weight: 900; color: ${isFinalTotal ? '#10B981' : '#6EE7B7'};" class="boq_ext_val_${item.id}" id="boq_ext_${item.id}">$0.00</td>
                   </tr>
                 `;
               }
-              const savedRate = currentDraft.commercial[item.id]?.rateUsd !== undefined ? currentDraft.commercial[item.id].rateUsd : '';
-              const savedPhp = savedRate !== '' ? (savedRate * 55.0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00';
-              const savedExt = savedRate !== '' ? (savedRate * item.qty).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00';
+
+              const isIncluded = !!item.isIncluded;
+              const multiplier = item.multiplier || 1;
+              const savedRate = currentDraft.commercial[item.id]?.rateUsd !== undefined ? currentDraft.commercial[item.id].rateUsd : (isIncluded ? 0 : '');
+              
+              let unitDisplay = item.unit || 'Per Site';
+              if (multiplier > 1) {
+                unitDisplay += `<br><span style="font-size: 10px; color: #FBBF24; font-weight: 700;">(${multiplier}x / yr)</span>`;
+              } else if (isIncluded) {
+                unitDisplay += `<br><span style="font-size: 10px; color: #38BDF8; font-weight: 700;">(Included)</span>`;
+              }
+
+              let rateInputHtml = '';
+              if (isIncluded) {
+                rateInputHtml = `
+                  <input type="text" class="boq-input boq-input-${item.id}" data-item-id="${item.id}" value="Included ($0.00)" disabled style="background: rgba(56, 189, 248, 0.08); color: #38BDF8; font-weight: 700; text-align: right; cursor: not-allowed; border-color: rgba(56, 189, 248, 0.3);">
+                `;
+              } else {
+                rateInputHtml = `
+                  <input type="number" step="0.01" min="0" class="boq-input boq-input-${item.id}" data-item-id="${item.id}" id="boq_rate_${item.id}" placeholder="0.00" value="${savedRate}" oninput="calculateBoQ('${item.id}', ${item.qty}, ${multiplier}, ${isIncluded})">
+                `;
+              }
+
+              const savedPhp = (savedRate !== '' && !isIncluded) ? (savedRate * 55.0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00';
+              const savedExt = isIncluded ? '0.00' : ((savedRate !== '') ? (savedRate * item.qty * multiplier).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00');
+
               return `
                 <tr>
-                  <td style="font-weight: 800; color: #60A5FA;">${item.id}</td>
+                  <td style="font-weight: 800; color: #60A5FA;">
+                    ${item.id}
+                    ${isIncluded ? '<div style="font-size: 9.5px; color: #38BDF8; font-weight: 800; text-transform: uppercase;">Retainer</div>' : ''}
+                  </td>
                   <td>
-                    <div style="font-weight: 700; color: #F1F5F9;">${item.description}</div>
-                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">${item.scope}</div>
+                    <div style="font-weight: 700; color: #F1F5F9;">
+                      ${item.description}
+                      ${isIncluded ? '<span style="font-size: 10px; color: #38BDF8; background: rgba(56, 189, 248, 0.15); padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.4); margin-left: 6px;">Included in Base Retainer</span>' : ''}
+                    </div>
+                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px; line-height: 1.4;">${item.scope}</div>
                   </td>
                   <td style="text-align: center; font-weight: 800; color: #FFFFFF;">${item.qty.toLocaleString()}</td>
-                  <td style="text-align: center; color: var(--text-muted); font-size: 12px;">${item.unit}</td>
-                  <td style="text-align: right;">
-                    <input type="number" step="0.01" min="0" class="boq-input" id="boq_rate_${item.id}" placeholder="0.00" value="${savedRate}" oninput="calculateBoQ('${item.id}', ${item.qty})">
-                  </td>
-                  <td style="text-align: right; font-family: monospace; color: #CBD5E1;" id="boq_php_${item.id}">₱${savedPhp}</td>
-                  <td style="text-align: right; font-family: monospace; font-weight: 800; color: #6EE7B7;" id="boq_ext_${item.id}">$${savedExt}</td>
+                  <td style="text-align: center; color: var(--text-muted); font-size: 11.5px;">${unitDisplay}</td>
+                  <td style="text-align: right;">${rateInputHtml}</td>
+                  <td style="text-align: right; font-family: monospace; color: #CBD5E1;" class="boq_php_val_${item.id}" id="boq_php_${item.id}">₱${savedPhp}</td>
+                  <td style="text-align: right; font-family: monospace; font-weight: 800; color: #6EE7B7;" class="boq_ext_val_${item.id}" id="boq_ext_${item.id}">$${savedExt}</td>
                 </tr>
               `;
             }).join('')}
           </tbody>
         </table>
       </div>
-
     </div>
   `}).join('');
 
@@ -2312,10 +2389,12 @@ async function handleBoQFileImport(event) {
           }
 
           if (extractedRate !== null) {
-            const qty = itemMap[matchedId];
-            const inp = document.getElementById(`boq_rate_${matchedId}`);
-            if (inp) inp.value = extractedRate.toFixed(2);
-            calculateBoQ(matchedId, qty);
+            const meta = getBoQItemMeta(matchedId);
+            const rateInputs = document.querySelectorAll(`.boq-input-${matchedId}`);
+            rateInputs.forEach(inp => {
+              if (!inp.disabled) inp.value = extractedRate.toFixed(2);
+            });
+            calculateBoQ(matchedId, meta.qty, meta.multiplier, meta.isIncluded);
             importedCount++;
           }
         }
@@ -2343,12 +2422,19 @@ function exportBoQTemplateCsv() {
   const headers = ["Item Code", "Category / Lot", "Description", "Technical Scope", "Phase 1 Qty", "Unit", "Unit Rate (USD)", "Unit Rate (PHP @ 55.00)", "Extended Total (USD)"];
   const rows = [headers];
 
+  const seenRowKeys = new Set();
   window.RFPTenderData.boqTables.forEach(tbl => {
     tbl.items.forEach(it => {
       if (it.isSubtotal || it.isTotal) return;
-      const rateUsd = currentDraft.commercial[it.id]?.rateUsd !== undefined ? currentDraft.commercial[it.id].rateUsd : "";
-      const ratePhp = rateUsd !== "" ? (rateUsd * 55.0).toFixed(2) : "";
-      const extUsd = rateUsd !== "" ? (rateUsd * it.qty).toFixed(2) : "";
+      const rowKey = `${tbl.tableId}__${it.id}`;
+      if (seenRowKeys.has(rowKey)) return;
+      seenRowKeys.add(rowKey);
+
+      const isInc = !!it.isIncluded;
+      const mult = it.multiplier || 1;
+      const rateUsd = currentDraft.commercial[it.id]?.rateUsd !== undefined ? currentDraft.commercial[it.id].rateUsd : (isInc ? 0 : "");
+      const ratePhp = (rateUsd !== "" && !isInc) ? (rateUsd * 55.0).toFixed(2) : (isInc ? "0.00" : "");
+      const extUsd = isInc ? "0.00" : (rateUsd !== "" ? (rateUsd * it.qty * mult).toFixed(2) : "");
       
       rows.push([
         `"${it.id}"`,
@@ -2357,7 +2443,7 @@ function exportBoQTemplateCsv() {
         `"${(it.scope || '').replace(/"/g, '""')}"`,
         it.qty,
         `"${it.unit || ''}"`,
-        rateUsd !== "" ? rateUsd : "",
+        isInc ? "Included in Base Retainer ($0.00)" : (rateUsd !== "" ? rateUsd : ""),
         ratePhp !== "" ? ratePhp : "",
         extUsd !== "" ? extUsd : ""
       ]);
@@ -2414,31 +2500,72 @@ function saveFinancingDraft() {
   saveCommercialDraft(false);
 }
 
-function getBoQQty(itemId) {
+function getBoQItemMeta(itemId) {
   if (window.RFPTenderData && window.RFPTenderData.boqTables) {
     for (const tbl of window.RFPTenderData.boqTables) {
       if (!tbl.items) continue;
       const it = tbl.items.find(x => x.id === itemId);
-      if (it && it.qty !== undefined) return it.qty;
+      if (it) {
+        return {
+          qty: it.qty !== undefined ? it.qty : 1,
+          multiplier: it.multiplier || 1,
+          isIncluded: !!it.isIncluded
+        };
+      }
     }
   }
-  return 1;
+  return { qty: 1, multiplier: 1, isIncluded: false };
 }
 
-function calculateBoQ(itemId, qty) {
-  const rateInput = document.getElementById(`boq_rate_${itemId}`);
-  if (!rateInput) return;
-  const rateUsd = parseFloat(rateInput.value) || 0;
-  const actualQty = qty !== undefined ? qty : getBoQQty(itemId);
+function calculateBoQ(itemId, qty, multiplier, isIncluded) {
+  const meta = getBoQItemMeta(itemId);
+  const actualQty = qty !== undefined ? qty : meta.qty;
+  const mult = multiplier !== undefined ? multiplier : meta.multiplier;
+  const isInc = isIncluded !== undefined ? isIncluded : meta.isIncluded;
+
+  let rateUsd = 0;
+  if (isInc) {
+    rateUsd = 0;
+  } else {
+    const rateInputs = document.querySelectorAll(`.boq-input-${itemId}`);
+    if (rateInputs && rateInputs.length > 0) {
+      let val = '';
+      for (const inp of rateInputs) {
+        if (inp === document.activeElement && inp.value !== '') {
+          val = inp.value;
+          break;
+        } else if (inp.value !== '') {
+          val = inp.value;
+        }
+      }
+      rateUsd = parseFloat(val) || 0;
+      rateInputs.forEach(inp => {
+        if (inp !== document.activeElement && !inp.disabled) {
+          inp.value = val;
+        }
+      });
+    } else {
+      const singleInp = document.getElementById(`boq_rate_${itemId}`);
+      if (singleInp) rateUsd = parseFloat(singleInp.value) || 0;
+    }
+  }
+
   const ratePhp = rateUsd * 55.0;
-  const extUsd = rateUsd * actualQty;
+  const extUsd = isInc ? 0.0 : (rateUsd * actualQty * mult);
 
-  const phpEl = document.getElementById(`boq_php_${itemId}`);
-  const extEl = document.getElementById(`boq_ext_${itemId}`);
-  if (phpEl) phpEl.textContent = `₱${ratePhp.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-  if (extEl) extEl.textContent = `$${extUsd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+  const phpStr = `₱${ratePhp.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+  const extStr = `$${extUsd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
 
-  currentDraft.commercial[itemId] = { rateUsd, qty: actualQty, extUsd };
+  document.querySelectorAll(`.boq_php_val_${itemId}`).forEach(el => { el.textContent = phpStr; });
+  document.querySelectorAll(`.boq_ext_val_${itemId}`).forEach(el => { el.textContent = extStr; });
+
+  const directPhp = document.getElementById(`boq_php_${itemId}`);
+  if (directPhp) directPhp.textContent = phpStr;
+  const directExt = document.getElementById(`boq_ext_${itemId}`);
+  if (directExt) directExt.textContent = extStr;
+
+  currentDraft.commercial[itemId] = { rateUsd, qty: actualQty, multiplier: mult, extUsd, isIncluded: isInc };
+
   updateTableSubtotals();
   recalcGrandTotals();
   if (!isEvaluatorMode) {
@@ -2448,33 +2575,100 @@ function calculateBoQ(itemId, qty) {
 
 function updateTableSubtotals() {
   if (!window.RFPTenderData || !window.RFPTenderData.boqTables) return;
+
+  let subtotalRanHw = 0;
+  let subtotalRanSvc = 0;
+  let subtotalLot6Annual = 0;
+
   window.RFPTenderData.boqTables.forEach(tbl => {
     let tblSum = 0;
     tbl.items.forEach(it => {
       if (!it.isSubtotal && !it.isTotal) {
-        tblSum += currentDraft.commercial[it.id]?.extUsd || 0;
+        const itemExt = currentDraft.commercial[it.id]?.extUsd || 0;
+        tblSum += itemExt;
+        if (tbl.tableId === 'lot1_hw') subtotalRanHw += itemExt;
+        if (tbl.tableId === 'lot1_svc') subtotalRanSvc += itemExt;
+        if (tbl.tableId === 'lot6_ms') subtotalLot6Annual += itemExt;
       } else {
-        const subEl = document.getElementById(`boq_ext_${it.id}`);
-        if (subEl) {
-          subEl.textContent = `$${tblSum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+        let displayVal = tblSum;
+        if (it.id === 'SUBTOTAL-RAN-HW') {
+          displayVal = subtotalRanHw;
+        } else if (it.id === 'SUBTOTAL-RAN-SVC') {
+          displayVal = subtotalRanSvc;
+        } else if (it.id === 'TOTAL-LOT1') {
+          displayVal = subtotalRanHw + subtotalRanSvc;
+        } else if (it.id === 'SUBTOTAL-LOT6-ANNUAL') {
+          displayVal = subtotalLot6Annual;
+        } else if (it.id === 'TOTAL-LOT6') {
+          displayVal = subtotalLot6Annual * 3.0;
+        } else {
+          displayVal = tblSum;
         }
+
+        const formatted = `$${displayVal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+        document.querySelectorAll(`.boq_ext_val_${it.id}`).forEach(el => {
+          el.textContent = formatted;
+        });
+        const directSub = document.getElementById(`boq_ext_${it.id}`);
+        if (directSub) directSub.textContent = formatted;
       }
     });
   });
 }
 
+function getEvaluatedCommercialTCO() {
+  if (!window.RFPTenderData || !window.RFPTenderData.boqTables) return { capexUsd: 0, opexAnnualUsd: 0, opex3YrUsd: 0, tco3YrUsd: 0 };
+  const capexTableIds = new Set(['lot1_hw', 'lot1_svc', 'lot2_pwr', 'lot3_5gc', 'lot4_bss', 'lot5_civ', 'lot7_cpe']);
+  const capexItems = new Set();
+  const opexItems = new Set();
+
+  window.RFPTenderData.boqTables.forEach(tbl => {
+    if (capexTableIds.has(tbl.tableId)) {
+      tbl.items.forEach(it => {
+        if (!it.isSubtotal && !it.isTotal) capexItems.add(it.id);
+      });
+    } else if (tbl.tableId === 'lot6_ms') {
+      tbl.items.forEach(it => {
+        if (!it.isSubtotal && !it.isTotal) opexItems.add(it.id);
+      });
+    }
+  });
+
+  let capexUsd = 0;
+  capexItems.forEach(id => {
+    capexUsd += currentDraft.commercial[id]?.extUsd || 0;
+  });
+
+  let opexAnnualUsd = 0;
+  opexItems.forEach(id => {
+    opexAnnualUsd += currentDraft.commercial[id]?.extUsd || 0;
+  });
+  const opex3YrUsd = opexAnnualUsd * 3.0;
+  const tco3YrUsd = capexUsd + opex3YrUsd;
+
+  return { capexUsd, opexAnnualUsd, opex3YrUsd, tco3YrUsd };
+}
+
 function recalcGrandTotals() {
-  let grandTotalUsd = 0;
-  for (let k in currentDraft.commercial) {
-    if (k.startsWith('SUBTOTAL') || k.startsWith('TOTAL')) continue;
-    grandTotalUsd += currentDraft.commercial[k].extUsd || 0;
-  }
-  const grandTotalPhp = grandTotalUsd * 55.0;
+  const tcoData = getEvaluatedCommercialTCO();
+  const capexPhp = tcoData.capexUsd * 55.0;
+  const opex3YrPhp = tcoData.opex3YrUsd * 55.0;
+  const tco3YrPhp = tcoData.tco3YrUsd * 55.0;
 
   const usdEl = document.getElementById('grand-total-usd');
   const phpEl = document.getElementById('grand-total-php');
-  if (usdEl) usdEl.textContent = `$${grandTotalUsd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} USD`;
-  if (phpEl) phpEl.textContent = `₱${grandTotalPhp.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} PHP`;
+  if (usdEl) usdEl.textContent = `$${tcoData.capexUsd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} USD`;
+  if (phpEl) phpEl.textContent = `₱${capexPhp.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} PHP (@ ₱55.00)`;
+
+  const opexUsdEl = document.getElementById('grand-opex-usd');
+  const opexAnnEl = document.getElementById('grand-opex-annual');
+  if (opexUsdEl) opexUsdEl.textContent = `$${tcoData.opex3YrUsd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} USD`;
+  if (opexAnnEl) opexAnnEl.textContent = `$${tcoData.opexAnnualUsd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} USD`;
+
+  const tcoUsdEl = document.getElementById('grand-tco-usd');
+  const tcoPhpEl = document.getElementById('grand-tco-php');
+  if (tcoUsdEl) tcoUsdEl.textContent = `$${tcoData.tco3YrUsd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} USD`;
+  if (tcoPhpEl) tcoPhpEl.textContent = `₱${tco3YrPhp.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} PHP`;
 }
 
 // STORAGE & DRAFTS
@@ -2583,11 +2777,13 @@ function restoreDraftUI(data) {
   if (data.commercial) {
     for (let id in data.commercial) {
       const item = data.commercial[id];
-      const inp = document.getElementById(`boq_rate_${id}`);
-      if (inp && item && (item.rateUsd !== undefined && item.rateUsd !== null)) {
-        inp.value = item.rateUsd;
-        const qty = item.qty !== undefined ? item.qty : getBoQQty(id);
-        calculateBoQ(id, qty);
+      if (item && (item.rateUsd !== undefined && item.rateUsd !== null)) {
+        const rateInputs = document.querySelectorAll(`.boq-input-${id}`);
+        rateInputs.forEach(inp => {
+          if (!inp.disabled) inp.value = item.rateUsd;
+        });
+        const meta = getBoQItemMeta(id);
+        calculateBoQ(id, item.qty || meta.qty, item.multiplier || meta.multiplier, item.isIncluded || meta.isIncluded);
       }
     }
     if (typeof updateTableSubtotals === 'function') {

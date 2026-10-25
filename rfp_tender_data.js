@@ -586,7 +586,7 @@ window.RFPTenderData = {
       {
         "id": "RAN-HW-01",
         "description": "5G Baseband Unit (BBU)",
-        "scope": "19\" subrack, dual -48V DC PSU, 4x 25G backhaul, 6x 25G eCPRI",
+        "scope": "19\" subrack, dual -48V DC PSU, 4x 25G backhaul, 6x 25G eCPRI, up to 12 cells",
         "qty": 1000,
         "unit": "sets"
       },
@@ -630,55 +630,218 @@ window.RFPTenderData = {
   },
   {
     "tableId": "lot1_svc",
-    "title": "TABLE 2: LOT 1 — RAN TURNKEY ROLLOUT SERVICES (PHASE 1: 1,000 SITES)",
+    "title": "TABLE 2: LOT 1 \u2014 RAN TURNKEY ROLLOUT SERVICES (EXPANDED SOW \u2014 22 ITEMS)",
     "items": [
       {
-        "id": "RAN-SVC-01",
-        "description": "Project Management & Rollout Mobilization",
-        "scope": "Dedicated rollout PMO, milestone scheduling, vendor coordination, QA & safety",
+        "id": "LOG-01",
+        "description": "Central & Regional Warehousing, Buffer Staging & Serialized Asset Tagging",
+        "scope": "Receipt of OEM shipments at Port of Manila / Batangas; bonded climate-controlled warehousing in central Mega Manila and regional hubs (North Luzon, South Luzon, Visayas, Mindanao); unboxing, physical inspection, and QA damage checking; barc...",
         "qty": 1000,
-        "unit": "sites"
+        "unit": "Per Site",
+        "multiplier": 1,
+        "category": "Telecom Logistics & Material Handling"
       },
       {
-        "id": "RAN-SVC-02",
-        "description": "Installation & Commissioning (I&C)",
-        "scope": "Rigging, antenna/RRU mount, optical cabling, BBU wiring, DC power-up",
+        "id": "LOG-02",
+        "description": "Site BOM Kitting, Staging & Pre-Assembly Services",
+        "scope": "Assembly and kitting of site-specific deployment packages: picking 1x BBU, 3x 8T8R RRUs, 3x macro antennas/AAUs, optical patchcords, DC power cables, Type 2 SPDs, grounding kits, and hardware accessories; pre-cutting cable lengths based on ...",
         "qty": 1000,
-        "unit": "sites"
+        "unit": "Per Site",
+        "multiplier": 1,
+        "category": "Telecom Logistics & Material Handling"
       },
       {
-        "id": "RAN-SVC-03",
-        "description": "Single Site Verification & Acceptance (SSV)",
-        "scope": "Station testing, sector drive test, throughput call, ping, eRET tilt validation",
+        "id": "LOG-03",
+        "description": "Regional Transport & Final-Mile Rough-Road Site Hauling",
+        "scope": "Transportation from central warehouse to regional hubs via heavy freight, followed by dedicated final-mile transport to remote barangay site locations utilizing heavy-duty 4x4 trucks, motorized bancas/barges (for island sites), or manual po...",
         "qty": 1000,
-        "unit": "sites"
+        "unit": "Per Site",
+        "multiplier": 1,
+        "category": "Telecom Logistics & Material Handling"
       },
       {
-        "id": "RAN-SVC-04",
-        "description": "Central Warehousing & Buffer Staging",
-        "scope": "Serial-level barcode asset tagging, climate-controlled storage, kitting",
+        "id": "ENG-01",
+        "description": "Technical Site Survey (TSS) & 360\u00b0 Drone Panoramic Audit",
+        "scope": "Rigorous multi-disciplinary physical site survey executed by licensed telecom and civil engineers: 360\u00b0 high-resolution panoramic photographic sweep at target antenna centerline (using calibrated drone or mast camera); precision dual-freque...",
         "qty": 1000,
-        "unit": "sites"
+        "unit": "Per Site",
+        "multiplier": 1,
+        "category": "Site Engineering & Detailed Site Survey"
       },
       {
-        "id": "RAN-SVC-05",
-        "description": "Regional Transport & Site Hauling",
-        "scope": "Regional transport, 4x4 rough-road delivery to remote barangay location",
+        "id": "ENG-02",
+        "description": "Site Structural Audit, Antenna Loading Verification & Own-Build Structural Engineering",
+        "scope": "Engineering structural evaluation of the host structure: [OPERATIONAL BASELINE \u2014 TIER 1 CO-LOCATION & TIER 2 B2S: Under MLA, TowerCo conducts 3D structural analysis, TIA-222-H wind modeling, foundation verification, and secures the licensed...",
         "qty": 1000,
-        "unit": "sites"
+        "unit": "Per Site",
+        "multiplier": 1,
+        "category": "Site Engineering & Detailed Site Survey"
+      },
+      {
+        "id": "ENG-03",
+        "description": "Electrical, DC Power & Earth Grounding Engineering Assessment",
+        "scope": "Electrical engineering audit of commercial AC utility power and DC power plant: inspection of transformer capacity (kVA), service entrance voltage, phase balance, AC main breaker rating; assessment of existing DC power plant (rectifier tota...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "category": "Site Engineering & Detailed Site Survey"
+      },
+      {
+        "id": "ENG-04",
+        "description": "RF Engineering Siting, Line-of-Sight (LOS) & Clutter Assessment",
+        "scope": "On-site RF validation of nominal design coverage over target barangay demand centroid: physical line-of-sight (LOS) inspection at proposed antenna centerlines (30m, 35m, 40m AGL); clutter height and foliage density classification; identific...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "category": "Site Engineering & Detailed Site Survey"
+      },
+      {
+        "id": "ENG-05",
+        "description": "Detailed Engineering Design (DED) & Technical Site Survey Report (TSSR)",
+        "scope": "Consolidation of multidisciplinary survey data into a complete Detailed Engineering Design (DED) blueprint package and Technical Site Survey Report (TSSR): Architectural Site Layout Plan; Tower Elevation & Antenna Orientation Plan; Antenna ...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "category": "Site Engineering & Detailed Site Survey"
+      },
+      {
+        "id": "ENG-06",
+        "description": "As-Built Engineering Documentation & Final Completion Dossier",
+        "scope": "Comprehensive post-construction field engineering audit capturing all redline installation adjustments: updating AutoCAD drawings to reflect exact as-built antenna heights, azimuths, mechanical tilts, optical cable routes, rack layouts, bre...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "category": "Site Engineering & Detailed Site Survey"
+      },
+      {
+        "id": "RNPD-01",
+        "description": "Macro RF Nominal Planning & 3D Propagation Modeling",
+        "scope": "Macro-level 5G RF network planning using advanced 3D ray-tracing propagation modeling engines, calibrated against high-resolution 5-meter clutter models and Digital Terrain Models (DTM). Sizing and generation of nominal candidate search rin...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "category": "Radio Network Planning & Design"
+      },
+      {
+        "id": "RNPD-02",
+        "description": "Cell Design Data (CDD) Engineering & Parameter Allocation",
+        "scope": "Engineering, generation, and validation of detailed site-specific Cell Design Data (CDD) sheets: cell naming taxonomy, gNodeB IDs, Physical Cell ID (PCI) planning adhering to modulo-3 and modulo-30 collision rules, Root Sequence Index (RSI)...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "category": "Radio Network Planning & Design"
+      },
+      {
+        "id": "TI-01",
+        "description": "Tower Rigging & Mechanical Antenna / RRU Installation",
+        "scope": "Mechanical mounting by certified riggers: hoisting and installing 3x macro high-gain antennas and 3x 8T8R RRUs on tower antenna mounting brackets (AMB) at specified AGL centerlines (30m to 45m); setting precise mechanical downtilt and secto...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "category": "Telecom Installation, Commissioning & Integration"
+      },
+      {
+        "id": "TI-02",
+        "description": "RF, Optical Fiber & DC Power Cabling Installation",
+        "scope": "Routing, fastening, and dressing armored multi-core optical fiber jumpers and DC power cables along tower cable ladders and horizontal gantries; installing cold-shrink weatherproof boots on all 7/16 DIN or 4.3-10 RF connectors; installing T...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "category": "Telecom Installation, Commissioning & Integration"
+      },
+      {
+        "id": "TI-03",
+        "description": "Baseband Unit (BBU) Installation & Cabinet Wiring",
+        "scope": "19\" rack installation of 5G Baseband Unit (BBU) in outdoor equipment cabinet or shelter; dual -48V DC power wiring to dedicated distribution breakers; routing backhaul transmission optical patchcords to fiber demarcation router; and install...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "category": "Telecom Installation, Commissioning & Integration"
+      },
+      {
+        "id": "TI-04",
+        "description": "Telecom Commissioning, Sweep Testing & Power-Up",
+        "scope": "DC power turn-up, voltage and polarity verification; firmware loading and diagnostic testing; optical transceiver Rx/Tx power level verification; and calibrated RF sweep testing measuring Return Loss (>= 16.5 dB) and VSWR (<= 1.35:1) across...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "category": "Telecom Installation, Commissioning & Integration"
+      },
+      {
+        "id": "TI-05",
+        "description": "gNodeB Network Integration & OSS Commercial On-Air",
+        "scope": "Transmission IP integration (VLAN, BGP, IPsec); establishing S1-U / N2/N3 control and user plane interfaces to 5G Core (AMF/UPF); synchronization with TelTech EMS/OSS; activating 3 sectors on Band n50 (60 MHz NCR / up to 80 MHz Provincial, ...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "category": "Telecom Installation, Commissioning & Integration"
+      },
+      {
+        "id": "ACC-01",
+        "description": "Mechanical, Civil & Electrical Site Acceptance (ATP-A)",
+        "scope": "Joint physical on-site inspection: verifying bolt torque marks on tower mounts, cable ladder fastening, cable tray grounding, weatherproofing seal integrity, electrical breaker labeling, 3-point earth ground resistance audit (confirming <= ...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "category": "Single Site Verification & Acceptance"
+      },
+      {
+        "id": "ACC-02",
+        "description": "Active Telecom & Functional Acceptance (ATP-B)",
+        "scope": "Remote and local active functional testing: verifying 8T8R MU-MIMO operation, electronic downtilt (eRET) remote control functionality via OSS, power fail / mains failure alarm simulation, optical fiber failover test, and carrier shutdown/re...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "category": "Single Site Verification & Acceptance"
+      },
+      {
+        "id": "ACC-03",
+        "description": "Single Site Verification (SSV) & RF Call Testing",
+        "scope": "On-ground field testing using 5G test UE and scanner: stationary throughput tests at near, mid, and cell-edge points per sector (validating >= 450 Mbps peak DL, >= 50 Mbps cell-edge DL, >= 15 Mbps cell-edge UL); sector swap validation; intr...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "category": "Single Site Verification & Acceptance"
+      },
+      {
+        "id": "RNO-01",
+        "description": "Pre-Launch Cluster Drive Testing & RF Baseline Audit",
+        "scope": "Continuous scanner and test UE drive testing across contiguous clusters of 10\u201320 sites; capturing RSRP, SINR, CQI, throughput, and coverage overlap; and identifying pilot pollution zones, coverage holes, and excessive inter-cell interferenc...",
+        "qty": 1000,
+        "unit": "Per Site Share",
+        "multiplier": 1,
+        "category": "Cluster Radio Network Optimization"
+      },
+      {
+        "id": "RNO-02",
+        "description": "Cluster Physical & Soft Parameter Optimization",
+        "scope": "Iterative optimization across cluster: electronic remote electrical tilt (eRET) adjustments to control cell-edge interference and shape coverage; azimuth and mechanical tilt adjustments where indicated; PCI re-planning to resolve mod-3/mod-...",
+        "qty": 1000,
+        "unit": "Per Site Share",
+        "multiplier": 1,
+        "category": "Cluster Radio Network Optimization"
+      },
+      {
+        "id": "RNO-03",
+        "description": "Cluster Acceptance KPI Validation & Final Sign-Off",
+        "scope": "Post-tuning verification drive test and OSS 14-day statistical performance audit: validating cluster Radio Availability >= 99.95%, Session Setup Success Rate (CSSR) >= 99.60%, Session Drop Rate (CDDR) <= 0.15%, cluster average DL throughput...",
+        "qty": 65,
+        "unit": "Per Cluster (65 Clusters Phase 1 / 325 Clusters Program)",
+        "multiplier": 1,
+        "category": "Cluster Radio Network Optimization"
       },
       {
         "id": "SUBTOTAL-RAN-SVC",
-        "description": "Subtotal RAN Services (1,000 Sites)",
-        "scope": "Dedicated RAN Hardware Deployment & Commissioning Services",
+        "description": "Subtotal Turnkey Rollout Services (Phase 1: 1,000 Sites \u2014 22 SOW Items)",
+        "scope": "Consolidated Rollout Scope: Logistics, Engineering, Planning, Installation, Testing, Commissioning & Optimization",
         "qty": 0,
         "unit": "lot",
         "isSubtotal": true
       },
       {
         "id": "TOTAL-LOT1",
-        "description": "TOTAL LOT 1 — RAN HARDWARE & SERVICES",
-        "scope": "Turnkey 1,000-Site Footprint",
+        "description": "TOTAL LOT 1 \u2014 RAN HARDWARE & TURNKEY ROLLOUT SERVICES",
+        "scope": "Evaluated Turnkey RAN Capex Baseline (1,000 Sites)",
         "qty": 0,
         "unit": "lot",
         "isTotal": true
@@ -691,36 +854,36 @@ window.RFPTenderData = {
     "items": [
       {
         "id": "PWR-01",
-        "description": "12.0 kW Total Installed / 9.0 kW Firm N+1 DC Rectifier Plant",
-        "scope": "19\" 3U subrack, 4x 3.0 kW modules (3 active + 1 standby N+1), SMPS controller, 96% eff",
+        "description": "12.0 kW Total / 9.0 kW N+1 Modular DC Power System",
+        "scope": "Outdoor cabinet, 4x 3.0 kW rectifier modules (3 active + 1 redundant standby), controller, LVD, 1/site",
         "qty": 1000,
         "unit": "sets"
       },
       {
         "id": "PWR-02",
-        "description": "48V LiFePO4 Battery Bank (>=20 kWh nom)",
-        "scope": "Sized for >=12.0 kWh usable over 4.0h @ 3.0kW, <=80% DoD, 80% SoH (min >=20.0 kWh nominal is controlling; 400-450 Ah indicative)",
+        "description": "LiFePO4 Lithium Battery System (\u226512.0 kWh Usable / \u226520 kWh Installed)",
+        "scope": "Lithium Iron Phosphate (LiFePO4) battery energy storage delivering \u226512.0 kWh usable energy over 4.0h @ 3.0 kW load, \u226480% DoD, 80% EOL SoH (\u226520.0 kWh nominal installed capacity; 400-450 Ah indicative), integrated BMS, 15-year design life",
         "qty": 1000,
         "unit": "sets"
       },
       {
         "id": "PWR-03",
-        "description": "TowerCo DC Tap-Off Box & Submeter",
-        "scope": "Enclosure, Class 1.0 revenue kWh meter, RS485 telemetry, SPD Type 2",
-        "qty": 897,
+        "description": "TowerCo DC Submetering Tap-Off Box",
+        "scope": "Integrated Class 1.0 energy meter, 63A DC circuit breaker tap, RS-485 telemetry, 1/site",
+        "qty": 1000,
         "unit": "sets"
       },
       {
         "id": "PWR-04",
-        "description": "15 kVA Soundproof Standby Genset",
-        "scope": "Diesel, 230V 60Hz, 500-1000L tank, ATS auto-transfer, <68dBA @ 7m",
-        "qty": 103,
+        "description": "15 kVA Diesel Generator Set (Optional)",
+        "scope": "Soundproof canopy, ATS, 200L base tank, automatic start, 1/site",
+        "qty": 100,
         "unit": "sets"
       },
       {
         "id": "TOTAL-LOT2",
         "description": "TOTAL LOT 2 \u2014 POWER & PASSIVE INFRASTRUCTURE",
-        "scope": "Phase 1 Footprint (897 Co-loc + 103 Greenfield)",
+        "scope": "Phase 1 Power Systems Supply & DC Infrastructure",
         "qty": 0,
         "unit": "lot",
         "isTotal": true
@@ -732,65 +895,44 @@ window.RFPTenderData = {
     "title": "TABLE 4: LOT 3 \u2014 CLOUD-NATIVE 5G CORE NETWORK (5GC SA)",
     "items": [
       {
-        "id": "5GC-HW-01",
-        "description": "Primary DC COTS Compute (Metro Manila)",
-        "scope": "Redundant dual-socket servers, NVMe storage, 25G dual NICs",
+        "id": "5GC-01",
+        "description": "5GC Control Plane Software (AMF/SMF/NRF/AUSF/UDM/PCF/NSSF)",
+        "scope": "3GPP Rel-16 cloud-native CP microservices, 365,000 subscriber capacity, geo-redundant 1+1",
         "qty": 1,
         "unit": "lot"
       },
       {
-        "id": "5GC-HW-02",
-        "description": "Secondary DR DC COTS Compute (Clark)",
-        "scope": "Geographically redundant Active-Active mirror infrastructure",
-        "qty": 1,
-        "unit": "lot"
+        "id": "5GC-02",
+        "description": "User Plane Function (UPF) \u2014 Central Data Centers",
+        "scope": "High-throughput UPF, 100 Gbps aggregate throughput, DPDK-accelerated, 2 sites (Metro Manila)",
+        "qty": 2,
+        "unit": "nodes"
       },
       {
-        "id": "5GC-HW-03",
-        "description": "Spine-Leaf Data Center Fabric",
-        "scope": "Dual 100G spine, 25G leaf switches with EVPN-VXLAN fabric",
-        "qty": 1,
-        "unit": "lot"
+        "id": "5GC-03",
+        "description": "Edge UPF \u2014 Regional Distributed Nodes",
+        "scope": "Distributed edge UPF nodes, 20 Gbps throughput each, local breakout (LBO) capable",
+        "qty": 4,
+        "unit": "nodes"
       },
       {
-        "id": "5GC-HW-04",
-        "description": "Next-Gen Border Security Firewalls",
-        "scope": "Carrier-grade N-pair firewalls with DDoS mitigation & CG-NAT",
-        "qty": 1,
-        "unit": "lot"
+        "id": "5GC-04",
+        "description": "Telco Cloud Infrastructure Servers (COTS x86)",
+        "scope": "Carrier-grade 1U/2U x86 servers, dual Intel Xeon 64-core, 512GB RAM, NVMe storage, 4x 25GE NIC",
+        "qty": 16,
+        "unit": "servers"
       },
       {
-        "id": "5GC-SW-01",
-        "description": "Control Plane Core VNFs/CNFs",
-        "scope": "AMF, SMF, NRF, NSSF, PCF, UDM, AUSF for 1.0M subscribers",
-        "qty": 1,
-        "unit": "lot"
-      },
-      {
-        "id": "5GC-SW-02",
-        "description": "Distributed User Plane Function (UPF)",
-        "scope": "Wire-speed DPDK UPF nodes dimensioned for 200 Gbps total throughput",
-        "qty": 1,
-        "unit": "lot"
-      },
-      {
-        "id": "5GC-SW-03",
-        "description": "Voice over NR (VoNR) / IMS Subsystem",
-        "scope": "Carrier VoNR/IMS architecture supporting voice, SMS, emergency calls",
-        "qty": 1,
-        "unit": "lot"
-      },
-      {
-        "id": "5GC-SVC-01",
-        "description": "Turnkey Core Deployment & Migration",
-        "scope": "NFV orchestration, NFVI deployment, inter-PLMN roaming, acceptance",
+        "id": "5GC-05",
+        "description": "Core Network Deployment, Integration & Testing",
+        "scope": "Kubernetes CNI deployment, 3GPP N1/N2/N3/N4/N6 integration, CDR testing, failover validation",
         "qty": 1,
         "unit": "lot"
       },
       {
         "id": "TOTAL-LOT3",
-        "description": "TOTAL LOT 3 \u2014 5G CORE NETWORK (DAY-1 CAPEX)",
-        "scope": "1.0M Initial Registered Subscribers Capacity",
+        "description": "TOTAL LOT 3 \u2014 5G CORE NETWORK TURNKEY",
+        "scope": "365,000 Subscriber Carrier-Grade Cloud-Native 5GC",
         "qty": 0,
         "unit": "lot",
         "isTotal": true
@@ -810,71 +952,36 @@ window.RFPTenderData = {
       },
       {
         "id": "BSS-02",
-        "description": "Omnichannel CRM & Customer Portal",
-        "scope": "Self-service web/mobile portal, subscriber onboarding, eSIM support",
+        "description": "Subscriber Provisioning & Activation Gateway",
+        "scope": "Automated zero-touch provisioning (ZTP) for CPEs, SIM OTA profile management",
         "qty": 1,
         "unit": "lot"
       },
       {
         "id": "BSS-03",
-        "description": "Digital Payment Gateways Integration",
-        "scope": "Turnkey API integration with GCash, Maya, BancNet, and credit cards",
-        "qty": 1,
-        "unit": "lot"
-      },
-      {
-        "id": "BSS-04",
-        "description": "Product Catalog & Policy Engine",
-        "scope": "Rapid plan creation, FWA speed tiers, data cap enforcement, zero-rating",
+        "description": "Customer Care & Billing Portal",
+        "scope": "Self-service portal, payment gateway integration (GCash, Maya, cards), invoice generation",
         "qty": 1,
         "unit": "lot"
       },
       {
         "id": "OSS-01",
-        "description": "Unified Network Management (EMS/NMS)",
-        "scope": "Fault, configuration, accounting, performance, security (FCAPS)",
+        "description": "Unified Element Management System (EMS/NMS)",
+        "scope": "Centralized FCAPS for 5,000 gNodeBs, real-time alarm correlation, PM/CM northbound API",
         "qty": 1,
         "unit": "lot"
       },
       {
         "id": "OSS-02",
-        "description": "Mobile Field Force Automation App",
-        "scope": "Android/iOS app for 3,500 daily work orders, GPS, photo proof, e-sign",
-        "qty": 1,
-        "unit": "lot"
-      },
-      {
-        "id": "OSS-03",
-        "description": "Auto-Provisioning & ACS (TR-069/369)",
-        "scope": "Zero-touch CPE provisioning, FOTA mass upgrade, TR-181 diagnostics",
-        "qty": 1,
-        "unit": "lot"
-      },
-      {
-        "id": "OSS-04",
-        "description": "Warehouse Logistics & Asset Tracking",
-        "scope": "Serial-level barcode/RFID tracking of BBUs, RRUs, rectifiers, CPEs",
-        "qty": 1,
-        "unit": "lot"
-      },
-      {
-        "id": "OSS-05",
-        "description": "Service Orchestration & Inventory",
-        "scope": "End-to-end network service topology and resource state management",
-        "qty": 1,
-        "unit": "lot"
-      },
-      {
-        "id": "OSS-SVC",
-        "description": "Turnkey OSS/BSS Integration Services",
-        "scope": "Integration, API test, payment certification, UAT, and 60-day hypercare",
+        "description": "Automated Field Workforce Dispatch System (FSM)",
+        "scope": "Mobile ticketing app for 4x4 FLM crews, GPS tracking, auto-dispatch, SLA escalation",
         "qty": 1,
         "unit": "lot"
       },
       {
         "id": "TOTAL-LOT4",
-        "description": "TOTAL LOT 4 \u2014 CONVERGED DIGITAL OSS/BSS",
-        "scope": "Complete Core & Business Automation Suite",
+        "description": "TOTAL LOT 4 \u2014 DIGITAL OSS/BSS & AUTOMATION",
+        "scope": "Full-Stack Turnkey Telco OSS/BSS Suite",
         "qty": 0,
         "unit": "lot",
         "isTotal": true
@@ -883,75 +990,126 @@ window.RFPTenderData = {
   },
   {
     "tableId": "lot5_civ",
-    "title": "TABLE 6: LOT 5 — SITE ACQUISITION, TSSR & CIVIL WORKS (PHASE 1)",
+    "title": "TABLE 6: LOT 5 \u2014 SITE ACQUISITION, TSSR & CIVIL WORKS (PHASE 1)",
     "items": [
+      {
+        "id": "SAQ-01",
+        "description": "Nominal Search Ring Siting & Candidate Hunting (Standby 10.3% Own-Build Basket)",
+        "scope": "[OPERATIONAL BASELINE: Siting and candidate hunting is executed by the TowerCo. Vendor performs on-site technical vetting (RF LOS, antenna height, structural feasibility) and issues joint endorsement; Operator issues final approval. COMMERC...",
+        "qty": 103,
+        "unit": "Per Search Ring",
+        "multiplier": 1,
+        "isStandby": true
+      },
+      {
+        "id": "SAQ-02",
+        "description": "Detailed Site Acquisition Report (SAR) & Technical Dossier (Standby 10.3% Own-Build Basket)",
+        "scope": "[OPERATIONAL BASELINE: TowerCo provides primary site attributes and property profile under MLA. Vendor reviews and compiles technical feasibility annex in TSSR; Operator signs off. COMMERCIAL PRICING BASIS: Standby / Contingency Call-Off Ra...",
+        "qty": 103,
+        "unit": "Per Candidate Site",
+        "multiplier": 1,
+        "isStandby": true
+      },
+      {
+        "id": "SAQ-03",
+        "description": "TowerCo Space Application (SAA) & Technical Dossier Support (Standby 10.3% Own-Build Basket)",
+        "scope": "[APPLIES TO TOWERCO CO-LOCATION: Preparation of technical equipment loading profile (3x 8T8R RRU, 3x Antennas, hybrid cables, 2m x 2m pad) and coordination with TowerCo engineering until SAA approval. Commercial lease executed directly by O...",
+        "qty": 103,
+        "unit": "Per Co-Location Site",
+        "multiplier": 1,
+        "isStandby": true
+      },
+      {
+        "id": "SAQ-04",
+        "description": "Greenfield Land Lease Negotiation & Notarized Contract Support (Standby 10.3% Own-Build Basket)",
+        "scope": "[CONTINGENCY / SELF-BUILD SCOPE: Applicable strictly to Operator Own-Build Greenfield sites where no TowerCo exists or TowerCo denies build. Direct lessor negotiation, title due diligence, and lease notarization]. Direct lessor negotiations...",
+        "qty": 103,
+        "unit": "Per Greenfield Site",
+        "multiplier": 1,
+        "isStandby": true
+      },
+      {
+        "id": "SAQ-05",
+        "description": "Local Community, Barangay & Neighborhood Clearances (Standby 10.3% Own-Build Basket)",
+        "scope": "[OPERATIONAL BASELINE: TowerCo secures community/Barangay clearances for TowerCo towers. COMMERCIAL PRICING BASIS: Standby / Contingency Call-Off Rate Card for Operator Self-Acquisition / Greenfield sites]. Securing official local community...",
+        "qty": 103,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isStandby": true
+      },
+      {
+        "id": "SAQ-06",
+        "description": "Local Government Unit (LGU) Building & Construction Permits (Standby 10.3% Own-Build Basket)",
+        "scope": "[OPERATIONAL BASELINE: TowerCo secures LGU Building Permits under PD 1096 for TowerCo towers. COMMERCIAL PRICING BASIS: Standby / Contingency Call-Off Rate Card for Operator Self-Build Greenfield Monopoles]. Complete processing and procurem...",
+        "qty": 103,
+        "unit": "Per Greenfield Site / Co-loc where required",
+        "multiplier": 1,
+        "isStandby": true
+      },
+      {
+        "id": "SAQ-07",
+        "description": "Statutory & Environmental Clearances (CAAP, DENR, DPWH) (Standby 10.3% Own-Build Basket)",
+        "scope": "[OPERATIONAL BASELINE: TowerCo secures CAAP Height Clearance and DENR CNC/ECC for TowerCo assets. COMMERCIAL PRICING BASIS: Standby / Contingency Call-Off Rate Card for Operator Self-Build Greenfield Monopoles]. Procurement of mandatory nat...",
+        "qty": 103,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isStandby": true
+      },
+      {
+        "id": "SAQ-08",
+        "description": "Utility Interconnection, CFEI, FSIC & Occupancy Permitting (Standby 10.3% Own-Build Basket)",
+        "scope": "[OPERATIONAL BASELINE: TowerCo manages utility service entrance and meter installation on shared compound. COMMERCIAL PRICING BASIS: Standby / Contingency Call-Off Rate Card for Operator Self-Build sites]. Securing post-construction occupan...",
+        "qty": 103,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isStandby": true
+      },
       {
         "id": "CIV-SVC-01",
         "description": "Detailed Site Survey Report (TSSR)",
-        "scope": "Tower structural audit, 360-degree drone photo sweep, PE endorsement",
+        "scope": "Tower structural load audit, 360-degree drone photo sweep, power/grounding audit, civil layout sketch, and PE endorsement.",
         "qty": 1000,
-        "unit": "sites"
-      },
-      {
-        "id": "CIV-SVC-02",
-        "description": "Site Acquisition & Permitting Support",
-        "scope": "LGU building permit, Barangay clearance, CAAP height clearance",
-        "qty": 103,
-        "unit": "sites"
+        "unit": "site"
       },
       {
         "id": "CIV-SVC-03",
         "description": "Equipment Pad Foundation & Cable Gantry",
-        "scope": "Concrete plinth for power cabinet, elevated cable tray, interconnect",
+        "scope": "Reinforced concrete plinth for outdoor DC power cabinet/battery, elevated cable tray/gantry, and AC interconnect point.",
         "qty": 897,
-        "unit": "sites"
+        "unit": "site"
       },
       {
         "id": "CIV-SVC-04",
-        "description": "Greenfield Compound Civil Works",
-        "scope": "8m x 8m compound grading, perimeter chain-link fence, gravel bedding",
+        "description": "Greenfield Compound Civil Works & Foundation",
+        "scope": "8m x 8m compound grading, perimeter chain-link security fence, crushed gravel bedding, and reinforced foundation slab.",
         "qty": 103,
-        "unit": "sites"
+        "unit": "site"
       },
       {
         "id": "CIV-SVC-05",
-        "description": "Grounding Grid & Lightning Protection",
-        "scope": "Dedicated Cadweld copper ring, ground rods, air terminal (<= 5.0 Ohms)",
+        "description": "Grounding Grid & Lightning Protection System",
+        "scope": "Exothermically welded copper ground ring (Cadweld), ground rods, copper busbar, and air terminal (<= 5.0 Ohms).",
         "qty": 103,
-        "unit": "sites"
+        "unit": "site"
       },
       {
         "id": "CIV-SVC-06",
         "description": "30m Galvanized Steel Monopole Tower",
-        "scope": "ASTM A572 steel monopole, 250 km/h wind rating, climbing ladder, fall arrest (Alt A)",
+        "scope": "ASTM A572 steel monopole, 250-315 km/h Category 5 wind rating, climbing ladder with fall arrest, rigging, erection, and certification.",
         "qty": 80,
-        "unit": "sites"
+        "unit": "site"
       },
       {
         "id": "CIV-SVC-07",
         "description": "40m Galvanized Steel Monopole Tower",
-        "scope": "ASTM A572 steel monopole, 250 km/h wind rating, high clearance (Alt B)",
+        "scope": "ASTM A572 steel monopole, 250-315 km/h Category 5 wind rating, fall arrest, rigging, erection, and structural PE certification.",
         "qty": 23,
-        "unit": "sites"
-      },
-      {
-        "id": "CIV-SVC-08",
-        "description": "RF Propagation 3D Ray-Tracing Design",
-        "scope": "High-res 3D ray-tracing simulation, clutter calibration, search rings",
-        "qty": 1000,
-        "unit": "sites"
-      },
-      {
-        "id": "CIV-SVC-09",
-        "description": "Cluster RF Optimization & Drive Testing",
-        "scope": "Multi-site cluster drive testing, antenna tilt/azimuth physical optimization",
-        "qty": 1000,
-        "unit": "sites"
+        "unit": "site"
       },
       {
         "id": "TOTAL-LOT5",
-        "description": "TOTAL LOT 5 — SITE ACQUISITION, TOWERS & CIVILS",
-        "scope": "Phase 1 Footprint Turnkey Scope (897 Co-loc + 103 Greenfield)",
+        "description": "TOTAL LOT 5 \u2014 SITE ACQUISITION, SURVEY & CIVIL WORKS (USD)",
+        "scope": "Evaluated Turnkey Siting, Standby SAQ Basket & Civil Infrastructure",
         "qty": 0,
         "unit": "lot",
         "isTotal": true
@@ -960,49 +1118,211 @@ window.RFPTenderData = {
   },
   {
     "tableId": "lot6_ms",
-    "title": "TABLE 7: LOT 6 \u2014 MANAGED SERVICES & 24/7 FLM (YEAR 1 O&M)",
+    "title": "TABLE 7: LOT 6 \u2014 MANAGED SERVICES & 24/7 NETWORK OPERATIONS (21 SOW ITEMS)",
     "items": [
       {
-        "id": "MS-01",
-        "description": "24/7 First Line Maintenance (FLM)",
-        "scope": "Emergency on-site response, MTTR <= 4.0h, field technicians & vehicles",
-        "qty": 12000,
-        "unit": "site-mos"
+        "id": "MS-NOC-01",
+        "description": "24/7/365 Central NOC Tier-1 Active Surveillance & Alarm Monitoring",
+        "scope": "Continuous 24/7/365 active monitoring of all active and passive network elements across RAN, Core, Power, and Transmission; automated alarm correlation and noise suppression; ticket logging within 5 minutes of alarm onset; and issuance of D...",
+        "qty": 1000,
+        "unit": "Per Site / Month",
+        "multiplier": 12,
+        "isIncluded": false
       },
       {
-        "id": "MS-02",
-        "description": "NOC Tier-2 Surveillance & Escalation",
-        "scope": "24/7/365 active fault monitoring, performance trending, SLA tracking",
-        "qty": 12,
-        "unit": "months"
+        "id": "MS-NOC-02",
+        "description": "Incident Management, Triage & Automated Trouble Ticketing",
+        "scope": "End-to-end incident management: automated ticketing via OSS/ITSM; severity classification (Sev 1 Critical to Sev 4 Warning); technician dispatch initiation within 15 minutes for Sev 1 incidents; bridge coordination; and stakeholder notifica...",
+        "qty": 1000,
+        "unit": "Per Site / Month",
+        "multiplier": 12,
+        "isIncluded": false
       },
       {
-        "id": "MS-03",
-        "description": "Preventive Maintenance & Site Inspections",
-        "scope": "Quarterly PM routine: torque checks, battery conductance, filter clean",
-        "qty": 12000,
-        "unit": "site-mos"
+        "id": "MS-NOC-03",
+        "description": "Tier-2 Remote Technical Diagnostics, Fault Recovery & Config Management",
+        "scope": "24/7 remote engineering support: soft and hard resets, remote diagnostic sweeps, card re-initialization, backup configuration restoration, transmission routing failover, and software rollback to clear network faults without field truck roll...",
+        "qty": 1000,
+        "unit": "Per Site / Month",
+        "multiplier": 12,
+        "isIncluded": false
       },
       {
-        "id": "MS-04",
-        "description": "Central Spares & RMA Management",
-        "scope": "Buffer inventory warehouse management, reverse logistics, manufacturer RMA",
-        "qty": 12,
-        "unit": "months"
+        "id": "MS-NOC-04",
+        "description": "Tier-3 Engineering Escalation & OEM TAC Management",
+        "scope": "Advanced engineering escalation for complex system bugs, protocol crashes, and persistent hardware/software anomalies: case logging with OEM TAC (Level 3), trace log collection, bug patch testing, software patch deployment, and Root Cause A...",
+        "qty": 1000,
+        "unit": "Per Site / Month",
+        "multiplier": 12,
+        "isIncluded": false
       },
       {
-        "id": "MS-05",
-        "description": "Genset Refueling & Maintenance",
-        "scope": "Scheduled diesel refueling, oil/filter changes, bi-weekly test runs",
-        "qty": 1236,
-        "unit": "site-mos"
+        "id": "MS-FLM-01",
+        "description": "24/7 Field First Line Maintenance (FLM) Emergency Response",
+        "scope": "Provision of dedicated, nationwide 24/7 mobile field maintenance crews equipped with 4x4 vehicles, complete safety gear, calibrated test instruments, and emergency restoration tools. Strict compliance with mandated MTTR SLAs: Severity 1 (Cr...",
+        "qty": 1000,
+        "unit": "Per Site / Month",
+        "multiplier": 12,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-FLM-02",
+        "description": "Active Telecom Hardware Replacement & Field Swapping",
+        "scope": "On-site replacement of damaged or defective active telecom hardware: RRUs, BBUs, baseband processing cards, optical SFP transceivers, RF jumpers, and GPS antennas, utilizing pre-staged regional spare parts float to achieve fast-track MTTR r...",
+        "qty": 1000,
+        "unit": "Included in Base Retainer ($0.00)",
+        "multiplier": 0,
+        "isIncluded": true
+      },
+      {
+        "id": "MS-FLM-03",
+        "description": "Passive Power & Infrastructure Emergency Restoration",
+        "scope": "Rapid restoration of passive site elements: resetting/replacing tripped DC distribution breakers, rectifying rectifier module faults, clearing battery management system (BMS) lockouts, replacing blown AC/DC surge protection devices (SPDs), ...",
+        "qty": 1000,
+        "unit": "Included in Base Retainer ($0.00)",
+        "multiplier": 0,
+        "isIncluded": true
+      },
+      {
+        "id": "MS-FLM-04",
+        "description": "Emergency Fiber Backhaul Splicing & Optical Link Restoration",
+        "scope": "Emergency mobilization for fiber transmission outages: OTDR optical fault localization, optical cable drop replacement, mechanical or fusion splicing, and optical splice enclosure re-sealing to restore backhaul transport within mandated MTT...",
+        "qty": 1000,
+        "unit": "Included in Base Retainer ($0.00)",
+        "multiplier": 0,
+        "isIncluded": true
+      },
+      {
+        "id": "MS-PM-01",
+        "description": "Quarterly Telecom Equipment Preventive Maintenance (Module A)",
+        "scope": "Execution of 100% quarterly routine telecom PM: visual inspection of BBU/RRU chassis, optical fiber connector cleaning and inspection, RF jumper weatherproofing boot inspection, cable clamp torque verification, optical SFP power level verif...",
+        "qty": 1000,
+        "unit": "Per Site / Quarter",
+        "multiplier": 4,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-PM-02",
+        "description": "Quarterly DC Power & LiFePO4 Battery PM (Module B)",
+        "scope": "Comprehensive quarterly electrical PM: rectifier module load sharing verification, DC output float/equalize voltage calibration, terminal screw torque verification, LiFePO4 battery BMS diagnostic sweep, cell voltage and internal resistance ...",
+        "qty": 1000,
+        "unit": "Per Site / Quarter",
+        "multiplier": 4,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-PM-03",
+        "description": "Quarterly Earth Grounding & Lightning Protection Audit (Module C)",
+        "scope": "Precision ground resistance audit using 3-point fall-of-potential test instrument (confirming earth ground resistance <= 5.0 Ohms); Cadweld connection inspection; copper busbar bolt torque check; corrosion audit; and inspection of air termi...",
+        "qty": 1000,
+        "unit": "Per Site / Quarter",
+        "multiplier": 4,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-PM-04",
+        "description": "Bi-Annual Tower Structure, Rigging & Aviation Light Audit (Module D)",
+        "scope": "Specialized climbing inspection conducted twice per year: physical inspection of tower steel members, monopole climbing ladder, fall arrest cable, AMB mounting bracket bolt torque verification, antenna azimuth/tilt physical check, cable lad...",
+        "qty": 1000,
+        "unit": "Per Site / Semi-Annual",
+        "multiplier": 2,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-PM-05",
+        "description": "Quarterly Site Compound, Civil & Environmental Upkeep (Module E)",
+        "scope": "Routine civil compound maintenance: inspection and repair of chain-link perimeter fencing and barbed wire; greasing and servicing gate locking mechanisms; weed cutting, vegetation clearance, and chemical weed-killing within a 3-meter perime...",
+        "qty": 1000,
+        "unit": "Per Site / Quarter",
+        "multiplier": 4,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-SPM-01",
+        "description": "Regional Spare Parts Buffer Float Management (SPMS)",
+        "scope": "Operation of climate-controlled, secure regional spare parts depots (Mega Manila, North Luzon, South Luzon, Visayas, Mindanao); managing and maintaining an agreed 2.0% active hardware spares float (BBUs, RRUs, SFPs, rectifiers, batteries, c...",
+        "qty": 1000,
+        "unit": "Per Site / Month",
+        "multiplier": 12,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-SPM-02",
+        "description": "Advance Hardware Replacement (AHR) & Expedited Field Delivery",
+        "scope": "Rapid logistics dispatch delivering replacement hardware to field maintenance crews: Next-Business-Day (NBD) standard delivery nationwide, or expedited 4-hour emergency delivery for major macro hubs and critical transmission nodes.",
+        "qty": 1000,
+        "unit": "Included in Base Retainer ($0.00)",
+        "multiplier": 0,
+        "isIncluded": true
+      },
+      {
+        "id": "MS-SPM-03",
+        "description": "Return Merchandise Authorization (RMA) & OEM Factory Repair Logistics",
+        "scope": "Managing the reverse logistics lifecycle for defective hardware: retrieving faulty units from field crews, conducting triage, generating RMA requests, managing packaging and export/import customs for OEM repair/replacement, tracking turnaro...",
+        "qty": 1000,
+        "unit": "Included in Base Retainer ($0.00)",
+        "multiplier": 0,
+        "isIncluded": true
+      },
+      {
+        "id": "MS-RNO-01",
+        "description": "Continuous Radio Network Optimization & Weekly KPI Surveillance",
+        "scope": "Ongoing network-wide RF quality surveillance: daily and weekly statistical KPI tracking (Radio Availability, CSSR, CDDR, average throughput, PRB utilization, cell-edge speeds); identification and root-cause analysis of Worst Performing Cell...",
+        "qty": 1000,
+        "unit": "Per Site / Month",
+        "multiplier": 12,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-RNO-02",
+        "description": "Interference Hunting, PIM Mitigation & Customer Complaint Field Audit",
+        "scope": "Field RF investigation for degraded sectors: spectrum analyzer sweeps to detect and locate external interference sources (jamming, unauthorized boosters, microwave leakage); Passive Intermodulation (PIM) testing and remediation on antenna l...",
+        "qty": 1000,
+        "unit": "Per Site / Month",
+        "multiplier": 12,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-FAC-01",
+        "description": "Passive Tower & Civil Facility Maintenance",
+        "scope": "Structural preservation of passive site assets: rust scraping, cold galvanizing compound application, and repainting of steel members in corrosive/coastal environments; repairing cracked equipment plinths; re-caulking cable entry boots; and...",
+        "qty": 1000,
+        "unit": "Per Site / Month",
+        "multiplier": 12,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-PWR-01",
+        "description": "Energy, Utility Grid (Meralco/Coop) Coordination & Genset PM",
+        "scope": "Power management coordination: monitoring utility power reliability, validating commercial meter readings, coordinating with Meralco/electric cooperatives for transformer fuse restoration, and performing routine 250-hour preventive servicin...",
+        "qty": 1000,
+        "unit": "Per Site / Month",
+        "multiplier": 12,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-SW-01",
+        "description": "Software Support, Firmware Patching & Cybersecurity Hardening",
+        "scope": "Scheduled execution of software maintenance: applying OEM-approved firmware updates and feature patches during maintenance windows (00:00\u201305:00); implementing CVE security patches and hardening configs; executing weekly automated BBU and Co...",
+        "qty": 1000,
+        "unit": "Per Site / Month",
+        "multiplier": 12,
+        "isIncluded": false
+      },
+      {
+        "id": "SUBTOTAL-LOT6-ANNUAL",
+        "description": "SUBTOTAL LOT 6 \u2014 ANNUALIZED 24/7 MANAGED O&M SERVICES (12-MONTH EVALUATION)",
+        "scope": "Consolidated 1-Year Nationwide Operations: NOC, FLM, Preventive Maintenance Modules A-E, SPMS & Continuous RNO",
+        "qty": 0,
+        "unit": "year",
+        "isSubtotal": true
       },
       {
         "id": "TOTAL-LOT6",
-        "description": "TOTAL LOT 6 \u2014 MANAGED SERVICES (YEAR 1)",
-        "scope": "Annual Network Operations & Maintenance",
+        "description": "TOTAL LOT 6 \u2014 3-YEAR MANAGED SERVICES CONTRACTUAL BASELINE (36 MONTHS)",
+        "scope": "Evaluated 3-Year Contractual Baseline for Nationwide Active Telecom & Infrastructure Operations (= Annualized \u00d7 3)",
         "qty": 0,
-        "unit": "lot",
+        "unit": "3-yr contract",
         "isTotal": true
       }
     ]
@@ -1013,22 +1333,22 @@ window.RFPTenderData = {
     "items": [
       {
         "id": "CPE-01",
-        "description": "Indoor 5G High-Gain FWA Router",
-        "scope": "Band n50 native, >= 8.0 dBi antenna, Wi-Fi 6 AX1800/3000, 2.5GE port, TR-069",
+        "description": "Indoor 5G FWA Terminal (Wi-Fi 6 AX1800/AX3000)",
+        "scope": "Sub-6 GHz Band n50 native support, 4x4 MIMO DL, 2x2 MIMO UL, \u22658.0 dBi omni antenna, 2.5GE port, TR-069/TR-369",
         "qty": 350000,
         "unit": "units"
       },
       {
         "id": "CPE-02",
-        "description": "Outdoor 5G High-Gain FWA Package",
-        "scope": "Band n50, IP67, >= 12.0 dBi antenna, 2.5GE PoE, bundled Wi-Fi 6 router",
+        "description": "Outdoor 5G High-Gain Integrated Terminal (IP67)",
+        "scope": "Band n50, 4x4 MIMO, \u226512.0 dBi directional antenna, IP67 enclosure, 2.5GE PoE input, includes indoor Wi-Fi 6 router companion gateway + PoE injector",
         "qty": 15000,
         "unit": "units"
       },
       {
-        "id": "CPE-SVC",
-        "description": "Staging, Pre-Config & SIM-Locking",
-        "scope": "Custom firmware flashing, operator APN & PLMN lock, retail packaging",
+        "id": "CPE-03",
+        "description": "Custom Firmware Customization & Device Staging",
+        "scope": "Customized TR-069 provisioning profile, TelTech branding, pre-configured Band n50 APN, automated lock, bulk staging",
         "qty": 365000,
         "unit": "units"
       },
@@ -1039,6 +1359,663 @@ window.RFPTenderData = {
         "qty": 0,
         "unit": "lot",
         "isTotal": true
+      }
+    ]
+  },
+  {
+    "tableId": "services_sow_saq",
+    "title": "TABLE 9: SERVICES SOW \u2014 DOMAIN 1: SITE ACQUISITION & PERMITTING (SAQ-01 TO SAQ-08) [STANDBY 10.3% BASKET]",
+    "items": [
+      {
+        "id": "SAQ-01",
+        "description": "Nominal Search Ring Siting & Candidate Hunting",
+        "scope": "[OPERATIONAL BASELINE: Siting and candidate hunting is executed by the TowerCo. Vendor performs on-site technical vetting (RF LOS, antenna height, structural feasibility) and issues joint endorsement; Operator issues final approval. COMMERC...",
+        "qty": 103,
+        "unit": "Per Search Ring",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "SAQ-02",
+        "description": "Detailed Site Acquisition Report (SAR) & Technical Dossier",
+        "scope": "[OPERATIONAL BASELINE: TowerCo provides primary site attributes and property profile under MLA. Vendor reviews and compiles technical feasibility annex in TSSR; Operator signs off. COMMERCIAL PRICING BASIS: Standby / Contingency Call-Off Ra...",
+        "qty": 103,
+        "unit": "Per Candidate Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "SAQ-03",
+        "description": "TowerCo Space Application (SAA) & Technical Dossier Support",
+        "scope": "[APPLIES TO TOWERCO CO-LOCATION: Preparation of technical equipment loading profile (3x 8T8R RRU, 3x Antennas, hybrid cables, 2m x 2m pad) and coordination with TowerCo engineering until SAA approval. Commercial lease executed directly by O...",
+        "qty": 103,
+        "unit": "Per Co-Location Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "SAQ-04",
+        "description": "Greenfield Land Lease Negotiation & Notarized Contract Support",
+        "scope": "[CONTINGENCY / SELF-BUILD SCOPE: Applicable strictly to Operator Own-Build Greenfield sites where no TowerCo exists or TowerCo denies build. Direct lessor negotiation, title due diligence, and lease notarization]. Direct lessor negotiations...",
+        "qty": 103,
+        "unit": "Per Greenfield Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "SAQ-05",
+        "description": "Local Community, Barangay & Neighborhood Clearances",
+        "scope": "[OPERATIONAL BASELINE: TowerCo secures community/Barangay clearances for TowerCo towers. COMMERCIAL PRICING BASIS: Standby / Contingency Call-Off Rate Card for Operator Self-Acquisition / Greenfield sites]. Securing official local community...",
+        "qty": 103,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "SAQ-06",
+        "description": "Local Government Unit (LGU) Building & Construction Permits",
+        "scope": "[OPERATIONAL BASELINE: TowerCo secures LGU Building Permits under PD 1096 for TowerCo towers. COMMERCIAL PRICING BASIS: Standby / Contingency Call-Off Rate Card for Operator Self-Build Greenfield Monopoles]. Complete processing and procurem...",
+        "qty": 103,
+        "unit": "Per Greenfield Site / Co-loc where required",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "SAQ-07",
+        "description": "Statutory & Environmental Clearances (CAAP, DENR, DPWH)",
+        "scope": "[OPERATIONAL BASELINE: TowerCo secures CAAP Height Clearance and DENR CNC/ECC for TowerCo assets. COMMERCIAL PRICING BASIS: Standby / Contingency Call-Off Rate Card for Operator Self-Build Greenfield Monopoles]. Procurement of mandatory nat...",
+        "qty": 103,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "SAQ-08",
+        "description": "Utility Interconnection, CFEI, FSIC & Occupancy Permitting",
+        "scope": "[OPERATIONAL BASELINE: TowerCo manages utility service entrance and meter installation on shared compound. COMMERCIAL PRICING BASIS: Standby / Contingency Call-Off Rate Card for Operator Self-Build sites]. Securing post-construction occupan...",
+        "qty": 103,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "SUBTOTAL-CAT-01",
+        "description": "Subtotal DOMAIN 1: SITE ACQUISITION & PERMITTING (SAQ-01 TO SAQ-08)",
+        "scope": "Calculated Evaluated Amount",
+        "qty": 0,
+        "unit": "domain",
+        "isSubtotal": true
+      }
+    ]
+  },
+  {
+    "tableId": "services_sow_eng",
+    "title": "TABLE 10: SERVICES SOW \u2014 DOMAIN 2: SITE ENGINEERING & DETAILED TSSR (ENG-01 TO ENG-06)",
+    "items": [
+      {
+        "id": "ENG-01",
+        "description": "Technical Site Survey (TSS) & 360\u00b0 Drone Panoramic Audit",
+        "scope": "Rigorous multi-disciplinary physical site survey executed by licensed telecom and civil engineers: 360\u00b0 high-resolution panoramic photographic sweep at target antenna centerline (using calibrated drone or mast camera); precision dual-freque...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "ENG-02",
+        "description": "Site Structural Audit, Antenna Loading Verification & Own-Build Structural Engineering",
+        "scope": "Engineering structural evaluation of the host structure: [OPERATIONAL BASELINE \u2014 TIER 1 CO-LOCATION & TIER 2 B2S: Under MLA, TowerCo conducts 3D structural analysis, TIA-222-H wind modeling, foundation verification, and secures the licensed...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "ENG-03",
+        "description": "Electrical, DC Power & Earth Grounding Engineering Assessment",
+        "scope": "Electrical engineering audit of commercial AC utility power and DC power plant: inspection of transformer capacity (kVA), service entrance voltage, phase balance, AC main breaker rating; assessment of existing DC power plant (rectifier tota...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "ENG-04",
+        "description": "RF Engineering Siting, Line-of-Sight (LOS) & Clutter Assessment",
+        "scope": "On-site RF validation of nominal design coverage over target barangay demand centroid: physical line-of-sight (LOS) inspection at proposed antenna centerlines (30m, 35m, 40m AGL); clutter height and foliage density classification; identific...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "ENG-05",
+        "description": "Detailed Engineering Design (DED) & Technical Site Survey Report (TSSR)",
+        "scope": "Consolidation of multidisciplinary survey data into a complete Detailed Engineering Design (DED) blueprint package and Technical Site Survey Report (TSSR): Architectural Site Layout Plan; Tower Elevation & Antenna Orientation Plan; Antenna ...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "ENG-06",
+        "description": "As-Built Engineering Documentation & Final Completion Dossier",
+        "scope": "Comprehensive post-construction field engineering audit capturing all redline installation adjustments: updating AutoCAD drawings to reflect exact as-built antenna heights, azimuths, mechanical tilts, optical cable routes, rack layouts, bre...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "SUBTOTAL-CAT-02",
+        "description": "Subtotal DOMAIN 2: SITE ENGINEERING & DETAILED TSSR (ENG-01 TO ENG-06)",
+        "scope": "Calculated Evaluated Amount",
+        "qty": 0,
+        "unit": "domain",
+        "isSubtotal": true
+      }
+    ]
+  },
+  {
+    "tableId": "services_sow_rnpd",
+    "title": "TABLE 11: SERVICES SOW \u2014 DOMAIN 3: RADIO NETWORK PLANNING & DESIGN (RNPD-01 TO RNPD-02)",
+    "items": [
+      {
+        "id": "RNPD-01",
+        "description": "Macro RF Nominal Planning & 3D Propagation Modeling",
+        "scope": "Macro-level 5G RF network planning using advanced 3D ray-tracing propagation modeling engines, calibrated against high-resolution 5-meter clutter models and Digital Terrain Models (DTM). Sizing and generation of nominal candidate search rin...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "RNPD-02",
+        "description": "Cell Design Data (CDD) Engineering & Parameter Allocation",
+        "scope": "Engineering, generation, and validation of detailed site-specific Cell Design Data (CDD) sheets: cell naming taxonomy, gNodeB IDs, Physical Cell ID (PCI) planning adhering to modulo-3 and modulo-30 collision rules, Root Sequence Index (RSI)...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "SUBTOTAL-CAT-03",
+        "description": "Subtotal DOMAIN 3: RADIO NETWORK PLANNING & DESIGN (RNPD-01 TO RNPD-02)",
+        "scope": "Calculated Evaluated Amount",
+        "qty": 0,
+        "unit": "domain",
+        "isSubtotal": true
+      }
+    ]
+  },
+  {
+    "tableId": "services_sow_log",
+    "title": "TABLE 12: SERVICES SOW \u2014 DOMAIN 4: TELECOM LOGISTICS & MATERIAL HANDLING (LOG-01 TO LOG-03)",
+    "items": [
+      {
+        "id": "LOG-01",
+        "description": "Central & Regional Warehousing, Buffer Staging & Serialized Asset Tagging",
+        "scope": "Receipt of OEM shipments at Port of Manila / Batangas; bonded climate-controlled warehousing in central Mega Manila and regional hubs (North Luzon, South Luzon, Visayas, Mindanao); unboxing, physical inspection, and QA damage checking; barc...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "LOG-02",
+        "description": "Site BOM Kitting, Staging & Pre-Assembly Services",
+        "scope": "Assembly and kitting of site-specific deployment packages: picking 1x BBU, 3x 8T8R RRUs, 3x macro antennas/AAUs, optical patchcords, DC power cables, Type 2 SPDs, grounding kits, and hardware accessories; pre-cutting cable lengths based on ...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "LOG-03",
+        "description": "Regional Transport & Final-Mile Rough-Road Site Hauling",
+        "scope": "Transportation from central warehouse to regional hubs via heavy freight, followed by dedicated final-mile transport to remote barangay site locations utilizing heavy-duty 4x4 trucks, motorized bancas/barges (for island sites), or manual po...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "SUBTOTAL-CAT-04",
+        "description": "Subtotal DOMAIN 4: TELECOM LOGISTICS & MATERIAL HANDLING (LOG-01 TO LOG-03)",
+        "scope": "Calculated Evaluated Amount",
+        "qty": 0,
+        "unit": "domain",
+        "isSubtotal": true
+      }
+    ]
+  },
+  {
+    "tableId": "services_sow_ti",
+    "title": "TABLE 13: SERVICES SOW \u2014 DOMAIN 5: TELECOM INSTALLATION, TESTING & COMMISSIONING (TI-01 TO TI-05)",
+    "items": [
+      {
+        "id": "TI-01",
+        "description": "Tower Rigging & Mechanical Antenna / RRU Installation",
+        "scope": "Mechanical mounting by certified riggers: hoisting and installing 3x macro high-gain antennas and 3x 8T8R RRUs on tower antenna mounting brackets (AMB) at specified AGL centerlines (30m to 45m); setting precise mechanical downtilt and secto...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "TI-02",
+        "description": "RF, Optical Fiber & DC Power Cabling Installation",
+        "scope": "Routing, fastening, and dressing armored multi-core optical fiber jumpers and DC power cables along tower cable ladders and horizontal gantries; installing cold-shrink weatherproof boots on all 7/16 DIN or 4.3-10 RF connectors; installing T...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "TI-03",
+        "description": "Baseband Unit (BBU) Installation & Cabinet Wiring",
+        "scope": "19\" rack installation of 5G Baseband Unit (BBU) in outdoor equipment cabinet or shelter; dual -48V DC power wiring to dedicated distribution breakers; routing backhaul transmission optical patchcords to fiber demarcation router; and install...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "TI-04",
+        "description": "Telecom Commissioning, Sweep Testing & Power-Up",
+        "scope": "DC power turn-up, voltage and polarity verification; firmware loading and diagnostic testing; optical transceiver Rx/Tx power level verification; and calibrated RF sweep testing measuring Return Loss (>= 16.5 dB) and VSWR (<= 1.35:1) across...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "TI-05",
+        "description": "gNodeB Network Integration & OSS Commercial On-Air",
+        "scope": "Transmission IP integration (VLAN, BGP, IPsec); establishing S1-U / N2/N3 control and user plane interfaces to 5G Core (AMF/UPF); synchronization with TelTech EMS/OSS; activating 3 sectors on Band n50 (60 MHz NCR / up to 80 MHz Provincial, ...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "SUBTOTAL-CAT-05",
+        "description": "Subtotal DOMAIN 5: TELECOM INSTALLATION, TESTING & COMMISSIONING (TI-01 TO TI-05)",
+        "scope": "Calculated Evaluated Amount",
+        "qty": 0,
+        "unit": "domain",
+        "isSubtotal": true
+      }
+    ]
+  },
+  {
+    "tableId": "services_sow_acc",
+    "title": "TABLE 14: SERVICES SOW \u2014 DOMAIN 6: SINGLE SITE VERIFICATION & ACCEPTANCE TESTING (ACC-01 TO ACC-03)",
+    "items": [
+      {
+        "id": "ACC-01",
+        "description": "Mechanical, Civil & Electrical Site Acceptance (ATP-A)",
+        "scope": "Joint physical on-site inspection: verifying bolt torque marks on tower mounts, cable ladder fastening, cable tray grounding, weatherproofing seal integrity, electrical breaker labeling, 3-point earth ground resistance audit (confirming <= ...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "ACC-02",
+        "description": "Active Telecom & Functional Acceptance (ATP-B)",
+        "scope": "Remote and local active functional testing: verifying 8T8R MU-MIMO operation, electronic downtilt (eRET) remote control functionality via OSS, power fail / mains failure alarm simulation, optical fiber failover test, and carrier shutdown/re...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "ACC-03",
+        "description": "Single Site Verification (SSV) & RF Call Testing",
+        "scope": "On-ground field testing using 5G test UE and scanner: stationary throughput tests at near, mid, and cell-edge points per sector (validating >= 450 Mbps peak DL, >= 50 Mbps cell-edge DL, >= 15 Mbps cell-edge UL); sector swap validation; intr...",
+        "qty": 1000,
+        "unit": "Per Site",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "SUBTOTAL-CAT-06",
+        "description": "Subtotal DOMAIN 6: SINGLE SITE VERIFICATION & ACCEPTANCE TESTING (ACC-01 TO ACC-03)",
+        "scope": "Calculated Evaluated Amount",
+        "qty": 0,
+        "unit": "domain",
+        "isSubtotal": true
+      }
+    ]
+  },
+  {
+    "tableId": "services_sow_rno",
+    "title": "TABLE 15: SERVICES SOW \u2014 DOMAIN 7: CLUSTER RADIO NETWORK OPTIMIZATION (RNO-01 TO RNO-03)",
+    "items": [
+      {
+        "id": "RNO-01",
+        "description": "Pre-Launch Cluster Drive Testing & RF Baseline Audit",
+        "scope": "Continuous scanner and test UE drive testing across contiguous clusters of 10\u201320 sites; capturing RSRP, SINR, CQI, throughput, and coverage overlap; and identifying pilot pollution zones, coverage holes, and excessive inter-cell interferenc...",
+        "qty": 1000,
+        "unit": "Per Site Share",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "RNO-02",
+        "description": "Cluster Physical & Soft Parameter Optimization",
+        "scope": "Iterative optimization across cluster: electronic remote electrical tilt (eRET) adjustments to control cell-edge interference and shape coverage; azimuth and mechanical tilt adjustments where indicated; PCI re-planning to resolve mod-3/mod-...",
+        "qty": 1000,
+        "unit": "Per Site Share",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "RNO-03",
+        "description": "Cluster Acceptance KPI Validation & Final Sign-Off",
+        "scope": "Post-tuning verification drive test and OSS 14-day statistical performance audit: validating cluster Radio Availability >= 99.95%, Session Setup Success Rate (CSSR) >= 99.60%, Session Drop Rate (CDDR) <= 0.15%, cluster average DL throughput...",
+        "qty": 65,
+        "unit": "Per Cluster (65 Clusters Phase 1 / 325 Clusters Program)",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "SUBTOTAL-CAT-07",
+        "description": "Subtotal DOMAIN 7: CLUSTER RADIO NETWORK OPTIMIZATION (RNO-01 TO RNO-03)",
+        "scope": "Calculated Evaluated Amount",
+        "qty": 0,
+        "unit": "domain",
+        "isSubtotal": true
+      }
+    ]
+  },
+  {
+    "tableId": "services_sow_om",
+    "title": "TABLE 16: SERVICES SOW \u2014 DOMAIN 8: 24/7 MANAGED OPERATIONS & MAINTENANCE (21 ITEMS)",
+    "items": [
+      {
+        "id": "MS-NOC-01",
+        "description": "24/7/365 Central NOC Tier-1 Active Surveillance & Alarm Monitoring",
+        "scope": "Continuous 24/7/365 active monitoring of all active and passive network elements across RAN, Core, Power, and Transmission; automated alarm correlation and noise suppression; ticket logging within 5 minutes of alarm onset; and issuance of D...",
+        "qty": 1000,
+        "unit": "Per Site / Month",
+        "multiplier": 12,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-NOC-02",
+        "description": "Incident Management, Triage & Automated Trouble Ticketing",
+        "scope": "End-to-end incident management: automated ticketing via OSS/ITSM; severity classification (Sev 1 Critical to Sev 4 Warning); technician dispatch initiation within 15 minutes for Sev 1 incidents; bridge coordination; and stakeholder notifica...",
+        "qty": 1000,
+        "unit": "Per Site / Month",
+        "multiplier": 12,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-NOC-03",
+        "description": "Tier-2 Remote Technical Diagnostics, Fault Recovery & Config Management",
+        "scope": "24/7 remote engineering support: soft and hard resets, remote diagnostic sweeps, card re-initialization, backup configuration restoration, transmission routing failover, and software rollback to clear network faults without field truck roll...",
+        "qty": 1000,
+        "unit": "Per Site / Month",
+        "multiplier": 12,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-NOC-04",
+        "description": "Tier-3 Engineering Escalation & OEM TAC Management",
+        "scope": "Advanced engineering escalation for complex system bugs, protocol crashes, and persistent hardware/software anomalies: case logging with OEM TAC (Level 3), trace log collection, bug patch testing, software patch deployment, and Root Cause A...",
+        "qty": 1000,
+        "unit": "Per Site / Month",
+        "multiplier": 12,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-FLM-01",
+        "description": "24/7 Field First Line Maintenance (FLM) Emergency Response",
+        "scope": "Provision of dedicated, nationwide 24/7 mobile field maintenance crews equipped with 4x4 vehicles, complete safety gear, calibrated test instruments, and emergency restoration tools. Strict compliance with mandated MTTR SLAs: Severity 1 (Cr...",
+        "qty": 1000,
+        "unit": "Per Site / Month",
+        "multiplier": 12,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-FLM-02",
+        "description": "Active Telecom Hardware Replacement & Field Swapping",
+        "scope": "On-site replacement of damaged or defective active telecom hardware: RRUs, BBUs, baseband processing cards, optical SFP transceivers, RF jumpers, and GPS antennas, utilizing pre-staged regional spare parts float to achieve fast-track MTTR r...",
+        "qty": 1000,
+        "unit": "Included in Base Retainer ($0.00)",
+        "multiplier": 0,
+        "isIncluded": true
+      },
+      {
+        "id": "MS-FLM-03",
+        "description": "Passive Power & Infrastructure Emergency Restoration",
+        "scope": "Rapid restoration of passive site elements: resetting/replacing tripped DC distribution breakers, rectifying rectifier module faults, clearing battery management system (BMS) lockouts, replacing blown AC/DC surge protection devices (SPDs), ...",
+        "qty": 1000,
+        "unit": "Included in Base Retainer ($0.00)",
+        "multiplier": 0,
+        "isIncluded": true
+      },
+      {
+        "id": "MS-FLM-04",
+        "description": "Emergency Fiber Backhaul Splicing & Optical Link Restoration",
+        "scope": "Emergency mobilization for fiber transmission outages: OTDR optical fault localization, optical cable drop replacement, mechanical or fusion splicing, and optical splice enclosure re-sealing to restore backhaul transport within mandated MTT...",
+        "qty": 1000,
+        "unit": "Included in Base Retainer ($0.00)",
+        "multiplier": 0,
+        "isIncluded": true
+      },
+      {
+        "id": "MS-PM-01",
+        "description": "Quarterly Telecom Equipment Preventive Maintenance (Module A)",
+        "scope": "Execution of 100% quarterly routine telecom PM: visual inspection of BBU/RRU chassis, optical fiber connector cleaning and inspection, RF jumper weatherproofing boot inspection, cable clamp torque verification, optical SFP power level verif...",
+        "qty": 1000,
+        "unit": "Per Site / Quarter",
+        "multiplier": 4,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-PM-02",
+        "description": "Quarterly DC Power & LiFePO4 Battery PM (Module B)",
+        "scope": "Comprehensive quarterly electrical PM: rectifier module load sharing verification, DC output float/equalize voltage calibration, terminal screw torque verification, LiFePO4 battery BMS diagnostic sweep, cell voltage and internal resistance ...",
+        "qty": 1000,
+        "unit": "Per Site / Quarter",
+        "multiplier": 4,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-PM-03",
+        "description": "Quarterly Earth Grounding & Lightning Protection Audit (Module C)",
+        "scope": "Precision ground resistance audit using 3-point fall-of-potential test instrument (confirming earth ground resistance <= 5.0 Ohms); Cadweld connection inspection; copper busbar bolt torque check; corrosion audit; and inspection of air termi...",
+        "qty": 1000,
+        "unit": "Per Site / Quarter",
+        "multiplier": 4,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-PM-04",
+        "description": "Bi-Annual Tower Structure, Rigging & Aviation Light Audit (Module D)",
+        "scope": "Specialized climbing inspection conducted twice per year: physical inspection of tower steel members, monopole climbing ladder, fall arrest cable, AMB mounting bracket bolt torque verification, antenna azimuth/tilt physical check, cable lad...",
+        "qty": 1000,
+        "unit": "Per Site / Semi-Annual",
+        "multiplier": 2,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-PM-05",
+        "description": "Quarterly Site Compound, Civil & Environmental Upkeep (Module E)",
+        "scope": "Routine civil compound maintenance: inspection and repair of chain-link perimeter fencing and barbed wire; greasing and servicing gate locking mechanisms; weed cutting, vegetation clearance, and chemical weed-killing within a 3-meter perime...",
+        "qty": 1000,
+        "unit": "Per Site / Quarter",
+        "multiplier": 4,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-SPM-01",
+        "description": "Regional Spare Parts Buffer Float Management (SPMS)",
+        "scope": "Operation of climate-controlled, secure regional spare parts depots (Mega Manila, North Luzon, South Luzon, Visayas, Mindanao); managing and maintaining an agreed 2.0% active hardware spares float (BBUs, RRUs, SFPs, rectifiers, batteries, c...",
+        "qty": 1000,
+        "unit": "Per Site / Month",
+        "multiplier": 12,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-SPM-02",
+        "description": "Advance Hardware Replacement (AHR) & Expedited Field Delivery",
+        "scope": "Rapid logistics dispatch delivering replacement hardware to field maintenance crews: Next-Business-Day (NBD) standard delivery nationwide, or expedited 4-hour emergency delivery for major macro hubs and critical transmission nodes.",
+        "qty": 1000,
+        "unit": "Included in Base Retainer ($0.00)",
+        "multiplier": 0,
+        "isIncluded": true
+      },
+      {
+        "id": "MS-SPM-03",
+        "description": "Return Merchandise Authorization (RMA) & OEM Factory Repair Logistics",
+        "scope": "Managing the reverse logistics lifecycle for defective hardware: retrieving faulty units from field crews, conducting triage, generating RMA requests, managing packaging and export/import customs for OEM repair/replacement, tracking turnaro...",
+        "qty": 1000,
+        "unit": "Included in Base Retainer ($0.00)",
+        "multiplier": 0,
+        "isIncluded": true
+      },
+      {
+        "id": "MS-RNO-01",
+        "description": "Continuous Radio Network Optimization & Weekly KPI Surveillance",
+        "scope": "Ongoing network-wide RF quality surveillance: daily and weekly statistical KPI tracking (Radio Availability, CSSR, CDDR, average throughput, PRB utilization, cell-edge speeds); identification and root-cause analysis of Worst Performing Cell...",
+        "qty": 1000,
+        "unit": "Per Site / Month",
+        "multiplier": 12,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-RNO-02",
+        "description": "Interference Hunting, PIM Mitigation & Customer Complaint Field Audit",
+        "scope": "Field RF investigation for degraded sectors: spectrum analyzer sweeps to detect and locate external interference sources (jamming, unauthorized boosters, microwave leakage); Passive Intermodulation (PIM) testing and remediation on antenna l...",
+        "qty": 1000,
+        "unit": "Per Site / Month",
+        "multiplier": 12,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-FAC-01",
+        "description": "Passive Tower & Civil Facility Maintenance",
+        "scope": "Structural preservation of passive site assets: rust scraping, cold galvanizing compound application, and repainting of steel members in corrosive/coastal environments; repairing cracked equipment plinths; re-caulking cable entry boots; and...",
+        "qty": 1000,
+        "unit": "Per Site / Month",
+        "multiplier": 12,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-PWR-01",
+        "description": "Energy, Utility Grid (Meralco/Coop) Coordination & Genset PM",
+        "scope": "Power management coordination: monitoring utility power reliability, validating commercial meter readings, coordinating with Meralco/electric cooperatives for transformer fuse restoration, and performing routine 250-hour preventive servicin...",
+        "qty": 1000,
+        "unit": "Per Site / Month",
+        "multiplier": 12,
+        "isIncluded": false
+      },
+      {
+        "id": "MS-SW-01",
+        "description": "Software Support, Firmware Patching & Cybersecurity Hardening",
+        "scope": "Scheduled execution of software maintenance: applying OEM-approved firmware updates and feature patches during maintenance windows (00:00\u201305:00); implementing CVE security patches and hardening configs; executing weekly automated BBU and Co...",
+        "qty": 1000,
+        "unit": "Per Site / Month",
+        "multiplier": 12,
+        "isIncluded": false
+      },
+      {
+        "id": "SUBTOTAL-CAT-08",
+        "description": "Subtotal DOMAIN 8: 24/7 MANAGED OPERATIONS & MAINTENANCE (21 ITEMS)",
+        "scope": "Calculated Evaluated Amount",
+        "qty": 0,
+        "unit": "domain",
+        "isSubtotal": true
+      }
+    ]
+  },
+  {
+    "tableId": "services_sow_call",
+    "title": "TABLE 17: SERVICES SOW \u2014 DOMAIN 9: AD-HOC EMERGENCY & SPECIALIZED CALL-OUT SERVICES (CALL-01 TO CALL-08)",
+    "items": [
+      {
+        "id": "CALL-01",
+        "description": "Specialized Tower Rigging Call-Out Service",
+        "scope": "Ad-hoc mobilization of a certified tower climbing crew to execute non-standard physical antenna modifications: adjusting mechanical tilt, azimuth, or antenna mounting height upon structural reconfiguration or post-typhoon realignment.",
+        "qty": 100,
+        "unit": "Per Sector",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "CALL-02",
+        "description": "Emergency Typhoon Disaster Recovery Crew",
+        "scope": "Rapid deployment of a specialized 4-man disaster recovery crew equipped with heavy-duty 4x4 vehicle, chainsaws, winches, heavy rigging tackle, and portable generator to clear fallen trees, re-erect toppled poles, and execute emergency struc...",
+        "qty": 50,
+        "unit": "Per Crew / Day",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "CALL-03",
+        "description": "Mobile Emergency Generator Deployment & Continuous Run",
+        "scope": "Delivery, positioning, cabling, and commissioning of a mobile trailer-mounted 15\u201320 kVA diesel generator at a damaged site during extended utility grid blackouts; includes 48 hours of continuous operation, continuous refueling, and operator...",
+        "qty": 50,
+        "unit": "Per Deployment (48-hr block)",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "CALL-04",
+        "description": "Long-Span Optical Fiber Cable Restoration & Splicing",
+        "scope": "Emergency or planned restoration of major backhaul fiber cable cuts exceeding 500 meters: stringing replacement 24-core armored aerial or underground fiber cable, installing suspension clamps, fusion splicing at both splice closures, and te...",
+        "qty": 20,
+        "unit": "Per Span",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "CALL-05",
+        "description": "Drone Structural, Panoramic & Thermal Imaging Survey",
+        "scope": "High-resolution aerial inspection utilizing drone equipped with 4K optical zoom and radiometric thermal sensor: auditing tower structural integrity, inspecting hard-to-reach antenna brackets, and detecting hotspot anomalies on power joints ...",
+        "qty": 50,
+        "unit": "Per Site Flight",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "CALL-06",
+        "description": "Tower Structural Strengthening & Leg Reinforcement",
+        "scope": "Physical structural modification of existing tower or monopole: installing steel reinforcement members, flange stiffeners, cross-bracing, or guy wire tensioning based on approved PE structural engineering calculations.",
+        "qty": 20,
+        "unit": "Per Tower / Lump Sum based on DED",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "CALL-07",
+        "description": "Specialized PIM Hunting & Multi-Sector Interference Remediation",
+        "scope": "Advanced on-site PIM testing utilizing specialized 2x20W PIM analyzer: identifying internal and external PIM sources, replacing corroded RF jumpers/connectors, and applying RF shielding tape/materials to achieve PIM <= -155 dBc.",
+        "qty": 30,
+        "unit": "Per Site / Day",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "CALL-08",
+        "description": "Ad-Hoc Emergency Fuel Delivery & Mobile Refueling",
+        "scope": "Rapid procurement and transport of clean Euro-4 automotive diesel fuel in certified fuel containers to remote sites during prolonged grid emergencies, including manual transfer to day tank.",
+        "qty": 20000,
+        "unit": "Per Liter Delivered",
+        "multiplier": 1,
+        "isIncluded": false
+      },
+      {
+        "id": "SUBTOTAL-CAT-09",
+        "description": "Subtotal DOMAIN 9: AD-HOC EMERGENCY & SPECIALIZED CALL-OUT SERVICES (CALL-01 TO CALL-08)",
+        "scope": "Calculated Evaluated Amount",
+        "qty": 0,
+        "unit": "domain",
+        "isSubtotal": true
       }
     ]
   }
