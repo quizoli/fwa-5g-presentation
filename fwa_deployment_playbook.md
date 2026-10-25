@@ -37,7 +37,79 @@ To balance aggressive time-to-market against capital efficiency, TELTECH enforce
 
 ---
 
-## 2. THE 8-GATE TURNKEY IMPLEMENTATION PIPELINE
+## 2. READ ME: EXECUTIVE ACRONYM GLOSSARY & DOCUMENT GUIDE
+
+To ensure seamless cross-functional communication and alignment among TelTech Leadership, Project Managers, Engineers, and external partners, this section explains the core acronyms, documents, and deliverables used across the turnkey deployment lifecycle.
+
+### 2.1 The 6 Critical Gate Deliverables (What They Mean & Why They Matter)
+
+1. **PCER (Preliminary Candidate Evaluation Report) — Gate 1:**
+   * **What it is:** The initial site scouting dossier submitted by the TowerCo / SAQ hunting crew within 10 days of receiving a nominal search ring.
+   * **Content:** Identifies and ranks three candidates (**Candidate A - Primary**, **Candidate B - Backup**, **Candidate C - Contingency**). Contains WGS84 GPS coordinates, 360° candidate photographs, zoning classification, landlord/lessor willingness to lease, proximity to the Meralco/electric coop grid, and preliminary physical viability.
+   * **Executive Purpose:** Prevents premature engineering expenditure by screening out commercially unviable or structurally compromised candidates before conducting expensive technical site surveys.
+
+2. **TSSR (Technical Site Survey Report) — Gate 2:**
+   * **What it is:** The authoritative, multidisciplinary engineering survey package prepared by the Turnkey Vendor and reviewed by TelTech Engineering.
+   * **Content:** Calibrated drone 360° photographic sweep at antenna centerlines (30m–45m AGL) verifying RF optical Line-of-Sight (LOS); multi-member structural wind stress simulation under TIA-222-H for 250 km/h Category 5 typhoon winds; 3-point fall-of-potential grounding resistance measurement (<= 5.0 Ohms); DC power and battery autonomy dimensioning; and complete Detailed Engineering Design (DED) CAD blueprints.
+   * **Executive Purpose:** The legal and structural foundation of the site. Must be signed and wet-sealed by a licensed Professional Structural Engineer (PE) before permit submission.
+
+3. **SAA (Space Allocation Application) — Gate 3:**
+   * **What it is:** The formal reservation agreement submitted by TelTech to the TowerCo under the Master Lease Agreement (MLA).
+   * **Content:** Specifies exact antenna mounting centerline (AGL), Effective Projected Area (EPA) wind loading, active radio operating weights, and 2.0m x 2.0m compound pad footprint.
+   * **Executive Purpose:** Guarantees structural headroom and legally reserves TelTech's slot on the TowerCo tower.
+
+4. **RFI (Ready for Installation Certificate) — Gate 4:**
+   * **What it is:** The civil and passive infrastructure milestone certificate issued jointly by the TowerCo and TelTech Civil Inspectors.
+   * **Content:** Confirms that the reinforced concrete pad (2.0m x 2.0m x 200mm), perimeter security fence, Cadweld grounding ring (<= 5.0 Ohms), antenna mounting brackets (AMBs), and commercial utility power energization or DC power plant are 100% complete.
+   * **Executive Purpose:** Unlocks the site for active telecom riggers to safely hoist antennas and 8T8R RRU equipment.
+
+5. **NTP (Notice to Proceed) — Gate 3:**
+   * **What it is:** The official executive authorization issued by TelTech Rollout PMO to contractors and TowerCos.
+   * **Content:** Formal authorization stating that lease execution, SAA approval, and municipal LGU building permits under PD 1096 have been legally cleared.
+   * **Executive Purpose:** Replaces risk with certainty; contractors may NOT break ground or incur billable capital expenditure without a valid NTP.
+
+6. **SSV (Single Site Verification Report) — Gate 6:**
+   * **What it is:** The empirical field testing dossier verifying that the newly activated cell site meets carrier-grade RF throughput benchmarks before commercial subscribers are onboarded.
+   * **Content:** Sector swap checks, PCI verification, stationary/drive test throughput logs (Peak DL >= 450 Mbps, Edge DL >= 50 Mbps, Edge UL >= 15 Mbps, Latency <= 18 ms), and handover success rates (>= 99.5%).
+   * **Executive Purpose:** Concludes the construction phase and initiates formal ATP-A and ATP-B site acceptance.
+
+### 2.2 Complete Alphabetical Acronym & Terminology Glossary
+
+| Acronym | Full Official Term | Lifecycle Phase | Lead Owner | Definition & Executive Purpose |
+| :--- | :--- | :--- | :--- | :--- |
+| **PCER** | Preliminary Candidate Evaluation Report | Gate 1 (SAQ) | TowerCo / SAQ Hunter | Initial 3-candidate scouting dossier evaluating Candidate A, B, C coordinates, photos, lessor willingness, and power proximity. |
+| **SAR** | Site Acquisition Report | Gate 1-3 (SAQ) | TowerCo / Legal | Complete property dossier: title verification (TCT/OCT/Tax Dec), cadastral boundary sketch, and 10-15yr lease contract. |
+| **SAA** | Space Allocation Application | Gate 3 (Permitting) | TowerCo Engineering | Application and approval reserving antenna centerline height, EPA wind loading, and 2x2m compound pad on TowerCo tower. |
+| **TSSR** | Technical Site Survey Report | Gate 2 (Engineering) | Turnkey Vendor & Eng. | Comprehensive engineering survey: drone 360° LOS sweep, TIA-222-H 250 km/h wind simulation, grounding <= 5Ω, and PE-stamped CAD plans. |
+| **DED** | Detailed Engineering Design | Gate 2 (Engineering) | Professional Engineers (PE) | Complete AutoCAD blueprint set: Layout, Tower Elevation, AMBs, Single Line Diagram, Grounding Grid, and BoQ signed/sealed by PE. |
+| **RFI** | Ready for Installation | Gate 4 (Civil/Power) | TowerCo / Civil Contractor | Civil milestone certifying 2x2m pad, perimeter fence, grounding <= 5Ω, tower AMBs, and energized DC power are ready for telecom rigging. |
+| **NTP** | Notice to Proceed | Gate 3 (Rollout PMO) | TelTech Rollout PMO | Official executive directive authorizing commencement of physical civil works or telecom installation upon securing permits and lease. |
+| **ITC** | Telecom Installation, Testing & Commissioning | Gate 5 (Telecom) | Turnkey Telecom Vendor | Rigging 3x 8T8R RRUs + antennas, eRET cabling, RF sweep tests (VSWR <= 1.35), BBU rack wiring, GPS clock sync, and 5GC on-air integration. |
+| **SSV** | Single Site Verification | Gate 6 (Acceptance) | Vendor RF Team & QA | Empirical field drive/stationary tests validating Peak DL >= 450M, Edge DL >= 50M, Edge UL >= 15M, Latency <= 18ms, and handover >= 99.5%. |
+| **ATP-A** | Acceptance Test Procedure (Civil & Physical) | Gate 6 (Acceptance) | TelTech QA & Vendor | Physical audit: bolt torques, cable dressing, weatherproofing boots, earth busbar Cadweld bonding, and site housekeeping. |
+| **ATP-B** | Acceptance Test Procedure (Active & Functional) | Gate 6 (Acceptance) | TelTech Eng & Vendor | Functional audit: 8T8R MU-MIMO operation, remote eRET tilt control from OSS (0°-10°), battery autonomy failover, and remote reboots. |
+| **RNO** | Radio Network Optimization | Gate 7 (Optimization) | Optimization Engineers | Multi-site cluster tuning across 10-20 sites: eRET tilt adjustments, power balancing, neighbor list cleanup, and PCI modulo-3/30 deconfliction. |
+| **TOC** | Transfer of Control (Handover to Ops) | Gate 7 (Handover) | Rollout PMO to NOC Ops | Formal governance handover protocol transferring operational responsibility to 24/7 Managed NOC after 14-day OSS KPI stability. |
+| **MLA** | Master Lease Agreement | Commercial / Legal | TelTech Legal & TowerCo | Umbrella contract between TelTech and TowerCos (PTCI, EdgePoint, FTAP, LDIC) governing space allocation, pricing, and 10-15yr tenancy. |
+| **B2S** | Build-to-Suit | Siting Tier 2 | TowerCo Partner | Arrangement where TowerCo finances, permits, and constructs a new tower tailored to TelTech's search ring when existing towers are absent. |
+| **GIDA** | Geographically Isolated & Disadvantaged Areas | Program Strategy | DICT / TelTech Strategy | Official DICT classification for remote unserved/underserved barangays; TelTech prioritizes 3,903 Priority 1 GIDA barangays. |
+| **eRET** | Electronic Remote Electrical Tilt | Radio Engineering | RAN Eng & Operations | Motorized antenna internal phase-shifter controlled via AISG 2.0 protocol allowing instant beam elevation tilt changes from the NOC. |
+| **AISG** | Antenna Interface Standards Group | Telecom Hardware | Hardware Protocol | Standard digital interface protocol (AISG 2.0 / 3GPP TS 25.466) connecting baseband unit to eRET motors and tower-mounted sensors. |
+| **EPA** | Effective Projected Area | Structural Engineering | Structural Engineer (PE) | Aerodynamic wind-resistance area (Area x Cd) evaluated under TIA-222-H to prevent tower structural failure under 250 km/h typhoon winds. |
+| **AGL / AMSL** | Above Ground Level / Above Mean Sea Level | Siting & CAAP | Surveyors & Geospatial | AGL measures antenna bracket height above ground surface; AMSL measures height above sea level for CAAP height clearance. |
+| **AMB** | Antenna Mounting Bracket | Civil / Tower Hardware | TowerCo / Rigging Crew | Heavy-duty hot-dip galvanized steel mounting arms attached to the tower body holding panel antennas and 8T8R RRUs at exact azimuths. |
+| **VSWR / RL** | Voltage Standing Wave Ratio / Return Loss | RF Testing | Riggers & Telecom Eng | RF transmission line efficiency metrics: VSWR <= 1.35:1 and RL >= 16.5 dB confirm jumper integrity, proper torque, and zero water ingress. |
+| **CFEI / FSIC** | Cert. of Final Electrical / Fire Safety Inspection | Gate 3 (Permitting) | LGU & Bureau of Fire | Mandatory statutory clearances in the Philippines certifying electrical code compliance (PEC) and fire safety before energization. |
+| **CNC / ECC** | Cert. of Non-Coverage / Environmental Compliance | Gate 3 (Permitting) | DENR - EMB | Environmental clearances issued by DENR Environmental Management Bureau certifying tower construction compliance. |
+| **PTP / SyncE** | Precision Time Protocol (1588v2) / Sync Ethernet | Transmission | Transport & Core Eng | Nanosecond-accurate frequency and phase synchronization standards locking radio frame timing over packet backhaul for 5G TDD. |
+| **FLM / MTTR** | First Line Maintenance / Mean Time To Restore | O&M Operations | Network Ops & Mobile FLM | FLM represents 24/7 mobile field maintenance crews. MTTR measures average restore time (Severity 1: <= 2.0h Urban / <= 4.0h Rural). |
+| **AHR / RMA** | Advance Hardware Replacement / Return Authorization | Supply Chain / Spares | Logistics & OEM Vendor | Warranty process where a healthy spare is dispatched immediately (Next Business Day) from 2% buffer float before factory repair. |
+| **CSSR / CDDR** | Call Setup Success Rate / Call Drop Rate | Network Performance | RAN Optimization & NOC | Core OSS accessibility (mandated >= 99.60%) and retainability (mandated <= 0.15%) QoS performance benchmarks. |
+| **PRB** | Physical Resource Block | Radio Capacity | RAN Planning & Capacity | Smallest unit of 5G bandwidth; 162 PRBs per sector across 60 MHz Band n50 TDD with 30 kHz subcarrier spacing. |
+| **PE** | Professional Engineer (PRC Licensed) | Statutory Governance | Licensed Engineers | Engineers holding valid PRC licenses who review, sign, and wet-seal structural, civil, and electrical engineering blueprints. |
+| **RACI** | Responsible, Accountable, Consulted, Informed | Program Governance | Executive Leadership | Global program governance matrix defining execution responsibility (R), single final sign-off (A), input (C), and visibility (I). |
+
+## 3. THE 8-GATE TURNKEY IMPLEMENTATION PIPELINE
 
 | Gate | Milestone Name | Primary Owner | Mandatory Entry Criteria | Deliverable & Exit Gate Sign-Off |
 | :--- | :--- | :--- | :--- | :--- |
@@ -52,7 +124,7 @@ To balance aggressive time-to-market against capital efficiency, TELTECH enforce
 
 ---
 
-## 3. FLOWCHARTS FOR EVERY MAJOR IMPLEMENTATION STEP
+## 4. FLOWCHARTS FOR EVERY MAJOR IMPLEMENTATION STEP
 
 ### 3.1 Flowchart 1: Site Acquisition (SAQ) & Statutory Permitting Detailed Workflow
 ```mermaid
@@ -169,7 +241,7 @@ sequenceDiagram
 
 ---
 
-## 4. TELTECH ORGANIZATIONAL STRUCTURE & GOVERNANCE
+## 5. TELTECH ORGANIZATIONAL STRUCTURE & GOVERNANCE
 
 Extracted directly from the official **TTSI-ISMS-MNL-001 Manual (Teltech)**, the table below outlines the 14 functional branches governing the rollout, operation, and security of the nationwide 5G FWA network:
 
@@ -357,7 +429,7 @@ Extracted directly from the official **TTSI-ISMS-MNL-001 Manual (Teltech)**, the
 
 ---
 
-## 5. EXPANDED MULTI-PARTY RACI RESPONSIBILITY ASSIGNMENT MATRIX
+## 6. EXPANDED MULTI-PARTY RACI RESPONSIBILITY ASSIGNMENT MATRIX
 
 *Legend: **R** = Responsible for execution | **A** = Accountable (Final Approval) | **C** = Consulted (Technical Input) | **I** = Informed*
 
@@ -421,7 +493,7 @@ Extracted directly from the official **TTSI-ISMS-MNL-001 Manual (Teltech)**, the
 
 ---
 
-## 6. PROGRAM RISK MANAGEMENT REGISTER & MITIGATION STRATEGY
+## 7. PROGRAM RISK MANAGEMENT REGISTER & MITIGATION STRATEGY
 
 | Risk ID | Description & Potential Impact | Likelihood | Impact | Warning Trigger | Prescribed Mitigation Strategy |
 | :--- | :--- | :---: | :---: | :--- | :--- |

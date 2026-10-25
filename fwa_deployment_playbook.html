@@ -526,6 +526,7 @@
     <h3>Playbook Sections</h3>
     <ul class="sidebar-menu">
       <li><a href="#sec-overview" class="active">1. Program Mandate & Siting</a></li>
+      <li><a href="#sec-readme">📖 READ ME: Acronyms & Glossary</a></li>
       <li><a href="#sec-pipeline">2. The 8-Gate Pipeline</a></li>
       <li><a href="#sec-flowcharts">3. Major Process Flowcharts</a></li>
       <li><a href="#sec-saq">4. Playbook A: SAQ & Permitting</a></li>
@@ -607,6 +608,367 @@
         <div class="metric-desc">103 Sites in remote unserved search rings where zero TowerCos operate, or where all TowerCos issue formal denial letters.</div>
       </div>
     </div>
+
+    
+    <!-- SECTION 1.5: READ ME & ACRONYM GLOSSARY -->
+    <h1 id="sec-readme">📖 Read Me: Executive Acronym Glossary &amp; Document Guide</h1>
+    <p>To ensure seamless cross-functional communication and alignment among TelTech Leadership, Project Managers, Field Engineers, and external partners (TowerCos, Turnkey Vendors, LGUs), this section defines the core acronyms, documents, and milestone deliverables governing the nationwide rollout.</p>
+
+    <!-- Search & Filter Controls -->
+    <div style="background: rgba(10, 25, 47, 0.85); border: 1.5px solid var(--cyan); border-radius: 10px; padding: 18px 22px; margin-bottom: 24px; box-shadow: 0 4px 16px rgba(0, 210, 211, 0.2);">
+      <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 280px; position: relative;">
+          <input type="text" id="glossarySearch" placeholder="🔍 Search any acronym or keyword (e.g. PCER, TSSR, SAA, RFI, NTP, SSV, ATP)..." onkeyup="filterGlossary()" style="width: 100%; background: #071322; border: 1px solid rgba(0, 210, 211, 0.4); border-radius: 8px; padding: 12px 16px; color: #FFFFFF; font-size: 13.5px; outline: none; font-weight: 600;">
+        </div>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <button class="glossary-filter-btn active" data-cat="all" onclick="filterGlossaryCat('all')" style="background: var(--blue-accent); color: #FFF; border: none; padding: 8px 14px; border-radius: 6px; font-size: 11.5px; font-weight: 700; cursor: pointer;">All Terms (31)</button>
+          <button class="glossary-filter-btn" data-cat="saq" onclick="filterGlossaryCat('saq')" style="background: var(--navy-light); color: #CBD5E1; border: 1px solid var(--border-color); padding: 8px 14px; border-radius: 6px; font-size: 11.5px; font-weight: 700; cursor: pointer;">SAQ &amp; Permitting</button>
+          <button class="glossary-filter-btn" data-cat="eng" onclick="filterGlossaryCat('eng')" style="background: var(--navy-light); color: #CBD5E1; border: 1px solid var(--border-color); padding: 8px 14px; border-radius: 6px; font-size: 11.5px; font-weight: 700; cursor: pointer;">Engineering &amp; Survey</button>
+          <button class="glossary-filter-btn" data-cat="civil" onclick="filterGlossaryCat('civil')" style="background: var(--navy-light); color: #CBD5E1; border: 1px solid var(--border-color); padding: 8px 14px; border-radius: 6px; font-size: 11.5px; font-weight: 700; cursor: pointer;">Civil &amp; Power</button>
+          <button class="glossary-filter-btn" data-cat="telecom" onclick="filterGlossaryCat('telecom')" style="background: var(--navy-light); color: #CBD5E1; border: 1px solid var(--border-color); padding: 8px 14px; border-radius: 6px; font-size: 11.5px; font-weight: 700; cursor: pointer;">Telecom ITC</button>
+          <button class="glossary-filter-btn" data-cat="acceptance" onclick="filterGlossaryCat('acceptance')" style="background: var(--navy-light); color: #CBD5E1; border: 1px solid var(--border-color); padding: 8px 14px; border-radius: 6px; font-size: 11.5px; font-weight: 700; cursor: pointer;">Acceptance &amp; ATP</button>
+          <button class="glossary-filter-btn" data-cat="ops" onclick="filterGlossaryCat('ops')" style="background: var(--navy-light); color: #CBD5E1; border: 1px solid var(--border-color); padding: 8px 14px; border-radius: 6px; font-size: 11.5px; font-weight: 700; cursor: pointer;">Operations &amp; NOC</button>
+        </div>
+      </div>
+      <div style="font-size: 11.5px; color: #94A3B8; margin-top: 10px;">
+        Tip: Type <strong>"PCER"</strong> to inspect candidate scouting rules, <strong>"TSSR"</strong> for engineering survey requirements, or <strong>"RFI"</strong> for civil handoff criteria.
+      </div>
+    </div>
+
+    <!-- 6 Core Milestone Deliverables Feature Cards -->
+    <h2 style="color: #FFFFFF; font-size: 16px; margin-bottom: 14px;">The 6 Core Milestone Documents (What They Are &amp; Why They Matter)</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; margin-bottom: 30px;">
+      
+      <!-- Card 1: PCER -->
+      <div style="background: rgba(10, 25, 47, 0.7); border: 1.5px solid var(--teal); border-radius: 10px; padding: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-size: 18px; font-weight: 900; color: var(--cyan);">PCER</span>
+          <span class="badge" style="background: rgba(0, 210, 211, 0.2); color: var(--cyan); border: 1px solid var(--cyan);">GATE 1 · SAQ</span>
+        </div>
+        <div style="font-size: 13.5px; font-weight: 800; color: #FFFFFF; margin-bottom: 6px;">Preliminary Candidate Evaluation Report</div>
+        <div style="font-size: 12px; color: var(--gold); font-weight: 700; margin-bottom: 8px;">Owner: TowerCo / SAQ Hunting Crew</div>
+        <p style="font-size: 12.5px; color: #CBD5E1; line-height: 1.5; margin-bottom: 10px;">
+          The initial scouting dossier submitted within 10 days of Search Ring issuance. Ranks 3 viable candidates (<strong>Candidate A - Primary</strong>, <strong>B - Backup</strong>, <strong>C - Contingency</strong>) with GPS coordinates, photos, zoning classification, landlord lease willingness, and distance to the commercial power grid.
+        </p>
+        <div style="background: rgba(0, 180, 216, 0.1); border-left: 3px solid var(--cyan); padding: 8px 10px; font-size: 11.5px; color: #E2E8F0;">
+          <strong>Executive Value:</strong> Prevents premature capital expenditure by screening candidate viability before committing to expensive detailed surveys.
+        </div>
+      </div>
+
+      <!-- Card 2: TSSR -->
+      <div style="background: rgba(10, 25, 47, 0.7); border: 1.5px solid #3B82F6; border-radius: 10px; padding: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-size: 18px; font-weight: 900; color: #60A5FA;">TSSR</span>
+          <span class="badge" style="background: rgba(59, 130, 246, 0.2); color: #93C5FD; border: 1px solid #3B82F6;">GATE 2 · ENGINEERING</span>
+        </div>
+        <div style="font-size: 13.5px; font-weight: 800; color: #FFFFFF; margin-bottom: 6px;">Technical Site Survey Report</div>
+        <div style="font-size: 12px; color: var(--gold); font-weight: 700; margin-bottom: 8px;">Owner: Turnkey Telecom Vendor &amp; TelTech Eng.</div>
+        <p style="font-size: 12.5px; color: #CBD5E1; line-height: 1.5; margin-bottom: 10px;">
+          Rigorous engineering audit of Candidate A: calibrated drone 360° LOS sweep at antenna centerlines (30m-45m AGL), structural wind load simulation (TIA-222-H for 250 km/h wind), grounding fall-of-potential test (&le; 5.0&Omega;), DC power/battery autonomy audit, and signed/sealed CAD blueprints.
+        </p>
+        <div style="background: rgba(59, 130, 246, 0.1); border-left: 3px solid #3B82F6; padding: 8px 10px; font-size: 11.5px; color: #E2E8F0;">
+          <strong>Executive Value:</strong> Must be signed and wet-sealed by a licensed Professional Structural Engineer (PE) to ensure structural safety and legal compliance.
+        </div>
+      </div>
+
+      <!-- Card 3: SAA -->
+      <div style="background: rgba(10, 25, 47, 0.7); border: 1.5px solid var(--gold); border-radius: 10px; padding: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-size: 18px; font-weight: 900; color: var(--gold);">SAA</span>
+          <span class="badge" style="background: rgba(255, 183, 3, 0.2); color: #FDE047; border: 1px solid var(--gold);">GATE 3 · TOWERCO</span>
+        </div>
+        <div style="font-size: 13.5px; font-weight: 800; color: #FFFFFF; margin-bottom: 6px;">Space Allocation Application</div>
+        <div style="font-size: 12px; color: var(--gold); font-weight: 700; margin-bottom: 8px;">Owner: TowerCo Engineering &amp; Operations</div>
+        <p style="font-size: 12.5px; color: #CBD5E1; line-height: 1.5; margin-bottom: 10px;">
+          Formal application under Master Lease Agreement (MLA) reserving tower mounting centerline, antenna mounting brackets (AMBs), wind surface area (EPA), and 2.0m x 2.0m ground compound pad footprint on the TowerCo structure.
+        </p>
+        <div style="background: rgba(255, 183, 3, 0.1); border-left: 3px solid var(--gold); padding: 8px 10px; font-size: 11.5px; color: #E2E8F0;">
+          <strong>Executive Value:</strong> Secures guaranteed slot tenancy and legally binds the TowerCo to reserve loading headroom for TelTech's 8T8R access hardware.
+        </div>
+      </div>
+
+      <!-- Card 4: RFI -->
+      <div style="background: rgba(10, 25, 47, 0.7); border: 1.5px solid var(--green); border-radius: 10px; padding: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-size: 18px; font-weight: 900; color: var(--green);">RFI</span>
+          <span class="badge" style="background: rgba(16, 185, 129, 0.2); color: #6EE7B7; border: 1px solid var(--green);">GATE 4 · CIVIL/POWER</span>
+        </div>
+        <div style="font-size: 13.5px; font-weight: 800; color: #FFFFFF; margin-bottom: 6px;">Ready for Installation Certificate</div>
+        <div style="font-size: 12px; color: var(--gold); font-weight: 700; margin-bottom: 8px;">Owner: TowerCo Partner &amp; Civil Contractor</div>
+        <p style="font-size: 12.5px; color: #CBD5E1; line-height: 1.5; margin-bottom: 10px;">
+          Milestone certificate verifying that the passive infrastructure is 100% complete: reinforced concrete pad (2x2m), security fence, Cadweld grounding resistance (&le; 5.0&Omega;), tower AMBs, and energized commercial utility power or operational DC plant.
+        </p>
+        <div style="background: rgba(16, 185, 129, 0.1); border-left: 3px solid var(--green); padding: 8px 10px; font-size: 11.5px; color: #E2E8F0;">
+          <strong>Executive Value:</strong> The formal handoff point from civil works to active telecom rigging; ensures riggers can safely hoist active antennas.
+        </div>
+      </div>
+
+      <!-- Card 5: NTP -->
+      <div style="background: rgba(10, 25, 47, 0.7); border: 1.5px solid #EC4899; border-radius: 10px; padding: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-size: 18px; font-weight: 900; color: #F472B6;">NTP</span>
+          <span class="badge" style="background: rgba(236, 72, 153, 0.2); color: #FBCFE8; border: 1px solid #EC4899;">GATE 3 · PMO</span>
+        </div>
+        <div style="font-size: 13.5px; font-weight: 800; color: #FFFFFF; margin-bottom: 6px;">Notice to Proceed</div>
+        <div style="font-size: 12px; color: var(--gold); font-weight: 700; margin-bottom: 8px;">Owner: TelTech Rollout PMO Leadership</div>
+        <p style="font-size: 12.5px; color: #CBD5E1; line-height: 1.5; margin-bottom: 10px;">
+          The official executive directive issued by TelTech authorizing physical construction and equipment installation. Released only after lease execution, SAA approval, and municipal LGU building permits (PD 1096) are legally secured.
+        </p>
+        <div style="background: rgba(236, 72, 153, 0.1); border-left: 3px solid #EC4899; padding: 8px 10px; font-size: 11.5px; color: #E2E8F0;">
+          <strong>Executive Value:</strong> Critical financial governance; contractors shall NOT incur billable capital expenditure without formal written NTP.
+        </div>
+      </div>
+
+      <!-- Card 6: SSV -->
+      <div style="background: rgba(10, 25, 47, 0.7); border: 1.5px solid var(--cyan); border-radius: 10px; padding: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-size: 18px; font-weight: 900; color: var(--cyan);">SSV</span>
+          <span class="badge" style="background: rgba(0, 210, 211, 0.2); color: var(--cyan); border: 1px solid var(--cyan);">GATE 6 · ACCEPTANCE</span>
+        </div>
+        <div style="font-size: 13.5px; font-weight: 800; color: #FFFFFF; margin-bottom: 6px;">Single Site Verification Report</div>
+        <div style="font-size: 12px; color: var(--gold); font-weight: 700; margin-bottom: 8px;">Owner: Vendor RF Team &amp; TelTech QA</div>
+        <p style="font-size: 12.5px; color: #CBD5E1; line-height: 1.5; margin-bottom: 10px;">
+          Empirical field drive and stationary throughput validation: verifies sector orientation, PCI configuration, handover success, Peak DL (&ge; 450 Mbps), Cell-Edge DL (&ge; 50 Mbps), Cell-Edge UL (&ge; 15 Mbps), and Latency (&le; 18 ms).
+        </p>
+        <div style="background: rgba(0, 210, 211, 0.1); border-left: 3px solid var(--cyan); padding: 8px 10px; font-size: 11.5px; color: #E2E8F0;">
+          <strong>Executive Value:</strong> Empirical proof of radio performance before opening commercial subscriber sales; triggers ATP-A and ATP-B sign-off.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Master Alphabetical Glossary Table -->
+    <h2 style="color: #FFFFFF; font-size: 16px; margin-bottom: 14px;">Master Alphabetical Acronym &amp; Terminology Reference Table</h2>
+    <table id="glossaryTable">
+      <thead>
+        <tr>
+          <th style="width: 14%;">Acronym</th>
+          <th style="width: 22%;">Official Term</th>
+          <th style="width: 14%;">Lifecycle Phase</th>
+          <th style="width: 18%;">Lead Owner</th>
+          <th style="width: 32%;">Definition &amp; Executive Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="glossary-row" data-cat="saq" data-term="pcer preliminary candidate evaluation report">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">PCER</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Preliminary Candidate Evaluation Report</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Gate 1 (SAQ)</span></td>
+          <td style="color: var(--teal); font-weight: 600;">TowerCo / SAQ Hunter</td>
+          <td style="color: #CBD5E1;">Initial 3-candidate scouting dossier evaluating Candidate A, B, C coordinates, photos, lessor willingness, and power proximity.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="saq" data-term="sar site acquisition report">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">SAR</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Site Acquisition Report</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Gate 1-3 (SAQ)</span></td>
+          <td style="color: var(--teal); font-weight: 600;">TowerCo / Legal</td>
+          <td style="color: #CBD5E1;">Complete property dossier: title verification (TCT/OCT/Tax Dec), cadastral boundary sketch, and 10-15yr lease contract.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="saq" data-term="saa space allocation application">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">SAA</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Space Allocation Application</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Gate 3 (Permitting)</span></td>
+          <td style="color: var(--teal); font-weight: 600;">TowerCo Engineering</td>
+          <td style="color: #CBD5E1;">Application and approval reserving antenna centerline height, EPA wind loading, and 2x2m compound pad on TowerCo tower.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="eng" data-term="tssr technical site survey report">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">TSSR</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Technical Site Survey Report</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Gate 2 (Engineering)</span></td>
+          <td style="color: var(--teal); font-weight: 600;">Turnkey Vendor & Eng.</td>
+          <td style="color: #CBD5E1;">Comprehensive engineering survey: drone 360° LOS sweep, TIA-222-H 250 km/h wind simulation, grounding <= 5Ω, and PE-stamped CAD plans.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="eng" data-term="ded detailed engineering design">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">DED</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Detailed Engineering Design</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Gate 2 (Engineering)</span></td>
+          <td style="color: var(--teal); font-weight: 600;">Professional Engineers (PE)</td>
+          <td style="color: #CBD5E1;">Complete AutoCAD blueprint set: Layout, Tower Elevation, AMBs, Single Line Diagram, Grounding Grid, and BoQ signed/sealed by PE.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="civil" data-term="rfi ready for installation">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">RFI</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Ready for Installation</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Gate 4 (Civil/Power)</span></td>
+          <td style="color: var(--teal); font-weight: 600;">TowerCo / Civil Contractor</td>
+          <td style="color: #CBD5E1;">Civil milestone certifying 2x2m pad, perimeter fence, grounding <= 5Ω, tower AMBs, and energized DC power are ready for telecom rigging.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="saq" data-term="ntp notice to proceed">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">NTP</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Notice to Proceed</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Gate 3 (Rollout PMO)</span></td>
+          <td style="color: var(--teal); font-weight: 600;">TelTech Rollout PMO</td>
+          <td style="color: #CBD5E1;">Official executive directive authorizing commencement of physical civil works or telecom installation upon securing permits and lease.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="telecom" data-term="itc telecom installation, testing & commissioning">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">ITC</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Telecom Installation, Testing & Commissioning</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Gate 5 (Telecom)</span></td>
+          <td style="color: var(--teal); font-weight: 600;">Turnkey Telecom Vendor</td>
+          <td style="color: #CBD5E1;">Rigging 3x 8T8R RRUs + antennas, eRET cabling, RF sweep tests (VSWR <= 1.35), BBU rack wiring, GPS clock sync, and 5GC on-air integration.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="acceptance" data-term="ssv single site verification">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">SSV</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Single Site Verification</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Gate 6 (Acceptance)</span></td>
+          <td style="color: var(--teal); font-weight: 600;">Vendor RF Team & QA</td>
+          <td style="color: #CBD5E1;">Empirical field drive/stationary tests validating Peak DL >= 450M, Edge DL >= 50M, Edge UL >= 15M, Latency <= 18ms, and handover >= 99.5%.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="acceptance" data-term="atp-a acceptance test procedure (civil & physical)">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">ATP-A</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Acceptance Test Procedure (Civil & Physical)</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Gate 6 (Acceptance)</span></td>
+          <td style="color: var(--teal); font-weight: 600;">TelTech QA & Vendor</td>
+          <td style="color: #CBD5E1;">Physical audit: bolt torques, cable dressing, weatherproofing boots, earth busbar Cadweld bonding, and site housekeeping.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="acceptance" data-term="atp-b acceptance test procedure (active & functional)">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">ATP-B</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Acceptance Test Procedure (Active & Functional)</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Gate 6 (Acceptance)</span></td>
+          <td style="color: var(--teal); font-weight: 600;">TelTech Eng & Vendor</td>
+          <td style="color: #CBD5E1;">Functional audit: 8T8R MU-MIMO operation, remote eRET tilt control from OSS (0°-10°), battery autonomy failover, and remote reboots.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="ops" data-term="rno radio network optimization">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">RNO</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Radio Network Optimization</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Gate 7 (Optimization)</span></td>
+          <td style="color: var(--teal); font-weight: 600;">Optimization Engineers</td>
+          <td style="color: #CBD5E1;">Multi-site cluster tuning across 10-20 sites: eRET tilt adjustments, power balancing, neighbor list cleanup, and PCI modulo-3/30 deconfliction.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="ops" data-term="toc transfer of control (handover to ops)">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">TOC</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Transfer of Control (Handover to Ops)</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Gate 7 (Handover)</span></td>
+          <td style="color: var(--teal); font-weight: 600;">Rollout PMO to NOC Ops</td>
+          <td style="color: #CBD5E1;">Formal governance handover protocol transferring operational responsibility to 24/7 Managed NOC after 14-day OSS KPI stability.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="saq" data-term="mla master lease agreement">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">MLA</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Master Lease Agreement</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Commercial / Legal</span></td>
+          <td style="color: var(--teal); font-weight: 600;">TelTech Legal & TowerCo</td>
+          <td style="color: #CBD5E1;">Umbrella contract between TelTech and TowerCos (PTCI, EdgePoint, FTAP, LDIC) governing space allocation, pricing, and 10-15yr tenancy.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="saq" data-term="b2s build-to-suit">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">B2S</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Build-to-Suit</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Siting Tier 2</span></td>
+          <td style="color: var(--teal); font-weight: 600;">TowerCo Partner</td>
+          <td style="color: #CBD5E1;">Arrangement where TowerCo finances, permits, and constructs a new tower tailored to TelTech's search ring when existing towers are absent.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="saq" data-term="gida geographically isolated & disadvantaged areas">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">GIDA</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Geographically Isolated & Disadvantaged Areas</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Program Strategy</span></td>
+          <td style="color: var(--teal); font-weight: 600;">DICT / TelTech Strategy</td>
+          <td style="color: #CBD5E1;">Official DICT classification for remote unserved/underserved barangays; TelTech prioritizes 3,903 Priority 1 GIDA barangays.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="telecom" data-term="eret electronic remote electrical tilt">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">eRET</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Electronic Remote Electrical Tilt</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Radio Engineering</span></td>
+          <td style="color: var(--teal); font-weight: 600;">RAN Eng & Operations</td>
+          <td style="color: #CBD5E1;">Motorized antenna internal phase-shifter controlled via AISG 2.0 protocol allowing instant beam elevation tilt changes from the NOC.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="telecom" data-term="aisg antenna interface standards group">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">AISG</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Antenna Interface Standards Group</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Telecom Hardware</span></td>
+          <td style="color: var(--teal); font-weight: 600;">Hardware Protocol</td>
+          <td style="color: #CBD5E1;">Standard digital interface protocol (AISG 2.0 / 3GPP TS 25.466) connecting baseband unit to eRET motors and tower-mounted sensors.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="eng" data-term="epa effective projected area">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">EPA</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Effective Projected Area</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Structural Engineering</span></td>
+          <td style="color: var(--teal); font-weight: 600;">Structural Engineer (PE)</td>
+          <td style="color: #CBD5E1;">Aerodynamic wind-resistance area (Area x Cd) evaluated under TIA-222-H to prevent tower structural failure under 250 km/h typhoon winds.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="eng" data-term="agl / amsl above ground level / above mean sea level">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">AGL / AMSL</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Above Ground Level / Above Mean Sea Level</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Siting & CAAP</span></td>
+          <td style="color: var(--teal); font-weight: 600;">Surveyors & Geospatial</td>
+          <td style="color: #CBD5E1;">AGL measures antenna bracket height above ground surface; AMSL measures height above sea level for CAAP height clearance.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="civil" data-term="amb antenna mounting bracket">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">AMB</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Antenna Mounting Bracket</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Civil / Tower Hardware</span></td>
+          <td style="color: var(--teal); font-weight: 600;">TowerCo / Rigging Crew</td>
+          <td style="color: #CBD5E1;">Heavy-duty hot-dip galvanized steel mounting arms attached to the tower body holding panel antennas and 8T8R RRUs at exact azimuths.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="telecom" data-term="vswr / rl voltage standing wave ratio / return loss">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">VSWR / RL</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Voltage Standing Wave Ratio / Return Loss</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">RF Testing</span></td>
+          <td style="color: var(--teal); font-weight: 600;">Riggers & Telecom Eng</td>
+          <td style="color: #CBD5E1;">RF transmission line efficiency metrics: VSWR <= 1.35:1 and RL >= 16.5 dB confirm jumper integrity, proper torque, and zero water ingress.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="saq" data-term="cfei / fsic cert. of final electrical / fire safety inspection">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">CFEI / FSIC</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Cert. of Final Electrical / Fire Safety Inspection</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Gate 3 (Permitting)</span></td>
+          <td style="color: var(--teal); font-weight: 600;">LGU & Bureau of Fire</td>
+          <td style="color: #CBD5E1;">Mandatory statutory clearances in the Philippines certifying electrical code compliance (PEC) and fire safety before energization.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="saq" data-term="cnc / ecc cert. of non-coverage / environmental compliance">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">CNC / ECC</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Cert. of Non-Coverage / Environmental Compliance</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Gate 3 (Permitting)</span></td>
+          <td style="color: var(--teal); font-weight: 600;">DENR - EMB</td>
+          <td style="color: #CBD5E1;">Environmental clearances issued by DENR Environmental Management Bureau certifying tower construction compliance.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="telecom" data-term="ptp / synce precision time protocol (1588v2) / sync ethernet">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">PTP / SyncE</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Precision Time Protocol (1588v2) / Sync Ethernet</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Transmission</span></td>
+          <td style="color: var(--teal); font-weight: 600;">Transport & Core Eng</td>
+          <td style="color: #CBD5E1;">Nanosecond-accurate frequency and phase synchronization standards locking radio frame timing over packet backhaul for 5G TDD.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="ops" data-term="flm / mttr first line maintenance / mean time to restore">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">FLM / MTTR</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">First Line Maintenance / Mean Time To Restore</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">O&M Operations</span></td>
+          <td style="color: var(--teal); font-weight: 600;">Network Ops & Mobile FLM</td>
+          <td style="color: #CBD5E1;">FLM represents 24/7 mobile field maintenance crews. MTTR measures average restore time (Severity 1: <= 2.0h Urban / <= 4.0h Rural).</td>
+        </tr>
+        <tr class="glossary-row" data-cat="ops" data-term="ahr / rma advance hardware replacement / return authorization">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">AHR / RMA</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Advance Hardware Replacement / Return Authorization</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Supply Chain / Spares</span></td>
+          <td style="color: var(--teal); font-weight: 600;">Logistics & OEM Vendor</td>
+          <td style="color: #CBD5E1;">Warranty process where a healthy spare is dispatched immediately (Next Business Day) from 2% buffer float before factory repair.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="ops" data-term="cssr / cddr call setup success rate / call drop rate">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">CSSR / CDDR</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Call Setup Success Rate / Call Drop Rate</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Network Performance</span></td>
+          <td style="color: var(--teal); font-weight: 600;">RAN Optimization & NOC</td>
+          <td style="color: #CBD5E1;">Core OSS accessibility (mandated >= 99.60%) and retainability (mandated <= 0.15%) QoS performance benchmarks.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="eng" data-term="prb physical resource block">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">PRB</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Physical Resource Block</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Radio Capacity</span></td>
+          <td style="color: var(--teal); font-weight: 600;">RAN Planning & Capacity</td>
+          <td style="color: #CBD5E1;">Smallest unit of 5G bandwidth; 162 PRBs per sector across 60 MHz Band n50 TDD with 30 kHz subcarrier spacing.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="eng" data-term="pe professional engineer (prc licensed)">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">PE</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Professional Engineer (PRC Licensed)</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Statutory Governance</span></td>
+          <td style="color: var(--teal); font-weight: 600;">Licensed Engineers</td>
+          <td style="color: #CBD5E1;">Engineers holding valid PRC licenses who review, sign, and wet-seal structural, civil, and electrical engineering blueprints.</td>
+        </tr>
+        <tr class="glossary-row" data-cat="ops" data-term="raci responsible, accountable, consulted, informed">
+          <td><strong style="color: var(--cyan); font-size: 13.5px;">RACI</strong></td>
+          <td style="color: #FFFFFF; font-weight: 700;">Responsible, Accountable, Consulted, Informed</td>
+          <td><span class="badge" style="background: rgba(0, 180, 216, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 211, 0.3);">Program Governance</span></td>
+          <td style="color: var(--teal); font-weight: 600;">Executive Leadership</td>
+          <td style="color: #CBD5E1;">Global program governance matrix defining execution responsibility (R), single final sign-off (A), input (C), and visibility (I).</td>
+        </tr>
+      </tbody>
+    </table>
 
     <!-- SECTION 2: THE 8-GATE TURNKEY PIPELINE -->
     <h1 id="sec-pipeline">2. The 8-Gate Turnkey Implementation Pipeline</h1>
@@ -2189,6 +2551,42 @@ sequenceDiagram
       }
     });
   });
+
+  // Glossary Search & Category Filter
+  function filterGlossary() {
+    const input = document.getElementById('glossarySearch').value.toLowerCase();
+    const rows = document.querySelectorAll('.glossary-row');
+    rows.forEach(row => {
+      const text = row.getAttribute('data-term') + ' ' + row.innerText.toLowerCase();
+      if (text.includes(input)) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  }
+
+  function filterGlossaryCat(cat) {
+    document.querySelectorAll('.glossary-filter-btn').forEach(btn => {
+      if (btn.getAttribute('data-cat') === cat) {
+        btn.style.background = 'var(--blue-accent)';
+        btn.style.color = '#FFF';
+      } else {
+        btn.style.background = 'var(--navy-light)';
+        btn.style.color = '#CBD5E1';
+      }
+    });
+
+    const rows = document.querySelectorAll('.glossary-row');
+    rows.forEach(row => {
+      if (cat === 'all' || row.getAttribute('data-cat') === cat) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  }
+
 </script>
 </body>
 </html>
