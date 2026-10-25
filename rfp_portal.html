@@ -1742,6 +1742,7 @@ let currentUser = null;
 let currentDraft = {
   technical: {},
   commercial: {},
+  customItems: {},
   financing: {
     tenor: "5 Years (Preferred)",
     tenorCustom: "",
@@ -2054,6 +2055,128 @@ const BOQ_LOT_PAGES = [
 let currentBoQLot = 'lot1';
 
 // RENDER COMMERCIAL BOQ TABLES (TAB 3)
+// VENDOR-PROPOSED CUSTOM SCOPE ITEMS (RFP ARCHITECTURE FLEXIBILITY)
+function escapeHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function addCustomBoQItem(tableId) {
+  currentDraft.customItems = currentDraft.customItems || {};
+
+  const prefixMap = {
+    lot1_hw: 'RAN-HW-OPT-',
+    lot1_svc: 'RAN-SVC-OPT-',
+    lot2_pwr: 'PWR-OPT-',
+    lot3_5gc: '5GC-OPT-',
+    lot4_bss: 'BSS-OPT-',
+    lot5_civ: 'CIV-OPT-',
+    lot6_ms: 'MS-OPT-',
+    lot7_cpe: 'CPE-OPT-',
+    services_sow_saq: 'SAQ-OPT-',
+    services_sow_eng: 'ENG-OPT-',
+    services_sow_rnpd: 'RNPD-OPT-',
+    services_sow_log: 'LOG-OPT-',
+    services_sow_ti: 'TI-OPT-',
+    services_sow_acc: 'ACC-OPT-',
+    services_sow_rno: 'RNO-OPT-',
+    services_sow_om: 'MS-OPT-',
+    services_sow_call: 'CALL-OPT-'
+  };
+
+  const prefix = prefixMap[tableId] || 'OPT-';
+  const existingCount = Object.values(currentDraft.customItems).filter(c => c.tableId === tableId).length;
+  const defaultId = prefix + String(existingCount + 1).padStart(2, '0');
+  const customId = 'cust_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4);
+  const isOpex = (tableId === 'lot6_ms' || tableId === 'services_sow_om');
+  const defaultMult = isOpex ? 12 : 1;
+  const defaultUnit = isOpex ? 'Per Month' : 'Lot / System';
+
+  currentDraft.customItems[customId] = {
+    customId: customId,
+    tableId: tableId,
+    id: defaultId,
+    description: '',
+    scope: '',
+    qty: 1,
+    unit: defaultUnit,
+    multiplier: defaultMult,
+    rateUsd: 0,
+    extUsd: 0
+  };
+
+  renderBoQTables();
+  updateTableSubtotals();
+  recalcGrandTotals();
+
+  if (!isEvaluatorMode) {
+    saveCommercialDraft(false);
+  }
+
+  setTimeout(() => {
+    const descInp = document.getElementById(`custom_desc_${customId}`);
+    if (descInp) {
+      if (typeof descInp.focus === 'function') descInp.focus();
+      if (typeof descInp.scrollIntoView === 'function') descInp.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, 60);
+}
+
+function updateCustomBoQField(customId, field, val) {
+  if (!currentDraft.customItems || !currentDraft.customItems[customId]) return;
+  const item = currentDraft.customItems[customId];
+
+  if (field === 'qty') {
+    item.qty = parseFloat(val) || 0;
+  } else if (field === 'rateUsd') {
+    item.rateUsd = parseFloat(val) || 0;
+  } else if (field === 'multiplier') {
+    item.multiplier = parseFloat(val) || 1;
+  } else {
+    item[field] = val;
+  }
+
+  const qty = parseFloat(item.qty) || 0;
+  const rateUsd = parseFloat(item.rateUsd) || 0;
+  const mult = parseFloat(item.multiplier) || 1;
+  const ratePhp = rateUsd * 55.0;
+  const extUsd = qty * rateUsd * mult;
+  item.extUsd = extUsd;
+
+  const phpEl = document.getElementById(`custom_php_${customId}`);
+  const extEl = document.getElementById(`custom_ext_${customId}`);
+  if (phpEl) phpEl.textContent = `₱${ratePhp.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+  if (extEl) extEl.textContent = `$${extUsd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+
+  updateTableSubtotals();
+  recalcGrandTotals();
+
+  if (!isEvaluatorMode) {
+    saveCommercialDraft(false);
+  }
+}
+
+function removeCustomBoQItem(customId) {
+  if (!currentDraft.customItems || !currentDraft.customItems[customId]) return;
+  const item = currentDraft.customItems[customId];
+  const itemTitle = item.description || item.id || 'this scope item';
+  if (!confirm(`Are you sure you want to remove vendor-proposed scope item "${itemTitle}"?`)) {
+    return;
+  }
+  delete currentDraft.customItems[customId];
+  renderBoQTables();
+  updateTableSubtotals();
+  recalcGrandTotals();
+
+  if (!isEvaluatorMode) {
+    saveCommercialDraft(false);
+  }
+}
+
 function renderBoQTables() {
   const container = document.getElementById('boq-tables-container');
   if (!container || !window.RFPTenderData) return;
@@ -2126,8 +2249,112 @@ function renderBoQTables() {
             </tr>
           </thead>
           <tbody>
-            ${tbl.items.map(item => {
-              if (item.isSubtotal || item.isTotal) {
+            ${(() => {
+              const standardItems = tbl.items.filter(it => !it.isSubtotal && !it.isTotal);
+              const subtotalItems = tbl.items.filter(it => it.isSubtotal || it.isTotal);
+              const customItems = Object.values(currentDraft.customItems || {}).filter(c => c.tableId === tbl.tableId);
+              const isOpexTable = (tbl.tableId === 'lot6_ms' || tbl.tableId === 'services_sow_om');
+              const isEval = !!isEvaluatorMode;
+
+              let rowsHtml = '';
+
+              // 1. Standard Items
+              rowsHtml += standardItems.map(item => {
+                const isIncluded = !!item.isIncluded;
+                const multiplier = item.multiplier || 1;
+                const savedRate = currentDraft.commercial[item.id]?.rateUsd !== undefined ? currentDraft.commercial[item.id].rateUsd : (isIncluded ? 0 : '');
+                
+                let unitDisplay = item.unit || 'Per Site';
+                if (multiplier > 1) {
+                  unitDisplay += `<br><span style="font-size: 10px; color: #FBBF24; font-weight: 700;">(${multiplier}x / yr)</span>`;
+                } else if (isIncluded) {
+                  unitDisplay += `<br><span style="font-size: 10px; color: #38BDF8; font-weight: 700;">(Included)</span>`;
+                }
+
+                let rateInputHtml = '';
+                if (isIncluded) {
+                  rateInputHtml = `
+                    <input type="text" class="boq-input boq-input-${item.id}" data-item-id="${item.id}" value="Included ($0.00)" disabled style="background: rgba(56, 189, 248, 0.08); color: #38BDF8; font-weight: 700; text-align: right; cursor: not-allowed; border-color: rgba(56, 189, 248, 0.3);">
+                  `;
+                } else {
+                  rateInputHtml = `
+                    <input type="number" step="0.01" min="0" class="boq-input boq-input-${item.id}" data-item-id="${item.id}" id="boq_rate_${item.id}" placeholder="0.00" value="${savedRate}" ${isEval ? 'disabled' : ''} oninput="calculateBoQ('${item.id}', ${item.qty}, ${multiplier}, ${isIncluded})">
+                  `;
+                }
+
+                const savedPhp = (savedRate !== '' && !isIncluded) ? (savedRate * 55.0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00';
+                const savedExt = isIncluded ? '0.00' : ((savedRate !== '') ? (savedRate * item.qty * multiplier).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00');
+
+                return `
+                  <tr>
+                    <td style="font-weight: 800; color: #60A5FA;">
+                      ${item.id}
+                      ${isIncluded ? '<div style="font-size: 9.5px; color: #38BDF8; font-weight: 800; text-transform: uppercase;">Retainer</div>' : ''}
+                    </td>
+                    <td>
+                      <div style="font-weight: 700; color: #F1F5F9;">
+                        ${item.description}
+                        ${isIncluded ? '<span style="font-size: 10px; color: #38BDF8; background: rgba(56, 189, 248, 0.15); padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.4); margin-left: 6px;">Included in Base Retainer</span>' : ''}
+                      </div>
+                      <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px; line-height: 1.4;">${item.scope}</div>
+                    </td>
+                    <td style="text-align: center; font-weight: 800; color: #FFFFFF;">${item.qty.toLocaleString()}</td>
+                    <td style="text-align: center; color: var(--text-muted); font-size: 11.5px;">${unitDisplay}</td>
+                    <td style="text-align: right;">${rateInputHtml}</td>
+                    <td style="text-align: right; font-family: monospace; color: #CBD5E1;" class="boq_php_val_${item.id}" id="boq_php_${item.id}">₱${savedPhp}</td>
+                    <td style="text-align: right; font-family: monospace; font-weight: 800; color: #6EE7B7;" class="boq_ext_val_${item.id}" id="boq_ext_${item.id}">$${savedExt}</td>
+                  </tr>
+                `;
+              }).join('');
+
+              // 2. Custom / Vendor-Proposed Items
+              rowsHtml += customItems.map(c => {
+                const cRate = c.rateUsd !== undefined && c.rateUsd !== '' ? c.rateUsd : '';
+                const cPhp = cRate !== '' ? ((parseFloat(cRate)||0) * 55.0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00';
+                const cExt = c.extUsd !== undefined ? (parseFloat(c.extUsd)||0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00';
+
+                return `
+                  <tr id="custom_row_${c.customId}" style="background: rgba(56, 189, 248, 0.05); border-left: 3px solid #38BDF8;">
+                    <td style="vertical-align: top;">
+                      <input type="text" class="boq-input" value="${escapeHtml(c.id)}" placeholder="ITEM-CODE" ${isEval ? 'disabled' : ''} style="font-weight: 800; color: #38BDF8; width: 100%; font-size: 11px; padding: 4px 6px;" oninput="updateCustomBoQField('${c.customId}', 'id', this.value)">
+                      <div style="font-size: 9.5px; color: #38BDF8; font-weight: 800; text-transform: uppercase; margin-top: 3px;">Vendor Scope</div>
+                    </td>
+                    <td style="vertical-align: top;">
+                      <input type="text" id="custom_desc_${c.customId}" class="boq-input" value="${escapeHtml(c.description)}" placeholder="Component Name / Architecture Item (e.g. Distributed UPF, Edge Slicing, Extra Module)..." ${isEval ? 'disabled' : ''} style="font-weight: 700; color: #F1F5F9; width: 100%; margin-bottom: 4px; font-size: 12px; padding: 5px 8px;" oninput="updateCustomBoQField('${c.customId}', 'description', this.value)">
+                      <textarea class="boq-input" rows="2" placeholder="Technical specifications, architecture justification, or scope details for this addition..." ${isEval ? 'disabled' : ''} style="font-size: 11px; width: 100%; resize: vertical; line-height: 1.35; padding: 4px 8px;" oninput="updateCustomBoQField('${c.customId}', 'scope', this.value)">${escapeHtml(c.scope)}</textarea>
+                    </td>
+                    <td style="vertical-align: top; text-align: center;">
+                      <input type="number" step="1" min="1" class="boq-input" value="${c.qty !== undefined ? c.qty : 1}" ${isEval ? 'disabled' : ''} style="width: 80px; text-align: center; font-weight: 800; color: #FFFFFF;" oninput="updateCustomBoQField('${c.customId}', 'qty', this.value)">
+                    </td>
+                    <td style="vertical-align: top; text-align: center;">
+                      <input type="text" class="boq-input" value="${escapeHtml(c.unit || (isOpexTable ? 'Per Month' : 'Lot / System'))}" placeholder="Unit" ${isEval ? 'disabled' : ''} style="width: 90px; text-align: center; font-size: 11px; color: #CBD5E1; margin-bottom: 3px;" oninput="updateCustomBoQField('${c.customId}', 'unit', this.value)">
+                      ${isOpexTable ? `
+                        <select class="boq-input" ${isEval ? 'disabled' : ''} style="width: 90px; font-size: 10px; padding: 2px 4px; color: #FBBF24;" onchange="updateCustomBoQField('${c.customId}', 'multiplier', this.value)">
+                          <option value="12" ${c.multiplier === 12 ? 'selected' : ''}>12x (Monthly)</option>
+                          <option value="4" ${c.multiplier === 4 ? 'selected' : ''}>4x (Quarterly)</option>
+                          <option value="2" ${c.multiplier === 2 ? 'selected' : ''}>2x (Semi-Ann)</option>
+                          <option value="1" ${c.multiplier === 1 ? 'selected' : ''}>1x (Annual / CapEx)</option>
+                        </select>
+                      ` : ''}
+                    </td>
+                    <td style="vertical-align: top; text-align: right;">
+                      <input type="number" step="0.01" min="0" class="boq-input" value="${cRate}" placeholder="0.00" ${isEval ? 'disabled' : ''} style="text-align: right; width: 120px;" oninput="updateCustomBoQField('${c.customId}', 'rateUsd', this.value)">
+                    </td>
+                    <td style="vertical-align: top; text-align: right; font-family: monospace; color: #CBD5E1; padding-top: 12px; font-size: 12px;" id="custom_php_${c.customId}">₱${cPhp}</td>
+                    <td style="vertical-align: top; text-align: right; padding-top: 10px;">
+                      <div style="font-family: monospace; font-weight: 800; color: #6EE7B7; font-size: 13px;" id="custom_ext_${c.customId}">$${cExt}</div>
+                      ${!isEval ? `
+                        <button type="button" onclick="removeCustomBoQItem('${c.customId}')" title="Delete custom line" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #EF4444; font-size: 10.5px; cursor: pointer; margin-top: 5px; padding: 2px 7px; border-radius: 4px;">
+                          🗑️ Remove
+                        </button>
+                      ` : ''}
+                    </td>
+                  </tr>
+                `;
+              }).join('');
+
+              // 3. Subtotal / Total Items
+              rowsHtml += subtotalItems.map(item => {
                 const isFinalTotal = item.isTotal;
                 const bgStyle = isFinalTotal ? 'rgba(16, 185, 129, 0.18)' : 'rgba(30, 58, 95, 0.45)';
                 const borderStyle = isFinalTotal ? '2px solid #10B981' : '1px solid var(--teal)';
@@ -2140,57 +2367,24 @@ function renderBoQTables() {
                     <td style="text-align: right; font-family: monospace; font-size: ${isFinalTotal ? '15px' : '13px'}; font-weight: 900; color: ${isFinalTotal ? '#10B981' : '#6EE7B7'};" class="boq_ext_val_${item.id}" id="boq_ext_${item.id}">$0.00</td>
                   </tr>
                 `;
-              }
+              }).join('');
 
-              const isIncluded = !!item.isIncluded;
-              const multiplier = item.multiplier || 1;
-              const savedRate = currentDraft.commercial[item.id]?.rateUsd !== undefined ? currentDraft.commercial[item.id].rateUsd : (isIncluded ? 0 : '');
-              
-              let unitDisplay = item.unit || 'Per Site';
-              if (multiplier > 1) {
-                unitDisplay += `<br><span style="font-size: 10px; color: #FBBF24; font-weight: 700;">(${multiplier}x / yr)</span>`;
-              } else if (isIncluded) {
-                unitDisplay += `<br><span style="font-size: 10px; color: #38BDF8; font-weight: 700;">(Included)</span>`;
-              }
-
-              let rateInputHtml = '';
-              if (isIncluded) {
-                rateInputHtml = `
-                  <input type="text" class="boq-input boq-input-${item.id}" data-item-id="${item.id}" value="Included ($0.00)" disabled style="background: rgba(56, 189, 248, 0.08); color: #38BDF8; font-weight: 700; text-align: right; cursor: not-allowed; border-color: rgba(56, 189, 248, 0.3);">
-                `;
-              } else {
-                rateInputHtml = `
-                  <input type="number" step="0.01" min="0" class="boq-input boq-input-${item.id}" data-item-id="${item.id}" id="boq_rate_${item.id}" placeholder="0.00" value="${savedRate}" oninput="calculateBoQ('${item.id}', ${item.qty}, ${multiplier}, ${isIncluded})">
-                `;
-              }
-
-              const savedPhp = (savedRate !== '' && !isIncluded) ? (savedRate * 55.0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00';
-              const savedExt = isIncluded ? '0.00' : ((savedRate !== '') ? (savedRate * item.qty * multiplier).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00');
-
-              return `
-                <tr>
-                  <td style="font-weight: 800; color: #60A5FA;">
-                    ${item.id}
-                    ${isIncluded ? '<div style="font-size: 9.5px; color: #38BDF8; font-weight: 800; text-transform: uppercase;">Retainer</div>' : ''}
-                  </td>
-                  <td>
-                    <div style="font-weight: 700; color: #F1F5F9;">
-                      ${item.description}
-                      ${isIncluded ? '<span style="font-size: 10px; color: #38BDF8; background: rgba(56, 189, 248, 0.15); padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.4); margin-left: 6px;">Included in Base Retainer</span>' : ''}
-                    </div>
-                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px; line-height: 1.4;">${item.scope}</div>
-                  </td>
-                  <td style="text-align: center; font-weight: 800; color: #FFFFFF;">${item.qty.toLocaleString()}</td>
-                  <td style="text-align: center; color: var(--text-muted); font-size: 11.5px;">${unitDisplay}</td>
-                  <td style="text-align: right;">${rateInputHtml}</td>
-                  <td style="text-align: right; font-family: monospace; color: #CBD5E1;" class="boq_php_val_${item.id}" id="boq_php_${item.id}">₱${savedPhp}</td>
-                  <td style="text-align: right; font-family: monospace; font-weight: 800; color: #6EE7B7;" class="boq_ext_val_${item.id}" id="boq_ext_${item.id}">$${savedExt}</td>
-                </tr>
-              `;
-            }).join('')}
+              return rowsHtml;
+            })()}
           </tbody>
         </table>
       </div>
+      ${!isEvaluatorMode ? `
+        <div style="background: rgba(15, 23, 42, 0.55); border-top: 1px dashed rgba(56, 189, 248, 0.35); padding: 10px 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <div style="font-size: 11.5px; color: #94A3B8; display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 15px;">💡</span>
+            <span><strong>Alternative Architecture / Extra Scope:</strong> Bidders may add custom line items for proprietary core elements, extra licenses, or value-add features.</span>
+          </div>
+          <button type="button" class="btn btn-outline" style="border-color: #38BDF8; color: #38BDF8; font-size: 11.5px; padding: 5px 14px; font-weight: 700; background: rgba(56, 189, 248, 0.08); display: flex; align-items: center; gap: 6px;" onclick="addCustomBoQItem('${tbl.tableId}')">
+            <span>➕</span> <span>Add Vendor-Proposed Scope Item</span>
+          </button>
+        </div>
+      ` : ''}
     </div>
   `}).join('');
 
@@ -2450,6 +2644,28 @@ function exportBoQTemplateCsv() {
     });
   });
 
+  // Append custom vendor-proposed items to exported CSV
+  if (currentDraft.customItems) {
+    Object.values(currentDraft.customItems).forEach(c => {
+      const tbl = window.RFPTenderData.boqTables.find(t => t.tableId === c.tableId);
+      const tblTitle = tbl ? tbl.title : c.tableId;
+      const rateUsd = c.rateUsd !== undefined && c.rateUsd !== "" ? c.rateUsd : "";
+      const ratePhp = rateUsd !== "" ? ((parseFloat(rateUsd)||0) * 55.0).toFixed(2) : "";
+      const extUsd = c.extUsd !== undefined && c.extUsd !== "" ? (parseFloat(c.extUsd)||0).toFixed(2) : "";
+      rows.push([
+        `"${(c.id || '').replace(/"/g, '""')}"`,
+        `"${tblTitle.replace(/"/g, '""')}"`,
+        `"${(c.description || '').replace(/"/g, '""')}"`,
+        `"${(c.scope || '').replace(/"/g, '""')}"`,
+        c.qty !== undefined ? c.qty : 1,
+        `"${(c.unit || '').replace(/"/g, '""')}"`,
+        rateUsd !== "" ? rateUsd : "",
+        ratePhp !== "" ? ratePhp : "",
+        extUsd !== "" ? extUsd : ""
+      ]);
+    });
+  }
+
   const csvContent = "\uFEFF" + rows.map(e => e.join(",")).join("\r\n");
   const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
   const url = URL.createObjectURL(blob);
@@ -2580,8 +2796,17 @@ function updateTableSubtotals() {
   let subtotalRanSvc = 0;
   let subtotalLot6Annual = 0;
 
+  // Custom items sum by tableId
+  const customSumByTable = {};
+  if (currentDraft.customItems) {
+    Object.values(currentDraft.customItems).forEach(c => {
+      const tId = c.tableId;
+      customSumByTable[tId] = (customSumByTable[tId] || 0) + (c.extUsd || 0);
+    });
+  }
+
   window.RFPTenderData.boqTables.forEach(tbl => {
-    let tblSum = 0;
+    let tblSum = customSumByTable[tbl.tableId] || 0;
     tbl.items.forEach(it => {
       if (!it.isSubtotal && !it.isTotal) {
         const itemExt = currentDraft.commercial[it.id]?.extUsd || 0;
@@ -2592,15 +2817,15 @@ function updateTableSubtotals() {
       } else {
         let displayVal = tblSum;
         if (it.id === 'SUBTOTAL-RAN-HW') {
-          displayVal = subtotalRanHw;
+          displayVal = subtotalRanHw + (customSumByTable['lot1_hw'] || 0);
         } else if (it.id === 'SUBTOTAL-RAN-SVC') {
-          displayVal = subtotalRanSvc;
+          displayVal = subtotalRanSvc + (customSumByTable['lot1_svc'] || 0);
         } else if (it.id === 'TOTAL-LOT1') {
-          displayVal = subtotalRanHw + subtotalRanSvc;
+          displayVal = subtotalRanHw + subtotalRanSvc + (customSumByTable['lot1_hw'] || 0) + (customSumByTable['lot1_svc'] || 0);
         } else if (it.id === 'SUBTOTAL-LOT6-ANNUAL') {
-          displayVal = subtotalLot6Annual;
+          displayVal = subtotalLot6Annual + (customSumByTable['lot6_ms'] || 0);
         } else if (it.id === 'TOTAL-LOT6') {
-          displayVal = subtotalLot6Annual * 3.0;
+          displayVal = (subtotalLot6Annual + (customSumByTable['lot6_ms'] || 0)) * 3.0;
         } else {
           displayVal = tblSum;
         }
@@ -2643,6 +2868,21 @@ function getEvaluatedCommercialTCO() {
   opexItems.forEach(id => {
     opexAnnualUsd += currentDraft.commercial[id]?.extUsd || 0;
   });
+
+  // Include custom vendor scope items
+  if (currentDraft.customItems) {
+    Object.values(currentDraft.customItems).forEach(c => {
+      const ext = c.extUsd || 0;
+      if (capexTableIds.has(c.tableId)) {
+        capexUsd += ext;
+      } else if (c.tableId === 'lot6_ms' || c.tableId === 'services_sow_om') {
+        opexAnnualUsd += ext;
+      } else if (c.tableId && c.tableId.startsWith('services_sow_')) {
+        capexUsd += ext;
+      }
+    });
+  }
+
   const opex3YrUsd = opexAnnualUsd * 3.0;
   const tco3YrUsd = capexUsd + opex3YrUsd;
 
@@ -2696,6 +2936,7 @@ function syncDraftToFirestore() {
         bidderId: activeUid,
         technical: currentDraft.technical || {},
         commercial: currentDraft.commercial || {},
+        customItems: currentDraft.customItems || {},
         financing: currentDraft.financing || {},
         updatedAt: firebase.firestore.FieldValue.serverTimestamp()
       }, { merge: true });
@@ -2747,6 +2988,7 @@ async function loadBidDraft() {
           const cloudData = snap.data();
           if (cloudData.technical) currentDraft.technical = { ...currentDraft.technical, ...cloudData.technical };
           if (cloudData.commercial) currentDraft.commercial = { ...currentDraft.commercial, ...cloudData.commercial };
+          if (cloudData.customItems) currentDraft.customItems = { ...currentDraft.customItems, ...cloudData.customItems };
           if (cloudData.financing) currentDraft.financing = { ...currentDraft.financing, ...cloudData.financing };
           restoreDraftUI(currentDraft);
           const ind = document.getElementById('cloud-save-status');
@@ -2761,6 +3003,9 @@ async function loadBidDraft() {
 
 function restoreDraftUI(data) {
   if (!data) return;
+  if (data.customItems) {
+    currentDraft.customItems = { ...(currentDraft.customItems || {}), ...data.customItems };
+  }
   if (data.technical) {
     for (let id in data.technical) {
       const item = data.technical[id];
@@ -2832,10 +3077,8 @@ function updatePreflight() {
   techEl.textContent = `${answered} / 80 completed`;
   techEl.style.color = (answered >= 80) ? "var(--green)" : "var(--gold)";
 
-  let commTotal = 0;
-  for (let k in currentDraft.commercial) {
-    commTotal += currentDraft.commercial[k].extUsd || 0;
-  }
+  const tcoData = getEvaluatedCommercialTCO();
+  const commTotal = tcoData.tco3YrUsd;
   const commEl = document.getElementById('check-comm-val');
   commEl.textContent = commTotal > 0 ? `$${commTotal.toLocaleString('en-US', {maximumFractionDigits: 0})} USD quoted` : "Pending input";
   commEl.style.color = (commTotal > 0) ? "var(--green)" : "var(--gold)";
@@ -2875,10 +3118,8 @@ async function executeBidSubmission() {
   for (let k in currentDraft.technical) {
     if (currentDraft.technical[k] && currentDraft.technical[k].compliance) answeredTech++;
   }
-  let totalComm = 0;
-  for (let k in currentDraft.commercial) {
-    totalComm += currentDraft.commercial[k]?.extUsd || 0;
-  }
+  const tcoDataSub = getEvaluatedCommercialTCO();
+  const totalComm = tcoDataSub.tco3YrUsd;
 
   if (answeredTech === 0 && totalComm === 0) {
     alert("Incomplete Submission:\n\nYour proposal currently contains 0 technical compliance answers and $0.00 commercial BoQ pricing.\n\nPlease complete Appendix A (Technical Matrix) and Appendix B (Commercial BoQ) before submitting your sealed proposal.");
@@ -2911,6 +3152,7 @@ async function executeBidSubmission() {
     status: 'submitted',
     techCompliance: currentDraft.technical || {},
     commercialPricing: currentDraft.commercial || {},
+    customItems: currentDraft.customItems || {},
     vendorFinancing: currentDraft.financing || {}
   };
 
@@ -2970,9 +3212,8 @@ async function executeBidSubmission() {
   document.getElementById('cert-bidder-name').textContent = `${corpName} (${repName})`;
   document.getElementById('cert-timestamp').textContent = now.toLocaleString('en-US', { timeZone: 'Asia/Manila' }) + " (PHT)";
   
-  let totalUsd = 0;
-  for (let k in currentDraft.commercial) totalUsd += currentDraft.commercial[k].extUsd || 0;
-  document.getElementById('cert-comm-offer').textContent = `$${totalUsd.toLocaleString('en-US', {minimumFractionDigits: 2})} USD (₱${(totalUsd*55).toLocaleString('en-US', {minimumFractionDigits: 2})} PHP)`;
+  const tcoDataCert = getEvaluatedCommercialTCO();
+  document.getElementById('cert-comm-offer').textContent = `$${tcoDataCert.tco3YrUsd.toLocaleString('en-US', {minimumFractionDigits: 2})} USD (₱${(tcoDataCert.tco3YrUsd*55).toLocaleString('en-US', {minimumFractionDigits: 2})} PHP 3-Yr TCO)`;
   document.getElementById('cert-sha256').textContent = seal;
 
   showToast(centralVaultConfirmed ? "✓ Conclusively Sealed & Registered in Central Database!" : "Bid proposal cryptographically signed!");
@@ -3356,6 +3597,7 @@ function loadBidIntoEvaluatorView(code) {
   // Populate active draft with submitted data
   currentDraft.technical = JSON.parse(JSON.stringify(sub.techCompliance || {}));
   currentDraft.commercial = JSON.parse(JSON.stringify(sub.commercialPricing || {}));
+  currentDraft.customItems = JSON.parse(JSON.stringify(sub.customItems || {}));
   currentDraft.financing = JSON.parse(JSON.stringify(sub.vendorFinancing || sub.financing || {}));
 
   try {
