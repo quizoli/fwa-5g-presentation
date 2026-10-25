@@ -982,6 +982,9 @@
     <a href="rf_analyzer/index.html" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; font-size: 12px; text-decoration: none; color: #0A192F; background: #10B981; border: 1px solid #10B981; border-radius: 20px; font-weight: 700; box-shadow: 0 0 10px rgba(16,185,129,0.3); transition: all 0.2s;" title="Open Hosted LeadServe RF Suite Network Analyzer">
       📡 LeadServe RF Suite
     </a>
+    <a href="fwa_deployment_playbook.html" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; font-size: 12px; text-decoration: none; color: #0A192F; background: #00D2D3; border: 1px solid #00D2D3; border-radius: 20px; font-weight: 800; box-shadow: 0 0 10px rgba(0,210,211,0.4); transition: all 0.2s;" title="Open Nationwide Deployment & Operations Implementation Playbook">
+      📘 Implementation Playbook
+    </a>
     <a href="#tender-package-section" onclick="filterCatalog('tender'); document.getElementById('tender-package-section').scrollIntoView({behavior: 'smooth'});" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; font-size: 12px; text-decoration: none; color: #FFFFFF; background: #2563EB; border: 1px solid #3B82F6; border-radius: 20px; font-weight: 700; box-shadow: 0 0 10px rgba(37,99,235,0.4); transition: all 0.2s;" title="Jump to 5G FWA Master Tender & RFP Package">
       📑 5G FWA Tender (RFP)
     </a>
@@ -1295,7 +1298,46 @@
       </div>
     </div>
 
-    <!-- Deck 4: Model 1 - POPCEN 2024 Commercial Viability -->
+    <!-- Deck 3.6: 5G FWA Nationwide Deployment & Operations Playbook -->
+    <div class="deck-card featured" data-model="playbook-deck" style="border-color: #00D2D3; background: linear-gradient(180deg, #071D33 0%, #0F233D 100%);">
+      <button class="card-hide-btn" onclick="hideModel('playbook-deck')" title="Hide this card from view">✕ Hide</button>
+      <div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px;">
+          <span class="badge-tag" style="background: rgba(0, 210, 211, 0.25); color: #00D2D3; border: 1px solid rgba(0, 210, 211, 0.5);">
+            TTSI-ENG-PLY-2026-001
+          </span>
+          <span class="badge-tag" style="background: rgba(255, 183, 3, 0.2); color: #FDE047; border: 1px solid rgba(255, 183, 3, 0.4);">
+            EXECUTIVE PLAYBOOK
+          </span>
+          <span class="badge-tag" style="background: rgba(16, 185, 129, 0.2); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.4);">
+            SAQ TO 24/7 MANAGED OPS
+          </span>
+        </div>
+        <h2 style="color: #00D2D3;">5G FWA Nationwide Deployment &amp; Operations Playbook</h2>
+        <p style="color: #CBD5E1;">
+          End-to-end strategic and operational execution playbook for TelTech leadership. Details the full rollout lifecycle from candidate hunting, TowerCo SLA governance, LGU permitting, and detailed engineering, to telecom commissioning, cluster RNO, and 24/7 Managed NOC handover.
+        </p>
+        <ul class="deck-features">
+          <li><strong>Siting Strategy &amp; Governance:</strong> 89.7% Co-Location (13,746 audited towers), TowerCo B2S &amp; 10.3% Own-Build</li>
+          <li><strong>Mandatory Joint Approval Gate:</strong> TowerCo hunting ➔ Vendor technical vetting ➔ TelTech final sign-off</li>
+          <li><strong>Interactive Process Flowcharts:</strong> SVG and Mermaid workflows from Search Ring to NTP and On-Air</li>
+          <li><strong>TelTech Corporate Org Charts:</strong> Complete structural tables of organization across all 14 functional branches</li>
+          <li><strong>Turnkey Milestone Gates (0 to 7):</strong> Strict entry/exit criteria, deliverable checklist, and RACI governance</li>
+          <li><strong>Handover to Operations:</strong> O&M transition protocol, FLM MTTR SLAs, and quarterly PM maintenance regimes</li>
+        </ul>
+      </div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px;">
+        <a href="fwa_deployment_playbook.html" target="_blank" class="btn-launch featured-btn" style="flex: 1; min-width: 220px; background: linear-gradient(135deg, #0284C7, #00D2D3); color: #0A192F; font-weight: 800; border: none;">
+          📘 Launch Deployment Playbook ➔
+        </a>
+        <a href="fwa_deployment_playbook.pdf" download class="btn-download" style="background: rgba(239, 68, 68, 0.25); border: 1px solid rgba(239, 68, 68, 0.7); color: #FCA5A5; font-weight: 800; text-decoration: none; padding: 12px 14px; border-radius: 8px; font-size: 13px; display: inline-flex; align-items: center; gap: 6px;">
+          📕 Download Official PDF
+        </a>
+        <a href="fwa_deployment_playbook.md" download class="btn-download" style="background: rgba(0, 180, 216, 0.2); border: 1px solid rgba(0, 180, 216, 0.6); color: #38BDF8; font-weight: 800; text-decoration: none; padding: 12px 14px; border-radius: 8px; font-size: 13px; display: inline-flex; align-items: center; gap: 6px;">
+          📄 Download Markdown
+        </a>
+      </div>
+    </div>
     <div class="deck-card" data-model="model1" style="border-color: #10B981; background: linear-gradient(180deg, #0E2E3B 0%, #0F233D 100%);">
       <button class="card-hide-btn" onclick="hideModel('model1')" title="Hide Model 1 from view">✕ Hide</button>
       <!-- Model 1 Rev 2 (Audited Fiber Engineering) -->
@@ -1622,6 +1664,7 @@
       <!-- Catalog Tab Filter Buttons -->
       <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; margin-bottom: 18px;">
         <button class="catalog-filter-btn active" data-cat="all" onclick="filterCatalog('all')">★ All Models & Deliverables</button>
+        <button class="catalog-filter-btn" data-cat="playbook" onclick="filterCatalog('playbook')">📘 Implementation Playbook</button>
         <button class="catalog-filter-btn" data-cat="tender" onclick="filterCatalog('tender')">📑 5G FWA Master Tender (RFP)</button>
         <button class="catalog-filter-btn" data-cat="popcen" onclick="filterCatalog('popcen')">🏢 POPCEN 2024 Commercial Suite</button>
         <button class="catalog-filter-btn" data-cat="rev2" onclick="filterCatalog('rev2')">📡 Audited Fiber & TowerCo Rev 2</button>
@@ -1633,6 +1676,37 @@
 
     <!-- Catalog Content Container -->
     <div id="unified-catalog-container" style="display: flex; flex-direction: column; gap: 20px; width: 100%;">
+
+      <!-- SECTION P: 5G FWA DEPLOYMENT & OPERATIONS PLAYBOOK -->
+      <div class="catalog-group" data-group="playbook" id="playbook-package-section" style="background: rgba(0, 210, 211, 0.05); border: 1.5px solid rgba(0, 210, 211, 0.4); border-radius: 10px; padding: 18px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(0, 210, 211, 0.25); padding-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 18px;">📘</span>
+            <span style="font-size: 15px; font-weight: 800; color: #00D2D3; text-transform: uppercase; letter-spacing: 0.5px;">5G FWA Program Implementation Playbook (TTSI-ENG-PLY-2026-001)</span>
+          </div>
+          <span style="font-size: 11px; background: rgba(0, 210, 211, 0.2); color: #00D2D3; padding: 2px 8px; border-radius: 4px; font-weight: 700;">Internal Executive Deliverable · Classification: Confidential</span>
+        </div>
+        <p style="font-size: 12.5px; color: #CBD5E1; margin-bottom: 14px; line-height: 1.5;">
+          End-to-end operational execution roadmap for TelTech leadership and delivery teams. Covers site acquisition, TowerCo SLA governance, statutory LGU permitting, detailed engineering (TSSR), telecom commissioning, cluster RNO, and 24/7 Managed NOC handover. Features 3 interactive process flows and full corporate tables of organization across all 14 functional branches based on TTSI-ISMS-MNL-001.
+        </p>
+        <div style="display: flex; gap: 10px; align-items: center; background: rgba(255,255,255,0.04); padding: 12px 16px; border-radius: 8px; border: 1px solid rgba(0, 210, 211, 0.2); flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 250px;">
+            <div style="font-weight: 800; color: #FFFFFF; font-size: 13.5px;">📘 Nationwide Deployment &amp; Operations Implementation Playbook</div>
+            <div style="font-size: 11.5px; color: #94A3B8;">Interactive web application featuring process flows, 8-gate lifecycle, RACI matrix, and 15 organization charts.</div>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <a href="fwa_deployment_playbook.html" target="_blank" class="btn-launch" style="padding: 6px 14px; font-size: 12px; background: #00D2D3; color: #0A192F; font-weight: 800; text-decoration: none; border-radius: 6px;">
+              🚀 Open Playbook (HTML) ➔
+            </a>
+            <a href="fwa_deployment_playbook.pdf" download class="btn-download" style="padding: 6px 12px; font-size: 12px; background: rgba(239, 68, 68, 0.25); border: 1px solid rgba(239, 68, 68, 0.5); color: #FCA5A5; font-weight: 700; text-decoration: none; border-radius: 6px;">
+              📕 Official PDF
+            </a>
+            <a href="fwa_deployment_playbook.md" download class="btn-download" style="padding: 6px 12px; font-size: 12px; background: rgba(0, 180, 216, 0.2); border: 1px solid rgba(0, 180, 216, 0.5); color: #38BDF8; font-weight: 700; text-decoration: none; border-radius: 6px;">
+              📄 Markdown (.md)
+            </a>
+          </div>
+        </div>
+      </div>
 
       <!-- SECTION T: 5G FWA TURNKEY TENDER PACKAGE (RFP) -->
       <div class="catalog-group" data-group="tender" id="tender-package-section" style="background: rgba(37, 99, 235, 0.05); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 18px 20px;">
