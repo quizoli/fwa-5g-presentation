@@ -1384,26 +1384,38 @@
             </tr>
           </thead>
           <tbody>
-            <tr style="background: rgba(56, 189, 248, 0.1); border-left: 3px solid #38BDF8;">
-              <td class="rev-num" style="color: #38BDF8;">Rev 2.3<br><span style="font-size: 10px; background: #38BDF8; color: #0A192F; font-weight: 900; padding: 1px 5px; border-radius: 3px;">ACTIVE</span></td>
+                        <tr style="background: rgba(56, 189, 248, 0.08); border-left: 4px solid #38BDF8;">
+              <td class="rev-num" style="color: #38BDF8; font-weight: 900;">Rev 2.4<br><span style="font-size: 10px; background: #38BDF8; color: #0A192F; font-weight: 900; padding: 1px 5px; border-radius: 3px;">ACTIVE</span></td>
+              <td class="rev-num" style="white-space: nowrap;">2026-10-25</td>
+              <td>
+                <strong>Document 06</strong> (Price Book Rev 2.2)<br>
+                <strong>Document 10</strong> (Appendix E Version 2.2)<br>
+                <strong>Form C &amp; Services SOW</strong> (Live Reconciliation Matrix)<br>
+                <strong>Full Tender ZIP Package</strong><br>
+                <span style="font-size: 11px; color: #38BDF8;">Formulaic Variance Checks &amp; Satellite Latency Alignment</span>
+              </td>
+              <td>
+                <strong>Formulaic TCO Reconciliation, SAQ-03 Scope Assignment &amp; Bulletin Satellite Latency Harmonization:</strong><br>
+                • <strong>Live Formulaic Reconciliation &amp; Variance Auditing:</strong> Codified automated Excel variance verification tables on Form C (Rows 19–26) and Services SOW sheet. Live formulas calculate <code>ABS(Lot_Value - SOW_Value)</code> and display <code>✓ ZERO VARIANCE (RECONCILED)</code> or automated discrepancy alerts. Form C Row 13 formally affirmed as the SOLE official evaluated commercial tender score for contract award.<br>
+                • <strong>SAQ-03 Scope Realignment to Committed Co-Location:</strong> Corrected SAQ-03 (TowerCo Space Application &amp; Technical Dossier Support) to committed Tier 1 Co-Location scope with actual evaluation quantity of <strong>897 sites</strong> (Phase 1) / 4,485 sites (Program). Segregated Standby 10.3% Own-Build SAQ Basket across 103 sites.<br>
+                • <strong>Site-Count Population Model Codified:</strong> Formalized that Tier 2 (TowerCo Build-to-Suit / B2S) and Tier 3 (Operator Own-Build Monopole) are <em>mutually exclusive implementation alternatives for the same 103 expansion positions</em>. Total Phase 1 network footprint remains strictly <strong>1,000 sites</strong> (897 Tier 1 + 103 Tier 2/3).<br>
+                • <strong>Satellite Latency Acceptance Alignment:</strong> Restored satellite backhaul latency thresholds strictly to <strong>&le;60 ms target / &le;80 ms maximum contractual rejection ceiling</strong> per Bid Bulletin 01 §2.3 across Appendix E, Price Book, and online portal.<br>
+                • <strong>Vendor-Proposed Custom Scope Support:</strong> Added interactive capability for bidders to propose extra / alternative scope lines across all lots with identical 7-column schema and real-time TCO rollup.
+              </td>
+              <td><span style="color: #38BDF8; font-weight: 900;">✓ Adopted &amp; Operative</span></td>
+            </tr>
+            <tr style="background: rgba(56, 189, 248, 0.03);">
+              <td class="rev-num" style="color: #94A3B8;">Rev 2.3<br><span style="font-size: 10px; color: #94A3B8;">OCT 25</span></td>
               <td class="rev-num" style="white-space: nowrap;">2026-10-25</td>
               <td>
                 <strong>Document 06</strong> (Price Book Rev 2.1)<br>
                 <strong>Document 10</strong> (Appendix E Version 2.1)<br>
-                <strong>Document 08</strong> (Bid Bulletin No. 1 Addendum)<br>
-                <strong>Full ZIP Package</strong> (Clean Single Root)<br>
-                <span style="font-size: 11px; color: #38BDF8;">Reconciled Baseline &amp; Services SOW Integration</span>
+                <span style="font-size: 11px; color: #94A3B8;">Reconciled Baseline &amp; SOW Integration</span>
               </td>
               <td>
-                <strong>Reconciled Services SOW, Multi-Year O&amp;M Charging Baselines &amp; Structural Engineering Boundaries:</strong><br>
-                • <strong>Charging Period Harmonization (Doc 06 &amp; Appendix E):</strong> Reconciled multi-year charging periods into explicit <strong>12-Month Annualized O&amp;M</strong> and <strong>3-Year Managed O&amp;M Contractual Program Total (36 Months)</strong> matching RFP Lot 6; standardized single billing units (Per Site/Month, Per Site/Quarter, Per Site/Semi-Annual).<br>
-                • <strong>Lot &amp; Form C TCO Reconciliation:</strong> Mapped all 59 service lines to existing lots (Lot 5 Turnkey Rollout and Lot 6 Managed Services); suppressed additive double-counting of bundled retainer services (FLM-02..04, SPM-02..03 evaluated at $0.00 in additive totals); defined explicit <strong>10.3% Standby Own-Build Evaluation Basket</strong> (103 sites Phase 1 / 515 sites Program) for SAQ lines.<br>
-                • <strong>Structural Engineering Scope Boundary:</strong> Clarified that for Tier 1 Co-Location (897 sites) and Tier 2 B2S (103 sites), formal TIA-222-H wind simulation, foundation verification, and licensed PE wet-seals belong to TowerCo under MLA (per Appendix D §1.3 and Bid Bulletin 01 Huawei Item 13); Vendor structural PE wet-seal applies *strictly* to Tier 3 Own-Build.<br>
-                • <strong>Engineering Standards Alignment:</strong> Codified site-dependent basic wind speed <strong>250 km/h to 315 km/h</strong> (NSCP 2015 / TIA-222-H); clarified tiered SSV latency acceptance (&le;18 ms target / &le;30 ms contractual rejection ceiling for terrestrial fiber per Appendix C KPI-RAN-07 and Bulletin §2.3; &le;50 ms target / &le;65 ms ceiling for LEO satellite).<br>
-                • <strong>Call-Out Units Standardization:</strong> Standardized single defined units (Per Sector, Per Crew/Day, Per Deployment, Per Span, Per Flight, Per Tower, Per Site/Day, Per Liter Delivered) and harmonized audited tower database count to <strong>13,810 locations</strong>.<br>
-                • <strong>Clean Package Rebuild:</strong> Rebuilt distribution ZIP archive from single clean root containing strictly the 30 active tender files with verified byte-for-byte hash parity against individual downloads.
+                Initial Services SOW 59-line integration, multi-year O&amp;M charging period harmonization, structural engineering scope boundaries, and clean package rebuild.
               </td>
-              <td><span style="color: #38BDF8; font-weight: 800;">✓ Adopted &amp; Operative</span></td>
+              <td><span style="color: #94A3B8;">Superseded by Rev 2.4</span></td>
             </tr>
             <tr style="background: rgba(16, 185, 129, 0.04);">
               <td class="rev-num" style="color: #6EE7B7;">Rev 2.2<br><span style="font-size: 10px; color: #94A3B8;">OCT 22</span></td>
@@ -2209,8 +2221,14 @@ function renderBoQTables() {
       `;
     } else if (tbl.tableId === 'lot5_civ') {
       tableNotice = `
-        <div style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-left: 4px solid #38BDF8; padding: 10px 16px; margin: 12px 16px 14px 16px; border-radius: 6px; font-size: 12px; color: #E2E8F0; line-height: 1.5;">
-          <strong>Standby Site Acquisition Rate Card (SAQ-01..08) Active:</strong> Baseline deployment utilizes TowerCo colocation/B2S with site hunting performed by TowerCo. Unit rates SAQ-01 to SAQ-08 establish firm contingency rates should TelTech self-acquire or direct vendor acquisition for the 10.3% non-colocated footprint.
+        <div style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-left: 4px solid #38BDF8; padding: 12px 16px; margin: 12px 16px 14px 16px; border-radius: 6px; font-size: 12px; color: #E2E8F0; line-height: 1.5;">
+          <div style="margin-bottom: 5px;">
+            <strong style="color: #38BDF8; font-size: 12.5px;">Committed Co-Location vs Standby Own-Build Scope:</strong> Total Phase 1 network footprint is strictly 1,000 macro BTS sites total:
+          </div>
+          <div style="margin-left: 8px;">
+            • <strong>Committed Tier 1 Co-Location (897 Sites):</strong> SAQ-03 (TowerCo SAA Dossier Support) and CIV-SVC-03 (Equipment Pad Foundation & Cable Gantry).<br>
+            • <strong>Standby 10.3% Own-Build Contingency Basket (103 Sites):</strong> Items SAQ-01, 02, 04..08 provide firm pre-agreed rate cards should TelTech self-acquire. Tier 2 (TowerCo B2S) and Tier 3 (Operator Own-Build) are mutually exclusive implementation alternatives for the same 103 positions.
+          </div>
         </div>
       `;
     } else if (tbl.tableId === 'lot6_ms') {

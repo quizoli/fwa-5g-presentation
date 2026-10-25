@@ -1012,12 +1012,12 @@ window.RFPTenderData = {
       },
       {
         "id": "SAQ-03",
-        "description": "TowerCo Space Application (SAA) & Technical Dossier Support (Standby 10.3% Own-Build Basket)",
-        "scope": "[APPLIES TO TOWERCO CO-LOCATION: Preparation of technical equipment loading profile (3x 8T8R RRU, 3x Antennas, hybrid cables, 2m x 2m pad) and coordination with TowerCo engineering until SAA approval. Commercial lease executed directly by O...",
-        "qty": 103,
+        "description": "TowerCo Space Application (SAA) & Technical Dossier Support (Committed Tier 1 Co-Location Scope)",
+        "scope": "[COMMITTED TIER 1 CO-LOCATION SCOPE (897 SITES)]: Preparation of technical equipment loading profile (3x 8T8R RRU, 3x Antennas, hybrid cables, 2m x 2m pad) and coordination with TowerCo engineering until SAA approval. Commercial lease execu...",
+        "qty": 897,
         "unit": "Per Co-Location Site",
         "multiplier": 1,
-        "isStandby": true
+        "isStandby": false
       },
       {
         "id": "SAQ-04",
@@ -1364,7 +1364,7 @@ window.RFPTenderData = {
   },
   {
     "tableId": "services_sow_saq",
-    "title": "TABLE 9: SERVICES SOW \u2014 DOMAIN 1: SITE ACQUISITION & PERMITTING (SAQ-01 TO SAQ-08) [STANDBY 10.3% BASKET]",
+    "title": "TABLE 9: SERVICES SOW \u2014 DOMAIN 1: SITE ACQUISITION & PERMITTING (SAQ-01 TO SAQ-08) [COMMITTED SAA + STANDBY BASKET]",
     "items": [
       {
         "id": "SAQ-01",
@@ -1387,8 +1387,8 @@ window.RFPTenderData = {
       {
         "id": "SAQ-03",
         "description": "TowerCo Space Application (SAA) & Technical Dossier Support",
-        "scope": "[APPLIES TO TOWERCO CO-LOCATION: Preparation of technical equipment loading profile (3x 8T8R RRU, 3x Antennas, hybrid cables, 2m x 2m pad) and coordination with TowerCo engineering until SAA approval. Commercial lease executed directly by O...",
-        "qty": 103,
+        "scope": "[COMMITTED TIER 1 CO-LOCATION SCOPE (897 SITES)]: Preparation of technical equipment loading profile (3x 8T8R RRU, 3x Antennas, hybrid cables, 2m x 2m pad) and coordination with TowerCo engineering until SAA approval. Commercial lease execu...",
+        "qty": 897,
         "unit": "Per Co-Location Site",
         "multiplier": 1,
         "isIncluded": false
