@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Appendix E: Statement of Work (SOW) & Master Services Rate Card — TelTech</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 16mm 12mm 16mm 12mm;
+    @bottom-center {
+      content: "Page " counter(page) " of " counter(pages);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      font-size: 8pt;
+      color: #94a3b8;
+    }
+  }
+
+  *, *:before, *:after { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1e293b;
+    background-color: #f8fafc;
+    font-size: 8.5pt;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .document-container {
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 30px 40px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-radius: 8px;
+  }
+
+  .doc-header-banner {
+    border-bottom: 2px solid #0f3460;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+  }
+
+  .meta-top-table {
+    width: 100%;
+    margin-bottom: 8px;
+    font-size: 8pt;
+    color: #64748b;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .doc-title {
+    font-size: 18pt;
+    font-weight: 800;
+    color: #0f3460;
+    margin: 0 0 6px 0;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .doc-subtitle {
+    font-size: 10pt;
+    color: #475569;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 13pt;
+    font-weight: 700;
+    color: #0f3460;
+    border-bottom: 1.5px solid #cbd5e1;
+    padding-bottom: 5px;
+    margin-top: 24px;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: #1e293b;
+    margin-top: 16px;
+    margin-bottom: 6px;
+  }
+
+  h3 {
+    font-size: 9.5pt;
+    font-weight: 600;
+    color: #334155;
+    margin-top: 12px;
+    margin-bottom: 4px;
+  }
+
+  p, li {
+    font-size: 8.5pt;
+    color: #334155;
+    margin-bottom: 6px;
+  }
+
+  .callout-box {
+    background-color: #f1f5f9;
+    border-left: 4px solid #0f3460;
+    padding: 12px 16px;
+    margin: 14px 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .callout-title {
+    font-weight: 700;
+    color: #0f3460;
+    margin-bottom: 4px;
+    font-size: 9pt;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 24px 0;
+    font-size: 8pt;
+  }
+
+  th {
+    background-color: #0f3460;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: left;
+    padding: 8px 10px;
+    border: 1px solid #0f3460;
+    font-size: 8pt;
+  }
+
+  td {
+    padding: 6px 10px;
+    border: 1px solid #e2e8f0;
+    vertical-align: top;
+    color: #334155;
+  }
+
+  tr:nth-child(even) td {
+    background-color: #f8fafc;
+  }
+
+  tr.domain-row td {
+    background-color: #e2e8f0;
+    color: #0f3460;
+    font-weight: 700;
+    font-size: 8.5pt;
+    padding: 8px 10px;
+  }
+
+  .code-badge {
+    display: inline-block;
+    padding: 2px 6px;
+    background-color: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 3px;
+    font-family: monospace;
+    font-weight: 700;
+    color: #0f3460;
+  }
+
+  .quote-input {
+    background-color: #fef3c7;
+    border: 1px dashed #d97706;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 700;
+    color: #92400e;
+    text-align: center;
+  }
+
+  .formula-field {
+    background-color: #f0fdf4;
+    border: 1px solid #86efac;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 600;
+    color: #166534;
+    text-align: center;
+  }
+
+  .uom-badge {
+    background-color: #e0f2fe;
+    border: 1px solid #bae6fd;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-weight: 600;
+    color: #0369a1;
+    font-size: 7.5pt;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="document-container">
+  <div class="doc-header-banner">
+    <table class="meta-top-table">
+      <tr>
+        <td style="border:none; padding:0; text-align:left;">TENDER REF: RFP-TELTECH-FWA-2026-001</td>
+        <td style="border:none; padding:0; text-align:right;">APPENDIX E: SERVICES STATEMENT OF WORK & RATE CARD</td>
+      </tr>
+    </table>
+    <div class="doc-title">STATEMENT OF WORK (SOW) & MASTER SERVICES RATE CARD</div>
+    <div class="doc-subtitle">Turnkey Rollout, Site Engineering, Telecom Integration, and 24/7 Managed Operations & Maintenance (O&M)</div>
+    <div style="font-size: 8pt; color: #64748b; margin-top: 6px;">Author: Oliver Tungol | Version: 2.0 (Expanded Master Services SOW) | Commercial FX Baseline: USD 1.00 = PHP 55.00</div>
+  </div>
+
+  <div class="callout-box">
+    <div class="callout-title">MANDATORY INSTRUCTIONS TO BIDDERS</div>
+    <p>This document sets forth the comprehensive technical specifications, operational execution boundaries, units of measurement (UoM), deliverable acceptance criteria, and commercial pricing structure for all services required across the 5G FWA Program. Bidders must quote firm, fixed unit rates for every item in Section 4 using the official Excel file (<code>06_RFP_Commercial_Price_Book_and_BoQ_Template.xlsx</code>). These rates shall govern the Phase 1 deployment (1,000 sites), ongoing 24/7 Managed Operations & Maintenance (O&M), and all future expansion call-offs up to 5,000 sites nationwide.</p>
+  </div>
+
+
+  <h1>1. PROGRAM OVERVIEW & SITING ARCHITECTURE</h1>
+  <p>The 5G Fixed Wireless Access network utilizes 3GPP Band n50 (1432–1517 MHz, 60 MHz TDD) deployed across high-density suburban and rural barangays. Siting delivery is strictly governed by the <strong>Mandatory 3-Tier Sourcing Hierarchy</strong>:</p>
+  <ul>
+    <li><strong>Tier 1 (Mandatory Baseline - 89.7% / 897 Sites):</strong> Co-location on existing operational towers (PTCI/MIDC, EdgePoint, FTAP Globe, FTAP Smart, LDIC) within the designated search ring.</li>
+    <li><strong>Tier 2 (Secondary Target):</strong> TowerCo Build-to-Suit (B2S) where existing structures lack load capacity.</li>
+    <li><strong>Tier 3 (Restricted Exception - 10.3% / 103 Sites):</strong> Direct Operator Greenfield Monopole construction (80x 30m / 23x 40m).</li>
+  </ul>
+
+
+  <h1>2. DETAILED TECHNICAL SCOPE OF WORK (DEPLOYMENT & ROLLOUT SERVICES)</h1>
+  <h2>2.1 Site Acquisition (SAQ) & Legal Permitting Services</h2>
+  <p>The Contractor shall deliver complete turnkey Site Acquisition (SAQ) and permitting services: hunting and ranking three (3) viable candidates per search ring (500m urban / 1,000m rural); compiling the Preliminary Candidate Evaluation Report (PCER); producing the comprehensive Site Acquisition Report (SAR) with WGS84 GPS (6 decimals), cadastral sketches, clean title verification (TCT/OCT), and 360-degree panoramic photos; preparing the TowerCo Space Application (SAA) loading dossier under the MLA; supporting greenfield lease negotiations; and securing all statutory permits: Barangay Clearance, HOA Resolution, LGU Building Permits under PD 1096, CAAP Height Clearance, DENR CNC/ECC, DPWH ROW clearance, CFEI, FSIC, power utility energization (Meralco/Coop), and LGU Certificate of Occupancy.</p>
+
+  <h2>2.2 Site Engineering & Detailed Technical Site Survey (TSSR)</h2>
+  <p>Rigorous multidisciplinary engineering surveys including: 360-degree drone panoramic photo sweeps at antenna centerlines (30m to 45m AGL); structural audit of steel members, gussets, and anchor bolts; calculation of Effective Projected Area (EPA) and operating weight for 3x 8T8R RRUs, 3x macro antennas, AMBs, and cables; wind stress simulation under TIA-222-H for 250 km/h basic wind speed (Category 5 typhoon); foundation verification; utility transformer kVA and DC power plant headroom audit; battery autonomy calculation (>= 4.0h @ 3.0 kW load); 3-point fall-of-potential ground resistance testing (mandating &le; 5.0 Ohms); RF line-of-sight and clutter verification (RSRP &ge; -95 dBm); complete AutoCAD Detailed Engineering Design (DED) blueprints signed and sealed by licensed Professional Engineers; and post-construction As-Built CAD documentation.</p>
+
+  <h2>2.3 Radio Network Planning & Design (RNPD)</h2>
+  <p>Macro-level 5G RF planning utilizing 3D ray-tracing propagation modeling engines calibrated against 5m clutter and DTM data; nominal search ring generation; coverage prediction mapping; capacity dimensioning for Band n50 (60 MHz TDD); and Cell Design Data (CDD) parameter engineering, including cell naming, gNodeB IDs, Physical Cell ID (PCI) planning with modulo-3/modulo-30 separation, Root Sequence Index (RSI), Neighbor Cell Lists (NCL), and eRET profiles.</p>
+
+  <h2>2.4 Telecom Logistics, Warehousing & Material Handling</h2>
+  <p>End-to-end logistics management: port receiving at Manila/Batangas; bonded climate-controlled storage in Mega Manila and regional hubs (North Luzon, South Luzon, Visayas, Mindanao); serial-level barcode asset tagging in ERP; BOM kitting and cable pre-cutting based on approved TSSR; firmware pre-flashing; line-haul freight; and dedicated final-mile rough-road transport to remote barangay sites utilizing heavy-duty 4x4 trucks, motorized bancas, or manual porterage across unpaved terrain, fully insured.</p>
+
+  <h2>2.5 Telecom Installation, Testing, Commissioning & Integration (TI)</h2>
+  <p>Rigorous execution by certified riggers and telecom engineers: hoisting and mounting 3x macro high-gain antennas and 3x 8T8R RRUs on tower AMBs; setting mechanical tilts and azimuths (0&deg;, 120&deg;, 240&deg;); installing eRET cables (AISG 2.0); routing armored optical jumpers and DC power cables along cable ladders; installing cold-shrink weatherproof boots; installing Type 2 DC SPDs at tower top and base; bonding 3-point grounding kits to external ground busbar; 19" rack installation of BBU; GPS antenna installation for PTP/SyncE; DC turn-up; software baseline loading; optical transceiver power verification; VSWR sweep testing (VSWR &le; 1.35:1, Return Loss &ge; 16.5 dB); IP backhaul integration; Core (UPF/AMF) connection; OSS synchronization; alarm clearance; and commercial on-air declaration.</p>
+
+  <h2>2.6 Single Site Verification (SSV) & Site Acceptance (ATP)</h2>
+  <p>Mandatory three-stage acceptance procedure: ATP-A (Mechanical, Civil & Electrical inspection of bolt torque marks, cable dressing, weatherproofing, grounding resistance &le; 5.0 Ohms); ATP-B (Active Telecom & Functional verification of 8T8R MU-MIMO operation, remote eRET tilt control, alarm failover simulations); and SSV (stationary throughput testing at near, mid, and cell-edge points per sector validating &ge; 450 Mbps peak DL, &ge; 50 Mbps cell-edge DL, &ge; 15 Mbps cell-edge UL, sector swap checks, handover tests, ping &le; 18 ms RTT, and signed SSV Report).</p>
+
+  <h2>2.7 Cluster Radio Network Optimization (RNO)</h2>
+  <p>Multi-site cluster optimization across contiguous clusters of 10–20 sites: pre-launch scanner and test UE drive testing; electrical downtilt (eRET) optimization; azimuth adjustments; PCI re-planning; neighbor list cleanup; handover parameter tuning; and 14-day post-launch OSS statistical validation confirming cluster Radio Availability &ge; 99.95%, Session Setup Success Rate (CSSR) &ge; 99.60%, Session Drop Rate (CDDR) &le; 0.15%, and cluster average throughput &ge; 450 Mbps.</p>
+
+
+  <h1>3. OPERATIONS & MAINTENANCE (O&M) / MANAGED SERVICES SPECIFICATION</h1>
+  <p>The Contractor shall deliver an integrated 24/7/365 Managed Services organization to ensure continuous 99.95% network availability across all 5,000 sites nationwide:</p>
+  <ul>
+    <li><strong>24/7/365 Central NOC Surveillance:</strong> Tier-1 real-time surveillance across RAN, Core, Power, and Transmission via EMS/OSS. Automated alarm correlation, deduplication, and trouble ticket creation within 5 minutes. Daily Operational Flash Reports at 06:00 PHT, weekly reviews, and monthly SLA dossiers.</li>
+    <li><strong>Tier-2 / Tier-3 Support:</strong> 24/7 remote diagnostics, soft/hard resets, card re-initialization, config restoration, and transmission failover. Tier-3 OEM TAC Level 3 escalation, bug patch testing, and Root Cause Analysis (RCA) reporting within 24 hours.</li>
+    <li><strong>Field First Line Maintenance (FLM):</strong> Dedicated 24/7 mobile crews in 4x4 vehicles stationed at regional depots. Mandated MTTR: <strong>Severity 1 (Critical) &le; 2.0h Urban / &le; 4.0h Rural; Severity 2 (Major) &le; 4.0h Urban / &le; 6.0h Rural; Severity 3 (Minor) &le; 12.0h Urban / &le; 24.0h Rural.</strong> Includes active hardware swapping, passive electrical triage, and emergency fiber backhaul splicing.</li>
+    <li><strong>Quarterly Preventive Maintenance (PM):</strong> 100% completion p.a. logged via Mobile App: Module A (Telecom Equipment & Optics); Module B (DC Power Plant & LiFePO4 Battery discharge test); Module C (Grounding grid &le; 5.0 Ohms); Module D (Bi-annual tower climbing & rigging audit); Module E (Compound civil, fencing & weed clearance).</li>
+    <li><strong>Spare Parts Management (SPMS):</strong> Regional depots maintaining an audited 2.0% active hardware float. Guaranteed Advance Hardware Replacement (AHR) Next-Business-Day (NBD) standard or 4-hour emergency delivery. Full RMA reverse logistics lifecycle tracking (TAT &le; 30 days).</li>
+    <li><strong>Continuous RNO & Interference Hunting:</strong> Ongoing RF KPI surveillance, weekly Worst Performing Cell (WPC) triage, spectrum analyzer sweeps for external jamming/boosters, and PIM testing (&le; -155 dBc).</li>
+    <li><strong>Facility, Power & Software Maintenance:</strong> Tower anti-corrosion painting, plinth crack repair, utility Meralco/Coop coordination, 250-hour generator servicing, maintenance window patch deployments (00:00-05:00), and weekly automated backups.</li>
+  </ul>
+
+
+  <h1>4. MASTER SERVICES PRICING SCHEDULE & COMMERCIAL RATE CARD</h1>
+  <p>Bidders must quote firm, fixed unit rates in US Dollars (USD) and Philippine Pesos (PHP @ baseline FX 55.00) in the official Excel price book. Quoted unit rates shall serve as the official contract rate card for Phase 1 (1,000 sites), ongoing Managed Services O&M, and all expansion call-offs up to 5,000 sites.</p>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 75px;">Item Ref</th>
+        <th style="width: 140px;">Category / Title</th>
+        <th>Detailed Technical Scope & Boundaries</th>
+        <th style="width: 85px; text-align: center;">UoM</th>
+        <th style="width: 65px; text-align: center;">Phase 1 Qty</th>
+        <th style="width: 65px; text-align: center;">Program Qty</th>
+        <th style="width: 100px; text-align: center;">Unit Price (USD)</th>
+        <th style="width: 105px; text-align: center;">Unit Price (PHP @ 55)</th>
+        <th style="width: 120px;">Billing Milestone Trigger</th>
+        <th style="width: 130px;">Deliverable Artifact</th>
+      </tr>
+    </thead>
+    <tbody>
+
+
+      <tr class="domain-row">
+        <td><span class="code-badge">CAT-01</span></td>
+        <td colspan="9">DOMAIN: SITE ACQUISITION & LEGAL PERMITTING</td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">SAQ-01</span></td>
+        <td><strong>Nominal Search Ring Siting &amp; Candidate Hunting</strong></td>
+        <td>
+          Field identification, screening, and ranking of three (3) viable candidates (Candidate A - Primary, Candidate B - Secondary, Candidate C - Contingency) within the assigned nominal search ring (500m radius for urban/suburban; 1,000m radius for rural). Mandatory spatial screening against audited TowerCo database (13,746 towers) to prioritize Tier 1 co-location. Scope includes visual inspection of antenna mounting feasibility, ground space availability (minimum 2.0m x 2.0m pad), line-of-sight to demand settlement centroid, road access verification (all-weather vs 4x4), and issuance of the Preliminary Candidate Evaluation Report (PCER).<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Desktop spatial analysis, physical on-ground hunting, 3 candidate identification, GPS logging, PCER compilation.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Commercial lease execution (handled by Operator under MLA).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Search Ring</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon Operator formal approval of PCER ranking 3 compliant candidates.</td>
+        <td style="font-size: 7.5pt;"><strong>Approved Preliminary Candidate Evaluation Report (PCER)</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">SAQ-02</span></td>
+        <td><strong>Detailed Site Acquisition Report (SAR) &amp; Technical Dossier</strong></td>
+        <td>
+          Comprehensive on-ground site acquisition audit and property investigation for the selected primary candidate. Compilation of standardized Site Acquisition Report (SAR) containing: official PSGC code, precision WGS84 GPS coordinates (&gt;= 6 decimal places), ground elevation AMSL, property cadastral boundary sketch, certified land title verification (TCT/OCT/Tax Declaration), lessor profile and contact matrix, preliminary structural condition assessment, preliminary power availability (grid connection point, transformer distance, utility provider), 360-degree panoramic site photos, logistics route access classification, and SAQ risk assessment matrix.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> On-ground cadastral audit, title verification, lessor interview, 360-deg photo sweep, complete SAR package.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Payment of land rental / lease deposits (direct Operator responsibility).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Candidate Site</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon formal engineering and legal acceptance of the SAR package by Operator.</td>
+        <td style="font-size: 7.5pt;"><strong>Comprehensive Site Acquisition Report (SAR) Dossier</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">SAQ-03</span></td>
+        <td><strong>TowerCo Space Application (SAA) &amp; Technical Dossier Support</strong></td>
+        <td>
+          Preparation, technical compilation, submission, and engineering follow-through of the TowerCo Space Application (SAA) package for co-location under Operator&#x27;s Master Lease Agreement (MLA). Compiles exact proposed loading profile: 3x 8T8R RRU, 3x macro antennas/AAUs, antenna mounting brackets (AMB), hybrid trunk cables, DC distribution requirements, and ground plinth reservation (2.0m x 2.0m). Coordinates with TowerCo technical team during structural vetting until formal issuance of SAA Approval and Notice to Proceed (NTP).<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> SAA documentation, loading calculation submission, liaison with TowerCo engineering, tracking SAA to NTP.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Commercial MLA negotiations and monthly tower rental fees (exclusive Operator responsibility).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Co-Location Site</span></td>
+        <td style="text-align: center; font-weight: 600;">897</td>
+        <td style="text-align: center; font-weight: 600;">4,517</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">50% upon SAA submission; 50% upon TowerCo issuance of formal SAA Approval / NTP.</td>
+        <td style="font-size: 7.5pt;"><strong>Approved TowerCo SAA &amp; Official Notice to Proceed (NTP)</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">SAQ-04</span></td>
+        <td><strong>Greenfield Land Lease Negotiation &amp; Notarized Contract Support</strong></td>
+        <td>
+          Direct lessor negotiations for greenfield sites: boundary survey coordination, verification of registered ownership (clean title check at Registry of Deeds, inheritance/estate verification, real property tax clearance), negotiation of long-term lease terms (10-15 years) within Operator budgetary caps, preparation of lease annexes, securing lessor spousal consent and IDs, and facilitation of formal contract notarization and annotation on title.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Lessor negotiations, title due diligence, boundary verification, notary liaison, lease execution assistance.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Actual lease rentals, advance deposits, and title annotation official fees (Operator pays directly).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Greenfield Site</span></td>
+        <td style="text-align: center; font-weight: 600;">103</td>
+        <td style="text-align: center; font-weight: 600;">483</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">50% upon mutual execution of Lease Agreement; 50% upon Notarization and Title Annotation.</td>
+        <td style="font-size: 7.5pt;"><strong>Executed &amp; Notarized Contract of Lease + Clean Title Dossier</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">SAQ-05</span></td>
+        <td><strong>Local Community, Barangay &amp; Neighborhood Clearances</strong></td>
+        <td>
+          Securing official local community clearances: presentation to Barangay Council, public hearing facilitation (if mandated), processing and issuance of official Barangay Resolution of Support, Barangay Construction Clearance, and certified Neighborhood / Homeowners Association (HOA) Resolution / Certificate of No Objection from contiguous property owners within a 50-meter radius.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Barangay consultations, neighbor signature campaigns, clearance filing and follow-through, official receipts.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Official LGU statutory fees (reimbursable at actual cost against official receipts).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon issuance of certified Barangay Clearance &amp; HOA No Objection Resolution.</td>
+        <td style="font-size: 7.5pt;"><strong>Certified Barangay Clearance &amp; HOA Resolution of No Objection</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">SAQ-06</span></td>
+        <td><strong>Local Government Unit (LGU) Building &amp; Construction Permits</strong></td>
+        <td>
+          Complete processing and procurement of municipal/city LGU Building Permits in accordance with the National Building Code of the Philippines (PD 1096). Scope includes securing Locational Clearance, Zoning Compliance, Architectural Permit, Civil/Structural Permit, Electrical Permit, Sanitary/Plumbing Permit, and Mechanical Permit, backed by complete sets of plans signed and sealed by licensed Professional Engineers (Civil, Structural, Electrical, PEE).<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Permit application filing, engineering plan liaison, follow-through across city/municipal engineering offices.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Official municipal permit assessment fees (reimbursable at face value against official receipts).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Greenfield Site / Co-loc where required</span></td>
+        <td style="text-align: center; font-weight: 600;">103</td>
+        <td style="text-align: center; font-weight: 600;">483</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon release of official LGU Building Permit and Approved Engineering Plans.</td>
+        <td style="font-size: 7.5pt;"><strong>Official LGU Building Permit &amp; Endorsed Blueprints</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">SAQ-07</span></td>
+        <td><strong>Statutory &amp; Environmental Clearances (CAAP, DENR, DPWH)</strong></td>
+        <td>
+          Procurement of mandatory national statutory clearances: Civil Aviation Authority of the Philippines (CAAP) Height Clearance Permit / Obstruction Evaluation; Department of Environment and Natural Resources (DENR) Certificate of Non-Coverage (CNC) or Environmental Compliance Certificate (ECC); and Department of Public Works and Highways (DPWH) Road Right-of-Way (ROW) clearance where site access fronts national highways.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Technical submittals, coordinate and elevation certification, CAAP/DENR filing and technical defense.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Official statutory assessment fees (reimbursable at actual cost).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site</span></td>
+        <td style="text-align: center; font-weight: 600;">103</td>
+        <td style="text-align: center; font-weight: 600;">483</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon issuance of official CAAP Height Clearance and DENR CNC/ECC.</td>
+        <td style="font-size: 7.5pt;"><strong>Official CAAP Height Clearance Permit &amp; DENR CNC/ECC</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">SAQ-08</span></td>
+        <td><strong>Utility Interconnection, CFEI, FSIC &amp; Occupancy Permitting</strong></td>
+        <td>
+          Securing post-construction occupancy and power clearances: processing Certificate of Final Electrical Inspection (CFEI), Bureau of Fire Protection (BFP) Fire Safety Inspection Certificate (FSIC), commercial power utility (Meralco / Regional Electric Cooperative) service application, transformer tapping coordination, meter base energization, and municipal LGU Certificate of Final Occupancy / Permit to Operate.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> BFP inspection facilitation, CFEI filing, utility coordination, meter installation liaison, occupancy release.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Utility transformer installation capital contribution and security deposits (paid by Operator).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">50% upon CFEI/FSIC release; 50% upon commercial grid energization and Occupancy Permit.</td>
+        <td style="font-size: 7.5pt;"><strong>CFEI, FSIC, Utility Meter Energization Notice &amp; Certificate of Occupancy</strong></td>
+      </tr>
+
+
+      <tr class="domain-row">
+        <td><span class="code-badge">CAT-02</span></td>
+        <td colspan="9">DOMAIN: SITE ENGINEERING & DETAILED SITE SURVEY</td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">ENG-01</span></td>
+        <td><strong>Technical Site Survey (TSS) &amp; 360° Drone Panoramic Audit</strong></td>
+        <td>
+          Rigorous multi-disciplinary physical site survey executed by licensed telecom and civil engineers: 360° high-resolution panoramic photographic sweep at target antenna centerline (using calibrated drone or mast camera); precision dual-frequency GPS coordinate recording; physical measurement of compound dimensions, tower base, shelter/cabinet footprint; cable gantry routing audit; transport access route assessment (bridge load limits, tight turning radii); and compilation of raw TSS data.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Multi-disciplinary field team, calibrated drone flight, 360-deg panoramic photos, spatial sketches, access log.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Tower climbing above 60m (requires separate high-mast specialized rigging permit if applicable).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon completion of field survey and upload of raw survey package and photos.</td>
+        <td style="font-size: 7.5pt;"><strong>Raw TSS Survey Package &amp; High-Resolution 360° Panoramic Photo Suite</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">ENG-02</span></td>
+        <td><strong>Structural Loading, Wind Stress &amp; Civil Engineering Assessment</strong></td>
+        <td>
+          Engineering structural evaluation of the proposed host structure (tower, rooftop, or monopole): audit of steel member sections, bracing, gusset plates, anchor bolts, and corrosion condition; calculation of total Effective Projected Area (EPA) and weight for new equipment (3x 8T8R RRU, 3x macro antennas/AAUs, AMB brackets, hybrid cable); structural wind load simulation under TIA-222-H for 250 km/h basic wind speed (Category 5 typhoon standard); foundation capacity verification; and formal structural analysis report certified by a licensed Professional Structural Engineer (PE).<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Structural audit, EPA calculations, TIA-222-H wind simulation, foundation check, PE sign-off.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Tower reinforcement civil execution (governed by separate structural modification call-out rate card).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon submission and acceptance of the PE-Endorsed Structural Analysis Report.</td>
+        <td style="font-size: 7.5pt;"><strong>PE-Signed Structural Engineering Analysis &amp; Loading Report</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">ENG-03</span></td>
+        <td><strong>Electrical, DC Power &amp; Earth Grounding Engineering Assessment</strong></td>
+        <td>
+          Electrical engineering audit of commercial AC utility power and DC power plant: inspection of transformer capacity (kVA), service entrance voltage, phase balance, AC main breaker rating; assessment of existing DC power plant (rectifier total capacity, SMPS controller, available DC branch breakers &gt;= 63A for new radio load); calculation of LiFePO4 battery autonomy (minimum 4.0h @ 3.0 kW load, &lt;= 80% DoD); and 3-point fall-of-potential earth resistance measurement of the grounding grid, mandating &lt;= 5.0 Ohms pursuant to Philippine Electrical Code (PEC) and TelTech engineering specifications.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Commercial power audit, DC rectifier capacity calculation, battery autonomy simulation, 3-point earth test.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Major utility transformer upgrades (handled under utility capex contribution).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon Operator acceptance of Electrical &amp; Power Assessment Report.</td>
+        <td style="font-size: 7.5pt;"><strong>Electrical, Power &amp; Grounding Engineering Assessment Report</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">ENG-04</span></td>
+        <td><strong>RF Engineering Siting, Line-of-Sight (LOS) &amp; Clutter Assessment</strong></td>
+        <td>
+          On-site RF validation of nominal design coverage over target barangay demand centroid: physical line-of-sight (LOS) inspection at proposed antenna centerlines (30m, 35m, 40m AGL); clutter height and foliage density classification; identification of close-in obstructions within 200m of sector azimuths (0°, 120°, 240°); calculation of first Fresnel zone clearance; and field verification that simulated coverage will achieve target cell-edge RSRP &gt;= -95 dBm and SINR &gt;= 6 dB.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> On-ground visual LOS audit, clutter verification, azimuth clearance check, RF siting validation report.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Continuous cluster drive test (governed under Lot 5 Scope RNO-01).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon RF Engineering approval of Siting &amp; LOS Report.</td>
+        <td style="font-size: 7.5pt;"><strong>RF Siting &amp; Line-of-Sight (LOS) Clearance Report</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">ENG-05</span></td>
+        <td><strong>Detailed Engineering Design (DED) &amp; Technical Site Survey Report (TSSR)</strong></td>
+        <td>
+          Consolidation of multidisciplinary survey data into a complete Detailed Engineering Design (DED) blueprint package and Technical Site Survey Report (TSSR): Architectural Site Layout Plan; Tower Elevation &amp; Antenna Orientation Plan; Antenna Mounting Bracket (AMB) Fabrication Details; Cable Ladder, Gantry &amp; Cable Tray Routing Plan; Electrical Single Line Diagram (SLD); Earth Grounding Ring &amp; Lightning Protection Layout; Site Bill of Quantities (BoQ); and formal endorsement by licensed Professional Engineers (PE-Civil/Structural, PE-Electrical, PECE-Electronics) conforming to NBCP and PEC.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> AutoCAD DED drawings, multi-PE signed &amp; sealed plans, BoQ compilation, full TSSR dossier submission.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Structural redesigns necessitated by Operator-mandated changes to nominal search ring after survey approval.
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon formal joint Operator-TowerCo TSSR approval.</td>
+        <td style="font-size: 7.5pt;"><strong>Approved TSSR Dossier with PE Signed &amp; Sealed CAD Blueprints</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">ENG-06</span></td>
+        <td><strong>As-Built Engineering Documentation &amp; Final Completion Dossier</strong></td>
+        <td>
+          Comprehensive post-construction field engineering audit capturing all redline installation adjustments: updating AutoCAD drawings to reflect exact as-built antenna heights, azimuths, mechanical tilts, optical cable routes, rack layouts, breaker allocations, and grounding busbar termination points; compiling comprehensive photographic completion book (minimum 50 high-res timestamped photos per site); and securing final Professional Engineer endorsement.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Field redline audit, final CAD as-built drawings (DWG &amp; PDF), photographic completion book, PE endorsement.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Routine operational documentation updates post-commercial acceptance.
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon formal issuance of the Final Acceptance Certificate (FAC).</td>
+        <td style="font-size: 7.5pt;"><strong>Final As-Built CAD Drawings (DWG &amp; PDF) + Photographic Completion Book</strong></td>
+      </tr>
+
+
+      <tr class="domain-row">
+        <td><span class="code-badge">CAT-03</span></td>
+        <td colspan="9">DOMAIN: RADIO NETWORK PLANNING & DESIGN</td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">RNPD-01</span></td>
+        <td><strong>Macro RF Nominal Planning &amp; 3D Propagation Modeling</strong></td>
+        <td>
+          Macro-level 5G RF network planning using advanced 3D ray-tracing propagation modeling engines, calibrated against high-resolution 5-meter clutter models and Digital Terrain Models (DTM). Sizing and generation of nominal candidate search rings across high-density suburban and rural barangay centroids; multi-carrier capacity dimensioning for Band n50 (60 MHz NCR / up to 80 MHz Provincial, Software-Configurable 40/50/60/80 MHz TDD); coverage prediction mapping (RSRP, SINR, Best Server, Downlink/Uplink Throughput); and inter-site distance (ISD) optimization.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> 3D ray-tracing simulation, clutter model calibration, nominal site planning, search ring generation.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Procurement of specialized external digital terrain data licenses (provided by Operator).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon formal Operator approval of the Nominal RF Network Design Package.</td>
+        <td style="font-size: 7.5pt;"><strong>Nominal RF Network Design Package &amp; Ray-Tracing Simulation Dossier</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">RNPD-02</span></td>
+        <td><strong>Cell Design Data (CDD) Engineering &amp; Parameter Allocation</strong></td>
+        <td>
+          Engineering, generation, and validation of detailed site-specific Cell Design Data (CDD) sheets: cell naming taxonomy, gNodeB IDs, Physical Cell ID (PCI) planning adhering to modulo-3 and modulo-30 collision rules, Root Sequence Index (RSI), Tracking Area Codes (TAC), Neighbor Cell Lists (NCL / ANR), PRACH configuration, absolute radio-frequency channel numbers (ARFCN), per-carrier transmit power, and antenna configuration parameters (azimuth, mechanical tilt, eRET ranges).<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> CDD parameter engineering, PCI planning, neighbor list generation, configuration script generation.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Core network routing configuration (handled under Lot 3).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon validation and successful upload of CDD parameters into the network EMS/OSS.</td>
+        <td style="font-size: 7.5pt;"><strong>Approved Cell Design Data (CDD) Sheet &amp; Parameter Script</strong></td>
+      </tr>
+
+
+      <tr class="domain-row">
+        <td><span class="code-badge">CAT-04</span></td>
+        <td colspan="9">DOMAIN: TELECOM LOGISTICS & MATERIAL HANDLING</td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">LOG-01</span></td>
+        <td><strong>Central &amp; Regional Warehousing, Buffer Staging &amp; Serialized Asset Tagging</strong></td>
+        <td>
+          Receipt of OEM shipments at Port of Manila / Batangas; bonded climate-controlled warehousing in central Mega Manila and regional hubs (North Luzon, South Luzon, Visayas, Mindanao); unboxing, physical inspection, and QA damage checking; barcode asset tagging at serial-number level; updating Operator ERP/WMS inventory records; and maintaining segregated buffer stock.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Warehouse facility, security, ERP tracking, barcode tagging, climate control, buffer stock management.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Port customs duties and VAT taxes (direct Operator responsibility).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon material receipt, inspection, and barcode registration into inventory ERP.</td>
+        <td style="font-size: 7.5pt;"><strong>Serialized Inventory Receiving Report &amp; Barcode Registry</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">LOG-02</span></td>
+        <td><strong>Site BOM Kitting, Staging &amp; Pre-Assembly Services</strong></td>
+        <td>
+          Assembly and kitting of site-specific deployment packages: picking 1x BBU, 3x 8T8R RRUs, 3x macro antennas/AAUs, optical patchcords, DC power cables, Type 2 SPDs, grounding kits, and hardware accessories; pre-cutting cable lengths based on approved TSSR; labeling; staging in protective crates; and performing bench test pre-checks and firmware pre-flashing.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Picking, staging, pre-cutting cables, labeling, firmware pre-flashing, packaging into site kits.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Supply of missing OEM radio equipment (OEM responsibility).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon staging and issuance of Site Dispatch Slip.</td>
+        <td style="font-size: 7.5pt;"><strong>Site BOM Kitting Slip &amp; Staging Inspection Checklist</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">LOG-03</span></td>
+        <td><strong>Regional Transport &amp; Final-Mile Rough-Road Site Hauling</strong></td>
+        <td>
+          Transportation from central warehouse to regional hubs via heavy freight, followed by dedicated final-mile transport to remote barangay site locations utilizing heavy-duty 4x4 trucks, motorized bancas/barges (for island sites), or manual porterage across unpaved rough-road terrain; comprehensive in-transit cargo insurance; and on-site offloading.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Long-haul freight, final-mile 4x4 hauling, manual porterage, transit insurance, on-site offloading.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Helicopter airlifts (applicable only under extraordinary force majeure call-out).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon verified on-site delivery and execution of Material Receiving Report (MRR).</td>
+        <td style="font-size: 7.5pt;"><strong>Signed Material Receiving Report (MRR) by on-site supervisor</strong></td>
+      </tr>
+
+
+      <tr class="domain-row">
+        <td><span class="code-badge">CAT-05</span></td>
+        <td colspan="9">DOMAIN: TELECOM INSTALLATION, COMMISSIONING & INTEGRATION</td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">TI-01</span></td>
+        <td><strong>Tower Rigging &amp; Mechanical Antenna / RRU Installation</strong></td>
+        <td>
+          Mechanical mounting by certified riggers: hoisting and installing 3x macro high-gain antennas and 3x 8T8R RRUs on tower antenna mounting brackets (AMB) at specified AGL centerlines (30m to 45m); setting precise mechanical downtilt and sector azimuths (0°, 120°, 240°) using calibrated digital inclinometers and compasses; and installing AISG 2.0 eRET control cables.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Tower rigging crews, safety equipment, hoisting gear, AMB mounting, antenna and RRU installation.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Supply of steel antenna mounting brackets (AMB) (governed under Lot 1 hardware).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">50% upon mechanical mounting completion; 50% upon joint rigging inspection.</td>
+        <td style="font-size: 7.5pt;"><strong>Mechanical Rigging &amp; Antenna Alignment Inspection Sheet</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">TI-02</span></td>
+        <td><strong>RF, Optical Fiber &amp; DC Power Cabling Installation</strong></td>
+        <td>
+          Routing, fastening, and dressing armored multi-core optical fiber jumpers and DC power cables along tower cable ladders and horizontal gantries; installing cold-shrink weatherproof boots on all 7/16 DIN or 4.3-10 RF connectors; installing Type 2 DC Surge Protection Devices (SPD) at tower top and base; and bonding 3-point grounding kits to the external ground busbar.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Cable routing, cleating, hydraulic crimping, weatherproofing, SPD installation, grounding bond.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Internal civil cabling of third-party shelters.
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">50% upon cabling installation; 50% upon weatherproofing and grounding sign-off.</td>
+        <td style="font-size: 7.5pt;"><strong>Cabling Installation &amp; Weatherproofing Quality Checklist</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">TI-03</span></td>
+        <td><strong>Baseband Unit (BBU) Installation &amp; Cabinet Wiring</strong></td>
+        <td>
+          19&quot; rack installation of 5G Baseband Unit (BBU) in outdoor equipment cabinet or shelter; dual -48V DC power wiring to dedicated distribution breakers; routing backhaul transmission optical patchcords to fiber demarcation router; and installing GNSS/GPS antenna and surge arrester with unobstructed sky view for PTP/SyncE clock synchronization.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Rack mounting, DC wiring, optical patchcord routing, GPS antenna installation, labeling.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Supply of DC rectifier plant (governed under Lot 2).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon BBU rack installation and DC power-up.</td>
+        <td style="font-size: 7.5pt;"><strong>BBU Installation &amp; Cabinet Wiring Verification Sheet</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">TI-04</span></td>
+        <td><strong>Telecom Commissioning, Sweep Testing &amp; Power-Up</strong></td>
+        <td>
+          DC power turn-up, voltage and polarity verification; firmware loading and diagnostic testing; optical transceiver Rx/Tx power level verification; and calibrated RF sweep testing measuring Return Loss (&gt;= 16.5 dB) and VSWR (&lt;= 1.35:1) across all antenna ports and jumpers using a calibrated SiteMaster analyzer.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Commissioning turn-up, firmware loading, optical power check, VSWR sweep testing, test trace logs.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Rectification of OEM internal hardware manufacturing defects (OEM warranty scope).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon successful sweep testing and commissioning approval.</td>
+        <td style="font-size: 7.5pt;"><strong>Commissioning Test Log &amp; VSWR/Return Loss Sweep Traces</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">TI-05</span></td>
+        <td><strong>gNodeB Network Integration &amp; OSS Commercial On-Air</strong></td>
+        <td>
+          Transmission IP integration (VLAN, BGP, IPsec); establishing S1-U / N2/N3 control and user plane interfaces to 5G Core (AMF/UPF); synchronization with TelTech EMS/OSS; activating 3 sectors on Band n50 (60 MHz NCR / up to 80 MHz Provincial, Software-Configurable 40/50/60/80 MHz TDD); clearing all active alarms; and achieving stable commercial on-air operational state.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> IP configuration, Core integration, OSS synchronization, carrier activation, alarm clearance.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Core network UPF dimensioning (governed under Lot 3).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon site on-air declaration and alarm-free verification.</td>
+        <td style="font-size: 7.5pt;"><strong>Commercial On-Air Certificate &amp; OSS Alarm-Free Screenshot</strong></td>
+      </tr>
+
+
+      <tr class="domain-row">
+        <td><span class="code-badge">CAT-06</span></td>
+        <td colspan="9">DOMAIN: SINGLE SITE VERIFICATION & ACCEPTANCE</td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">ACC-01</span></td>
+        <td><strong>Mechanical, Civil &amp; Electrical Site Acceptance (ATP-A)</strong></td>
+        <td>
+          Joint physical on-site inspection: verifying bolt torque marks on tower mounts, cable ladder fastening, cable tray grounding, weatherproofing seal integrity, electrical breaker labeling, 3-point earth ground resistance audit (confirming &lt;= 5.0 Ohms), compound housekeeping, and punchlist compilation and clearance.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Joint physical audit, torque inspection, grounding verification, punchlist clearance.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Radio performance verification (covered under ATP-B and SSV).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon joint ATP-A punchlist clearance and sign-off.</td>
+        <td style="font-size: 7.5pt;"><strong>Signed ATP-A Certificate &amp; Punchlist Clearance Sheet</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">ACC-02</span></td>
+        <td><strong>Active Telecom &amp; Functional Acceptance (ATP-B)</strong></td>
+        <td>
+          Remote and local active functional testing: verifying 8T8R MU-MIMO operation, electronic downtilt (eRET) remote control functionality via OSS, power fail / mains failure alarm simulation, optical fiber failover test, and carrier shutdown/restart diagnostic tests to ensure robust autonomic operation.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Remote EMS diagnostic testing, alarm simulation, eRET control validation, MIMO verification.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Physical climbing inspection (covered under ATP-A).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon joint ATP-B sign-off.</td>
+        <td style="font-size: 7.5pt;"><strong>Signed ATP-B Functional Acceptance Certificate</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">ACC-03</span></td>
+        <td><strong>Single Site Verification (SSV) &amp; RF Call Testing</strong></td>
+        <td>
+          On-ground field testing using 5G test UE and scanner: stationary throughput tests at near, mid, and cell-edge points per sector (validating &gt;= 450 Mbps peak DL, &gt;= 50 Mbps cell-edge DL, &gt;= 15 Mbps cell-edge UL); sector swap validation; intra-site handover execution; latency measurement (&lt;= 18 ms RTT); and compilation and sign-off of the formal SSV Report.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Stationary throughput tests, sector swap check, handover test, ping test, SSV report compilation.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Multi-site cluster drive testing (covered under Category 7).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon formal SSV Report approval by Operator.</td>
+        <td style="font-size: 7.5pt;"><strong>Approved Single Site Verification (SSV) Report &amp; Log Files</strong></td>
+      </tr>
+
+
+      <tr class="domain-row">
+        <td><span class="code-badge">CAT-07</span></td>
+        <td colspan="9">DOMAIN: CLUSTER RADIO NETWORK OPTIMIZATION</td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">RNO-01</span></td>
+        <td><strong>Pre-Launch Cluster Drive Testing &amp; RF Baseline Audit</strong></td>
+        <td>
+          Continuous scanner and test UE drive testing across contiguous clusters of 10–20 sites; capturing RSRP, SINR, CQI, throughput, and coverage overlap; and identifying pilot pollution zones, coverage holes, and excessive inter-cell interference.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Drive test vehicle, scanner, test UEs, GPS logging, drive test raw log processing, baseline report.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Physical antenna re-orientation (governed under RNO-02).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site Share (or Per Cluster)</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">50% upon completion of cluster drive test and baseline report submission.</td>
+        <td style="font-size: 7.5pt;"><strong>Cluster Drive Test Raw Logs &amp; RF Baseline Audit Report</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">RNO-02</span></td>
+        <td><strong>Cluster Physical &amp; Soft Parameter Optimization</strong></td>
+        <td>
+          Iterative optimization across cluster: electronic remote electrical tilt (eRET) adjustments to control cell-edge interference and shape coverage; azimuth and mechanical tilt adjustments where indicated; PCI re-planning to resolve mod-3/mod-30 clashes; neighbor list (NCL) cleanup; handover threshold tuning; and uplink power control adjustments.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> eRET tuning, PCI re-planning, neighbor tuning, handover optimization, parameter upload script.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Major tower antenna re-heightening (governed by call-out rate card).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site Share (or Per Cluster)</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">50% upon parameter implementation and verification in OSS.</td>
+        <td style="font-size: 7.5pt;"><strong>Cluster Parameter Optimization Record &amp; Delta Script</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">RNO-03</span></td>
+        <td><strong>Cluster Acceptance KPI Validation &amp; Final Sign-Off</strong></td>
+        <td>
+          Post-tuning verification drive test and OSS 14-day statistical performance audit: validating cluster Radio Availability &gt;= 99.95%, Session Setup Success Rate (CSSR) &gt;= 99.60%, Session Drop Rate (CDDR) &lt;= 0.15%, cluster average DL throughput &gt;= 450 Mbps, cell-edge DL &gt;= 50 Mbps; and submission of formal Cluster Acceptance Dossier.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Verification drive test, 14-day OSS KPI statistical audit, benchmark reporting, formal sign-off.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Ongoing post-commercial operations optimization (covered under Lot 6 Managed Services).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Cluster (65 Clusters Phase 1 / 325 Clusters Program)</span></td>
+        <td style="text-align: center; font-weight: 600;">65</td>
+        <td style="text-align: center; font-weight: 600;">325</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon formal sign-off of Cluster Acceptance Certificate.</td>
+        <td style="font-size: 7.5pt;"><strong>Approved Cluster Acceptance Certificate &amp; 14-Day KPI Audit Report</strong></td>
+      </tr>
+
+
+      <tr class="domain-row">
+        <td><span class="code-badge">CAT-08</span></td>
+        <td colspan="9">DOMAIN: OPERATIONS & MAINTENANCE (O&M) / MANAGED SERVICES</td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">MS-NOC-01</span></td>
+        <td><strong>24/7/365 Central NOC Tier-1 Active Surveillance &amp; Alarm Monitoring</strong></td>
+        <td>
+          Continuous 24/7/365 active monitoring of all active and passive network elements across RAN, Core, Power, and Transmission; automated alarm correlation and noise suppression; ticket logging within 5 minutes of alarm onset; and issuance of Daily Operational Flash Report at 06:00 PHT.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> 24/7 Tier-1 NOC staffing, automated correlation, trouble ticket creation, daily flash reporting.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Third-party commercial power utility outages outside contractor control (tracked as excusable SLA).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site / Month</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">Monthly in arrears upon SLA performance certification.</td>
+        <td style="font-size: 7.5pt;"><strong>Daily Flash Reports, Monthly NOC Surveillance Dossier &amp; Availability Report</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">MS-NOC-02</span></td>
+        <td><strong>Incident Management, Triage &amp; Automated Trouble Ticketing</strong></td>
+        <td>
+          End-to-end incident management: automated ticketing via OSS/ITSM; severity classification (Sev 1 Critical to Sev 4 Warning); technician dispatch initiation within 15 minutes for Sev 1 incidents; bridge coordination; and stakeholder notification.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> ITSM platform, ticket lifecycle tracking, escalation dispatch, MTTR SLA auditing.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Operator customer service call center operations (BSS scope).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site / Month</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">Monthly in arrears.</td>
+        <td style="font-size: 7.5pt;"><strong>Monthly Trouble Ticket Log, MTTR Audit &amp; Dispatch Statistics</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">MS-NOC-03</span></td>
+        <td><strong>Tier-2 Remote Technical Diagnostics, Fault Recovery &amp; Config Management</strong></td>
+        <td>
+          24/7 remote engineering support: soft and hard resets, remote diagnostic sweeps, card re-initialization, backup configuration restoration, transmission routing failover, and software rollback to clear network faults without field truck rolls.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Tier-2 remote engineers, remote script execution, transmission path failover, config restoration.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Physical on-site hardware replacement (covered under FLM).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site / Month</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">Monthly in arrears.</td>
+        <td style="font-size: 7.5pt;"><strong>Remote Fault Resolution Log &amp; Configuration Change Audit</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">MS-NOC-04</span></td>
+        <td><strong>Tier-3 Engineering Escalation &amp; OEM TAC Management</strong></td>
+        <td>
+          Advanced engineering escalation for complex system bugs, protocol crashes, and persistent hardware/software anomalies: case logging with OEM TAC (Level 3), trace log collection, bug patch testing, software patch deployment, and Root Cause Analysis (RCA) reporting within 24 hours of major incident restoration.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> OEM TAC case management, trace capture, patch verification, RCA report compilation.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> OEM base software annual license royalties (governed under Software AMC).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site / Month</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">Monthly in arrears.</td>
+        <td style="font-size: 7.5pt;"><strong>Formal Root Cause Analysis (RCA) Reports &amp; OEM TAC Case Log</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">MS-FLM-01</span></td>
+        <td><strong>24/7 Field First Line Maintenance (FLM) Emergency Response</strong></td>
+        <td>
+          Provision of dedicated, nationwide 24/7 mobile field maintenance crews equipped with 4x4 vehicles, complete safety gear, calibrated test instruments, and emergency restoration tools. Strict compliance with mandated MTTR SLAs: Severity 1 (Critical - Site Outage): Response &lt;= 15 mins, MTTR &lt;= 2.0h (Urban) / &lt;= 4.0h (Rural); Severity 2 (Major - Sector Down / Power Degraded): Response &lt;= 30 mins, MTTR &lt;= 4.0h (Urban) / &lt;= 6.0h (Rural); Severity 3 (Minor - Non-Service Affecting): Response &lt;= 1h, MTTR &lt;= 12.0h (Urban) / &lt;= 24.0h (Rural); Severity 4 (Warning / Planned): Response &lt;= 4h, MTTR &lt;= 48.0h (Urban) / &lt;= 72.0h (Rural).<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Dedicated 24/7 crews, 4x4 maintenance vehicles, tools, fuel, emergency call-outs.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Force majeure acts of God (typhoon damage recovery governed under Call-Out Rate Card).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site / Month</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">Monthly in arrears, subject to SLA service credit adjustments.</td>
+        <td style="font-size: 7.5pt;"><strong>Monthly FLM Incident Log, Restoration Work Orders &amp; MTTR SLA Report</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">MS-FLM-02</span></td>
+        <td><strong>Active Telecom Hardware Replacement &amp; Field Swapping</strong></td>
+        <td>
+          On-site replacement of damaged or defective active telecom hardware: RRUs, BBUs, baseband processing cards, optical SFP transceivers, RF jumpers, and GPS antennas, utilizing pre-staged regional spare parts float to achieve fast-track MTTR restoration.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Technician labor, de-installation, replacement installation, power-up test, return voucher.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Cost of out-of-warranty hardware destruction caused by third-party vandalism.
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Included in FLM Monthly Retainer / Per Site-Month</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">Monthly in arrears.</td>
+        <td style="font-size: 7.5pt;"><strong>Hardware Replacement Slip &amp; Defective Unit Return Voucher</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">MS-FLM-03</span></td>
+        <td><strong>Passive Power &amp; Infrastructure Emergency Restoration</strong></td>
+        <td>
+          Rapid restoration of passive site elements: resetting/replacing tripped DC distribution breakers, rectifying rectifier module faults, clearing battery management system (BMS) lockouts, replacing blown AC/DC surge protection devices (SPDs), and diagnosing automatic transfer switch (ATS) failures.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Electrical diagnosis, breaker reset/replacement, SPD swapping, BMS diagnostic clearing.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Replacement of entire battery bank destroyed by external flood (insurance scope).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Included in FLM Monthly Retainer / Per Site-Month</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">Monthly in arrears.</td>
+        <td style="font-size: 7.5pt;"><strong>Passive Infrastructure Restoration Work Order</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">MS-FLM-04</span></td>
+        <td><strong>Emergency Fiber Backhaul Splicing &amp; Optical Link Restoration</strong></td>
+        <td>
+          Emergency mobilization for fiber transmission outages: OTDR optical fault localization, optical cable drop replacement, mechanical or fusion splicing, and optical splice enclosure re-sealing to restore backhaul transport within mandated MTTR.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> OTDR fault tracing, fusion splicing labor, splice enclosure resealing, link test.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Major fiber spans exceeding 500 meters (governed by Call-Out Rate Card).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Included in FLM Monthly Retainer / Per Site-Month</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">Monthly in arrears.</td>
+        <td style="font-size: 7.5pt;"><strong>Optical OTDR Trace Report &amp; Splicing Restoration Certificate</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">MS-PM-01</span></td>
+        <td><strong>Quarterly Telecom Equipment Preventive Maintenance (Module A)</strong></td>
+        <td>
+          Execution of 100% quarterly routine telecom PM: visual inspection of BBU/RRU chassis, optical fiber connector cleaning and inspection, RF jumper weatherproofing boot inspection, cable clamp torque verification, optical SFP power level verification, and dust filter cleaning.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Quarterly on-site inspection, connector cleaning, weatherproofing audit, SFP level audit, PM report.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Major equipment overhaul.
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site / Quarter (or Monthly share)</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">Quarterly upon submission of 100% PM checklists and mobile audit photos.</td>
+        <td style="font-size: 7.5pt;"><strong>Quarterly Telecom PM Report &amp; Mobile App Timestamped Audit Dossier</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">MS-PM-02</span></td>
+        <td><strong>Quarterly DC Power &amp; LiFePO4 Battery PM (Module B)</strong></td>
+        <td>
+          Comprehensive quarterly electrical PM: rectifier module load sharing verification, DC output float/equalize voltage calibration, terminal screw torque verification, LiFePO4 battery BMS diagnostic sweep, cell voltage and internal resistance measurement, and 1-hour controlled battery discharge autonomy test under load.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Rectifier calibration, BMS diagnostic sweep, internal resistance test, 1-hour load test.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Battery module replacement (handled under RMA / Spares float).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site / Quarter</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">Quarterly upon submission of Battery Health Dossier.</td>
+        <td style="font-size: 7.5pt;"><strong>DC Power &amp; Battery PM Audit Report + Cell Health Telemetry</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">MS-PM-03</span></td>
+        <td><strong>Quarterly Earth Grounding &amp; Lightning Protection Audit (Module C)</strong></td>
+        <td>
+          Precision ground resistance audit using 3-point fall-of-potential test instrument (confirming earth ground resistance &lt;= 5.0 Ohms); Cadweld connection inspection; copper busbar bolt torque check; corrosion audit; and inspection of air terminals, down-conductors, and surge arresters.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> 3-point fall-of-potential test, Cadweld check, busbar torque check, lightning arrester audit.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Civil construction of new ground ring (if soil conditions deteriorate; governed by civil rate card).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site / Quarter</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">Quarterly upon submission of Grounding Audit Report.</td>
+        <td style="font-size: 7.5pt;"><strong>Earth Ground Resistance Test Certificate with Instrument Calibration Tag</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">MS-PM-04</span></td>
+        <td><strong>Bi-Annual Tower Structure, Rigging &amp; Aviation Light Audit (Module D)</strong></td>
+        <td>
+          Specialized climbing inspection conducted twice per year: physical inspection of tower steel members, monopole climbing ladder, fall arrest cable, AMB mounting bracket bolt torque verification, antenna azimuth/tilt physical check, cable ladder clamping check, and inspection of CAAP-compliant aviation obstruction light and photocell controller.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Certified climbing riggers, structural member inspection, bolt torque audit, CAAP light audit.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Tower painting / rust rehabilitation (governed under civil facility maintenance).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site / Semi-Annual</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">Semi-annually upon submission of Tower Rigging Audit Report.</td>
+        <td style="font-size: 7.5pt;"><strong>Bi-Annual Tower Climbing &amp; Rigging Audit Report + High-Res Photos</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">MS-PM-05</span></td>
+        <td><strong>Quarterly Site Compound, Civil &amp; Environmental Upkeep (Module E)</strong></td>
+        <td>
+          Routine civil compound maintenance: inspection and repair of chain-link perimeter fencing and barbed wire; greasing and servicing gate locking mechanisms; weed cutting, vegetation clearance, and chemical weed-killing within a 3-meter perimeter of compound; drainage channel clearing; and pest/rodent proofing of equipment cabinet cable entries.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Compound weeding, perimeter clearing, fence repair, lock lubrication, cable entry pest sealing.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Major civil perimeter wall re-construction post-landslide.
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site / Quarter</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">Quarterly upon compound inspection sign-off.</td>
+        <td style="font-size: 7.5pt;"><strong>Compound Upkeep Audit Checklist &amp; Before/After Photos</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">MS-SPM-01</span></td>
+        <td><strong>Regional Spare Parts Buffer Float Management (SPMS)</strong></td>
+        <td>
+          Operation of climate-controlled, secure regional spare parts depots (Mega Manila, North Luzon, South Luzon, Visayas, Mindanao); managing and maintaining an agreed 2.0% active hardware spares float (BBUs, RRUs, SFPs, rectifiers, batteries, cables); tracking serial numbers via WMS; and conducting monthly physical cycle counts.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Regional storage depots, inventory management, serialized tracking, monthly cycle counts.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Procurement of additional replacement spares beyond contractual float (Operator capex).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site / Month</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">Monthly in arrears.</td>
+        <td style="font-size: 7.5pt;"><strong>Monthly Spare Parts Float Status Report &amp; Cycle Count Audit</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">MS-SPM-02</span></td>
+        <td><strong>Advance Hardware Replacement (AHR) &amp; Expedited Field Delivery</strong></td>
+        <td>
+          Rapid logistics dispatch delivering replacement hardware to field maintenance crews: Next-Business-Day (NBD) standard delivery nationwide, or expedited 4-hour emergency delivery for major macro hubs and critical transmission nodes.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Expedited dispatch, emergency courier, chain of custody documentation, field delivery receipt.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Standard scheduled routine replenishment.
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Included in SPM Retainer / Per Site-Month</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">Monthly in arrears.</td>
+        <td style="font-size: 7.5pt;"><strong>Hardware Dispatch Manifest &amp; Proof of On-Site Delivery</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">MS-SPM-03</span></td>
+        <td><strong>Return Merchandise Authorization (RMA) &amp; OEM Factory Repair Logistics</strong></td>
+        <td>
+          Managing the reverse logistics lifecycle for defective hardware: retrieving faulty units from field crews, conducting triage, generating RMA requests, managing packaging and export/import customs for OEM repair/replacement, tracking turnaround time (TAT &lt;= 30 calendar days), and returning repaired units to the regional buffer float.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Defective unit triage, RMA processing, shipping to OEM repair facility, tracking, customs clearance.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Out-of-warranty OEM repair billing charges (passed through at actual OEM repair cost).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Included in SPM Retainer / Per Site-Month</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">Monthly in arrears.</td>
+        <td style="font-size: 7.5pt;"><strong>RMA Lifecycle Tracking Dossier &amp; OEM Repair Turnaround Log</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">MS-RNO-01</span></td>
+        <td><strong>Continuous Radio Network Optimization &amp; Weekly KPI Surveillance</strong></td>
+        <td>
+          Ongoing network-wide RF quality surveillance: daily and weekly statistical KPI tracking (Radio Availability, CSSR, CDDR, average throughput, PRB utilization, cell-edge speeds); identification and root-cause analysis of Worst Performing Cells (WPC); dynamic parameter fine-tuning; and weekly optimization meetings.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Dedicated RF optimization engineers, weekly WPC triage, parameter tuning scripts, KPI governance.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Major network replanning requiring addition of new cell sites (expansion capex).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site / Month</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">Monthly in arrears.</td>
+        <td style="font-size: 7.5pt;"><strong>Weekly Worst Performing Cell (WPC) Report &amp; Monthly Network KPI Dossier</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">MS-RNO-02</span></td>
+        <td><strong>Interference Hunting, PIM Mitigation &amp; Customer Complaint Field Audit</strong></td>
+        <td>
+          Field RF investigation for degraded sectors: spectrum analyzer sweeps to detect and locate external interference sources (jamming, unauthorized boosters, microwave leakage); Passive Intermodulation (PIM) testing and remediation on antenna lines; and on-site drive validation for VIP or high-churn barangay clusters.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Spectrum analyzer field sweeps, PIM testing, interference source triangulation, customer complaint verification.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Legal action against illegal booster operators (handled by NTC / Operator Legal).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site / Month</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">Monthly in arrears.</td>
+        <td style="font-size: 7.5pt;"><strong>Interference Investigation Dossier &amp; Spectrum Sweep Traces</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">MS-FAC-01</span></td>
+        <td><strong>Passive Tower &amp; Civil Facility Maintenance</strong></td>
+        <td>
+          Structural preservation of passive site assets: rust scraping, cold galvanizing compound application, and repainting of steel members in corrosive/coastal environments; repairing cracked equipment plinths; re-caulking cable entry boots; and maintaining access road drainage and clear-way.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Anti-corrosion touch-up, cold galvanizing, plinth crack sealing, cable entry maintenance.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Full tower structural re-erection post-catastrophic failure.
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site / Month</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">Monthly in arrears.</td>
+        <td style="font-size: 7.5pt;"><strong>Monthly Facility Maintenance Log &amp; Civil Condition Report</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">MS-PWR-01</span></td>
+        <td><strong>Energy, Utility Grid (Meralco/Coop) Coordination &amp; Genset PM</strong></td>
+        <td>
+          Power management coordination: monitoring utility power reliability, validating commercial meter readings, coordinating with Meralco/electric cooperatives for transformer fuse restoration, and performing routine 250-hour preventive servicing on backup diesel generator sets (engine oil, oil filter, fuel filter, air cleaner replacement, coolant check).<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Utility outage coordination, meter reading audit, 250-hr generator PM servicing, coolant/filter checks.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Commercial grid electric utility consumption charges (Operator pays utility bills).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site / Month</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">Monthly in arrears.</td>
+        <td style="font-size: 7.5pt;"><strong>Monthly Energy Consumption Audit &amp; Genset PM Service Log</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">MS-SW-01</span></td>
+        <td><strong>Software Support, Firmware Patching &amp; Cybersecurity Hardening</strong></td>
+        <td>
+          Scheduled execution of software maintenance: applying OEM-approved firmware updates and feature patches during maintenance windows (00:00–05:00); implementing CVE security patches and hardening configs; executing weekly automated BBU and Core configuration backups; and maintaining offsite configuration archives.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Firmware deployment, CVE security updates, maintenance window execution, automated backups.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> New major software feature releases requiring feature license fee purchase (Lot 1/Lot 3 scope).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site / Month</span></td>
+        <td style="text-align: center; font-weight: 600;">1,000</td>
+        <td style="text-align: center; font-weight: 600;">5,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">Monthly in arrears.</td>
+        <td style="font-size: 7.5pt;"><strong>Monthly Patch Deployment Log &amp; Configuration Backup Verification Certificate</strong></td>
+      </tr>
+
+
+      <tr class="domain-row">
+        <td><span class="code-badge">CAT-09</span></td>
+        <td colspan="9">DOMAIN: AD-HOC CALL-OUT SERVICES RATE CARD</td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">CALL-01</span></td>
+        <td><strong>Specialized Tower Rigging Call-Out Service</strong></td>
+        <td>
+          Ad-hoc mobilization of a certified tower climbing crew to execute non-standard physical antenna modifications: adjusting mechanical tilt, azimuth, or antenna mounting height upon structural reconfiguration or post-typhoon realignment.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Rigging crew, climbing tackle, digital compass/inclinometer alignment, before/after photos.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Supply of new replacement antennas.
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Sector / Per Man-Day</span></td>
+        <td style="text-align: center; font-weight: 600;">100</td>
+        <td style="text-align: center; font-weight: 600;">500</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon completion and photographic verification.</td>
+        <td style="font-size: 7.5pt;"><strong>Rigging Work Order Completion Sheet &amp; Re-alignment Certificate</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">CALL-02</span></td>
+        <td><strong>Emergency Typhoon Disaster Recovery Crew</strong></td>
+        <td>
+          Rapid deployment of a specialized 4-man disaster recovery crew equipped with heavy-duty 4x4 vehicle, chainsaws, winches, heavy rigging tackle, and portable generator to clear fallen trees, re-erect toppled poles, and execute emergency structural stabilization post-typhoon.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> 4-man emergency crew, 4x4 vehicle, chainsaw, winch, generator, debris clearing gear.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Supply of complete replacement steel towers.
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Crew / Per Day</span></td>
+        <td style="text-align: center; font-weight: 600;">50</td>
+        <td style="text-align: center; font-weight: 600;">250</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon daily crew timesheet approval by Operator.</td>
+        <td style="font-size: 7.5pt;"><strong>Disaster Recovery Timesheet &amp; Field Activity Report</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">CALL-03</span></td>
+        <td><strong>Mobile Emergency Generator Deployment &amp; Continuous Run</strong></td>
+        <td>
+          Delivery, positioning, cabling, and commissioning of a mobile trailer-mounted 15–20 kVA diesel generator at a damaged site during extended utility grid blackouts; includes 48 hours of continuous operation, continuous refueling, and operator surveillance.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Trailer genset delivery, connection cables, 48 hours continuous running, fuel, technician operator.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Operation beyond 48 hours (billed as consecutive additional 48-hr call-out blocks).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Deployment Event (48-hr block)</span></td>
+        <td style="text-align: center; font-weight: 600;">50</td>
+        <td style="text-align: center; font-weight: 600;">250</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon completion of emergency run.</td>
+        <td style="font-size: 7.5pt;"><strong>Emergency Power Log &amp; Generator Run-Hour Telemetry</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">CALL-04</span></td>
+        <td><strong>Long-Span Optical Fiber Cable Restoration &amp; Splicing</strong></td>
+        <td>
+          Emergency or planned restoration of major backhaul fiber cable cuts exceeding 500 meters: stringing replacement 24-core armored aerial or underground fiber cable, installing suspension clamps, fusion splicing at both splice closures, and testing optical loss.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Cable stringing labor, suspension clamps, 2x fusion splice enclosures, OTDR testing.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Supply of raw fiber optic cable (provided from operator inventory or billed separately).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Meter / Per Span</span></td>
+        <td style="text-align: center; font-weight: 600;">10,000</td>
+        <td style="text-align: center; font-weight: 600;">50,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon OTDR bi-directional loss sign-off.</td>
+        <td style="font-size: 7.5pt;"><strong>Bi-Directional OTDR Loss Trace &amp; Splicing Certificate</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">CALL-05</span></td>
+        <td><strong>Drone Structural, Panoramic &amp; Thermal Imaging Survey</strong></td>
+        <td>
+          High-resolution aerial inspection utilizing drone equipped with 4K optical zoom and radiometric thermal sensor: auditing tower structural integrity, inspecting hard-to-reach antenna brackets, and detecting hotspot anomalies on power joints and cables.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Licensed drone pilot, 4K video, high-res photos, radiometric thermal imaging, analysis report.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Physical repairs to identified anomalies.
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site Flight</span></td>
+        <td style="text-align: center; font-weight: 600;">50</td>
+        <td style="text-align: center; font-weight: 600;">250</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon submission of 4K video, photos, and thermal report.</td>
+        <td style="font-size: 7.5pt;"><strong>High-Resolution Aerial Video/Photo Suite &amp; Thermal Analysis Report</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">CALL-06</span></td>
+        <td><strong>Tower Structural Strengthening &amp; Leg Reinforcement</strong></td>
+        <td>
+          Physical structural modification of existing tower or monopole: installing steel reinforcement members, flange stiffeners, cross-bracing, or guy wire tensioning based on approved PE structural engineering calculations.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Steel fabrication, rigging installation, bolt torquing, cold galvanizing, PE sign-off.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Supply of primary raw steel members (billed based on approved DED BoQ).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Tower / Lump Sum based on DED</span></td>
+        <td style="text-align: center; font-weight: 600;">20</td>
+        <td style="text-align: center; font-weight: 600;">100</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">50% upon material delivery; 50% upon PE structural sign-off.</td>
+        <td style="font-size: 7.5pt;"><strong>As-Built Structural Strengthening Drawings &amp; PE Endorsement</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">CALL-07</span></td>
+        <td><strong>Specialized PIM Hunting &amp; Multi-Sector Interference Remediation</strong></td>
+        <td>
+          Advanced on-site PIM testing utilizing specialized 2x20W PIM analyzer: identifying internal and external PIM sources, replacing corroded RF jumpers/connectors, and applying RF shielding tape/materials to achieve PIM &lt;= -155 dBc.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Calibrated 2x20W PIM test gear, RF sweep, connector re-termination, shielding materials, sweep report.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Replacement of damaged antenna internal phase shifters (OEM warranty).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Site / Day</span></td>
+        <td style="text-align: center; font-weight: 600;">30</td>
+        <td style="text-align: center; font-weight: 600;">150</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon achieving compliant PIM sweep trace.</td>
+        <td style="font-size: 7.5pt;"><strong>Calibrated PIM Sweep Measurement Report</strong></td>
+      </tr>
+
+
+      <tr>
+        <td><span class="code-badge">CALL-08</span></td>
+        <td><strong>Ad-Hoc Emergency Fuel Delivery &amp; Mobile Refueling</strong></td>
+        <td>
+          Rapid procurement and transport of clean Euro-4 automotive diesel fuel in certified fuel containers to remote sites during prolonged grid emergencies, including manual transfer to day tank.<br>
+          <span style="color:#0369a1; font-weight:600;">• Inclusions:</span> Fuel procurement, dedicated transport, manual pumping into tank, fuel quality test.<br>
+          <span style="color:#b91c1c; font-weight:600;">• Exclusions:</span> Cost of bulk commercial diesel fuel (reimbursed at actual pump receipt price).
+        </td>
+        <td style="text-align: center;"><span class="uom-badge">Per Liter Delivered / Per Trip</span></td>
+        <td style="text-align: center; font-weight: 600;">20,000</td>
+        <td style="text-align: center; font-weight: 600;">100,000</td>
+        <td style="text-align: center;"><span class="quote-input">[Bidder Quote]</span></td>
+        <td style="text-align: center;"><span class="formula-field">[Formula]</span></td>
+        <td style="font-size: 7.5pt;">100% upon fuel receipt voucher sign-off.</td>
+        <td style="font-size: 7.5pt;"><strong>Fuel Purchase Receipt &amp; Fuel Delivery Voucher</strong></td>
+      </tr>
+
+
+    </tbody>
+  </table>
+
+
+  <h1>5. SERVICE LEVEL AGREEMENTS (SLAS) & LIQUIDATED REMEDIES</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Domain</th>
+        <th>Metric Identifier</th>
+        <th style="text-align: center;">Mandatory SLA Target</th>
+        <th style="text-align: center;">Minimum Operating Floor</th>
+        <th>Service Credit / Liquidated Remedy</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Rollout Delivery</strong></td>
+        <td>Turnkey Milestone Schedule</td>
+        <td style="text-align: center; font-weight: 600;">1,000 sites in 365 Days</td>
+        <td style="text-align: center;">Milestone baseline</td>
+        <td>0.5% milestone contract value per week of delay (cap 10%)</td>
+      </tr>
+      <tr>
+        <td><strong>Radio Availability</strong></td>
+        <td>KPI-RAN-01 Network Uptime</td>
+        <td style="text-align: center; font-weight: 600; color: #0f3460;">&ge; 99.95% Availability</td>
+        <td style="text-align: center;">99.70% Minimum</td>
+        <td>1.0% monthly O&M fee deduction per 0.1% shortfall</td>
+      </tr>
+      <tr>
+        <td><strong>Call Accessibility</strong></td>
+        <td>KPI-RAN-02 5G Session CSSR</td>
+        <td style="text-align: center; font-weight: 600; color: #0f3460;">&ge; 99.60% Success</td>
+        <td style="text-align: center;">99.00% Minimum</td>
+        <td>0.5% monthly O&M fee deduction per 0.2% shortfall</td>
+      </tr>
+      <tr>
+        <td><strong>Call Retainability</strong></td>
+        <td>KPI-RAN-03 Session Drop CDDR</td>
+        <td style="text-align: center; font-weight: 600; color: #0f3460;">&le; 0.15% Drops</td>
+        <td style="text-align: center;">0.50% Maximum</td>
+        <td>0.5% monthly O&M fee deduction per 0.1% excess</td>
+      </tr>
+      <tr>
+        <td><strong>Cluster Throughput</strong></td>
+        <td>KPI-RAN-04 Loaded Sector DL</td>
+        <td style="text-align: center; font-weight: 600; color: #0f3460;">&ge; 450 Mbps Average</td>
+        <td style="text-align: center;">380 Mbps Floor</td>
+        <td>Mandatory RF re-tuning & re-drive within 5 days</td>
+      </tr>
+      <tr>
+        <td><strong>Cell-Edge Speed</strong></td>
+        <td>KPI-RAN-05 Cell-Edge DL Speed</td>
+        <td style="text-align: center; font-weight: 600; color: #0f3460;">&ge; 50 Mbps DL (95% pts)</td>
+        <td style="text-align: center;">25 Mbps Floor</td>
+        <td>Mandatory eRET electrical tilt re-optimization</td>
+      </tr>
+      <tr>
+        <td><strong>FLM Restoration</strong></td>
+        <td>MTTR Severity 1 (Urban)</td>
+        <td style="text-align: center; font-weight: 600; color: #b91c1c;">&le; 2.0 Hours MTTR</td>
+        <td style="text-align: center;">2.0 Hours</td>
+        <td>0.5% monthly site fee per hour delay beyond MTTR</td>
+      </tr>
+      <tr>
+        <td><strong>FLM Restoration</strong></td>
+        <td>MTTR Severity 1 (Rural)</td>
+        <td style="text-align: center; font-weight: 600; color: #b91c1c;">&le; 4.0 Hours MTTR</td>
+        <td style="text-align: center;">4.0 Hours</td>
+        <td>0.25% monthly site fee per hour delay beyond MTTR</td>
+      </tr>
+      <tr>
+        <td><strong>Preventive Maint.</strong></td>
+        <td>Quarterly PM Completion</td>
+        <td style="text-align: center; font-weight: 600; color: #0f3460;">100% Completed p.a.</td>
+        <td style="text-align: center;">98.0% Floor</td>
+        <td>Uncompleted site PMs debited 200% of line item rate</td>
+      </tr>
+      <tr>
+        <td><strong>Spare Parts Logistics</strong></td>
+        <td>Advance Replacement (AHR)</td>
+        <td style="text-align: center; font-weight: 600; color: #0f3460;">Next Business Day (NBD)</td>
+        <td style="text-align: center;">NBD Standard</td>
+        <td>$250 USD penalty per calendar day delay in AHR delivery</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="text-align: center; font-size: 8pt; color: #94a3b8; margin-top: 30px; border-top: 1px solid #e2e8f0; padding-top: 12px;">
+    Telecommunications Technology Solutions Incorporated (TelTech) &copy; 2026. All rights reserved. Confidential RFP Tender Documentation.
+  </div>
+</div>
+</body>
+</html>

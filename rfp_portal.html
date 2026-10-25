@@ -852,7 +852,7 @@
 <nav class="nav-ribbon">
   <div class="nav-tab active" data-tab="tab-library" onclick="switchTab('tab-library')">
     <span>📚 1. Document Library</span>
-    <span class="badge" style="background: var(--gold); color: #0A192F; font-weight: 800;">8 Docs + Bulletin</span>
+    <span class="badge" style="background: var(--gold); color: #0A192F; font-weight: 800;">10 Docs + Bulletin</span>
   </div>
   <div class="nav-tab" data-tab="tab-technical" onclick="switchTab('tab-technical')">
     <span>📋 2. Technical Compliance (App A)</span>
@@ -1708,18 +1708,25 @@ function renderDocumentLibrary() {
   
   container.innerHTML = window.RFPTenderData.documents.map(doc => {
     const isAddendum = (doc.id === '08' || doc.id === '09');
-    const borderStyle = isAddendum ? 'border: 1.5px solid rgba(255, 183, 3, 0.6); background: linear-gradient(145deg, rgba(255, 183, 3, 0.08), rgba(15, 23, 42, 0.85));' : '';
+    const isSow = (doc.id === '10');
+    let borderStyle = '';
+    if (isAddendum) {
+      borderStyle = 'border: 1.5px solid rgba(255, 183, 3, 0.6); background: linear-gradient(145deg, rgba(255, 183, 3, 0.08), rgba(15, 23, 42, 0.85));';
+    } else if (isSow) {
+      borderStyle = 'border: 1.5px solid rgba(0, 180, 216, 0.6); background: linear-gradient(145deg, rgba(0, 180, 216, 0.08), rgba(15, 23, 42, 0.85));';
+    }
     return `
       <div class="doc-card" style="${borderStyle}">
         <div>
-          <span class="doc-card-badge ${doc.type.includes('XLSX') ? 'badge-xlsx' : 'badge-pdf'}" style="${isAddendum ? 'background: #FFB703; color: #0A192F; font-weight: 800;' : ''}">${doc.badge}</span>
-          <div class="doc-card-title" style="${isAddendum ? 'color: #FFB703;' : ''}">${doc.id}. ${doc.title}</div>
+          <span class="doc-card-badge ${doc.type.includes('XLSX') ? 'badge-xlsx' : 'badge-pdf'}" style="${isAddendum ? 'background: #FFB703; color: #0A192F; font-weight: 800;' : (isSow ? 'background: #00B4D8; color: #0A192F; font-weight: 800;' : '')}">${doc.badge}</span>
+          <div class="doc-card-title" style="${isAddendum ? 'color: #FFB703;' : (isSow ? 'color: #38BDF8;' : '')}">${doc.id}. ${doc.title}</div>
           <div class="doc-card-sub">${doc.subtitle}</div>
         </div>
         <div class="doc-card-actions">
-          ${doc.html ? `<a href="${doc.html}" target="_blank" class="btn btn-primary" style="font-size: 11px; padding: 5px 10px; background: ${isAddendum ? '#FFB703; color: #0A192F; font-weight: 700;' : ''}">Web View ➔</a>` : ''}
-          ${doc.pdf ? `<a href="${doc.pdf}" download class="btn btn-outline" style="font-size: 11px; padding: 5px 10px; ${isAddendum ? 'border-color: #FFB703; color: #FFB703;' : ''}">📕 PDF</a>` : ''}
+          ${doc.html ? `<a href="${doc.html}" target="_blank" class="btn btn-primary" style="font-size: 11px; padding: 5px 10px; background: ${isAddendum ? '#FFB703; color: #0A192F; font-weight: 700;' : (isSow ? '#00B4D8; color: #0A192F; font-weight: 700;' : '')}">Web View ➔</a>` : ''}
+          ${doc.pdf ? `<a href="${doc.pdf}" download class="btn btn-outline" style="font-size: 11px; padding: 5px 10px; ${isAddendum ? 'border-color: #FFB703; color: #FFB703;' : (isSow ? 'border-color: #00B4D8; color: #38BDF8;' : '')}">📕 PDF</a>` : ''}
           ${doc.xlsx ? `<a href="${doc.xlsx}" download class="btn btn-outline" style="font-size: 11px; padding: 5px 10px; border-color: #10B981; color: #A7F3D0;">📊 Excel</a>` : ''}
+          ${doc.docx ? `<a href="${doc.docx}" download class="btn btn-outline" style="font-size: 11px; padding: 5px 10px; border-color: #38BDF8; color: #BAE6FD;">📄 Word</a>` : ''}
         </div>
       </div>
     `;

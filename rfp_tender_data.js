@@ -15,7 +15,7 @@ window.RFPTenderData = {
     baselineFxRate: 55.00,
     targetSitesPhase1: 1000,
     targetSubscribers: 365000,
-    spectrum: "Band n50 (1457–1517 MHz 60 MHz Authorized / 1432–1517 MHz Hardware Tuning)"
+    spectrum: "Band n50 (1432–1517 MHz, 60 MHz NCR / up to 80 MHz Provincial, Software-Configurable 40/50/60/80 MHz TDD)"
   },
   documents: [
   {
@@ -89,10 +89,10 @@ window.RFPTenderData = {
     "id": "06",
     "code": "06_RFP_Commercial_Price_Book_and_BoQ_Template",
     "title": "Document 06: Official RFP Commercial Price Book",
-    "subtitle": "Dynamic 10-Tab Bidding Spreadsheet with Currency Conversion & Automated Subtotals",
-    "badge": "Official Price Book",
+    "subtitle": "Dynamic 11-Tab Bidding Spreadsheet with Currency Conversion, Services SOW & Automated Subtotals",
+    "badge": "Updated Oct 25",
     "xlsx": "RFP_Tender_Package/06_RFP_Commercial_Price_Book_and_BoQ_Template.xlsx",
-    "pages": "10 Sheets",
+    "pages": "11 Sheets (with Services SOW)",
     "type": "XLSX"
   },
   {
@@ -121,10 +121,22 @@ window.RFPTenderData = {
     "code": "09_RFP_5G_FWA_Official_Clarifications_Responses_Master",
     "title": "Document 09: Official Clarifications Response Workbook",
     "subtitle": "Official 55-Item Q&A Response Matrix across RAN, Power, Civil, Transmission & Core (Companion Workbook to Bid Bulletin No. 1)",
-    "badge": "Clarification Matrix",
+    "badge": "Clarification Matrix • Oct 21",
     "xlsx": "RFP_Tender_Package/09_RFP_5G_FWA_Official_Clarifications_Responses_Master.xlsx",
     "pages": "2 Sheets (55 Inquiries)",
     "type": "XLSX"
+  },
+  {
+    "id": "10",
+    "code": "10_Appendix_E_Services_Statement_of_Work_SOW_and_Pricing_Schedule",
+    "title": "Appendix E: Services SOW & Master Rate Card",
+    "subtitle": "Comprehensive Turnkey Rollout, Site Engineering, Telecom Integration, and 24/7 Managed Operations & Maintenance (O&M) Rate Card (59 Service Items)",
+    "badge": "Services SOW • Oct 25",
+    "pdf": "RFP_Tender_Package/10_Appendix_E_Services_Statement_of_Work_SOW_and_Pricing_Schedule.pdf",
+    "html": "RFP_Tender_Package/10_Appendix_E_Services_Statement_of_Work_SOW_and_Pricing_Schedule.html",
+    "docx": "RFP_Tender_Package/Service SoW.docx",
+    "pages": "10 Pages (PDF, HTML & Word)",
+    "type": "PDF / DOCX"
   }
 ],
   appendixA: [
