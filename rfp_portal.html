@@ -1943,6 +1943,7 @@ function renderDocumentLibrary() {
           ${doc.html ? `<a href="${doc.html}" target="_blank" class="btn btn-primary" style="font-size: 11px; padding: 5px 10px; background: ${isAddendum ? '#FFB703; color: #0A192F; font-weight: 700;' : (isSow ? '#00B4D8; color: #0A192F; font-weight: 700;' : (isExhibit ? '#10B981; color: #0A192F; font-weight: 700;' : ''))}">Web View ➔</a>` : ''}
           ${doc.pdf ? `<a href="${doc.pdf}" download class="btn btn-outline" style="font-size: 11px; padding: 5px 10px; ${isAddendum ? 'border-color: #FFB703; color: #FFB703;' : (isSow ? 'border-color: #00B4D8; color: #38BDF8;' : (isExhibit ? 'border-color: #10B981; color: #6EE7B7;' : ''))}">📕 PDF</a>` : ''}
           ${doc.annexPdf ? `<a href="${doc.annexPdf}" target="_blank" class="btn btn-outline" style="font-size: 11px; padding: 5px 10px; border-color: #38BDF8; color: #7DD3FC;">📐 A3 Plans</a>` : ''}
+          ${doc.manualPdf ? `<a href="${doc.manualPdf}" target="_blank" class="btn btn-outline" style="font-size: 11px; padding: 5px 10px; border-color: #818CF8; color: #A5B4FC;">📘 Structural Manual</a>` : ''}
           ${doc.xlsx ? `<a href="${doc.xlsx}" download class="btn btn-outline" style="font-size: 11px; padding: 5px 10px; border-color: #10B981; color: #A7F3D0;">📊 Excel</a>` : ''}
           ${doc.docx ? `<a href="${doc.docx}" download class="btn btn-outline" style="font-size: 11px; padding: 5px 10px; border-color: #38BDF8; color: #BAE6FD;">📄 Word</a>` : ''}
         </div>
@@ -4750,6 +4751,8 @@ function renderSpecsLibrary() {
               ${spec.exhibitLink ? `<a href="${spec.exhibitLink}" target="_blank" class="btn btn-primary" style="font-size: 11px; padding: 4px 10px; background: #0077CC;">🌐 Online Exhibit ➔</a>` : ''}
               ${spec.exhibitPdf ? `<a href="${spec.exhibitPdf}" download class="btn btn-outline" style="font-size: 11px; padding: 4px 10px; border-color: #38BDF8; color: #7DD3FC;">📕 PDF</a>` : ''}
               ${spec.drawingPdf ? `<a href="${spec.drawingPdf}" target="_blank" class="btn btn-outline" style="font-size: 11px; padding: 4px 10px; border-color: #10B981; color: #6EE7B7;">📐 A3 Blueprints</a>` : ''}
+              ${spec.dddPdf ? `<a href="${spec.dddPdf}" target="_blank" class="btn btn-outline" style="font-size: 11px; padding: 4px 10px; border-color: #38BDF8; color: #7DD3FC;">🏗️ 30M DDD (30 Sheets)</a>` : ''}
+              ${spec.dddManualPdf ? `<a href="${spec.dddManualPdf}" target="_blank" class="btn btn-outline" style="font-size: 11px; padding: 4px 10px; border-color: #818CF8; color: #A5B4FC;">📘 Manual</a>` : ''}
               <button onclick="copySpecParams('${spec.id}')" class="btn btn-outline" style="font-size: 11px; padding: 4px 10px; border-color: rgba(255,255,255,0.2); color: #CBD5E1;" title="Copy specification parameters as text">
                 📋 Copy
               </button>

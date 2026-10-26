@@ -151,6 +151,17 @@ window.RFPTenderData = {
     "annexPdf": "RFP_Tender_Package/11_Annex_Physical_Layout_Plan_and_Structural_Design_Parameters.pdf?v=20261026",
     "pages": "2 Pages + 2p A3 Blueprints",
     "type": "PDF / HTML"
+  },
+  {
+    "id": "12",
+    "code": "12_Detailed_Design_Drawing_30M_Monopole_Dossier",
+    "title": "30M Monopole Detailed Design Drawing (DDD) Master Dossier & Engineering Manual",
+    "subtitle": "Complete Carrier-Grade 30-Sheet CAD Dossier (A3 Landscape) & Structural Manual (315 km/h Zone 1, qa = 150 kPa, 5 Polygonal Sections)",
+    "badge": "CAD Drawing Dossier",
+    "pdf": "RFP_Tender_Package/30M_315KPH_150KPA_G1_TelTech-FWA DDD.pdf?v=20261026",
+    "manualPdf": "RFP_Tender_Package/30M_315KPH_150KPA_G1_TelTech-FWA_DDD_Manual.pdf?v=20261026",
+    "pages": "30 Sheets A3 CAD + 5p Manual",
+    "type": "A3 CAD Set / PDF"
   }
 ],
   appendixA: [
@@ -2074,7 +2085,9 @@ window.RFPTenderData = {
         ],
         "exhibitLink": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.html",
         "exhibitPdf": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.pdf",
-        "drawingPdf": "RFP_Tender_Package/11_Annex_Physical_Layout_Plan_and_Structural_Design_Parameters.pdf"
+        "drawingPdf": "RFP_Tender_Package/11_Annex_Physical_Layout_Plan_and_Structural_Design_Parameters.pdf",
+        "dddPdf": "RFP_Tender_Package/30M_315KPH_150KPA_G1_TelTech-FWA DDD.pdf",
+        "dddManualPdf": "RFP_Tender_Package/30M_315KPH_150KPA_G1_TelTech-FWA_DDD_Manual.pdf"
       },
       {
         "id": "SPEC-TOW-02",
@@ -2116,7 +2129,9 @@ window.RFPTenderData = {
         ],
         "exhibitLink": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.html",
         "exhibitPdf": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.pdf",
-        "drawingPdf": "RFP_Tender_Package/11_Annex_Physical_Layout_Plan_and_Structural_Design_Parameters.pdf"
+        "drawingPdf": "RFP_Tender_Package/11_Annex_Physical_Layout_Plan_and_Structural_Design_Parameters.pdf",
+        "dddPdf": "RFP_Tender_Package/30M_315KPH_150KPA_G1_TelTech-FWA DDD.pdf",
+        "dddManualPdf": "RFP_Tender_Package/30M_315KPH_150KPA_G1_TelTech-FWA_DDD_Manual.pdf"
       },
       {
         "id": "SPEC-TOW-03",
@@ -2153,7 +2168,9 @@ window.RFPTenderData = {
         ],
         "exhibitLink": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.html",
         "exhibitPdf": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.pdf",
-        "drawingPdf": "RFP_Tender_Package/11_Annex_Physical_Layout_Plan_and_Structural_Design_Parameters.pdf"
+        "drawingPdf": "RFP_Tender_Package/11_Annex_Physical_Layout_Plan_and_Structural_Design_Parameters.pdf",
+        "dddPdf": "RFP_Tender_Package/30M_315KPH_150KPA_G1_TelTech-FWA DDD.pdf",
+        "dddManualPdf": "RFP_Tender_Package/30M_315KPH_150KPA_G1_TelTech-FWA_DDD_Manual.pdf"
       },
       {
         "id": "SPEC-TOW-04",
@@ -2190,7 +2207,9 @@ window.RFPTenderData = {
         ],
         "exhibitLink": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.html",
         "exhibitPdf": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.pdf",
-        "drawingPdf": "RFP_Tender_Package/11_Annex_Physical_Layout_Plan_and_Structural_Design_Parameters.pdf"
+        "drawingPdf": "RFP_Tender_Package/11_Annex_Physical_Layout_Plan_and_Structural_Design_Parameters.pdf",
+        "dddPdf": "RFP_Tender_Package/30M_315KPH_150KPA_G1_TelTech-FWA DDD.pdf",
+        "dddManualPdf": "RFP_Tender_Package/30M_315KPH_150KPA_G1_TelTech-FWA_DDD_Manual.pdf"
       },
       {
         "id": "SPEC-TOW-05",
@@ -2222,7 +2241,9 @@ window.RFPTenderData = {
         ],
         "exhibitLink": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.html",
         "exhibitPdf": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.pdf",
-        "drawingPdf": "RFP_Tender_Package/11_Annex_Physical_Layout_Plan_and_Structural_Design_Parameters.pdf"
+        "drawingPdf": "RFP_Tender_Package/11_Annex_Physical_Layout_Plan_and_Structural_Design_Parameters.pdf",
+        "dddPdf": "RFP_Tender_Package/30M_315KPH_150KPA_G1_TelTech-FWA DDD.pdf",
+        "dddManualPdf": "RFP_Tender_Package/30M_315KPH_150KPA_G1_TelTech-FWA_DDD_Manual.pdf"
       }
     ]
   },
