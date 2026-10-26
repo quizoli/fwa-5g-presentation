@@ -23,11 +23,11 @@ For each nominal site location assigned in Document 07 (Candidate Site List):
 * **Urban & Suburban Search Ring:** Defined strictly as a circle with a radius of **500 meters** centered on the official nominal barangay demand centroid.
 * **Rural & Remote Search Ring:** Defined strictly as a circle with a radius of **1,000 meters** centered on the official nominal barangay demand centroid.
 * **Search Ring vs. RF Coverage Radius Distinction:** The search ring defines the geographic hunting boundary for candidate site sourcing and infrastructure identification. It is completely distinct from the physical RF cell coverage radius (nominally 2.5–3.2 km in rural terrain and 1.0–1.5 km in urban clutter per Section 3.2).
-* **Target Coverage Guarantee:** Sited candidate coordinates within the search ring must achieve unobstructed Line-of-Sight (LOS) and target RSRP coverage ($\ge -95\text{ dBm}$) across $\ge 90\%$ of the inhabited settlement zone.
+* **Target Coverage Guarantee:** Sited candidate coordinates within the search ring must achieve unobstructed Line-of-Sight (LOS) and target RSRP coverage (≥ -95 dBm) across ≥ 90% of the inhabited settlement zone.
 
 ### 1.3 Mandatory Three-Candidate Rule (Candidates A, B, C) & Commercial Authority
 For every search ring, the Turnkey Contractor / Site Acquisition Vendor must survey, evaluate, and submit **three (3) ranked candidates** in the Technical Site Survey Report (TSSR):
-* **Candidate A (BEST — Primary Recommended):** Optimal TowerCo co-location asset (or prime site) with immediate structural capacity at $\ge 30\text{m}$ AGL, available $-48\text{V}$ DC busbar or commercial AC transformer headroom, nearest fiber node, and fastest projected RFI ($\le 21\text{ calendar days}$).
+* **Candidate A (BEST — Primary Recommended):** Optimal TowerCo co-location asset (or prime site) with immediate structural capacity at ≥ 30m AGL, available -48V DC busbar or commercial AC transformer headroom, nearest fiber node, and fastest projected RFI (≤ 21 calendar days).
 * **Candidate B (BETTER — Secondary Target / Backup 1):** Fully compliant alternative TowerCo structure or site within the search ring requiring minor solvable modifications (e.g., dedicated AC sub-meter installation, mount bracket extensions, or secondary fiber lead-in route).
 * **Candidate C (GOOD — Contingency / Fallback):** Third viable TowerCo asset or TowerCo Build-to-Suit option, ensuring the search ring is not stalled if Candidates A and B encounter unforeseen structural or commercial deadlocks.
 * **Exception for Rural Sites:** Where fewer than three viable structures or constructible parcels exist within a rural 1,000m search ring, the Contractor must submit formal documented justification in the TSSR.
@@ -37,12 +37,12 @@ For every search ring, the Turnkey Contractor / Site Acquisition Vendor must sur
 
 ### 1.4 Co-Location Candidate Evaluation Criteria Matrix (100-Point Scoring)
 Field teams and SAQ specialists shall evaluate all candidates using the standardized scoring rubric:
-* **Space & Structural Capacity (20%):** Antenna mounting space at $\ge 30\text{m}$ to $45\text{m}$ AGL, wind load headroom for 3x n50 antennas + 3x 8T8R RRUs ($\le 45\text{ kg}$ each), and $\ge 2.0\text{m} \times 2.0\text{m}$ compound ground space for outdoor rectifier/battery cabinets.
+* **Space & Structural Capacity (20%):** Antenna mounting space at ≥ 30m to $45m$ AGL, wind load headroom for 3x n50 antennas + 3x 8T8R RRUs (≤ 45 kg each), and ≥ 2.0m × 2.0m compound ground space for outdoor rectifier/battery cabinets.
 * **Access Road & Compound Security (15%):** All-weather paved/concrete road access, established TowerCo security fencing/guarding, and 24/7 unobstructed Operations & Maintenance (O&M) ingress/egress.
-* **RF Line-of-Sight & Propagation (25%):** Dominant ground elevation AMSL, clear first Fresnel zone into residential settlement, zero close-in clutter shielding within $200\text{m}$ of sector azimuths ($0^\circ, 120^\circ, 240^\circ$).
-* **Backhaul Transport Proximity (15%):** Proximity to Converge/TelTech fiber distribution closure (Class A $\le 0.5\text{km}$, Class B $\le 1.0\text{km}$), existing TowerCo cable ladder/conduit entry, or unobstructed northern sky view ($0^\circ - 80^\circ$ elevation arc) for Starlink satellite backhaul.
-* **Power Availability & Utility Infrastructure (15%):** Commercial utility grid transformer capacity, available $-48\text{V}$ DC busbar tap ($\ge 63\text{A}$ branch breaker dedicated for radio equipment) or space for dedicated AC service entrance sub-meter, and shared backup genset/battery support. Total site power plant sizing (12.0 kW N+1) is governed by Lot 2.
-* **Lease & Commercial Feasibility (10%):** Feasibility of fast-track Service Order execution under existing TowerCo Master Lease Agreement (MLA), monthly recurring fee within Operator baseline budget, and projected RFI timeline $\le 30\text{ calendar days}$.
+* **RF Line-of-Sight & Propagation (25%):** Dominant ground elevation AMSL, clear first Fresnel zone into residential settlement, zero close-in clutter shielding within 200m of sector azimuths (0°, 120°, 240°).
+* **Backhaul Transport Proximity (15%):** Proximity to Converge/TelTech fiber distribution closure (Class A ≤ 0.5 km, Class B ≤ 1.0 km), existing TowerCo cable ladder/conduit entry, or unobstructed northern sky view (0° – 80° elevation arc) for Starlink satellite backhaul.
+* **Power Availability & Utility Infrastructure (15%):** Commercial utility grid transformer capacity, available -48V DC busbar tap (≥ 63A branch breaker dedicated for radio equipment) or space for dedicated AC service entrance sub-meter, and shared backup genset/battery support. Total site power plant sizing (12.0 kW N+1) is governed by Lot 2.
+* **Lease & Commercial Feasibility (10%):** Feasibility of fast-track Service Order execution under existing TowerCo Master Lease Agreement (MLA), monthly recurring fee within Operator baseline budget, and projected RFI timeline ≤ 30 calendar days.
 
 ---
 
@@ -87,19 +87,19 @@ In strict alignment with **Bid Bulletin No. 1 (Section 2.1)** and NTC frequency 
 1. **Metro Manila (NCR) & Meralco Franchise Footprint:**
    * **Operating Frequency Range:** **1457.0 – 1517.0 MHz (60.0 MHz continuous TDD carrier)**.
    * **Center Frequency:** **1487.0 MHz**.
-   * **Transmission Bandwidth:** **162 Resource Blocks (RBs)** at $30\text{ kHz}$ Subcarrier Spacing (SCS).
-   * *Spectrum Boundary Condition:* In Metro Manila (NCR) and non-NCR municipalities within the Meralco electric distribution franchise (parts of Bulacan, Cavite, Rizal, Laguna, Batangas, Quezon, and Pampanga) where the $1437.0 – 1457.0\text{ MHz}$ sub-band is assigned to the utility corporation, the $1437.0 – 1457.0\text{ MHz}$ block is excluded from Operator transmissions. Digital filtering within the RRU transceiver enforces sharp attenuation at $1457.0\text{ MHz}$.
+   * **Transmission Bandwidth:** **162 Resource Blocks (RBs)** at 30 kHz Subcarrier Spacing (SCS).
+   * *Spectrum Boundary Condition:* In Metro Manila (NCR) and non-NCR municipalities within the Meralco electric distribution franchise (parts of Bulacan, Cavite, Rizal, Laguna, Batangas, Quezon, and Pampanga) where the 1437.0 – 1457.0 MHz sub-band is assigned to the utility corporation, the 1437.0 – 1457.0 MHz block is excluded from Operator transmissions. Digital filtering within the RRU transceiver enforces sharp attenuation at 1457.0 MHz.
 
 2. **Rest of the Country (Provincial / Regional / Non-Meralco Areas):**
    * **Operating Frequency Range:** **1437.0 – 1517.0 MHz (80.0 MHz continuous TDD carrier — Desired Baseline)**.
    * **Center Frequency:** **1477.0 MHz**.
-   * **Transmission Bandwidth:** **217 Resource Blocks (RBs)** at $30\text{ kHz}$ SCS.
-   * *Capacity & Throughput Advantage:* In all provincial municipalities and rural barangays outside the Meralco territory, the full $80\text{ MHz}$ channel is activated, unlocking $+34\%$ additional physical resource blocks and driving aggregate sector downlink capacity to $650\text{ – }720\text{ Mbps}$ per site.
+   * **Transmission Bandwidth:** **217 Resource Blocks (RBs)** at 30 kHz SCS.
+   * *Capacity & Throughput Advantage:* In all provincial municipalities and rural barangays outside the Meralco territory, the full $80 MHz$ channel is activated, unlocking $+34\%$ additional physical resource blocks and driving aggregate sector downlink capacity to $650 – 720 Mbps$ per site.
 
 3. **Mandatory Hardware Tuning & Filtering Specifications:**
    * **Native Hardware IBW:** All proposed 5G NR Baseband Units (BBU) and Remote Radio Units (RRU) / Active Antenna Units (AAU) must natively support the full 3GPP Band n50 tuning range (**1432.0 – 1517.0 MHz**) in hardware.
-   * **Software-Defined Bandwidth:** Transceivers must support dynamic software reconfiguration across $40\text{ MHz}, 50\text{ MHz}, 60\text{ MHz}$, and $80\text{ MHz}$ without physical component replacement or tower climbs.
-   * **Adjacent Satellite Protection:** Transceivers must comply with **ITU-R M.2159-0 / WRC-15 Resolution 223** to protect adjacent Maritime Mobile Satellite Service (MSS, $1518.0 – 1525.0\text{ MHz}$). Unwanted out-of-band emissions at $1517.0\text{ MHz}$ must not exceed $-30\text{ dBm/MHz}$ at the antenna port (3GPP TS 38.104 Category B).
+   * **Software-Defined Bandwidth:** Transceivers must support dynamic software reconfiguration across $40 MHz, 50 MHz, 60 MHz$, and $80 MHz$ without physical component replacement or tower climbs.
+   * **Adjacent Satellite Protection:** Transceivers must comply with **ITU-R M.2159-0 / WRC-15 Resolution 223** to protect adjacent Maritime Mobile Satellite Service (MSS, $1518.0 – 1525.0 MHz$). Unwanted out-of-band emissions at $1517.0 MHz$ must not exceed $-30 dBm/MHz$ at the antenna port (3GPP TS 38.104 Category B).
 
 ---
 
@@ -122,7 +122,7 @@ In strict alignment with **Bid Bulletin No. 1 (Section 2.1)** and NTC frequency 
 | **Thermal Noise Density** | dBm/Hz | -174.0 | -174.0 | kT @ 290K |
 | **Receiver Noise Figure** | dB | 6.0 dB (CPE) / 3.5 dB (gNB) | 6.0 dB (CPE) / 3.5 dB (gNB) | Active RF front-end |
 | **Target SINR for Min Service** | dB | -1.0 dB (QPSK 1/3) | -1.0 dB (QPSK 1/3) | Cell-edge SLA threshold (+10 dB for 64QAM) |
-| **Maximum Allowable Path Loss (MAPL)**| **dB** | **139.8 dB** | **138.5 dB** | Uplink coverage limiting ($\Delta \approx 1.3\text{ dB}$ for 80 MHz) |
+| **Maximum Allowable Path Loss (MAPL)**| **dB** | **139.8 dB** | **138.5 dB** | Uplink coverage limiting ($\Delta \approx 1.3 dB$ for 80 MHz) |
 | **Calculated Reliable Cell Radius**| **km** | **1.0 – 1.5 km (Urban/Suburban Clutter — 3GPP UMa)** | **2.5 – 3.2 km (Rural Baseline / 1.5 – 2.0 km Vendor Benchmark)** | Distinct from search ring (500m Urban / 1,000m Rural) |
 | **Peak Aggregate Sector DL Throughput**| **Mbps** | **~480 – 520 Mbps** | **~650 – 720 Mbps** | Multi-user MIMO, 256QAM downlink |
 
@@ -140,44 +140,44 @@ For sites requiring self-constructed greenfield towers or TowerCo Build-to-Suit 
 
 ### 4.1 Philippine Basic Wind Speed Regimes & Wind Zone Mapping
 Structural design calculations and wind force determinations must strictly comply with the **National Structural Code of the Philippines (NSCP 2015 7th Edition, Section 207)** and **TIA-222-G/H**. The nominal design basic wind speed for structural strength and stability calculations is **250 km/h (Nominal / ASD basic wind speed per NSCP 2015 Category IV)**. Ultimate / Survivable wind speeds conform strictly to NSCP 2015 Wind Zones:
-* **Wind Zone 1 (Ultimate Wind Speed $V = 315\text{ km/h}$ / $87.5\text{ m/s}$):** Covers the high-typhoon corridor along the eastern seaboard (Batanes, Cagayan, Isabela, Aurora, eastern Quezon coast and Polillo Islands, Bicol Region, Samar, Leyte, Dinagat Islands, Surigao del Norte/Sur, Davao Oriental).
-* **Wind Zone 2 (Ultimate Wind Speed $V = 270\text{ km/h}$ / $75.0\text{ m/s}$):** Covers Central and Western Luzon, National Capital Region (NCR), Central Luzon (Pampanga, Bulacan, Tarlac, Bataan, Zambales, Nueva Ecija), CALABARZON (western Quezon, Laguna, Batangas, Cavite, Rizal), MIMAROPA (Occidental/Oriental Mindoro, Marinduque, Romblon), and Western/Central Visayas (Iloilo, Cebu, Bohol, Negros).
-* **Wind Zone 3 (Ultimate Wind Speed $V = 250\text{ km/h}$ / $69.4\text{ m/s}$ Minimum Project Floor):** Covers low-risk regions including Palawan, Zamboanga Peninsula, and southern inland Mindanao. While NSCP Section 207 maps Zone 3 basic wind speed at $200\text{ km/h}$, the Project enforces $250\text{ km/h}$ minimum ultimate survivability nationwide as a mandatory contractual quality floor.
+* **Wind Zone 1 (Ultimate Wind Speed $V = 315 km/h$ / $87.5 m/s$):** Covers the high-typhoon corridor along the eastern seaboard (Batanes, Cagayan, Isabela, Aurora, eastern Quezon coast and Polillo Islands, Bicol Region, Samar, Leyte, Dinagat Islands, Surigao del Norte/Sur, Davao Oriental).
+* **Wind Zone 2 (Ultimate Wind Speed $V = 270 km/h$ / $75.0 m/s$):** Covers Central and Western Luzon, National Capital Region (NCR), Central Luzon (Pampanga, Bulacan, Tarlac, Bataan, Zambales, Nueva Ecija), CALABARZON (western Quezon, Laguna, Batangas, Cavite, Rizal), MIMAROPA (Occidental/Oriental Mindoro, Marinduque, Romblon), and Western/Central Visayas (Iloilo, Cebu, Bohol, Negros).
+* **Wind Zone 3 (Ultimate Wind Speed $V = 250 km/h$ / $69.4 m/s$ Minimum Project Floor):** Covers low-risk regions including Palawan, Zamboanga Peninsula, and southern inland Mindanao. While NSCP Section 207 maps Zone 3 basic wind speed at $200 km/h$, the Project enforces $250 km/h$ minimum ultimate survivability nationwide as a mandatory contractual quality floor.
 
 ### 4.2 Structural Limit States & Deflection Criteria
-* **Survivable Wind Speed ($V_{\text{survival}}$ — Ultimate Limit State / LRFD):**
-  * Designed for **$250\text{ km/h}$ to $315\text{ km/h}$** ($250\text{ km/h}$ national project floor; $270\text{ km/h}$ in Zone 2; $315\text{ km/h}$ in Zone 1) 3-second gust wind speed under Ultimate Limit State with full equipment loading (3x n50 antennas, 3x RRUs, satellite dish, and mounting steelwork). Zero plastic collapse or structural overturning.
-* **Operational Wind Speed ($V_{\text{operational}}$ — Serviceability Limit State / SLS):**
-  * Designed for **$140\text{ km/h}$ to $160\text{ km/h}$ ($40.0\text{ m/s}$ to $44.4\text{ m/s}$)** continuous operational wind speed (1.0 load factor per TIA-222).
-  * Structure maintains rigid RF alignment, ensuring uninterrupted 5G beamforming, MIMO rank-4 transmission, and backhaul link availability ($\ge 99.995\%$).
-* **Allowable Twist ($\theta_{\text{twist}}$ / Torsional Rotation):**
-  * $\le \pm 0.5^\circ$ ($30\text{ arcmin}$) at $30\text{m}$ AGL for narrow-beam / microwave dish antennas;
-  * $\le \pm 1.0^\circ$ ($60\text{ arcmin}$) at $30\text{m}$ AGL for 5G Band n50 macro sectors.
-* **Allowable Sway / Tilt ($\theta_{\text{sway}}$ / Angular Deflection):**
-  * $\le \pm 1.0^\circ$ ($60\text{ arcmin}$) at top antenna mounting centerline ($30.0\text{m}$ AGL).
+* **Survivable Wind Speed ($V_{survival}$ — Ultimate Limit State / LRFD):**
+  * Designed for **$250 km/h$ to $315 km/h$** ($250 km/h$ national project floor; $270 km/h$ in Zone 2; $315 km/h$ in Zone 1) 3-second gust wind speed under Ultimate Limit State with full equipment loading (3x n50 antennas, 3x RRUs, satellite dish, and mounting steelwork). Zero plastic collapse or structural overturning.
+* **Operational Wind Speed ($V_{operational}$ — Serviceability Limit State / SLS):**
+  * Designed for **$140 km/h$ to $160 km/h$ ($40.0 m/s$ to $44.4 m/s$)** continuous operational wind speed (1.0 load factor per TIA-222).
+  * Structure maintains rigid RF alignment, ensuring uninterrupted 5G beamforming, MIMO rank-4 transmission, and backhaul link availability (≥ 99.995%).
+* **Allowable Twist (θ_twist / Torsional Rotation):**
+  * ≤ ±0.5° ($30 arcmin$) at $30m$ AGL for narrow-beam / microwave dish antennas;
+  * ≤ ±1.0° ($60 arcmin$) at $30m$ AGL for 5G Band n50 macro sectors.
+* **Allowable Sway / Tilt (θ_sway / Angular Deflection):**
+  * ≤ ±1.0° ($60 arcmin$) at top antenna mounting centerline ($30.0m$ AGL).
 * **Allowable Verticality (Tower Plumbness / Alignment):**
-  * $\le 1 : 500$ ($0.20\%$ of Tower Height $H$) throughout the full mast height under dead load and still air.
-  * For a $30.0\text{m}$ monopole, maximum horizontal deviation $\Delta \le 60\text{ mm}$ (for $40.0\text{m}$ monopole, $\Delta \le 80\text{ mm}$).
-  * Tolerance between consecutive slip-joints: $\le 1 : 1000$ ($0.10\%$).
-* **Horizontal Service Deflection ($\Delta_{\text{top}}$):**
-  * $\le H / 100$ ($300\text{ mm}$ maximum at $30.0\text{m}$ AGL).
+  * ≤ 1 : 500 (0.20% of Tower Height H) throughout the full mast height under dead load and still air.
+  * For a $30.0m$ monopole, maximum horizontal deviation $\Delta ≤ 60 mm$ (for $40.0m$ monopole, Δ ≤ 80 mm).
+  * Tolerance between consecutive slip-joints: ≤ 1 : 1000 (0.10%).
+* **Horizontal Service Deflection (Δ_top):**
+  * ≤ H / 100 ($300 mm$ maximum at $30.0m$ AGL).
 
 ### 4.3 Monopole Tower & Material Specification
-* **Tower Structure:** 30-meter or 40-meter polygonal tubular steel monopole constructed in 3 to 4 slip-joint sections with minimum $1.5 \times$ inside diameter overlap.
-* **Structural Steel:** ASTM A572 Grade 50 ($F_y = 345\text{ MPa} / 50\text{ ksi}$, $F_u = 450\text{ MPa}$).
-* **Corrosion Protection:** Hot-dip galvanized per ASTM A123 / ISO 1461 with minimum zinc coating thickness $\ge 85\ \mu\text{m}$ ($610\text{ g/m}^2$).
+* **Tower Structure:** 30-meter or 40-meter polygonal tubular steel monopole constructed in 3 to 4 slip-joint sections with minimum $1.5 ×$ inside diameter overlap.
+* **Structural Steel:** ASTM A572 Grade 50 ($F_y = 345 MPa / 50 ksi$, $F_u = 450 MPa$).
+* **Corrosion Protection:** Hot-dip galvanized per ASTM A123 / ISO 1461 with minimum zinc coating thickness ≥ 85 µm (610 g/m²).
 * **Fasteners & Anchors:** Anchor bolts ASTM F1554 Grade 55/105 with double heavy-hex nuts; structural bolts ASTM A325 / ISO 898-1 Class 8.8 hot-dip galvanized.
 
 ### 4.4 Compound Civil Works & Foundation
-* **Compound Footprint:** Standard $8.0\text{m} \times 8.0\text{m}$ ($64\text{ m}^2$) gravel-topped compound with geotextile weed barrier.
+* **Compound Footprint:** Standard $8.0m × 8.0m$ ($64 m^2$) gravel-topped compound with geotextile weed barrier.
 * **Perimeter Fencing:** 2.4-meter high cyclone wire mesh fence topped with 3 strands of galvanized concertina razor wire.
-* **Equipment Pad:** Reinforced concrete equipment plinth (Class A concrete, 28-day compressive strength $f'_c \ge 28\text{ MPa} / 4,000\text{ psi}$, ASTM A615 Grade 60 rebar) for outdoor power/battery cabinets.
-* **Foundation:** Reinforced concrete pad and chimney mat foundation or bored piles engineered with Safety Factor $\ge 2.0$ against soil bearing failure and $\ge 1.5$ against overturning/sliding.
+* **Equipment Pad:** Reinforced concrete equipment plinth (Class A concrete, 28-day compressive strength $f'_c ≥ 28 MPa / 4,000 psi$, ASTM A615 Grade 60 rebar) for outdoor power/battery cabinets.
+* **Foundation:** Reinforced concrete pad and chimney mat foundation or bored piles engineered with Safety Factor ≥ 2.0 against soil bearing failure and ≥ 1.5 against overturning/sliding.
 
 ### 4.5 Lightning Protection & Earthing Grid
-* Top-mounted Franklin lightning air terminal extending $\ge 2.0\text{m}$ above uppermost antenna.
-* Down-conductor: $70\text{ mm}^2$ bare stranded copper cable routed externally and clamped every $1.0\text{m}$ to tower shaft.
-* Ground ring: Continuous buried bare copper loop around tower base and compound with copper-clad steel ground rods ($19\text{mm dia} \times 3.0\text{m}$ length) exothermically welded (Cadweld) at all junctions, achieving earth ground resistance $\le 5.0\ \Omega$.
+* Top-mounted Franklin lightning air terminal extending ≥ 2.0m above uppermost antenna.
+* Down-conductor: 70 mm² bare stranded copper cable routed externally and clamped every $1.0m$ to tower shaft.
+* Ground ring: Continuous buried bare copper loop around tower base and compound with copper-clad steel ground rods ($19mm dia × 3.0m$ length) exothermically welded (Cadweld) at all junctions, achieving earth ground resistance ≤ 5.0 Ω.
 
 ---
 

@@ -11,12 +11,12 @@
 This manual is the engineering companion to the 30-Sheet Detailed Design Drawing (DDD) Dossier (`30M_315KPH_150KPA_G1_TelTech-FWA DDD.pdf`). It establishes the technical criteria for nationwide procurement, fabrication, foundation design, and construction of standard 30-meter monopoles for TelTech's Nationwide 5G Standalone (SA) Fixed Wireless Access (FWA) Expansion Program.
 
 - **Design Wind Speed:** NSCP 2015 Section 207 / TIA-222-H Zone 1: **315 km/h** (87.5 m/s, 3-sec gust). Zone 2: 270 km/h, Zone 3 floor: 250 km/h.
-- **Soil Bearing Capacity:** $q_a \ge 150\text{ kPa}$ (with pre-engineered soft-soil remediation down to $100\text{ kPa}$).
-- **Tower Shaft:** 5 polygonal slip-joint sections (6,000mm length, 1,500mm overlap), ASTM A572 Grade 50 high-strength steel ($F_y = 345\text{ MPa}$), hot-dip galvanized to $\ge 85\ \mu\text{m}$ (ASTM A123).
-- **Foundation:** $5.0\text{m} \times 5.0\text{m} \times 0.8\text{m}$ mat with $1.8\text{m} \times 1.8\text{m} \times 1.2\text{m}$ chimney pedestal ($f'_c \ge 28\text{ MPa}$).
+- **Soil Bearing Capacity:** qa ≥ 150 kPa (with pre-engineered soft-soil remediation down to 100 kPa).
+- **Tower Shaft:** 5 polygonal slip-joint sections (6,000mm length, 1,500mm overlap), ASTM A572 Grade 50 high-strength steel (Fy = 345 MPa), hot-dip galvanized to ≥ 85 µm (ASTM A123).
+- **Foundation:** 5.0m × 5.0m × 0.8m mat with 1.8m × 1.8m × 1.2m chimney pedestal (f'_c ≥ 28 MPa).
 - **Hold-Down Assembly:** 12x M36 Grade 105 (ASTM F1554) anchor bolts on 1,200mm PCD.
 - **Telecom Load:** 3x Band n50 cross-pol macro antennas (30m AGL), 3x 8T8R RRUs (29m AGL), 1x Starlink terminal (10m AGL), future 1.2m MW dish (25m AGL).
-- **Power & Earthing:** 12kW rectifiers, 2x 100Ah LiFePO4 batteries, Cadweld grounding grid $\le 5.0\ \Omega$.
+- **Power & Earthing:** 12kW rectifiers, 2x 100Ah LiFePO4 batteries, Cadweld grounding grid ≤ 5.0 Ω.
 
 ---
 
@@ -28,21 +28,21 @@ This manual is the engineering companion to the 30-Sheet Detailed Design Drawing
 | **S3** | 9.00m - 15.00m | 6,000 mm | 914 mm | 824 mm | 12 mm | ASTM A572 Gr 50 | 1,650 kg |
 | **S4** | 13.50m - 19.50m | 6,000 mm | 846 mm | 756 mm | 8 mm | ASTM A572 Gr 50 | 1,020 kg |
 | **S5 (Top)** | 18.00m - 30.00m | 12,000 mm | 778 mm | 450 mm | 6 mm | ASTM A572 Gr 50 | 1,180 kg |
-| **TOTAL** | **0.00m - 30.00m** | **30.0m** | **1,050 mm** | **450 mm** | **6 - 14 mm** | **$F_y = 345\text{ MPa}$** | **7,870 kg** |
+| **TOTAL** | **0.00m - 30.00m** | **30.0m** | **1,050 mm** | **450 mm** | **6 - 14 mm** | **Fy = 345 MPa** | **7,870 kg** |
 
 ---
 
 ### 3. Structural Reactions (Ultimate & Serviceability)
-- **Extreme Wind (315 km/h, ULS):** Overturning Moment $M_u = 1,850\text{ kN}\cdot\text{m}$, Shear $V_u = 145\text{ kN}$, Axial $P_u = 120\text{ kN}$.
-- **Operational Wind (180 km/h, SLS):** Moment $M_s = 600\text{ kN}\cdot\text{m}$, Shear $V_s = 48\text{ kN}$, Tip Sway $\Delta = 185\text{ mm} \le 300\text{ mm}$ ($H/162$), Tilt $\theta = 0.62^\circ \le 1.00^\circ$.
+- **Extreme Wind (315 km/h, ULS):** Overturning Moment Mu = 1,850 kN·m, Shear Vu = 145 kN, Axial Pu = 120 kN.
+- **Operational Wind (180 km/h, SLS):** Moment Ms = 600 kN·m, Shear Vs = 48 kN, Tip Sway Δ = 185 mm ≤ 300 mm (H/162), Tilt θ = 0.62° ≤ 1.00°.
 
 ---
 
 ### 4. Foundation Stability & Bearing Verification
-- **Applied Maximum Soil Pressure:** $q_{\text{{max}}} = 118.4\text{ kPa} \le 150.0\text{ kPa}$ ($SF = 2.45 \ge 2.0$).
-- **Minimum Soil Pressure:** $q_{\text{{min}}} = 12.2\text{ kPa} > 0$ (100% mat bearing, zero uplift).
-- **Overturning Factor of Safety:** $SF_{\text{{OT}}} = 2.15 \ge 1.50$ (+43% margin).
-- **Sliding Factor of Safety:** $SF_{\text{{SL}}} = 1.85 \ge 1.50$ (+23% margin).
+- **Applied Maximum Soil Pressure:** q_{{max}} = 118.4 kPa ≤ 150.0 kPa (SF = 2.45 ≥ 2.0).
+- **Minimum Soil Pressure:** q_{{min}} = 12.2 kPa > 0 (100% mat bearing, zero uplift).
+- **Overturning Factor of Safety:** SF_{{OT}} = 2.15 ≥ 1.50 (+43% margin).
+- **Sliding Factor of Safety:** SF_{{SL}} = 1.85 ≥ 1.50 (+23% margin).
 
 ---
 

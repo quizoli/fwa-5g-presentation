@@ -181,13 +181,13 @@
 <td>Palawan, Zamboanga, Davao, Maguindanao, Sulu, Tawi-Tawi</td>
 </tr>
 <tr>
-<td><strong>Ultimate Basic Wind Speed ($V$) (3-sec gust)</strong></td>
+<td><strong>Ultimate Basic Wind Speed (V) (3-sec gust)</strong></td>
 <td><strong>315 km/h (87.5 m/s)</strong></td>
 <td><strong>270 km/h (75.0 m/s)</strong></td>
 <td><strong>200 km/h (55.6 m/s)</strong></td>
 </tr>
 <tr>
-<td><strong>Nominal Basic Wind Speed ($V_{\text{asd}}$)</strong></td>
+<td><strong>Nominal Basic Wind Speed (V_{asd})</strong></td>
 <td><strong>245 km/h (68.0 m/s)</strong></td>
 <td><strong>210 km/h (58.3 m/s)</strong></td>
 <td><strong>155 km/h (43.1 m/s)</strong></td>
@@ -199,7 +199,7 @@
 <td>Category IV / Category III</td>
 </tr>
 <tr>
-<td><strong>Importance Factor ($I_w$)</strong></td>
+<td><strong>Importance Factor (Iw)</strong></td>
 <td>1.15 (Essential Facility) / 1.00 (Standard)</td>
 <td>1.15 / 1.00</td>
 <td>1.15 / 1.00</td>
@@ -214,38 +214,38 @@
 <hr>
 <h2>3. TOWER STRUCTURAL DESIGN PARAMETERS & LIMIT STATES</h2>
 <h3>3.1 Operational vs. Survivable Wind Speed</h3>
-<li><strong>Survivable / Ultimate Wind Speed ($V_{\text{survival}}$):</strong></li>
+<li><strong>Survivable / Ultimate Wind Speed (V_{survival}):</strong></li>
 <li><strong>Designed for 270 km/h to 315 km/h</strong> 3-second gust wind speed under Ultimate Limit State (ULS / LRFD strength design per NSCP 2015 and TIA-222-H).</li>
 <li>Structure, slip-joints, baseplate, and foundation anchorage shall withstand extreme typhoon wind pressures with full operational equipment loading (3x n50 Antennas, 3x 8T8R RRUs, Starlink dish, and future expansion mounts) without plastic deformation, structural failure, or overturning.</li>
-<li><strong>Operational / Serviceability Wind Speed ($V_{\text{operational}}$):</strong></li>
+<li><strong>Operational / Serviceability Wind Speed (V_{operational}):</strong></li>
 <li><strong>Designed for 140 km/h to 160 km/h (40.0 m/s to 44.4 m/s)</strong> continuous operational wind speed under Serviceability Limit State (SLS, 1.0 load factor).</li>
 <li>Under this wind condition, all active 5G beamforming patterns, MIMO spatial multiplexing, and narrow-beam microwave/satellite transmission links remain within rigid signal integrity thresholds.</li>
 <hr>
 <h3>3.2 Allowable Twist, Sway (Tilt), and Verticality (Plumbness)</h3>
-<p>Under operational wind loading ($V = 140\text{ km/h} - 160\text{ km/h}$) and dead load, the tower deflection shall not exceed the stringent serviceability criteria stipulated below:</p>
+<p>Under operational wind loading (V = 140 km/h – 160 km/h) and dead load, the tower deflection shall not exceed the stringent serviceability criteria stipulated below:</p>
 <div class="table-responsive"><table><thead><tr>
 <th>Deflection Parameter</th>
 <th>Allowable Limit</th>
 <th>Technical Notes & Compliance Rationale</th>
 </tr></thead><tbody>
 <tr>
-<td><strong>Allowable Twist ($\theta_{\text{twist}}$ / Torsional Rotation)</strong></td>
-<td><strong>$\le \pm 0.5^\circ$ (30 arcmin) for Backhaul / MW</strong><br><strong>$\le \pm 1.0^\circ$ (60 arcmin) for Macro Sector</strong></td>
-<td>Torsional rotation at antenna centerline (30.0m AGL) measured about the vertical tower axis. Ensures 5G multi-beamforming alignment and backhaul link availability ($\ge 99.995\%$).</td>
+<td><strong>Allowable Twist (θ_twist / Torsional Rotation)</strong></td>
+<td><strong>≤ ±0.5° (30 arcmin) for Backhaul / MW</strong><br><strong>≤ ±1.0° (60 arcmin) for Macro Sector</strong></td>
+<td>Torsional rotation at antenna centerline (30.0m AGL) measured about the vertical tower axis. Ensures 5G multi-beamforming alignment and backhaul link availability (≥ 99.995%).</td>
 </tr>
 <tr>
-<td><strong>Allowable Sway / Tilt ($\theta_{\text{sway}}$ / Angular Deflection)</strong></td>
-<td><strong>$\le \pm 1.0^\circ$ (60 arcmin)</strong></td>
+<td><strong>Allowable Sway / Tilt (θ_sway / Angular Deflection)</strong></td>
+<td><strong>≤ ±1.0° (60 arcmin)</strong></td>
 <td>Maximum angular deflection of the tower vertical centerline at 30.0m AGL under operational wind pressure. Prevents beam pattern decoupling over target residential clusters.</td>
 </tr>
 <tr>
 <td><strong>Allowable Verticality (Tower Plumbness)</strong></td>
-<td><strong>$\le 1 : 500$ ($0.20\%$ of Tower Height $H$)</strong></td>
-<td>Out-of-plumb tolerance under still-air dead load. For a <strong>30.0-meter monopole</strong>, maximum horizontal deviation $\Delta \le \mathbf{60\text{ mm}}$ (for 40.0m monopole, $\Delta \le 80\text{ mm}$).<br>Tolerance between consecutive slip-joints: $\le 1 : 1000$ ($0.10\%$).</td>
+<td><strong>≤ 1 : 500 (0.20% of Tower Height H)</strong></td>
+<td>Out-of-plumb tolerance under still-air dead load. For a <strong>30.0-meter monopole</strong>, maximum horizontal deviation Δ ≤ 60 mm (for 40.0m monopole, Δ ≤ 80 mm).<br>Tolerance between consecutive slip-joints: ≤ 1 : 1000 (0.10%).</td>
 </tr>
 <tr>
-<td><strong>Horizontal Top Deflection ($\Delta_{\text{top}}$)</strong></td>
-<td><strong>$\le H / 100$ ($300\text{ mm}$ for 30m tower)</strong></td>
+<td><strong>Horizontal Top Deflection (Δ_top)</strong></td>
+<td><strong>≤ H / 100 (300 mm for 30m tower)</strong></td>
 <td>Lateral service deflection at mast tip under serviceability wind load.</td>
 </tr>
 </tbody></table></div>
@@ -253,27 +253,27 @@
 <h2>4. TOWER & COMPOUND PHYSICAL SPECIFICATIONS</h2>
 <h3>4.1 Tower Body & Fabrication</h3>
 <li><strong>Structure Type:</strong> 30-Meter Self-Supporting Polygonal Tubular Steel Monopole (12-sided or 18-sided tapered polygon).</li>
-<li><strong>Sectional Assembly:</strong> 3 to 4 slip-joint telescoping sections with a minimum overlap length of $1.5 \times \text{inside mating diameter}$.</li>
-<li><strong>Structural Steel Material:</strong> High-strength structural steel plate conforming to <strong>ASTM A572 Grade 50</strong> ($F_y = 345\text{ MPa} / 50\text{ ksi}$, $F_u = 450\text{ MPa} / 65\text{ ksi}$).</li>
-<li><strong>Corrosion Protection & Galvanizing:</strong> Hot-dip galvanized per <strong>ASTM A123 / ISO 1461</strong> with minimum zinc coating thickness of $\ge 85\ \mu\text{m}$ ($610\text{ g/m}^2$), providing $\ge 25$-year service life in tropical coastal environments.</li>
+<li><strong>Sectional Assembly:</strong> 3 to 4 slip-joint telescoping sections with a minimum overlap length of 1.5 × inside mating diameter.</li>
+<li><strong>Structural Steel Material:</strong> High-strength structural steel plate conforming to <strong>ASTM A572 Grade 50</strong> (Fy = 345 MPa / 50 ksi, Fu = 450 MPa / 65 ksi).</li>
+<li><strong>Corrosion Protection & Galvanizing:</strong> Hot-dip galvanized per <strong>ASTM A123 / ISO 1461</strong> with minimum zinc coating thickness of ≥ 85 µm (610 g/m²), providing ≥ 25-year service life in tropical coastal environments.</li>
 <li><strong>Climbing Facility:</strong> External climbing ladder equipped with safety rail (fall-arrest cable system per OSHA / EN 353-1) and rest platforms.</li>
 <li><strong>Internal Cable Routing:</strong> Flanged internal cable access ports with heavy-duty weatherproof cable grommets.</li>
 <h3>4.2 Foundation & Soil Geotechnical Parameters</h3>
 <li><strong>Foundation Configuration:</strong> Reinforced Concrete Mat / Pad and Chimney Pedestal Foundation (or Cast-in-Place Bored Piles depending on site borehole SPT analysis).</li>
-<li><strong>Concrete Compressive Strength ($f'_c$):</strong> $\ge 28\text{ MPa}$ ($4,000\text{ psi}$) at 28 days (Class A-1 mix design, sulfate-resistant Portland cement).</li>
-<li><strong>Reinforcing Steel Bars:</strong> Deformed billet steel bars conforming to <strong>ASTM A615 / PNS 49 Grade 60</strong> ($f_y = 414\text{ MPa} / 60\text{ ksi}$).</li>
+<li><strong>Concrete Compressive Strength (f'_c):</strong> ≥ 28 MPa (4,000 psi) at 28 days (Class A-1 mix design, sulfate-resistant Portland cement).</li>
+<li><strong>Reinforcing Steel Bars:</strong> Deformed billet steel bars conforming to <strong>ASTM A615 / PNS 49 Grade 60</strong> (fy = 414 MPa / 60 ksi).</li>
 <li><strong>Anchor Bolts:</strong> Heavy-duty anchor bolts conforming to <strong>ASTM F1554 Grade 55 or Grade 105</strong>, hot-dip galvanized per ASTM A153, embedded in reinforced pedestal with dual heavy hex leveling and lock nuts.</li>
-<li><strong>Assumed Soil Bearing Capacity ($q_a$):</strong> $\ge 150\text{ kPa}$ ($3,130\text{ psf}$) at foundation footing depth (subject to confirmatory soil investigation). Safety Factor $\ge 2.0$ against soil failure; $\ge 1.5$ against overturning and sliding.</li>
-<h3>4.3 Standard Compound Layout ($8.0\text{m} \times 8.0\text{m}$)</h3>
-<li><strong>Compound Footprint:</strong> $64.0\text{ m}^2$ enclosed gravel-surfaced compound with geotextile weed barrier.</li>
-<li><strong>Perimeter Fencing:</strong> $2.4\text{m}$ high galvanized cyclone wire mesh topped with 3 strands of galvanized concertina razor wire and a $1.2\text{m} \times 2.1\text{m}$ heavy-duty lockable steel entrance gate.</li>
-<li><strong>Equipment Plinth:</strong> Reinforced concrete equipment pad elevated $+300\text{ mm}$ above natural ground line (NGL) for outdoor integrated power cabinet and lithium battery racks.</li>
+<li><strong>Assumed Soil Bearing Capacity (q_a):</strong> ≥ 150 kPa (3,130 psf) at foundation footing depth (subject to confirmatory soil investigation). Safety Factor ≥ 2.0 against soil failure; ≥ 1.5 against overturning and sliding.</li>
+<h3>4.3 Standard Compound Layout (8.0m × 8.0m)</h3>
+<li><strong>Compound Footprint:</strong> 64.0 m² enclosed gravel-surfaced compound with geotextile weed barrier.</li>
+<li><strong>Perimeter Fencing:</strong> 2.4m high galvanized cyclone wire mesh topped with 3 strands of galvanized concertina razor wire and a 1.2m × 2.1m heavy-duty lockable steel entrance gate.</li>
+<li><strong>Equipment Plinth:</strong> Reinforced concrete equipment pad elevated +300 mm above natural ground line (NGL) for outdoor integrated power cabinet and lithium battery racks.</li>
 <li><strong>Service Entrance:</strong> Dedicated 230V, single-phase, 60A / 100A AC utility service post, utility revenue meter, and step-down transformer pad.</li>
 <li><strong>Lightning & Earthing Grid:</strong></li>
-<li>Top-mounted Franklin lightning air terminal extending $\ge 2.0\text{m}$ above top antenna.</li>
-<li>$70\text{ mm}^2$ bare stranded copper down-conductor exothermically welded (Cadweld) to ground loop.</li>
-<li>Buried closed-loop perimeter copper ground ring with 4 to 6 copper-clad steel ground rods ($19\text{ mm dia} \times 3.0\text{m}$ length).</li>
-<li>Measured earth ground resistance: $\mathbf{\le 5.0\ \Omega}$ (tested via 3-point fall-of-potential method).</li>
+<li>Top-mounted Franklin lightning air terminal extending ≥ 2.0m above top antenna.</li>
+<li>70 mm² bare stranded copper down-conductor exothermically welded (Cadweld) to ground loop.</li>
+<li>Buried closed-loop perimeter copper ground ring with 4 to 6 copper-clad steel ground rods (19 mm dia × 3.0m length).</li>
+<li>Measured earth ground resistance: ≤ 5.0 Ω (tested via 3-point fall-of-potential method).</li>
 <hr>
 <h2>5. ANTENNA & RADIO EQUIPMENT LOADING SCHEDULE</h2>
 <div class="table-responsive"><table><thead><tr>
@@ -282,7 +282,7 @@
 <th>Equipment Description</th>
 <th>Model / Spec</th>
 <th>Weight (kg)</th>
-<th>Wind Projected Area ($A_w$)</th>
+<th>Wind Projected Area (Aw)</th>
 </tr></thead><tbody>
 <tr>
 <td><strong>30.0 m</strong></td>
@@ -290,7 +290,7 @@
 <td>5G Band n50 Cross-Pol Macro Antenna</td>
 <td>Andrew / Amplitech 8-Port</td>
 <td>~24.5 kg</td>
-<td>$0.62\text{ m}^2$</td>
+<td>0.62 m²</td>
 </tr>
 <tr>
 <td><strong>30.0 m</strong></td>
@@ -298,7 +298,7 @@
 <td>5G Band n50 8T8R Remote Radio Unit</td>
 <td>8 x 40W RRU</td>
 <td>~38.0 kg</td>
-<td>$0.28\text{ m}^2$</td>
+<td>0.28 m²</td>
 </tr>
 <tr>
 <td><strong>30.0 m</strong></td>
@@ -306,7 +306,7 @@
 <td>5G Band n50 Cross-Pol Macro Antenna</td>
 <td>Andrew / Amplitech 8-Port</td>
 <td>~24.5 kg</td>
-<td>$0.62\text{ m}^2$</td>
+<td>0.62 m²</td>
 </tr>
 <tr>
 <td><strong>30.0 m</strong></td>
@@ -314,7 +314,7 @@
 <td>5G Band n50 8T8R Remote Radio Unit</td>
 <td>8 x 40W RRU</td>
 <td>~38.0 kg</td>
-<td>$0.28\text{ m}^2$</td>
+<td>0.28 m²</td>
 </tr>
 <tr>
 <td><strong>30.0 m</strong></td>
@@ -322,7 +322,7 @@
 <td>5G Band n50 Cross-Pol Macro Antenna</td>
 <td>Andrew / Amplitech 8-Port</td>
 <td>~24.5 kg</td>
-<td>$0.62\text{ m}^2$</td>
+<td>0.62 m²</td>
 </tr>
 <tr>
 <td><strong>30.0 m</strong></td>
@@ -330,7 +330,7 @@
 <td>5G Band n50 8T8R Remote Radio Unit</td>
 <td>8 x 40W RRU</td>
 <td>~38.0 kg</td>
-<td>$0.28\text{ m}^2$</td>
+<td>0.28 m²</td>
 </tr>
 <tr>
 <td><strong>25.0 m</strong></td>
@@ -338,7 +338,7 @@
 <td>Future Expansion Antenna / Backhaul Mount</td>
 <td>3-Sector Co-location Mount</td>
 <td>~120.0 kg</td>
-<td>$1.20\text{ m}^2$</td>
+<td>1.20 m²</td>
 </tr>
 <tr>
 <td><strong>10.0 m</strong></td>
@@ -346,7 +346,7 @@
 <td>Starlink High-Performance Satellite Terminal</td>
 <td>LEO Phased-Array Dish</td>
 <td>~9.2 kg</td>
-<td>$0.25\text{ m}^2$</td>
+<td>0.25 m²</td>
 </tr>
 <tr>
 <td><strong>32.0 m</strong></td>
@@ -354,7 +354,7 @@
 <td>Lightning Arrestor / Air Terminal</td>
 <td>Franklin Copper Rod</td>
 <td>~5.0 kg</td>
-<td>$0.05\text{ m}^2$</td>
+<td>0.05 m²</td>
 </tr>
 </tbody></table></div>
 <hr>

@@ -39,17 +39,17 @@ Bidders may submit proposals for **Turnkey (All Lots)** or for individual standa
   Supply, installation, commissioning, and single site verification (SSV) of carrier-grade 3-sector 8T8R Massive MIMO gNodeB equipment operating across Band n50 (1432–1517 MHz, 60 MHz channel bandwidth) with 320W total RF output per sector.
   *(Note: Detailed Site Surveys (TSSR), Greenfield Tower Permitting, RF Propagation Modeling, and Multi-Site Cluster RF Optimization are consolidated and evaluated under Lot 5 to eliminate scope duplication. Lot 1 Turnkey Services cover dedicated RAN hardware deployment, I&C, SSV, warehousing, and hauling)*
 * **LOT 2 — Power Systems & Passive Site Infrastructure:**  
-  Modular DC power plants with 12.0 kW total installed capacity / 9.0 kW firm N+1 continuous capacity (4x 3.0 kW modules: 3 active + 1 redundant standby), Lithium Iron Phosphate (LiFePO4) battery energy storage systems delivering $\ge 12.0\text{ kWh}$ usable energy over 4.0 hours @ 3.0 kW continuous load, $\le 80\%$ DoD, $80\%$ EOL SoH (minimum $\ge 20.0\text{ kWh}$ nominal installed bank capacity is controlling; 400 Ah to 450 Ah is indicative based on string nominal voltage), TowerCo DC tap-off submetering boxes, and 15 kVA standby generators.
+  Modular DC power plants with 12.0 kW total installed capacity / 9.0 kW firm N+1 continuous capacity (4x 3.0 kW modules: 3 active + 1 redundant standby), Lithium Iron Phosphate (LiFePO4) battery energy storage systems delivering $≥ 12.0 kWh$ usable energy over 4.0 hours @ 3.0 kW continuous load, $≤ 80\%$ DoD, $80\%$ EOL SoH (minimum $≥ 20.0 kWh$ nominal installed bank capacity is controlling; 400 Ah to 450 Ah is indicative based on string nominal voltage), TowerCo DC tap-off submetering boxes, and 15 kVA standby generators.
 * **LOT 3 — Cloud-Native 5G Core Network (5GC SA) & Datacenter Infrastructure:**  
   Active-Active dual-datacenter cloud-native 5G Standalone core network (Metro Manila Primary DC and Clark DR DC) dimensioned for 1.0M initial registered subscribers with wire-speed DPDK UPF nodes and carrier-grade CG-NAT.
 * **LOT 4 — Converged Digital OSS/BSS & Field Force Automation:**  
   Cloud-native converged charging (CHF), prepaid rating engine, real-time Philippine digital payment integration (GCash, Maya), mobile field-force dispatch application (3,500 daily work orders), and warehouse logistics.
 * **LOT 5 — Site Acquisition, Detailed Site Survey (TSSR), RF Design & Civil Works:**  
-  Technical Site Survey Reports (TSSR), LGU and barangay permitting, reinforced concrete equipment pads, grounding rings ($\le 5.0\ \Omega$), 30m/40m monopole tower supply and erection, and cluster RF optimization.
+  Technical Site Survey Reports (TSSR), LGU and barangay permitting, reinforced concrete equipment pads, grounding rings (≤ 5.0 Ω), 30m/40m monopole tower supply and erection, and cluster RF optimization.
 * **LOT 6 — Nationwide Managed Services & 24/7 Network Operations (MS):**  
   24/7/365 Tier-2/Tier-3 central NOC monitoring, nationwide First Line Maintenance (FLM), quarterly preventive maintenance, and Next-Business-Day (NBD) depot spare parts logistics.
 * **LOT 7 — 5G High-Gain Customer Premises Equipment (CPE):**  
-  350,000 Indoor 5G FWA Routers ($\ge 8.0\text{ dBi}$ internal antenna, Wi-Fi 6 AX1800/AX3000, 2.5GE LAN) and 15,000 Outdoor 5G Terminals ($\ge 12.0\text{ dBi}$ directional antenna, IP67, 2.5GE PoE with companion indoor Wi-Fi 6 router), plus custom firmware staging for all 365,000 terminals.
+  350,000 Indoor 5G FWA Routers ($≥ 8.0 dBi$ internal antenna, Wi-Fi 6 AX1800/AX3000, 2.5GE LAN) and 15,000 Outdoor 5G Terminals ($≥ 12.0 dBi$ directional antenna, IP67, 2.5GE PoE with companion indoor Wi-Fi 6 router), plus custom firmware staging for all 365,000 terminals.
 * **FORM D — Mandatory Vendor Financing Facility:**  
   Vendor-backed financing facility covering at least 80% of Capex, flexible facility tenor up to 20 years (minimum 4 years, 5+ years preferred), and deferred principal repayment / grace period up to 10 years (minimum 12 months, 18+ months preferred).
 
