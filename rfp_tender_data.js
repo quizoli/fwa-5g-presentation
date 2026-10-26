@@ -93,7 +93,7 @@ window.RFPTenderData = {
     "title": "Document 06: Official RFP Commercial Price Book (Rev 2.1 Reconciled)",
     "subtitle": "Dynamic 11-Tab Bidding Spreadsheet with Currency Conversion, Reconciled Services SOW, Multi-Year O&M & Form C TCO Link",
     "badge": "Rev 2.1 • Reconciled",
-    "xlsx": "RFP_Tender_Package/06_RFP_Commercial_Price_Book_and_BoQ_Template.xlsx?v=20261026_rev2.5",
+    "xlsx": "RFP_Tender_Package/06_RFP_Commercial_Price_Book_and_BoQ_Template.xlsx?v=20261026_rev2.6",
     "pages": "11 Sheets (with Reconciled Services SOW)",
     "type": "XLSX"
   },
@@ -103,7 +103,7 @@ window.RFPTenderData = {
     "title": "Document 07: Candidate Site List & Rollout Schedule (Rev 2.2 Validated)",
     "subtitle": "Candidate Siting Inventory: 1,000 Phase 1 Sites (897 Co-location, 103 Greenfield, 100% Terrestrial Fiber-Fed) & 4,000 Expansion Sites — Audited DepEd Validated Coordinates",
     "badge": "Rev 2.2 Siting Schedule",
-    "xlsx": "RFP_Tender_Package/07_RFP_5G_FWA_Candidate_Site_List_and_Rollout_Schedule.xlsx?v=20261026_rev2.5",
+    "xlsx": "RFP_Tender_Package/07_RFP_5G_FWA_Candidate_Site_List_and_Rollout_Schedule.xlsx?v=20261026_rev2.6",
     "pages": "6 Sheets (5,000 Sites)",
     "type": "XLSX"
   },
@@ -134,9 +134,9 @@ window.RFPTenderData = {
     "title": "Appendix E: Services SOW & Master Rate Card (Version 2.1)",
     "subtitle": "Comprehensive Turnkey Rollout, Site Engineering, Telecom Integration, and Reconciled 24/7 Managed Operations & Maintenance (O&M) Rate Card (59 Service Items)",
     "badge": "Version 2.1 • Reconciled",
-    "pdf": "RFP_Tender_Package/10_Appendix_E_Services_Statement_of_Work_SOW_and_Pricing_Schedule.pdf?v=20261026_rev2.5",
-    "html": "RFP_Tender_Package/10_Appendix_E_Services_Statement_of_Work_SOW_and_Pricing_Schedule.html?v=20261026_rev2.5",
-    "docx": "RFP_Tender_Package/Service SoW.docx?v=20261026_rev2.5",
+    "pdf": "RFP_Tender_Package/10_Appendix_E_Services_Statement_of_Work_SOW_and_Pricing_Schedule.pdf?v=20261026_rev2.6",
+    "html": "RFP_Tender_Package/10_Appendix_E_Services_Statement_of_Work_SOW_and_Pricing_Schedule.html?v=20261026_rev2.6",
+    "docx": "RFP_Tender_Package/Service SoW.docx?v=20261026_rev2.6",
     "pages": "26 Pages (PDF, HTML & Word)",
     "type": "PDF / DOCX"
   },
@@ -146,9 +146,9 @@ window.RFPTenderData = {
     "title": "Exhibit A.3.3.3.1: Tower & Site Structural Design Parameters",
     "subtitle": "NTC Regulatory Compliance Exhibit, NSCP 2015 Wind Load Limits (250–315 km/h), 30m/40m Monopoles & A3 CAD Layout Blueprints",
     "badge": "Structural Exhibit",
-    "pdf": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.pdf?v=20261026_rev2.5",
-    "html": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.html?v=20261026_rev2.5",
-    "annexPdf": "RFP_Tender_Package/11_Annex_Physical_Layout_Plan_and_Structural_Design_Parameters.pdf?v=20261026_rev2.5",
+    "pdf": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.pdf?v=20261026_rev2.6",
+    "html": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.html?v=20261026_rev2.6",
+    "annexPdf": "RFP_Tender_Package/11_Annex_Physical_Layout_Plan_and_Structural_Design_Parameters.pdf?v=20261026_rev2.6",
     "pages": "2 Pages + 2p A3 Blueprints",
     "type": "PDF / HTML"
   },
@@ -158,8 +158,8 @@ window.RFPTenderData = {
     "title": "30M Monopole Detailed Design Drawing (DDD) Master Dossier & Engineering Manual",
     "subtitle": "Complete Carrier-Grade 30-Sheet CAD Dossier (A3 Landscape) & Structural Manual (315 km/h Zone 1, qa = 150 kPa, 5 Polygonal Sections)",
     "badge": "CAD Drawing Dossier",
-    "pdf": "RFP_Tender_Package/30M_315KPH_150KPA_G1_TelTech-FWA DDD.pdf?v=20261026_rev2.5",
-    "manualPdf": "RFP_Tender_Package/30M_315KPH_150KPA_G1_TelTech-FWA_DDD_Manual.pdf?v=20261026_rev2.5",
+    "pdf": "RFP_Tender_Package/30M_315KPH_150KPA_G1_TelTech-FWA DDD.pdf?v=20261026_rev2.6",
+    "manualPdf": "RFP_Tender_Package/30M_315KPH_150KPA_G1_TelTech-FWA_DDD_Manual.pdf?v=20261026_rev2.6",
     "pages": "30 Sheets A3 CAD + 5p Manual",
     "type": "A3 CAD Set / PDF"
   }
@@ -476,7 +476,7 @@ window.RFPTenderData = {
       {
         "id": "RFP-03",
         "feature": "Nominal Siting & Audit",
-        "requirement": "Siting validation against 13,810 tower inventory and Comclark/TelTech fiber network backbone routes (subject to verification on the ground); production of candidate search rings."
+        "requirement": "Siting validation against audited 13,810 tower registry records (13,746 deduplicated physical towers) and Comclark/TelTech fiber network backbone routes (subject to verification on the ground); production of candidate search rings."
       },
       {
         "id": "RFP-04",
