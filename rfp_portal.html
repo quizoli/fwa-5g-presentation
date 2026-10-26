@@ -852,30 +852,34 @@
 <nav class="nav-ribbon">
   <div class="nav-tab active" data-tab="tab-library" onclick="switchTab('tab-library')">
     <span>📚 1. Document Library</span>
-    <span class="badge" style="background: var(--gold); color: #0A192F; font-weight: 800;">10 Docs + Bulletin</span>
+    <span class="badge" style="background: var(--gold); color: #0A192F; font-weight: 800;">11 Docs + Bulletin</span>
+  </div>
+  <div class="nav-tab" data-tab="tab-specs" onclick="switchTab('tab-specs')">
+    <span>📐 2. Specs Library</span>
+    <span class="badge" style="background: #38BDF8; color: #0A192F; font-weight: 800;">NEW • 6 Domains</span>
   </div>
   <div class="nav-tab" data-tab="tab-technical" onclick="switchTab('tab-technical')">
-    <span>📋 2. Technical Compliance (App A)</span>
+    <span>📋 3. Technical Compliance (App A)</span>
     <span class="badge" id="tab-compliance-count">0 / 80</span>
   </div>
   <div class="nav-tab" data-tab="tab-commercial" onclick="switchTab('tab-commercial')">
-    <span>💰 3. Commercial BoQ & Financing</span>
+    <span>💰 4. Commercial BoQ & Financing</span>
     <span class="badge">Lots 1–7</span>
   </div>
   <div class="nav-tab" data-tab="tab-siting" onclick="switchTab('tab-siting')">
-    <span>🗺️ 4. Candidate Site Schedule</span>
+    <span>🗺️ 5. Candidate Site Schedule</span>
     <span class="badge">1,000 Phase 1</span>
   </div>
   <div class="nav-tab" data-tab="tab-submission" onclick="switchTab('tab-submission')">
-    <span>🚀 5. 3-Envelope Sealed Bid</span>
+    <span>🚀 6. 3-Envelope Sealed Bid</span>
     <span class="badge" style="background: var(--gold); color: #0A192F;">Submission</span>
   </div>
   <div class="nav-tab" data-tab="tab-revisions" onclick="switchTab('tab-revisions')">
-    <span>📜 6. Revision History</span>
-    <span class="badge" style="background: #38BDF8; color: #0A192F; font-weight: 800;">Rev 2.3</span>
+    <span>📜 7. Revision History</span>
+    <span class="badge" style="background: #10B981; color: #0A192F; font-weight: 800;">Rev 2.4</span>
   </div>
   <div class="nav-tab" id="admin-nav-tab" data-tab="tab-admin" onclick="switchTab('tab-admin')" style="display: none;">
-    <span>👑 7. Tender Committee Console</span>
+    <span>👑 8. Tender Committee Console</span>
     <span class="badge" style="background: var(--teal); color: #0A192F;">Admin</span>
   </div>
 </nav>
@@ -922,8 +926,24 @@
         </div>
       </div>
 
+      <!-- FEATURED SPECS LIBRARY PROMO BANNER -->
+      <div style="background: linear-gradient(135deg, rgba(0, 180, 216, 0.12), rgba(15, 23, 42, 0.8)); border: 1.5px solid #00B4D8; border-radius: 10px; padding: 14px 18px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.25);">
+        <div>
+          <div style="font-weight: 800; color: #38BDF8; font-size: 14px; display: flex; align-items: center; gap: 6px;">
+            <span>📐</span> <span>Technical &amp; Engineering Specifications Library</span>
+            <span style="background: #00B4D8; color: #0A192F; font-size: 10px; font-weight: 900; padding: 2px 7px; border-radius: 4px; text-transform: uppercase;">NEW IN REV 2.4</span>
+          </div>
+          <div style="font-size: 12px; color: #CBD5E1; margin-top: 3px; max-width: 820px; line-height: 1.45;">
+            Directly inspect authoritative equipment specifications, wind load limits (NSCP 2015 Zone 1: 315 km/h, Zone 2: 270 km/h, Zone 3: 250 km/h), 30m/40m ASTM A572 monopoles, 12.0 kW N+1 power plants, LiFePO4 batteries, fiber/satellite backhaul, and outdoor CPE parameters.
+          </div>
+        </div>
+        <button onclick="switchTab('tab-specs')" class="btn btn-primary" style="background: #00B4D8; color: #0A192F; font-weight: 800; font-size: 12px; padding: 7px 16px; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+          <span>📐</span> Open Specs Library ➔
+        </button>
+      </div>
+
       <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5;">
-        Qualified bidders may inspect and download all operative tender specifications, engineering guidelines, compliance matrices, commercial BoQ price books, and siting schedules below. Complete the submission electronically via Tabs 2, 3, and 5.
+        Qualified bidders may inspect and download all operative tender specifications, engineering guidelines, compliance matrices, commercial BoQ price books, and siting schedules below. Complete the submission electronically via Tabs 3, 4, and 6.
       </p>
       <div class="doc-grid" id="document-library-grid">
         <!-- Rendered by JS -->
@@ -931,7 +951,52 @@
     </div>
   </section>
 
-  <!-- TAB 2: TECHNICAL COMPLIANCE MATRIX (APPENDIX A) -->
+  <!-- TAB 2: TECHNICAL & ENGINEERING SPECS LIBRARY -->
+  <section id="tab-specs" class="tab-pane">
+    <div class="portal-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">📐 Master Technical &amp; Engineering Specifications Library</div>
+          <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
+            Authoritative carrier-grade equipment specifications, structural wind load limits (NSCP 2015), 30m/40m monopoles, 12.0 kW power plants, LiFePO4 batteries, fiber/satellite backhaul, and 5G FWA CPE parameters across 6 core domains.
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <a href="RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.html" target="_blank" class="btn btn-primary" style="font-size: 11.5px; padding: 6px 14px; background: #00B4D8; color: #0A192F; font-weight: 800; border: none;">
+            🌐 Open Tower Exhibit (A.3.3.3.1) ➔
+          </a>
+          <a href="RFP_Tender_Package/11_Annex_Physical_Layout_Plan_and_Structural_Design_Parameters.pdf" download class="btn btn-outline" style="font-size: 11.5px; padding: 6px 14px; border-color: #10B981; color: #6EE7B7;">
+            📐 Download A3 Blueprints (2p)
+          </a>
+        </div>
+      </div>
+
+      <!-- Specs Search & Domain Filter Bar -->
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; background: rgba(255,255,255,0.02); padding: 12px 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.06);">
+        <div class="filter-bar" id="specs-filter-bar" style="margin-bottom: 0;">
+          <div class="filter-pill active" onclick="filterSpecsDomain('all', event)">★ All Domains (19 Specs)</div>
+          <div class="filter-pill" onclick="filterSpecsDomain('civil_tower', event)">🗼 Towers &amp; Civil (5)</div>
+          <div class="filter-pill" onclick="filterSpecsDomain('ran_radio', event)">📻 RAN &amp; Radio (4)</div>
+          <div class="filter-pill" onclick="filterSpecsDomain('power_energy', event)">⚡ Power &amp; Batteries (3)</div>
+          <div class="filter-pill" onclick="filterSpecsDomain('transmission_backhaul', event)">🛰️ Backhaul &amp; Satellite (3)</div>
+          <div class="filter-pill" onclick="filterSpecsDomain('core_oss_bss', event)">🧠 5G Core &amp; BSS (2)</div>
+          <div class="filter-pill" onclick="filterSpecsDomain('cpe_terminals', event)">📡 CPE &amp; Terminals (2)</div>
+        </div>
+        <div style="position: relative; min-width: 280px; flex: 1; max-width: 380px;">
+          <input type="text" id="specs-search-box" placeholder="🔍 Search specifications, standards, models, or tolerances..." 
+                 style="width: 100%; background: #0A192F; border: 1px solid rgba(0, 180, 216, 0.4); color: #F8FAFC; padding: 7px 14px; border-radius: 20px; font-size: 12px;"
+                 oninput="onSpecsSearch(this.value)">
+        </div>
+      </div>
+
+      <!-- Specs Library Content Container -->
+      <div id="specs-library-container">
+        <!-- Rendered by renderSpecsLibrary() in JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 3: TECHNICAL COMPLIANCE MATRIX (APPENDIX A) -->
   <section id="tab-technical" class="tab-pane">
     <!-- Sticky Scorecard -->
     <div class="scorecard-banner">
@@ -1384,18 +1449,20 @@
             </tr>
           </thead>
           <tbody>
-                        <tr style="background: rgba(56, 189, 248, 0.08); border-left: 4px solid #38BDF8;">
-              <td class="rev-num" style="color: #38BDF8; font-weight: 900;">Rev 2.4<br><span style="font-size: 10px; background: #38BDF8; color: #0A192F; font-weight: 900; padding: 1px 5px; border-radius: 3px;">ACTIVE</span></td>
-              <td class="rev-num" style="white-space: nowrap;">2026-10-25</td>
+                        <tr style="background: rgba(16, 185, 129, 0.08); border-left: 4px solid #10B981;">
+              <td class="rev-num" style="color: #10B981; font-weight: 900;">Rev 2.4<br><span style="font-size: 10px; background: #10B981; color: #0A192F; font-weight: 900; padding: 1px 5px; border-radius: 3px;">ACTIVE</span></td>
+              <td class="rev-num" style="white-space: nowrap;">2026-10-26</td>
               <td>
-                <strong>Document 06</strong> (Price Book Rev 2.2)<br>
+                <strong>Master Specs Library</strong> (Tab 2 Launch)<br>
+                <strong>Document 11</strong> (Exhibit A.3.3.3.1 &amp; A3 CAD Drawings)<br>
+                <strong>Document 06</strong> (Price Book Rev 2.2 Reconciled)<br>
                 <strong>Document 10</strong> (Appendix E Version 2.2)<br>
-                <strong>Form C &amp; Services SOW</strong> (Live Reconciliation Matrix)<br>
-                <strong>Full Tender ZIP Package</strong><br>
-                <span style="font-size: 11px; color: #38BDF8;">Formulaic Variance Checks &amp; Satellite Latency Alignment</span>
+                <span style="font-size: 11px; color: #10B981;">Full Engineering Specs &amp; Blueprint Integration</span>
               </td>
               <td>
-                <strong>Formulaic TCO Reconciliation, SAQ-03 Scope Assignment &amp; Bulletin Satellite Latency Harmonization:</strong><br>
+                <strong>Master Specs Library Launch, Exhibit A.3.3.3.1 NTC Engineering Exhibit &amp; Formulaic TCO Reconciliation:</strong><br>
+                • <strong>Master Specs Library (Tab 2):</strong> Launched dedicated interactive technical &amp; engineering specifications library covering 19 parameters across 6 domains (Towers/Civil, RAN, Power, Backhaul, Core, CPE) with instant search, category filtering, and one-click parameter copying.<br>
+                • <strong>Document 11 &amp; A3 Blueprints:</strong> Published Exhibit A.3.3.3.1 (Basic Tower &amp; Site Structural Design Parameters) and 2-page A3 CAD layout drawings (8m x 8m Compound Plan + Tower Structural Details) across PDF and HTML.<br>
                 • <strong>Live Formulaic Reconciliation &amp; Variance Auditing:</strong> Codified automated Excel variance verification tables on Form C (Rows 19–26) and Services SOW sheet. Live formulas calculate <code>ABS(Lot_Value - SOW_Value)</code> and display <code>✓ ZERO VARIANCE (RECONCILED)</code> or automated discrepancy alerts. Form C Row 13 formally affirmed as the SOLE official evaluated commercial tender score for contract award.<br>
                 • <strong>SAQ-03 Scope Realignment to Committed Co-Location:</strong> Corrected SAQ-03 (TowerCo Space Application &amp; Technical Dossier Support) to committed Tier 1 Co-Location scope with actual evaluation quantity of <strong>897 sites</strong> (Phase 1) / 4,485 sites (Program). Segregated Standby 10.3% Own-Build SAQ Basket across 103 sites.<br>
                 • <strong>Site-Count Population Model Codified:</strong> Formalized that Tier 2 (TowerCo Build-to-Suit / B2S) and Tier 3 (Operator Own-Build Monopole) are <em>mutually exclusive implementation alternatives for the same 103 expansion positions</em>. Total Phase 1 network footprint remains strictly <strong>1,000 sites</strong> (897 Tier 1 + 103 Tier 2/3).<br>
@@ -1582,16 +1649,23 @@
               <tr style="background: rgba(56, 189, 248, 0.08);">
                 <td><strong>10</strong></td>
                 <td>10_Appendix_E_Services_Statement_of_Work_SOW_and_Pricing_Schedule</td>
-                <td><span class="badge" style="background:#38BDF8; color:#0A192F; font-weight:800;">Version 2.1</span></td>
+                <td><span class="badge" style="background:#38BDF8; color:#0A192F; font-weight:800;">Version 2.2</span></td>
                 <td>25 Oct 2026</td>
                 <td><strong>Reconciled Master Services SOW &amp; 59-Item Rate Card</strong></td>
+              </tr>
+              <tr style="background: rgba(16, 185, 129, 0.08);">
+                <td><strong>11</strong></td>
+                <td>11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters</td>
+                <td><span class="badge" style="background:#10B981; color:#0A192F; font-weight:800;">Rev 1.0</span></td>
+                <td>26 Oct 2026</td>
+                <td><strong>NTC Regulatory Compliance Exhibit &amp; A3 Compound / Structural CAD Blueprints</strong></td>
               </tr>
               <tr style="background: rgba(56, 189, 248, 0.15); font-weight:700;">
                 <td><strong>ZIP</strong></td>
                 <td>RFP_5G_FWA_Bidder_Package_2026-10-14.zip</td>
-                <td><span class="badge" style="background:#38BDF8; color:#0A192F; font-weight:900;">Rev 2.3 Single-Root</span></td>
-                <td>25 Oct 2026</td>
-                <td><strong>Official Full Distribution Archive (30 Verified Active Files)</strong></td>
+                <td><span class="badge" style="background:#38BDF8; color:#0A192F; font-weight:900;">Rev 2.4 Active Package</span></td>
+                <td>26 Oct 2026</td>
+                <td><strong>Official Full Distribution Archive (34 Verified Active Files)</strong></td>
               </tr>
             </tbody>
           </table>
@@ -1771,11 +1845,18 @@ document.addEventListener('DOMContentLoaded', function() {
   initUser();
   initCountdown();
   renderDocumentLibrary();
+  renderSpecsLibrary();
   renderTechnicalMatrix();
   renderBoQTables();
   loadBidDraft();
   initAdminView();
   initPortalChat();
+  const urlParams = new URLSearchParams(window.location.search);
+  const targetTab = urlParams.get('tab') || localStorage.getItem('fwa_active_tab');
+  if (targetTab && document.getElementById(targetTab)) {
+    switchTab(targetTab);
+    localStorage.removeItem('fwa_active_tab');
+  }
 });
 
 // AUTH & USER
@@ -1823,6 +1904,9 @@ function switchTab(tabId) {
   const nav = document.querySelector(`.nav-tab[data-tab="${tabId}"]`);
   if (nav) nav.classList.add('active');
 
+  if (tabId === 'tab-specs') {
+    renderSpecsLibrary();
+  }
   if (tabId === 'tab-submission') {
     updatePreflight();
   }
@@ -1839,22 +1923,26 @@ function renderDocumentLibrary() {
   container.innerHTML = window.RFPTenderData.documents.map(doc => {
     const isAddendum = (doc.id === '08' || doc.id === '09');
     const isSow = (doc.id === '10');
+    const isExhibit = (doc.id === '11');
     let borderStyle = '';
     if (isAddendum) {
       borderStyle = 'border: 1.5px solid rgba(255, 183, 3, 0.6); background: linear-gradient(145deg, rgba(255, 183, 3, 0.08), rgba(15, 23, 42, 0.85));';
     } else if (isSow) {
       borderStyle = 'border: 1.5px solid rgba(0, 180, 216, 0.6); background: linear-gradient(145deg, rgba(0, 180, 216, 0.08), rgba(15, 23, 42, 0.85));';
+    } else if (isExhibit) {
+      borderStyle = 'border: 1.5px solid rgba(16, 185, 129, 0.6); background: linear-gradient(145deg, rgba(16, 185, 129, 0.08), rgba(15, 23, 42, 0.85));';
     }
     return `
       <div class="doc-card" style="${borderStyle}">
         <div>
-          <span class="doc-card-badge ${doc.type.includes('XLSX') ? 'badge-xlsx' : 'badge-pdf'}" style="${isAddendum ? 'background: #FFB703; color: #0A192F; font-weight: 800;' : (isSow ? 'background: #00B4D8; color: #0A192F; font-weight: 800;' : '')}">${doc.badge}</span>
-          <div class="doc-card-title" style="${isAddendum ? 'color: #FFB703;' : (isSow ? 'color: #38BDF8;' : '')}">${doc.id}. ${doc.title}</div>
+          <span class="doc-card-badge ${doc.type.includes('XLSX') ? 'badge-xlsx' : 'badge-pdf'}" style="${isAddendum ? 'background: #FFB703; color: #0A192F; font-weight: 800;' : (isSow ? 'background: #00B4D8; color: #0A192F; font-weight: 800;' : (isExhibit ? 'background: #10B981; color: #0A192F; font-weight: 800;' : ''))}">${doc.badge}</span>
+          <div class="doc-card-title" style="${isAddendum ? 'color: #FFB703;' : (isSow ? 'color: #38BDF8;' : (isExhibit ? 'color: #6EE7B7;' : ''))}">${doc.id}. ${doc.title}</div>
           <div class="doc-card-sub">${doc.subtitle}</div>
         </div>
         <div class="doc-card-actions">
-          ${doc.html ? `<a href="${doc.html}" target="_blank" class="btn btn-primary" style="font-size: 11px; padding: 5px 10px; background: ${isAddendum ? '#FFB703; color: #0A192F; font-weight: 700;' : (isSow ? '#00B4D8; color: #0A192F; font-weight: 700;' : '')}">Web View ➔</a>` : ''}
-          ${doc.pdf ? `<a href="${doc.pdf}" download class="btn btn-outline" style="font-size: 11px; padding: 5px 10px; ${isAddendum ? 'border-color: #FFB703; color: #FFB703;' : (isSow ? 'border-color: #00B4D8; color: #38BDF8;' : '')}">📕 PDF</a>` : ''}
+          ${doc.html ? `<a href="${doc.html}" target="_blank" class="btn btn-primary" style="font-size: 11px; padding: 5px 10px; background: ${isAddendum ? '#FFB703; color: #0A192F; font-weight: 700;' : (isSow ? '#00B4D8; color: #0A192F; font-weight: 700;' : (isExhibit ? '#10B981; color: #0A192F; font-weight: 700;' : ''))}">Web View ➔</a>` : ''}
+          ${doc.pdf ? `<a href="${doc.pdf}" download class="btn btn-outline" style="font-size: 11px; padding: 5px 10px; ${isAddendum ? 'border-color: #FFB703; color: #FFB703;' : (isSow ? 'border-color: #00B4D8; color: #38BDF8;' : (isExhibit ? 'border-color: #10B981; color: #6EE7B7;' : ''))}">📕 PDF</a>` : ''}
+          ${doc.annexPdf ? `<a href="${doc.annexPdf}" target="_blank" class="btn btn-outline" style="font-size: 11px; padding: 5px 10px; border-color: #38BDF8; color: #7DD3FC;">📐 A3 Plans</a>` : ''}
           ${doc.xlsx ? `<a href="${doc.xlsx}" download class="btn btn-outline" style="font-size: 11px; padding: 5px 10px; border-color: #10B981; color: #A7F3D0;">📊 Excel</a>` : ''}
           ${doc.docx ? `<a href="${doc.docx}" download class="btn btn-outline" style="font-size: 11px; padding: 5px 10px; border-color: #38BDF8; color: #BAE6FD;">📄 Word</a>` : ''}
         </div>
@@ -4562,3 +4650,153 @@ function exportChatTranscript() {
 </script>
 </body>
 </html>
+
+// ==========================================
+// SPECS LIBRARY LOGIC & RENDERING
+// ==========================================
+let currentSpecsDomain = 'all';
+let currentSpecsSearch = '';
+
+function filterSpecsDomain(domain, ev) {
+  currentSpecsDomain = domain;
+  document.querySelectorAll('#specs-filter-bar .filter-pill').forEach(pill => pill.classList.remove('active'));
+  if (ev && ev.target) ev.target.classList.add('active');
+  renderSpecsLibrary();
+}
+
+function onSpecsSearch(query) {
+  currentSpecsSearch = (query || '').trim().toLowerCase();
+  renderSpecsLibrary();
+}
+
+function copySpecParams(specId) {
+  if (!window.RFPTenderData || !window.RFPTenderData.specsLibrary) return;
+  let foundSpec = null;
+  for (const group of window.RFPTenderData.specsLibrary) {
+    const s = group.specs.find(item => item.id === specId);
+    if (s) { foundSpec = s; break; }
+  }
+  if (!foundSpec) return;
+  
+  let text = `TELTECH 5G FWA SPECIFICATION: ${foundSpec.id} - ${foundSpec.title}\n`;
+  text += `Governing Standard: ${foundSpec.governingStandard}\n`;
+  text += `Category: ${foundSpec.category}\n`;
+  text += `Summary: ${foundSpec.summary}\n\n`;
+  text += `TECHNICAL PARAMETERS:\n`;
+  foundSpec.parameters.forEach(p => {
+    text += `• ${p.param}: ${p.metric} (${p.tolerance})\n`;
+  });
+  
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => {
+      showToast(`✓ Specification ${specId} parameters copied to clipboard!`);
+    }).catch(() => {
+      showToast(`Specification ${specId} parameters copied!`);
+    });
+  } else {
+    showToast(`Specification ${specId} copied!`);
+  }
+}
+
+function renderSpecsLibrary() {
+  const container = document.getElementById('specs-library-container');
+  if (!container || !window.RFPTenderData || !window.RFPTenderData.specsLibrary) return;
+  
+  const groups = window.RFPTenderData.specsLibrary;
+  let html = '';
+  
+  groups.forEach(group => {
+    if (currentSpecsDomain !== 'all' && currentSpecsDomain !== group.domain) return;
+    
+    // Filter specs inside group by search
+    const matchingSpecs = group.specs.filter(spec => {
+      if (!currentSpecsSearch) return true;
+      const haystack = (spec.id + ' ' + spec.title + ' ' + spec.governingStandard + ' ' + spec.category + ' ' + spec.summary + ' ' + 
+        spec.parameters.map(p => p.param + ' ' + p.metric + ' ' + p.tolerance).join(' ')).toLowerCase();
+      return haystack.includes(currentSpecsSearch);
+    });
+    
+    if (matchingSpecs.length === 0) return;
+    
+    html += `
+      <div style="margin-bottom: 28px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; border-bottom: 2px solid rgba(0, 180, 216, 0.3); padding-bottom: 8px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 22px;">${group.domainIcon}</span>
+            <span style="font-size: 15px; font-weight: 800; color: #FFFFFF; text-transform: uppercase; letter-spacing: 0.5px;">${group.domainName}</span>
+          </div>
+          <span style="font-size: 11px; color: var(--teal); font-weight: 700; background: rgba(0, 180, 216, 0.1); padding: 3px 9px; border-radius: 4px;">
+            ${matchingSpecs.length} Specifications
+          </span>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+    `;
+    
+    matchingSpecs.forEach(spec => {
+      html += `
+        <div style="background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 18px 20px; transition: border-color 0.2s;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 10px;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 4px;">
+                <span style="font-size: 11px; font-weight: 800; background: #00B4D8; color: #0A192F; padding: 2px 7px; border-radius: 4px;">${spec.id}</span>
+                <span style="font-size: 11px; font-weight: 700; background: rgba(255,255,255,0.06); color: #94A3B8; padding: 2px 7px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">${spec.category}</span>
+                <span style="font-size: 11px; font-weight: 700; color: #FFB703;">📐 ${spec.governingStandard}</span>
+              </div>
+              <div style="font-size: 15px; font-weight: 800; color: #F8FAFC;">${spec.title}</div>
+            </div>
+            
+            <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
+              ${spec.exhibitLink ? `<a href="${spec.exhibitLink}" target="_blank" class="btn btn-primary" style="font-size: 11px; padding: 4px 10px; background: #0077CC;">🌐 Online Exhibit ➔</a>` : ''}
+              ${spec.exhibitPdf ? `<a href="${spec.exhibitPdf}" download class="btn btn-outline" style="font-size: 11px; padding: 4px 10px; border-color: #38BDF8; color: #7DD3FC;">📕 PDF</a>` : ''}
+              ${spec.drawingPdf ? `<a href="${spec.drawingPdf}" target="_blank" class="btn btn-outline" style="font-size: 11px; padding: 4px 10px; border-color: #10B981; color: #6EE7B7;">📐 A3 Blueprints</a>` : ''}
+              <button onclick="copySpecParams('${spec.id}')" class="btn btn-outline" style="font-size: 11px; padding: 4px 10px; border-color: rgba(255,255,255,0.2); color: #CBD5E1;" title="Copy specification parameters as text">
+                📋 Copy
+              </button>
+            </div>
+          </div>
+          
+          <p style="font-size: 12.5px; color: #94A3B8; margin-bottom: 12px; line-height: 1.45;">${spec.summary}</p>
+          
+          <div style="overflow-x: auto; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08);">
+            <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+              <thead>
+                <tr style="background: rgba(15, 23, 42, 0.85); color: #38BDF8; text-align: left;">
+                  <th style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.1); width: 28%;">Parameter / Regime</th>
+                  <th style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.1); width: 38%; color: #FFFFFF;">Specification / Metric</th>
+                  <th style="padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.1); color: #94A3B8;">Tolerances &amp; Engineering Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${spec.parameters.map((p, idx) => `
+                  <tr style="background: ${idx % 2 === 0 ? 'rgba(255,255,255,0.015)' : 'transparent'};">
+                    <td style="padding: 7px 12px; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: 700; color: #E2E8F0;">${p.param}</td>
+                    <td style="padding: 7px 12px; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: 600; color: #38BDF8;">${p.metric}</td>
+                    <td style="padding: 7px 12px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #CBD5E1;">${p.tolerance}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+    });
+    
+    html += `
+        </div>
+      </div>
+    `;
+  });
+  
+  if (html === '') {
+    html = `
+      <div style="text-align: center; padding: 40px; color: var(--text-muted);">
+        <div style="font-size: 32px; margin-bottom: 8px;">🔍</div>
+        <div style="font-size: 15px; font-weight: 700; color: #FFFFFF;">No specifications found matching "${currentSpecsSearch}"</div>
+        <div style="font-size: 12px; margin-top: 4px;">Try searching for "wind", "monopole", "n50", "battery", "315", or "satellite".</div>
+      </div>
+    `;
+  }
+  
+  container.innerHTML = html;
+}

@@ -11,7 +11,7 @@ window.RFPTenderData = {
     operator: "Telecommunications Technology Solutions Incorporated (TelTech)",
     officialEmail: "oliver.tungol@comclark.com.ph",
     issueDate: "October 14, 2026",
-    activeRevision: "Revision 2.3 (Reconciled Tender Baseline — 25 October 2026)",
+    activeRevision: "Revision 2.4 (Active Baseline & Specs Library — 26 October 2026)",
     submissionDeadline: "December 2, 2026 17:00:00 GMT+0800",
     baselineFxRate: 55.00,
     targetSitesPhase1: 1000,
@@ -139,6 +139,18 @@ window.RFPTenderData = {
     "docx": "RFP_Tender_Package/Service SoW.docx?v=20261025_rev2.3",
     "pages": "26 Pages (PDF, HTML & Word)",
     "type": "PDF / DOCX"
+  },
+  {
+    "id": "11",
+    "code": "11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters",
+    "title": "Exhibit A.3.3.3.1: Tower & Site Structural Design Parameters",
+    "subtitle": "NTC Regulatory Compliance Exhibit, NSCP 2015 Wind Load Limits (250–315 km/h), 30m/40m Monopoles & A3 CAD Layout Blueprints",
+    "badge": "Structural Exhibit",
+    "pdf": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.pdf?v=20261026",
+    "html": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.html?v=20261026",
+    "annexPdf": "RFP_Tender_Package/11_Annex_Physical_Layout_Plan_and_Structural_Design_Parameters.pdf?v=20261026",
+    "pages": "2 Pages + 2p A3 Blueprints",
+    "type": "PDF / HTML"
   }
 ],
   appendixA: [
@@ -2016,6 +2028,670 @@ window.RFPTenderData = {
         "qty": 0,
         "unit": "domain",
         "isSubtotal": true
+      }
+    ]
+  }
+]
+,
+  specsLibrary: [
+  {
+    "domain": "civil_tower",
+    "domainName": "Tower, Monopole & Civil Structures",
+    "domainIcon": "\ud83d\uddfc",
+    "specs": [
+      {
+        "id": "SPEC-TOW-01",
+        "title": "Philippine Basic Wind Speed & Wind Zone Mapping",
+        "governingStandard": "NSCP 2015 (7th Ed.) Section 207 / TIA-222-H / PAGASA Records",
+        "category": "Structural Wind Loading",
+        "summary": "Mandatory typhoon wind speed criteria across three Philippine wind zones, enforcing a strict 250 km/h national quality floor.",
+        "parameters": [
+          {
+            "param": "Wind Zone 1 (High Typhoon Corridor)",
+            "metric": "315 km/h (87.5 m/s) Ultimate / 245 km/h Nominal",
+            "tolerance": "Batanes, Cagayan, Isabela, Aurora, Bicol, Samar, Leyte, Surigao"
+          },
+          {
+            "param": "Wind Zone 2 (NCR & Central Luzon)",
+            "metric": "270 km/h (75.0 m/s) Ultimate / 210 km/h Nominal",
+            "tolerance": "Metro Manila, Pampanga, Bulacan, Tarlac, Bataan, CALABARZON, Cebu"
+          },
+          {
+            "param": "Wind Zone 3 (National Project Floor)",
+            "metric": "250 km/h (69.4 m/s) Ultimate Survivability Floor",
+            "tolerance": "Enforced nationwide floor (exceeds NSCP 200 km/h code floor)"
+          },
+          {
+            "param": "Occupancy / Structure Category",
+            "metric": "Category IV (Standard Telecommunications) / Category III (Essential)",
+            "tolerance": "Importance Factor Iw = 1.15 (Essential) / 1.00 (Standard)"
+          },
+          {
+            "param": "Exposure Terrain Categories",
+            "metric": "Exposure C (Open flat farmlands) / Exposure D (Coastal shoreline)",
+            "tolerance": "Site-specific classification required in approved TSSR"
+          }
+        ],
+        "exhibitLink": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.html",
+        "exhibitPdf": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.pdf",
+        "drawingPdf": "RFP_Tender_Package/11_Annex_Physical_Layout_Plan_and_Structural_Design_Parameters.pdf"
+      },
+      {
+        "id": "SPEC-TOW-02",
+        "title": "Structural Limit States & Deflection / Sway Criteria",
+        "governingStandard": "TIA-222-H / NSCP 2015 Strength (LRFD) & Serviceability (SLS)",
+        "category": "Deflection & Stability",
+        "summary": "Strict rigidity and deflection thresholds ensuring antenna beam alignment, MIMO rank-4 stability, and zero collapse under typhoon gusts.",
+        "parameters": [
+          {
+            "param": "Survivable Wind Speed (V_survival)",
+            "metric": "250 to 315 km/h 3-second gust (LRFD Ultimate Limit State)",
+            "tolerance": "Full equipment loading (3x n50 Antennas, 3x RRUs, satellite dish, mounts)"
+          },
+          {
+            "param": "Operational Wind Speed (V_operational)",
+            "metric": "140 to 160 km/h (40.0 to 44.4 m/s) continuous (SLS 1.0 factor)",
+            "tolerance": "Zero signal decoupling; uninterrupted 5G service (availability >= 99.95%)"
+          },
+          {
+            "param": "Allowable Twist (\u03b8_twist / Torsion)",
+            "metric": "\u2264 \u00b10.5\u00b0 (30 arcmin) Backhaul / \u2264 \u00b11.0\u00b0 (60 arcmin) Macro",
+            "tolerance": "Measured at 30.0m AGL antenna centerline about vertical axis"
+          },
+          {
+            "param": "Allowable Sway / Tilt (\u03b8_sway)",
+            "metric": "\u2264 \u00b11.0\u00b0 (60 arcmin) angular deflection at 30.0m AGL",
+            "tolerance": "Prevents vertical beam pattern decoupling over target settlements"
+          },
+          {
+            "param": "Tower Verticality (Plumbness)",
+            "metric": "\u2264 1 : 500 (0.20% of Tower Height H)",
+            "tolerance": "\u0394 \u2264 60 mm for 30m tower; \u0394 \u2264 80 mm for 40m tower (dead load, still air)"
+          },
+          {
+            "param": "Horizontal Tip Deflection (\u0394_top)",
+            "metric": "\u2264 H / 100 (300 mm maximum at 30.0m AGL)",
+            "tolerance": "Service deflection limit under operational wind pressure"
+          }
+        ],
+        "exhibitLink": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.html",
+        "exhibitPdf": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.pdf",
+        "drawingPdf": "RFP_Tender_Package/11_Annex_Physical_Layout_Plan_and_Structural_Design_Parameters.pdf"
+      },
+      {
+        "id": "SPEC-TOW-03",
+        "title": "Monopole Tower Fabrication & Steel Material Specification",
+        "governingStandard": "ASTM A572 Grade 50 / ASTM A123 / ISO 1461 / AISC 360-16",
+        "category": "Steel Materials & Rigging",
+        "summary": "Engineering standards for 30m (CIV-SVC-06, 80 sites) and 40m (CIV-SVC-07, 23 sites) tubular steel monopoles.",
+        "parameters": [
+          {
+            "param": "Monopole Body & Section",
+            "metric": "12-sided or 18-sided tapered polygonal tubular steel monopole",
+            "tolerance": "3 to 4 telescoping slip-joint sections with overlap \u2265 1.5x inside diameter"
+          },
+          {
+            "param": "Structural Steel Grade",
+            "metric": "ASTM A572 Grade 50 (Fy = 345 MPa / 50 ksi, Fu = 450 MPa / 65 ksi)",
+            "tolerance": "Mill test certificates (MTC) required prior to fabrication sign-off"
+          },
+          {
+            "param": "Corrosion Protection (Galvanizing)",
+            "metric": "Hot-dip galvanized per ASTM A123 / ISO 1461 (Zinc thickness \u2265 85 \u03bcm)",
+            "tolerance": "Minimum coating weight \u2265 610 g/m\u00b2; \u2265 25-year design service life"
+          },
+          {
+            "param": "Climbing Ladder & Fall Arrest",
+            "metric": "External galvanized climbing ladder with OSHA / EN 353-1 safety rail",
+            "tolerance": "Dual rest platforms at 15m and 25m AGL with safety cages"
+          },
+          {
+            "param": "Anchor Bolts & Baseplate",
+            "metric": "ASTM F1554 Grade 55 or Grade 105 hot-dip galvanized anchor bolts",
+            "tolerance": "Double heavy-hex leveling and lock nuts; minimum 40mm thick baseplate"
+          }
+        ],
+        "exhibitLink": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.html",
+        "exhibitPdf": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.pdf",
+        "drawingPdf": "RFP_Tender_Package/11_Annex_Physical_Layout_Plan_and_Structural_Design_Parameters.pdf"
+      },
+      {
+        "id": "SPEC-TOW-04",
+        "title": "Standard 8.0m x 8.0m Compound Layout, Fencing & Foundations",
+        "governingStandard": "ACI 318-14 / ASTM A615 Grade 60 / National Building Code (PD 1096)",
+        "category": "Civil & Site Development",
+        "summary": "Civil construction envelope for greenfield compounds including reinforced concrete plinths, fencing, and foundation safety factors.",
+        "parameters": [
+          {
+            "param": "Compound Footprint & Grading",
+            "metric": "8.0m x 8.0m (64.0 m\u00b2) enclosed gravel-surfaced compound",
+            "tolerance": "100mm crushed gravel bedding over geotextile weed barrier fabric"
+          },
+          {
+            "param": "Perimeter Security Fence",
+            "metric": "2.4m high galvanized cyclone wire mesh topped with concertina razor wire",
+            "tolerance": "3 strands razor wire; 1.2m x 2.1m heavy-duty lockable steel entrance gate"
+          },
+          {
+            "param": "Equipment Pad Plinth",
+            "metric": "Elevated +300mm reinforced concrete equipment plinth (f'c \u2265 28 MPa)",
+            "tolerance": "Class A concrete; ASTM A615 Grade 60 rebar for power cabinet and batteries"
+          },
+          {
+            "param": "Tower Mat / Piled Foundation",
+            "metric": "Pad-and-chimney pedestal foundation or cast-in-place bored piles",
+            "tolerance": "Safety Factor \u2265 2.0 against soil bearing failure; \u2265 1.5 against sliding/overturning"
+          },
+          {
+            "param": "Soil Bearing Capacity (qa)",
+            "metric": "qa \u2265 150 kPa (3,130 psf) assumed at foundation footing depth",
+            "tolerance": "Confirmed via on-site borehole geotechnical SPT analysis (CIV-SVC-01)"
+          }
+        ],
+        "exhibitLink": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.html",
+        "exhibitPdf": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.pdf",
+        "drawingPdf": "RFP_Tender_Package/11_Annex_Physical_Layout_Plan_and_Structural_Design_Parameters.pdf"
+      },
+      {
+        "id": "SPEC-TOW-05",
+        "title": "Lightning Protection System & Compound Earthing Grid",
+        "governingStandard": "NFPA 780 / IEEE 81 / Philippine Electrical Code (PEC 2017)",
+        "category": "Earthing & Surge Protection",
+        "summary": "Sub-5 Ohm exothermically welded copper grounding system with Franklin air terminal for direct typhoon lightning diversion.",
+        "parameters": [
+          {
+            "param": "Lightning Air Terminal",
+            "metric": "Solid copper Franklin air terminal extending \u2265 2.0m above uppermost antenna",
+            "tolerance": "Positioned at 32.0m AGL on monopole top cap"
+          },
+          {
+            "param": "Down-Conductor Cable",
+            "metric": "70 mm\u00b2 bare stranded copper down-conductor clamped every 1.0m",
+            "tolerance": "External run along tower shaft, Cadweld bonded to base ground loop"
+          },
+          {
+            "param": "Buried Ground Loop",
+            "metric": "Continuous closed-loop buried perimeter bare copper conductor",
+            "tolerance": "4 to 6 copper-clad steel ground rods (19mm dia x 3.0m length)"
+          },
+          {
+            "param": "Target Earth Resistance",
+            "metric": "Measured earth ground resistance \u2264 5.0 Ohms nationwide",
+            "tolerance": "Verified by 3-point fall-of-potential test in dry soil conditions"
+          }
+        ],
+        "exhibitLink": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.html",
+        "exhibitPdf": "RFP_Tender_Package/11_Exhibit_A.3.3.3.1_Tower_and_Site_Structural_Design_Parameters.pdf",
+        "drawingPdf": "RFP_Tender_Package/11_Annex_Physical_Layout_Plan_and_Structural_Design_Parameters.pdf"
+      }
+    ]
+  },
+  {
+    "domain": "ran_radio",
+    "domainName": "RAN & Radio Access Network (Band n50 Macro)",
+    "domainIcon": "\ud83d\udcfb",
+    "specs": [
+      {
+        "id": "SPEC-RAN-01",
+        "title": "3GPP Band n50 5G NR Radio Frequency & Spectrum Profile",
+        "governingStandard": "3GPP TS 38.104 Release 16 / Release 17 / NTC Spectrum Assignment",
+        "category": "Radio Frequency & Spectrum",
+        "summary": "Band n50 (1.5 GHz L-Band TDD) radio hardware configuration for nationwide standalone 5G FWA coverage.",
+        "parameters": [
+          {
+            "param": "Operating Frequency Band",
+            "metric": "Band n50 (1432.0 MHz \u2013 1517.0 MHz L-Band TDD)",
+            "tolerance": "Full RF tuning window; 1457\u20131517 MHz authorized demonstration baseline"
+          },
+          {
+            "param": "Carrier Channel Bandwidth",
+            "metric": "60 MHz TDD in NCR / up to 80 MHz in Provincial regions",
+            "tolerance": "Software-configurable 40 / 50 / 60 / 80 MHz TDD channels"
+          },
+          {
+            "param": "Subcarrier Spacing (SCS)",
+            "metric": "30 kHz (Numerology \u03bc = 1) with Normal Cyclic Prefix",
+            "tolerance": "Optimized for outdoor macro delay spread in suburban/rural terrain"
+          },
+          {
+            "param": "Duplexing & Frame Format",
+            "metric": "Dynamic / Configurable TDD Frame (2.5ms / 5ms slot format)",
+            "tolerance": "Heavy downlink ratio (4D:1U or 7D:2U) prioritized for FWA traffic"
+          }
+        ],
+        "exhibitLink": "RFP_Tender_Package/01_RFP_5G_FWA_Master_Tender_Document.html",
+        "exhibitPdf": "RFP_Tender_Package/01_RFP_5G_FWA_Master_Tender_Document.pdf"
+      },
+      {
+        "id": "SPEC-RAN-02",
+        "title": "8T8R High-Power Remote Radio Unit (RRU)",
+        "governingStandard": "3GPP Rel 16/17 / ETSI EN 301 489 / IP65 & IP67 Environmental",
+        "category": "Base Station Radio",
+        "summary": "Ultra-compact 8-channel high-power remote radio unit delivering 320W conducted power with beamforming capability.",
+        "parameters": [
+          {
+            "param": "Transceiver Architecture",
+            "metric": "8 Transmit / 8 Receive (8T8R) with independent per-channel DPD",
+            "tolerance": "Support for 4-layer MIMO spatial multiplexing per sector"
+          },
+          {
+            "param": "Conducted Output Power",
+            "metric": "8 x 40W (320W total conducted power at antenna port)",
+            "tolerance": "Power back-off compliant with 3GPP EVM thresholds across full temperature"
+          },
+          {
+            "param": "Unit Weight & Form Factor",
+            "metric": "\u2264 38.0 kg per RRU (optimized for TowerCo EPA limits)",
+            "tolerance": "Compact enclosure for direct mounting behind antenna brackets"
+          },
+          {
+            "param": "Environmental & Cooling",
+            "metric": "IP65 / IP67 outdoor weatherproofing; passive convection cooling",
+            "tolerance": "Operational ambient temperature -10\u00b0C to +55\u00b0C without derating"
+          },
+          {
+            "param": "Fronthaul Optical Interface",
+            "metric": "Dual 10G / 25G eCPRI optical interfaces with SFP+ transceivers",
+            "tolerance": "Direct connection to high-capacity BBU/DU pool over CPRI/eCPRI"
+          }
+        ],
+        "exhibitLink": "RFP_Tender_Package/02_Appendix_A_Technical_Specifications_Compliance_Matrix.html",
+        "exhibitPdf": "RFP_Tender_Package/02_Appendix_A_Technical_Specifications_Compliance_Matrix.pdf"
+      },
+      {
+        "id": "SPEC-RAN-03",
+        "title": "8-Port Cross-Polarized Directional Macro Antennas",
+        "governingStandard": "3GPP / AISG 2.0 / IEEE Antenna Standards",
+        "category": "Antenna Subsystem",
+        "summary": "High-gain multi-port macro sector antennas supporting 8T8R beamforming with remote electrical tilt (RET).",
+        "parameters": [
+          {
+            "param": "Port Count & Polarization",
+            "metric": "8-Port (4x Cross-Polarized \u00b145\u00b0) directional sector antenna",
+            "tolerance": "Andrew / Amplitech carrier-grade antenna specification"
+          },
+          {
+            "param": "Antenna Gain",
+            "metric": "14.5 dBi to 16.5 dBi across 1432 MHz \u2013 1517 MHz",
+            "tolerance": "Uniform gain curve with low ripple across Band n50"
+          },
+          {
+            "param": "Beamwidth (HPBW)",
+            "metric": "Horizontal HPBW: 65\u00b0 \u00b1 5\u00b0 / Vertical HPBW: 6.5\u00b0 to 8.0\u00b0",
+            "tolerance": "First upper sidelobe suppression \u2265 18 dB"
+          },
+          {
+            "param": "Remote Electrical Tilt (RET)",
+            "metric": "Integrated motorized AISG 2.0 RET adjustable from 2\u00b0 to 12\u00b0",
+            "tolerance": "Remotely controlled from TelTech central OSS without tower climbing"
+          },
+          {
+            "param": "Front-to-Back Ratio",
+            "metric": "\u2265 25 dB front-to-back ratio; cross-polar isolation \u2265 25 dB",
+            "tolerance": "Prevents inter-sector co-channel interference in 3-sector clusters"
+          }
+        ],
+        "exhibitLink": "RFP_Tender_Package/02_Appendix_A_Technical_Specifications_Compliance_Matrix.html",
+        "exhibitPdf": "RFP_Tender_Package/02_Appendix_A_Technical_Specifications_Compliance_Matrix.pdf"
+      },
+      {
+        "id": "SPEC-RAN-04",
+        "title": "5G FWA Radio Link Budget & Coverage Performance Target",
+        "governingStandard": "3GPP TR 38.901 Propagation Model / TelTech FWA Link Budget",
+        "category": "RF Link Budget & KPIs",
+        "summary": "139.8 dB maximum allowable path loss (MAPL) delivering guaranteed broadband throughput to cell-edge CPEs.",
+        "parameters": [
+          {
+            "param": "Max Allowable Path Loss (MAPL)",
+            "metric": "139.8 dB for downlink cell-edge FWA service envelope",
+            "tolerance": "Calculated with 8T8R beamforming gain and high-gain CPE antenna"
+          },
+          {
+            "param": "Target RSRP & SINR",
+            "metric": "RSRP \u2265 -95 dBm and SINR \u2265 10 dB across \u2265 90% target settlement",
+            "tolerance": "Enforced during Single Site Verification (SSV) acceptance testing"
+          },
+          {
+            "param": "Cell Coverage Radius",
+            "metric": "3.0 km to 3.5 km in rural open terrain; 1.0 km to 1.5 km in dense clutter",
+            "tolerance": "Unobstructed Line-of-Sight (LOS) from antenna centerline at 30m AGL"
+          },
+          {
+            "param": "Sector Peak Capacity",
+            "metric": "\u2265 1.2 Gbps aggregate downlink per sector (60 MHz TDD, 256-QAM)",
+            "tolerance": "Supports 120+ active concurrent 25\u201350 Mbps household streams"
+          }
+        ],
+        "exhibitLink": "RFP_Tender_Package/05_Appendix_D_Site_Survey_RF_Planning_Civil_Power_Guidelines.html",
+        "exhibitPdf": "RFP_Tender_Package/05_Appendix_D_Site_Survey_RF_Planning_Civil_Power_Guidelines.pdf"
+      }
+    ]
+  },
+  {
+    "domain": "power_energy",
+    "domainName": "Power Plant, Battery Storage & Energy Systems",
+    "domainIcon": "\u26a1",
+    "specs": [
+      {
+        "id": "SPEC-PWR-01",
+        "title": "12.0 kW N+1 Outdoor DC Power Plant System",
+        "governingStandard": "IEC 62368-1 / ETSI EN 300 132-2 / PEC 2017",
+        "category": "DC Power Rectification",
+        "summary": "High-capacity modular rectifier system providing clean -48V DC power with N+1 redundancy across all site loads.",
+        "parameters": [
+          {
+            "param": "Total Rectifier Capacity",
+            "metric": "12.0 kW total capacity in N+1 redundancy configuration",
+            "tolerance": "4x 3.0 kW or 3x 4.0 kW hot-swappable modular rectifiers"
+          },
+          {
+            "param": "Nominal Output Voltage",
+            "metric": "Nominal -48V DC (adjustable float range -42.0V to -58.0V DC)",
+            "tolerance": "Ripple voltage \u2264 100 mV peak-to-peak"
+          },
+          {
+            "param": "Rectifier Energy Efficiency",
+            "metric": "Ultra-high efficiency \u2265 96.0% between 30% and 80% load",
+            "tolerance": "Significantly minimizes operational power bills and cabinet heat output"
+          },
+          {
+            "param": "AC Input Voltage Tolerance",
+            "metric": "85V to 300V AC single-phase wide input window (Nominal 230V, 60 Hz)",
+            "tolerance": "Full power delivered from 176V to 290V AC without grid disconnection"
+          },
+          {
+            "param": "Remote Supervision Controller",
+            "metric": "SNMPv3 and HTTP/HTTPS web interface with dry contact relays",
+            "tolerance": "Monitors AC phase fail, DC low-voltage disconnect (LVD), and battery state"
+          }
+        ],
+        "exhibitLink": "RFP_Tender_Package/02_Appendix_A_Technical_Specifications_Compliance_Matrix.html",
+        "exhibitPdf": "RFP_Tender_Package/02_Appendix_A_Technical_Specifications_Compliance_Matrix.pdf"
+      },
+      {
+        "id": "SPEC-PWR-02",
+        "title": "Lithium Iron Phosphate (LiFePO4) Battery Energy Storage (4-Hour Floor)",
+        "governingStandard": "UL 1973 / IEC 62619 / UN 38.3 Transport Safety Standard",
+        "category": "Battery Energy Storage",
+        "summary": "Mandatory 4-hour battery backup system delivering over 4,000 cycles with integrated intelligent Battery Management System.",
+        "parameters": [
+          {
+            "param": "Battery Chemistry",
+            "metric": "Lithium Iron Phosphate (LiFePO4) with internal smart BMS",
+            "tolerance": "Zero thermal runaway risk; non-toxic, maintenance-free chemistry"
+          },
+          {
+            "param": "Autonomy Duration Floor",
+            "metric": "Mandatory \u2265 4.0 hours full-site operation at maximum operational load",
+            "tolerance": "Contractual acceptance criterion under Bid Bulletin 01 and Lot 2"
+          },
+          {
+            "param": "Cycle Life & Durability",
+            "metric": "\u2265 4,000 complete charge/discharge cycles at 80% Depth of Discharge (DoD)",
+            "tolerance": "At +25\u00b0C ambient; provides \u2265 10-year calendar operational life"
+          },
+          {
+            "param": "Operating Temperature Range",
+            "metric": "Discharge: -10\u00b0C to +55\u00b0C / Charge: 0\u00b0C to +50\u00b0C",
+            "tolerance": "Integrated thermal monitoring and internal cell balancing"
+          },
+          {
+            "param": "Protection & Isolation",
+            "metric": "Over-charge, over-discharge, short-circuit, and reverse-polarity protection",
+            "tolerance": "Two-stage Low Voltage Disconnect (LVD): non-critical load drop at -44V"
+          }
+        ],
+        "exhibitLink": "RFP_Tender_Package/08_RFP_5G_FWA_Bid_Bulletin_01_Official_Clarifications.html",
+        "exhibitPdf": "RFP_Tender_Package/08_RFP_5G_FWA_Bid_Bulletin_01_Official_Clarifications.pdf"
+      },
+      {
+        "id": "SPEC-PWR-03",
+        "title": "Utility AC Service Entrance & Transient Surge Protection (SPD)",
+        "governingStandard": "Philippine Electrical Code (PEC 2017) / UL 1449 4th Ed. / IEC 61643-11",
+        "category": "AC Utility & Protection",
+        "summary": "Utility grid interconnection hardware, utility revenue meter base, and combined Class I+II surge suppression.",
+        "parameters": [
+          {
+            "param": "Utility Electrical Service",
+            "metric": "230V AC, 60 Hz, single-phase, 60A / 100A commercial service entrance",
+            "tolerance": "Weatherproof utility service post, entrance cap, and sealed meter socket"
+          },
+          {
+            "param": "Surge Protection Device (SPD)",
+            "metric": "Class I + Class II combined SPD installed at main AC distribution breaker",
+            "tolerance": "I_imp \u2265 25 kA (10/350 \u03bcs) / I_n \u2265 40 kA (8/20 \u03bcs); Up \u2264 1.5 kV"
+          },
+          {
+            "param": "Emergency Generator Hookup",
+            "metric": "Manual Transfer Switch (MTS) with heavy-duty weatherproof pin-and-sleeve plug",
+            "tolerance": "Enables rapid emergency hookup for mobile diesel generators during typhoons"
+          }
+        ],
+        "exhibitLink": "RFP_Tender_Package/05_Appendix_D_Site_Survey_RF_Planning_Civil_Power_Guidelines.html",
+        "exhibitPdf": "RFP_Tender_Package/05_Appendix_D_Site_Survey_RF_Planning_Civil_Power_Guidelines.pdf"
+      }
+    ]
+  },
+  {
+    "domain": "transmission_backhaul",
+    "domainName": "Backhaul & Transmission Infrastructure",
+    "domainIcon": "\ud83d\udef0\ufe0f",
+    "specs": [
+      {
+        "id": "SPEC-TX-01",
+        "title": "Terrestrial Optical Fiber Backhaul (983 Sites Baseline)",
+        "governingStandard": "ITU-T G.652.D Single-Mode Fiber / IEEE 802.3ae 10G Ethernet",
+        "category": "Optical Fiber Transport",
+        "summary": "High-capacity single-mode optical fiber backhaul connecting 983 Phase 1 sites to Converge and TelTech aggregation nodes.",
+        "parameters": [
+          {
+            "param": "Physical Transport Medium",
+            "metric": "ITU-T G.652.D low-water-peak single-mode optical fiber (SMF)",
+            "tolerance": "Dedicated optical cores terminated on outdoor fiber patch panel (ODF)"
+          },
+          {
+            "param": "Physical Interface & Speed",
+            "metric": "10GE SFP+ / 1GE SFP direct optical interface to Cell Site Router (CSR)",
+            "tolerance": "Bi-directional WDM (BiDi) or dual-fiber duplex transmission"
+          },
+          {
+            "param": "Latency SLA Threshold",
+            "metric": "Round-trip delay \u2264 20 ms target / \u2264 30 ms contractual rejection ceiling",
+            "tolerance": "Measured from base station CSR to national internet peering exchange"
+          },
+          {
+            "param": "Network Availability SLA",
+            "metric": "\u2265 99.95% annual link availability floor",
+            "tolerance": "Governed by Appendix C contractual SLA and liquidated damages"
+          }
+        ],
+        "exhibitLink": "RFP_Tender_Package/04_Appendix_C_SLAs_KPIs_Liquidated_Damages.html",
+        "exhibitPdf": "RFP_Tender_Package/04_Appendix_C_SLAs_KPIs_Liquidated_Damages.pdf"
+      },
+      {
+        "id": "SPEC-TX-02",
+        "title": "Starlink High-Performance LEO Satellite Backhaul (17 GIDA Sites)",
+        "governingStandard": "Bid Bulletin 01 \u00a72.3 / Starlink Enterprise Commercial SLA",
+        "category": "Satellite Backhaul",
+        "summary": "Reconciled low-latency satellite transmission for 17 remote Geographically Isolated and Disadvantaged Areas (GIDA).",
+        "parameters": [
+          {
+            "param": "Satellite Constellation",
+            "metric": "Starlink Low-Earth Orbit (LEO) Ku-Band phased-array satellite network",
+            "tolerance": "Enterprise High-Performance terminal with electronic beam-steering"
+          },
+          {
+            "param": "Contractual Latency Ceiling",
+            "metric": "\u2264 60 ms target / \u2264 80 ms maximum contractual rejection ceiling",
+            "tolerance": "Strictly reconciled per Bid Bulletin 01 \u00a72.3 (replaces obsolete 50ms spec)"
+          },
+          {
+            "param": "Throughput Envelope",
+            "metric": "\u2265 150 Mbps downlink / \u2265 25 Mbps uplink committed operational burst",
+            "tolerance": "Priority Business service plan with public static IPv4 routing"
+          },
+          {
+            "param": "Mounting & Northern Sky View",
+            "metric": "Dedicated 10.0m mast mount with 0\u00b0\u201380\u00b0 unobstructed northern elevation arc",
+            "tolerance": "Zero tree canopy or structural obstruction within critical field of view"
+          }
+        ],
+        "exhibitLink": "RFP_Tender_Package/08_RFP_5G_FWA_Bid_Bulletin_01_Official_Clarifications.html",
+        "exhibitPdf": "RFP_Tender_Package/08_RFP_5G_FWA_Bid_Bulletin_01_Official_Clarifications.pdf"
+      },
+      {
+        "id": "SPEC-TX-03",
+        "title": "Carrier-Grade Digital Microwave Backhaul (Optional Standby)",
+        "governingStandard": "ETSI EN 302 217 / ITU-R Recommendations (Rain Zone P)",
+        "category": "Microwave Backhaul",
+        "summary": "High-capacity licensed digital microwave transmission designed for tropical rain fading resilience.",
+        "parameters": [
+          {
+            "param": "Licensed Frequency Bands",
+            "metric": "7, 8, 13, 15, 18, and 23 GHz licensed spectrum (Lot 4)",
+            "tolerance": "Frequency assignment coordinated through NTC radio regulations"
+          },
+          {
+            "param": "Modulation & Capacity",
+            "metric": "Hitless Adaptive Coding and Modulation (ACM) from QPSK up to 4096-QAM",
+            "tolerance": "Gross link throughput up to 1.0+ Gbps per 56 MHz / 112 MHz channel"
+          },
+          {
+            "param": "Propagation Reliability SLA",
+            "metric": "\u2265 99.995% path propagation availability in ITU-R Rain Zone P",
+            "tolerance": "Engineered for torrential Philippine monsoon rainfall rates"
+          }
+        ],
+        "exhibitLink": "RFP_Tender_Package/01_RFP_5G_FWA_Master_Tender_Document.html",
+        "exhibitPdf": "RFP_Tender_Package/01_RFP_5G_FWA_Master_Tender_Document.pdf"
+      }
+    ]
+  },
+  {
+    "domain": "core_oss_bss",
+    "domainName": "5G Standalone Core & OSS/BSS Architecture",
+    "domainIcon": "\ud83e\udde0",
+    "specs": [
+      {
+        "id": "SPEC-COR-01",
+        "title": "3GPP Rel 16/17 Standalone (SA) 5G Core Network Functions",
+        "governingStandard": "3GPP TS 23.501 / TS 23.502 / Cloud-Native SBA Architecture",
+        "category": "5G Core (5GC)",
+        "summary": "Cloud-native microservices core with distributed User Plane Functions (UPF) for local breakout and low latency.",
+        "parameters": [
+          {
+            "param": "Core Network Architecture",
+            "metric": "Pure 5G Standalone (Option 2) Service-Based Architecture (SBA)",
+            "tolerance": "Decoupled control plane and user plane (CUPS) with RESTful HTTP/2 APIs"
+          },
+          {
+            "param": "Mandatory Network Functions",
+            "metric": "AMF, SMF, UPF, UDM, AUSF, NSSF, PCF, NRF, and CHF",
+            "tolerance": "Deployed in high-availability 1+1 geographic redundancy"
+          },
+          {
+            "param": "User Plane Throughput",
+            "metric": "Distributed UPF with DPDK / VPP hardware-accelerated forwarding",
+            "tolerance": "Supports Local Breakout (LBO) for sub-10ms edge caching and low latency"
+          },
+          {
+            "param": "Subscriber Scaling Capacity",
+            "metric": "Scalable from 100,000 initial users up to 1,000,000+ active FWA subscribers",
+            "tolerance": "Linear container horizontal auto-scaling on Kubernetes cluster"
+          }
+        ],
+        "exhibitLink": "RFP_Tender_Package/02_Appendix_A_Technical_Specifications_Compliance_Matrix.html",
+        "exhibitPdf": "RFP_Tender_Package/02_Appendix_A_Technical_Specifications_Compliance_Matrix.pdf"
+      },
+      {
+        "id": "SPEC-COR-02",
+        "title": "Prepaid Convergent Billing & Real-Time Rating Engine (OCS/CHF)",
+        "governingStandard": "3GPP TS 32.299 / 3GPP N40 / NTC QoS Guidelines",
+        "category": "OSS / BSS & Billing",
+        "summary": "Carrier-grade real-time convergent rating engine supporting daily/weekly/monthly prepaid broadband subscriptions.",
+        "parameters": [
+          {
+            "param": "Charging Interface Protocols",
+            "metric": "3GPP N40 (HTTP/2) and Diameter Ro / Gy interfaces for online charging",
+            "tolerance": "Sub-millisecond rating latency with active quota reservations"
+          },
+          {
+            "param": "Digital Wallet & Payment APIs",
+            "metric": "Direct RESTful API integration with GCash, Maya, ShopeePay, and retail vouchers",
+            "tolerance": "Zero-balance portal redirection and automated subscription auto-renewal"
+          },
+          {
+            "param": "Regulatory QoS Reporting",
+            "metric": "Automated generation of quarterly NTC broadband quality audit reports",
+            "tolerance": "Tracks CSSR, packet latency, jitter, packet loss, and speed conformance"
+          }
+        ],
+        "exhibitLink": "RFP_Tender_Package/08_RFP_5G_FWA_Bid_Bulletin_01_Official_Clarifications.html",
+        "exhibitPdf": "RFP_Tender_Package/08_RFP_5G_FWA_Bid_Bulletin_01_Official_Clarifications.pdf"
+      }
+    ]
+  },
+  {
+    "domain": "cpe_terminals",
+    "domainName": "5G FWA CPE & Subscriber Premises Equipment",
+    "domainIcon": "\ud83d\udce1",
+    "specs": [
+      {
+        "id": "SPEC-CPE-01",
+        "title": "High-Gain Outdoor Unit (ODU) 5G FWA Terminal",
+        "governingStandard": "3GPP Rel 16/17 / IP67 Ingress Rating / NTC Equipment Type Approval",
+        "category": "Subscriber Outdoor CPE",
+        "summary": "Monsoon-hardened outdoor directional antenna terminal engineered for maximum Band n50 weak-signal reception.",
+        "parameters": [
+          {
+            "param": "Frequency & Band Support",
+            "metric": "5G NR Band n50 (1432\u20131517 MHz TDD, 60 MHz / 80 MHz channel)",
+            "tolerance": "4Rx / 2Tx MIMO configuration with 256-QAM DL and 64-QAM UL"
+          },
+          {
+            "param": "Directional Antenna Gain",
+            "metric": "Integrated directional array with \u2265 9.0 dBi to 11.0 dBi gain on Band n50",
+            "tolerance": "Significantly outperforms indoor omnidirectional units in rural foliage"
+          },
+          {
+            "param": "Environmental Hardening",
+            "metric": "IP67 dustproof/waterproof enclosure; 300 km/h wind survivability",
+            "tolerance": "UV-stabilized polycarbonate radome; operational -10\u00b0C to +55\u00b0C"
+          },
+          {
+            "param": "Power Supply & Lead-In",
+            "metric": "Standard Power over Ethernet (PoE 802.3af/at) via UV-resistant Cat6 cable",
+            "tolerance": "Single outdoor cable brings both DC power and Gigabit data into household"
+          }
+        ],
+        "exhibitLink": "RFP_Tender_Package/02_Appendix_A_Technical_Specifications_Compliance_Matrix.html",
+        "exhibitPdf": "RFP_Tender_Package/02_Appendix_A_Technical_Specifications_Compliance_Matrix.pdf"
+      },
+      {
+        "id": "SPEC-CPE-02",
+        "title": "Indoor Unit (IDU) Wi-Fi 6 Home Gateway",
+        "governingStandard": "IEEE 802.11ax (Wi-Fi 6) / TR-069 / TR-369 USP Management",
+        "category": "Subscriber Indoor Router",
+        "summary": "High-speed dual-band Wi-Fi 6 router providing gigabit whole-home coverage and remote management.",
+        "parameters": [
+          {
+            "param": "Wi-Fi Standard & Speeds",
+            "metric": "Dual-Band Wi-Fi 6 (802.11ax) 2.4 GHz (574 Mbps) + 5.0 GHz (1201 Mbps)",
+            "tolerance": "AX1800 or AX3000 rating; OFDMA and MU-MIMO for 64+ devices"
+          },
+          {
+            "param": "Ethernet LAN Ports",
+            "metric": "4x 10/100/1000 Mbps Gigabit Ethernet RJ-45 ports",
+            "tolerance": "For direct connection to smart TVs, gaming consoles, and desktop PCs"
+          },
+          {
+            "param": "Remote Device Management",
+            "metric": "TR-069 / TR-369 (USP) remote ACS protocol with zero-touch configuration",
+            "tolerance": "Enables remote Wi-Fi optimization, firmware updates, and customer support"
+          }
+        ],
+        "exhibitLink": "RFP_Tender_Package/02_Appendix_A_Technical_Specifications_Compliance_Matrix.html",
+        "exhibitPdf": "RFP_Tender_Package/02_Appendix_A_Technical_Specifications_Compliance_Matrix.pdf"
       }
     ]
   }
