@@ -184,17 +184,27 @@
 <td>Palawan, Zamboanga, Davao, Maguindanao, Sulu, Tawi-Tawi</td>
 </tr>
 <tr>
-<td><strong>Ultimate Basic Wind Speed (V) (3-sec gust)</strong></td>
-<td><strong>315 km/h (87.5 m/s)</strong></td>
-<td><strong>270 km/h (75.0 m/s)</strong></td>
-<td><strong>200 km/h (55.6 m/s)</strong></td>
+<td><strong>NSCP 2015 Code Map Minimum (3-sec gust)</strong></td>
+<td>315 km/h (87.5 m/s) Ult / 245 km/h Nom</td>
+<td>270 km/h (75.0 m/s) Ult / 210 km/h Nom</td>
+<td>200 km/h (55.6 m/s) Ult / 155 km/h Nom</td>
 </tr>
 <tr>
-<td><strong>Nominal Basic Wind Speed (V_{asd})</strong></td>
+<td><strong>TelTech Mandatory Project Design Floor (V_ult)</strong></td>
+<td><strong>315 km/h (87.5 m/s)</strong></td>
+<td><strong>270 km/h (75.0 m/s)</strong></td>
+<td><strong>250 km/h (69.4 m/s) [Mandatory Project Floor]</strong></td>
+</tr>
+<tr>
+<td><strong>Nominal Design Wind Speed (V_asd)</strong></td>
 <td><strong>245 km/h (68.0 m/s)</strong></td>
 <td><strong>210 km/h (58.3 m/s)</strong></td>
-<td><strong>155 km/h (43.1 m/s)</strong></td>
+<td><strong>195 km/h (54.2 m/s) [Mandatory Design Baseline]</strong></td>
 </tr>
+<div style="background: rgba(14, 165, 233, 0.08); border-left: 4px solid #0284C7; padding: 12px 16px; margin: 16px 0; border-radius: 4px;">
+  <strong style="color: #0284C7;">MANDATORY PROJECT WIND SPEED DESIGN FLOOR (ZONE 3 RULE):</strong><br>
+  While NSCP 2015 Section 207 / Figure 207A maps Zone 3 (Mindanao / Palawan) with a minimum basic wind speed of 200 km/h (55.6 m/s ultimate) / 155 km/h (nominal), <strong>TelTech strictly enforces a binding project design floor of 250 km/h (69.4 m/s ultimate / 195 km/h nominal)</strong> across all Zone 3 sites (Appendix D §4.1, Bid Bulletin 01 Item 1.4, Master Specs Library, and 30M DDD manual). All structural tower fabrication, member sizing, anchor bolt dimensioning, and foundation design across Zone 3 must be calculated based on V_ult ≥ 250 km/h. Zone 2 sites require V_ult ≥ 270 km/h; Zone 1 sites require V_ult ≥ 315 km/h.
+</div>
 <tr>
 <td><strong>Occupancy / Structure Category</strong></td>
 <td>Category IV (Standard Telecommunications) / Category III (Essential Comms Facility)</td>
@@ -217,8 +227,14 @@
 <hr>
 <h2>3. TOWER STRUCTURAL DESIGN PARAMETERS & LIMIT STATES</h2>
 <h3>3.1 Operational vs. Survivable Wind Speed</h3>
-<li><strong>Survivable / Ultimate Wind Speed (V_{survival}):</strong></li>
-<li><strong>Designed for 270 km/h to 315 km/h</strong> 3-second gust wind speed under Ultimate Limit State (ULS / LRFD strength design per NSCP 2015 and TIA-222-H).</li>
+<li><strong>Survivable / Ultimate Wind Speed (V_survival):</strong></li>
+<li><strong>Designed for 250 km/h to 315 km/h</strong> 3-second gust wind speed under Ultimate Limit State (ULS / LRFD strength design per NSCP 2015 and TIA-222-H):
+  <ul>
+    <li><strong>Zone 3 (Mindanao &amp; Palawan):</strong> V_ult = <strong>250 km/h (69.4 m/s)</strong> / V_asd = <strong>195 km/h (54.2 m/s)</strong> [Binding Project Floor; exceeds NSCP 200 km/h code map].</li>
+    <li><strong>Zone 2 (NCR, Central Luzon, Visayas):</strong> V_ult = <strong>270 km/h (75.0 m/s)</strong> / V_asd = <strong>210 km/h (58.3 m/s)</strong>.</li>
+    <li><strong>Zone 1 (Typhoon Corridor / Eastern Seaboard):</strong> V_ult = <strong>315 km/h (87.5 m/s)</strong> / V_asd = <strong>245 km/h (68.0 m/s)</strong>.</li>
+  </ul>
+</li>
 <li>Structure, slip-joints, baseplate, and foundation anchorage shall withstand extreme typhoon wind pressures with full operational equipment loading (3x n50 Antennas, 3x 8T8R RRUs, Starlink dish, and future expansion mounts) without plastic deformation, structural failure, or overturning.</li>
 <li><strong>Operational / Serviceability Wind Speed (V_{operational}):</strong></li>
 <li><strong>Designed for 140 km/h to 160 km/h (40.0 m/s to 44.4 m/s)</strong> continuous operational wind speed under Serviceability Limit State (SLS, 1.0 load factor).</li>

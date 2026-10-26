@@ -5,7 +5,7 @@
 **Partner / Network:** Comclark Network and Technology Corp.  
 **System Reference:** Nationwide 5G Standalone (SA) Fixed Wireless Access (FWA) — Band n50 (1457.0 – 1517.0 MHz)  
 **Lead Technical Architect & Authorized Representative:** OLIVER TUNGOL  
-**Structural / Site Plan Engineer:** JOMAR DOGILLO  
+**Structural / Site Plan Engineer:** JOMAR DOGILLO, PE  
 **Standard Codes & References:** 
 * National Structural Code of the Philippines (NSCP 2015, 7th Edition, Volume 1 — Buildings and Other Vertical Structures, Section 207 Wind Loads)
 * TIA-222-G / TIA-222-H: Structural Standard for Antenna Supporting Structures and Antennas
@@ -15,32 +15,44 @@
 ---
 
 ## 1. EXECUTIVE SUMMARY & PURPOSE
-This technical exhibit establishes the structural, civil, and environmental design baseline for the standard **30-Meter Heavy-Duty Polygonal Tubular Steel Monopole** and associated **8.0m x 8.0m compound site layout** utilized in the 5G FWA trial network. All structural design calculations, wind pressure determinations, foundation dimensioning, and deflection criteria strictly comply with the latest Philippine wind load regulations (NSCP 2015) and international telecommunication tower structural engineering standards (TIA-222-G/H).
+This technical exhibit establishes the structural, civil, and environmental design baseline for the standard **30-Meter Heavy-Duty Polygonal Tubular Steel Monopole** and associated **8.0m x 8.0m compound site layout** utilized in the 5G FWA network. All structural design calculations, wind pressure determinations, foundation dimensioning, and deflection criteria strictly comply with the latest Philippine wind load regulations (NSCP 2015) and international telecommunication tower structural engineering standards (TIA-222-G/H).
+
+> [!NOTE]
+> **DRAWING ISSUE STATUS & TENDER TYPICAL NOTICE:**  
+> The physical layout plans and detailed design drawings associated with this exhibit represent a generic nationwide engineering typical design baseline for 30M monopoles (315 km/h Category 5 survivability, 150 kPa soil bearing capacity). They are issued for tender reference, technical evaluation, and BoQ pricing. Site-specific construction issuance (Issued For Construction / IFC) requires confirmatory borehole geotechnical investigation (SPT), boundary coordinates (WGS84), PE wet-seal authentication, and local LGU building permit approval.
 
 ---
 
-## 2. PHILIPPINE BASIC WIND SPEED & WIND ZONE MAPPING (NSCP 2015)
+## 2. PHILIPPINE BASIC WIND SPEED & WIND ZONE MAPPING (NSCP 2015 VS. PROJECT DESIGN FLOOR)
 
-In accordance with **NSCP 2015 Section 207 (Wind Loads)** and PAGASA meteorological historical typhoons data, the structure is designed to withstand the following basic wind speed regimes:
+In accordance with **NSCP 2015 Section 207 (Wind Loads)**, PAGASA historical typhoon recurrence data, and TelTech project engineering guidelines, the structure is designed to withstand the following basic wind speed regimes:
 
-| Parameter | Philippine Wind Zone 1 (High Typhoon Corridor) | Philippine Wind Zone 2 (NCR, Central & West Luzon, Visayas) | Philippine Wind Zone 3 (Low Risk / Inland Mindanao & Palawan) |
+| Parameter | Philippine Wind Zone 1 (High Typhoon Corridor) | Philippine Wind Zone 2 (NCR, Central & West Luzon, Visayas) | Philippine Wind Zone 3 (Inland Mindanao & Palawan) |
 | :--- | :---: | :---: | :---: |
-| **Applicable Regions** | Batanes, Cagayan, Isabela, Aurora, Quezon, Bicol Region, Samar, Leyte, Dinagat, Surigao | **National Capital Region (NCR), Central Luzon (Pampanga, Bulacan, Tarlac, Bataan), CALABARZON, Iloilo, Cebu** | Palawan, Zamboanga, Davao, Maguindanao, Sulu, Tawi-Tawi |
-| **Ultimate Basic Wind Speed (V) (3-sec gust)** | **315 km/h (87.5 m/s)** | **270 km/h (75.0 m/s)** | **200 km/h (55.6 m/s)** |
-| **Nominal Basic Wind Speed (V_{asd})** | **245 km/h (68.0 m/s)** | **210 km/h (58.3 m/s)** | **155 km/h (43.1 m/s)** |
+| **Applicable Regions** | Batanes, Cagayan, Isabela, Aurora, Quezon, Bicol Region, Samar, Leyte, Dinagat, Surigao | **National Capital Region (NCR), Central Luzon (Pampanga, Bulacan, Tarlac, Bataan), CALABARZON, Iloilo, Cebu** | Palawan, Zamboanga Peninsula, Davao, General Santos, Maguindanao, Sulu, Tawi-Tawi |
+| **NSCP 2015 Code Map Minimum (3-sec gust)** | 315 km/h (87.5 m/s) Ult / 245 km/h Nom | 270 km/h (75.0 m/s) Ult / 210 km/h Nom | 200 km/h (55.6 m/s) Ult / 155 km/h Nom |
+| **TelTech Mandatory Project Design Floor (V_ult)** | **315 km/h (87.5 m/s)** | **270 km/h (75.0 m/s)** | **250 km/h (69.4 m/s) [Mandatory Project Floor]** |
+| **Nominal Design Wind Speed (V_asd)** | **245 km/h (68.0 m/s)** | **210 km/h (58.3 m/s)** | **195 km/h (54.2 m/s) [Mandatory Design Baseline]** |
 | **Occupancy / Structure Category** | Category IV (Standard Telecommunications) / Category III (Essential Comms Facility) | Category IV / Category III | Category IV / Category III |
 | **Importance Factor (Iw)** | 1.15 (Essential Facility) / 1.00 (Standard) | 1.15 / 1.00 | 1.15 / 1.00 |
 | **Exposure Category** | Exposure C (Open flat terrain/farmlands) / Exposure D (Coastal shoreline) | Exposure B (Urban/Suburban) or Exposure C | Exposure B or Exposure C |
+
+> [!IMPORTANT]
+> **MANDATORY PROJECT WIND SPEED DESIGN FLOOR (ZONE 3 RULE):**  
+> While NSCP 2015 Section 207 / Figure 207A maps Zone 3 (Mindanao / Palawan) with a minimum basic wind speed of 200 km/h (55.6 m/s ultimate) / 155 km/h (nominal), **TelTech strictly enforces a binding project design floor of 250 km/h (69.4 m/s ultimate / 195 km/h nominal)** across all Zone 3 sites (Appendix D §4.1, Bid Bulletin 01 Item 1.4, Master Specs Library, and 30M DDD manual). All structural tower fabrication, member sizing, anchor bolt dimensioning, and foundation design across Zone 3 must be calculated based on V_ult ≥ 250 km/h. Zone 2 sites require V_ult ≥ 270 km/h; Zone 1 sites require V_ult ≥ 315 km/h.
 
 ---
 
 ## 3. TOWER STRUCTURAL DESIGN PARAMETERS & LIMIT STATES
 
 ### 3.1 Operational vs. Survivable Wind Speed
-* **Survivable / Ultimate Wind Speed (V_{survival}):**
-  * **Designed for 270 km/h to 315 km/h** 3-second gust wind speed under Ultimate Limit State (ULS / LRFD strength design per NSCP 2015 and TIA-222-H).
+* **Survivable / Ultimate Wind Speed (V_survival):**
+  * **Designed for 250 km/h to 315 km/h** 3-second gust wind speed under Ultimate Limit State (ULS / LRFD strength design per NSCP 2015 and TIA-222-H):
+    * **Zone 3 (Mindanao & Palawan):** V_ult = **250 km/h (69.4 m/s)** / V_asd = **195 km/h (54.2 m/s)** [Binding Project Design Floor; exceeds NSCP 200 km/h code map].
+    * **Zone 2 (NCR, Central Luzon, Visayas):** V_ult = **270 km/h (75.0 m/s)** / V_asd = **210 km/h (58.3 m/s)**.
+    * **Zone 1 (Typhoon Corridor / Eastern Seaboard):** V_ult = **315 km/h (87.5 m/s)** / V_asd = **245 km/h (68.0 m/s)**.
   * Structure, slip-joints, baseplate, and foundation anchorage shall withstand extreme typhoon wind pressures with full operational equipment loading (3x n50 Antennas, 3x 8T8R RRUs, Starlink dish, and future expansion mounts) without plastic deformation, structural failure, or overturning.
-* **Operational / Serviceability Wind Speed (V_{operational}):**
+* **Operational / Serviceability Wind Speed (V_operational):**
   * **Designed for 140 km/h to 160 km/h (40.0 m/s to 44.4 m/s)** continuous operational wind speed under Serviceability Limit State (SLS, 1.0 load factor).
   * Under this wind condition, all active 5G beamforming patterns, MIMO spatial multiplexing, and narrow-beam microwave/satellite transmission links remain within rigid signal integrity thresholds.
 
