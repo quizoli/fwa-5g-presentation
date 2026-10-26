@@ -48,7 +48,7 @@ Band n50 operates in the 1.5 GHz L-Band (1432 – 1517 MHz), providing superior 
 * **Spectrum Allocation:** 60 MHz contiguous TDD frame structure (configurable TDD DL:UL ratios: 4:1 for broadband downlink-heavy traffic, or 3:1 for balanced enterprise transmission).
 
 ### 2.2 Site Infrastructure Landscape & Tower Strategy
-The operator has completed a nationwide spatial overlay matching the 5,000 candidate barangay centroids against **13,746 verified operational cell towers** spanning six (6) tower portfolios:
+The operator has completed a nationwide spatial overlay matching the 5,000 candidate barangay centroids against **13,810 nationwide TowerCo registry records (encompassing 13,799 unique Universal Tower IDs and 13,629 distinct geographic tower coordinates)** across Philippine licensed TowerCos:
 * **PTCI / MIDC TowerCo:** 5,080 towers
 * **FTAP Globe Telecom:** 3,529 towers
 * **EdgePoint Infrastructure:** 2,775 towers

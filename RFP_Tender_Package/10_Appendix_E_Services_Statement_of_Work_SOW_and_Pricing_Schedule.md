@@ -2,7 +2,7 @@
 ## 5G FIXED WIRELESS ACCESS (FWA) PROGRAM (5,000 SITES NATIONWIDE)
 **Tender Reference:** RFP-TELTECH-FWA-2026-001  
 **Operator:** Telecommunications Technology Solutions Incorporated (TelTech) / Converge ICT Solutions Inc.  
-**Audited Tower Database:** 13,810 Registry Records (13,746 Deduplicated Physical Towers) | **Release Date:** 26 October 2026  
+**Audited Tower Database:** 13,810 Registry Records (13,799 Unique IDs / 13,629 Coordinates) | **Release Date:** 26 October 2026  
 **Document Version:** 2.1 (Reconciled Master Services SOW & Commercial Rate Card)  
 **Commercial FX Baseline:** 1 USD = 55.00 PHP  
 **Author:** Oliver Tungol  
@@ -17,7 +17,7 @@
 > **EXPLICIT GOVERNANCE & COMMERCIAL RECONCILIATION PRINCIPLES**  
 > 
 > **1. Primary Operational Baseline (TowerCo-Led Scope on 13,810 Audited Tower Locations):**  
-> The primary operational objective of the Operator is to utilize Independent Tower Companies (**TowerCos**) under Master Lease Agreements (MLA) — either through **Tier 1 (Existing Co-Location on the audited master database of 13,810 records / 13,746 physical towers, 89.7% / 897 Sites)** or **Tier 2 (TowerCo Build-to-Suit / B2S, nominal 103 Sites)**. Under this primary baseline, **all Site Acquisition (SAQ) work** — including candidate hunting, landlord negotiations, cadastral title due diligence, lease execution, Barangay clearances, LGU building permits, CAAP clearances, and utility power applications — is **STRICTLY THE SCOPE AND FINANCIAL RESPONSIBILITY OF THE TOWERCO, NOT THE VENDOR**.
+> The primary operational objective of the Operator is to utilize Independent Tower Companies (**TowerCos**) under Master Lease Agreements (MLA) — either through **Tier 1 (Existing Co-Location on the audited master database of 13,810 registry records / 13,799 unique IDs / 13,629 coordinates, 89.7% / 897 Sites)** or **Tier 2 (TowerCo Build-to-Suit / B2S, nominal 103 Sites)**. Under this primary baseline, **all Site Acquisition (SAQ) work** — including candidate hunting, landlord negotiations, cadastral title due diligence, lease execution, Barangay clearances, LGU building permits, CAAP clearances, and utility power applications — is **STRICTLY THE SCOPE AND FINANCIAL RESPONSIBILITY OF THE TOWERCO, NOT THE VENDOR**.
 > 
 > **2. Structural Engineering & Permitting Ownership Boundary:**  
 > Under MLA, for Tier 1 Co-Location and Tier 2 B2S, formal 3D structural analysis, TIA-222-H wind simulation (250–315 km/h site-specific basis), foundation capacity verification, and licensed Philippine Professional Civil/Structural Engineer (PE) wet-seal certification **STRICTLY BELONG TO THE TOWERCO** (per Appendix D §1.3 and Bid Bulletin 01 Huawei Item 13). Vendor scope is strictly limited to physical auditing, compiling active equipment loading specifications (weight, EPA, mounting brackets), and verifying the antenna mount interface. Vendor structural PE endorsement applies *strictly* to Tier 3 Operator Own-Build.
@@ -37,7 +37,7 @@ The TelTech 5G Fixed Wireless Access (FWA) network delivers high-capacity broadb
 * **Phase 1 (Committed Network Baseline):** 1,000 Macro BTS Sites delivered within 365 calendar days.
 * **Phases 2 to 5 (Contractual Expansion Batches):** 1,000 Sites per annum, scaling to 5,000 sites over 5 years.
 * **Target Subscriber Capacity:** 365,000 active concurrent residential and SME subscribers (365 subs/site average).
-* **Audited TowerCo Infrastructure:** 13,810 audited nationwide TowerCo registry records representing 13,746 deduplicated physical towers across the Philippines.
+* **Audited TowerCo Infrastructure:** 13,810 audited nationwide TowerCo registry records encompassing 13,799 unique Universal Tower IDs and 13,629 distinct coordinates across the Philippines.
 
 ### 1.2 Mandatory 3-Tier Sourcing Hierarchy
 To achieve rapid market entry and minimize civil capex, infrastructure sourcing is strictly sequenced:
@@ -51,7 +51,7 @@ To achieve rapid market entry and minimize civil capex, infrastructure sourcing 
 
 ### 2.1 Scope 1: Site Acquisition (SAQ) & Legal Permitting Services (Standby Contingency Framework — Tier 3 Own-Build)
 *Applicable strictly to Tier 3 Operator Own-Build sites authorized via formal written Work Order. Evaluated in Document 06 against the 103-site Phase 1 / 515-site Program contingency basket.*
-* **Nominal Search Ring Siting & Candidate Hunting:** Field screening of 3 viable candidates (A/B/C) per search ring (500m urban / 1,000m rural), spatial screening against audited tower database (13,810 records / 13,746 physical towers), and issuance of Preliminary Candidate Evaluation Report (PCER).
+* **Nominal Search Ring Siting & Candidate Hunting:** Field screening of 3 viable candidates (A/B/C) per search ring (500m urban / 1,000m rural), spatial screening against audited tower database (13,810 registry records / 13,799 unique IDs / 13,629 coordinates), and issuance of Preliminary Candidate Evaluation Report (PCER).
 * **Site Acquisition Report (SAR) & Dossier:** Cadastral boundary audit, precision WGS84 GPS (>= 6 decimal places), land title verification (TCT/OCT/Tax Dec), lessor profile, and 360-degree panoramic photos.
 * **TowerCo SAA Support:** Loading profile compilation (3x 8T8R RRU, 3x Antennas, hybrid cables, 2m x 2m pad) and technical coordination until SAA approval.
 * **Leasing & Legal Notarization:** Securing 10-year registered lease contracts with right-of-way easements.
