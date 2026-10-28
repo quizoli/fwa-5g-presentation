@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bid Bulletin No. 2: Official Clarifications & Technical Addendum</title>
+<style>
+  :root {
+    --navy-dark: #0A192F;
+    --navy-card: #0F172A;
+    --gold: #FFB703;
+    --teal: #00D2FF;
+    --emerald: #10B981;
+    --text-light: #F8FAFC;
+    --text-muted: #94A3B8;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #1E293B;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: #F1F5F9;
+  }
+  
+  /* STICKY TOP NAV BAR */
+  .portal-nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #0A192F;
+    color: #FFFFFF;
+    border-bottom: 2px solid var(--gold);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .portal-nav-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .btn-return-portal {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold);
+    color: #0A192F;
+    font-weight: 800;
+    font-size: 13px;
+    padding: 7px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .btn-return-portal:hover {
+    background: #FDBA74;
+    transform: translateY(-1px);
+  }
+  .portal-nav-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #CBD5E1;
+  }
+  .portal-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-action-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.08);
+    color: #F8FAFC;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.2);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-action-nav:hover {
+    background: rgba(255,255,255,0.18);
+  }
+
+  /* MAIN CONTENT CONTAINER */
+  .container {
+    max-width: 1080px;
+    margin: 32px auto 60px auto;
+    background: #FFFFFF;
+    padding: 48px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    border: 1px solid #E2E8F0;
+  }
+
+  /* TYPOGRAPHY */
+  h1, h2, h3, h4 {
+    color: #0A192F;
+    font-weight: 800;
+  }
+  h1 {
+    border-bottom: 3px solid #00D2FF;
+    padding-bottom: 12px;
+    font-size: 26px;
+    margin-top: 0;
+  }
+  h2 {
+    border-bottom: 1.5px solid #E2E8F0;
+    padding-bottom: 8px;
+    font-size: 19px;
+    margin-top: 36px;
+    color: #0A192F;
+  }
+  h3 {
+    font-size: 15px;
+    margin-top: 24px;
+    color: #1E293B;
+  }
+  code {
+    background: #F1F5F9;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #0F172A;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+  hr {
+    border: none;
+    border-top: 1px solid #E2E8F0;
+    margin: 32px 0;
+  }
+  ul, ol {
+    font-size: 14px;
+    color: #334155;
+    line-height: 1.65;
+  }
+  p {
+    font-size: 14px;
+    color: #334155;
+  }
+
+  /* BOTTOM RETURN BAR */
+  .bottom-return-box {
+    margin-top: 48px;
+    padding: 24px;
+    background: linear-gradient(135deg, #0A192F, #1E293B);
+    border-radius: 8px;
+    border: 1.5px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .bottom-return-text {
+    color: #E2E8F0;
+    font-size: 14px;
+  }
+  .bottom-return-text strong {
+    color: var(--gold);
+    display: block;
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  @media print {
+    .portal-nav-bar, .bottom-return-box {
+      display: none !important;
+    }
+    body {
+      padding: 0;
+      background: #FFFFFF;
+    }
+    .container {
+      max-width: 100%;
+      box-shadow: none;
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+  }
+</style>
+<script>
+  function returnToPortal() {
+    if (window.opener && !window.opener.closed) {
+      window.close();
+    } else if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = '../rfp_portal.html';
+    }
+  }
+</script>
+</head>
+<body>
+
+<!-- STICKY TOP NAV BAR -->
+<div class="portal-nav-bar">
+  <div class="portal-nav-left">
+    <button class="btn-return-portal" onclick="returnToPortal()">
+      <span>⬅</span> Return to E-Tender Portal
+    </button>
+    <span class="portal-nav-title">TelTech &amp; Comclark 5G FWA RFP &bull; Ref: RFP-TELTECH-FWA-2026-001</span>
+  </div>
+  <div class="portal-nav-right">
+    <button onclick="window.print()" class="btn-action-nav">
+      <span>🖨</span> Print / Save PDF
+    </button>
+  </div>
+</div>
+
+<div class="container">
+<h1>TELECOMMUNICATIONS TECHNOLOGY SOLUTIONS INCORPORATED (TELTECH)</h1>
+<h2>NATIONWIDE 5G STANDALONE (SA) FIXED WIRELESS ACCESS (FWA) NETWORK</h2>
+<h3>RFP REFERENCE: RFP-TELTECH-FWA-2026-001</h3>
+<hr>
+<h1>BID BULLETIN NO. 2: COMPREHENSIVE TECHNICAL, OPERATIONAL & COMMERCIAL ADDENDUM</h1>
+<p style="margin: 10px 0; line-height: 1.65;"><strong>TO ALL PROSPECTIVE BIDDERS:</strong> All Qualified Bidders, System Integrators, and Authorized Equipment Manufacturers</p>
+<p style="margin: 10px 0; line-height: 1.65;"><strong>FROM:</strong> Oliver Tungol, Lead Technical Architect & Tender Secretariat</p>
+<p style="margin: 10px 0; line-height: 1.65;"><strong>DATE OF ISSUANCE:</strong> October 29, 2026</p>
+<p style="margin: 10px 0; line-height: 1.65;"><strong>SUBJECT:</strong> Technical Baseline Revisions, Engineering Standard Directives, and Contractual Policy Harmonization</p>
+<hr>
+<div style="margin: 20px 0; padding: 16px 20px; background: rgba(255, 183, 3, 0.08); border-left: 4px solid #FFB703; border-radius: 4px; font-size: 13.5px; color: #1E293B;">
+  <p style="margin:0; line-height: 1.6;"><strong>GOVERNING LEGAL DIRECTIVE:</strong> This <strong>Bid Bulletin No. 2</strong> is formally promulgated pursuant to Section 1.5 (<em>Clarification and Amendment of Bidding Documents</em>) of the Master RFP Document. The provisions, technical standards, and commercial rules articulated herein are seamlessly codified as binding contractual addenda to Documents 01 through 09. Prospective bidders must formulate their final 3-envelope submissions strictly in conformance with these unified engineering policies.</p>
+</div>
+<hr>
+<h2>1. EXECUTIVE SUMMARY & TENDER STATUS OVERVIEW</h2>
+<p style="margin: 10px 0; line-height: 1.65;">Following detailed technical reviews, preliminary engineering evaluations, and structural harmonization across the 5,000 candidate barangays, TelTech officially issues this comprehensive policy bulletin. This document codifies authoritative directives across eight (8) strategic technical domains:</p>
+<ol style="padding-left: 24px; margin: 12px 0;">
+<li style="margin-bottom: 8px;"><strong>Cloud-Native 5G SA Core Dimensioning & User Plane Throughput (Lot 3)</strong>
+</li>
+<li style="margin-bottom: 8px;"><strong>Spectrum Physics, Band n50 Operating Passband & Demarcation Optics (Lot 1 & Lot 6)</strong>
+</li>
+<li style="margin-bottom: 8px;"><strong>Customer Premises Equipment (CPE) Phased Rollout & Lifecycle Reverse Logistics (Lot 7)</strong>
+</li>
+<li style="margin-bottom: 8px;"><strong>Civil Works, Monopole Structural Standards & Site Power Infrastructure (Lots 2 & 5)</strong>
+</li>
+<li style="margin-bottom: 8px;"><strong>Operational SLAs, Radio Network KPIs & SSV Acceptance Standards (Document 04 / Appendix C)</strong>
+</li>
+<li style="margin-bottom: 8px;"><strong>Digital OSS/BSS, Field Force Automation & VAS Subsystems (Lot 4)</strong>
+</li>
+<li style="margin-bottom: 8px;"><strong>Candidate Siting Schedule Precision & Geographic Asset Provenance (Document 07)</strong>
+</li>
+<li style="margin-bottom: 8px;"><strong>Commercial BoQ Harmonization, Multi-Year O&M & 10-Year TCO Rules (Document 06)</strong>
+</li>
+</ol>
+<hr>
+<h2>2. CLOUD-NATIVE 5G CORE (5GC SA) & DATA CENTER ARCHITECTURE (LOT 3)</h2>
+<h3>2.1 User Plane Throughput Capacity Dimensioning</h3>
+<ol style="padding-left: 24px; margin: 12px 0;">
+<li style="margin-bottom: 8px;"><strong>Phase 1 Capacity Baseline (1,000,000 Subscribers):</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">The cloud-native 5G SA Core User Plane Function (UPF) cluster must be physically and logically dimensioned to deliver an initial aggregated user-plane throughput floor of <strong>300 Gbit/s to 500 Gbit/s</strong>.</li>
+<li style="margin-bottom: 4px;">Dimensioning derives from an initial target of 300,000 concurrently active broadband households exhibiting an Average Busy-Hour Throughput (ABHT) of 1.5 Mbit/s to 2.0 Mbit/s per active subscriber at a standard 15% to 20% busy-hour concurrency factor.</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>Expansion Horizon (3,000,000 Subscribers):</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">The proposed containerized 5G Core Network Functions (CNF) running on Kubernetes / bare-metal server infrastructure must natively support horizontal auto-scaling of distributed UPF instances up to an aggregated user-plane throughput capacity of <strong>1.5 Tbit/s</strong>.</li>
+<li style="margin-bottom: 4px;">Expansion to 1.5 Tbit/s must be executable via software license expansion and incremental server node deployment without requiring architectural redesign, control plane migration (AMF/SMF/UDM), or database re-sharding.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>3. RADIO ACCESS NETWORK (RAN), BAND n50 SPECTRUM & TRANSMISSION (LOTS 1 & 6)</h2>
+<h3>3.1 Spectrum Physics, Operational Channel Window & Emission Suppression</h3>
+<ol style="padding-left: 24px; margin: 12px 0;">
+<li style="margin-bottom: 8px;"><strong>Active Operational Passband:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">Under the National Telecommunications Commission (NTC) regulatory framework for dedicated broadband wireless communications, the authorized operational Band n50 carrier is established as <strong>1457.0 MHz to 1517.0 MHz</strong>, providing a contiguous <strong>60 MHz TDD channel bandwidth</strong> operating at 30 kHz Subcarrier Spacing (SCS, 162 Resource Blocks).</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>Guardband Allocation & Satellite Protection:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">A dedicated <strong>1.0 MHz guardband (1517.0 MHz to 1518.0 MHz)</strong> is allocated immediately adjacent to the upper band edge.</li>
+<li style="margin-bottom: 4px;">All gNodeB transceivers must implement sharp digital filtering ensuring out-of-band emissions (OOBE) into the adjacent maritime satellite service band (1518.0 – 1525.0 MHz) do not exceed <strong>-30 dBm/MHz</strong> at the antenna connector, strictly compliant with <strong>ITU-R M.2159-0 / WRC-15 Resolution 223</strong>.</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>Out-of-Band Emission Limits:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">Radiated and conducted unwanted emissions in the adjacent 1432.0–1457.0 MHz block and upper out-of-band spectra must strictly meet <strong>3GPP TS 38.104 Category B</strong> standards with an Adjacent Channel Leakage Ratio (<strong>ACLR $\ge$ 45 dB</strong>).</li>
+</ul>
+</li>
+</ol>
+<h3>3.2 Baseband Architecture & Form Factor Preferences</h3>
+<ol style="padding-left: 24px; margin: 12px 0;">
+<li style="margin-bottom: 8px;"><strong>Form Factor Preference for Co-Location (897 Sites):</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">Outdoor blade Baseband Units (blade BBUs) featuring zero ground-footprint pole/wall mounting are strongly preferred across all 897 tower co-location sites. Blade architectures minimize TowerCo compound lease fees and accelerate deployment velocity. Compact outdoor cabinet BBUs are permitted only where indoor shelter space is pre-contracted.</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>Site Transport Capacity & Optical Transceiver Boundary:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">Initial gNodeB backhaul throughput dimensioning of <strong>1 Gbit/s</strong> per site is approved for Day 1 traffic modeling.</li>
+<li style="margin-bottom: 4px;">However, backhaul interfaces must support hardware upgradeability to <strong>10 Gbit/s</strong> via standard SFP+ optical cages.</li>
+<li style="margin-bottom: 4px;"><strong>Demarcation Supply Scope:</strong> The RAN contractor shall supply dual-rate <strong>10GE/25GE eCPRI/Ethernet adaptive optical modules</strong> (1310nm Single-Mode Fiber, LC duplex, 10 km reach) for all BBU optical ports. TelTech shall provide compatible optical transceivers on the transmission demarcation router/switch ports.</li>
+<li style="margin-bottom: 4px;"><strong>Configuration Boundaries:</strong> The RAN contractor executes all BBU port IP address provisioning, VLAN tagging, QoS DSCP priority mapping, and IEEE 1588v2 PTP / SyncE frequency/phase synchronization. TelTech transmission teams configure transport tunneling (MPLS-VPN / SRv6).</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3>3.3 Nearest Tower Geographic Coordinates & Siting Inventory Precision (Document 07)</h3>
+<ol style="padding-left: 24px; margin: 12px 0;">
+<li style="margin-bottom: 8px;"><strong>Candidate Siting Geographic Precision:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">In response to technical simulation requirements, high-precision WGS84 geographic coordinates (6 decimal places) for all nearest co-location towers have been populated in Document 07 (<code>07_RFP_5G_FWA_Candidate_Site_List_and_Rollout_Schedule.xlsx</code>) across Tab 'All 5,000 Sites' and Batch 1 through Batch 5.</li>
+<li style="margin-bottom: 4px;">All 60 previously flagged reversed coordinate entries have been fully verified and corrected against audited telecom asset databases.</li>
+<li style="margin-bottom: 4px;">Bidders are reminded that tower coordinate data constitute confidential operator assets provided under the RFP Non-Disclosure Agreement (NDA) solely for RF propagation modeling, link budget simulations, and construction feasibility assessment.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>4. CUSTOMER PREMISES EQUIPMENT (CPE) ROLLOUT & LIFECYCLE REVERSE LOGISTICS (LOT 7)</h2>
+<h3>4.1 Phased Hardware Delivery Model</h3>
+<ol style="padding-left: 24px; margin: 12px 0;">
+<li style="margin-bottom: 8px;"><strong>Initial Phase 1 Form Factor:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">Recognizing commercial manufacturing timelines for Band n50 outdoor units, TelTech authorizes a phased rollout: Bidders are permitted to supply high-gain 5G Indoor Units (IDU, minimum 8.0–10.0 dBi equivalent antenna gain with integrated 4x4 MIMO and external TS-9/SMA antenna ports) for initial Phase 1 residential deployments.</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>Outdoor Unit (ODU) Commitment:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">Bidders must concurrently submit a firm, contractually committed product delivery roadmap for high-gain Outdoor Units (ODU, $\ge$ 12.0 dBi directional gain, IP67 weather-proofing, pole-mountable) within <strong>6 to 9 months</strong> following contract award.</li>
+</ul>
+</li>
+</ol>
+<h3>4.2 CPE Warranty vs. Churned Reverse Logistics Lifecycle</h3>
+<ol style="padding-left: 24px; margin: 12px 0;">
+<li style="margin-bottom: 8px;"><strong>Manufacturer Warranty (Defect Liability Period):</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">All supplied CPE hardware carries a mandatory <strong>24-month (2-year) free replacement warranty</strong> covering internal hardware defects, component burnout, and manufacturing faults.</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>Churned CPE Recovery Rate ($\ge$ 70%):</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">The contractual $\ge$ 70% recovery target applies exclusively to <strong>reverse logistics operations executed by field force personnel</strong> retrieving TelTech-owned CPE units from churned or canceled subscriber premises.</li>
+<li style="margin-bottom: 4px;">Recovered units undergo factory diagnostic testing, firmware re-flashing, cosmetic refurbishment, and re-packaging into active forward deployment inventory.</li>
+<li style="margin-bottom: 4px;">Hardware damage resulting from proven subscriber vandalism, fire, or force majeure is excluded from warranty and replenished via the Master Rate Card spare parts schedule.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>5. CIVIL, STRUCTURAL & SITE POWER INFRASTRUCTURE (LOTS 2 & 5)</h2>
+<h3>5.1 Class T4 Greenfield Monopoles (103 Sites)</h3>
+<ol style="padding-left: 24px; margin: 12px 0;">
+<li style="margin-bottom: 8px;"><strong>Structural Wind Load Standards:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">All newly built Class T4 Greenfield Monopoles must be structurally engineered in compliance with the <strong>National Structural Code of the Philippines (NSCP 2015, 7th Edition) / EIA/TIA-222-G</strong>.</li>
+<li style="margin-bottom: 4px;">Structures must withstand extreme typhoon wind gusts of <strong>270 km/h (Zone 2) up to 315 km/h (Zone 1)</strong> under full design dead load:</li>
+<li style="margin-bottom: 4px;">6x 5G Remote Radio Units (RRUs);</li>
+<li style="margin-bottom: 4px;">1x Active Antenna Unit (AAU) or 3x directional passive panel antennas;</li>
+<li style="margin-bottom: 4px;">Up to <strong>1.2 m² total projected windward surface area</strong> for microwave backhaul antennas (equivalent to 1x 1.2m or 2x 0.6m high-wind parabolic dishes);</li>
+<li style="margin-bottom: 4px;">Associated cable ladders, feeder runs, and top lightning protection rod.</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>Foundation Hydrological Elevation:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;"><strong>Standard Non-Flood Soils:</strong> Reinforced concrete equipment plinths shall have an elevation of <strong>300 mm (0.30 m)</strong> above finished grade level.</li>
+<li style="margin-bottom: 4px;"><strong>Documented Flood Zones (50-Year Inundation History):</strong> Civil contractors shall construct elevated structural steel equipment platforms raised <strong>1.0 m to 1.5 m</strong> above finished grade level, priced pursuant to the approved Master Rate Card.</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>Starlink Satellite Backhaul Mounting Interface:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">Where hybrid LEO satellite backhaul is designated, contractors shall install a hot-dip galvanized mounting mast (minimum 60 mm / 2.375-inch outer diameter, 2.5 mm wall thickness) with an unobstructed view of the sky. For ground sites, a dedicated gantry standoff arm is utilized; for tower sites, a rigid leg standoff clamp is installed.</li>
+</ul>
+</li>
+</ol>
+<h3>5.2 AC Electrical Utility Interconnection & Standby Power</h3>
+<ol style="padding-left: 24px; margin: 12px 0;">
+<li style="margin-bottom: 8px;"><strong>Service Entrance Capacity:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">AC service drops shall be sized for <strong>100A, 230V single-phase (or 3-phase where commercially available)</strong>.</li>
+<li style="margin-bottom: 4px;">The contractor’s civil/electrical scope includes installation of the weatherhead, service mast, utility-grade meter base, manual transfer switch (MTS), and main AC distribution board with Class I+II Surge Protective Devices (SPD). Utility energization and power billing accounts are administered directly by TelTech.</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>Site Power Rectifier Architecture (Lot 2):</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">Each site requires one (1) high-efficiency outdoor-rated rectifier system with N+1 modular switchmode rectifier redundancy (e.g. 3x 50A modules providing 100A continuous N+1 DC output). Remote SNMPv3 / Modbus-TCP telemetry reporting into the centralized OSS is mandatory.</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>Diesel Generator Fuel at Commissioning:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">Contractors are responsible for supplying diesel fuel strictly for generator commissioning and full-load burn-in testing (minimum 4 hours continuous run). Routine fuel replenishment transitions to TelTech O&M upon Provisional Acceptance (PAC).</li>
+</ul>
+</li>
+</ol>
+<h3>5.3 Technical Site Survey Reports (TSSR) & Drone Sweeps</h3>
+<ol style="padding-left: 24px; margin: 12px 0;">
+<li style="margin-bottom: 8px;"><strong>Panoramic Photographic Standards:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">For tower co-location sites (Class T1–T3), contractors shall perform 360° panoramic photographic sweeps at antenna centerline height (and 20m, 30m, 40m AGL) using calibrated drone photographic platforms.</li>
+<li style="margin-bottom: 4px;">In areas where drone operations are legally prohibited by aviation authorities (CAAP restricted airspace, airport buffer zones, military reservations) or severe inclement weather, high-resolution manual panoramic photography captured by certified tower riggers from the tower climbing platform is accepted.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>6. OPERATIONAL SLAS, RADIO NETWORK KPIS & SSV ACCEPTANCE (APPENDIX C)</h2>
+<h3>6.1 Radio Performance Indicators (Nationwide 24/7/366)</h3>
+<p style="margin: 10px 0; line-height: 1.65;">To harmonize rigorous carrier-grade service quality with real-world FWA wireless propagation environments, the following SLA thresholds are formally enacted:</p>
+<ol style="padding-left: 24px; margin: 12px 0;">
+<li style="margin-bottom: 8px;"><strong>Call / Session Setup Success Rate (CSSR):</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;"><strong>Target Standard:</strong> <strong>97.0%</strong> (revised from 99.0%)</li>
+<li style="margin-bottom: 4px;"><strong>Minimum Threshold:</strong> <strong>96.0%</strong> (revised from 97.5%)</li>
+<li style="margin-bottom: 4px;">Formula: $\text{CSSR} = \text{RRC Setup Success Rate} \times \text{5G QoS Flow Setup Success Rate} \times 100\%$</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>Call Drop Rate (CDR):</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;"><strong>Target Standard:</strong> <strong>$\le$ 1.5%</strong> (revised from $\le$ 0.5%)</li>
+<li style="margin-bottom: 4px;"><strong>Maximum Threshold:</strong> <strong>$\le$ 2.0%</strong> (revised from $\le$ 1.0%)</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>Packet Loss Rate:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">Evaluated at the <strong>PDCP (Packet Data Convergence Protocol) Layer</strong> pursuant to 3GPP TS 38.314.</li>
+<li style="margin-bottom: 4px;"><strong>Target Standard:</strong> <strong>$\le$ 0.10%</strong>; <strong>Maximum Threshold:</strong> <strong>$\le$ 0.20%</strong>.</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>Time-Consistent Busy Hour (TCBH):</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">Evaluated on a per-cell basis as the rolling continuous 60-minute window demonstrating highest combined uplink/downlink traffic volume over a 30-day observation period.</li>
+</ul>
+</li>
+</ol>
+<h3>6.2 Service Credit Assessment & Stabilization Governance</h3>
+<ol style="padding-left: 24px; margin: 12px 0;">
+<li style="margin-bottom: 8px;"><strong>Financial Penalty Floor:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">Service Credit liquidated damages are assessed <strong>exclusively when monthly performance breaches the Minimum Threshold floor</strong> (or exceeds the Maximum Threshold for CDR/Packet Loss). Performance falling between the Target Standard and Minimum Threshold mandates engineering root-cause analysis and corrective cluster optimization without financial penalty.</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>Post-PAC Cluster Stabilization Window:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">A <strong>90-day stabilization grace period</strong> is granted for each site rollout cluster commencing from Provisional Acceptance (PAC), during which financial Service Credits for Network Availability (NAV) and MTTR are suspended while operational baselines and field spares logistics are stabilized.</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>OSS Throughput Counters vs. Contractual SLAs:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">Financial penalties shall not be assessed against instantaneous OSS cell-edge throughput counters due to dependencies on subscriber traffic distribution and concurrency. Cell-edge speed compliance is governed by Single Site Verification (SSV) and cluster drive acceptance.</li>
+</ul>
+</li>
+</ol>
+<h3>6.3 Single Site Verification (SSV) Speed Criteria by RSRP Brackets</h3>
+<p style="margin: 10px 0; line-height: 1.65;">Single Site Verification stationary throughput benchmarks for a 60 MHz Band n50 channel under a standard 8:2 (DDDDDDDSUU) or 7:3 TDD frame configuration are established as follows:</p>
+<ul style="padding-left: 24px; margin: 12px 0;">
+<li style="margin-bottom: 6px;"><strong>Near Zone (RSRP $\ge$ -80 dBm):</strong> Downlink $\ge$ 200 Mbit/s | Uplink $\ge$ 25 Mbit/s</li>
+<li style="margin-bottom: 6px;"><strong>Mid Zone (-95 dBm $\le$ RSRP < -80 dBm):</strong> Downlink $\ge$ 100 Mbit/s | Uplink $\ge$ 10 Mbit/s</li>
+<li style="margin-bottom: 6px;"><strong>Cell Edge Zone (-105 dBm $\le$ RSRP < -95 dBm):</strong> Downlink $\ge$ 35 Mbit/s | Uplink $\ge$ 5 Mbit/s</li>
+</ul>
+<p style="margin: 10px 0; line-height: 1.65;"><em>(Note: A 5 Mbit/s uplink floor is mandatory to guarantee TCP ACK throughput and interactive voice/video responsiveness).</em></p>
+<h3>6.4 Field Installation & Maintenance Metrics</h3>
+<ol style="padding-left: 24px; margin: 12px 0;">
+<li style="margin-bottom: 8px;"><strong>Subscriber Installation Scope:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">Encompasses on-site RF signal verification, optimal wall/roof/pole mounting, outdoor weather-sealed Cat6 cabling (up to 30m), PoE injection, indoor Wi-Fi router setup, zero-touch provisioning via FMS app, and verified speed test sign-off.</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>First-Time-Right (FTR) Installation Rate ($\ge$ 95%):</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">Calculated monthly as:</li>
+</ul>
+</li>
+</ol>
+<p style="margin: 10px 0; line-height: 1.65;">$$\text{FTR Rate} = \left( \frac{N_{\text{completed installations}} - N_{\text{repeat visits within 14 days}}}{N_{\text{completed installations}}} \right) \times 100\%$$</p>
+<ul style="padding-left: 24px; margin: 12px 0;">
+<li style="margin-bottom: 6px;">Any physical revisit required within fourteen (14) calendar days following sign-off due to workmanship defects, misaligned antennas, or provisioning errors is classified as a failed FTR event.</li>
+</ul>
+<ol style="padding-left: 24px; margin: 12px 0;">
+<li style="margin-bottom: 8px;"><strong>Spare Parts Management Service (SPMS) NBD Delivery:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">Next Business Day (NBD) replacement requires dispatch and physical delivery of replacement spare modules to the <strong>designated regional forward maintenance depot / TelTech regional maintenance center</strong> within the next business day (Monday through Saturday, cut-off 15:00) following RMA notification.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>7. DIGITAL OSS/BSS, FIELD FORCE AUTOMATION & VAS INTEGRATION (LOT 4)</h2>
+<ol style="padding-left: 24px; margin: 12px 0;">
+<li style="margin-bottom: 8px;"><strong>Native Automated Business Intelligence (BI):</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">The BSS/OSS suite must incorporate an integrated reporting engine providing scheduled generation of operational, billing, subscriber churn, and SLA compliance reports in CSV, Excel, and PDF formats. Furthermore, open database views / secure REST APIs must be exposed for data pipeline ingestion into TelTech’s enterprise data lake.</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>Cloud Contact Center Integration (CCaaS):</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">The BSS/CRM platform must expose standard TM Forum Open APIs (<strong>TMF621 Customer Management, TMF622 Product Ordering, TMF632 Party Management</strong>) for single-pane CTI screen-pops, automated customer verification, and unified ticketing integration with TelTech's cloud contact center.</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>Value-Added Services (VAS) & SMS Gateway Connectivity:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">The BSS must provide native <strong>SMPP v3.4 and RESTful SMS gateway adapters</strong> to trigger automated customer notifications (one-time passwords [OTP], billing invoices, payment acknowledgments, and service notifications). TelTech provides the SMS gateway termination service.</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>Field Force Management (FMS) Mobile Application Capabilities:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;"><strong>Navigation:</strong> Deep-linking or redirecting from within the FMS app to standard third-party navigation applications (Google Maps, Waze) for routing to site/subscriber coordinates is fully approved.</li>
+<li style="margin-bottom: 4px;"><strong>Electronic Signatures:</strong> Capturing touchscreen handwritten customer signatures on the mobile application upon job completion satisfies formal proof-of-delivery. Third-party digital certificate authorities (PKI/CA) are not required for residential installation orders.</li>
+<li style="margin-bottom: 4px;"><strong>RF Signal Logging:</strong> Certified mobile RF verification tools (e.g. Cellular-Z, G-NetTrack, Nemo Handy, or OEM diagnostic suites) are approved for logging RSRP, RSRQ, SINR, and Cell ID parameters into completion reports.</li>
+<li style="margin-bottom: 4px;"><strong>Automated Service Provisioning:</strong> Work orders successfully validated and signed off on the FMS app must automatically trigger real-time subscriber service activation in the BSS/OSS.</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>Software SLA Boundary vs. Field Managed Services Scope:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">Standalone OSS/BSS software SLAs (Lot 4) govern application availability ($\ge$ 99.95%), transaction processing latency, and API throughput. Field execution metrics (Dispatch Lead Times, FTR Installation Rates, Churned CPE Recoveries) apply strictly to the Managed Services & Field Operations scope (Lot 5 / Appendix E) when awarded.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>8. COMMERCIAL PROPOSAL, 10-YEAR TCO & PROCUREMENT GOVERNANCE (DOCUMENT 06)</h2>
+<ol style="padding-left: 24px; margin: 12px 0;">
+<li style="margin-bottom: 8px;"><strong>Total Pricing Scope (5,000 Candidate Sites):</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">Commercial proposals must provide firm, fixed unit rates and total pricing based on the complete <strong>5,000 candidate site scope</strong> (Lot 1 through Lot 7). Project deployment shall proceed under the multi-batch rollout roadmap (Phase 1: 1,000 sites; Batches 2–5: 1,000 sites each).</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>Currency Conversion Benchmark:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">For bid evaluation and financial modeling, foreign currency (USD) and local currency (PHP) proposals shall be evaluated using the benchmark conversion rate of <strong>USD 1.00 = PHP 55.00</strong>. For offshore active equipment (Lots 1, 2, 3, 7), contracts and Letters of Credit (LC) may be denominated directly in USD.</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>Value Added Tax (VAT) Status:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">All unit rates, material pricing, and services fees in Document 06 must be quoted <strong>exclusive of 12% Philippine Value Added Tax (VAT-Exclusive)</strong>. VAT will be added as a separate billing item pursuant to Bureau of Internal Revenue (BIR) regulations.</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>Partial Lot Bidding & Custom Line Items:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">Bidders are fully permitted to bid on single Lots or arbitrary combinations of Lots (e.g. RAN only, Core only, Civil only). Non-quoted lots shall be marked 'NO BID'. Custom proprietary hardware or services may be included utilizing the designated custom line-item entry rows.</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>Years 6–10 OPEX in 10-Year TCO:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">Bidders may structure Years 6–10 extended maintenance and managed services pricing as either fixed annual fees or transparent percentage-based annual escalations within Form C of Document 06.</li>
+</ul>
+</li>
+<li style="margin-bottom: 8px;"><strong>Mandatory OEM Technical Training:</strong>
+<ul style="padding-left: 20px; margin: 6px 0 6px 0;">
+<li style="margin-bottom: 4px;">Turnkey proposals must include comprehensive OEM technical training and certification programs covering 5G SA Core administration, Band n50 RF planning/optimization, and OSS/BSS operations for at least twenty (20) TelTech technical personnel.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p style="margin: 10px 0; line-height: 1.65;"><em>End of Bid Bulletin No. 2 Draft Policy Document. Prepared for Executive & Legal Review.</em></p>
+
+  <!-- BOTTOM RETURN BAR -->
+  <div class="bottom-return-box">
+    <div class="bottom-return-text">
+      <strong>Official Bid Bulletin No. 2 Concluded</strong>
+      All technical baseline revisions and policy directives herein form an integral, binding addendum to the RFP Bidding Package.
+    </div>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+      <button class="btn-return-portal" onclick="returnToPortal()">
+        <span>⬅</span> Return to E-Tender Portal
+      </button>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

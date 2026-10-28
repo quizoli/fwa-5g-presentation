@@ -11,7 +11,7 @@ window.RFPTenderData = {
     operator: "Telecommunications Technology Solutions Incorporated (TelTech)",
     officialEmail: "oliver.tungol@comclark.com.ph",
     issueDate: "October 14, 2026",
-    activeRevision: "Revision 2.5 (Authoritative Baseline & Verified Engineering Dossier — 26 October 2026)",
+    activeRevision: "Revision 2.7 (Bid Bulletin No. 2 Formally Promulgated — 29 October 2026)",
     submissionDeadline: "December 2, 2026 17:00:00 GMT+0800",
     baselineFxRate: 55.00,
     targetSitesPhase1: 1000,
@@ -162,6 +162,17 @@ window.RFPTenderData = {
     "manualPdf": "RFP_Tender_Package/30M_315KPH_150KPA_G1_TelTech-FWA_DDD_Manual.pdf?v=20261026_rev2.6",
     "pages": "30 Sheets A3 CAD + 5p Manual",
     "type": "A3 CAD Set / PDF"
+  },
+  {
+    "id": "13",
+    "code": "13_RFP_5G_FWA_Bid_Bulletin_02_Official_Clarifications",
+    "title": "Bid Bulletin No. 2: Technical Addendum & Clarifications",
+    "subtitle": "Authoritative Policy Addenda on Core Sizing, Band n50 Guardband, CPE Phased Strategy, Monopole Wind Limits & Operational SLAs (Items 45–100)",
+    "badge": "Binding Addendum • New",
+    "html": "RFP_Tender_Package/13_RFP_5G_FWA_Bid_Bulletin_02_Official_Clarifications.html?v=20261029_rev2.7",
+    "md": "RFP_Tender_Package/13_RFP_5G_FWA_Bid_Bulletin_02_Official_Clarifications.md?v=20261029_rev2.7",
+    "pages": "10 Pages (HTML & Markdown)",
+    "type": "HTML / MD"
   }
 ],
   appendixA: [
