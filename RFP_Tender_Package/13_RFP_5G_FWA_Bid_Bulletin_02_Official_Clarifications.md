@@ -21,7 +21,7 @@
 
 Following detailed technical reviews, preliminary engineering evaluations, and structural harmonization across the 5,000 candidate barangays, TelTech officially issues this comprehensive policy bulletin. This document codifies authoritative directives across eight (8) strategic technical domains:
 1. **Cloud-Native 5G SA Core Dimensioning & User Plane Throughput (Lot 3)**
-2. **Spectrum Physics, Band n50 Operating Passband & Demarcation Optics (Lot 1 & Lot 6)**
+2. **Spectrum Allocation (NTC MC 006-11-2025), Band n50 Operating Passband & Demarcation Optics (Lot 1 & Lot 6)**
 3. **Customer Premises Equipment (CPE) Phased Rollout & Lifecycle Reverse Logistics (Lot 7)**
 4. **Civil Works, Monopole Structural Standards & Site Power Infrastructure (Lots 2 & 5)**
 5. **Operational SLAs, Radio Network KPIs & SSV Acceptance Standards (Document 04 / Appendix C)**
@@ -53,6 +53,18 @@ Following detailed technical reviews, preliminary engineering evaluations, and s
    - All gNodeB transceivers must implement sharp digital filtering ensuring out-of-band emissions (OOBE) into the adjacent maritime satellite service band (1518.0 – 1525.0 MHz) do not exceed **-30 dBm/MHz** at the antenna connector, strictly compliant with **ITU-R M.2159-0 / WRC-15 Resolution 223**.
 3. **Out-of-Band Emission Limits:**
    - Radiated and conducted unwanted emissions in the adjacent 1432.0–1457.0 MHz block and upper out-of-band spectra must strictly meet **3GPP TS 38.104 Category B** standards with an Adjacent Channel Leakage Ratio (**ACLR $\ge$ 45 dB**).
+4. **NTC Memorandum Circular No. 006-11-2025 & Spectrum Expansion Clarification:**
+   - **Regulatory Allocation Framework:** The National Telecommunications Commission (NTC) has promulgated [NTC Memorandum Circular No. 006-11-2025](https://ntc.gov.ph/wp-content/uploads/2025/MEMORANDUM_CIRCULAR/006-11-2025.pdf) governing International Mobile Telecommunications (IMT) spectrum in the 1427.0–1518.0 MHz (1.5 GHz L-Band) frequency range:
+     - **1427.0 – 1457.0 MHz (30 MHz):** Allocated for **Non-Public Networks (NPN)** / dedicated private wireless networks.
+     - **1457.0 – 1518.0 MHz (61 MHz):** Allocated for **Public Networks (PN)**, formally confirming the regulatory foundation for TelTech's authorized 1457.0–1517.0 MHz (60 MHz continuous TDD) active operational carrier.
+   - **Regulatory Consultations on Spectrum Expansion:**
+     - The Operator is actively conducting regulatory and technical consultations with the NTC to clarify mechanisms for expanding operational spectrum bandwidth beyond the 60 MHz baseline (up to 80 MHz channel operation).
+     - Specifically, TelTech is clarifying whether supplemental operational access or secondary co-channel/adjacent-channel usage may be authorized, particularly across suburban, provincial, and rural clusters where:
+       1. No Non-Public Networks (NPN) are licensed or physically operating within the 1427.0–1457.0 MHz block; and/or
+       2. Incumbent mobile network operators (Globe Telecom, Smart Communications) are not actively utilizing the L-Band / Band n75 as Supplemental Downlink (SDL).
+   - **Technical Bidding Implications (Hardware & Software):**
+     - **Hardware Wideband Native Capability:** All proposed 5G NR Baseband Units (BBU), Remote Radio Units (RRU) / Active Antenna Units (AAU), and Customer Premises Equipment (CPE) RF front-ends must natively support the full 3GPP Band n50 tuning range (**1432.0 – 1517.0 MHz, 85 MHz Instantaneous Bandwidth / IBW**) in hardware.
+     - **Software Reconfigurability:** Should the NTC grant supplemental operational bandwidth or regional secondary channels, systems must support software/firmware reconfiguration (e.g., expanding from 60 MHz to 80 MHz channel bandwidth or activating carrier aggregation) remotely without requiring physical antenna swaps, hardware replacements, or tower truck rolls.
 
 ### 3.2 Baseband Architecture & Form Factor Preferences
 1. **Form Factor Preference for Co-Location (897 Sites):**
