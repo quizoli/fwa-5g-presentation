@@ -122,10 +122,10 @@ window.RFPTenderData = {
     "id": "09",
     "code": "09_RFP_5G_FWA_Official_Clarifications_Responses_Master",
     "title": "Document 09: Official Clarifications Response Workbook",
-    "subtitle": "Official 55-Item Q&A Response Matrix across RAN, Power, Civil, Transmission & Core (Companion Workbook to Bid Bulletin No. 1)",
-    "badge": "Clarification Matrix • Oct 21",
-    "xlsx": "RFP_Tender_Package/09_RFP_5G_FWA_Official_Clarifications_Responses_Master.xlsx",
-    "pages": "2 Sheets (55 Inquiries)",
+    "subtitle": "Official 120-Item Master Clarification Matrix across RAN, Core, Civil, Power, CPE, OSS/BSS & Commercial (Companion Workbook to Bulletins 01 & 02)",
+    "badge": "Clarification Matrix • Oct 29",
+    "xlsx": "RFP_Tender_Package/09_RFP_5G_FWA_Official_Clarifications_Responses_Master.xlsx?v=20261029_rev2.7",
+    "pages": "3 Sheets (120 Inquiries)",
     "type": "XLSX"
   },
   {
