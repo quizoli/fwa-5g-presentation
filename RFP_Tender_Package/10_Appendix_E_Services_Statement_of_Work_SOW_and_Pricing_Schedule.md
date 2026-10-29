@@ -79,7 +79,7 @@ The Contractor shall conduct comprehensive multidisciplinary engineering site su
 * **As-Built Documentation:** Final post-construction redline CAD drawings and 50+ high-res photographic completion dossier.
 
 ### 2.3 Scope 3: Radio Network Planning & Design (RNPD)
-* **Macro RF Propagation Modeling:** 3D ray-tracing propagation simulations calibrated against 5-meter clutter models and Digital Terrain Models (DTM); nominal search ring generation; and capacity dimensioning for Band n50 (60 MHz NCR / up to 80 MHz Provincial).
+* **Macro RF Propagation Modeling:** 3D ray-tracing propagation simulations calibrated against 5-meter clutter models and Digital Terrain Models (DTM); nominal search ring generation; and capacity dimensioning for Band n50 based on the **authorized 60 MHz continuous TDD baseline (1457.0–1517.0 MHz)** nationwide for contractual evaluation, with future software-expandable sensitivity modeling up to 80 MHz for provincial clusters pursuant to Bulletin No. 2 §3.1.
 * **Cell Design Data (CDD) Engineering:** Parameter allocation for cell naming, gNodeB IDs, Physical Cell ID (PCI) planning adhering to modulo-3 and modulo-30 collision rules, Root Sequence Index (RSI), Tracking Area Codes (TAC), Neighbor Cell Lists (NCL / ANR), and PRACH parameters.
 
 ### 2.4 Scope 4: Telecom Logistics, Warehousing & Material Handling
