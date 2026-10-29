@@ -815,10 +815,31 @@
       <span id="user-display-name">Guest</span>
       <span class="role-pill" id="user-role-pill">Bidder</span>
     </div>
+    <button class="btn btn-outline" style="padding: 6px 12px; font-size: 12px; border-color: #FFB703; color: #FFB703; background: rgba(255, 183, 3, 0.1); position: relative;" onclick="openBroadcastModal()" title="Send email updates and broadcast notices to registered bidders">
+      <span>✉️ Broadcast Updates</span>
+      <span style="position: absolute; top: -6px; right: -6px; background: #EF4444; color: white; font-size: 9px; font-weight: 900; padding: 2px 5px; border-radius: 10px; border: 1.5px solid #0A192F;">NEW</span>
+    </button>
     <button class="btn btn-outline" style="padding: 6px 12px; font-size: 12px; border-color: var(--teal); color: var(--teal);" onclick="togglePortalChat()">💬 Live Chat</button>
     <button class="btn-logout" onclick="sessionStorage.removeItem('fwa_portal_auth'); localStorage.removeItem('fwa_portal_auth'); window.location.replace('rfp_login.html');">Sign Out</button>
   </div>
 </header>
+
+<!-- GLOBAL BID BULLETIN 02 ANNOUNCEMENT BANNER -->
+<div class="bulletin-top-announcement" style="background: linear-gradient(90deg, #0A192F, #1E3A8A); border-bottom: 2px solid #FFB703; padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 13px;">
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <span style="background: #10B981; color: #FFFFFF; font-size: 10px; font-weight: 900; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">🔥 LATEST ADDENDUM • OCT 29</span>
+    <span style="color: #F8FAFC; font-weight: 700;">Bid Bulletin No. 2 Promulgated:</span>
+    <span style="color: #CBD5E1;">Binding Addenda on Band n50 60MHz Passband &amp; Guardband, 5GC Capacity, CSSR 97%/CDR 1.5% SLAs, SSV RSRP Thresholds &amp; Monopole Specs</span>
+  </div>
+  <div style="display: flex; gap: 10px; align-items: center;">
+    <a href="RFP_Tender_Package/13_RFP_5G_FWA_Bid_Bulletin_02_Official_Clarifications.html" target="_blank" style="background: #FFB703; color: #0A192F; text-decoration: none; font-weight: 800; font-size: 12px; padding: 5px 12px; border-radius: 5px; display: inline-flex; align-items: center; gap: 4px;">
+      <span>🌐</span> Open Bulletin 02 ➔
+    </a>
+    <button class="btn btn-outline" style="padding: 5px 12px; font-size: 12px; border-color: #38BDF8; color: #38BDF8; background: rgba(56,189,248,0.1);" onclick="openBroadcastModal()">
+      <span>✉️</span> Email Bidders
+    </button>
+  </div>
+</div>
 
 <!-- GLOBAL BID BULLETIN ANNOUNCEMENT BANNER -->
 <div class="bulletin-top-announcement" style="background: linear-gradient(90deg, #1E293B, #0F172A); border-bottom: 1.5px solid rgba(255, 183, 3, 0.5); padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 13px;">
@@ -4981,6 +5002,18 @@ Oliver Tungol
 Lead Technical Architect & Tender Secretariat
 Telecommunications Technology Solutions Incorporated (TelTech)
 oliver.tungol@comclark.com.ph`;
+
+
+// Global aliases for Email Broadcast functions
+function openBroadcastModal() {
+  openEmailBroadcastModal();
+}
+function closeBroadcastModal() {
+  closeEmailBroadcastModal();
+}
+function sendMailToBidders() {
+  sendEmailBroadcastClient();
+}
 
 function openEmailBroadcastModal() {
   const modal = document.getElementById('email-broadcast-modal');
