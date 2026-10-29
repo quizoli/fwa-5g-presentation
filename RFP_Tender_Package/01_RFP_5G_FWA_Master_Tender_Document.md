@@ -235,7 +235,7 @@ The Bidder must guarantee compliance with the following international telecom be
 | **BSS Billing & Rating System Availability** | Online Charging System (CHF/OCS) uptime | >= 99.99% |
 | **Payment Top-Up Processing Time** | Time from payment channel confirmation to account credit | <= 3seconds |
 | **Field Force Installation Lead Time** | Order placement to physical CPE on-site activation | <= 48 Hours (Standard urban/suburban) |
-| **First-Time Right (FTR) Installs** | Installations operating without trouble call within 14 days | >= 96.0% |
+| **First-Time Right (FTR) Installs** | Installations operating without trouble call within 14 days | >= 95.0% (Harmonized w/ Bulletin 02 & Appendix C) |
 | **Customer Churn CPE Recovery Rate** | Successful physical recovery of CPE on churned accounts | >= 70.0% |
 | **Severity 1 Incident MTTR (Critical Outage)** | Time to restore full service on macro BTS outage | <= 2 Hours (Urban) / <= 4 Hours (Rural) |
 | **Severity 2 Incident MTTR (Major Degraded)** | Time to restore single sector failure or degraded backhaul | <= 4 Hours (Urban) / <= 6 Hours (Rural) |

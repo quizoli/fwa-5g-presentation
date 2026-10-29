@@ -33,7 +33,7 @@
 ## 1. PROGRAM OVERVIEW & SITING ARCHITECTURE
 
 ### 1.1 Program Scale & Rollout Cadence
-The TelTech 5G Fixed Wireless Access (FWA) network delivers high-capacity broadband utilizing 3GPP Band n50 (1432–1517 MHz, 60 MHz continuous TDD baseline NCR / up to 80 MHz Provincial capability, Software-Configurable 40/50/60/80 MHz TDD) across 5,000 macro sites nationwide:
+The TelTech 5G Fixed Wireless Access (FWA) network delivers high-capacity broadband utilizing 3GPP Band n50 with an authorized operational passband of 1457.0–1517.0 MHz (60 MHz continuous TDD operating bandwidth) and wideband hardware tuning capability across 1432.0–1517.0 MHz (85 MHz IBW capability; software-configurable 40/50/60/80 MHz TDD) across 5,000 macro sites nationwide:
 * **Phase 1 (Committed Network Baseline):** 1,000 Macro BTS Sites delivered within 365 calendar days.
 * **Phases 2 to 5 (Contractual Expansion Batches):** 1,000 Sites per annum, scaling to 5,000 sites over 5 years.
 * **Target Subscriber Capacity:** 365,000 active concurrent residential and SME subscribers (365 subs/site average).

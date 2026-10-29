@@ -14,7 +14,7 @@
 
 Telecommunications Technology Solutions Incorporated (TelTech) (the **"Operator"** or **"Company"**) is pleased to officially invite your organization to submit binding technical and commercial proposals for the turnkey commercial rollout, infrastructure supply, financing, and end-to-end managed operations of our nationwide **5G Fixed Wireless Access (FWA) Network**.
 
-This initiative targets the commercial deployment of **Band n50 (1432 – 1517 MHz, 1.5 GHz L-Band TDD)** with a **60 MHz contiguous carrier block**, engineered to provide high-speed, reliable, carrier-grade broadband across prioritized urban, suburban, and rural population centers in the Philippines.
+This initiative targets the commercial deployment of **Band n50 (authorized 1457.0 – 1517.0 MHz operating passband, 1.5 GHz L-Band TDD; 1432.0 – 1517.0 MHz wideband hardware tuning capability)** with a **60 MHz contiguous carrier block**, engineered to provide high-speed, reliable, carrier-grade broadband across prioritized urban, suburban, and rural population centers in the Philippines.
 
 ### 1. Program Scale & Deployment Scope
 The commercial rollout encompasses an aggregate footprint of **5,000 macro BTS sites** designed to serve over **2.45 to 2.66 Million active broadband subscriber households** across 5,000 barangays:
