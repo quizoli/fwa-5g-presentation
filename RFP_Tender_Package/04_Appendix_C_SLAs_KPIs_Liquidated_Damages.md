@@ -4,6 +4,7 @@
 **Tender Reference:** RFP-TELTECH-FWA-2026-001  
 **Project:** Nationwide 5G FWA Project (Band n50, 60 MHz TDD)  
 **Operator:** Telecommunications Technology Solutions Incorporated (TelTech)  
+**Document Version:** Revision 2.7 (Harmonized with Bid Bulletin No. 2 — 29 October 2026)  
 **Author:** OLIVER TUNGOL
 
 ---
@@ -36,22 +37,27 @@ The Contractor shall adhere strictly to the following turnkey delivery schedule 
 
 ## 3. RADIO ACCESS NETWORK (RAN) OPERATIONAL KPIS & SERVICE CREDITS
 
-### 3.1 Core Radio KPIs (Calculated 24/7/365 Nationwide)
+### 3.1 Core Radio KPIs (Calculated 24/7/366 Nationwide — Harmonized per Bid Bulletin No. 2)
 
 ```
 Radio Availability (%) = [(Total Operating Cell Hours - Total Unplanned Outage Cell Hours) / Total Operating Cell Hours] * 100
 ```
 
-| KPI Identifier | Metric Description | Measurement Methodology | Target Standard | Minimum Threshold | Service Credit Penalty (< Threshold) |
+| KPI Identifier | Metric Description | Measurement Methodology | Target Standard | Threshold Ceiling / Floor | Service Credit Penalty (< Minimum / > Maximum Threshold) |
 | :--- | :--- | :--- | :---: | :---: | :--- |
-| **KPI-RAN-01** | **Radio Network Availability** | Monthly aggregate across all active cells | **>= 99.95%** | **99.70%** | 1.0% of monthly O&M fee per 0.1% shortfall |
-| **KPI-RAN-02** | **5G Session Setup Success (CSSR)**| Initial RRC connection + 5G QoS flow setup | **>= 99.60%** | **99.00%** | 0.5% of monthly O&M fee per 0.2% shortfall |
-| **KPI-RAN-03** | **5G Session Drop Rate (CDDR)** | Abnormal session drops during active data sessions | **<= 0.15%** | **0.50%** | 0.5% of monthly O&M fee per 0.1% excess |
-| **KPI-RAN-04** | **Loaded Cluster Sector DL Throughput** | Busy hour average sector throughput across cluster | **>= 450 Mbps** | **380 Mbps** | Mandatory RF re-tuning within 5 days |
-| **KPI-RAN-05** | **Cell-Edge DL User Speed** | 5th percentile user speed (>= 95% of test points) | **>= 50 Mbps** | **25 Mbps** | Mandatory antenna tilt optimization |
-| **KPI-RAN-06** | **Cell-Edge UL User Speed** | 5th percentile user speed (>= 95% of test points) | **>= 15 Mbps** | **5 Mbps** | Uplink power control re-configuration |
-| **KPI-RAN-07** | **Radio Round-Trip Latency (RTT)**| CPE to local gNodeB/UPF edge | **<= 18 ms** | **30 ms** | Audit packet buffering & backhaul |
-| **KPI-RAN-08** | **Packet Loss Rate (PLR)** | User plane packet discard rate | **<= 0.01%** | **0.10%** | Transport & radio QoS re-profiling |
+| **KPI-RAN-01** | **Radio Network Availability** | Monthly aggregate across all active cells | **>= 99.95%** | **99.70%** (Min) | 1.0% of monthly O&M fee per 0.1% shortfall below 99.70% |
+| **KPI-RAN-02** | **5G Session Setup Success (CSSR)**| Initial RRC connection + 5G QoS flow setup (RRC x 5G QoS Flow) | **>= 97.00%** | **96.00%** (Min) | 0.5% of monthly O&M fee per 0.2% shortfall below 96.00% |
+| **KPI-RAN-03** | **5G Session Drop Rate (CDDR)** | Abnormal session drops during active data sessions | **<= 1.50%** | **2.00%** (Max) | 0.5% of monthly O&M fee per 0.1% excess above 2.00% |
+| **KPI-RAN-04** | **Loaded Cluster Sector DL Throughput** | Busy hour average sector throughput across cluster | **>= 450 Mbps** | **380 Mbps** (Min) | Mandatory RF re-tuning within 5 days |
+| **KPI-RAN-05** | **Cell-Edge DL User Speed** | 5th percentile user speed (>= 95% of test points) | **>= 50 Mbps** | **25 Mbps** (Min) | Mandatory antenna tilt optimization; SSV governed |
+| **KPI-RAN-06** | **Cell-Edge UL User Speed** | 5th percentile user speed (>= 95% of test points) | **>= 15 Mbps** | **5 Mbps** (Min) | Uplink power control re-configuration; SSV governed |
+| **KPI-RAN-07** | **Radio Round-Trip Latency (RTT)**| CPE to local gNodeB/UPF edge | **<= 18 ms** | **30 ms** (Max) | Audit packet buffering & backhaul |
+| **KPI-RAN-08** | **Packet Loss Rate (PLR)** | PDCP Layer packet discard rate per 3GPP TS 38.314 | **<= 0.10%** | **0.20%** (Max) | Transport & radio QoS re-profiling; Service Credits if > 0.20% |
+
+### 3.2 Service Credit Assessment & Stabilization Governance (Bid Bulletin No. 2 Harmonization)
+1. **Financial Penalty Floor:** Service Credit liquidated damages are assessed **exclusively when monthly performance breaches the Minimum Threshold floor** (or exceeds the Maximum Threshold for CDDR/PLR). Performance falling between the Target Standard and Minimum/Maximum Threshold mandates engineering root-cause analysis and corrective cluster optimization without financial penalty.
+2. **Post-PAC Cluster Stabilization Window:** A **90-day stabilization grace period** is granted for each site rollout cluster commencing from Provisional Acceptance (PAC), during which financial Service Credits for Network Availability (NAV) and MTTR are suspended while operational baselines and field spares logistics are stabilized.
+3. **OSS Throughput Counters vs Contractual SLAs:** Instantaneous OSS cell-edge throughput counters shall not incur financial penalties due to dependency on live subscriber distribution and concurrency. Cell-edge speed compliance is governed by Single Site Verification (SSV) and cluster drive acceptance.
 
 ---
 
@@ -79,7 +85,7 @@ Radio Availability (%) = [(Total Operating Cell Hours - Total Unplanned Outage C
 | **KPI-BSS-01** | **Converged Charging System (CHF) Uptime** | **>= 99.99%** | 2.0% monthly BSS maintenance fee deduction |
 | **KPI-BSS-02** | **Top-Up Processing Speed (GCash / Maya)** | **<= 3.0 Seconds** | Mandatory optimization of API gateway queues |
 | **KPI-OSS-01** | **New Installation Dispatch Lead Time** | **<= 48 Hours** | >= 95% of orders completed within 48h SLA |
-| **KPI-OSS-02** | **First-Time-Right (FTR) Installation Rate**| **>= 96.0%** | Repeat truck rolls at Contractor expense |
+| **KPI-OSS-02** | **First-Time-Right (FTR) Installation Rate**| **>= 95.0%** | Repeat truck rolls at Contractor expense |
 | **KPI-OSS-03** | **Churned CPE Hardware Recovery Rate** | **>= 70.0%** | Contractor debited $55 USD per unrecovered unit below 70% |
 | **KPI-OSS-04** | **Automated Work-Order Dispatch Engine Capacity**| **>= 3,500orders/day** | Zero backlog accumulation during peak campaigns |
 

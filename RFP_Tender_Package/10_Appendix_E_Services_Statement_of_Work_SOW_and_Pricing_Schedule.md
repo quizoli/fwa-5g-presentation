@@ -103,7 +103,7 @@ Mandatory three-stage contractual acceptance procedure:
   - **LEO Satellite Backhaul (Starlink / Expansion Batches):** Target RTT **<= 60 ms**; Contractual Acceptance Rejection Ceiling **<= 80 ms** (strictly per Bid Bulletin 01 §2.3).
 
 ### 2.7 Scope 7: Cluster Radio Network Optimization (RNO)
-Multi-site cluster optimization across contiguous clusters of 10–20 sites (65 clusters Phase 1 / 325 clusters Program): pre-launch drive testing, eRET optimization, azimuth adjustments, PCI re-planning, and 14-day post-launch OSS statistical validation confirming cluster Radio Availability >= 99.95%, Session Setup Success Rate (CSSR) >= 99.60%, Session Drop Rate (CDDR) <= 0.15%, and cluster average throughput >= 450 Mbps.
+Multi-site cluster optimization across contiguous clusters of 10–20 sites (65 clusters Phase 1 / 325 clusters Program): pre-launch drive testing, eRET optimization, azimuth adjustments, PCI re-planning, and 14-day post-launch OSS statistical validation confirming cluster Radio Availability >= 99.95%, Session Setup Success Rate (CSSR) >= 97.00% (min 96.00%), Session Drop Rate (CDDR) <= 1.50% (max 2.00%), and cluster average throughput >= 450 Mbps (harmonized w/ Bid Bulletin No. 2).
 
 ---
 
@@ -159,7 +159,7 @@ The Contractor shall deliver an integrated 24/7/365 Managed Services organizatio
 | **`CAT-07`** | **DOMAIN: CLUSTER RADIO NETWORK OPTIMIZATION** | — | — | — | — | — | — | — |
 | **RNO-01** | **Pre-Launch Cluster Drive Testing & RF Baseline Audit** | Continuous scanner and test UE drive testing across contiguous clusters of 10–20 sites; capturing RSRP, SINR, CQI, throughput, and coverage overlap; and identifying pilot pollution... | `Per Site Share` | 1,000 | 5,000 | `1x (Turnkey Rollout)` | `[Bidder Quote]` | Lot 5 Turnkey Rollout Baseline |
 | **RNO-02** | **Cluster Physical & Soft Parameter Optimization** | Iterative optimization across cluster: electronic remote electrical tilt (eRET) adjustments to control cell-edge interference and shape coverage; azimuth and mechanical tilt adjust... | `Per Site Share` | 1,000 | 5,000 | `1x (Turnkey Rollout)` | `[Bidder Quote]` | Lot 5 Turnkey Rollout Baseline |
-| **RNO-03** | **Cluster Acceptance KPI Validation & Final Sign-Off** | Post-tuning verification drive test and OSS 14-day statistical performance audit: validating cluster Radio Availability >= 99.95%, Session Setup Success Rate (CSSR) >= 99.60%, Sess... | `Per Cluster (65 Clusters Phase 1 / 325 Clusters Program)` | 65 | 325 | `1x (Turnkey Rollout)` | `[Bidder Quote]` | Lot 5 Turnkey Rollout Baseline |
+| **RNO-03** | **Cluster Acceptance KPI Validation & Final Sign-Off** | Post-tuning verification drive test and OSS 14-day statistical performance audit: validating cluster Radio Availability >= 99.95%, Session Setup Success Rate (CSSR) >= 97.00% (min 96.00%), Session Drop Rate (CDDR) <= 1.50% (max 2.00%), cluster average DL throughput >= 450 Mbps, cell-edge DL >= 50 Mbps; and submission of formal Cluster Acceptance Dossier (harmonized w/ Bid Bulletin No. 2). | `Per Cluster (65 Clusters Phase 1 / 325 Clusters Program)` | 65 | 325 | `1x (Turnkey Rollout)` | `[Bidder Quote]` | Lot 5 Turnkey Rollout Baseline |
 | **`CAT-08`** | **DOMAIN: OPERATIONS & MAINTENANCE (O&M) / MANAGED SERVICES (24/7 MANAGED O&M — ANNUALIZED & 3-YEAR BASELINE)** | — | — | — | — | — | — | — |
 | **MS-NOC-01** | **24/7/365 Central NOC Tier-1 Active Surveillance & Alarm Monitoring** | Continuous 24/7/365 active monitoring of all active and passive network elements across RAN, Core, Power, and Transmission; automated alarm correlation and noise suppression; ticke... | `Per Site / Month` | 1,000 | 5,000 | `12 Months / Year` | `[Bidder Quote]` | Lot 6 Managed Services (Retainer) |
 | **MS-NOC-02** | **Incident Management, Triage & Automated Trouble Ticketing** | End-to-end incident management: automated ticketing via OSS/ITSM; severity classification (Sev 1 Critical to Sev 4 Warning); technician dispatch initiation within 15 minutes for Se... | `Per Site / Month` | 1,000 | 5,000 | `12 Months / Year` | `[Bidder Quote]` | Lot 6 Managed Services (Retainer) |
@@ -213,8 +213,8 @@ The Contractor shall deliver an integrated 24/7/365 Managed Services organizatio
 | :--- | :--- | :---: | :---: | :--- |
 | **Rollout Delivery** | Turnkey Milestone Schedule | 1,000 sites in 365 Days | Milestone baseline | 0.5% milestone contract value per week of delay (cap 10%) |
 | **Radio Availability** | KPI-RAN-01 Network Uptime | **>= 99.95% Availability** | 99.70% Minimum | 1.0% monthly O&M fee deduction per 0.1% shortfall |
-| **Call Accessibility** | KPI-RAN-02 5G Session CSSR | **>= 99.60% Success** | 99.00% Minimum | 0.5% monthly O&M fee deduction per 0.2% shortfall |
-| **Call Retainability** | KPI-RAN-03 Session Drop CDDR | **<= 0.15% Drops** | 0.50% Maximum | 0.5% monthly O&M fee deduction per 0.1% excess |
+| **Call Accessibility** | KPI-RAN-02 5G Session CSSR | **>= 97.00% Success** | 96.00% Minimum | 0.5% monthly O&M fee deduction per 0.2% shortfall below 96.00% |
+| **Call Retainability** | KPI-RAN-03 Session Drop CDDR | **<= 1.50% Drops** | 2.00% Maximum | 0.5% monthly O&M fee deduction per 0.1% excess above 2.00% |
 | **Cluster Throughput** | KPI-RAN-04 Loaded Sector DL | **>= 450 Mbps Average** | 380 Mbps Floor | Mandatory RF re-tuning & re-drive within 5 days |
 | **Cell-Edge Speed** | KPI-RAN-05 Cell-Edge DL Speed | **>= 50 Mbps DL (95% pts)** | 25 Mbps Floor | Mandatory eRET electrical tilt re-optimization |
 | **FLM Restoration** | MTTR Severity 1 (Urban) | **<= 2.0 Hours MTTR** | 2.0 Hours | 0.5% monthly site fee per hour delay beyond MTTR |

@@ -6,7 +6,7 @@
 **Issuing Authority:** Telecommunications Technology Solutions Incorporated (TelTech)  
 **Issuing Body:** Technical Evaluation Board  
 **Issue Date:** October 6, 2026  
-**Document Revision:** Revision 2.0 (Official Bidding Version — Blank BoQ)  
+**Document Revision:** Revision 2.7 (Harmonized with Bid Bulletin No. 2 — 29 October 2026)  
 **Confidentiality:** Strictly Confidential — Competitive Commercial Tender  
 
 ---
@@ -41,11 +41,13 @@ Bidders submitting integrated "Full Turnkey Consortium" bids spanning Lots 1 thr
 
 ## 2. PROJECT BACKGROUND, OPERATING ENVIRONMENT & TECHNICAL BASELINE
 
-### 2.1 Spectrum Physics: Band n50 Advantage
-Band n50 operates in the 1.5 GHz L-Band (1432 – 1517 MHz), providing superior propagation characteristics over mid-band frequencies (e.g., 3.5 GHz Band n78):
+### 2.1 Spectrum Physics: Band n50 Advantage & Operational Channel Plan
+* **Authorized Operating Range:** Under the National Telecommunications Commission (NTC) regulatory framework, the authorized operational Band n50 passband is established as **1457.0 MHz to 1517.0 MHz** (a contiguous **60 MHz TDD channel bandwidth** operating at 30 kHz SCS, 162 Resource Blocks).
+* **Radio Hardware Tuning Capability:** All active Radio Units (RRU / AAU) and CPE RF front-ends must provide wideband hardware tuning across the full **1432.0 – 1517.0 MHz** Band n50 spectrum (minimum 85 MHz Instantaneous Bandwidth / IBW tuning capability), with active transmission, reception, and sharp digital filtering configured for the authorized 1457.0 – 1517.0 MHz carrier window.
+* **Guardband & Satellite Protection Limits:** A 1.0 MHz guardband (1517.0 – 1518.0 MHz) is maintained at the upper boundary. Transceivers must implement sharp filtering ensuring out-of-band emissions into adjacent maritime satellite spectrum (1518.0 – 1525.0 MHz) do not exceed **-30 dBm/MHz** (strictly compliant with ITU-R M.2159-0 / WRC-15 Resolution 223), with Adjacent Channel Leakage Ratio (ACLR) $\ge$ 45 dB pursuant to 3GPP TS 38.104 Category B.
 * **Propagation Efficiency:** 1.5 GHz propagation achieves an effective reliable non-line-of-sight (NLOS) and near-line-of-sight (nLOS) coverage radius of **3.5 km** (delivering up to **38.5 km²** of coverage area per site under suburban/rural clutter).
 * **Penetration Resilience:** Foliage, atmospheric rain fade, and typical Philippine residential building materials (concrete hollow block, corrugated galvanized sheet roofing) suffer 8–12 dB lower path loss compared to 3.5 GHz.
-* **Spectrum Allocation:** 60 MHz contiguous TDD frame structure (configurable TDD DL:UL ratios: 4:1 for broadband downlink-heavy traffic, or 3:1 for balanced enterprise transmission).
+* **Frame Structure & Spectrum Allocation:** 60 MHz contiguous TDD frame structure (configurable TDD DL:UL ratios: 8:2 DDDDDDDDSUU, 7:3 DDDDDDDSUU, 4:1 for broadband downlink-heavy traffic, or 3:1 for balanced enterprise transmission).
 
 ### 2.2 Site Infrastructure Landscape & Tower Strategy
 The operator has completed a nationwide spatial overlay matching the 5,000 candidate barangay centroids against **13,810 nationwide TowerCo registry records (encompassing 13,799 unique Universal Tower IDs and 13,629 distinct geographic tower coordinates)** across Philippine licensed TowerCos:
@@ -81,7 +83,7 @@ The Bidder shall supply, deliver, install, test, and commission carrier-grade 3G
    * Fronthaul interfaces: Minimum 6x 25GE eCPRI interfaces with integrated Optical Supervisory Channel (OSC).
 2. **Remote Radio Units (RRU) / Active Antenna Units (AAU):**
    * Configuration: **8T8R MIMO**, 3 sectors per macro site (total of 3 RRUs and 3 antennas per standard macro).
-   * Operating Frequency: Band n50 (1432 – 1517 MHz), full 60 MHz IBW (Instantaneous Bandwidth) and OBW (Occupied Bandwidth).
+   * Operating Frequency: Band n50; full hardware tuning across 1432.0 – 1517.0 MHz (85 MHz IBW capability); active carrier operation and digital filtering configured for the authorized 1457.0 – 1517.0 MHz continuous 60 MHz TDD operating window (60 MHz OBW).
    * RF Output Power: Minimum **8 x 40W (320 W total RF power per sector)**.
    * Beamforming capability: Digital horizontal and vertical beamforming supporting dynamic multi-user MIMO (MU-MIMO) pairing.
    * Protection & Environment: IP65/IP67 ingress rating, natural convection or high-durability fanless cooling, surviving wind speeds of up to 250 km/h (Typhoon Category 5 resilience).
@@ -175,7 +177,7 @@ The Bidder shall provide fully managed, SLA-governed network operations, field m
 The Bidder shall supply outdoor and high-gain indoor 5G FWA CPE devices:
 1. **Indoor 5G High-Gain FWA Router (CPE-01 — 350,000 Units):**
    * 3GPP Release 16/17 compliant 5G NR sub-6 GHz processor.
-   * Frequency Bands: Native Band n50 (1432 – 1517 MHz, 60 MHz channel bandwidth) plus fallback sub-6 GHz bands (n1, n3, n7, n28, n41, n77, n78).
+   * Frequency Bands: Native Band n50 with wideband tuning across 1432.0 – 1517.0 MHz and optimized operational passband in the authorized 1457.0 – 1517.0 MHz range (60 MHz channel bandwidth) plus fallback sub-6 GHz bands (n1, n3, n7, n28, n41, n77, n78).
    * Antenna: High-gain internal omnidirectional multi-element antenna array (minimum >= 8.0 dBi gain across Band n50); 4x4 MIMO DL, 2x2 MIMO UL.
    * LAN & Local Wi-Fi: Dual-band concurrent Wi-Fi 6 (802.11ax) AX1800/AX3000, 2.4 GHz (2x2) + 5.0 GHz (2x2) concurrent, OFDMA, MU-MIMO, WPA3-Personal.
    * Ethernet: Minimum 1 x 2.5GE + 2 x 1GE RJ-45 LAN ports.
@@ -194,18 +196,18 @@ The Bidder shall supply outdoor and high-gain indoor 5G FWA CPE devices:
 
 The Bidder must guarantee compliance with the following international telecom best-practice KPIs. Failure to achieve these targets shall trigger contractual liquidated damages (LDs) and service credits.
 
-### 4.1 Radio Access Network (RAN) Performance KPIs
+### 4.1 Radio Access Network (RAN) Performance KPIs (Harmonized w/ Bid Bulletin No. 2)
 | KPI Metric | Formula / Standard | Minimum Acceptance | Target Excellence | Measurement Window |
 | :--- | :--- | :---: | :---: | :---: |
 | **Radio Network Availability** | [(Total Available Cell Hours - Cell Outage Hours) / Total Available Cell Hours] x 100% | >= 99.70% | >= 99.95% | Monthly / 24x7 |
-| **5G Radio Accessibility (CSSR)** | Call/Session Setup Success Rate (RRC + 5G QoS Flow) | >= 99.00% | >= 99.60% | Busy Hour |
-| **5G Session Drop Rate (CDDR)** | Abnormal Release Rate per 100 established sessions | <= 0.50% | <= 0.15% | Busy Hour |
+| **5G Radio Accessibility (CSSR)** | Call/Session Setup Success Rate (RRC + 5G QoS Flow) | >= 96.00% | >= 97.00% | Busy Hour (Harmonized w/ Bulletin 02) |
+| **5G Session Drop Rate (CDDR)** | Abnormal Release Rate per 100 established sessions | <= 2.00% | <= 1.50% | Busy Hour (Harmonized w/ Bulletin 02) |
 | **Single Sector User Capacity** | Active concurrent connected CPE sessions per sector | >= 350 CPEs | >= 450 CPEs | Peak Busy Hour |
 | **Peak Cell DL Throughput (60 MHz)** | 8T8R 60 MHz TDD peak aggregated sector throughput | >= 450 Mbps | >= 520 Mbps | Lab & Single Cell Test |
-| **Cell Edge DL User Throughput** | 5th percentile user speed / 95% coverage threshold (>= 95% of stationary test points) | >= 25 Mbps | >= 50 Mbps | Busy Hour |
-| **Cell Edge UL User Throughput** | 5th percentile user speed / 95% coverage threshold (>= 95% of stationary test points) | >= 5 Mbps | >= 15 Mbps | Busy Hour |
+| **Cell Edge DL User Throughput** | 5th percentile user speed / 95% coverage threshold (>= 95% of stationary test points) | >= 25 Mbps | >= 50 Mbps | Busy Hour (SSV Governed) |
+| **Cell Edge UL User Throughput** | 5th percentile user speed / 95% coverage threshold (>= 95% of stationary test points) | >= 5 Mbps | >= 15 Mbps | Busy Hour (SSV Governed) |
 | **End-to-End User Latency (RTT)** | CPE to UPF packet round-trip time | <= 30 ms | <= 18 ms | Continuous Ping |
-| **DL Packet Loss Rate (PLR)** | User Plane packet discard rate | <= 0.10% | <= 0.01% | Monthly Average |
+| **DL Packet Loss Rate (PLR)** | PDCP Layer packet discard rate per 3GPP TS 38.314 | <= 0.20% | <= 0.10% | Monthly Average (Harmonized w/ Bulletin 02) |
 
 ### 4.2 Power & Site Infrastructure Resilience KPIs
 | Infrastructure Metric | Technical Requirement | Minimum SLA Target | Failure Remedy |

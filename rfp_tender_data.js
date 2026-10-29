@@ -169,10 +169,11 @@ window.RFPTenderData = {
     "title": "Bid Bulletin No. 2: Technical Addendum & Clarifications",
     "subtitle": "Authoritative Policy Addenda on Core Sizing, Band n50 Guardband, CPE Phased Strategy, Monopole Wind Limits & Operational SLAs (Items 45–100)",
     "badge": "Binding Addendum • New",
+    "pdf": "RFP_Tender_Package/13_RFP_5G_FWA_Bid_Bulletin_02_Official_Clarifications.pdf?v=20261029_rev2.7",
     "html": "RFP_Tender_Package/13_RFP_5G_FWA_Bid_Bulletin_02_Official_Clarifications.html?v=20261029_rev2.7",
     "md": "RFP_Tender_Package/13_RFP_5G_FWA_Bid_Bulletin_02_Official_Clarifications.md?v=20261029_rev2.7",
-    "pages": "10 Pages (HTML & Markdown)",
-    "type": "HTML / MD"
+    "pages": "10 Pages (PDF, HTML & Markdown)",
+    "type": "PDF / HTML / MD"
   }
 ],
   appendixA: [
@@ -858,7 +859,7 @@ window.RFPTenderData = {
       {
         "id": "RNO-03",
         "description": "Cluster Acceptance KPI Validation & Final Sign-Off",
-        "scope": "Post-tuning verification drive test and OSS 14-day statistical performance audit: validating cluster Radio Availability >= 99.95%, Session Setup Success Rate (CSSR) >= 99.60%, Session Drop Rate (CDDR) <= 0.15%, cluster average DL throughput...",
+        "scope": "Post-tuning verification drive test and OSS 14-day statistical performance audit: validating cluster Radio Availability >= 99.95%, Session Setup Success Rate (CSSR) >= 97.00% (min 96.00%), Session Drop Rate (CDDR) <= 1.50% (max 2.00%), cluster average DL throughput...",
         "qty": 65,
         "unit": "Per Cluster (65 Clusters Phase 1 / 325 Clusters Program)",
         "multiplier": 1,
@@ -1748,7 +1749,7 @@ window.RFPTenderData = {
       {
         "id": "RNO-03",
         "description": "Cluster Acceptance KPI Validation & Final Sign-Off",
-        "scope": "Post-tuning verification drive test and OSS 14-day statistical performance audit: validating cluster Radio Availability >= 99.95%, Session Setup Success Rate (CSSR) >= 99.60%, Session Drop Rate (CDDR) <= 0.15%, cluster average DL throughput...",
+        "scope": "Post-tuning verification drive test and OSS 14-day statistical performance audit: validating cluster Radio Availability >= 99.95%, Session Setup Success Rate (CSSR) >= 97.00% (min 96.00%), Session Drop Rate (CDDR) <= 1.50% (max 2.00%), cluster average DL throughput...",
         "qty": 65,
         "unit": "Per Cluster (65 Clusters Phase 1 / 325 Clusters Program)",
         "multiplier": 1,

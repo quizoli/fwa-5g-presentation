@@ -201,4 +201,4 @@ Single Site Verification stationary throughput benchmarks for a 60 MHz Band n50 
    - Turnkey proposals must include comprehensive OEM technical training and certification programs covering 5G SA Core administration, Band n50 RF planning/optimization, and OSS/BSS operations for at least twenty (20) TelTech technical personnel.
 
 ---
-*End of Bid Bulletin No. 2 Draft Policy Document. Prepared for Executive & Legal Review.*
+*End of Bid Bulletin No. 2. Promulgated as an Official and Binding Addendum by the Special Bids and Awards Committee (SBAC) / Procurement Directorate.*

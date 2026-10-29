@@ -436,7 +436,7 @@
       </div>
       <div class="meta-item">
         <span class="meta-label">Bidding Status</span>
-        <span class="meta-value">Official Request for Proposal</span>
+        <span class="meta-value">Rev 2.7 (Harmonized w/ Bulletin 02)</span>
       </div>
     </div>
   </div>
@@ -489,18 +489,18 @@
 <tr>
 <td style="text-align: left;"><strong>KPI-RAN-02</strong></td>
 <td style="text-align: left;"><strong>5G Session Setup Success (CSSR)</strong></td>
-<td style="text-align: left;">Initial RRC connection + 5G QoS flow setup</td>
-<td style="text-align: center;"><strong>&gt;= 99.60%</strong></td>
-<td style="text-align: center;"><strong>99.00%</strong></td>
-<td style="text-align: left;">0.5% of monthly O&amp;M fee per 0.2% shortfall</td>
+<td style="text-align: left;">Initial RRC connection + 5G QoS flow setup (RRC x 5G QoS Flow)</td>
+<td style="text-align: center;"><strong>&gt;= 97.00%</strong></td>
+<td style="text-align: center;"><strong>96.00% (Min)</strong></td>
+<td style="text-align: left;">0.5% of monthly O&amp;M fee per 0.2% shortfall below 96.00%</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>KPI-RAN-03</strong></td>
 <td style="text-align: left;"><strong>5G Session Drop Rate (CDDR)</strong></td>
 <td style="text-align: left;">Abnormal session drops during active data sessions</td>
-<td style="text-align: center;"><strong>&lt;= 0.15%</strong></td>
-<td style="text-align: center;"><strong>0.50%</strong></td>
-<td style="text-align: left;">0.5% of monthly O&amp;M fee per 0.1% excess</td>
+<td style="text-align: center;"><strong>&lt;= 1.50%</strong></td>
+<td style="text-align: center;"><strong>2.00% (Max)</strong></td>
+<td style="text-align: left;">0.5% of monthly O&amp;M fee per 0.1% excess above 2.00%</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>KPI-RAN-04</strong></td>
@@ -516,7 +516,7 @@
 <td style="text-align: left;">5th percentile user speed (&gt;= 95% of test points)</td>
 <td style="text-align: center;"><strong>&gt;= 50 Mbps</strong></td>
 <td style="text-align: center;"><strong>25 Mbps</strong></td>
-<td style="text-align: left;">Mandatory antenna tilt optimization</td>
+<td style="text-align: left;">Mandatory antenna tilt optimization; SSV governed</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>KPI-RAN-06</strong></td>
@@ -524,7 +524,7 @@
 <td style="text-align: left;">5th percentile user speed (&gt;= 95% of test points)</td>
 <td style="text-align: center;"><strong>&gt;= 15 Mbps</strong></td>
 <td style="text-align: center;"><strong>5 Mbps</strong></td>
-<td style="text-align: left;">Uplink power control re-configuration</td>
+<td style="text-align: left;">Uplink power control re-configuration; SSV governed</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>KPI-RAN-07</strong></td>
@@ -537,13 +537,19 @@
 <tr>
 <td style="text-align: left;"><strong>KPI-RAN-08</strong></td>
 <td style="text-align: left;"><strong>Packet Loss Rate (PLR)</strong></td>
-<td style="text-align: left;">User plane packet discard rate</td>
-<td style="text-align: center;"><strong>&lt;= 0.01%</strong></td>
-<td style="text-align: center;"><strong>0.10%</strong></td>
-<td style="text-align: left;">Transport &amp; radio QoS re-profiling</td>
+<td style="text-align: left;">PDCP Layer packet discard rate per 3GPP TS 38.314</td>
+<td style="text-align: center;"><strong>&lt;= 0.10%</strong></td>
+<td style="text-align: center;"><strong>0.20% (Max)</strong></td>
+<td style="text-align: left;">Transport &amp; radio QoS re-profiling; Service Credits if &gt; 0.20%</td>
 </tr>
 </tbody>
 </table>
+<h3>3.2 Service Credit Assessment &amp; Stabilization Governance (Bid Bulletin No. 2 Harmonization)</h3>
+<ol>
+<li><strong>Financial Penalty Floor:</strong> Service Credit liquidated damages are assessed <strong>exclusively when monthly performance breaches the Minimum Threshold floor</strong> (or exceeds the Maximum Threshold for CDDR/PLR). Performance falling between the Target Standard and Minimum/Maximum Threshold mandates engineering root-cause analysis and corrective cluster optimization without financial penalty.</li>
+<li><strong>Post-PAC Cluster Stabilization Window:</strong> A <strong>90-day stabilization grace period</strong> is granted for each site rollout cluster commencing from Provisional Acceptance (PAC), during which financial Service Credits for Network Availability (NAV) and MTTR are suspended while operational baselines and field spares logistics are stabilized.</li>
+<li><strong>OSS Throughput Counters vs Contractual SLAs:</strong> Instantaneous OSS cell-edge throughput counters shall not incur financial penalties due to dependency on live subscriber distribution and concurrency. Cell-edge speed compliance is governed by Single Site Verification (SSV) and cluster drive acceptance.</li>
+</ol>
 <hr />
 <h2>4. 5G CORE NETWORK &amp; CLOUD PLATFORM KPIS</h2>
 <h3>4.1 5GC High Availability Benchmarks</h3>
@@ -636,7 +642,7 @@
 <tr>
 <td style="text-align: left;"><strong>KPI-OSS-02</strong></td>
 <td style="text-align: left;"><strong>First-Time-Right (FTR) Installation Rate</strong></td>
-<td style="text-align: center;"><strong>&gt;= 96.0%</strong></td>
+<td style="text-align: center;"><strong>&gt;= 95.0%</strong></td>
 <td style="text-align: left;">Repeat truck rolls at Contractor expense</td>
 </tr>
 <tr>

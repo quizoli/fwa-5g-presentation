@@ -463,11 +463,13 @@
 <p>Bidders submitting integrated "Full Turnkey Consortium" bids spanning Lots 1 through 6 will receive multi-lot synergy evaluation scoring.</p>
 <hr />
 <h2>2. PROJECT BACKGROUND, OPERATING ENVIRONMENT &amp; TECHNICAL BASELINE</h2>
-<h3>2.1 Spectrum Physics: Band n50 Advantage</h3>
-<p>Band n50 operates in the 1.5 GHz L-Band (1432 – 1517 MHz), providing superior propagation characteristics over mid-band frequencies (e.g., 3.5 GHz Band n78):<br />
+<h3>2.1 Spectrum Physics: Band n50 Advantage &amp; Operational Channel Plan</h3>
+<p>* <strong>Authorized Operating Range:</strong> Under the National Telecommunications Commission (NTC) regulatory framework, the authorized operational Band n50 passband is established as <strong>1457.0 MHz to 1517.0 MHz</strong> (a contiguous <strong>60 MHz TDD channel bandwidth</strong> operating at 30 kHz SCS, 162 Resource Blocks).<br />
+* <strong>Radio Hardware Tuning Capability:</strong> All active Radio Units (RRU / AAU) and CPE RF front-ends must provide wideband hardware tuning across the full <strong>1432.0 – 1517.0 MHz</strong> Band n50 spectrum (minimum 85 MHz Instantaneous Bandwidth / IBW tuning capability), with active transmission, reception, and sharp digital filtering configured for the authorized 1457.0 – 1517.0 MHz carrier window.<br />
+* <strong>Guardband &amp; Satellite Protection Limits:</strong> A 1.0 MHz guardband (1517.0 – 1518.0 MHz) is maintained at the upper boundary. Transceivers must implement sharp filtering ensuring out-of-band emissions into adjacent maritime satellite spectrum (1518.0 – 1525.0 MHz) do not exceed <strong>-30 dBm/MHz</strong> (strictly compliant with ITU-R M.2159-0 / WRC-15 Resolution 223), with Adjacent Channel Leakage Ratio (ACLR) &ge; 45 dB pursuant to 3GPP TS 38.104 Category B.<br />
 * <strong>Propagation Efficiency:</strong> 1.5 GHz propagation achieves an effective reliable non-line-of-sight (NLOS) and near-line-of-sight (nLOS) coverage radius of <strong>3.5 km</strong> (delivering up to <strong>38.5 km²</strong> of coverage area per site under suburban/rural clutter).<br />
 * <strong>Penetration Resilience:</strong> Foliage, atmospheric rain fade, and typical Philippine residential building materials (concrete hollow block, corrugated galvanized sheet roofing) suffer 8–12 dB lower path loss compared to 3.5 GHz.<br />
-* <strong>Spectrum Allocation:</strong> 60 MHz contiguous TDD frame structure (configurable TDD DL:UL ratios: 4:1 for broadband downlink-heavy traffic, or 3:1 for balanced enterprise transmission).</p>
+* <strong>Frame Structure &amp; Spectrum Allocation:</strong> 60 MHz contiguous TDD frame structure (configurable TDD DL:UL ratios: 8:2 DDDDDDDDSUU, 7:3 DDDDDDDSUU, 4:1 for broadband downlink-heavy traffic, or 3:1 for balanced enterprise transmission).</p>
 <h3>2.2 Site Infrastructure Landscape &amp; Tower Strategy</h3>
 <p>The operator has completed a nationwide spatial overlay matching the 5,000 candidate barangay centroids against <strong>13,810 nationwide TowerCo registry records (encompassing 13,799 unique Universal Tower IDs and 13,629 distinct geographic tower coordinates)</strong> across Philippine licensed TowerCos:<br />
 * <strong>PTCI / MIDC TowerCo:</strong> 5,080 towers<br />
@@ -499,7 +501,7 @@
    * Fronthaul interfaces: Minimum 6x 25GE eCPRI interfaces with integrated Optical Supervisory Channel (OSC).<br />
 2. <strong>Remote Radio Units (RRU) / Active Antenna Units (AAU):</strong><br />
    * Configuration: <strong>8T8R MIMO</strong>, 3 sectors per macro site (total of 3 RRUs and 3 antennas per standard macro).<br />
-   * Operating Frequency: Band n50 (1432 – 1517 MHz), full 60 MHz IBW (Instantaneous Bandwidth) and OBW (Occupied Bandwidth).<br />
+   * Operating Frequency: Band n50; full hardware tuning across 1432.0 – 1517.0 MHz (85 MHz IBW capability); active carrier operation and digital filtering configured for the authorized 1457.0 – 1517.0 MHz continuous 60 MHz TDD operating window (60 MHz OBW).<br />
    * RF Output Power: Minimum <strong>8 x 40W (320 W total RF power per sector)</strong>.<br />
    * Beamforming capability: Digital horizontal and vertical beamforming supporting dynamic multi-user MIMO (MU-MIMO) pairing.<br />
    * Protection &amp; Environment: IP65/IP67 ingress rating, natural convection or high-durability fanless cooling, surviving wind speeds of up to 250 km/h (Typhoon Category 5 resilience).<br />
@@ -587,7 +589,7 @@
 <p>The Bidder shall supply outdoor and high-gain indoor 5G FWA CPE devices:<br />
 1. <strong>Indoor 5G High-Gain FWA Router (CPE-01 — 350,000 Units):</strong><br />
    * 3GPP Release 16/17 compliant 5G NR sub-6 GHz processor.<br />
-   * Frequency Bands: Native Band n50 (1432 – 1517 MHz, 60 MHz channel bandwidth) plus fallback sub-6 GHz bands (n1, n3, n7, n28, n41, n77, n78).<br />
+   * Frequency Bands: Native Band n50 with wideband tuning across 1432.0 – 1517.0 MHz and optimized operational passband in the authorized 1457.0 – 1517.0 MHz range (60 MHz channel bandwidth) plus fallback sub-6 GHz bands (n1, n3, n7, n28, n41, n77, n78).<br />
    * Antenna: High-gain internal omnidirectional multi-element antenna array (minimum &gt;= 8.0 dBi gain across Band n50); 4x4 MIMO DL, 2x2 MIMO UL.<br />
    * LAN &amp; Local Wi-Fi: Dual-band concurrent Wi-Fi 6 (802.11ax) AX1800/AX3000, 2.4 GHz (2x2) + 5.0 GHz (2x2) concurrent, OFDMA, MU-MIMO, WPA3-Personal.<br />
    * Ethernet: Minimum 1 x 2.5GE + 2 x 1GE RJ-45 LAN ports.<br />
@@ -624,16 +626,16 @@
 <tr>
 <td style="text-align: left;"><strong>5G Radio Accessibility (CSSR)</strong></td>
 <td style="text-align: left;">Call/Session Setup Success Rate (RRC + 5G QoS Flow)</td>
-<td style="text-align: center;">&gt;= 99.00%</td>
-<td style="text-align: center;">&gt;= 99.60%</td>
-<td style="text-align: center;">Busy Hour</td>
+<td style="text-align: center;">&gt;= 96.00% (Min)</td>
+<td style="text-align: center;">&gt;= 97.00% (Target)</td>
+<td style="text-align: center;">Busy Hour (Harmonized w/ Bulletin 02)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>5G Session Drop Rate (CDDR)</strong></td>
 <td style="text-align: left;">Abnormal Release Rate per 100 established sessions</td>
-<td style="text-align: center;">&lt;= 0.50%</td>
-<td style="text-align: center;">&lt;= 0.15%</td>
-<td style="text-align: center;">Busy Hour</td>
+<td style="text-align: center;">&lt;= 2.00% (Max)</td>
+<td style="text-align: center;">&lt;= 1.50% (Target)</td>
+<td style="text-align: center;">Busy Hour (Harmonized w/ Bulletin 02)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Single Sector User Capacity</strong></td>
@@ -654,14 +656,14 @@
 <td style="text-align: left;">5th percentile user speed / 95% coverage threshold (&gt;= 95% of stationary test points)</td>
 <td style="text-align: center;">&gt;= 25 Mbps</td>
 <td style="text-align: center;">&gt;= 50 Mbps</td>
-<td style="text-align: center;">Busy Hour</td>
+<td style="text-align: center;">Busy Hour (SSV Governed)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Cell Edge UL User Throughput</strong></td>
 <td style="text-align: left;">5th percentile user speed / 95% coverage threshold (&gt;= 95% of stationary test points)</td>
 <td style="text-align: center;">&gt;= 5 Mbps</td>
 <td style="text-align: center;">&gt;= 15 Mbps</td>
-<td style="text-align: center;">Busy Hour</td>
+<td style="text-align: center;">Busy Hour (SSV Governed)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>End-to-End User Latency (RTT)</strong></td>
@@ -672,10 +674,10 @@
 </tr>
 <tr>
 <td style="text-align: left;"><strong>DL Packet Loss Rate (PLR)</strong></td>
-<td style="text-align: left;">User Plane packet discard rate</td>
-<td style="text-align: center;">&lt;= 0.10%</td>
-<td style="text-align: center;">&lt;= 0.01%</td>
-<td style="text-align: center;">Monthly Average</td>
+<td style="text-align: left;">PDCP Layer packet discard rate per 3GPP TS 38.314</td>
+<td style="text-align: center;">&lt;= 0.20% (Max)</td>
+<td style="text-align: center;">&lt;= 0.10% (Target)</td>
+<td style="text-align: center;">Monthly Average (Harmonized w/ Bulletin 02)</td>
 </tr>
 </tbody>
 </table>
