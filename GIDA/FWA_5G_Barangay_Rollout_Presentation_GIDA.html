@@ -1593,8 +1593,11 @@
     if (currentSlide === 8) {
       setTimeout(() => {
         initFwaMap();
-        if (leafletMap) leafletMap.invalidateSize();
-      }, 150);
+        if (leafletMap) {
+          leafletMap.invalidateSize();
+          if (mapMarkers.length === 0) renderMarkers(currentPhaseFilter);
+        }
+      }, 100);
     }
 
     prevBtn.disabled = (currentSlide === 0);
@@ -1624,173 +1627,6 @@
       prevSlide();
     } else if (e.key === 'Home') {
       showSlide(0);
-
-
-// ==========================================
-// INTERACTIVE GIS MAP ENGINE (5,000 SITES)
-// ==========================================
-const PHASE_CONFIG = {
-  1: { name: "Phase 1 (Batch 1)", color: "#00B4D8", radius: 4.5, border: "#ffffff" },
-  2: { name: "Phase 2 (Batch 2)", color: "#10B981", radius: 4.0, border: "#ffffff" },
-  3: { name: "Phase 3 (Batch 3)", color: "#F59E0B", radius: 3.8, border: "#ffffff" },
-  4: { name: "Phase 4 (Batch 4)", color: "#8B5CF6", radius: 3.5, border: "#ffffff" },
-  5: { name: "Phase 5 (Batch 5)", color: "#EF4444", radius: 3.5, border: "#ffffff" }
-};
-
-let leafletMap = null;
-let mapMarkers = [];
-let mapCanvasRenderer = null;
-let currentPhaseFilter = 0; // 0 = all
-
-function initFwaMap() {
-  if (leafletMap !== null) return;
-  const mapContainer = document.getElementById('fwa-sites-map');
-  if (!mapContainer) return;
-
-  leafletMap = L.map('fwa-sites-map', {
-    center: [12.8797, 121.7740],
-    zoom: 6,
-    minZoom: 5,
-    maxZoom: 16,
-    preferCanvas: true
-  });
-
-  // Dark basemap
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OpenStreetMap &copy; CARTO',
-    subdomains: 'abcd',
-    maxZoom: 19
-  }).addTo(leafletMap);
-
-  mapCanvasRenderer = L.canvas({ padding: 0.5 });
-
-  // Render all 5,000 sites
-  renderMarkers(0);
-}
-
-function renderMarkers(phaseFilter) {
-  if (!leafletMap || !window.RAW_SITES_DATA) return;
-
-  // Clear existing
-  mapMarkers.forEach(m => leafletMap.removeLayer(m.marker));
-  mapMarkers = [];
-
-  let visibleCount = 0;
-  let visiblePop = 0;
-  let visibleSubs = 0;
-  let visibleBts = 0;
-
-  window.RAW_SITES_DATA.forEach(d => {
-    const [lat, lon, bgy, muni, prov, pop, hh, subs, bts1000, pNum, score, tier] = d;
-    if (phaseFilter !== 0 && pNum !== phaseFilter) return;
-
-    visibleCount++;
-    visiblePop += pop;
-    visibleSubs += subs;
-    visibleBts += bts1000;
-
-    const conf = PHASE_CONFIG[pNum];
-    const marker = L.circleMarker([lat, lon], {
-      renderer: mapCanvasRenderer,
-      radius: conf.radius,
-      fillColor: conf.color,
-      fillOpacity: 0.88,
-      color: conf.border,
-      weight: 1
-    });
-
-    const popupHtml = `
-      <div style="min-width: 250px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-          <span style="background:${conf.color}; color:#0A192F; font-size:10px; font-weight:800; padding:2px 7px; border-radius:4px; text-transform:uppercase;">
-            ${conf.name}
-          </span>
-          <span style="font-weight:700; color:#10B981; font-size:11px;">Score: ${score} / 100</span>
-        </div>
-        <h3 style="margin:0 0 2px 0; font-size:14px; color:#fff; font-weight:700;">${bgy}</h3>
-        <div style="color:#94A3B8; font-size:11px; margin-bottom:8px;">${muni}, ${prov}</div>
-        
-        <div style="background:rgba(255,255,255,0.06); border-radius:6px; padding:6px 8px; margin-bottom:8px;">
-          <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
-            <span style="color:#94A3B8;">Population:</span>
-            <span style="color:#fff; font-weight:600;">${pop.toLocaleString()}</span>
-          </div>
-          <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
-            <span style="color:#94A3B8;">Households:</span>
-            <span style="color:#fff; font-weight:600;">${hh.toLocaleString()}</span>
-          </div>
-          <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
-            <span style="color:#94A3B8;">Target Subs @ 30%:</span>
-            <span style="color:#F59E0B; font-weight:700;">${subs.toLocaleString()}</span>
-          </div>
-          <div style="display:flex; justify-content:space-between;">
-            <span style="color:#94A3B8;">Band n50 BTS (@1k subs):</span>
-            <span style="color:#00B4D8; font-weight:700;">${bts1000} BTS</span>
-          </div>
-        </div>
-
-        <div style="font-size:11px; color:#CBD5E1; margin-bottom:3px;">
-          <b>Backhaul:</b> ${tier}
-        </div>
-        <div style="font-size:10.5px; color:#64748B;">
-          Coordinates: ${lat.toFixed(6)}, ${lon.toFixed(6)}
-        </div>
-      </div>
-    `;
-
-    marker.bindPopup(popupHtml);
-    marker.addTo(leafletMap);
-    mapMarkers.push({ marker, bgy, muni, prov, pNum, lat, lon });
-  });
-
-  // Update stat overlay
-  const statTitle = document.getElementById('map-stat-title');
-  if (statTitle) {
-    statTitle.textContent = phaseFilter === 0 ? "Active Filter: All 5 Batches" : `Active Filter: Phase ${phaseFilter} (1,000 Sites)`;
-  }
-  const statSites = document.getElementById('map-stat-sites');
-  if (statSites) statSites.textContent = visibleCount.toLocaleString();
-  const statBts = document.getElementById('map-stat-bts');
-  if (statBts) statBts.textContent = `${visibleBts.toLocaleString()} BTS`;
-  const statPop = document.getElementById('map-stat-pop');
-  if (statPop) statPop.textContent = (visiblePop >= 1000000 ? `${(visiblePop/1000000).toFixed(1)}M` : visiblePop.toLocaleString());
-  const statSubs = document.getElementById('map-stat-subs');
-  if (statSubs) statSubs.textContent = (visibleSubs >= 1000000 ? `${(visibleSubs/1000000).toFixed(2)}M` : `${Math.round(visibleSubs/1000)}k`);
-}
-
-function filterMapPhase(phaseNum) {
-  currentPhaseFilter = phaseNum;
-  document.querySelectorAll('.map-phase-btn').forEach(btn => btn.classList.remove('active'));
-  const activeBtn = document.getElementById(`btn-phase-${phaseNum}`);
-  if (activeBtn) activeBtn.classList.add('active');
-  renderMarkers(phaseNum);
-}
-
-function resetMapView() {
-  if (!leafletMap) return;
-  leafletMap.flyTo([12.8797, 121.7740], 6);
-}
-
-function searchMapSite() {
-  const query = document.getElementById('map-search-input').value.trim().toLowerCase();
-  if (!query) return;
-
-  const match = mapMarkers.find(m => 
-    m.bgy.toLowerCase().includes(query) || 
-    m.muni.toLowerCase().includes(query) || 
-    m.prov.toLowerCase().includes(query)
-  );
-
-  if (match) {
-    leafletMap.flyTo([match.lat, match.lon], 13);
-    setTimeout(() => {
-      match.marker.openPopup();
-    }, 400);
-  } else {
-    alert("No matching barangay or municipality found in top 5,000 sites.");
-  }
-}
-
     } else if (e.key === 'End') {
       showSlide(totalSlides - 1);
     }
@@ -1840,12 +1676,30 @@ function initFwaMap() {
     preferCanvas: true
   });
 
-  // Dark basemap
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OpenStreetMap &copy; CARTO',
-    subdomains: 'abcd',
+  // High-contrast clean basemaps (100% Free, NO API KEY REQUIRED, No Watermarks)
+  const darkBase = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+    attribution: '&copy; Esri, OpenStreetMap',
+    maxZoom: 16
+  });
+  const darkLabels = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+    maxZoom: 16
+  });
+  const darkGroup = L.layerGroup([darkBase, darkLabels]).addTo(leafletMap);
+
+  const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: '&copy; Esri',
+    maxZoom: 18
+  });
+  const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors',
     maxZoom: 19
-  }).addTo(leafletMap);
+  });
+
+  L.control.layers({
+    "Dark Mode (Default)": darkGroup,
+    "Satellite Imagery": satellite,
+    "Street Map (OSM)": osm
+  }, null, { position: 'topright' }).addTo(leafletMap);
 
   mapCanvasRenderer = L.canvas({ padding: 0.5 });
 
@@ -1854,7 +1708,12 @@ function initFwaMap() {
 }
 
 function renderMarkers(phaseFilter) {
-  if (!leafletMap || !window.RAW_SITES_DATA) return;
+  if (!leafletMap) return;
+  if (!window.RAW_SITES_DATA || !window.RAW_SITES_DATA.length) {
+    console.warn('RAW_SITES_DATA not yet ready, retrying in 200ms...');
+    setTimeout(() => renderMarkers(phaseFilter), 200);
+    return;
+  }
 
   // Clear existing
   mapMarkers.forEach(m => leafletMap.removeLayer(m.marker));
