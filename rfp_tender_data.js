@@ -122,10 +122,10 @@ window.RFPTenderData = {
     "id": "09",
     "code": "09_RFP_5G_FWA_Official_Clarifications_Responses_Master",
     "title": "Document 09: Official Clarifications Response Workbook",
-    "subtitle": "Official 120-Item Master Clarification Matrix across RAN, Core, Civil, Power, CPE, OSS/BSS & Commercial (Companion Workbook to Bulletins 01 & 02)",
-    "badge": "Clarification Matrix • Oct 29",
-    "xlsx": "RFP_Tender_Package/09_RFP_5G_FWA_Official_Clarifications_Responses_Master.xlsx?v=20261029_rev2.7",
-    "pages": "3 Sheets (120 Inquiries)",
+    "subtitle": "Official 100-Item Master Clarification Matrix across RAN, Core, Civil, Power, CPE, OSS/BSS & Commercial (Promulgated under Bid Bulletin No. 2.1)",
+    "badge": "Clarification Matrix • Oct 30 (Rev 2.1)",
+    "xlsx": "RFP_Tender_Package/09_RFP_5G_FWA_Official_Clarifications_Responses_Master.xlsx?v=20261030_rev2.8",
+    "pages": "4 Sheets (100 Inquiries)",
     "type": "XLSX"
   },
   {
@@ -166,13 +166,13 @@ window.RFPTenderData = {
   {
     "id": "13",
     "code": "13_RFP_5G_FWA_Bid_Bulletin_02_Official_Clarifications",
-    "title": "Bid Bulletin No. 2: Technical Addendum & Clarifications",
-    "subtitle": "Authoritative Policy Addenda on Core Sizing, Band n50 Guardband, CPE Phased Strategy, Monopole Wind Limits & Operational SLAs (Items 45–100)",
-    "badge": "Binding Addendum • New",
-    "pdf": "RFP_Tender_Package/13_RFP_5G_FWA_Bid_Bulletin_02_Official_Clarifications.pdf?v=20261029_rev2.7",
-    "html": "RFP_Tender_Package/13_RFP_5G_FWA_Bid_Bulletin_02_Official_Clarifications.html?v=20261029_rev2.7",
-    "md": "RFP_Tender_Package/13_RFP_5G_FWA_Bid_Bulletin_02_Official_Clarifications.md?v=20261029_rev2.7",
-    "pages": "10 Pages (PDF, HTML & Markdown)",
+    "title": "Bid Bulletin No. 2.1: Technical Addendum & Clarifications",
+    "subtitle": "Authoritative Policy Addenda on Core Sizing, Band n50 Guardband, Mandatory RF Conformance (RAN-21), CPE Phased Strategy & Master Clarifications (Rev 2.1 - Oct 30, 2026)",
+    "badge": "Binding Addendum • Oct 30 (Rev 2.1)",
+    "pdf": "RFP_Tender_Package/13_RFP_5G_FWA_Bid_Bulletin_02_Official_Clarifications.pdf?v=20261030_rev2.8",
+    "html": "RFP_Tender_Package/13_RFP_5G_FWA_Bid_Bulletin_02_Official_Clarifications.html?v=20261030_rev2.8",
+    "md": "RFP_Tender_Package/13_RFP_5G_FWA_Bid_Bulletin_02_Official_Clarifications.md?v=20261030_rev2.8",
+    "pages": "12 Pages (PDF, HTML & Markdown)",
     "type": "PDF / HTML / MD"
   }
 ],
