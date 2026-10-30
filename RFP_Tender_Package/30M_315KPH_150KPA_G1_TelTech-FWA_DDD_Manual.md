@@ -2,7 +2,7 @@
 ## DETAILED DESIGN DRAWING (DDD) ENGINEERING & STRUCTURAL CALCULATION MANUAL
 **Document Reference:** `TT-DDD-30M-315KPH-150KPA-MANUAL-R0`  
 **Release Date:** 26-OCT-2026  
-**Lead Technical Architect:** Oliver Tungol  
+**Lead Technical Architect:** OLIVER TUNGOL, PMP, PECE  
 **Professional Structural Engineer:** Jomar Dogillo, PE  
 
 ---

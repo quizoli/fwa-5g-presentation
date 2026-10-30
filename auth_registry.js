@@ -1,7 +1,7 @@
 /**
  * TelTech & Comclark — 5G Fixed Wireless Access (FWA) Portal
  * User Authentication & Cryptographic Clearance Registry
- * Author: OLIVER TUNGOL (oliver.tungol@comclark.com.ph)
+ * Author: OLIVER TUNGOL, PMP, PECE (oliver.tungol@comclark.com.ph)
  * Last Updated: September 2026
  */
 
@@ -14,7 +14,7 @@
   const USER_REGISTRY = [
     {
       username: "oliver.tungol",
-      name: "Oliver Tungol",
+      name: "OLIVER TUNGOL, PMP, PECE",
       email: "oliver.tungol@comclark.com.ph",
       organization: "Comclark Network & Technology Corp.",
       role: "Lead Architect & Administrator",

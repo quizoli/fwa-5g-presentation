@@ -3,7 +3,7 @@
 
 **Document Control Reference:** RFP-TELTECH-FWA-2026-001  
 **Project Owner & Issuing Entity:** Telecommunications Technology Solutions Incorporated (TelTech)  
-**Author:** OLIVER TUNGOL  
+**Author:** OLIVER TUNGOL, PMP, PECE  
 **Date of Release:** October 14, 2026  
 **Official Tender Communications & Submission Channel:** `oliver.tungol@comclark.com.ph`  
 

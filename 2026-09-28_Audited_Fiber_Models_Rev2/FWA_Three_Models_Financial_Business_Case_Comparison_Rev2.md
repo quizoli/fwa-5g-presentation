@@ -2,7 +2,7 @@
 ## 10-Year DCF, P&L, and Return Metrics across Commercial, GIDA, and Combined Models
 
 **Date:** September 28, 2026  
-**Author:** OLIVER TUNGOL  
+**Author:** OLIVER TUNGOL, PMP, PECE  
 **WACC / Discount Rate:** 12.0% | **Corporate Tax:** 25.0% (CREATE Act) | **Blended ARPU:** ₱699 / month | **BTS Hardware:** $26,000 / site (8T8R MIMO)
 
 ---

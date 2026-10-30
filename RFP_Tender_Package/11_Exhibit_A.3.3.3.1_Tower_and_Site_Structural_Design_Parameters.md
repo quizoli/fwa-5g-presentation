@@ -4,7 +4,7 @@
 **Applicant / Operator:** Telecommunications Technology Solutions Incorporated (TelTech)  
 **Partner / Network:** Comclark Network and Technology Corp.  
 **System Reference:** Nationwide 5G Standalone (SA) Fixed Wireless Access (FWA) — Band n50 (1457.0 – 1517.0 MHz)  
-**Lead Technical Architect & Authorized Representative:** OLIVER TUNGOL  
+**Lead Technical Architect & Authorized Representative:** OLIVER TUNGOL, PMP, PECE  
 **Structural / Site Plan Engineer:** JOMAR DOGILLO, PE  
 **Standard Codes & References:** 
 * National Structural Code of the Philippines (NSCP 2015, 7th Edition, Volume 1 — Buildings and Other Vertical Structures, Section 207 Wind Loads)

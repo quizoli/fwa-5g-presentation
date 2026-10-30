@@ -6,7 +6,7 @@
 
 # BID BULLETIN NO. 2.1: COMPREHENSIVE TECHNICAL, OPERATIONAL & COMMERCIAL ADDENDUM
 **TO ALL PROSPECTIVE BIDDERS:** All Qualified Bidders, System Integrators, and Authorized Equipment Manufacturers  
-**FROM:** Oliver Tungol, Lead Technical Architect & Tender Secretariat  
+**FROM:** OLIVER TUNGOL, PMP, PECE, Lead Technical Architect & Tender Secretariat  
 **DATE OF ISSUANCE:** October 30, 2026 (Revised & Consolidated Addendum)  
 **SUBJECT:** Technical Baseline Revisions, Mandatory RF Conformance Directives (RAN-21), and Promulgation of Consolidated 100-Question Clarifications Master  
 

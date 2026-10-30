@@ -5,7 +5,7 @@
 **Audited Tower Database:** 13,810 Registry Records (13,799 Unique IDs / 13,629 Coordinates) | **Release Date:** 26 October 2026  
 **Document Version:** 2.1 (Reconciled Master Services SOW & Commercial Rate Card)  
 **Commercial FX Baseline:** 1 USD = 55.00 PHP  
-**Author:** Oliver Tungol  
+**Author:** OLIVER TUNGOL, PMP, PECE  
 
 ---
 

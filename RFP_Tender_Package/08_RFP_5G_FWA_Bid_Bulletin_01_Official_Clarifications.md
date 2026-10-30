@@ -6,7 +6,7 @@
 
 # BID BULLETIN NO. 1
 **TO ALL PROSPECTIVE BIDDERS:** All Qualified Bidders, System Integrators, and Authorized Equipment Suppliers  
-**FROM:** Oliver Tungol, Lead Technical Architect & Tender Secretariat  
+**FROM:** OLIVER TUNGOL, PMP, PECE, Lead Technical Architect & Tender Secretariat  
 **DATE OF ISSUANCE:** October 21, 2026  
 **SUBJECT:** Official Clarifications, Technical Baseline Amendments, and Response Matrix to Bidder Inquiries  
 
@@ -196,7 +196,7 @@ To:
 TELECOMMUNICATIONS TECHNOLOGY SOLUTIONS INCORPORATED (TELTECH)
 Comclark Network & Technology Corp. / TelTech
 Reliance IT Center, Pasig City / Clark Freeport Zone, Pampanga, Philippines
-Attention: Oliver Tungol, Lead Technical Architect & Tender Secretariat
+Attention: OLIVER TUNGOL, PMP, PECE, Lead Technical Architect & Tender Secretariat
 Email: oliver.tungol@comclark.com.ph
 
 SUBJECT: FORM A — FORMAL BID SUBMISSION LETTER & CONSORTIUM DECLARATION

@@ -5,7 +5,7 @@
 **Project:** Nationwide 5G FWA Project (Band n50, 60 MHz TDD)  
 **Operator:** Telecommunications Technology Solutions Incorporated (TelTech)  
 **Document Version:** Revision 2.7 (Harmonized with Bid Bulletin No. 2 — 29 October 2026)  
-**Author:** OLIVER TUNGOL
+**Author:** OLIVER TUNGOL, PMP, PECE
 
 ---
 

@@ -1,6 +1,6 @@
 # 🗼 Executive Technical Guide: Operational Cell Tower Overlay on POPCEN 2024 (13,735 Towers)
 
-**Author & Lead Architect:** Oliver Tungol  
+**Author & Lead Architect:** OLIVER TUNGOL, PMP, PECE  
 **Entity:** Comclark Network and Technology Corp. / Telecommunications Technology Solutions Inc. (TelTech)  
 **Date:** October 28, 2026 (Rev 2.6 Synchronized)  
 **Document Code:** FWA-ENG-TOWER-POPCEN-2026-V2.6  

@@ -1,7 +1,7 @@
 /**
  * TelTech 5G FWA E-Tender Portal — Firebase Centralized Backend
  * Project: g-fwa-rfp
- * Author: OLIVER TUNGOL (oliver.tungol@comclark.com.ph)
+ * Author: OLIVER TUNGOL, PMP, PECE (oliver.tungol@comclark.com.ph)
  */
 
 (function(window) {
