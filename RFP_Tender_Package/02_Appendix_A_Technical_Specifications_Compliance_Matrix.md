@@ -34,6 +34,7 @@
 | **RAN-18** | **Energy Saving Modes** | Micro-sleep, symbol shutdown, deep sleep during low-traffic periods, reducing idle power consumption by >= 40%. | | |
 | **RAN-19** | **Antenna Specifications** | 8-port cross-pol antenna, 65° horizontal HPBW, >= 17.5 dBi gain, integrated AISG 2.0 internal remote electrical tilt (eRET) adjustable 2° to 12°. | | |
 | **RAN-20** | **PIM Performance** | Passive Intermodulation (PIM) <= -153dBc @ 2 x 43 dBm carrier test. | | |
+| **RAN-21** | **RF Conformance & Out-of-Band Emission Testing** | Certified third-party or OEM factory laboratory test reports under 3GPP TS 38.141-1 (Conducted) and TS 38.141-2 (Radiated) demonstrating: (1) SEM compliance at maximum rated conducted power (+55 dBm / 320W per sector); (2) ACLR >= 45 dB into adjacent 1432.0–1457.0 MHz NPN band; (3) OBUE spectral mask plots across 1517.0–1559.0 MHz verifying <= -30 dBm/MHz out-of-band emissions above 1518.0 MHz for MSS satellite protection pursuant to ITU-R M.2159-0, WRC-15 Res 223, and NTC MC No. 006-11-2025; (4) Explicit declaration of any required power de-rating (in dB) or external high-Q cavity bandpass filtering. | | |
 
 ---
 
