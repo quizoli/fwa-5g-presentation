@@ -4,30 +4,31 @@
 
 ---
 
-# BID BULLETIN NO. 2: COMPREHENSIVE TECHNICAL, OPERATIONAL & COMMERCIAL ADDENDUM
+# BID BULLETIN NO. 2.1: COMPREHENSIVE TECHNICAL, OPERATIONAL & COMMERCIAL ADDENDUM
 **TO ALL PROSPECTIVE BIDDERS:** All Qualified Bidders, System Integrators, and Authorized Equipment Manufacturers  
 **FROM:** Oliver Tungol, Lead Technical Architect & Tender Secretariat  
-**DATE OF ISSUANCE:** October 29, 2026  
-**SUBJECT:** Technical Baseline Revisions, Engineering Standard Directives, and Contractual Policy Harmonization  
+**DATE OF ISSUANCE:** October 30, 2026 (Revised & Consolidated Addendum)  
+**SUBJECT:** Technical Baseline Revisions, Mandatory RF Conformance Directives (RAN-21), and Promulgation of Consolidated 100-Question Clarifications Master  
 
 ---
 
 > [!IMPORTANT]
-> **GOVERNING LEGAL DIRECTIVE:** This **Bid Bulletin No. 2** is formally promulgated pursuant to Section 1.5 (*Clarification and Amendment of Bidding Documents*) of the Master RFP Document. The provisions, technical standards, and commercial rules articulated herein are seamlessly codified as binding contractual addenda to Documents 01 through 09. Prospective bidders must formulate their final 3-envelope submissions strictly in conformance with these unified engineering policies.
+> **GOVERNING LEGAL DIRECTIVE:** This **Bid Bulletin No. 2.1** is formally promulgated pursuant to Section 1.5 (*Clarification and Amendment of Bidding Documents*) of the Master RFP Document. It updates, refines, and consolidates the directives of Bulletin 2.0. The provisions, technical standards, mandatory RF conformance testing protocols, and commercial rules articulated herein are seamlessly codified as binding contractual addenda to Documents 01 through 09. Prospective bidders must formulate their final 3-envelope submissions strictly in conformance with these unified engineering policies.
 
 ---
 
 ## 1. EXECUTIVE SUMMARY & TENDER STATUS OVERVIEW
 
-Following detailed technical reviews, preliminary engineering evaluations, and structural harmonization across the 5,000 candidate barangays, TelTech officially issues this comprehensive policy bulletin. This document codifies authoritative directives across eight (8) strategic technical domains:
+Following detailed technical reviews, preliminary engineering evaluations, and structural harmonization across the 5,000 candidate barangays, TelTech officially issues this comprehensive policy bulletin (Revision 2.1). This document codifies authoritative directives across nine (9) strategic technical domains:
 1. **Cloud-Native 5G SA Core Dimensioning & User Plane Throughput (Lot 3)**
-2. **Spectrum Allocation (NTC MC 006-11-2025), Band n50 Operating Passband & Demarcation Optics (Lot 1 & Lot 6)**
+2. **Spectrum Allocation (NTC MC 006-11-2025), Band n50 Operating Passband, RF Conformance Testing (RAN-21) & Demarcation Optics (Lot 1 & Lot 6)**
 3. **Customer Premises Equipment (CPE) Phased Rollout & Lifecycle Reverse Logistics (Lot 7)**
 4. **Civil Works, Monopole Structural Standards & Site Power Infrastructure (Lots 2 & 5)**
 5. **Operational SLAs, Radio Network KPIs & SSV Acceptance Standards (Document 04 / Appendix C)**
 6. **Digital OSS/BSS, Field Force Automation & VAS Subsystems (Lot 4)**
 7. **Candidate Siting Schedule Precision & Geographic Asset Provenance (Document 07)**
 8. **Commercial BoQ Harmonization, Multi-Year O&M & 10-Year TCO Rules (Document 06)**
+9. **Consolidated Response Matrix (Part 3: Inquiries Q045 – Q100 & Publication of 100-Question Master Register in Document 09)**
 
 ---
 
